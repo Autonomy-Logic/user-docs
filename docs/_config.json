@@ -5,62 +5,496 @@
       "path": "getting-started",
       "items": [
         {
-          "title": "Installation",
-          "path": "installation"
+          "title": "Introduction to Autonomy Edge",
+          "path": "introduction"
         },
         {
-          "title": "Quick Start",
-          "path": "quick-start"
+          "title": "Account Setup and Authentication",
+          "path": "account-setup"
         },
         {
-          "title": "Configuration",
-          "path": "configuration"
+          "title": "Dashboard Overview",
+          "path": "dashboard-overview"
+        },
+        {
+          "title": "User Profile Management",
+          "path": "user-profile"
         }
       ]
     },
     {
-      "title": "User Guide",
-      "path": "user-guide",
+      "title": "Platform Features",
+      "path": "platform-features",
       "items": [
         {
-          "title": "Projects",
-          "path": "projects"
+          "title": "Project Management",
+          "path": "project-management",
+          "items": [
+            {
+              "title": "Creating Projects",
+              "path": "creating-projects"
+            },
+            {
+              "title": "Project Visibility and Sharing",
+              "path": "project-visibility"
+            },
+            {
+              "title": "Organizing Projects with Folders",
+              "path": "organizing-projects"
+            },
+            {
+              "title": "Opening and Editing Projects",
+              "path": "opening-editing"
+            }
+          ]
         },
         {
-          "title": "Orchestrators",
-          "path": "orchestrators"
+          "title": "Orchestrator Management",
+          "path": "orchestrator-management",
+          "items": [
+            {
+              "title": "Understanding Orchestrators",
+              "path": "understanding-orchestrators"
+            },
+            {
+              "title": "Adding Orchestrators",
+              "path": "adding-orchestrators"
+            },
+            {
+              "title": "Orchestrator Overview",
+              "path": "orchestrator-overview"
+            }
+          ]
         },
         {
-          "title": "Devices",
-          "path": "devices"
+          "title": "Virtual PLC Device Management",
+          "path": "vplc-management",
+          "items": [
+            {
+              "title": "Understanding vPLC Devices",
+              "path": "understanding-vplc"
+            },
+            {
+              "title": "Creating vPLC Devices",
+              "path": "creating-vplc"
+            },
+            {
+              "title": "Managing Device Status",
+              "path": "managing-status"
+            }
+          ]
+        },
+        {
+          "title": "Community Features",
+          "path": "community-features",
+          "items": [
+            {
+              "title": "Activity Feed",
+              "path": "activity-feed"
+            },
+            {
+              "title": "Search Functionality",
+              "path": "search-functionality"
+            }
+          ]
         }
       ]
     },
     {
-      "title": "API Reference",
-      "path": "api-reference",
+      "title": "IEC 61131-3 Programming IDE",
+      "path": "iec-61131-3-ide",
       "items": [
         {
-          "title": "Authentication",
-          "path": "authentication"
+          "title": "IDE Workspace Overview",
+          "path": "workspace-overview",
+          "items": [
+            {
+              "title": "Workspace Layout",
+              "path": "workspace-layout"
+            },
+            {
+              "title": "Project Explorer",
+              "path": "project-explorer"
+            },
+            {
+              "title": "Console and Debugging",
+              "path": "console-debugging"
+            }
+          ]
         },
         {
-          "title": "Endpoints",
-          "path": "endpoints"
+          "title": "Understanding IEC 61131-3 Concepts",
+          "path": "iec-concepts",
+          "items": [
+            {
+              "title": "Program Organization Units (POUs)",
+              "path": "pous"
+            },
+            {
+              "title": "Variables and Data Types",
+              "path": "variables-datatypes"
+            },
+            {
+              "title": "Tasks and Instances",
+              "path": "tasks-instances"
+            }
+          ]
+        },
+        {
+          "title": "Programming Languages",
+          "path": "programming-languages",
+          "items": [
+            {
+              "title": "Structured Text (ST)",
+              "path": "structured-text",
+              "items": [
+                {
+                  "title": "ST Language Basics",
+                  "path": "st-basics"
+                },
+                {
+                  "title": "ST Programming Examples",
+                  "path": "st-examples"
+                },
+                {
+                  "title": "ST Editor Features",
+                  "path": "st-editor"
+                }
+              ]
+            },
+            {
+              "title": "Ladder Diagram (LD)",
+              "path": "ladder-diagram",
+              "items": [
+                {
+                  "title": "LD Language Basics",
+                  "path": "ld-basics"
+                },
+                {
+                  "title": "Contact Elements",
+                  "path": "contact-elements"
+                },
+                {
+                  "title": "Coil Elements",
+                  "path": "coil-elements"
+                },
+                {
+                  "title": "Function Blocks in LD",
+                  "path": "function-blocks-ld"
+                },
+                {
+                  "title": "LD Editor Features",
+                  "path": "ld-editor"
+                }
+              ]
+            },
+            {
+              "title": "Function Block Diagram (FBD)",
+              "path": "function-block-diagram",
+              "items": [
+                {
+                  "title": "FBD Language Basics",
+                  "path": "fbd-basics"
+                },
+                {
+                  "title": "FBD Programming Examples",
+                  "path": "fbd-examples"
+                }
+              ]
+            },
+            {
+              "title": "Instruction List (IL)",
+              "path": "instruction-list",
+              "items": [
+                {
+                  "title": "IL Language Basics",
+                  "path": "il-basics"
+                },
+                {
+                  "title": "IL Programming Examples",
+                  "path": "il-examples"
+                }
+              ]
+            },
+            {
+              "title": "Sequential Function Chart (SFC)",
+              "path": "sequential-function-chart",
+              "items": [
+                {
+                  "title": "SFC Language Basics (Coming Soon)",
+                  "path": "sfc-basics"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Custom Programming Languages",
+          "path": "custom-languages",
+          "items": [
+            {
+              "title": "Python Function Blocks",
+              "path": "python-blocks",
+              "items": [
+                {
+                  "title": "Python Programming Basics",
+                  "path": "python-basics"
+                },
+                {
+                  "title": "Python Block Structure",
+                  "path": "python-structure"
+                },
+                {
+                  "title": "Python Language Server",
+                  "path": "python-language-server"
+                },
+                {
+                  "title": "Python Variable Restrictions",
+                  "path": "python-restrictions"
+                }
+              ]
+            },
+            {
+              "title": "C++ Function Blocks",
+              "path": "cpp-blocks",
+              "items": [
+                {
+                  "title": "C++ Programming Basics",
+                  "path": "cpp-basics"
+                },
+                {
+                  "title": "C++ Block Structure",
+                  "path": "cpp-structure"
+                },
+                {
+                  "title": "C++ Code Completion",
+                  "path": "cpp-completion"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Working with Variables",
+          "path": "working-with-variables",
+          "items": [
+            {
+              "title": "Global Variables",
+              "path": "global-variables"
+            },
+            {
+              "title": "Local Variables",
+              "path": "local-variables"
+            },
+            {
+              "title": "Variables Editor",
+              "path": "variables-editor"
+            },
+            {
+              "title": "Global Variables Editor",
+              "path": "global-variables-editor"
+            }
+          ]
+        },
+        {
+          "title": "Custom Data Types",
+          "path": "custom-data-types",
+          "items": [
+            {
+              "title": "Creating Data Types",
+              "path": "creating-datatypes"
+            },
+            {
+              "title": "Array Data Types",
+              "path": "array-datatypes"
+            },
+            {
+              "title": "Enumerated Data Types",
+              "path": "enumerated-datatypes"
+            },
+            {
+              "title": "Structure Data Types",
+              "path": "structure-datatypes"
+            },
+            {
+              "title": "Using Custom Types in Code",
+              "path": "using-custom-types"
+            }
+          ]
+        },
+        {
+          "title": "Standard Function Blocks Library",
+          "path": "standard-function-blocks",
+          "items": [
+            {
+              "title": "Timer Function Blocks",
+              "path": "timer-blocks"
+            },
+            {
+              "title": "Counter Function Blocks",
+              "path": "counter-blocks"
+            },
+            {
+              "title": "Bistable Function Blocks",
+              "path": "bistable-blocks"
+            },
+            {
+              "title": "Edge Detection Function Blocks",
+              "path": "edge-detection-blocks"
+            },
+            {
+              "title": "Other Standard Function Blocks",
+              "path": "other-blocks"
+            }
+          ]
+        },
+        {
+          "title": "Task Configuration",
+          "path": "task-configuration",
+          "items": [
+            {
+              "title": "Understanding Tasks",
+              "path": "understanding-tasks"
+            },
+            {
+              "title": "Task Editor",
+              "path": "task-editor"
+            },
+            {
+              "title": "Instance Management",
+              "path": "instance-management"
+            }
+          ]
+        },
+        {
+          "title": "Hardware Configuration",
+          "path": "hardware-configuration",
+          "items": [
+            {
+              "title": "Device Configuration Overview",
+              "path": "device-config-overview"
+            },
+            {
+              "title": "Board Selection",
+              "path": "board-selection"
+            },
+            {
+              "title": "Pin Mapping",
+              "path": "pin-mapping"
+            },
+            {
+              "title": "Communication Settings",
+              "path": "communication-settings"
+            }
+          ]
+        },
+        {
+          "title": "Building and Deploying",
+          "path": "building-deploying",
+          "items": [
+            {
+              "title": "Project Compilation",
+              "path": "project-compilation"
+            },
+            {
+              "title": "XML Export Format",
+              "path": "xml-export"
+            },
+            {
+              "title": "Deployment to vPLC Devices",
+              "path": "deployment-vplc"
+            }
+          ]
         }
       ]
     },
     {
-      "title": "Advanced",
-      "path": "advanced",
+      "title": "Advanced Topics",
+      "path": "advanced-topics",
       "items": [
         {
-          "title": "Architecture",
-          "path": "architecture"
+          "title": "Best Practices",
+          "path": "best-practices",
+          "items": [
+            {
+              "title": "Project Organization",
+              "path": "project-organization"
+            },
+            {
+              "title": "Code Reusability",
+              "path": "code-reusability"
+            },
+            {
+              "title": "Performance Optimization",
+              "path": "performance-optimization"
+            }
+          ]
         },
         {
-          "title": "Deployment",
-          "path": "deployment"
+          "title": "Troubleshooting",
+          "path": "troubleshooting",
+          "items": [
+            {
+              "title": "Common Compilation Errors",
+              "path": "compilation-errors"
+            },
+            {
+              "title": "Runtime Debugging",
+              "path": "runtime-debugging"
+            },
+            {
+              "title": "Network and Connectivity Issues",
+              "path": "network-issues"
+            }
+          ]
+        },
+        {
+          "title": "Integration and APIs",
+          "path": "integration-apis",
+          "items": [
+            {
+              "title": "Edge Functions",
+              "path": "edge-functions"
+            },
+            {
+              "title": "Custom Libraries",
+              "path": "custom-libraries"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Reference",
+      "path": "reference",
+      "items": [
+        {
+          "title": "Data Types Reference",
+          "path": "data-types"
+        },
+        {
+          "title": "IEC 61131-3 Keywords",
+          "path": "iec-keywords"
+        },
+        {
+          "title": "Standard Function Blocks Reference",
+          "path": "function-blocks"
+        },
+        {
+          "title": "Supported Hardware Boards",
+          "path": "hardware-boards"
+        },
+        {
+          "title": "Keyboard Shortcuts",
+          "path": "keyboard-shortcuts"
+        },
+        {
+          "title": "FAQ",
+          "path": "faq"
+        },
+        {
+          "title": "Glossary",
+          "path": "glossary"
         }
       ]
     }
