@@ -1,0 +1,68 @@
+{
+  "navigation": [
+    {
+      "title": "Getting Started",
+      "path": "getting-started",
+      "items": [
+        {
+          "title": "Installation",
+          "path": "installation"
+        },
+        {
+          "title": "Quick Start",
+          "path": "quick-start"
+        },
+        {
+          "title": "Configuration",
+          "path": "configuration"
+        }
+      ]
+    },
+    {
+      "title": "User Guide",
+      "path": "user-guide",
+      "items": [
+        {
+          "title": "Projects",
+          "path": "projects"
+        },
+        {
+          "title": "Orchestrators",
+          "path": "orchestrators"
+        },
+        {
+          "title": "Devices",
+          "path": "devices"
+        }
+      ]
+    },
+    {
+      "title": "API Reference",
+      "path": "api-reference",
+      "items": [
+        {
+          "title": "Authentication",
+          "path": "authentication"
+        },
+        {
+          "title": "Endpoints",
+          "path": "endpoints"
+        }
+      ]
+    },
+    {
+      "title": "Advanced",
+      "path": "advanced",
+      "items": [
+        {
+          "title": "Architecture",
+          "path": "architecture"
+        },
+        {
+          "title": "Deployment",
+          "path": "deployment"
+        }
+      ]
+    }
+  ]
+}
