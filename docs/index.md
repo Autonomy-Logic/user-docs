@@ -1,18 +1,16 @@
-# Autonomy Logic Documentation
+# Autonomy Edge Platform Documentation
 
-Welcome to the Autonomy Logic user documentation. This documentation provides comprehensive guides and references for all Autonomy software products.
+Welcome to the Autonomy Edge Platform documentation. This comprehensive guide covers both the cloud platform and the IEC 61131-3 IDE for industrial automation.
 
-## Quick Links
 
-- [Getting Started](getting-started/installation.md) - Install and configure Autonomy software
-- [User Guide](user-guide/projects.md) - Learn how to use the platform
-- [API Reference](api-reference/authentication.md) - API documentation and endpoints
-- [Advanced Topics](advanced/architecture.md) - Architecture and deployment guides
+- [Getting Started](getting-started/introduction.md) - Introduction and account setup
+- [Platform Features](platform-features/project-management/creating-projects.md) - Learn about platform capabilities
+- [IEC 61131-3 Programming IDE](iec-61131-3-ide/workspace-overview/workspace-layout.md) - Programming guide
+- [Advanced Topics](advanced-topics/best-practices/project-organization.md) - Best practices and troubleshooting
+- [Reference](reference/data-types.md) - Complete reference documentation
 
-## About
 
-Autonomy Logic provides industrial automation and edge computing solutions. This documentation covers all aspects of using our software platform.
+The Autonomy Edge platform combines a powerful cloud-based project management system with a comprehensive IEC 61131-3 compliant programming IDE. This documentation provides complete coverage of all features and capabilities.
 
-## Getting Help
 
-If you need assistance, please contact our support team or refer to the relevant sections in this documentation.
+If you need assistance, please refer to the [FAQ](reference/faq.md) or [Troubleshooting](advanced-topics/troubleshooting/compilation-errors.md) sections.
