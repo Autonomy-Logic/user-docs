@@ -45,6 +45,10 @@
             {
               "title": "Opening and Editing Projects",
               "path": "opening-editing"
+            },
+            {
+              "title": "Managing Projects - Pinning, Recents, and Trash",
+              "path": "managing-projects"
             }
           ]
         },
