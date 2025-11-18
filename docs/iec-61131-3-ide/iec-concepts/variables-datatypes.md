@@ -1,3 +1,543 @@
 # Variables and Data Types
 
-Documentation in progress.
+Variables and data types are fundamental concepts in IEC 61131-3 programming. Understanding how to declare, use, and manage variables is essential for creating effective PLC programs. This section covers variable classes, base data types, and custom data types.
+
+## What are Variables?
+
+Variables are named storage locations that hold data in your program. Each variable has:
+- **A Name**: A unique identifier used to reference the variable
+- **A Data Type**: Defines what kind of data the variable can hold
+- **A Class**: Determines the variable's scope and how it can be accessed
+- **An Optional Initial Value**: The value the variable starts with
+
+## Variable Classes
+
+IEC 61131-3 defines several variable classes, each serving a different purpose in your program structure.
+
+### 1. Input Variables (VAR_INPUT)
+
+Input variables are parameters passed into a POU (Program Organization Unit). They are read-only within the POU.
+
+**Characteristics:**
+- Declared with `VAR_INPUT ... END_VAR`
+- Values are provided by the caller
+- Cannot be modified within the POU
+- Used for function and function block parameters
+
+**Example:**
+```
+FUNCTION_BLOCK TemperatureController
+VAR_INPUT
+    setpoint : REAL;           // Desired temperature
+    current_temp : REAL;       // Current temperature reading
+    enable : BOOL;             // Enable/disable controller
+END_VAR
+```
+
+### 2. Output Variables (VAR_OUTPUT)
+
+Output variables are values returned by a POU to its caller.
+
+**Characteristics:**
+- Declared with `VAR_OUTPUT ... END_VAR`
+- Values are set within the POU
+- Can be read by the caller
+- Used to return multiple values from function blocks
+
+**Example:**
+```
+FUNCTION_BLOCK TemperatureController
+VAR_OUTPUT
+    heater_on : BOOL;          // Heater control output
+    error : BOOL;              // Error flag
+    power_level : INT;         // Current power level (0-100)
+END_VAR
+```
+
+### 3. Input-Output Variables (VAR_IN_OUT)
+
+Input-output variables are passed by reference, allowing the POU to both read and modify them.
+
+**Characteristics:**
+- Declared with `VAR_IN_OUT ... END_VAR`
+- Passed by reference (changes affect the original variable)
+- Used for large data structures to avoid copying
+- Useful when a POU needs to modify caller's data
+
+**Example:**
+```
+FUNCTION_BLOCK DataProcessor
+VAR_IN_OUT
+    buffer : ARRAY[0..99] OF INT;  // Large array passed by reference
+    status : STRUCT                 // Status structure
+        count : INT;
+        valid : BOOL;
+    END_STRUCT;
+END_VAR
+```
+
+### 4. Local Variables (VAR)
+
+Local variables are internal to a POU and maintain their values between calls (for programs and function blocks).
+
+**Characteristics:**
+- Declared with `VAR ... END_VAR`
+- Not visible outside the POU
+- Persist between execution cycles (for programs and function blocks)
+- Used for internal state and calculations
+
+**Example:**
+```
+PROGRAM main
+VAR
+    counter : INT := 0;        // Persistent counter
+    state : INT := 0;          // State machine state
+    timer_running : BOOL;      // Internal flag
+END_VAR
+```
+
+### 5. Temporary Variables (VAR_TEMP)
+
+Temporary variables are local variables that do not persist between calls. They are reset each execution cycle.
+
+**Characteristics:**
+- Declared with `VAR_TEMP ... END_VAR`
+- Values are not preserved between calls
+- More memory efficient than persistent variables
+- Used for intermediate calculations
+
+**Example:**
+```
+FUNCTION_BLOCK Calculator
+VAR_TEMP
+    temp_result : REAL;        // Temporary calculation result
+    index : INT;               // Loop counter
+END_VAR
+```
+
+### 6. External Variables (VAR_EXTERNAL)
+
+External variables reference global variables defined elsewhere in the project.
+
+**Characteristics:**
+- Declared with `VAR_EXTERNAL ... END_VAR`
+- Reference global variables
+- Must match the name and type of the global variable
+- Allow POUs to access shared data
+
+**Example:**
+```
+PROGRAM main
+VAR_EXTERNAL
+    system_time : TIME;        // References global variable
+    emergency_stop : BOOL;     // References global variable
+END_VAR
+```
+
+### 7. Global Variables (VAR_GLOBAL)
+
+Global variables are accessible from all POUs in the project. They are defined in the Resource section.
+
+**Characteristics:**
+- Declared in the Resource configuration
+- Accessible from all programs and function blocks
+- Used for shared data between POUs
+- Should be used sparingly to avoid coupling
+
+**Example (in Resource):**
+```
+VAR_GLOBAL
+    system_time : TIME;
+    emergency_stop : BOOL := FALSE;
+    production_count : INT := 0;
+END_VAR
+```
+
+## Base Data Types
+
+IEC 61131-3 defines a comprehensive set of base data types for different kinds of data.
+
+### Boolean Type
+
+**BOOL**: Boolean value (TRUE or FALSE)
+- Size: 1 bit
+- Range: TRUE (1) or FALSE (0)
+- Example: `running : BOOL := FALSE;`
+
+### Integer Types
+
+**Signed Integers:**
+- **SINT** (Short Integer): 8-bit signed integer (-128 to 127)
+- **INT** (Integer): 16-bit signed integer (-32,768 to 32,767)
+- **DINT** (Double Integer): 32-bit signed integer (-2,147,483,648 to 2,147,483,647)
+- **LINT** (Long Integer): 64-bit signed integer
+
+**Unsigned Integers:**
+- **USINT** (Unsigned Short Integer): 8-bit unsigned (0 to 255)
+- **UINT** (Unsigned Integer): 16-bit unsigned (0 to 65,535)
+- **UDINT** (Unsigned Double Integer): 32-bit unsigned (0 to 4,294,967,295)
+- **ULINT** (Unsigned Long Integer): 64-bit unsigned
+
+**Example:**
+```
+VAR
+    temperature : INT := 25;           // Signed 16-bit
+    counter : UDINT := 0;              // Unsigned 32-bit
+    small_value : SINT := -50;         // Signed 8-bit
+END_VAR
+```
+
+### Real (Floating-Point) Types
+
+**REAL**: 32-bit floating-point number
+- Size: 32 bits
+- Precision: ~7 decimal digits
+- Example: `temperature : REAL := 25.5;`
+
+**LREAL** (Long Real): 64-bit floating-point number
+- Size: 64 bits
+- Precision: ~15 decimal digits
+- Example: `precise_value : LREAL := 3.14159265359;`
+
+### Time Types
+
+**TIME**: Duration or time interval
+- Format: T#1d2h3m4s5ms (days, hours, minutes, seconds, milliseconds)
+- Example: `cycle_time : TIME := T#100ms;`
+
+**DATE**: Calendar date
+- Format: D#2024-01-15
+- Example: `production_date : DATE := D#2024-01-15;`
+
+**TIME_OF_DAY (TOD)**: Time of day
+- Format: TOD#12:30:45
+- Example: `start_time : TOD := TOD#08:00:00;`
+
+**DATE_AND_TIME (DT)**: Combined date and time
+- Format: DT#2024-01-15-12:30:45
+- Example: `timestamp : DT := DT#2024-01-15-12:30:45;`
+
+### String Type
+
+**STRING**: Character string
+- Variable length up to 255 characters
+- Example: `message : STRING := 'Hello, World!';`
+
+### Bit String Types
+
+Used for bit manipulation and packed data:
+- **BYTE**: 8-bit string (0 to 255)
+- **WORD**: 16-bit string (0 to 65,535)
+- **DWORD**: 32-bit string (0 to 4,294,967,295)
+- **LWORD**: 64-bit string
+
+**Example:**
+```
+VAR
+    status_byte : BYTE := 16#FF;       // Hexadecimal notation
+    control_word : WORD := 2#1010101010101010;  // Binary notation
+END_VAR
+```
+
+### Special Type
+
+**LOGLEVEL**: Logging level for system messages
+- Used for controlling log verbosity
+- Example: `log_level : LOGLEVEL;`
+
+## Custom Data Types
+
+In addition to base types, you can create custom data types to organize complex data structures.
+
+### 1. Array Data Types
+
+Arrays are collections of elements of the same type, accessed by index.
+
+**Syntax:**
+```
+TYPE
+    IntArray : ARRAY[0..9] OF INT;           // 10 integers
+    Matrix : ARRAY[0..2, 0..3] OF REAL;      // 2D array (3x4)
+END_TYPE
+```
+
+**Usage:**
+```
+VAR
+    temperatures : ARRAY[0..9] OF REAL;      // Inline array declaration
+    values : IntArray;                       // Using custom type
+END_VAR
+
+// Accessing array elements
+temperatures[0] := 25.5;
+temperatures[5] := temperatures[0] + 10.0;
+```
+
+**Multi-dimensional Arrays:**
+```
+VAR
+    grid : ARRAY[0..9, 0..9] OF INT;        // 10x10 grid
+END_VAR
+
+grid[3, 5] := 42;  // Access element at row 3, column 5
+```
+
+### 2. Enumerated Data Types
+
+Enumerations define a set of named constants, making code more readable.
+
+**Syntax:**
+```
+TYPE
+    MotorState : (STOPPED, STARTING, RUNNING, STOPPING, ERROR);
+    DayOfWeek : (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
+END_TYPE
+```
+
+**Usage:**
+```
+VAR
+    motor_status : MotorState := STOPPED;
+    today : DayOfWeek;
+END_VAR
+
+// Using enumeration values
+IF motor_status = RUNNING THEN
+    // Motor is running
+END_IF;
+
+motor_status := STARTING;  // Change state
+```
+
+### 3. Structure Data Types
+
+Structures group related variables of different types into a single unit.
+
+**Syntax:**
+```
+TYPE
+    Person : STRUCT
+        name : STRING;
+        age : INT;
+        height : REAL;
+    END_STRUCT;
+    
+    MotorData : STRUCT
+        speed : INT;
+        current : REAL;
+        running : BOOL;
+        error_code : INT;
+    END_STRUCT;
+END_TYPE
+```
+
+![Structure Data Type Example](images/data-type-structure.png)
+*Example of a structure data type in the IDE showing a Person type with name and age fields*
+
+**Usage:**
+```
+VAR
+    employee : Person;
+    motor1 : MotorData;
+END_VAR
+
+// Accessing structure members
+employee.name := 'John Smith';
+employee.age := 35;
+employee.height := 1.75;
+
+// Using structure in logic
+IF motor1.running AND motor1.current > 10.0 THEN
+    motor1.error_code := 1;
+END_IF;
+```
+
+**Nested Structures:**
+```
+TYPE
+    Address : STRUCT
+        street : STRING;
+        city : STRING;
+        zip_code : STRING;
+    END_STRUCT;
+    
+    Employee : STRUCT
+        name : STRING;
+        age : INT;
+        home_address : Address;  // Nested structure
+    END_STRUCT;
+END_TYPE
+
+VAR
+    worker : Employee;
+END_VAR
+
+// Accessing nested structure
+worker.home_address.city := 'New York';
+```
+
+## Variable Declaration and Initialization
+
+### Declaration Syntax
+
+Variables are declared with the following syntax:
+```
+variable_name : data_type := initial_value;
+```
+
+### Examples:
+```
+VAR
+    // Simple declarations
+    counter : INT;                          // No initial value (defaults to 0)
+    temperature : REAL := 25.0;             // With initial value
+    running : BOOL := FALSE;                // Boolean with initial value
+    
+    // Array declarations
+    buffer : ARRAY[0..9] OF INT;            // Array of 10 integers
+    
+    // Structure declarations
+    motor : MotorData;                      // Using custom type
+    
+    // Multiple variables of same type
+    x, y, z : REAL := 0.0;                  // All initialized to 0.0
+END_VAR
+```
+
+### Initial Values
+
+- If no initial value is specified, variables are initialized to their type's default:
+  - Numeric types: 0
+  - BOOL: FALSE
+  - STRING: empty string ''
+  - Structures: all members initialized to their defaults
+
+## Working with Variables in the IDE
+
+### Variables Table
+
+When editing a POU, the IDE displays a variables table above the code editor. This table shows:
+- **#**: Row number
+- **Name**: Variable name
+- **Class**: Variable class (Input, Output, Local, etc.)
+- **Type**: Data type
+- **Location**: Memory location (for I/O mapping)
+- **Initial Value**: Starting value
+- **Documentation**: Description of the variable
+- **Debug**: Checkbox to enable debug monitoring
+
+### Adding Variables
+
+To add a variable in the IDE:
+1. Click the **+** button above the variables table
+2. Enter the variable name
+3. Select the variable class from the dropdown
+4. Choose or enter the data type
+5. Optionally set an initial value
+6. Add documentation to describe the variable's purpose
+
+### Variable Naming Conventions
+
+Follow these best practices for naming variables:
+- **Use descriptive names**: `motor_speed` instead of `ms`
+- **Use camelCase or snake_case**: `motorSpeed` or `motor_speed`
+- **Avoid reserved keywords**: Don't use IEC 61131-3 keywords
+- **Use prefixes for clarity** (optional):
+  - `b` for BOOL: `bRunning`
+  - `i` for INT: `iCounter`
+  - `r` for REAL: `rTemperature`
+  - `s` for STRING: `sMessage`
+
+## Type Conversion
+
+Sometimes you need to convert between data types. IEC 61131-3 provides conversion functions:
+
+### Explicit Conversion Functions:
+```
+VAR
+    int_value : INT := 42;
+    real_value : REAL;
+    string_value : STRING;
+END_VAR
+
+// Convert INT to REAL
+real_value := INT_TO_REAL(int_value);
+
+// Convert REAL to INT (truncates decimal)
+int_value := REAL_TO_INT(real_value);
+
+// Convert INT to STRING
+string_value := INT_TO_STRING(int_value);
+```
+
+### Common Conversion Functions:
+- `INT_TO_REAL`, `REAL_TO_INT`
+- `INT_TO_STRING`, `STRING_TO_INT`
+- `BOOL_TO_INT`, `INT_TO_BOOL`
+- `REAL_TO_STRING`, `STRING_TO_REAL`
+
+## Best Practices
+
+### 1. Choose Appropriate Data Types
+- Use the smallest type that fits your data range
+- Use REAL for measurements and calculations requiring decimals
+- Use INT for counters and discrete values
+- Use BOOL for flags and binary states
+
+### 2. Initialize Variables
+Always provide initial values for variables to ensure predictable behavior:
+```
+VAR
+    counter : INT := 0;           // Good: explicit initialization
+    temperature : REAL := 20.0;   // Good: known starting value
+END_VAR
+```
+
+### 3. Use Meaningful Names
+Choose names that clearly indicate the variable's purpose:
+```
+// Good names
+motor_speed : INT;
+emergency_stop_pressed : BOOL;
+target_temperature : REAL;
+
+// Poor names
+x : INT;
+flag : BOOL;
+temp : REAL;
+```
+
+### 4. Document Variables
+Use the Documentation field to explain the purpose and units of variables:
+```
+VAR
+    temperature : REAL := 25.0;  // Ambient temperature in degrees Celsius
+    pressure : REAL;             // System pressure in bar
+END_VAR
+```
+
+### 5. Minimize Global Variables
+Use global variables sparingly. Prefer passing data through function parameters to reduce coupling between POUs.
+
+### 6. Use Custom Types for Complex Data
+Create structures and enumerations for complex data to improve code readability and maintainability.
+
+### 7. Group Related Variables
+Organize variables logically in your declarations:
+```
+VAR
+    // Motor control variables
+    motor_speed : INT;
+    motor_running : BOOL;
+    motor_current : REAL;
+    
+    // Temperature monitoring variables
+    temp_sensor1 : REAL;
+    temp_sensor2 : REAL;
+    temp_alarm : BOOL;
+END_VAR
+```
+
+## Next Steps
+
+Now that you understand Variables and Data Types, you can learn about Tasks and Instances to understand how your programs are scheduled and executed by the PLC runtime system.
