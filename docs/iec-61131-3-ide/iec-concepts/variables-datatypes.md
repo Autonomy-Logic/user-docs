@@ -414,27 +414,113 @@ END_VAR
 
 ## Working with Variables in the IDE
 
-### Variables Table
+The IDE provides two ways to declare and manage variables: a graphical table mode and a text mode. You can switch between these modes to use whichever approach you prefer.
 
-When editing a POU, the IDE displays a variables table above the code editor. This table shows:
+### Variables Table (Graphical Mode)
+
+When editing a POU, the IDE displays a variables table above the code editor. This graphical interface provides a structured way to declare and manage variables.
+
+![Variables Table - Graphical Mode](images/variables-table-graphical.png)
+*Variables table in graphical mode showing columns for Name, Class, Type, Location, Initial Value, Documentation, and Debug*
+
+The variables table displays the following columns:
 - **#**: Row number
-- **Name**: Variable name
-- **Class**: Variable class (Input, Output, Local, etc.)
-- **Type**: Data type
-- **Location**: Memory location (for I/O mapping)
-- **Initial Value**: Starting value
-- **Documentation**: Description of the variable
-- **Debug**: Checkbox to enable debug monitoring
+- **Name**: Variable name (click to edit)
+- **Class**: Variable class dropdown (Input, Output, Local, etc.)
+- **Type**: Data type (click to edit or select from dropdown)
+- **Location**: Memory location for I/O mapping (optional)
+- **Initial Value**: Starting value (optional)
+- **Documentation**: Description of the variable (optional)
+- **Debug**: Checkbox to enable debug monitoring during runtime
 
-### Adding Variables
+#### Adding Variables in Table Mode
 
-To add a variable in the IDE:
-1. Click the **+** button above the variables table
-2. Enter the variable name
-3. Select the variable class from the dropdown
-4. Choose or enter the data type
-5. Optionally set an initial value
-6. Add documentation to describe the variable's purpose
+To add a variable using the graphical table:
+1. Click the **+** button in the toolbar above the variables table
+2. A new row will be added to the table
+3. Click on the **Name** cell and enter the variable name
+4. Click on the **Class** dropdown and select the variable class (Local, Input, Output, etc.)
+5. Click on the **Type** cell and either:
+   - Type the data type directly (e.g., `INT`, `BOOL`, `REAL`)
+   - Select from the dropdown list of available types
+   - For arrays, type the full declaration (e.g., `ARRAY[0..10] OF BOOL`)
+   - For custom types, select from your defined data types
+6. Optionally, enter an **Initial Value** (e.g., `0`, `FALSE`, `25.5`)
+7. Optionally, add **Documentation** to describe the variable's purpose
+8. Check the **Debug** checkbox if you want to monitor this variable during runtime
+
+#### Editing Variables in Table Mode
+
+To modify an existing variable:
+- **Change Name**: Click on the name cell and type the new name
+- **Change Class**: Click on the class dropdown and select a different class
+- **Change Type**: Click on the type cell and enter or select a new data type
+- **Set Initial Value**: Click on the initial value cell and enter a value
+- **Add Documentation**: Click on the documentation cell and type a description
+- **Enable/Disable Debug**: Check or uncheck the debug checkbox
+
+#### Managing Variables in Table Mode
+
+The toolbar above the variables table provides additional controls:
+- **+ (Add)**: Add a new variable row
+- **- (Remove)**: Remove the selected variable row
+- **↑ (Move Up)**: Move the selected variable up in the list
+- **↓ (Move Down)**: Move the selected variable down in the list
+
+### Variables Text Mode
+
+The IDE also supports a text mode for declaring variables, which allows you to write variable declarations using standard IEC 61131-3 syntax. This mode is useful if you prefer typing declarations directly or need to copy/paste variable declarations.
+
+![Variables Table - Text Mode](images/variables-text-mode.png)
+*Variables in text mode showing standard IEC 61131-3 VAR...END_VAR syntax*
+
+#### Switching Between Table and Text Mode
+
+To toggle between graphical table mode and text mode:
+1. Look for the view toggle buttons in the top-right corner of the variables section
+2. Click the **table icon** (grid icon) to switch to graphical table mode
+3. Click the **code icon** (text/brackets icon) to switch to text mode
+
+The IDE automatically synchronizes between both modes - changes made in one mode are immediately reflected in the other.
+
+#### Declaring Variables in Text Mode
+
+In text mode, you write variable declarations using standard IEC 61131-3 syntax:
+
+```
+VAR
+    variable_name : data_type := initial_value;
+END_VAR
+```
+
+**Example declarations in text mode:**
+```
+VAR
+    counter : INT := 0;
+    temperature : REAL := 25.0;
+    running : BOOL := FALSE;
+    buffer : ARRAY[0..9] OF INT;
+    motor_data : MotorData;
+END_VAR
+```
+
+#### Advantages of Each Mode
+
+**Graphical Table Mode:**
+- Visual overview of all variables in a structured format
+- Easy to see all variable properties at a glance
+- Dropdown menus help prevent syntax errors
+- Good for beginners or when managing many variables
+- Quick access to debug checkboxes
+
+**Text Mode:**
+- Faster for experienced programmers
+- Easy to copy/paste variable declarations
+- Familiar to those who know IEC 61131-3 syntax
+- Allows for quick bulk editing
+- Better for complex type declarations
+
+**Best Practice**: Use whichever mode you're most comfortable with. The IDE keeps both modes synchronized, so you can switch between them as needed.
 
 ### Variable Naming Conventions
 
