@@ -247,94 +247,258 @@ END_VAR
 
 ## Custom Data Types
 
-In addition to base types, you can create custom data types to organize complex data structures.
+In addition to base types, you can create custom data types to organize complex data structures. The IDE provides a graphical interface for creating and managing custom data types through the project tree.
+
+### Creating Custom Data Types in the IDE
+
+All custom data types are created graphically using the blue **+** button in the project tree. The IDE does not support creating data types by writing IEC 61131-3 TYPE...END_TYPE declarations in text mode.
+
+To create a new data type:
+
+1. Click the blue **+** button at the top of the project tree
+2. Hover over or click **Data Type** in the menu
+3. A creation form will appear with the following fields:
+   - **Data type name**: Enter a descriptive name for your data type (minimum 3 characters)
+   - **Derivation**: Select the type of data type you want to create
+
+![Create Data Type Form](images/create-datatype-form.png)
+*Data type creation form showing name input and derivation dropdown*
+
+4. Click the **Derivation** dropdown to see the three available options:
+   - **Array**: For collections of elements of the same type
+   - **Enumerated**: For defining a set of named constants
+   - **Structure**: For grouping related variables of different types
+
+![Data Type Derivation Options](images/datatype-derivation-dropdown.png)
+*Derivation dropdown showing Array, Enumerated, and Structure options*
+
+5. Select the desired derivation type and click **Create**
+
+The IDE will create the data type and open its editor interface. Each data type has a specialized graphical editor for configuring its properties.
 
 ### 1. Array Data Types
 
-Arrays are collections of elements of the same type, accessed by index.
+Arrays are collections of elements of the same type, accessed by index. Arrays are useful for storing lists of values, sensor readings, or any collection of similar data.
 
-**Syntax:**
+#### Creating an Array in the IDE
+
+To create an array data type:
+
+1. Click the blue **+** button in the project tree
+2. Select **Data Type**
+3. Enter a name for your array (e.g., `IntBuffer`, `TemperatureReadings`)
+4. Select **Array** from the Derivation dropdown
+5. Click **Create**
+
+The IDE will open the Array editor interface:
+
+![Array Editor Interface](images/array-editor-intbuffer.png)
+*Array editor showing base type selection, initial value, and dimensions configuration*
+
+#### Configuring an Array
+
+The Array editor provides the following configuration options:
+
+- **Name**: The name of your array data type
+- **Base Type**: Select the data type for array elements (BOOL, INT, REAL, STRING, etc.)
+  - Click the dropdown to choose from available base types
+  - You can also select custom data types you've created
+- **Initial Value**: Set a default value for all array elements (optional)
+- **Dimensions**: Define the size and structure of your array
+  - Click the **+** button to add a dimension
+  - For each dimension, specify the start and end indices
+  - You can create multi-dimensional arrays by adding multiple dimensions
+  - Use the **-** button to remove dimensions
+  - Use **↑** and **↓** buttons to reorder dimensions
+
+**Example: Creating a 1D Array**
+1. Set Base Type to `INT`
+2. Click **+** to add a dimension
+3. Set the dimension range (e.g., `0` to `9` for 10 elements)
+
+**Example: Creating a 2D Array (Matrix)**
+1. Set Base Type to `REAL`
+2. Click **+** to add first dimension (e.g., `0` to `2` for 3 rows)
+3. Click **+** to add second dimension (e.g., `0` to `3` for 4 columns)
+
+#### Using Arrays in Your Code
+
+Once created, you can use your array data type in variable declarations:
+
+```
+VAR
+    temperatures : ARRAY[0..9] OF REAL;      // Inline array declaration
+    buffer : IntBuffer;                      // Using custom array type
+END_VAR
+
+// Accessing array elements
+temperatures[0] := 25.5;
+temperatures[5] := temperatures[0] + 10.0;
+
+// Multi-dimensional array access
+grid[3, 5] := 42;  // Access element at row 3, column 5
+```
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, arrays in IEC 61131-3 text syntax look like this:
 ```
 TYPE
     IntArray : ARRAY[0..9] OF INT;           // 10 integers
     Matrix : ARRAY[0..2, 0..3] OF REAL;      // 2D array (3x4)
 END_TYPE
 ```
-
-**Usage:**
-```
-VAR
-    temperatures : ARRAY[0..9] OF REAL;      // Inline array declaration
-    values : IntArray;                       // Using custom type
-END_VAR
-
-// Accessing array elements
-temperatures[0] := 25.5;
-temperatures[5] := temperatures[0] + 10.0;
-```
-
-**Multi-dimensional Arrays:**
-```
-VAR
-    grid : ARRAY[0..9, 0..9] OF INT;        // 10x10 grid
-END_VAR
-
-grid[3, 5] := 42;  // Access element at row 3, column 5
-```
+*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ### 2. Enumerated Data Types
 
-Enumerations define a set of named constants, making code more readable.
+Enumerations define a set of named constants, making code more readable and maintainable. Instead of using magic numbers or unclear boolean flags, enumerations provide meaningful names for states, modes, or options.
 
-**Syntax:**
-```
-TYPE
-    MotorState : (STOPPED, STARTING, RUNNING, STOPPING, ERROR);
-    DayOfWeek : (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
-END_TYPE
-```
+#### Creating an Enumeration in the IDE
 
-**Usage:**
+To create an enumerated data type:
+
+1. Click the blue **+** button in the project tree
+2. Select **Data Type**
+3. Enter a name for your enumeration (e.g., `MotorState`, `DayOfWeek`, `Color`)
+4. Select **Enumerated** from the Derivation dropdown
+5. Click **Create**
+
+The IDE will open the Enumeration editor interface:
+
+![Enumeration Editor Interface](images/enum-editor-color.png)
+*Enumeration editor showing the values table and initial value selection*
+
+#### Configuring an Enumeration
+
+The Enumeration editor provides the following configuration options:
+
+- **Name**: The name of your enumeration data type
+- **Description**: Optional description of the enumeration's purpose
+- **Values Table**: Define the enumeration values
+  - Click the **+** button to add a new enumeration value
+  - Enter a name for each value (e.g., `RED`, `GREEN`, `BLUE`)
+  - Use the **-** button to remove values
+  - Use **↑** and **↓** buttons to reorder values
+  - The order matters: the first value is 0, second is 1, etc.
+- **Initial Value**: Select the default value from the dropdown
+
+**Example: Creating a Motor State Enumeration**
+1. Name: `MotorState`
+2. Click **+** to add values:
+   - `STOPPED`
+   - `STARTING`
+   - `RUNNING`
+   - `STOPPING`
+   - `ERROR`
+3. Set Initial Value to `STOPPED`
+
+**Example: Creating a Day of Week Enumeration**
+1. Name: `DayOfWeek`
+2. Click **+** to add values:
+   - `MONDAY`
+   - `TUESDAY`
+   - `WEDNESDAY`
+   - `THURSDAY`
+   - `FRIDAY`
+   - `SATURDAY`
+   - `SUNDAY`
+
+#### Using Enumerations in Your Code
+
+Once created, you can use your enumeration in variable declarations and comparisons:
+
 ```
 VAR
     motor_status : MotorState := STOPPED;
     today : DayOfWeek;
 END_VAR
 
-// Using enumeration values
+// Using enumeration values in logic
 IF motor_status = RUNNING THEN
     // Motor is running
 END_IF;
 
-motor_status := STARTING;  // Change state
+// Changing enumeration values
+motor_status := STARTING;
+
+// Using in CASE statements
+CASE motor_status OF
+    STOPPED:
+        // Handle stopped state
+    RUNNING:
+        // Handle running state
+    ERROR:
+        // Handle error state
+END_CASE;
 ```
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, enumerations in IEC 61131-3 text syntax look like this:
+```
+TYPE
+    MotorState : (STOPPED, STARTING, RUNNING, STOPPING, ERROR);
+    DayOfWeek : (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
+END_TYPE
+```
+*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ### 3. Structure Data Types
 
-Structures group related variables of different types into a single unit.
+Structures group related variables of different types into a single unit. This is useful for organizing complex data, such as sensor information, motor parameters, or user records.
 
-**Syntax:**
-```
-TYPE
-    Person : STRUCT
-        name : STRING;
-        age : INT;
-        height : REAL;
-    END_STRUCT;
-    
-    MotorData : STRUCT
-        speed : INT;
-        current : REAL;
-        running : BOOL;
-        error_code : INT;
-    END_STRUCT;
-END_TYPE
-```
+#### Creating a Structure in the IDE
 
-![Structure Data Type Example](images/data-type-structure.png)
-*Example of a structure data type in the IDE showing a Person type with name and age fields*
+To create a structure data type:
 
-**Usage:**
+1. Click the blue **+** button in the project tree
+2. Select **Data Type**
+3. Enter a name for your structure (e.g., `Person`, `MotorData`, `SensorReading`)
+4. Select **Structure** from the Derivation dropdown
+5. Click **Create**
+
+The IDE will open the Structure editor interface:
+
+![Structure Editor Interface](images/structure-editor-view.png)
+*Structure editor showing the fields table with Name, Type, and Initial Value columns*
+
+#### Configuring a Structure
+
+The Structure editor provides a table-based interface for defining structure fields:
+
+- **Name**: The name of your structure data type
+- **Fields Table**: Define the structure members
+  - **#**: Row number
+  - **Name**: Field name (click to edit)
+  - **Type**: Data type for this field (click to select)
+    - Choose from base types (BOOL, INT, REAL, STRING, etc.)
+    - Or select custom data types you've created
+    - Can include arrays, enumerations, or other structures
+  - **Initial Value**: Default value for this field (optional)
+- **Toolbar Controls**:
+  - **+** button: Add a new field to the structure
+  - **-** button: Remove the selected field
+  - **↑** button: Move the selected field up
+  - **↓** button: Move the selected field down
+
+**Example: Creating a Person Structure**
+1. Name: `Person`
+2. Click **+** to add fields:
+   - Field 1: Name = `name`, Type = `STRING`
+   - Field 2: Name = `age`, Type = `INT`
+   - Field 3: Name = `height`, Type = `REAL`
+
+**Example: Creating a Motor Data Structure**
+1. Name: `MotorData`
+2. Click **+** to add fields:
+   - Field 1: Name = `speed`, Type = `INT`
+   - Field 2: Name = `current`, Type = `REAL`
+   - Field 3: Name = `running`, Type = `BOOL`
+   - Field 4: Name = `error_code`, Type = `INT`
+
+#### Using Structures in Your Code
+
+Once created, you can use your structure in variable declarations and access its members using dot notation:
+
 ```
 VAR
     employee : Person;
@@ -352,29 +516,52 @@ IF motor1.running AND motor1.current > 10.0 THEN
 END_IF;
 ```
 
-**Nested Structures:**
-```
-TYPE
-    Address : STRUCT
-        street : STRING;
-        city : STRING;
-        zip_code : STRING;
-    END_STRUCT;
-    
-    Employee : STRUCT
-        name : STRING;
-        age : INT;
-        home_address : Address;  // Nested structure
-    END_STRUCT;
-END_TYPE
+#### Nested Structures
 
+You can create structures that contain other structures as fields. Simply select a structure data type when defining a field:
+
+**Example: Employee with Address**
+1. First, create an `Address` structure:
+   - Field: `street` (STRING)
+   - Field: `city` (STRING)
+   - Field: `zip_code` (STRING)
+
+2. Then, create an `Employee` structure:
+   - Field: `name` (STRING)
+   - Field: `age` (INT)
+   - Field: `home_address` (Address)  ← Select the Address structure type
+
+**Using nested structures:**
+```
 VAR
     worker : Employee;
 END_VAR
 
-// Accessing nested structure
+// Accessing nested structure members
+worker.name := 'Jane Doe';
 worker.home_address.city := 'New York';
+worker.home_address.zip_code := '10001';
 ```
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, structures in IEC 61131-3 text syntax look like this:
+```
+TYPE
+    Person : STRUCT
+        name : STRING;
+        age : INT;
+        height : REAL;
+    END_STRUCT;
+    
+    MotorData : STRUCT
+        speed : INT;
+        current : REAL;
+        running : BOOL;
+        error_code : INT;
+    END_STRUCT;
+END_TYPE
+```
+*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ## Variable Declaration and Initialization
 
