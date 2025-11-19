@@ -204,7 +204,7 @@ END_FUNCTION_BLOCK
 
 ## Creating POUs in the IDE
 
-All POUs (Programs, Function Blocks, and Functions) are created graphically using the blue **+** button in the project tree. The IDE does not support creating POUs by writing PROGRAM, FUNCTION_BLOCK, or FUNCTION declarations in text mode - you must use the graphical creation interface.
+All POUs (Programs, Function Blocks, and Functions) are created graphically using the blue **+** button in the project tree.
 
 ### Creating a POU: Step-by-Step
 
@@ -261,7 +261,7 @@ The IDE will create the program and open it in the editor. You can then:
 - `SafetyMonitor`: Safety-critical monitoring logic
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, programs in IEC 61131-3 text syntax look like this:
+For reference, programs in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 PROGRAM main
 VAR
@@ -275,7 +275,6 @@ IF running THEN
 END_IF;
 END_PROGRAM
 ```
-*Note: This syntax is for reference only. You cannot create POUs by typing this code in the IDE.*
 
 ### Creating a Function Block
 
@@ -316,7 +315,7 @@ END_PROGRAM
 ```
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, function blocks in IEC 61131-3 text syntax look like this:
+For reference, function blocks in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 FUNCTION_BLOCK MotorController
 VAR_INPUT
@@ -348,7 +347,6 @@ CASE state OF
 END_CASE;
 END_FUNCTION_BLOCK
 ```
-*Note: This syntax is for reference only. You cannot create POUs by typing this code in the IDE.*
 
 ### Creating a Function
 
@@ -398,7 +396,7 @@ END_PROGRAM
 - Functions are ideal for pure calculations without side effects
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, functions in IEC 61131-3 text syntax look like this:
+For reference, functions in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 FUNCTION CelsiusToFahrenheit : REAL
 VAR_INPUT
@@ -409,7 +407,6 @@ END_VAR
 CelsiusToFahrenheit := (celsius * 9.0 / 5.0) + 32.0;
 END_FUNCTION
 ```
-*Note: This syntax is for reference only. You cannot create POUs by typing this code in the IDE.*
 
 ### Naming Conventions
 
@@ -503,17 +500,6 @@ Test POUs independently before integrating them:
 - Create test programs for individual function blocks
 - Verify functions with known inputs and outputs
 - Test edge cases and error conditions
-
-## Advanced POU Concepts
-
-### Inheritance (Future Feature)
-Some IEC 61131-3 implementations support function block inheritance, allowing you to create specialized versions of existing function blocks. This feature may be added in future versions of the IDE.
-
-### Methods (Future Feature)
-Advanced implementations allow function blocks to have methods (functions that operate on the function block's data). This feature may be added in future versions.
-
-### Properties (Future Feature)
-Properties provide controlled access to function block internal variables. This feature may be added in future versions.
 
 ## Common POU Patterns
 
