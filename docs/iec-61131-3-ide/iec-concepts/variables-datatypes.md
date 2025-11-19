@@ -251,7 +251,7 @@ In addition to base types, you can create custom data types to organize complex 
 
 ### Creating Custom Data Types in the IDE
 
-All custom data types are created graphically using the blue **+** button in the project tree. The IDE does not support creating data types by writing IEC 61131-3 TYPE...END_TYPE declarations in text mode.
+All custom data types are created graphically using the blue **+** button in the project tree. The IDE currently does not support creating data types by writing IEC 61131-3 TYPE...END_TYPE declarations in text mode.
 
 To create a new data type:
 
@@ -340,14 +340,13 @@ grid[3, 5] := 42;  // Access element at row 3, column 5
 ```
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, arrays in IEC 61131-3 text syntax look like this:
+For reference, arrays in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 TYPE
     IntArray : ARRAY[0..9] OF INT;           // 10 integers
     Matrix : ARRAY[0..2, 0..3] OF REAL;      // 2D array (3x4)
 END_TYPE
 ```
-*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ### 2. Enumerated Data Types
 
@@ -433,14 +432,13 @@ END_CASE;
 ```
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, enumerations in IEC 61131-3 text syntax look like this:
+For reference, enumerations in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 TYPE
     MotorState : (STOPPED, STARTING, RUNNING, STOPPING, ERROR);
     DayOfWeek : (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY);
 END_TYPE
 ```
-*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ### 3. Structure Data Types
 
@@ -544,7 +542,7 @@ worker.home_address.zip_code := '10001';
 ```
 
 **IEC 61131-3 Reference (Read-Only):**
-For reference, structures in IEC 61131-3 text syntax look like this:
+For reference, structures in IEC 61131-3 text syntax look like this once your project is compiled:
 ```
 TYPE
     Person : STRUCT
@@ -561,7 +559,6 @@ TYPE
     END_STRUCT;
 END_TYPE
 ```
-*Note: This syntax is for reference only. You cannot create data types by typing this code in the IDE.*
 
 ## Variable Declaration and Initialization
 
