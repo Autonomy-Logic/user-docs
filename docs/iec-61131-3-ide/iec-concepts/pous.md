@@ -204,22 +204,251 @@ END_FUNCTION_BLOCK
 
 ## Creating POUs in the IDE
 
-### Step-by-Step: Creating a New POU
+All POUs (Programs, Function Blocks, and Functions) are created graphically using the blue **+** button in the project tree.
 
-1. **Open the Project Explorer**: Ensure the Explorer panel is visible
-2. **Click the + Button**: At the top of the Project Explorer
-3. **Select POU Type**: Choose Program, Function Block, or Function
-4. **Choose Language**: Select from ST, LD, IL, FBD, or SFC
-5. **Enter Name**: Provide a descriptive name following naming conventions
-6. **Configure**: The new POU will open in the editor with a template
+### Creating a POU: Step-by-Step
 
-### Naming Conventions:
+To create any type of POU in the IDE:
+
+1. Click the blue **+** button at the top of the project tree
+2. Hover over or click the POU type you want to create:
+   - **Function**: For stateless calculations
+   - **Function Block**: For stateful, reusable components
+   - **Program**: For top-level execution units
+3. A creation form will appear
+
+![Create POU Form](images/create-pou-function-form.png)
+*POU creation form showing name input and language selection dropdown*
+
+The creation form includes:
+- **POU name**: Enter a descriptive name for your POU (minimum 3 characters)
+- **Language**: Select the programming language for your POU
+
+4. Click the **Language** dropdown to see all available programming languages:
+   - **Ladder Diagram (LD)**: Graphical ladder logic
+   - **Structured Text (ST)**: High-level text-based language
+   - **Instruction List (IL)**: Low-level assembly-like language
+   - **Functional Block Diagram (FBD)**: Graphical function block language
+   - **Sequential Function Chart (SFC)**: State machine and sequential logic language
+
+![POU Language Options](images/pou-language-dropdown.png)
+*Language dropdown showing all five IEC 61131-3 programming languages*
+
+5. Select your desired language and click **Create**
+
+The IDE will create the POU and open it in the appropriate editor based on the selected language. The editor will include a template structure with:
+- Variables table at the top (for declaring inputs, outputs, and local variables)
+- Code editor area below (graphical or text-based depending on the language)
+
+### Creating a Program
+
+Programs are the top-level POUs that are executed by tasks. To create a program:
+
+1. Click the blue **+** button in the project tree
+2. Select **Program**
+3. Enter a name (e.g., `MainProgram`, `MotionControl`, `SafetyLogic`)
+4. Select a programming language (ST, LD, FBD, IL, or SFC)
+5. Click **Create**
+
+The IDE will create the program and open it in the editor. You can then:
+- Add variables in the variables table (inputs, outputs, local variables)
+- Write your program logic in the code editor
+- The program will appear in the project tree under the "Programs" section
+
+**Example Use Cases:**
+- `MainProgram`: Main application logic
+- `MotionControl`: Dedicated program for motion control
+- `SafetyMonitor`: Safety-critical monitoring logic
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, programs in IEC 61131-3 text syntax look like this once your project is compiled:
+```
+PROGRAM main
+VAR
+    counter : INT := 0;
+    running : BOOL := FALSE;
+END_VAR
+
+// Main program logic
+IF running THEN
+    counter := counter + 1;
+END_IF;
+END_PROGRAM
+```
+
+### Creating a Function Block
+
+Function blocks are reusable components that maintain state between calls. To create a function block:
+
+1. Click the blue **+** button in the project tree
+2. Select **Function Block**
+3. Enter a name (e.g., `MotorController`, `PIDController`, `Timer`)
+4. Select a programming language (ST, LD, FBD, IL, or SFC)
+5. Click **Create**
+
+The IDE will create the function block and open it in the editor. You can then:
+- Add input variables (VAR_INPUT) for parameters passed to the function block
+- Add output variables (VAR_OUTPUT) for values returned by the function block
+- Add local variables (VAR) for internal state that persists between calls
+- Write your function block logic in the code editor
+- The function block will appear in the project tree under the "Function Blocks" section
+
+**Example Use Cases:**
+- `MotorController`: Control a motor with start/stop and speed control
+- `PIDController`: Implement a PID control algorithm
+- `ConveyorSystem`: Manage a conveyor belt system
+- `AlarmHandler`: Handle and track system alarms
+
+**Using Function Blocks:**
+Once created, you can use your function block by declaring instances in programs or other function blocks:
+```
+PROGRAM main
+VAR
+    motor1 : MotorController;  // Instance of MotorController
+    motor2 : MotorController;  // Another instance with independent state
+END_VAR
+
+// Call the function block instances
+motor1(start := TRUE, stop := FALSE, speed_setpoint := 100);
+motor2(start := FALSE, stop := TRUE, speed_setpoint := 50);
+END_PROGRAM
+```
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, function blocks in IEC 61131-3 text syntax look like this once your project is compiled:
+```
+FUNCTION_BLOCK MotorController
+VAR_INPUT
+    start : BOOL;
+    stop : BOOL;
+    speed_setpoint : INT;
+END_VAR
+VAR_OUTPUT
+    motor_running : BOOL;
+    current_speed : INT;
+END_VAR
+VAR
+    state : INT := 0;  // Internal state variable
+END_VAR
+
+// Motor control logic
+CASE state OF
+    0: // Stopped
+        IF start THEN
+            state := 1;
+            motor_running := TRUE;
+        END_IF;
+    1: // Running
+        IF stop THEN
+            state := 0;
+            motor_running := FALSE;
+        END_IF;
+        current_speed := speed_setpoint;
+END_CASE;
+END_FUNCTION_BLOCK
+```
+
+### Creating a Function
+
+Functions are stateless POUs that perform calculations and return a single value. To create a function:
+
+1. Click the blue **+** button in the project tree
+2. Select **Function**
+3. Enter a name (e.g., `CelsiusToFahrenheit`, `CalculateAverage`, `Clamp`)
+4. Select a programming language (ST, LD, FBD, or IL)
+   - Note: SFC is not typically used for functions
+5. Click **Create**
+
+The IDE will create the function and open it in the editor. You can then:
+- Add input variables (VAR_INPUT) for parameters passed to the function
+- Add local variables (VAR) for temporary calculations (these do NOT persist between calls)
+- Write your function logic in the code editor
+- The function will appear in the project tree under the "Functions" section
+- Remember: Functions return a single value, which is assigned to the function name
+
+**Example Use Cases:**
+- `CelsiusToFahrenheit`: Convert temperature units
+- `CalculateAverage`: Calculate the average of an array of values
+- `Clamp`: Limit a value to a min/max range
+- `ScaleValue`: Scale a value from one range to another
+
+**Using Functions:**
+Once created, you can call your function directly in expressions:
+```
+PROGRAM main
+VAR
+    temp_c : REAL := 25.0;
+    temp_f : REAL;
+    values : ARRAY[0..4] OF INT := [10, 20, 30, 40, 50];
+    avg : REAL;
+END_VAR
+
+// Call functions and use their return values
+temp_f := CelsiusToFahrenheit(temp_c);
+avg := CalculateAverage(values);
+END_PROGRAM
+```
+
+**Important Notes About Functions:**
+- Functions cannot maintain state between calls
+- Functions cannot call function blocks (only other functions)
+- Functions must return a value (assigned to the function name)
+- Functions are ideal for pure calculations without side effects
+
+**IEC 61131-3 Reference (Read-Only):**
+For reference, functions in IEC 61131-3 text syntax look like this once your project is compiled:
+```
+FUNCTION CelsiusToFahrenheit : REAL
+VAR_INPUT
+    celsius : REAL;
+END_VAR
+
+// Simple conversion calculation
+CelsiusToFahrenheit := (celsius * 9.0 / 5.0) + 32.0;
+END_FUNCTION
+```
+
+### Naming Conventions
 
 Follow these best practices for naming POUs:
 - **Use PascalCase**: `MotorController`, `CalculateAverage`, `MainProgram`
 - **Be Descriptive**: Names should clearly indicate the POU's purpose
 - **Avoid Abbreviations**: Use `TemperatureController` instead of `TempCtrl`
-- **Use Prefixes** (optional): `FB_MotorControl`, `FC_ConvertUnits`, `PRG_Main`
+- **Use Prefixes** (optional but recommended):
+  - `FB_` for Function Blocks: `FB_MotorControl`, `FB_PIDController`
+  - `FC_` for Functions: `FC_ConvertUnits`, `FC_CalculateAverage`
+  - `PRG_` for Programs: `PRG_Main`, `PRG_MotionControl`
+
+### Choosing the Right Programming Language
+
+When creating a POU, you need to select a programming language. Here's guidance on which language to choose:
+
+**Structured Text (ST):**
+- Best for: Complex algorithms, mathematical calculations, data processing
+- Familiar to: Programmers with experience in Pascal, C, or similar languages
+- Use when: You need loops, complex conditionals, or mathematical operations
+
+**Ladder Diagram (LD):**
+- Best for: Boolean logic, relay replacement, simple control sequences
+- Familiar to: Electricians and technicians with relay logic experience
+- Use when: You need simple on/off control or interlocking logic
+
+**Function Block Diagram (FBD):**
+- Best for: Signal flow, data processing pipelines, control loops
+- Familiar to: Engineers with process control or signal processing background
+- Use when: You want to visualize data flow between function blocks
+
+**Instruction List (IL):**
+- Best for: Low-level optimization, simple operations
+- Familiar to: Programmers with assembly language experience
+- Use when: You need maximum performance or low-level control
+
+**Sequential Function Chart (SFC):**
+- Best for: State machines, sequential processes, batch control
+- Familiar to: Engineers with process automation background
+- Use when: You have distinct steps or states in your process
+
+**Best Practice:** You can mix languages in your project - use the most appropriate language for each POU. For example, use ST for complex calculations, LD for simple I/O logic, and SFC for sequential processes.
 
 ## Best Practices for Using POUs
 
@@ -271,17 +500,6 @@ Test POUs independently before integrating them:
 - Create test programs for individual function blocks
 - Verify functions with known inputs and outputs
 - Test edge cases and error conditions
-
-## Advanced POU Concepts
-
-### Inheritance (Future Feature)
-Some IEC 61131-3 implementations support function block inheritance, allowing you to create specialized versions of existing function blocks. This feature may be added in future versions of the IDE.
-
-### Methods (Future Feature)
-Advanced implementations allow function blocks to have methods (functions that operate on the function block's data). This feature may be added in future versions.
-
-### Properties (Future Feature)
-Properties provide controlled access to function block internal variables. This feature may be added in future versions.
 
 ## Common POU Patterns
 
