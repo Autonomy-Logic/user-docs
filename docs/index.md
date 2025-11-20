@@ -13,4 +13,4 @@ Welcome to the Autonomy Edge Platform documentation. This comprehensive guide co
 The Autonomy Edge platform combines a powerful cloud-based project management system with a comprehensive IEC 61131-3 compliant programming IDE. This documentation provides complete coverage of all features and capabilities.
 
 
-If you need assistance, please refer to the [FAQ](reference/faq.md) or [Troubleshooting](advanced-topics/troubleshooting/compilation-errors.md) sections.
+If you need assistance, please refer to the [FAQ](reference/faq) or [Troubleshooting](advanced-topics/troubleshooting/compilation-errors) sections.

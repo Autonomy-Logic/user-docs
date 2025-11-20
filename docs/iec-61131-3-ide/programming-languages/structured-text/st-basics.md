@@ -387,6 +387,6 @@ delay_time := T#250ms;
 ## Next Steps
 
 Now that you understand ST language basics, explore:
-- [ST Programming Examples](st-examples.md) - Practical examples and common patterns
-- [ST Editor Features](st-editor.md) - Learn about syntax highlighting, IntelliSense, and code completion
-- [Variables and Data Types](../../iec-concepts/variables-datatypes.md) - Comprehensive guide to variable management
+- [ST Programming Examples](st-examples) - Practical examples and common patterns
+- [ST Editor Features](st-editor) - Learn about syntax highlighting, IntelliSense, and code completion
+- [Variables and Data Types](../../iec-concepts/variables-datatypes) - Comprehensive guide to variable management
