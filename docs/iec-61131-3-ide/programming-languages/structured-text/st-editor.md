@@ -227,13 +227,11 @@ The Variables Table and Code Editor work together seamlessly:
 3. **Type Checking**: The editor knows each variable's data type
 4. **Scope Awareness**: Only variables in scope are suggested
 
-### Variable Classes and Programs
-
-When creating a **Program** (as opposed to Functions or Function Blocks), use the **Local** variable class for most variables. Input and Output classes are more appropriate for Functions and Function Blocks where parameters need to be passed between POUs.
+For more information on the variables table, see [Working With Variables in the IDE](../../iec-concepts/variables-datatypes#working-with-variables-in-the-ide)
 
 ### Drag and Drop
 
-You can drag variable names from the Variables Table directly into the code editor, automatically inserting the variable name at the cursor position.
+You can drag functions and function blocks from the library directly into the code editor, automatically inserting the variable name at the cursor position.
 
 ## Best Practices for Using the Editor
 
@@ -341,7 +339,7 @@ The graphical approach offers advantages:
 
 ## Next Steps
 
-- [ST Language Basics](st-basics.md) - Review ST syntax, operators, and control structures
-- [ST Programming Examples](st-examples.md) - Study practical ST programming patterns
-- [Variables and Data Types](../../iec-concepts/variables-datatypes.md) - Learn about variable management
-- [Building and Deploying](../../building-deploying/compilation.md) - Compile and deploy your ST programs
+- [ST Language Basics](st-basics) - Review ST syntax, operators, and control structures
+- [ST Programming Examples](st-examples) - Study practical ST programming patterns
+- [Variables and Data Types](../../iec-concepts/variables-datatypes) - Learn about variable management
+- [Building and Deploying](../../building-deploying/compilation) - Compile and deploy your ST programs
