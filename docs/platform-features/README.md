@@ -28,7 +28,7 @@ The platform uses a consistent navigation structure across all pages:
 
 Explore the following sections to learn about specific platform features:
 
-- [Project Management](project-management/creating-projects.md) - Learn how to create and manage your automation projects
-- [Orchestrator Management](orchestrator-management/understanding-orchestrators.md) - Configure edge orchestrators for your deployment
-- [Virtual PLC Device Management](vplc-management/understanding-vplc.md) - Deploy and manage virtual PLC devices
-- [Community Features](community-features/activity-feed.md) - Engage with the Autonomy Edge community
+- [Project Management](project-management/creating-projects) - Learn how to create and manage your automation projects
+- [Orchestrator Management](orchestrator-management/understanding-orchestrators) - Configure edge orchestrators for your deployment
+- [Virtual PLC Device Management](vplc-management/understanding-vplc) - Deploy and manage virtual PLC devices
+- [Community Features](community-features/activity-feed) - Engage with the Autonomy Edge community

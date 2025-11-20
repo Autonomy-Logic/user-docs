@@ -402,6 +402,6 @@ Based on these examples, follow these best practices:
 
 ## Next Steps
 
-- [ST Language Basics](st-basics.md) - Review fundamental ST syntax and operators
-- [ST Editor Features](st-editor.md) - Learn about the IDE's code editing capabilities
-- [Standard Function Blocks Library](../../standard-function-blocks/overview.md) - Explore available function blocks
+- [ST Language Basics](st-basics) - Review fundamental ST syntax and operators
+- [ST Editor Features](st-editor) - Learn about the IDE's code editing capabilities
+- [Standard Function Blocks Library](../../standard-function-blocks/overview) - Explore available function blocks
