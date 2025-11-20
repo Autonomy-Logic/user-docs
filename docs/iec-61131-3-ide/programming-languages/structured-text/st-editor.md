@@ -292,41 +292,6 @@ The Autonomy Edge ST editor is built on the Monaco Editor, the same technology t
 - **Extensibility**: Supports custom language features and extensions
 - **Cross-platform**: Works consistently across different browsers and operating systems
 
-### Language Server Integration
-
-The editor integrates with a language server that provides:
-- **Syntax validation**: Real-time checking of ST syntax
-- **Semantic analysis**: Understanding of variable types and scopes
-- **Intelligent completion**: Context-aware code suggestions
-- **Symbol information**: Hover tooltips showing variable and function details
-
-## Comparison with Text Mode
-
-While the Autonomy Edge IDE uses a graphical Variables Table, the underlying IEC 61131-3 standard defines text-based variable declarations. Understanding both representations helps when:
-- Reading IEC 61131-3 documentation
-- Importing/exporting programs
-- Working with other IEC 61131-3 tools
-
-**Graphical (Variables Table)**:
-| Name | Class | Type | Initial Value |
-|------|-------|------|---------------|
-| sensor_temp | Local | REAL | |
-| setpoint | Local | REAL | |
-
-**Equivalent IEC 61131-3 Text**:
-```
-VAR
-    sensor_temp : REAL;
-    setpoint : REAL;
-END_VAR
-```
-
-The graphical approach offers advantages:
-- Visual organization in a table format
-- Easy reordering with drag-and-drop
-- Clear separation between variable definitions and code
-- Reduced syntax errors in variable declarations
-
 ## Tips for Efficient Coding
 
 1. **Define variables first**: Complete your Variables Table before writing code
