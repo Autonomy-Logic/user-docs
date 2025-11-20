@@ -21,8 +21,6 @@ First, define the variables in the Variables Table:
 | `temp_error` | Local | REAL | Temperature error (setpoint - actual) |
 | `timer` | Local | TON | Timer for heater activation delay |
 
-**Note**: All variables are declared as **Local** class because this is a Program. Input and Output classes are more appropriate for Functions and Function Blocks.
-
 ### Complete Code
 
 ```
@@ -71,7 +69,7 @@ END_IF;
 
 **Conditional Output Control**: 
 - If `timer.Q` is TRUE (timer elapsed), activate heater
-- If temperature error is less than -2.0 (too cold), activate cooler
+- If temperature error is less than -2.0 (too hot), activate cooler
 - Otherwise, turn off both heater and cooler
 
 **Safety Alarm**: An independent check monitors if the temperature is outside the safe range (0°C to 50°C) and sets an alarm flag.
