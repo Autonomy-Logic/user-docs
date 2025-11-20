@@ -22,9 +22,9 @@ Before writing ST code, you must define the variables your program will use in t
 ![Variables Table with ST Program](images/st-variables-table.png)
 *Variables table showing local variables defined for a temperature control program*
 
-For detailed information about variable classes (Local, Input, Output, In-Out, External, Global, Temp) and data types, see the [Variables and Data Types](../../iec-concepts/variables-datatypes.md) section.
+For detailed information about variable classes (Local, Input, Output, In-Out, External, Global, Temp) and data types, see the [Variables and Data Types](../../iec-concepts/variables-datatypes) section.
 
-**Important Note on Variable Classes**: When creating Programs (as opposed to Functions or Function Blocks), you should typically use the **Local** variable class. Input and Output variable classes are more appropriate for Functions and Function Blocks where parameters need to be passed between POUs.
+**Important Note on Variable Classes**: When creating Programs (as opposed to Functions or Function Blocks), you should typically use the **Local** variable class. Input and Output variable classes are more appropriate for Functions and Function Blocks where parameters need to be passed between POUs (see [Program Organization Units (POUs)](../../iec-concepts/pous)).
 
 ## Basic Syntax
 
