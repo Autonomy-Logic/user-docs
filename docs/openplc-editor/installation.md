@@ -123,7 +123,7 @@ For developers who want to build OpenPLC Editor from source or contribute to the
 
 4. To build a distributable package:
    ```bash
-   npm run build
+   npm run package
    ```
 
 For more information about contributing to OpenPLC Editor, visit the [GitHub repository](https://github.com/Autonomy-Logic/openplc-editor).
