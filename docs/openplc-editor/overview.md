@@ -14,7 +14,6 @@ The desktop editor is ideal when you need to:
 - **Work offline**: Since the editor runs locally, you can develop PLC programs without an internet connection.
 - **Connect to local runtimes**: The desktop editor can connect directly to OpenPLC Runtime instances on your local network without requiring any cloud infrastructure.
 - **Use Runtime v3**: If you have existing OpenPLC Runtime v3 installations, the desktop editor maintains compatibility with them.
-- **Develop for industrial hardware**: When programming physical PLCs or industrial edge devices running OpenPLC Runtime.
 
 ### Desktop Editor Features
 
@@ -110,6 +109,6 @@ Both versions of OpenPLC Editor share the same core functionality:
 
 ## Using Both Versions
 
-Many users find value in using both versions depending on their current task. Projects created in either version use the same PLCopen XML format, making it possible to work on the same project in both environments (though manual file transfer is required between them).
+Many users find value in using both versions depending on their current task. Projects created in either version use the same project file format, making it possible to work on the same project in both environments (though manual file transfer is required between them).
 
 For example, you might use the desktop editor for developing and testing programs locally with Arduino boards, then use the web editor to deploy and manage production systems remotely through the Autonomy Edge platform.
