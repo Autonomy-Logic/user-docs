@@ -38,7 +38,6 @@ Unlike v3, there is no fixed list of pins - you add only the pins your applicati
 
 - No network connectivity in basic configurations (some boards support WiFi)
 - Limited memory compared to full runtime installations
-- No web interface or remote debugging
 - Program updates require physical USB connection
 
 ## Next Steps
