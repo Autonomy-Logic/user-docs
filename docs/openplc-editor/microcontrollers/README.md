@@ -2,7 +2,8 @@
 
 OpenPLC Editor (desktop version) supports programming microcontroller boards directly, allowing you to create standalone PLC devices using affordable hardware like Arduino, ESP32, and other compatible boards.
 
-> **Note**: Microcontroller programming is only available in the desktop version of OpenPLC Editor. The web editor (Autonomy Edge) does not support this feature.
+> **Note 1**: Arduino boards aren't suitable for industrial environments. Support for Arduino boards on OpenPLC should be used for prototyping purposes only. For deploying on industrial production environments, please upload your project to a robust industrial-grade device running OpenPLC Runtime v4.
+> **Note 2**: Microcontroller programming is only available in the desktop version of OpenPLC Editor. The web editor (Autonomy Edge) can only program devices running OpenPLC Runtime v4 through the Autonomy Orchestrator Agent.
 
 ## Overview
 
@@ -28,14 +29,4 @@ OpenPLC Editor supports a wide variety of microcontroller boards:
 - **STM32**: High-performance ARM Cortex-M boards
 - **Controllino**: Industrial Arduino-compatible PLCs
 - **Raspberry Pi Pico**: RP2040-based boards
-
-## Getting Started
-
-1. Install OpenPLC Editor desktop application
-2. Create a new project or open an existing one
-3. Configure the target board in Hardware Configuration
-4. Write your PLC program
-5. Connect your board via USB
-6. Compile and upload the program
-
-For detailed instructions, see the individual pages in this section.
+- **P1AM**: Industrial Arduino-compatible PLCs with modular I/O
