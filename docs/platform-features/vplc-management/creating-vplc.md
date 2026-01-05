@@ -74,7 +74,7 @@ Now that your vPLC is running, you can upload a program using the built-in OpenP
 
 ### Step 1: Open the OpenPLC Editor
 
-From the Autonomy Edge dashboard, click on **Editor** in the left sidebar to open the OpenPLC Editor. You can create a new project or open an existing one.
+From the Autonomy Edge dashboard, click on a project to open it in the OpenPLC Editor, or navigate to the **Projects** page (via "View all projects" on the dashboard) to see all your projects. You can create a new project or open an existing one.
 
 ![OpenPLC Editor new project](images/openplc-editor-new-project.png)
 
