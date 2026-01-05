@@ -44,12 +44,11 @@ Before connecting, ensure that:
 3. Click on **Configuration** to open the device settings
 4. Enter the runtime connection details:
    - **Host**: The IP address or hostname of the runtime (e.g., `192.168.1.100` or `plc.local`)
-   - **Port**: The runtime port (default: `8443`)
 5. Click **Connect** to establish the connection
 
-### First-Time Connection to Runtime v4
+### First-Time Connection to Runtime v3 or v4
 
-When connecting to a new OpenPLC Runtime v4 installation for the first time, you'll need to create the initial user account:
+When connecting to a new OpenPLC Runtime installation for the first time, you'll need to create the initial user account:
 
 1. Connect to the runtime using the steps above
 2. The editor will detect that no users exist and prompt you to create one
@@ -57,6 +56,7 @@ When connecting to a new OpenPLC Runtime v4 installation for the first time, you
 4. Click **Create User** to complete the setup
 
 This user account is stored on the runtime and will be required for all future connections.
+_Note: The latest version of the runtime v3 has a web portal that allows users to login, manage settings and upload programs. The user credentials used on the connection with the v3 runtime from the editor is not the same user from the web portal. Do not use the web portal credentials as they will not work._
 
 ### Connection Status
 
@@ -75,7 +75,7 @@ With an active connection, you can deploy your program to the runtime:
 2. Click the **Compile and Download** button (down arrow icon) in the toolbar
 3. The editor will compile your program and upload it to the runtime
 4. Monitor the console for compilation and upload progress
-5. Once uploaded, use the runtime controls to start the PLC program
+5. Once uploaded, use the controls on the left sidebar to start and debug the PLC program
 
 ## Web Editor: Connecting via Orchestrator
 
@@ -113,10 +113,10 @@ When connecting to a newly created vPLC for the first time:
 ### Deploying Programs to vPLCs
 
 1. Ensure your project compiles without errors
-2. Click the **Compile and Download** button in the toolbar
+2. Click the **Compile and Download** button (down arrow icon) in the toolbar
 3. The program will be compiled and uploaded through the orchestrator
 4. Monitor the console for progress
-5. Use the vPLC controls in the Device panel to start the program
+5. Once uploaded, use the controls on the left sidebar to start and debug the PLC program
 
 ## Runtime Compatibility
 
@@ -168,10 +168,6 @@ Connections through orchestrator agents use mTLS (mutual TLS) encryption:
 - The runtime may be overloaded or unresponsive
 - Network latency may be too high
 - Try restarting the runtime service
-
-### Certificate Errors
-
-Runtime v4 uses self-signed certificates, which may trigger browser warnings. This is expected behavior for local development. The connection is still encrypted and secure.
 
 ### Orchestrator Connection Issues
 
