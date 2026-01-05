@@ -22,6 +22,16 @@ The orchestrator performs several critical functions in your automation infrastr
 
 **Dynamic Network Adaptation**: If your host machine moves between different networks (for example, a portable industrial system), the orchestrator automatically detects the network change and reconfigures the vPLC containers to maintain connectivity.
 
+## Offline Operation and Local Network Access
+
+An important characteristic of the orchestrator architecture is that internet connectivity is only required for remote monitoring and management. Once a vPLC instance is running your PLC program, all control logic executes locally on the edge device. If you lose internet connectivity, your PLC programs do not stop. The automation continues running normally, controlling your physical I/O and communicating with other devices on the local network.
+
+What you lose without internet connectivity is the ability to use the Autonomy Edge cloud platform to monitor your vPLC instances, upload different programs, create new vPLCs, or view system metrics. However, all of these operations remain possible from the local network even without internet access.
+
+Each vPLC instance runs exactly the same OpenPLC runtime as any physical PLC device running OpenPLC Runtime. This means you can use the OpenPLC Editor desktop software from any computer connected to the same local network to connect directly to your vPLC instances. From the perspective of OpenPLC Editor, there is no difference between a vPLC device created and managed by the Autonomy Edge orchestrator agent and a real physical OpenPLC Runtime running on dedicated PLC hardware.
+
+This design provides operational resilience for industrial applications where continuous operation is critical. Your automation logic keeps running regardless of internet availability, and you always have local network access as a fallback for monitoring and programming.
+
 ## Architecture Overview
 
 The orchestrator system consists of two Docker containers that work together:
