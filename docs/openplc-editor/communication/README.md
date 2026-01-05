@@ -24,9 +24,12 @@ Communication protocols are configured through the project explorer in OpenPLC E
 
 1. In the project explorer, locate the project tree
 2. Click the blue **+** button to add a new element
+
+![Add element menu showing available options including Remote Device and Server](modbus/images/add-element-menu.png)
+
 3. Select the type of communication you want to add:
    - **Server > Modbus**: Add a Modbus server (slave) configuration
-   - **Remote IO > Modbus**: Add a Modbus client (master) to poll external devices
+   - **Remote Device > Modbus**: Add a Modbus client (master) to poll external devices
 
 ## Protocol Support
 

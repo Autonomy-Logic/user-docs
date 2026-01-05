@@ -15,9 +15,17 @@ When configured as a Modbus server, OpenPLC exposes its internal memory buffers 
 To add a Modbus server configuration to your project:
 
 1. In the project explorer, click the blue **+** button
-2. Select **Server** > **Modbus**
-3. A new Modbus server entry will appear under the Servers folder
-4. Click on the server entry to configure its settings
+2. Select **Server** from the menu
+
+![Server creation dialog with protocol selection](images/add-server-dialog.png)
+
+3. Enter a name for your server and select **Modbus/TCP** as the protocol
+
+![Protocol dropdown showing Modbus/TCP option](images/server-protocol-dropdown.png)
+
+4. Click **Create** to add the server
+5. A new Modbus server entry will appear under the Servers folder
+6. Click on the server entry to configure its settings
 
 ## Configuration Options
 

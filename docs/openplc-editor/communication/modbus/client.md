@@ -16,9 +16,17 @@ When configured as a Modbus client, OpenPLC can poll data from external Modbus s
 To add a Modbus client configuration to your project:
 
 1. In the project explorer, click the blue **+** button
-2. Select **Remote IO** > **Modbus**
-3. A new remote device entry will appear under the Devices folder
-4. Click on the device entry to configure its settings
+2. Select **Remote Device** from the menu
+
+![Remote Device creation dialog with protocol selection](images/add-remote-device-dialog.png)
+
+3. Enter a name for your device and select **Modbus/TCP** as the protocol
+
+![Protocol dropdown showing Modbus/TCP and other protocol options](images/remote-device-protocol-dropdown.png)
+
+4. Click **Create** to add the device
+5. A new remote device entry will appear under the Devices folder
+6. Click on the device entry to configure its settings
 
 ## Device Configuration
 

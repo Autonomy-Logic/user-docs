@@ -98,8 +98,13 @@ For information on setting up orchestrators and vPLCs, see:
 1. Open your project in the Autonomy Edge web editor
 2. Navigate to the **Device** section in the project explorer
 3. Click on **Orchestrators** to view available connections
+
+![Device Orchestrators view showing available orchestrators and vPLC devices](images/device-orchestrators-expanded.png)
+
 4. Select the orchestrator and vPLC you want to connect to
 5. Click **Connect** to establish the connection
+
+![vPLC selected with Connect button visible](images/device-orchestrators-connect.png)
 
 ### First-Time Connection to a vPLC
 
