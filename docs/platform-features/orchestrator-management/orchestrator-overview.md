@@ -50,7 +50,7 @@ The Devices tab shows all virtual PLC devices (vPLCs) managed by this orchestrat
 
 If no devices have been created yet, you'll see an empty state with an "Add Device" button. Devices are the virtual PLC containers that run your automation programs. Each device can be configured with its own network settings and can run independently on the orchestrator's host machine.
 
-For more information about creating and managing devices, see the vPLC Device Management section of this documentation.
+For more information about creating and managing devices, see [Creating vPLC Devices](../vplc-management/creating-vplc) in the vPLC Management section.
 
 ## Managing Orchestrators
 
