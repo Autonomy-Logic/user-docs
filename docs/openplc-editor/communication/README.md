@@ -28,14 +28,18 @@ Communication protocols are configured through the project explorer in OpenPLC E
    - **Server > Modbus**: Add a Modbus server (slave) configuration
    - **Remote IO > Modbus**: Add a Modbus client (master) to poll external devices
 
-## Protocol Support by Version
+## Protocol Support
 
-| Protocol | Desktop Editor | Web Editor | Runtime v4 | Runtime v3 |
-|----------|---------------|------------|------------|------------|
-| Modbus Server (Slave) | Yes | Yes | Yes | Yes |
-| Modbus Client (Master) | Yes | Yes | Yes | Yes |
-| OPC-UA | Development | Development | Development | No |
-| DNP3 | No | No | No | Yes |
-| EtherNet/IP | No | No | No | Yes |
+| Protocol | Runtime v4 | Runtime v3 | Arduino Boards |
+|----------|------------|------------|------------|
+| Modbus Server (Slave) | Yes | Yes | Yes |
+| Modbus Client (Master) | Yes | Yes | No |
+| OPC-UA | In Development | No | No |
+| DNP3 | No | Beta | No |
+| EtherNet/IP (Slave) | In Development | Beta | No |
+| EtherNet/IP (Master) | In Development | No | No |
+| Siemens S7-Comm (Slave) | In Development | Yes | No |
+| EtherCAT | In Development | No | No |
 
-Note: DNP3 and EtherNet/IP are only available in Runtime v3 and are not supported in the v4 architecture.
+
+Note: DNP3 and EtherNet/IP are only available in Runtime v3 as beta drivers, meaning the support for these protocols is very rudimentary. A more robust implementation of EtherNet/IP is being developed for the OpenPLC Runtime v4.
