@@ -42,4 +42,4 @@ Communication protocols are configured through the project explorer in OpenPLC E
 | EtherCAT | In Development | No | No |
 
 
-Note: DNP3 and EtherNet/IP are only available in Runtime v3 as beta drivers, meaning the support for these protocols is very rudimentary. A more robust implementation of EtherNet/IP is being developed for the OpenPLC Runtime v4.
+> **Note**: DNP3 and EtherNet/IP are only available in Runtime v3 as beta drivers, meaning the support for these protocols is very rudimentary. A more robust implementation of EtherNet/IP is being developed for the OpenPLC Runtime v4.
