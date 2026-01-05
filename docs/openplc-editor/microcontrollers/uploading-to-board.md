@@ -29,13 +29,15 @@ Open an existing project or create a new one with your PLC program.
 ### 3. Add Pin Mappings
 
 1. In the Hardware Configuration, click to add a new pin
-2. Select the pin name from the suggestions (based on your board)
-3. Assign an IEC address to the pin:
+2. Select the pin name from the suggestions (based on your board). You can also add a custom pin that is not on the list.
+3. The editor automatically assigns an IEC location to the pin based on the pin type:
    - Digital inputs: %IX0.0, %IX0.1, etc.
    - Digital outputs: %QX0.0, %QX0.1, etc.
    - Analog inputs: %IW0, %IW1, etc.
    - Analog outputs: %QW0, %QW1, etc.
-4. Repeat for all pins your program uses
+4. Optionally add a name to your pin so you can easily refer to it later on your program.
+5. Repeat for all pins you want to use
+6. On your PLC program, at the variables table, click on Location in front of a variable you want to associate with a pin and then select one of the pins defined in the pin mapping section.
 
 ### 4. Connect Your Board
 
@@ -45,11 +47,10 @@ Open an existing project or create a new one with your PLC program.
 
 ### 5. Compile and Upload
 
-1. Click the **Compile and Upload** button in the toolbar
-2. Select the serial port for your board (if prompted)
-3. Wait for the compilation to complete
-4. The program will automatically upload to your board
-5. Monitor the console for progress and any errors
+1. Click the **Compile and Upload** (down arrow) button in the left sidebar
+2. Wait for the compilation to complete
+3. The program will automatically upload to your board
+4. Monitor the console for progress and any errors
 
 ### 6. Verify Operation
 
