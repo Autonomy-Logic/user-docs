@@ -104,13 +104,25 @@
         }
       ]
     },
-    {
-      "title": "IEC 61131-3 Programming IDE",
-      "path": "iec-61131-3-ide",
-      "items": [
         {
-          "title": "IDE Workspace Overview",
-          "path": "workspace-overview",
+          "title": "OpenPLC Editor",
+          "path": "openplc-editor",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Installation",
+              "path": "installation"
+            },
+            {
+              "title": "Connecting to Runtimes",
+              "path": "connecting-to-runtimes"
+            },
+            {
+              "title": "IDE Workspace Overview",
+              "path": "workspace-overview",
           "items": [
             {
               "title": "Workspace Layout",
@@ -392,28 +404,114 @@
             }
           ]
         },
-        {
-          "title": "Building and Deploying",
-          "path": "building-deploying",
-          "items": [
             {
-              "title": "Project Compilation",
-              "path": "project-compilation"
+              "title": "Building and Deploying",
+              "path": "building-deploying",
+              "items": [
+                {
+                  "title": "Project Compilation",
+                  "path": "project-compilation"
+                },
+                {
+                  "title": "XML Export Format",
+                  "path": "xml-export"
+                },
+                {
+                  "title": "Deployment to vPLC Devices",
+                  "path": "deployment-vplc"
+                }
+              ]
             },
             {
-              "title": "XML Export Format",
-              "path": "xml-export"
+              "title": "Communication Protocols",
+              "path": "communication",
+              "items": [
+                {
+                  "title": "Modbus",
+                  "path": "modbus",
+                  "items": [
+                    {
+                      "title": "Modbus Server",
+                      "path": "server"
+                    },
+                    {
+                      "title": "Modbus Client",
+                      "path": "client"
+                    },
+                    {
+                      "title": "Modbus Addressing",
+                      "path": "addressing"
+                    }
+                  ]
+                },
+                {
+                  "title": "OPC-UA (Coming Soon)",
+                  "path": "opc-ua"
+                }
+              ]
             },
             {
-              "title": "Deployment to vPLC Devices",
-              "path": "deployment-vplc"
+              "title": "Microcontrollers (Desktop Only)",
+              "path": "microcontrollers",
+              "items": [
+                {
+                  "title": "Overview",
+                  "path": "overview"
+                },
+                {
+                  "title": "Supported Boards",
+                  "path": "supported-boards"
+                },
+                {
+                  "title": "Uploading to Boards",
+                  "path": "uploading-to-board"
+                }
+              ]
             }
           ]
-        }
-      ]
-    },
-    {
-      "title": "Advanced Topics",
+        },
+        {
+          "title": "OpenPLC Runtime",
+          "path": "openplc-runtime",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Installation",
+              "path": "installation"
+            },
+            {
+              "title": "Program Upload",
+              "path": "program-upload"
+            },
+            {
+              "title": "First User Setup",
+              "path": "first-user-setup"
+            },
+            {
+              "title": "Located Variables and Addressing",
+              "path": "located-variables-and-addressing"
+            },
+            {
+              "title": "Hardware Configuration",
+              "path": "hardware",
+              "items": [
+                {
+                  "title": "Overview",
+                  "path": "overview"
+                }
+              ]
+            },
+            {
+              "title": "v3 Legacy",
+              "path": "v3-legacy"
+            }
+          ]
+        },
+        {
+          "title": "Advanced Topics",
       "path": "advanced-topics",
       "items": [
         {
