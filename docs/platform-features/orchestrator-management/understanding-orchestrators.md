@@ -1,6 +1,12 @@
 # Understanding Orchestrators
 
-An orchestrator is a software agent that runs on a Linux machine and serves as the bridge between the Autonomy Edge cloud platform and your local industrial automation devices. It enables you to remotely manage, monitor, and deploy PLC programs to virtual PLC devices (vPLCs) from anywhere in the world through the Autonomy Edge platform.
+The orchestrator agent is one of the central pieces of the Autonomy Edge platform. It is the essential component that enables you to run PLC programs on physical hardware. Without an orchestrator agent installed on your edge device, the Autonomy Edge platform cannot connect to or control local PLC runtimes. The orchestrator serves as the secure bridge between the cloud-based Autonomy Edge application and your industrial automation equipment, making remote deployment and management of PLC programs possible from anywhere in the world.
+
+## Why the Orchestrator is Essential
+
+The Autonomy Edge platform is designed as a cloud-first solution where you create and edit PLC programs through a web browser. However, to actually execute these programs on real hardware and interact with physical I/O, you need a way to bridge the gap between the cloud and your local industrial network. This is exactly what the orchestrator agent provides.
+
+When you deploy a PLC program from Autonomy Edge, the request flows from the cloud platform through the orchestrator agent to the OpenPLC runtime running on your edge device. The orchestrator handles all the complexity of secure communication, container management, and network configuration, allowing you to focus on your automation logic rather than infrastructure concerns.
 
 ## What Does an Orchestrator Do?
 
@@ -51,6 +57,18 @@ Before installing an orchestrator, ensure your target machine meets the followin
 **Hardware**: The orchestrator itself has minimal resource requirements. However, you should ensure adequate resources for the vPLC containers you plan to run. Each vPLC requires approximately 256 MB of RAM and minimal CPU resources during normal operation.
 
 The installer automatically checks for and installs these dependencies if they are missing: curl, jq, openssl, and docker.
+
+## Compatible Industrial Devices
+
+The orchestrator agent was designed to be widely compatible with any Linux device that provides shell access and can run Docker containers. This makes it suitable for deployment on a broad range of industrial hardware, from dedicated edge controllers to industrial PCs.
+
+**Linux-Based PLCs and Edge Controllers**: Many modern industrial controllers run Linux and provide terminal access, making them excellent candidates for running the orchestrator agent. Examples include the Siemens IOT2050 industrial edge device, Opto 22 groov EPIC and groov RIO controllers, WAGO PFC200 series controllers, Phoenix Contact PLCnext controllers, Revolution Pi (Kunbus) industrial Raspberry Pi modules, and Hilscher netPI edge gateways.
+
+**Industrial PCs and Edge Gateways**: Ruggedized industrial computers running Linux distributions are ideal hosts for the orchestrator. Popular options include Advantech UNO and ARK series industrial PCs, OnLogic industrial computers, Kontron embedded PCs, Moxa industrial computers and gateways, and Axiomtek and AAEON industrial box PCs.
+
+**General-Purpose Linux Systems**: For development, testing, or less demanding applications, the orchestrator can run on any standard Linux system including server hardware, desktop computers, or single-board computers like Raspberry Pi (for evaluation purposes).
+
+The key requirements for any device are: a supported Linux distribution (Ubuntu, Debian, RHEL, CentOS, or Fedora), the ability to run Docker containers, shell access with root or sudo privileges, and network connectivity to the internet. Before deploying to a specific industrial device, verify that your device's firmware allows Docker installation and that you have the necessary access permissions.
 
 ## Security Model
 

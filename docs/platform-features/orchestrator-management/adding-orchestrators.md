@@ -39,11 +39,9 @@ Copy the installation command by clicking the copy button next to it:
 curl https://getedge.me | bash
 ```
 
-Open a terminal on your target Linux machine and run the command with root privileges:
+Open a terminal on your target Linux machine and run the command exactly as shown above. The installation script automatically detects if it needs elevated privileges and will prompt for your sudo password if required. You do not need to add `sudo` before the command.
 
-```bash
-sudo curl https://getedge.me | bash
-```
+**Note**: If the script prompts for a sudo password, enter it when requested. If your user account does not have sudo privileges, you will need to run the command as root or contact your system administrator.
 
 The installer will perform the following actions automatically:
 
@@ -94,7 +92,7 @@ Within a few moments, the status should change to "active" and you'll see real-t
 
 If you encounter issues during installation or linking, check the following:
 
-**Installation fails with permission errors**: Ensure you're running the installer with root privileges using `sudo`.
+**Installation fails with permission errors**: The installer automatically elevates to root privileges using sudo. If you see permission errors, ensure your user account has sudo privileges and that you entered the correct password when prompted. Alternatively, you can run the command directly as the root user.
 
 **Installation fails to download images**: Verify that your machine has internet access and can reach Docker Hub and the GitHub Container Registry.
 
