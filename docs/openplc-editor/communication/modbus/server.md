@@ -53,22 +53,62 @@ The Modbus server exposes the following buffer sizes:
 The Modbus server maps IEC 61131-3 addresses to Modbus addresses as follows:
 
 ### Coils (FC 1, 5, 15)
-- Modbus address 0-7999 maps to %QX0.0 - %QX999.7
+- Modbus address 0-63 maps to %QX0.0 - %QX7.7
 - Each coil corresponds to a single bit output
 
 ### Discrete Inputs (FC 2)
-- Modbus address 0-7999 maps to %IX0.0 - %IX999.7
+- Modbus address 0-63 maps to %IX0.0 - %IX7.7
 - Each discrete input corresponds to a single bit input
 
 ### Holding Registers (FC 3, 6, 16)
-- Modbus address 0-999 maps to %QW0 - %QW999
+- Modbus address 0-31 maps to %QW0 - %QW31
 - Each register is a 16-bit word output
 
 ### Input Registers (FC 4)
-- Modbus address 0-999 maps to %IW0 - %IW999
+- Modbus address 0-31 maps to %IW0 - %IW31
 - Each register is a 16-bit word input
 
 For detailed address mapping information, see [Modbus Addressing](addressing.md).
+
+## Runtime v4 vs v3 Address Mapping Differences
+
+OpenPLC Runtime v4 uses a simplified address mapping compared to v3. Understanding these differences is important when migrating projects or working with existing Modbus configurations.
+
+### Runtime v4 (Current)
+
+The v4 Modbus server plugin maps directly to the basic I/O buffers:
+
+| Modbus Type | Buffer | Size | IEC Addresses |
+|-------------|--------|------|---------------|
+| Coils | bool_output | 64 | %QX0.0 - %QX7.7 |
+| Discrete Inputs | bool_input | 64 | %IX0.0 - %IX7.7 |
+| Holding Registers | int_output | 32 | %QW0 - %QW31 |
+| Input Registers | int_input | 32 | %IW0 - %IW31 |
+
+**Important**: Runtime v4 does NOT currently support memory locations (%M) through the Modbus server. Only direct I/O addresses (%I and %Q) are accessible via Modbus.
+
+### Runtime v3 (Legacy)
+
+The v3 Modbus server supported extended address ranges including memory locations:
+
+| Modbus Address Range | IEC Addresses | Data Type |
+|---------------------|---------------|-----------|
+| 0 - 1023 | %QW0 - %QW1023 | 16-bit outputs |
+| 1024 - 2047 | %MW0 - %MW1023 | 16-bit memory |
+| 2048 - 4095 | %MD0 - %MD1023 | 32-bit memory (2 registers each) |
+| 4096 - 8191 | %ML0 - %ML1023 | 64-bit memory (4 registers each) |
+
+The v3 runtime also supported larger buffer sizes (8000 coils, 8000 discrete inputs, 8192 holding registers, 1024 input registers).
+
+### Migration Considerations
+
+When migrating from v3 to v4:
+
+1. **Memory locations not supported**: If your v3 project used %MW, %MD, or %ML addresses through Modbus, you will need to restructure your program to use direct I/O addresses instead.
+
+2. **Smaller buffer sizes**: The v4 runtime has smaller default buffer sizes. Ensure your Modbus client configurations do not exceed the v4 limits.
+
+3. **Address remapping**: Modbus clients that previously accessed addresses above 31 (for registers) or 63 (for coils/discrete inputs) will need to be reconfigured.
 
 ## Example Configuration
 

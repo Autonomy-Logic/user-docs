@@ -71,14 +71,53 @@ IO Groups define what data to read or write from the remote device. Each IO grou
 
 ## Adding an IO Group
 
-1. In the remote device configuration, click **Add IO Group**
-2. Configure the IO group settings:
-   - Select the appropriate function code
-   - Enter the starting offset (Modbus address)
-   - Enter the number of registers/coils to read
-   - Specify the IEC location to map the data
-   - Set the polling cycle time
-3. The IO group will appear in the device's IO group list
+After creating a remote device, you can add IO Groups to define what data to read or write. The editor automatically assigns IEC locations to each IO Group.
+
+### Step 1: Open the Remote Device Configuration
+
+Click on your remote device in the project explorer to open its configuration panel. You'll see the connection settings and an empty IO Tag Mapping table.
+
+![Remote device configuration showing empty IO Tag Mapping](images/remote-device-config.png)
+
+### Step 2: Add a New IO Group
+
+Click the **+** button above the IO Tag Mapping table to open the New IO Group dialog.
+
+![New IO Group dialog with configuration options](images/new-io-group-dialog.png)
+
+Configure the IO group settings:
+
+| Field | Description |
+|-------|-------------|
+| Name | A descriptive name for this IO group |
+| Function Code | The Modbus function to use (e.g., Read Holding Registers FC 3) |
+| Cycle Time (ms) | How often to poll this data |
+| Offset | The starting Modbus address on the remote device |
+| Length | Number of registers or coils to read/write |
+| Error Handling | What to do on communication errors (Keep last value or Set to zero) |
+
+### Step 3: Automatic IEC Location Assignment
+
+When you click **Create**, the editor automatically assigns an IEC location to the IO Group based on the function code selected:
+
+- **Read functions (FC 1-4)**: Assigned to input addresses (%I)
+- **Write functions (FC 5, 6, 15, 16)**: Assigned to output addresses (%Q)
+
+![IO Group with automatically assigned IEC location %IW0](images/io-group-with-iec-location.png)
+
+In this example, a "HoldingRegisters" IO Group using FC 3 (Read Holding Registers) was automatically assigned the IEC location `%IW0`.
+
+### Step 4: View Individual IO Points
+
+Click the arrow next to an IO Group to expand it and see the individual IO points. Each point shows its assigned IEC address and allows you to set an optional alias.
+
+![Expanded IO Group showing individual IO points with IEC addresses](images/io-group-expanded.png)
+
+The expanded view shows:
+- **Name**: Auto-generated name (e.g., HoldingRegisters_0)
+- **Type**: The data type (Analog Input for registers, Digital for coils)
+- **Address**: The IEC address (%IW0, %IW1, etc.)
+- **Alias**: Optional custom name for use in your PLC program
 
 ## Example Configuration
 
