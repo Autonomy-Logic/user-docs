@@ -70,9 +70,8 @@ In this section of the documentation, you will learn:
 9. **Custom Data Types**: Creating and using arrays, structures, and enumerations
 10. **Standard Function Blocks**: Using the built-in library of standard functions
 11. **Task Configuration**: Setting up cyclic and interrupt-driven execution
-12. **Hardware Configuration**: Configuring I/O and communication settings
+12. **Hardware Configuration**: Configuring target devices, pin mapping, and I/O settings (includes microcontroller programming for desktop editor)
 13. **Communication Protocols**: Setting up Modbus and other industrial protocols
-14. **Microcontrollers**: Programming Arduino and other microcontroller boards (desktop only)
-15. **Building and Deploying**: Compiling and deploying your programs to devices
+14. **Building and Deploying**: Compiling and deploying your programs to devices
 
 Whether you're new to PLC programming or an experienced automation engineer, this documentation will help you make the most of OpenPLC Editor.

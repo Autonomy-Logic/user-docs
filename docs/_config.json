@@ -449,24 +449,6 @@
                   "path": "opc-ua"
                 }
               ]
-            },
-            {
-              "title": "Microcontrollers (Desktop Only)",
-              "path": "microcontrollers",
-              "items": [
-                {
-                  "title": "Overview",
-                  "path": "overview"
-                },
-                {
-                  "title": "Supported Boards",
-                  "path": "supported-boards"
-                },
-                {
-                  "title": "Uploading to Boards",
-                  "path": "uploading-to-board"
-                }
-              ]
             }
           ]
         },
