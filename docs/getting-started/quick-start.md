@@ -77,31 +77,17 @@ In this guide, you'll create a complete automation workflow from scratch:
 3. **Configure communication**: Set up Modbus TCP/IP to expose your outputs to external devices
 4. **Deploy and run**: Compile and upload your program to the vPLC
 
-The blinking output program demonstrates fundamental PLC concepts: using timers, handling boolean logic, and mapping program variables to physical outputs. While simple, this pattern forms the foundation of real industrial applications like indicator lights, alarm signals, and heartbeat monitors.
-
-### The Development Workflow
-
-```
-Create Project → Write Code → Configure I/O → Connect to vPLC → Deploy → Monitor
-```
-
-This workflow mirrors professional automation development, where engineers design logic, test in simulation, configure hardware interfaces, and deploy to production systems.
-
 ## Prerequisites
 
 - **Autonomy Edge account**: Sign up at [edge.autonomylogic.com](https://edge.autonomylogic.com) if you haven't already
-- **Modern web browser**: Chrome, Firefox, or Edge recommended for the best experience
-- **Orchestrator access**: You'll need either:
-  - An orchestrator ID from your administrator (for connecting to an existing edge device), or
-  - Access to the Autonomy cloud-hosted orchestrator for testing purposes
-
-> **Note**: If you're evaluating Autonomy Edge, contact support to get access to a cloud-hosted orchestrator for this tutorial.
-
+- **Modern web browser**: Chrome, Firefox, or Safari recommended for the best experience
+- **Orchestrator Agent**: The orchestrator agent can be installed on any Linux-based device (PLC, PAC, Industrial PC, Server, Raspberry Pi, etc) where you have SSH or terminal access.
+- 
 ---
 
 ## Step 1: Create an Orchestrator
 
-An orchestrator is an edge agent that manages your vPLC devices. For this quick start, we'll create a cloud-hosted orchestrator.
+An orchestrator is an edge agent that manages your vPLC devices running on your physical hardware.
 
 1. Log in to the Autonomy Edge platform at [edge.autonomylogic.com](https://edge.autonomylogic.com)
 2. Navigate to **Orchestrators** in the left sidebar
