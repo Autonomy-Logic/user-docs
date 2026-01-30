@@ -5,6 +5,10 @@
       "path": "getting-started",
       "items": [
         {
+          "title": "Quick Start Guide",
+          "path": "quick-start"
+        },
+        {
           "title": "Introduction to Autonomy Edge",
           "path": "introduction"
         },
