@@ -11,8 +11,8 @@ Autonomy Edge is a cloud-based platform for industrial automation that brings mo
 Traditional PLC development requires expensive hardware, proprietary software licenses, and physical access to devices. Autonomy Edge removes these barriers by providing:
 
 - **Browser-Based Development**: Write PLC programs using industry-standard IEC 61131-3 languages without installing any software
-- **Virtual PLCs**: Deploy and test automation logic on containerized runtime instances before committing to physical hardware
-- **Remote Management**: Deploy programs and monitor devices from anywhere with an internet connection
+- **Virtual PLCs**: Deploy automation logic to physical devices (PLCs, PACs, Industrial PCs, Servers) running in containerized runtime instances in real-time
+- **Remote Management**: Deploy programs and monitor devices from anywhere with an internet connection (internet is only required for management, not for running control logic)
 - **Cloud Collaboration**: Share projects with team members and maintain version history automatically
 
 ### Platform Architecture
@@ -21,36 +21,36 @@ The Autonomy Edge ecosystem consists of four key components that work together:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                  Your Web Browser                            │
+│                  Your Web Browser                           │
 │         (Autonomy Edge Platform + OpenPLC Web IDE)          │
 └─────────────────────────┬───────────────────────────────────┘
                           │ Secure Cloud Connection
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Orchestrator Agent                         │
-│            (Runs on edge device or cloud server)            │
-│         Manages containers, networking, and security         │
+│                   Orchestrator Agent                        │
+│            (Runs on edge device or on-prem server)          │
+│         Manages containers, networking, and security        │
 └─────────────────────────┬───────────────────────────────────┘
-                          │ Docker Container Management
+                          │ Container Management
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                    vPLC Instances                            │
+│                    vPLC Instances                           │
 │              (OpenPLC Runtime v4 containers)                │
-│         Execute automation programs in real-time             │
+│         Execute automation programs in real-time            │
 └─────────────────────────┬───────────────────────────────────┘
                           │ Industrial Protocols (Modbus, OPC-UA)
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                Physical I/O and Devices                      │
+│                Physical I/O and Devices                     │
 │           (Sensors, actuators, other PLCs, HMIs)            │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 **Autonomy Edge Platform**: The cloud-based web application where you manage projects, users, and devices. It includes the browser-based OpenPLC Editor IDE for writing automation programs.
 
-**Orchestrator**: An agent that runs on an edge device (like a Raspberry Pi, industrial PC, or cloud server) and manages your vPLC instances. It maintains a secure connection to the cloud and handles container orchestration, networking, and system monitoring.
+**Orchestrator**: An agent that runs on an edge device (like a linux-based PLC, PAC, industrial PC, or on-prem server) and manages your vPLC instances. It maintains a secure connection to the cloud and handles container orchestration, networking, and system monitoring.
 
-**vPLC (Virtual PLC)**: A containerized instance of OpenPLC Runtime v4 that executes your automation programs. Each vPLC runs independently and can communicate with physical devices through industrial protocols like Modbus TCP/IP.
+**vPLC (Virtual PLC)**: A containerized instance of OpenPLC Runtime v4 that executes your automation programs. Each vPLC runs independently and can communicate with physical devices through industrial protocols like Modbus, EtherCAT, or EtherNet/IP.
 
 **OpenPLC Runtime v4**: The execution engine inside each vPLC container. It compiles your IEC 61131-3 programs into native code and runs them with real-time deterministic timing, just like a physical PLC.
 
