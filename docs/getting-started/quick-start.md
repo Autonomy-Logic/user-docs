@@ -184,7 +184,7 @@ In the IDE, you'll see the variables table at the top and the program editor bel
 2. Set the following values:
    - **Name**: `blink_timer`
    - **Class**: Local
-   - **Type**: TON (search for "TON" in the type dropdown under Standard Function Blocks)
+   - **Type**: TON (search for "TON" in the type dropdown under System)
 
 ### Add the Output Variable
 
@@ -245,7 +245,7 @@ The Remote Device configuration panel will open:
 
 Configure the connection settings:
 - **Transport**: Select TCP/IP for network communication (or RTU for serial)
-- **IP Address**: Enter the IP address of your Modbus slave device (e.g., `192.168.1.100`). Use `127.0.0.1` if the Modbus slave runs on the same device as the vPLC.
+- **IP Address**: Enter the IP address of your Modbus slave device (e.g., `192.168.1.100`).
 - **Port**: Default is `502` (standard Modbus TCP port)
 - **Timeout (ms)**: Response timeout in milliseconds (default `1000`)
 - **Slave ID**: The Modbus slave/unit identifier (default `1`)
@@ -330,21 +330,8 @@ The Scan Cycle Statistics panel shows real-time performance metrics:
 Once deployed, your blinking output program is running on the vPLC. You can verify this by:
 
 - Watching the Scan Count increment in the Scan Cycle Statistics
-- Connecting a Modbus client to the vPLC's IP address on port 502 to read the coil states
+- Check the output coils of your Modbus slave device
 - Checking the PLC Logs tab for runtime messages
-
----
-
-## What You've Accomplished
-
-Congratulations! You've successfully completed the full Autonomy Edge development workflow:
-
-✅ **Infrastructure**: Installed an orchestrator agent and provisioned a vPLC container
-✅ **Development**: Created a project and wrote IEC 61131-3 Structured Text code
-✅ **Communication**: Configured Modbus TCP/IP for external device integration
-✅ **Deployment**: Compiled and uploaded your program to a running vPLC
-
-This simple blinking output demonstrates the same patterns used in production systems. The TON timer you used is the foundation for machine cycle timing, alarm delays, and process sequences. The Modbus configuration you created is how PLCs communicate with HMIs, SCADA systems, and other industrial devices.
 
 ---
 
