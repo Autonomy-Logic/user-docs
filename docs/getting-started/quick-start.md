@@ -99,7 +99,7 @@ An orchestrator is an edge agent that manages your vPLC devices. It runs on your
 
 ### 1.2 Enter Orchestrator Details
 
-1. Enter a name for your orchestrator (e.g., "LinuxServer")
+1. Enter a name for your orchestrator (e.g., "Linux Server")
 2. Optionally add a description
 3. Click **Next** to proceed to the Install step
 
@@ -143,7 +143,7 @@ A vPLC (virtual PLC) is a containerized runtime that executes your automation pr
 
 ![Add New Device dialog](../platform-features/vplc-management/images/add-device-modal.png)
 
-4. Enter a device name (e.g., "MyFirstPLC")
+4. Enter a device name (e.g., "Demo vPLC")
 5. Configure the network settings:
    - A default virtual NIC (veth0) is created automatically with DHCP
    - Click on the NIC to configure static IP if needed
@@ -193,6 +193,11 @@ In the IDE, you'll see the variables table at the top and the program editor bel
    - **Name**: `output_state`
    - **Class**: Output
    - **Type**: BOOL (found under Base Type)
+   - **Location**: `%QX0.0`
+
+The **Location** field is critical - it maps your program variable to the physical I/O address. The `%QX0.0` address corresponds to the first digital output coil, which we'll configure to communicate via Modbus in Step 6.
+
+> **Understanding Located Variables**: In IEC 61131-3, the `%Q` prefix indicates an output, `X` indicates a bit (boolean), and `0.0` is the address (byte 0, bit 0). This creates a direct link between your program variable and the Modbus coil address.
 
 ---
 
@@ -254,13 +259,12 @@ The Remote Device configuration panel will open with default TCP/IP settings:
 3. Click **Create**
 
 The IO Group will appear in the table, showing:
-- Type: Digital Output (Multiple Coils)
-- Address: %QX0.0
-- Function Code: Write Multiple Coils (FC 15)
+- **Name**: BlinkCoils
+- **Type**: Digital Output (Multiple Coils)
+- **Address**: %QX0.0
+- **Function Code**: Write Multiple Coils (FC 15)
 
-![IO Group with IEC location address](../openplc-editor/communication/modbus/images/io-group-with-iec-location.png)
-
-This configuration maps 8 digital outputs starting at address %QX0.0 to Modbus coils.
+This configuration maps 8 digital outputs starting at address `%QX0.0` to Modbus coils. Since our `output_state` variable is located at `%QX0.0`, it will be automatically written to the Modbus device whenever its value changes.
 
 ---
 
@@ -270,8 +274,8 @@ Now let's connect to the vPLC to deploy your program.
 
 1. In the IDE, expand **Devices** in the left sidebar
 2. Click on **Orchestrators** to open the Device Orchestrators panel
-3. Expand your orchestrator to see your vPLC
-4. Click on the vPLC to select it (it should show "Running" status)
+3. Expand your orchestrator (e.g., "Linux Server") to see your vPLC
+4. Click on your vPLC (e.g., "Demo vPLC") to select it (it should show "Running" status)
 5. Click the **Connect** button
 
 ![Device Orchestrators panel with vPLC selected](../platform-features/vplc-management/images/device-selected-connect.png)
