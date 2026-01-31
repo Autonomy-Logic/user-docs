@@ -3,7 +3,7 @@
 Welcome to the Autonomy Edge Platform documentation. This comprehensive guide covers both the cloud platform and the IEC 61131-3 IDE for industrial automation.
 
 
-- [Getting Started](docs/getting-started/introduction) - Introduction and account setup
+- [Getting Started](docs/getting-started/quick-start) - Quick start guide and account setup
 - [Platform Features](docs/platform-features/project-management/creating-projects) - Learn about platform capabilities
 - [IEC 61131-3 Programming IDE](docs/iec-61131-3-ide/workspace-overview/workspace-layout) - Programming guide
 - [Advanced Topics](docs/advanced-topics/best-practices/project-organization) - Best practices and troubleshooting

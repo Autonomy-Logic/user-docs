@@ -52,7 +52,7 @@ The Autonomy Edge ecosystem consists of four key components that work together:
 
 **vPLC (Virtual PLC)**: A containerized instance of OpenPLC Runtime v4 that executes your automation programs. Each vPLC runs independently and can communicate with physical devices through industrial protocols like Modbus, EtherCAT, or EtherNet/IP.
 
-**OpenPLC Runtime v4**: The execution engine inside each vPLC container. It compiles your IEC 61131-3 programs into native code and runs them with real-time deterministic timing, just like a physical PLC.
+**Physical I/O and Devices**: The sensors, actuators, remote I/O modules, HMIs, and other industrial equipment that connect to your vPLCs through industrial protocols like Modbus TCP/IP, Modbus RTU, EtherCAT, or EtherNet/IP.
 
 ### IEC 61131-3 Programming
 
@@ -81,7 +81,8 @@ In this guide, you'll create a complete automation workflow from scratch:
 
 - **Autonomy Edge account**: Sign up at [edge.autonomylogic.com](https://edge.autonomylogic.com) if you haven't already
 - **Modern web browser**: Chrome, Firefox, or Safari recommended for the best experience
-- **Linux device**: Any Linux-based device where you have SSH or terminal access (PLC, PAC, Industrial PC, Server, Raspberry Pi, etc.) with Docker installed
+- **Linux device**: Any Linux-based device where you have SSH or terminal access (PLC, PAC, Industrial PC, Server, Raspberry Pi, etc.). The installation script automatically installs all required dependencies including Docker.
+- **Modbus slave device**: A remote I/O module or device with at least one digital output that supports Modbus TCP/IP. This will receive the blinking output signal from your program.
 
 ---
 
@@ -135,7 +136,7 @@ Once linked, your orchestrator will appear in the list with its connection statu
 
 ## Step 2: Create a vPLC Device
 
-A vPLC (virtual PLC) is a containerized runtime that executes your automation programs.
+A vPLC (virtual PLC) is a containerized runtime that executes your automation programs. One of the key advantages of Autonomy Edge is the ability to run multiple vPLC instances on a single physical device. Each vPLC runs in complete isolation with real-time execution, and appears on the network with its own IP address as if it were an independent physical PLC. This allows you to maximize hardware utilization—especially on modern multicore PLCs, PACs, and industrial PCs that are often underutilized when running traditional single-threaded PLC runtimes.
 
 1. Click on your orchestrator to open its details
 2. Navigate to the **Devices** tab
@@ -245,7 +246,7 @@ The Remote Device configuration panel will open:
 
 Configure the connection settings:
 - **Transport**: Select TCP/IP for network communication (or RTU for serial)
-- **IP Address**: Enter the IP address of your Modbus slave device (e.g., `192.168.1.100`).
+- **IP Address**: Enter the IP address of your Modbus slave device (e.g., `192.168.1.100`). The device must be accessible on the same network where the vPLC was configured.
 - **Port**: Default is `502` (standard Modbus TCP port)
 - **Timeout (ms)**: Response timeout in milliseconds (default `1000`)
 - **Slave ID**: The Modbus slave/unit identifier (default `1`)
