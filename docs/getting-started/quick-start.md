@@ -99,7 +99,7 @@ An orchestrator is an edge agent that manages your vPLC devices. It runs on your
 
 ### 1.2 Enter Orchestrator Details
 
-1. Enter a name for your orchestrator (e.g., "Linux Server")
+1. Enter a name for your orchestrator (e.g., "QuickStartOrchestrator")
 2. Optionally add a description
 3. Click **Next** to proceed to the Install step
 
@@ -167,7 +167,7 @@ Now let's create a project for our blinking output program.
 
 The project will open in the OpenPLC Editor IDE.
 
-![OpenPLC Editor IDE with new project](../platform-features/vplc-management/images/openplc-editor-new-project.png)
+![OpenPLC Editor IDE with new project](images/blank-editor.png)
 
 ---
 
@@ -203,6 +203,8 @@ The **Location** field is critical - it maps your program variable to the physic
 
 ## Step 5: Write the Program
 
+![Variables and program code](images/program.png)
+
 Click in the program editor area (below the variables table) and enter the following Structured Text code:
 
 ```iecst
@@ -231,21 +233,22 @@ To connect your program outputs to external devices, we'll configure a Modbus Re
 
 1. Click the blue **+** button in the left sidebar
 2. Select **Remote Device** from the dropdown menu
-
-![Add element menu showing Remote Device option](../openplc-editor/communication/modbus/images/add-element-menu.png)
-
 3. Enter a device name (e.g., "ModbusCoils")
 4. Select **Modbus** as the protocol
 5. Click **Create**
 
-![Add Remote Device dialog](../openplc-editor/communication/modbus/images/add-remote-device-dialog.png)
+![Add Remote Device dialog](images/add-remote-device.png)
 
-The Remote Device configuration panel will open with default TCP/IP settings:
-- IP Address: 127.0.0.1
-- Port: 502
-- Response Timeout: 1000ms
+The Remote Device configuration panel will open:
 
-![Remote Device configuration panel](../openplc-editor/communication/modbus/images/remote-device-config.png)
+![Remote Device configuration panel](images/configure-remote-device.png)
+
+Configure the connection settings:
+- **Transport**: Select TCP/IP for network communication (or RTU for serial)
+- **IP Address**: Enter the IP address of your Modbus slave device (e.g., `192.168.1.100`). Use `127.0.0.1` if the Modbus slave runs on the same device as the vPLC.
+- **Port**: Default is `502` (standard Modbus TCP port)
+- **Timeout (ms)**: Response timeout in milliseconds (default `1000`)
+- **Slave ID**: The Modbus slave/unit identifier (default `1`)
 
 ### Add an IO Group
 
@@ -256,13 +259,18 @@ The Remote Device configuration panel will open with default TCP/IP settings:
    - **Cycle Time (ms)**: 100
    - **Offset**: 0
    - **Length**: 8
+   - **Error Handling**: Keep last value
 3. Click **Create**
 
-The IO Group will appear in the table, showing:
-- **Name**: BlinkCoils
-- **Type**: Digital Output (Multiple Coils)
-- **Address**: %QX0.0
-- **Function Code**: Write Multiple Coils (FC 15)
+![New IO Group dialog](images/add-io-group.png)
+
+The IO Group will appear in the table. Click the expand arrow to see individual coil mappings:
+
+![IO Group expanded showing coil mappings](images/expand-io-group.png)
+
+The table shows:
+- **BlinkCoils** (parent): Digital Output (Multiple Coils), Address `%QX0.0`, Function Code Write Multiple Coils (FC 15)
+- **BlinkCoils_0** through **BlinkCoils_7**: Individual coils mapped to `%QX0.0` through `%QX0.7`
 
 This configuration maps 8 digital outputs starting at address `%QX0.0` to Modbus coils. Since our `output_state` variable is located at `%QX0.0`, it will be automatically written to the Modbus device whenever its value changes.
 
@@ -274,17 +282,15 @@ Now let's connect to the vPLC to deploy your program.
 
 1. In the IDE, expand **Devices** in the left sidebar
 2. Click on **Orchestrators** to open the Device Orchestrators panel
-3. Expand your orchestrator (e.g., "Linux Server") to see your vPLC
+3. Expand your orchestrator (e.g., "QuickStartOrchestrator") to see your vPLC
 4. Click on your vPLC (e.g., "Demo vPLC") to select it (it should show "Running" status)
 5. Click the **Connect** button
-
-![Device Orchestrators panel with vPLC selected](../platform-features/vplc-management/images/device-selected-connect.png)
 
 ### First-Time User Setup
 
 When connecting to a new vPLC for the first time, you'll need to create an OpenPLC Runtime user account. This account is separate from your Autonomy Edge platform account and is used to authenticate with the PLC runtime.
 
-![Create First User dialog](../platform-features/vplc-management/images/create-first-user-dialog.png)
+![Create First User dialog](images/first-login-runtime.png)
 
 1. The **Create First User** dialog will appear
 2. Enter a username (e.g., "admin")
@@ -295,7 +301,7 @@ When connecting to a new vPLC for the first time, you'll need to create an OpenP
 
 Once connected, the vPLC status will show both "Running" and "Connected", and the PLC Status will show "EMPTY" (no program loaded yet).
 
-![vPLC showing Connected status](../platform-features/vplc-management/images/vplc-connected.png)
+![vPLC showing Connected status](images/first-connect-runtime.png)
 
 ---
 
@@ -308,14 +314,14 @@ After connecting to the vPLC:
 3. If compilation succeeds, the program will be uploaded automatically
 4. The PLC Status will change to "RUNNING" when the program is active
 
-![Program running with Scan Cycle Statistics](../platform-features/vplc-management/images/program-running.png)
+![Program running with Scan Cycle Statistics](images/runtime-running.png)
 
 The Scan Cycle Statistics panel shows real-time performance metrics:
 - **Scan Count**: Number of program cycles executed
 - **Overruns**: Cycles that exceeded the target time (should be 0)
-- **Scan Time**: Average execution time per cycle
-- **Cycle Time**: Time between scan starts
-- **Cycle Latency**: Scheduling delay
+- **Scan Time (avg)**: Average execution time per cycle
+- **Cycle Time (avg)**: Time between scan starts
+- **Cycle Latency (avg)**: Scheduling delay
 
 ---
 
