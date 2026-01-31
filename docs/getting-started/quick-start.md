@@ -81,7 +81,7 @@ In this guide, you'll create a complete automation workflow from scratch:
 
 - **Autonomy Edge account**: Sign up at [edge.autonomylogic.com](https://edge.autonomylogic.com) if you haven't already
 - **Modern web browser**: Chrome, Firefox, or Safari recommended for the best experience
-- **Linux device**: Any Linux-based device where you have SSH or terminal access (PLC, PAC, Industrial PC, Server, Raspberry Pi, etc.). The installation script automatically installs all required dependencies including Docker.
+- **Linux device**: Any Linux-based device where you have SSH or terminal access (PLC, PAC, Industrial PC, Server, Raspberry Pi, etc.)
 - **Modbus slave device**: A remote I/O module or device with at least one digital output that supports Modbus TCP/IP. This will receive the blinking output signal from your program.
 
 ---
