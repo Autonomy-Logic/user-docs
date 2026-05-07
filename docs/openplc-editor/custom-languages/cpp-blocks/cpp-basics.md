@@ -31,10 +31,10 @@ The key distinction: C++ code runs **inside** the scan cycle, just like native I
 
 To create a C++ function block in the Autonomy Edge IDE:
 
-1. In the **Project Explorer**, click the **+** button next to your project name.
-2. Enter a **name** for your function block (e.g., `MotorDriver`).
-3. Select **Function Block** as the POU type.
-4. Select **C++** as the programming language.
+1. In the left panel, click the blue **+** button.
+2. Hover over **Function Block** in the menu that appears.
+3. In the dialog that opens, enter a name for your block (e.g., `MotorDriver`). Names must follow CamelCase, PascalCase, or snake_case.
+4. Select **C++** from the **Language** dropdown.
 5. Click **Create**.
 
 The IDE creates a new function block with a C++ code editor and a Variables Table, pre-populated with a template.

@@ -49,12 +49,11 @@ The key point: Python function blocks are **not synchronized** with the PLC scan
 
 To create a Python function block in the Autonomy Edge IDE:
 
-1. Open your project in the IDE at [edge.autonomylogic.com](https://edge.autonomylogic.com)
-2. In the **Project Explorer**, right-click and select **Add POU** (or use the add button)
-3. Enter a name for your function block (e.g., `ScaleInput`)
-4. Select **Function Block** as the POU type
-5. Select **Python** as the programming language
-6. Click **Create**
+1. In the left panel, click the blue **+** button.
+2. Hover over **Function Block** in the menu that appears.
+3. In the dialog that opens, enter a name for your block (e.g., `scale_input`). Names must follow CamelCase, PascalCase, or snake_case.
+4. Select **Python** from the **Language** dropdown.
+5. Click **Create**.
 
 The IDE opens a code editor pre-populated with the Python function block template.
 
