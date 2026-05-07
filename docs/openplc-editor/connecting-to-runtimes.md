@@ -14,9 +14,20 @@ Before connecting:
 1. In the Project Explorer (left sidebar), expand the **Devices** branch.
 2. Click **Orchestrators**.
 3. The Orchestrators panel opens in the Editor Area, listing all orchestrators linked to your account.
+
+![Device Orchestrators panel showing the list of orchestrators](../platform-features/vplc-management/images/device-orchestrators-list.png)
+
 4. Expand an orchestrator to see its devices. Each device shows its name, status, and whether it's available.
+
+![Device Orchestrators panel expanded to show vPLC devices](images/device-orchestrators-expanded.png)
+
 5. Click on a device to select it.
+
+![Device selected in the Orchestrators panel](../platform-features/vplc-management/images/device-selected-connect.png)
+
 6. Click **Connect**.
+
+![vPLC selected with the Connect button visible](images/device-orchestrators-connect.png)
 
 > **Tip:** Click the **Refresh** button to reload the list if you've recently added an orchestrator or device.
 
@@ -25,6 +36,9 @@ Before connecting:
 When you connect to a device for the very first time, it has no user accounts. The IDE detects this and guides you through setup:
 
 1. A **Create First User** dialog appears automatically.
+
+![Create First User dialog with username and password fields](../platform-features/vplc-management/images/create-first-user-dialog.png)
+
 2. Enter a **username** and **password**, then confirm the password.
 3. Click **Create User**.
 
@@ -45,6 +59,8 @@ Your session lasts until you log out or close the browser tab. The next time you
 
 Once connected, the IDE shows the connection status in the Orchestrators panel:
 
+![Orchestrators panel showing the vPLC with a Connected status badge](../platform-features/vplc-management/images/vplc-connected.png)
+
 - **Connected**: You have an active connection. All controls (compile, start, stop) are available.
 - **Disconnected**: No active connection. You can still compile to validate your code, but uploading and runtime controls are unavailable.
 
@@ -53,10 +69,15 @@ Once connected, the IDE shows the connection status in the Orchestrators panel:
 With an active connection, you can:
 
 - **Compile and deploy**: Click Compile to build your project and upload it to the device.
+
+![Console panel showing the build process output during upload](../platform-features/vplc-management/images/build-process-started.png)
+
 - **Start the PLC**: Click the Start/Stop button to begin running your program.
 - **Stop the PLC**: Click the Start/Stop button again to halt execution.
 - **View PLC Logs**: The PLC Logs tab appears in the Console Panel, showing live output from the running program.
 - **Monitor execution stats**: The Orchestrators panel shows scan cycle statistics for a running PLC.
+
+![Running PLC program with the Scan Cycle Statistics panel showing real-time metrics](../platform-features/vplc-management/images/program-running.png)
 
 ## Runtime Status Polling
 

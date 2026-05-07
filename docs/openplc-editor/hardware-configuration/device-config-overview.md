@@ -16,6 +16,8 @@ The options displayed depend on whether you're using the web editor or the deskt
 
 When you open Device Configuration in the Autonomy Edge web IDE, you can browse available runtime targets linked to your account and connect to them.
 
+![Device Orchestrators view in the web editor showing available targets](../images/device-orchestrators-expanded.png)
+
 ### Communication Protocols in the Web Editor
 
 The web editor supports configuring communication protocols for your targets:

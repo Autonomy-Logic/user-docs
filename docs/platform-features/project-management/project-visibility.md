@@ -8,6 +8,8 @@ Every project on Autonomy Edge has a visibility setting that controls who can se
 
 You choose visibility in Step 3 of the project creation wizard.
 
+![Project creation wizard, Step 3 with public and private visibility options](images/create-project-step3.png)
+
 ### Public
 
 A public project is visible to **everyone on the platform**:

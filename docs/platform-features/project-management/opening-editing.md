@@ -12,9 +12,13 @@ Several entry points all lead to the same destination: the IDE loaded with your 
 
 The **Projects** card in the left sidebar lists your most recent projects (up to 5). Click any project to open it in the IDE.
 
+![Dashboard with Recent Projects card showing recently opened projects](images/dashboard-overview.png)
+
 ### From the Projects Page
 
 Navigate to the Projects page to see all your projects. Projects can be displayed in **Card view** or **List view**, toggled with buttons in the top-right corner.
+
+![Projects page showing all projects in card view](images/projects-page.png)
 
 **In Card view:** Click anywhere on the project card, or click the **Open in editor** button in the action bar.
 
@@ -33,6 +37,8 @@ After successfully importing a project (see [Importing and Exporting](importing-
 ## The IDE Layout
 
 When the IDE loads your project, you see the full development environment:
+
+![Browser-based OpenPLC Editor with a freshly opened project](../vplc-management/images/openplc-editor-new-project.png)
 
 - **Activity Bar** (left edge): Icons for Search, Toolbox toggle, Compile, Start/Stop PLC, and Debugger.
 - **Project Explorer** (left sidebar): A tree view of your project structure:

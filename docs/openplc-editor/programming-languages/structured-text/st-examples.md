@@ -56,6 +56,8 @@ ELSE
 END_IF;
 ```
 
+![Complete temperature control program in the ST editor with syntax highlighting](images/st-syntax-highlighting.png)
+
 ### Code Explanation
 
 **Enable Logic:** The outer IF statement checks whether the system is enabled. When disabled, all outputs are turned off and the timer is reset.

@@ -8,6 +8,8 @@ Once your orchestrator is linked and online, you can monitor its health, view re
 
 From the **Orchestrators** page, click any orchestrator to open its detail page. A breadcrumb at the top (`Orchestrators > <name>`) lets you navigate back.
 
+![Orchestrators list showing connected orchestrators with status](images/orchestrators-list.png)
+
 The detail page has two tabs:
 
 - **Overview**: System information and resource usage charts.
@@ -18,6 +20,8 @@ The detail page has two tabs:
 ## The Overview Tab
 
 The Overview tab shows a snapshot of your orchestrator's current state and resource usage.
+
+![Orchestrator detail page Overview tab with status, system info, and resource charts](images/orchestrator-detail-overview.png)
 
 ### Status and System Info
 
@@ -57,6 +61,8 @@ The two charts work independently. You can view CPU over 24 hours while viewing 
 ## The Devices Tab
 
 The Devices tab shows a table of all vPLC devices on this orchestrator.
+
+![Devices tab showing the empty state when no vPLCs have been created yet](images/orchestrator-devices-empty.png)
 
 ### Device Table
 

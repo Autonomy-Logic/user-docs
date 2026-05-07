@@ -10,6 +10,8 @@ Once your vPLC devices are running, you can monitor their health, control their 
 
 From the orchestrator detail page, the **Devices** tab shows a table of all vPLC devices. Each row displays:
 
+![Devices table on the orchestrator detail page showing vPLCs with status, uptime, and resource usage](images/devices-list-with-vplc.png)
+
 | Column | Description |
 |--------|-------------|
 | **Device Name** | The name you assigned. Sortable. |

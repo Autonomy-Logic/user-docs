@@ -2,6 +2,8 @@
 
 The Project Explorer is the sidebar on the left side of the IDE. It organizes your entire PLC project into a tree, giving you a clear view of everything in your project and quick access to open items in the Editor Area.
 
+![Project Explorer showing the project hierarchy with Programs, Functions, Function Blocks, Data Types, and Resources branches](images/project-explorer-clean.png)
+
 ## Project Name
 
 At the top of the Project Explorer, you'll see your project name with a folder icon. Click the name to edit it inline. Type a new name and click away (or press Tab) to save.

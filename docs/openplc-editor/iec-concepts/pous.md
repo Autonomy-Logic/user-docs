@@ -71,6 +71,10 @@ To create a new POU:
 5. If creating a Function, specify the **return type** (e.g., BOOL, INT, REAL).
 6. Click **Create**.
 
+![POU creation form with name input and language dropdown](images/create-pou-function-form.png)
+
+![Language dropdown showing all five IEC 61131-3 programming languages](images/pou-language-dropdown.png)
+
 The new POU appears in the Project Explorer tree under Functions, Function Blocks, or Programs. Click it to open its editor.
 
 ## Editing a POU

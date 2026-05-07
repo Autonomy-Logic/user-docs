@@ -2,6 +2,8 @@
 
 Beyond creating and editing, Autonomy Edge gives you tools to manage your projects day to day. Pinning favorites, downloading backups, forking copies, and handling deletion through a soft-delete trash system.
 
+![Projects page showing the sidebar categories and project cards](images/projects-page.png)
+
 ---
 
 ## Pinning Projects
@@ -18,11 +20,15 @@ Pinning marks important projects so they're always easy to find.
 
 In the Projects page sidebar, click **Pinned** to see only your pinned projects. If you have none, the empty state reads: *"No pinned projects. Pin your favorite projects to see them here."*
 
+![Pinned section of the Projects page showing pinned project cards](images/pinned-section.png)
+
 ---
 
 ## Recent Projects
 
 The **Recent** view (the default on the Projects page) shows your projects sorted by most recently updated. The Dashboard also shows your 5 most recent projects in the Projects card.
+
+![Dashboard showing the Recents card with quick access to recently opened projects](images/dashboard-overview.png)
 
 ---
 
@@ -76,6 +82,8 @@ The project disappears from your regular views but is preserved in the trash.
 - Filter tabs (all items, projects only, folders only)
 - **Empty trash** button to permanently delete everything at once
 - A table with name, type, deletion date, and action buttons
+
+![Trash page showing trashed projects with restore and delete actions](images/trash-section.png)
 
 ### Restoring a Project
 

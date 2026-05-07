@@ -41,6 +41,8 @@ The editor automatically highlights different elements of your ST code using dis
 - Single-line: `// This is a comment`
 - Multi-line: `(* This is a multi-line comment *)`
 
+![ST code with syntax highlighting showing keywords, variables, operators, and comments](images/st-syntax-highlighting.png)
+
 > **Tip:** If a keyword you typed isn't highlighted, that's a good sign you've got a typo. Syntax highlighting doubles as a quick error spotter.
 
 ## IntelliSense and Code Completion
@@ -66,6 +68,8 @@ IntelliSense activates automatically when:
 - **Q**: Output (TRUE when timer completes)
 
 The autocomplete also shows the data type for each member (e.g., "BOOL (input)" for IN), so you know what values are expected.
+
+![IntelliSense showing TON timer members: IN, PT, ET, Q with their types](images/st-intellisense.png)
 
 **Keywords**: ST language keywords for control structures:
 ```
