@@ -1,0 +1,24 @@
+{
+  "comment": "RS. Reset-Set (Reset Dominant)",
+  "nodes": [
+    { "id": "s_var", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "S" } },
+    { "id": "r1_var", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "R1" } },
+    {
+      "id": "rs",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "RS",
+        "blockType": "function-block",
+        "inputs": [{ "name": "S" }, { "name": "R1" }],
+        "outputs": [{ "name": "Q1" }]
+      }
+    },
+    { "id": "q1_var", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "Q1" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "s_var", "sourceHandle": "output", "target": "rs", "targetHandle": "S" },
+    { "id": "e2", "source": "r1_var", "sourceHandle": "output", "target": "rs", "targetHandle": "R1" },
+    { "id": "e3", "source": "rs", "sourceHandle": "Q1", "target": "q1_var", "targetHandle": "input" }
+  ]
+}

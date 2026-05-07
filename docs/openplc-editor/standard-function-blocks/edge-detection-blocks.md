@@ -39,6 +39,10 @@ The R_TRIG block detects the transition of its input from FALSE to TRUE. The out
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE for one scan on each rising edge of CLK |
 
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-rtrig-basic.json"></fbd-diagram>
+
 ### Logic
 
 The block internally remembers the previous value of `CLK`. On each scan:
@@ -95,6 +99,10 @@ The F_TRIG block detects the transition of its input from TRUE to FALSE. The out
 | Name | Type | Description |
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE for one scan on each falling edge of CLK |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-ftrig-basic.json"></fbd-diagram>
 
 ### Logic
 

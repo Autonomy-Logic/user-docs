@@ -2,6 +2,80 @@
 
 This section provides practical examples of common Structured Text programming patterns. Each example demonstrates how to apply ST language features to solve real-world control problems.
 
+## Getting Started Examples
+
+These short examples introduce the most common ST control flow patterns. Each one is self-contained. Declare the variables, paste the code into a Program POU, and run it.
+
+### Example 1: Simple Temperature Control (IF/THEN/ELSE)
+
+A basic thermostat: turn a fan on when the temperature exceeds a threshold, turn it off otherwise.
+
+**Variables:**
+
+| Name | Class | Type | Initial Value | Description |
+|------|-------|------|---------------|-------------|
+| `temp` | Local | REAL | 20.0 | Current temperature reading |
+| `fan` | Local | BOOL | FALSE | Fan output |
+
+**Code:**
+
+```
+IF temp > 25.0 THEN
+    fan := TRUE;
+ELSE
+    fan := FALSE;
+END_IF;
+```
+
+This is the simplest form of conditional logic in ST. The `IF` block evaluates the condition each scan cycle and sets the output accordingly.
+
+### Example 2: FOR Loop: Counting a Sum
+
+Use a FOR loop to add up numbers from 1 to 10.
+
+**Variables:**
+
+| Name | Class | Type | Initial Value | Description |
+|------|-------|------|---------------|-------------|
+| `i` | Local | INT | 0 | Loop counter |
+| `sum` | Local | INT | 0 | Accumulated sum |
+
+**Code:**
+
+```
+sum := 0;
+FOR i := 1 TO 10 BY 1 DO
+    sum := sum + i;
+END_FOR;
+```
+
+After execution, `sum` equals 55 (1+2+3+...+10). The `BY 1` clause is the step size. You can change it to skip values (e.g., `BY 2` counts 1, 3, 5, ...).
+
+### Example 3: WHILE Loop with Condition
+
+Use a WHILE loop that runs as long as two conditions are true.
+
+**Variables:**
+
+| Name | Class | Type | Initial Value | Description |
+|------|-------|------|---------------|-------------|
+| `running` | Local | BOOL | TRUE | Loop enable flag |
+| `count` | Local | INT | 0 | Loop counter |
+
+**Code:**
+
+```
+WHILE running AND count < 100 DO
+    count := count + 1;
+END_WHILE;
+```
+
+The loop increments `count` until it reaches 100 or `running` becomes FALSE. WHILE loops check the condition *before* each iteration. If the condition is already false, the body never executes.
+
+> **Caution:** Be careful with WHILE loops in PLC programs. If the exit condition is never met, the loop will block the scan cycle. Prefer FOR loops when the number of iterations is known.
+
+---
+
 ## Temperature Control System
 
 This example shows a complete temperature control program that uses conditional logic, timers, and alarm handling. The program controls heating and cooling based on temperature readings with a safety delay before activating the heater.

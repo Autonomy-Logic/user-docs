@@ -1,0 +1,24 @@
+{
+  "comment": "SR. Set-Reset (Set Dominant)",
+  "nodes": [
+    { "id": "s1_var", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "S1" } },
+    { "id": "r_var", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "R" } },
+    {
+      "id": "sr",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "SR",
+        "blockType": "function-block",
+        "inputs": [{ "name": "S1" }, { "name": "R" }],
+        "outputs": [{ "name": "Q1" }]
+      }
+    },
+    { "id": "q1_var", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "Q1" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "s1_var", "sourceHandle": "output", "target": "sr", "targetHandle": "S1" },
+    { "id": "e2", "source": "r_var", "sourceHandle": "output", "target": "sr", "targetHandle": "R" },
+    { "id": "e3", "source": "sr", "sourceHandle": "Q1", "target": "q1_var", "targetHandle": "input" }
+  ]
+}

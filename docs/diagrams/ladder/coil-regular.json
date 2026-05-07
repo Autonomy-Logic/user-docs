@@ -1,5 +1,5 @@
 {
-  "comment": "Regular coil: direct output",
+  "comment": "Regular coil. Direct output",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "sensor_active" },

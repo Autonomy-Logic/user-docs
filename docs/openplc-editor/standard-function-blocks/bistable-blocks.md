@@ -34,6 +34,10 @@ In the SR block, the **set input dominates**. If both `S1` and `R` are TRUE simu
 |------|------|-------------|
 | `Q1` | `BOOL` | Latched output |
 
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-sr-basic.json"></fbd-diagram>
+
 ### Logic Equation
 
 ```
@@ -91,6 +95,10 @@ In the RS block, the **reset input dominates**. If both `S` and `R1` are TRUE si
 | Name | Type | Description |
 |------|------|-------------|
 | `Q1` | `BOOL` | Latched output |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-rs-basic.json"></fbd-diagram>
 
 ### Logic Equation
 
@@ -164,6 +172,10 @@ The SEMA block implements a simple resource-locking mechanism. It has a `CLAIM` 
 | Name | Type | Description |
 |------|------|-------------|
 | `BUSY` | `BOOL` | TRUE when the resource is currently claimed |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-sema-basic.json"></fbd-diagram>
 
 ### Behavior
 

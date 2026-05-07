@@ -1,6 +1,53 @@
 # Understanding vPLC Devices
 
+## New to Devices? Start Here
+
+In Autonomy Edge, a **Device** (also called a vPLC, or virtual PLC) is a virtual programmable logic controller that runs on the Linux machine where you installed your Orchestrator.
+
+### What Does That Mean in Plain Language?
+
+A PLC (Programmable Logic Controller) is a small computer that controls industrial equipment. Motors, sensors, conveyor belts, lights, and more. Traditionally, a PLC is a physical box you buy and install.
+
+A **virtual PLC (vPLC)** does the same thing, but it runs as software on your Linux machine instead of requiring dedicated hardware. You create and manage Devices entirely through the Autonomy Edge web interface. **no terminal commands, no configuration files, no SSH access needed**.
+
+### How Devices Relate to Orchestrators
+
+Before you can create a Device, you need an Orchestrator set up and linked to your account. Here's how they relate:
+
+- The **Orchestrator** is the software running on your Linux machine that connects it to the cloud.
+- A **Device (vPLC)** is a virtual PLC that the Orchestrator creates and manages on that same machine.
+- One Orchestrator can run **multiple Devices**: each one is independent with its own network address and program.
+
+> **Haven't set up an Orchestrator yet?** Follow the [Orchestrator Setup Guide](../orchestrator-management/adding-orchestrators) first, then come back here.
+
+### What You Can Do with a Device
+
+Once you create a Device, you can:
+
+- **Deploy PLC programs** to it from the Autonomy Edge IDE
+- **Monitor its status** (running, stopped, CPU usage, memory) from the web interface
+- **Start, stop, and restart** it with a single click
+- **Communicate with physical equipment** over the network using Modbus or serial ports
+
+All of this is managed from your browser. The Orchestrator handles everything on the Linux machine automatically.
+
+---
+
+## Detailed Technical Overview
+
+The following sections provide a deeper look at vPLC capabilities, architecture, and use cases.
+
+---
+
 A virtual PLC (vPLC) is a software-based programmable logic controller that runs on your orchestrator's machine. This page explains what vPLCs are, what they can do, and when to use them.
+
+---
+
+## The Simple Version
+
+A Device (vPLC) is where your PLC program actually runs. You create it through the Autonomy Edge web interface. Just pick a name, select your Orchestrator, and click Create. That's it. The Orchestrator installs and configures the Runtime automatically on your Linux machine. You never need to SSH in or touch the Runtime directly.
+
+> **Prerequisite:** You need an active Orchestrator first. An Orchestrator is the agent software running on your Linux machine that manages devices on your behalf. See [Understanding Orchestrators](../orchestrator-management/understanding-orchestrators) if you haven't set one up yet.
 
 ---
 

@@ -11,6 +11,8 @@ This page shows you how to compile your PLC project, what to expect in the Conso
 
 That's it. If you're connected to a device, the compiled program is automatically uploaded and ready to run.
 
+> **Note:** If you're using the [Simulator](simulator) (the default target), you don't use the Compile button. Instead, click **Start Simulator**: it compiles and runs in one step. This page covers the compilation flow for deploying to real Devices via Orchestrators.
+
 > **Tip:** Clear the Console before compiling (click the trash icon) so you have a clean view of just this build's output.
 
 ## What You See in the Console

@@ -2,6 +2,8 @@
 
 Once your PLC program compiles and runs, you need tools to verify that it behaves correctly. The Autonomy Edge IDE provides a built-in debugging environment with real-time variable monitoring, a console output panel, and graphical data visualization. This guide covers how to use these tools to diagnose and fix runtime issues.
 
+> **Note:** In Autonomy Edge, the runtime is managed automatically by the Orchestrator. You don't access the runtime directly. All monitoring and debugging is done through the platform's IDE: use the **PLC Logs** tab in the Console Panel to view runtime output and the **Variables Panel** to inspect live values. There is no separate runtime web interface.
+
 ## The Debug Workflow
 
 Debugging a PLC program is different from debugging traditional software. Because PLC programs run in continuous scan cycles, you observe behavior over time rather than stepping through lines:

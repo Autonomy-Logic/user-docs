@@ -34,6 +34,10 @@ Go deeper.
 - **[Best Practices](docs/advanced-topics/best-practices/project-organization)**: Tips for organizing projects and writing clean code.
 - **[Troubleshooting](docs/advanced-topics/troubleshooting/compilation-errors)**: Solutions for common issues.
 
+## Pricing & Plans
+
+- **[Plans and Features](docs/pricing/plans)**: Current plans, what's included, and pricing details.
+
 ## Reference
 
 - **[Data Types](docs/reference/data-types)**: Complete reference for supported data types.

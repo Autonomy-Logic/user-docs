@@ -42,6 +42,10 @@ The CTU block counts upward from zero. Each rising edge on the `CU` input increm
 | `Q` | `BOOL` | TRUE when CV >= PV |
 | `CV` | `INT` | Current Value. The running count |
 
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-ctu-basic.json"></fbd-diagram>
+
 ### Behavior
 
 1. On each scan, the block checks for a rising edge on `CU`.
@@ -89,6 +93,10 @@ The CTD block counts downward from a loaded value. When the load input `LD` is T
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE when CV <= 0 |
 | `CV` | `INT` | Current Value. The remaining count |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-ctd-basic.json"></fbd-diagram>
 
 ### Behavior
 
@@ -139,6 +147,10 @@ The CTUD block combines both counting directions. It can count up on one input a
 | `QU` | `BOOL` | TRUE when CV >= PV |
 | `QD` | `BOOL` | TRUE when CV <= 0 |
 | `CV` | `INT` | Current Value |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-ctud-basic.json"></fbd-diagram>
 
 ### Behavior
 

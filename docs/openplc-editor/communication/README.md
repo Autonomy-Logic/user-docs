@@ -23,22 +23,98 @@ Documentation pages:
 - **[Modbus Client](modbus/client)**: Configure Autonomy Edge to poll external Modbus devices
 - **[Modbus Addressing](modbus/addressing)**: IEC 61131-3 to Modbus address mapping tables and formulas
 
+### EtherCAT
+
+EtherCAT (Ethernet for Control Automation Technology) is a real-time industrial fieldbus that uses standard Ethernet cabling but replaces TCP/IP with a deterministic on-the-fly processing protocol. A single Ethernet frame travels around a daisy-chained line of slaves, and each slave reads and writes its slice of the process data as the frame passes through. Sub-millisecond cycle times across thousands of I/O points are routine. Autonomy Edge ships an EtherCAT master plugin for Runtime v4 that drives a segment of EtherCAT slaves directly from your IEC 61131-3 program.
+
+Key capabilities:
+
+- **Master role**: Autonomy Edge drives the segment. The runtime cycles process data on a dedicated NIC, polls slaves, and writes output values from your PLC variables.
+- **ESI repository**: Upload Beckhoff, drives, and any other vendor's `.xml` ESI (EtherCAT Slave Information) files; the editor uses them to identify slaves and pre-map their I/O.
+- **Live scan**: Discover slaves on a connected segment with one click, and add the matched ones to the project tree.
+- **Per-slave configuration**: Verify vendor / product on startup, set state-machine timeouts, configure SM and PDI watchdogs, and enable distributed clocks for synchronised motion.
+- **SDO startup parameters**: Write CoE configuration to slaves once at boot. Operating modes, ranges, filter times, anything declared in the ESI dictionary.
+- **PDO channel mapping**: TxPDO inputs and RxPDO outputs are mapped to IEC 61131-3 located variables (`%IX`, `%QX`, `%IW`, `%QW`, …) automatically with collision detection across the project.
+- **Runtime diagnostics**: Master state (Init / Pre-Op / Safe-Op / Op), per-slave state, AL status codes, and error counters reported live while the bus runs.
+
+Documentation pages:
+
+- **[EtherCAT Overview](ethercat/README)**: When to use EtherCAT, platform support, two-editor architecture
+- **[Prerequisites](ethercat/prerequisites)**: NIC, OS permissions, cabling, topology, cycle-time floors
+- **[Adding an EtherCAT segment](ethercat/adding-ethercat)**: Step-by-step bus creation
+- **[Bus tab](ethercat/bus-scan)**: Network interface, scan, matching scanned devices to the repository
+- **[Repository tab](ethercat/bus-repository)**: Upload and manage ESI files
+- **[Advanced tab](ethercat/bus-advanced)**: Master cycle time, watchdog, task priority
+- **[Channel Mappings](ethercat/slave-channel-mappings)**: PDO entries and IEC variable mapping
+- **[Device Info](ethercat/slave-info)**: Read-only slave identification
+- **[Configuration](ethercat/slave-configuration)**: Startup checks, timeouts, watchdog, distributed clocks
+- **[Startup Parameters](ethercat/slave-startup-params)**: SDO writes performed before SAFE-OP → OP
+- **[Diagnostics](ethercat/diagnostics)**: Runtime status panel reference
+- **[Worked example](ethercat/example)**: End-to-end EK1100 + EL1809 + EL2809 segment
+- **[Troubleshooting](ethercat/troubleshooting)**: Common UI and runtime failures with fixes
+
 ### OPC-UA
 
 OPC-UA (Open Platform Communications Unified Architecture) is a modern, secure, platform-independent protocol designed for industrial data exchange. Unlike Modbus, OPC-UA includes built-in support for encryption, certificate-based authentication, role-based access control, and rich data modeling.
 
-Autonomy Edge is developing a full OPC-UA server implementation for Runtime v4 that will let you expose any project variable to external clients. Planned features include:
+Autonomy Edge ships a full OPC-UA server for Runtime v4 that lets you expose project variables to external clients. Capabilities include:
 
-- **Security profiles**: Choose from multiple encryption and signing algorithms (Basic256Sha256, AES-128, AES-256).
-- **User management**: Define users with username/password or certificate authentication.
-- **Role-based access control**: Assign viewer, operator, or engineer roles with per-variable read/write permissions.
-- **Certificate management**: Auto-generated self-signed certificates or custom CA-signed certificates.
-- **Full type mapping**: IEC 61131-3 data types (BOOL, INT, REAL, LREAL, TIME, STRING, structures, arrays) are automatically mapped to OPC-UA types.
-- **Bidirectional sync**: External clients can both read and write PLC variables in real time.
+- **Security profiles**: Choose from `None`, `Basic128Rsa15`, `Basic256`, and `Basic256Sha256` policies, paired with `Sign Only` or `Sign and Encrypt` message security modes.
+- **User management**: Define users with password or certificate authentication.
+- **Role-based access control**: Assign Viewer, Operator, or Engineer roles with per-variable read/write permissions.
+- **Certificate management**: Auto-generate a self-signed certificate, or upload a custom certificate and private key in PEM format.
+- **Full type mapping**: IEC 61131-3 data types (BOOL, INT, REAL, LREAL, TIME, STRING, structures, arrays, function block instances) are exposed automatically as OPC-UA nodes.
+- **Bidirectional sync**: External clients can both read and write PLC variables, subject to the per-role permission matrix.
 
 Documentation:
 
-- **[OPC-UA Server](opc-ua/README)**: Complete configuration guide covering all five configuration tabs
+- **[OPC-UA Server Overview](opc-ua/README)**: when to use OPC-UA, how to add a server, default configuration, platform support.
+- **[General Settings](opc-ua/general-settings)**: server identity, network binding, cycle time, namespace.
+- **[Security Profiles](opc-ua/security-profiles)**: security policies, message security modes, authentication methods.
+- **[Users](opc-ua/users)**: password and certificate-based accounts with role assignment.
+- **[Certificates](opc-ua/certificates)**: server certificate strategy and trusted client certificates.
+- **[Address Space](opc-ua/address-space)**: variable selection, namespace, IEC to OPC-UA type mapping, per-role permissions.
+- **[Worked Example](opc-ua/example)**: end-to-end walkthrough exposing a variable with username / password authentication.
+- **[Troubleshooting](opc-ua/troubleshooting)**: editor validation messages and client-side connection errors.
+
+### S7Comm
+
+S7Comm is the proprietary protocol used by Siemens SIMATIC S7-300, S7-400, S7-1200, and S7-1500 controllers. The Autonomy Edge S7Comm plugin makes the OpenPLC runtime act as a **Siemens-style server**: HMIs, SCADAs, and Siemens engineering tools (WinCC, TIA Portal monitor windows, Snap7-based clients, libnodave, NodeS7, python-snap7) connect over TCP/102 and read or write OpenPLC variables wrapped in S7-style **Data Blocks** (DB1, DB2, …). The plugin lives under **Server > S7Comm** in the project explorer alongside Modbus Server and OPC-UA Server.
+
+Key capabilities:
+
+- **Server role**: The runtime is the target. There is no Target IP, Rack, or Slot to configure on this side. Those are S7 client-side conventions.
+- **Up to 64 Data Blocks**: Each DB is a window onto a PLC buffer. Choose from 14 buffer types covering boolean / byte / word / double-word / long-word inputs, outputs, and memory.
+- **Customisable SZL identity**: Defaults to a Siemens S7-300 (`CPU 315-2 PN/DP`) for maximum HMI compatibility, but every identity field is editable.
+- **Negotiated PDU**: Configurable 240 -- 960 byte PDU; the client and server agree on the smaller of the two at connection setup.
+- **Per-category logging**: Independent toggles for connection events, data access (verbose), and errors.
+
+Documentation pages:
+
+- **[S7Comm Overview](s7comm/README)**: Concepts, when to choose S7Comm, platform support
+- **[Server Configuration](s7comm/server-configuration)**: Bind address, port, max clients, PDU size
+- **[Data Blocks](s7comm/data-blocks)**: DB modal, the 14-entry mapping catalog, sizing
+- **[PLC Identity](s7comm/plc-identity)**: SZL fields and their defaults
+- **[Logging](s7comm/logging)**: Connection, data access, and error toggles
+- **[Example](s7comm/example)**: Walk-through using the blink project
+- **[Troubleshooting](s7comm/troubleshooting)**: Port conflicts, PDU mismatches, validation errors
+
+S7Comm has no built-in authentication or encryption. Use it on trusted networks, behind a firewall, or over a VPN. If you need security, use OPC-UA instead.
+
+## Hardware Setup for Serial Protocols
+
+### RS-485 for Modbus RTU
+
+For Modbus RTU over RS-485, you need a serial port available on the machine where the Orchestrator is installed (this could be a Raspberry Pi, an industrial PC, an edge computer, or any Linux device). This can be either:
+
+- A **native serial port** built into your machine (common on industrial PCs and edge computers).
+- A **USB-to-RS-485 adapter** plugged into a USB port. Common adapters based on the FTDI FT232 or CH340 chipset work out of the box on Linux.
+
+When creating a vPLC Device, the platform shows all available serial ports detected on the host. You select which port to assign to the vPLC and give it a **container path**: a virtual path that your PLC program will use (e.g., `/dev/ttyRS485` or any name you choose). This container path then appears in the Modbus RTU configuration dropdown inside the editor.
+
+> **Important:** A serial port can only be assigned to **one vPLC at a time**. This is a hardware limitation. Unlike network interfaces, a serial line cannot be shared between multiple devices. If a port is already assigned to another vPLC, it will appear grayed out.
+
+See [Creating vPLC Devices](../../platform-features/vplc-management/creating-vplc) for the full Device creation walkthrough, including serial port configuration.
 
 ## Adding Communication Interfaces
 
@@ -51,9 +127,11 @@ All communication protocols are configured through the project explorer in the A
 | Menu Path | What It Creates |
 |-----------|-----------------|
 | **Server > Modbus/TCP** | A Modbus server (slave) that exposes PLC data to external clients |
+| **Server > Siemens S7comm** | An S7Comm server that exposes PLC data to Siemens-style clients (HMIs, SCADAs, Snap7 tools) |
 | **Server > OPC-UA** | An OPC-UA server for secure, modern industrial communication |
 | **Remote Device > Modbus/TCP** | A Modbus client (master) connection to poll an external device over Ethernet |
 | **Remote Device > Modbus/RTU** | A Modbus client over serial (RS-232/RS-485) for legacy devices |
+| **Remote Device > EtherCAT** | An EtherCAT master segment with its own slave configuration, ESI repository, and channel mappings |
 
 4. Enter a name for the new element and click **Create**.
 5. The new entry appears in the project explorer tree under the appropriate folder (Servers or Devices).
@@ -69,17 +147,18 @@ Not every protocol is available on every runtime target. The table below summari
 |----------|------------|------------|---------|
 | Modbus Server (Slave) | Yes | Yes | Yes |
 | Modbus Client (Master) | Yes | Yes | No |
-| OPC-UA Server | In Development | No | No |
+| Modbus RTU Master | Yes | Yes | No |
+| Siemens S7Comm | Yes | Yes | No |
+| OPC-UA Server | Yes | No | No |
+| EtherCAT | Yes | No | No |
 | DNP3 | No | Beta | No |
 | EtherNet/IP | In Development | Beta | No |
-| S7Comm | In Development | Yes | No |
-| EtherCAT | In Development | No | No |
 
-> **Note:** Documentation for S7Comm, DNP3, EtherNet/IP, and EtherCAT will be added as their implementations are completed.
+> **Note:** Documentation for DNP3 and EtherNet/IP will be added as their implementations are completed.
 
 ### Runtime v4
 
-Runtime v4 is the current, actively developed runtime. It supports Modbus (server and client). OPC-UA is currently in development and its documentation is a preview of the upcoming feature. Additional protocols (EtherNet/IP, S7Comm, EtherCAT) are also under active development and will be available in future releases.
+Runtime v4 is the current, actively developed runtime. It supports Modbus TCP (server and client), Modbus RTU (master), Siemens S7Comm, OPC-UA, and EtherCAT. EtherNet/IP is under active development and will be available in a future release.
 
 ### Runtime v3
 
@@ -131,6 +210,8 @@ If you are unsure which protocol to use, consider the following guidelines:
 |----------|---------------------|
 | Connecting to legacy industrial devices (sensors, VFDs, meters) | Modbus TCP or RTU |
 | Exposing data to a traditional SCADA system | Modbus Server |
+| Communicating with Siemens PLCs (S7-1200, S7-1500) | Siemens S7Comm |
+| High-speed, real-time fieldbus communication | EtherCAT |
 | Secure communication with encryption and authentication | OPC-UA Server |
 | Fine-grained access control (different permissions for operators vs. engineers) | OPC-UA Server |
 | Exposing structured data types or arrays | OPC-UA Server |

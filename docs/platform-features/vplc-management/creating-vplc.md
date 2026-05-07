@@ -1,5 +1,71 @@
 # Creating a vPLC Device
 
+## Quick Start: Create a Device in 2 Minutes
+
+Creating a Device (vPLC) is done entirely through the Autonomy Edge web interface. **You do NOT need to open a terminal or edit any configuration files.** Everything happens in your browser.
+
+### What You'll Need
+
+- An **Orchestrator** already installed and linked to your account with an **Active** status.
+
+> **Don't have an Orchestrator yet?** Follow the [Orchestrator Setup Guide](../orchestrator-management/adding-orchestrators) first.
+
+### Step-by-Step Guide
+
+**Step 1: Navigate to your Orchestrator**
+
+In the Autonomy Edge sidebar, click **Orchestrators**. Then click on the Orchestrator where you want to create the Device.
+
+**Step 2: Go to the Devices tab**
+
+On the Orchestrator detail page, click the **Devices** tab.
+
+**Step 3: Click Add Device**
+
+Click the **Add Device** button. If this is your first Device, you'll see a large **Add Device** button in the center of the page.
+
+**Step 4: Enter a device name**
+
+Type a descriptive name for your Device. For example, "Palletizer Machine", "Lab Controller 1", or "Demo vPLC".
+
+**Step 5: Select a network interface**
+
+The Device needs a network interface to communicate. A default one is created for you automatically. In most cases, the default settings work fine.
+
+> **What's a network interface?** A network interface is how your Linux machine connects to a network. Common examples:
+> - **eth0** or **enp3s0**: a wired Ethernet connection (cable plugged in)
+> - **wlan0**: a WiFi connection
+> - **Dedicated NIC**: a physical network card exclusively assigned to a single vPLC
+>
+> For industrial applications, **wired Ethernet (eth0)** is recommended because it is faster and more reliable than WiFi.
+
+**Step 6: Configure network settings if needed**
+
+For most setups, the default DHCP setting (automatic IP address) works fine. If you need a fixed IP address, switch to **Static IP** and enter the address details.
+
+**Step 7: Click Create**
+
+Click **Create** and wait a few seconds. Your Device will appear in the Devices list, ready to receive programs.
+
+> **That's it!** You just created a virtual PLC entirely from the web interface. No terminal, no config files, no SSH.
+
+### Common Problems
+
+| Problem | Solution |
+|---------|----------|
+| Only WiFi interface showing | Connect an Ethernet cable to your Linux machine, then refresh the page. The wired interface should appear. |
+| Network interface not found | Make sure the cable is connected to the Linux machine **before** creating the Device. Click the refresh button to re-scan interfaces. |
+| Device not communicating on the network | Verify you selected the correct network interface. If using static IP, double-check the IP address and subnet mask. |
+| Device creation fails | Ensure your Orchestrator shows **Active** status. If it's offline, check the Linux machine's internet connection. |
+
+---
+
+## Detailed Walkthrough
+
+The sections below provide a more detailed explanation of each option in the Device creation process.
+
+---
+
 This guide walks you through creating a new vPLC device on an orchestrator. By the end, you'll have a running virtual PLC ready to receive programs from the IDE.
 
 ---
@@ -9,6 +75,12 @@ This guide walks you through creating a new vPLC device on an orchestrator. By t
 You need:
 
 - An orchestrator linked to your Autonomy Edge account and showing **Active** status. See [Adding Orchestrators](../orchestrator-management/adding-orchestrators) if you haven't set one up yet.
+
+---
+
+## What Happens When You Create a Device
+
+When you click **Create**, the platform tells your Orchestrator to set up a new virtual PLC on its machine. This happens automatically. The Orchestrator downloads the Runtime, configures networking, and starts the device. You'll see the status change from "creating" to "running" in a few moments. You don't need to install anything manually or SSH into the machine.
 
 ---
 
@@ -66,6 +138,8 @@ The name of the virtual interface (e.g., `veth0`, `veth1`). You can rename it to
 Select which physical network interface on the host this vNIC should use. The dropdown lists all physical interfaces detected on the host (e.g., `eth0`, `enp3s0`, `wlan0`) along with their current IP addresses.
 
 Each physical port can only be used by one vNIC per device.
+
+> **Troubleshooting:** If you only see one network interface (e.g., only WiFi), check that your Linux machine has multiple active interfaces. The Orchestrator detects interfaces that are up and running at the time of device creation. Plugging in an Ethernet cable or enabling an additional interface and then re-opening the modal will refresh the list.
 
 #### IP Address: DHCP or Static
 
@@ -135,6 +209,12 @@ Your vPLC is now running and ready to use. From here you can:
 - **View device details**: Click the device row to open the [device detail page](device-detail) with full information, network interfaces, and serial port status.
 - **Upload a program**: Open a project in the IDE, connect to the vPLC through the Device Orchestrators panel, and upload your PLC program.
 - **Manage the device**: Use the three-dot menu (⋮) to restart, rename, or delete the device.
+
+---
+
+## Your Device Is Ready
+
+Your device is now ready! Go back to your project in the IDE and connect to this device to compile and deploy your program. See the [Quick Start Guide](../../getting-started/quick-start) for the full walkthrough.
 
 ---
 

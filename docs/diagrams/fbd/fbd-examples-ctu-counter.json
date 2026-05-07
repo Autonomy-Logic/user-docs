@@ -1,0 +1,28 @@
+{
+  "comment": "CTU counter. Item_sensor + batch_size + batch_reset → batch_complete, item_count",
+  "nodes": [
+    { "id": "item_sensor", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "item_sensor" } },
+    { "id": "batch_reset", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "batch_reset" } },
+    { "id": "batch_size", "type": "input-variable", "position": { "x": 50, "y": 220 }, "data": { "name": "batch_size" } },
+    {
+      "id": "ctu",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "CTU",
+        "blockType": "function-block",
+        "inputs": [{ "name": "CU" }, { "name": "R" }, { "name": "PV" }],
+        "outputs": [{ "name": "Q" }, { "name": "CV" }]
+      }
+    },
+    { "id": "batch_complete", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "batch_complete" } },
+    { "id": "item_count", "type": "output-variable", "position": { "x": 530, "y": 140 }, "data": { "name": "item_count" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "item_sensor", "sourceHandle": "output", "target": "ctu", "targetHandle": "CU" },
+    { "id": "e2", "source": "batch_reset", "sourceHandle": "output", "target": "ctu", "targetHandle": "R" },
+    { "id": "e3", "source": "batch_size", "sourceHandle": "output", "target": "ctu", "targetHandle": "PV" },
+    { "id": "e4", "source": "ctu", "sourceHandle": "Q", "target": "batch_complete", "targetHandle": "input" },
+    { "id": "e5", "source": "ctu", "sourceHandle": "CV", "target": "item_count", "targetHandle": "input" }
+  ]
+}

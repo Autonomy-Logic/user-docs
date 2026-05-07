@@ -4,6 +4,30 @@
 
 This reference lists all hardware boards supported by the platform for direct microcontroller programming and runtime deployment. The editor supports over 60 different boards across multiple microcontroller families and architectures.
 
+## Choosing Your Hardware
+
+There are two main paths for running PLC programs, depending on your use case:
+
+### Virtual PLC (vPLC)
+
+A vPLC runs on any Linux machine managed by an Autonomy Edge Orchestrator. No special hardware is required. A Raspberry Pi, laptop, industrial PC, or cloud VM all work. The Orchestrator handles deployment, networking, and lifecycle management for you.
+
+**Best for:** Getting started quickly, Modbus TCP based automation, remote/cloud deployments, and projects that don't need direct wiring to sensors or actuators.
+
+**Minimum requirements for the Orchestrator host:**
+- Any Linux system (Ubuntu, Debian, Raspberry Pi OS, etc.)
+- 512 MB RAM
+- Internet access for initial setup and updates
+- Raspberry Pi 3, 4, or 5 recommended for physical deployments
+
+### Microcontroller (Arduino/ESP32)
+
+Microcontroller targets receive compiled firmware via USB from the Desktop Editor. They provide direct hardware I/O. Digital and analog pins wired straight to sensors, relays, and actuators.
+
+**Best for:** Small, dedicated control tasks with direct sensor/actuator wiring, environments where a full Linux system is impractical, and educational or prototyping setups.
+
+---
+
 ## Board Types
 
 The editor supports two categories of deployment targets:

@@ -97,6 +97,12 @@ Your projects, devices, and configurations will always remain yours.
 
 ---
 
+## View Current Pricing
+
+For the latest information on available plans, features, and pricing details, visit our dedicated **[Pricing page](/pricing)**. There you can compare plans side by side and choose the best option for your needs.
+
+---
+
 ## Get Started Now
 
 Ready to explore everything Autonomy Edge has to offer? Head to your [Dashboard](/dashboard) and start building your first project today. Everything is on us during the beta!

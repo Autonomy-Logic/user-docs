@@ -111,10 +111,7 @@ The editor validates data type compatibility. Connecting incompatible types (e.g
 
 Chain ADD and MUL blocks to compute a weighted sum:
 
-```
-[sensor1] → [ADD] → [MUL] → [output]
-[sensor2] →   ↑     [gain] →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-basics-arithmetic-chain.json"></fbd-diagram>
 
 The ADD block sums `sensor1` and `sensor2`, then the MUL block multiplies the result by `gain`.
 
@@ -122,10 +119,7 @@ The ADD block sums `sensor1` and `sensor2`, then the MUL block multiplies the re
 
 Use a GT (greater than) block to drive a Boolean output:
 
-```
-[temperature] → [GT] → [alarm]
-[threshold]   →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-basics-gt-comparison.json"></fbd-diagram>
 
 If `temperature > threshold`, `alarm` becomes TRUE.
 
@@ -133,10 +127,7 @@ If `temperature > threshold`, `alarm` becomes TRUE.
 
 Place a TON block with an enable condition:
 
-```
-[enable_signal] → [TON] → [delayed_output]
-[T#5s]          →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-basics-ton-timer.json"></fbd-diagram>
 
 The timer starts when `enable_signal` is TRUE and fires `delayed_output` after 5 seconds.
 
@@ -144,11 +135,7 @@ The timer starts when `enable_signal` is TRUE and fires `delayed_output` after 5
 
 Use a SEL (selector) block to choose between two values based on a condition:
 
-```
-[manual_mode]   → [SEL] → [output_speed]
-[auto_speed]    →  ↑
-[manual_speed]  →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-basics-sel-selector.json"></fbd-diagram>
 
 When `manual_mode` is TRUE, `output_speed` gets `manual_speed`. When FALSE, it gets `auto_speed`.
 

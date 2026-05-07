@@ -9,6 +9,7 @@ The Autonomy Edge platform gives you everything you need to create, deploy, and 
 - **Project Management**: Create, organize, and manage your PLC projects with folders, visibility controls, and import/export.
 - **Orchestrator Management**: Install and monitor orchestrators on your Linux machines to bridge the cloud and your hardware.
 - **vPLC Device Management**: Create and manage virtual PLC devices that run your automation programs on your orchestrators.
+- **Community Forum**: Ask questions, share projects, reply, vote, and chat directly with other members.
 
 ---
 
@@ -23,3 +24,4 @@ You need an Autonomy Edge account to access these features. Once logged in, ever
 - [Project Management](project-management/creating-projects): Create your first project and learn to organize your work.
 - [Orchestrator Management](orchestrator-management/understanding-orchestrators): Understand and set up orchestrators on your machines.
 - [vPLC Device Management](vplc-management/understanding-vplc): Create virtual PLCs and manage their lifecycle.
+- [Community Forum](forum/forum-overview): Browse discussions, post topics, chat with members, and tune your email notifications.

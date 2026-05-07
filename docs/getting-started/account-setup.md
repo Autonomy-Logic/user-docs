@@ -62,8 +62,6 @@ That's it. You're in.
 
 > **Tip:** Only use "Remember Me" on personal devices you trust.
 
-If this is your first login, you'll see a short onboarding walkthrough introducing the platform's main features. You can follow along or skip it. The [Quick Start Guide](./quick-start) covers everything you need.
-
 ---
 
 ## Forgot Your Password?

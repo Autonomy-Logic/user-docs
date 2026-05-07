@@ -2,6 +2,8 @@
 
 Before you can deploy and run your PLC program, you need to connect the IDE to a device. This page walks you through the connection flow, user setup, authentication, and what to do when things go wrong.
 
+> **Autonomy Edge Users:** If you're using the Autonomy Edge cloud platform, you don't need to install or configure a runtime. The Orchestrator manages the runtime automatically when you create a Device. Simply create a Device on your Orchestrator, then connect to it here. This page covers the connection flow. The runtime setup is handled for you.
+
 ## Prerequisites
 
 Before connecting:
@@ -11,14 +13,16 @@ Before connecting:
 
 ## Selecting a Device
 
-1. In the Project Explorer (left sidebar), expand the **Devices** branch.
-2. Click **Orchestrators**.
-3. The Orchestrators panel opens in the Editor Area, listing all orchestrators linked to your account.
+1. In the **Project Explorer** (left sidebar), expand the **Device** folder.
+2. Click **Orchestrators** inside the Device folder.
+3. The Orchestrators page opens in the Editor Area. At the top, you'll see the **OpenPLC Simulator** (selected by default). Below it, all orchestrators linked to your account are listed.
 4. Expand an orchestrator to see its devices. Each device shows its name, status, and whether it's available.
 5. Click on a device to select it.
 6. Click **Connect**.
 
 > **Tip:** Click the **Refresh** button to reload the list if you've recently added an orchestrator or device.
+>
+> **Note:** If you just want to test your program without setting up hardware, the Simulator is already selected. Just click **Start Simulator** in the Activity Bar. See [Running with the Simulator](building-deploying/simulator) for details.
 
 ## First-Time Connection: Creating a User
 

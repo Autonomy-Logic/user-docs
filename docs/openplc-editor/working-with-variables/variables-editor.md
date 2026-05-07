@@ -4,6 +4,12 @@ The Variables Editor is the visual interface where you create, modify, and organ
 
 This page covers every feature of the Variables Editor. Its table columns, dual-view modes, filtering, and the special behaviors that differ depending on your POU type.
 
+## Finding the Variables Table
+
+The Variables Table appears below the code editor when you open a program (POU). Click on any program in the Project Explorer to see its variables. If the table is not visible, try resizing the editor panels by dragging the divider between the code editor and the table area.
+
+The Variables Editor is split into two panels. The variable declarations at the top and the programming editor at the bottom. If one panel is collapsed, drag the horizontal divider to reveal it.
+
 ## Opening the Variables Editor
 
 The Variables Editor is always visible when you open a POU. Click on any Program, Function, or Function Block in the Project Explorer to open it. The editor area splits into two sections:

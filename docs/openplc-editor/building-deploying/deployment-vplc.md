@@ -25,22 +25,38 @@ Before deploying, make sure you have:
 
 ## Selecting a Device
 
-1. In the Project Explorer, expand the **Devices** branch.
-2. Click **Orchestrators** to open the Orchestrators panel.
-3. Find your orchestrator and expand it to see its devices.
-4. Click on a device to select it.
-5. Click **Connect**.
+1. In the **Project Explorer** on the left, expand the **Device** folder.
+2. Click **Orchestrators** inside the Device folder to open the Orchestrators page.
+3. You'll see the **OpenPLC Simulator** at the top (selected by default) and your registered Orchestrators listed below.
+4. Click on an Orchestrator to expand it and see its Devices.
+5. Click on a Device to select it. Only active (online) devices can be selected.
+6. Click **Connect**.
 
-> **Tip:** Click the **Refresh** button to reload the device list if you don't see a recently added device.
+### First-Time Connection (Creating Credentials)
+
+The first time you connect to a Device that has no users configured, the IDE opens a **Create User** dialog. Enter a username and password. These are the **runtime credentials** for this specific Device, separate from your Autonomy Edge account login.
+
+> **Important:** Remember these credentials. You'll need them every time you reconnect to this Device.
+
+### Reconnecting (Login)
+
+If the Device already has credentials configured, the IDE opens a **Login** dialog instead. Enter the username and password you created during the first connection.
+
+### Switching Devices
+
+If you're already connected to a Device and click on a different one, the IDE shows a confirmation dialog asking if you want to switch. Confirming disconnects from the current Device and starts the connection flow with the new one.
+
+> **Tip:** Click the **Refresh** button (↻) to reload the Orchestrator and Device list if you don't see a recently added device.
 
 ## Deploying Your Program
 
-1. Make sure you're connected to a device (check the Orchestrators panel).
-2. Click the **Compile** button in the Activity Bar.
-3. Watch the Console Panel for progress messages.
-4. Wait for `Compilation completed successfully`.
+Once you're connected to a Device (the Orchestrators page shows your connection status):
 
-Your program is now on the device and ready to run.
+1. Click the **Compile** button in the Activity Bar (left side of the screen).
+2. Watch the Console Panel at the bottom. It shows progress for each compilation step.
+3. Wait for `Compilation completed successfully`.
+
+The IDE compiles your project, packages it, and uploads it to the Device through the Orchestrator. All in one step. Your program is now on the Device and ready to run.
 
 ## Starting and Stopping the PLC
 

@@ -12,6 +12,7 @@ The IDE gives you everything you need to develop PLC control logic:
 - **Define custom data types** including arrays, enumerations, and structures.
 - **Configure tasks and instances** that control when and how your programs execute on the device.
 - **Compile and deploy** your project to devices through the Autonomy Edge platform.
+- **Test instantly with the Simulator**: Run and debug your program directly in the browser using the [built-in Simulator](building-deploying/simulator), no hardware required.
 - **Monitor runtime output** through the Console Panel, which shows compilation progress, runtime logs, and PLC execution output.
 - **Configure communication protocols** including Modbus TCP/RTU (master and slave), S7Comm server, and OPC-UA server.
 
@@ -24,9 +25,16 @@ Key differences:
 - **Installation**: The web IDE runs in your browser with no install. The desktop editor requires a local installation.
 - **Platform integration**: The web IDE is built into Autonomy Edge with direct device management and deployment. The desktop editor is a standalone application.
 - **Deployment**: The web IDE deploys directly to your connected devices. The desktop editor requires manual transfer.
+- **Runtime management**: In the web IDE, the runtime is managed automatically by the Orchestrator. In the desktop editor, you install and manage the runtime yourself.
 - **Communication config**: The web IDE has visual editors for Modbus, S7Comm, and OPC-UA. The desktop editor has limited support.
 
 If you're using the Autonomy Edge platform, the web IDE is the recommended development environment.
+
+---
+
+## Tablet and Mobile Use
+
+Autonomy Edge works in modern mobile browsers (Safari on iPad, Chrome on Android). However, the IDE is designed for desktop use. Graphical editors (Ladder, FBD) work best with a mouse or trackpad. For monitoring and simple edits, a tablet with a Bluetooth keyboard works well.
 
 ---
 

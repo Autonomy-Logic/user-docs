@@ -1,5 +1,5 @@
 {
-  "comment": "Emergency stop: fault reset rung",
+  "comment": "Emergency stop. Fault reset rung",
   "rungNumber": 3,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "fault" },

@@ -19,16 +19,7 @@ This example uses comparison blocks and Boolean logic to generate alarms from a 
 
 ### FBD Structure
 
-```
-[sensor_temp] → [GT] → [high_alarm]
-[high_limit]  →  ↑
-
-[sensor_temp] → [LT] → [low_alarm]
-[low_limit]   →  ↑
-
-[high_alarm] → [OR] → [any_alarm]
-[low_alarm]  →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-examples-temp-alarm.json"></fbd-diagram>
 
 ### How It Works
 
@@ -61,34 +52,7 @@ Industrial sensors often output raw values (e.g., 0–4095 from a 12-bit ADC) th
 
 The scaling formula is: `scaled = eng_min + ((raw - raw_min) / (raw_max - raw_min)) * (eng_max - eng_min)`
 
-```
-Step 1: Convert raw INT to REAL
-[raw_input] → [INT_TO_REAL] → [raw_real]
-
-Step 2: Calculate (raw - raw_min)
-[raw_real] → [SUB] → [offset]
-[raw_min]  →  ↑
-
-Step 3: Calculate (raw_max - raw_min)
-[raw_max] → [SUB] → [span_raw]
-[raw_min] →  ↑
-
-Step 4: Normalize to 0.0–1.0
-[offset]   → [DIV] → [normalized]
-[span_raw] →  ↑
-
-Step 5: Calculate (eng_max - eng_min)
-[eng_max] → [SUB] → [span_eng]
-[eng_min] →  ↑
-
-Step 6: Scale to engineering range
-[normalized] → [MUL] → [scaled_offset]
-[span_eng]   →  ↑
-
-Step 7: Add engineering minimum
-[scaled_offset] → [ADD] → [scaled_value]
-[eng_min]       →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-examples-analog-scaling.json"></fbd-diagram>
 
 ### How It Works
 
@@ -114,26 +78,7 @@ This example uses TON timers to implement a pump that must run for a minimum dur
 
 ### FBD Structure
 
-```
-Minimum run timer:
-[pump_running] → [TON: run_timer, PT=T#30s] → [min_run_ok]
-
-Cooldown timer:
-[NOT pump_running] → [TON: cooldown_timer, PT=T#60s] → [cooldown_ok]
-
-Start permission:
-[start_cmd]   → [AND] → [can_start]
-[cooldown_ok] →  ↑
-[NOT pump_running] → ↑
-
-Stop permission:
-[stop_cmd]    → [AND] → [can_stop]
-[min_run_ok]  →  ↑
-
-Pump state (SR bistable):
-[can_start] → [SR] → [pump_running]
-[can_stop]  →  ↑
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-examples-pump-control.json"></fbd-diagram>
 
 ### How It Works
 
@@ -159,10 +104,7 @@ Count items passing a sensor and reset when a batch is complete.
 
 ### FBD Structure
 
-```
-[item_sensor] → [CTU: counter, PV=batch_size, RESET=batch_reset] → Q: [batch_complete]
-                                                                    → CV: [item_count]
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-examples-ctu-counter.json"></fbd-diagram>
 
 ### How It Works
 
@@ -183,11 +125,7 @@ Choose between automatic and manual control modes.
 
 ### FBD Structure
 
-```
-[auto_mode]    → [SEL] → [output_speed]
-[manual_speed] →  ↑  (IN0. Selected when G=FALSE)
-[auto_speed]   →  ↑  (IN1. Selected when G=TRUE)
-```
+<fbd-diagram src="/docs/diagrams/fbd/fbd-examples-sel-mux.json"></fbd-diagram>
 
 ### How It Works
 

@@ -1,5 +1,5 @@
 {
-  "comment": "Safety interlock: NC + NO contacts",
+  "comment": "Safety interlock. NC + NO contacts",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "negated", "variable": "guard_open" },

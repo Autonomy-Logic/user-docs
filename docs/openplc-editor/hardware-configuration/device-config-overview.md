@@ -28,15 +28,16 @@ These protocols are added through the Project Explorer, not the Device Configura
 
 ### What the Web Editor Does Not Support
 
-The web editor deploys to runtime instances. The following features are **not available** in the web editor:
+The web editor deploys to the built-in Simulator or to runtime instances via Orchestrators. The following features are **not available** in the web editor:
 
-- Board selection for Arduino or microcontroller targets
 - Pin mapping for physical hardware I/O
 - Modbus RTU/TCP settings embedded in firmware
 - Direct USB upload to microcontrollers
 - Direct connection to local OpenPLC Runtime instances
 
 For these capabilities, use the desktop editor.
+
+> **Note:** The web editor does include a [built-in Simulator](../building-deploying/simulator) that emulates an AVR microcontroller directly in the browser. This lets you run and debug programs without any hardware or Orchestrator setup.
 
 ## Desktop Editor: Full Hardware Configuration
 

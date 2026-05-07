@@ -258,6 +258,18 @@ Projects are managed per user account. Team collaboration features are available
 
 Additional protocols can be added through the runtime's plugin system. See [Custom Libraries](../advanced-topics/integration-apis/custom-libraries) for information on extending functionality.
 
+---
+
+## Runtime
+
+### Do I need to install the OpenPLC Runtime for Autonomy Edge?
+
+No. When you create a Device on an Orchestrator, the platform installs and manages the runtime automatically. The standalone Runtime (available on GitHub) is designed for use with the Desktop Editor only.
+
+### I see a Runtime web interface mentioned online. Where is it?
+
+The runtime web interface is a feature of the standalone Desktop Editor workflow. In Autonomy Edge, all device management and monitoring is done through the cloud platform. There is no separate runtime web interface to access.
+
 ## What's Next?
 
 - [Glossary](glossary): Key terms and definitions

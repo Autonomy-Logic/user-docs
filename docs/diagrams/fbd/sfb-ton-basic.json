@@ -1,0 +1,26 @@
+{
+  "comment": "TON. On-Delay Timer",
+  "nodes": [
+    { "id": "in_var", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "IN" } },
+    { "id": "pt_var", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "PT" } },
+    {
+      "id": "ton",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "TON",
+        "blockType": "function-block",
+        "inputs": [{ "name": "IN" }, { "name": "PT" }],
+        "outputs": [{ "name": "Q" }, { "name": "ET" }]
+      }
+    },
+    { "id": "q_var", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "Q" } },
+    { "id": "et_var", "type": "output-variable", "position": { "x": 530, "y": 140 }, "data": { "name": "ET" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "in_var", "sourceHandle": "output", "target": "ton", "targetHandle": "IN" },
+    { "id": "e2", "source": "pt_var", "sourceHandle": "output", "target": "ton", "targetHandle": "PT" },
+    { "id": "e3", "source": "ton", "sourceHandle": "Q", "target": "q_var", "targetHandle": "input" },
+    { "id": "e4", "source": "ton", "sourceHandle": "ET", "target": "et_var", "targetHandle": "input" }
+  ]
+}

@@ -25,6 +25,19 @@ Whether you're programming a conveyor belt, designing a water treatment control 
 
 ---
 
+## How It All Connects
+
+Here's the path from sign-up to a running program:
+
+1. **Sign up** and create a **Project** in the browser.
+2. **Write your code** in the browser IDE.
+3. **Test instantly**: The built-in [Simulator](../openplc-editor/building-deploying/simulator) lets you run and debug your program right in the browser, no hardware needed.
+4. **Ready for real hardware?** Install an [Orchestrator](../platform-features/orchestrator-management/understanding-orchestrators) on a Linux machine, create a Device, and [deploy](../openplc-editor/building-deploying/deployment-vplc) with one click.
+
+You can go from sign-up to running code in under 5 minutes using just the Simulator. When you're ready to move to real hardware, the Orchestrator connects the cloud platform to your physical or virtual devices.
+
+---
+
 ## The Browser-Based IDE
 
 At the heart of Autonomy Edge is a full-featured IDE that runs in your browser. It supports all five standard **IEC 61131-3 languages**, plus Python and C++ for custom function blocks:

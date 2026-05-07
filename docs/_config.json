@@ -9,6 +9,10 @@
           "path": "introduction"
         },
         {
+          "title": "Desktop Editor vs. Autonomy Edge",
+          "path": "desktop-vs-edge"
+        },
+        {
           "title": "Account Setup and Authentication",
           "path": "account-setup"
         },
@@ -23,16 +27,10 @@
         {
           "title": "Quick Start Guide",
           "path": "quick-start"
-        }
-      ]
-    },
-    {
-      "title": "Pricing & Plans",
-      "path": "pricing",
-      "items": [
+        },
         {
-          "title": "Plans and Features",
-          "path": "plans"
+          "title": "Editor Desktop vs Autonomy Edge",
+          "path": "editor-desktop-vs-edge"
         }
       ]
     },
@@ -107,6 +105,52 @@
             {
               "title": "Device Detail View",
               "path": "device-detail"
+            }
+          ]
+        },
+        {
+          "title": "Community Forum",
+          "path": "forum",
+          "items": [
+            {
+              "title": "Forum Overview",
+              "path": "forum-overview"
+            },
+            {
+              "title": "Browsing Topics, Categories, and Search",
+              "path": "browsing-categories"
+            },
+            {
+              "title": "Creating a Topic",
+              "path": "creating-topics"
+            },
+            {
+              "title": "Viewing and Replying to Topics",
+              "path": "viewing-and-replying"
+            },
+            {
+              "title": "Editing and Deleting Your Own Posts",
+              "path": "editing-your-posts"
+            },
+            {
+              "title": "@Mentions and Attachments",
+              "path": "mentions-and-attachments"
+            },
+            {
+              "title": "Members Directory",
+              "path": "members-directory"
+            },
+            {
+              "title": "Direct Messages and Group Chats",
+              "path": "direct-messages"
+            },
+            {
+              "title": "Reporting a Post",
+              "path": "reporting-content"
+            },
+            {
+              "title": "Email and Privacy Preferences",
+              "path": "email-preferences"
             }
           ]
         }
@@ -411,6 +455,10 @@
               "path": "project-compilation"
             },
             {
+              "title": "Running with the Simulator",
+              "path": "simulator"
+            },
+            {
               "title": "XML Export Format",
               "path": "xml-export"
             },
@@ -443,8 +491,122 @@
               ]
             },
             {
-              "title": "OPC-UA (Coming Soon)",
-              "path": "opc-ua"
+              "title": "OPC-UA",
+              "path": "opc-ua",
+              "items": [
+                {
+                  "title": "General Settings",
+                  "path": "general-settings"
+                },
+                {
+                  "title": "Security Profiles",
+                  "path": "security-profiles"
+                },
+                {
+                  "title": "Users",
+                  "path": "users"
+                },
+                {
+                  "title": "Certificates",
+                  "path": "certificates"
+                },
+                {
+                  "title": "Address Space",
+                  "path": "address-space"
+                },
+                {
+                  "title": "Worked Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
+            },
+            {
+              "title": "S7Comm",
+              "path": "s7comm",
+              "items": [
+                {
+                  "title": "Server Configuration",
+                  "path": "server-configuration"
+                },
+                {
+                  "title": "Data Blocks",
+                  "path": "data-blocks"
+                },
+                {
+                  "title": "PLC Identity",
+                  "path": "plc-identity"
+                },
+                {
+                  "title": "Logging",
+                  "path": "logging"
+                },
+                {
+                  "title": "Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
+            },
+            {
+              "title": "EtherCAT",
+              "path": "ethercat",
+              "items": [
+                {
+                  "title": "Prerequisites",
+                  "path": "prerequisites"
+                },
+                {
+                  "title": "Adding an EtherCAT Segment",
+                  "path": "adding-ethercat"
+                },
+                {
+                  "title": "Bus Tab",
+                  "path": "bus-scan"
+                },
+                {
+                  "title": "Repository Tab",
+                  "path": "bus-repository"
+                },
+                {
+                  "title": "Advanced Tab",
+                  "path": "bus-advanced"
+                },
+                {
+                  "title": "Device Info",
+                  "path": "slave-info"
+                },
+                {
+                  "title": "Configuration",
+                  "path": "slave-configuration"
+                },
+                {
+                  "title": "Startup Parameters",
+                  "path": "slave-startup-params"
+                },
+                {
+                  "title": "Channel Mappings",
+                  "path": "slave-channel-mappings"
+                },
+                {
+                  "title": "Diagnostics",
+                  "path": "diagnostics"
+                },
+                {
+                  "title": "Worked Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
             }
           ]
         }
@@ -503,6 +665,16 @@
               "path": "custom-libraries"
             }
           ]
+        }
+      ]
+    },
+    {
+      "title": "Pricing & Plans",
+      "path": "pricing",
+      "items": [
+        {
+          "title": "Plans and Features",
+          "path": "plans"
         }
       ]
     },
