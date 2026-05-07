@@ -6,11 +6,11 @@ The Autonomy Edge IDE provides a rich editing experience for C++ function blocks
 
 The C++ code editor provides:
 
-- **Syntax highlighting** — Keywords, types, strings, numbers, comments, and preprocessor directives are color-coded for easy reading.
-- **Bracket matching** — Matching braces, parentheses, and brackets are highlighted when your cursor is next to one.
-- **Auto-closing** — Opening braces, parentheses, brackets, and quotes automatically insert their closing counterpart.
-- **Indentation** — The editor automatically indents code inside blocks, functions, and control structures.
-- **Code folding** — Collapse and expand function bodies, conditional blocks, and other code regions.
+- **Syntax highlighting**: Keywords, types, strings, numbers, comments, and preprocessor directives are color-coded for easy reading.
+- **Bracket matching**: Matching braces, parentheses, and brackets are highlighted when your cursor is next to one.
+- **Auto-closing**: Opening braces, parentheses, brackets, and quotes automatically insert their closing counterpart.
+- **Indentation**: The editor automatically indents code inside blocks, functions, and control structures.
+- **Code folding**: Collapse and expand function bodies, conditional blocks, and other code regions.
 
 These features work out of the box with no configuration required.
 
@@ -24,7 +24,7 @@ The completion provider draws from four sources:
 
 The editor suggests functions from commonly used standard library headers:
 
-**stdio.h** — Standard input/output:
+**stdio.h**: Standard input/output:
 
 | Function | Description |
 |----------|-------------|
@@ -33,7 +33,7 @@ The editor suggests functions from commonly used standard library headers:
 | `snprintf()` | Formatted output with buffer size limit |
 | `sscanf()` | Formatted input from a string |
 
-**stdlib.h** — General utilities:
+**stdlib.h**: General utilities:
 
 | Function | Description |
 |----------|-------------|
@@ -45,7 +45,7 @@ The editor suggests functions from commonly used standard library headers:
 | `rand()` | Generate pseudo-random number |
 | `srand()` | Seed the random number generator |
 
-**string.h** — String and memory operations:
+**string.h**: String and memory operations:
 
 | Function | Description |
 |----------|-------------|
@@ -56,7 +56,7 @@ The editor suggests functions from commonly used standard library headers:
 | `strcpy()` | Copy a string |
 | `strcat()` | Concatenate strings |
 
-**math.h** — Mathematical functions:
+**math.h**: Mathematical functions:
 
 | Function | Description |
 |----------|-------------|

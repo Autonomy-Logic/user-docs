@@ -52,7 +52,7 @@ Combine OR and NOT to create a safety interlock.
 ```
         LD      start_cmd       (* Load manual start *)
         OR      auto_start      (* OR with auto start *)
-        ANDN    fault           (* AND NOT fault — block if fault active *)
+        ANDN    fault           (* AND NOT fault. Block if fault active *)
         ST      enable          (* Store result *)
 ```
 
@@ -65,8 +65,8 @@ enable := (start_cmd OR auto_start) AND NOT fault;
 ### Explanation
 
 1. Load `start_cmd`.
-2. OR with `auto_start` — accumulator is TRUE if either is TRUE.
-3. `ANDN fault` — AND with NOT `fault`. This blocks the result if `fault` is TRUE.
+2. OR with `auto_start`. Accumulator is TRUE if either is TRUE.
+3. `ANDN fault`. AND with NOT `fault`. This blocks the result if `fault` is TRUE.
 4. Store the final result in `enable`.
 
 ## Latch/Unlatch (Set/Reset)
@@ -103,9 +103,9 @@ END_IF;
 
 ### Explanation
 
-The `S` instruction sets `motor` to TRUE only if the accumulator is TRUE — it does nothing if the accumulator is FALSE. Similarly, `R` resets `motor` to FALSE only if the accumulator is TRUE. Since the stop logic comes after the start logic, stop has priority if both buttons are pressed simultaneously.
+The `S` instruction sets `motor` to TRUE only if the accumulator is TRUE. It does nothing if the accumulator is FALSE. Similarly, `R` resets `motor` to FALSE only if the accumulator is TRUE. Since the stop logic comes after the start logic, stop has priority if both buttons are pressed simultaneously.
 
-## Arithmetic — Temperature Scaling
+## Arithmetic: Temperature Scaling
 
 Scale a raw sensor reading to engineering units.
 
@@ -206,7 +206,7 @@ at_max := counter >= max_count;
 
 ### Explanation
 
-This example shows why IL is verbose compared to ST. The same logic that takes 4 lines in ST requires labels, jumps, and repeated loads in IL. The JMP/JMPC instructions serve as IL's version of IF/ELSE logic. Note that `JMPN` (jump if FALSE) is not supported — use `NOT` followed by `JMPC` instead.
+This example shows why IL is verbose compared to ST. The same logic that takes 4 lines in ST requires labels, jumps, and repeated loads in IL. The JMP/JMPC instructions serve as IL's version of IF/ELSE logic. Note that `JMPN` (jump if FALSE) is not supported. Use `NOT` followed by `JMPC` instead.
 
 ## Parenthesized Expressions
 
@@ -281,17 +281,17 @@ In IL, calling a function block requires:
 2. Calling the block with `CAL`.
 3. Reading outputs with LD.
 
-This is considerably more verbose than ST's single-line call syntax — another reason ST is preferred for modern projects.
+This is considerably more verbose than ST's single-line call syntax. Another reason ST is preferred for modern projects.
 
 ## When to Use IL
 
 IL makes sense in a few specific situations:
 
-- **Legacy migration** — Converting old PLC programs from manufacturers that used IL-like instruction sets.
-- **Tiny programs** — Very short, simple Boolean logic where the overhead of understanding IL is minimal.
-- **Learning** — Understanding IL helps you grasp the fundamentals of how PLC logic is evaluated at the lowest level.
+- **Legacy migration**: Converting old PLC programs from manufacturers that used IL-like instruction sets.
+- **Tiny programs**: Very short, simple Boolean logic where the overhead of understanding IL is minimal.
+- **Learning**: Understanding IL helps you grasp the fundamentals of how PLC logic is evaluated at the lowest level.
 
-For everything else, use [Structured Text](../structured-text/st-basics) — it provides the same capabilities with dramatically better readability.
+For everything else, use [Structured Text](../structured-text/st-basics). It provides the same capabilities with dramatically better readability.
 
 ---
 

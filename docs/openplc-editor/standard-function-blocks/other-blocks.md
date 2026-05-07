@@ -1,10 +1,10 @@
 # Additional Function Blocks
 
-Beyond timers, counters, bistables, and edge detectors, the IEC 61131-3 standard library includes function blocks for real-time clocking, process control, signal generation, and network communication. These blocks are available in the Autonomy Edge web IDE under **System Libraries** and address more specialized automation needs — from PID loop control to TCP socket communication.
+Beyond timers, counters, bistables, and edge detectors, the IEC 61131-3 standard library includes function blocks for real-time clocking, process control, signal generation, and network communication. These blocks are available in the Autonomy Edge web IDE under **System Libraries** and address more specialized automation needs. From PID loop control to TCP socket communication.
 
 ---
 
-## RTC — Real-Time Clock
+## RTC: Real-Time Clock
 
 The RTC block gives you access to the current date and time. When enabled, it outputs the current date-time value, offset by a user-supplied starting reference. This is useful for timestamping events, scheduling operations, or implementing time-of-day logic.
 
@@ -12,8 +12,8 @@ The RTC block gives you access to the current date and time. When enabled, it ou
 
 | Name | Type | Description |
 |------|------|-------------|
-| `IN` | `BOOL` | Enable — starts the clock when TRUE |
-| `PDT` | `DT` | Preset Date and Time — reference starting point |
+| `IN` | `BOOL` | Enable. Starts the clock when TRUE |
+| `PDT` | `DT` | Preset Date and Time. Reference starting point |
 
 ### Outputs
 
@@ -48,7 +48,7 @@ END_PROGRAM
 
 ---
 
-## INTEGRAL — Integration Block
+## INTEGRAL: Integration Block
 
 The INTEGRAL block performs numerical integration of an input signal over time. It calculates the running integral of `XIN` using the trapezoidal method, accumulating the result in `XOUT`. You'll commonly use this in process control for computing flow totals from flow rate measurements, or as a building block within PID controllers.
 
@@ -57,7 +57,7 @@ The INTEGRAL block performs numerical integration of an input signal over time. 
 | Name | Type | Description |
 |------|------|-------------|
 | `RUN` | `BOOL` | Enable integration when TRUE |
-| `R1` | `BOOL` | Reset — sets XOUT to X0 when TRUE |
+| `R1` | `BOOL` | Reset. Sets XOUT to X0 when TRUE |
 | `XIN` | `REAL` | Input signal to integrate |
 | `X0` | `REAL` | Initial value for XOUT after reset |
 | `CYCLE` | `TIME` | Execution cycle time (must match task interval) |
@@ -97,7 +97,7 @@ END_PROGRAM
 
 ---
 
-## DERIVATIVE — Differentiation Block
+## DERIVATIVE: Differentiation Block
 
 The DERIVATIVE block computes the rate of change of an input signal over time. It approximates the mathematical derivative of `XIN`, outputting the result in `XOUT`. Use it to detect rapid changes in process variables or as a component within PID controllers.
 
@@ -135,17 +135,17 @@ END_PROGRAM
 
 ---
 
-## PID — PID Controller
+## PID: PID Controller
 
-The PID block implements a Proportional-Integral-Derivative controller — the most widely used feedback control algorithm in industrial automation. It continuously calculates an error value (the difference between a desired setpoint and a measured process variable) and applies a correction based on proportional, integral, and derivative terms.
+The PID block implements a Proportional-Integral-Derivative controller. The most widely used feedback control algorithm in industrial automation. It continuously calculates an error value (the difference between a desired setpoint and a measured process variable) and applies a correction based on proportional, integral, and derivative terms.
 
 ### Inputs
 
 | Name | Type | Description |
 |------|------|-------------|
-| `AUTO` | `BOOL` | Automatic mode — TRUE enables PID control |
-| `PV` | `REAL` | Process Variable — measured value from the process |
-| `SP` | `REAL` | Setpoint — desired target value |
+| `AUTO` | `BOOL` | Automatic mode. TRUE enables PID control |
+| `PV` | `REAL` | Process Variable. Measured value from the process |
+| `SP` | `REAL` | Setpoint. Desired target value |
 | `X0` | `REAL` | Manual output value (used when AUTO is FALSE) |
 | `KP` | `REAL` | Proportional gain |
 | `TR` | `REAL` | Integral time (reset time) in seconds |
@@ -202,7 +202,7 @@ END_PROGRAM
 
 ---
 
-## RAMP — Ramp Generator
+## RAMP: Ramp Generator
 
 The RAMP block generates a linearly increasing or decreasing output that transitions from one value to another over a specified time. Use it for soft-start of motors, gradual setpoint changes, or any application where abrupt value changes are undesirable.
 
@@ -252,7 +252,7 @@ The motor speed gradually increases from 0% to 100% over 10 seconds, avoiding th
 
 ---
 
-## HYSTERESIS — Hysteresis Boolean Output
+## HYSTERESIS: Hysteresis Boolean Output
 
 The HYSTERESIS block produces a boolean output based on the difference between two real-valued inputs, with a deadband defined by `EPS`. This prevents rapid on/off switching (chattering) when a measured value hovers near a threshold.
 
@@ -413,6 +413,6 @@ END_PROGRAM
 
 With a solid understanding of the standard function block library, you can explore more advanced topics:
 
-- [Task Configuration](../task-configuration/understanding-tasks) — Configure how and when your programs execute on the runtime
-- [Programming Languages](../programming-languages/structured-text/st-basics) — Detailed guides for Structured Text, Ladder Diagram, FBD, and more
-- [Communication Protocols](../communication/README) — Set up Modbus and other industrial protocols for device-to-device communication
+- [Task Configuration](../task-configuration/understanding-tasks): Configure how and when your programs execute on the runtime
+- [Programming Languages](../programming-languages/structured-text/st-basics): Detailed guides for Structured Text, Ladder Diagram, FBD, and more
+- [Communication Protocols](../communication/README): Set up Modbus and other industrial protocols for device-to-device communication

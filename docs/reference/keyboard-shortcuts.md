@@ -1,6 +1,6 @@
 # Keyboard Shortcuts
 
-All keyboard shortcuts available in the Autonomy Edge web IDE. The shortcuts below show the **Ctrl** variant — substitute **Cmd** on macOS.
+All keyboard shortcuts available in the Autonomy Edge web IDE. The shortcuts below show the **Ctrl** variant. Substitute **Cmd** on macOS.
 
 > **Tip:** The IDE auto-detects your platform and adjusts modifier keys accordingly.
 
@@ -41,7 +41,7 @@ These shortcuts are available when the Structured Text code editor (Monaco) has 
 | `Ctrl + Z` | Undo |
 | `Ctrl + Shift + Z` | Redo |
 
-The code editor also supports standard text editing shortcuts: `Ctrl + A` (select all), `Ctrl + D` (select next occurrence), arrow keys with Shift (extend selection), and more — consistent with standard code editor behavior.
+The code editor also supports standard text editing shortcuts: `Ctrl + A` (select all), `Ctrl + D` (select next occurrence), arrow keys with Shift (extend selection), and more. Consistent with standard code editor behavior.
 
 ## Graphical Editors (Ladder Diagram / Function Block Diagram)
 
@@ -66,10 +66,10 @@ In the graphical editors, you can also drag and drop elements from the toolbox o
 
 The project-wide search feature (`Ctrl + Shift + F`) provides:
 
-- **Scope selection** — Search the whole project or limit to specific POU types (data types, functions, function blocks, programs, configurations)
-- **Case sensitivity** — Toggle case-sensitive matching
-- **Regular expressions** — Use regex patterns for advanced searches
-- **Results navigation** — Click a result to jump directly to that location in the editor
+- **Scope selection**: Search the whole project or limit to specific POU types (data types, functions, function blocks, programs, configurations)
+- **Case sensitivity**: Toggle case-sensitive matching
+- **Regular expressions**: Use regex patterns for advanced searches
+- **Results navigation**: Click a result to jump directly to that location in the editor
 
 ## Variable Table Shortcuts
 
@@ -87,8 +87,8 @@ The Variables Table supports both table view and code view editing modes, toggle
 ### Editor Focus
 
 Some shortcuts behave differently depending on which panel has focus:
-- **Undo/Redo** (`Ctrl + Z` / `Ctrl + Shift + Z`) — When the code editor has focus, these operate on the code editor's history. When the graphical editor has focus, these operate on the diagram history.
-- **Save** (`Ctrl + S`) — Works regardless of which panel has focus.
+- **Undo/Redo** (`Ctrl + Z` / `Ctrl + Shift + Z`): When the code editor has focus, these operate on the code editor's history. When the graphical editor has focus, these operate on the diagram history.
+- **Save** (`Ctrl + S`): Works regardless of which panel has focus.
 
 ### Graphical Editor Selection
 
@@ -100,6 +100,6 @@ In Ladder Diagram and Function Block Diagram editors:
 
 ## What's Next?
 
-- [ST Language Basics](../openplc-editor/programming-languages/structured-text/st-basics) — Structured Text syntax and features
-- [FAQ](faq) — Common questions about Autonomy Edge
-- [Glossary](glossary) — Key terms and definitions
+- [ST Language Basics](../openplc-editor/programming-languages/structured-text/st-basics): Structured Text syntax and features
+- [FAQ](faq): Common questions about Autonomy Edge
+- [Glossary](glossary): Key terms and definitions

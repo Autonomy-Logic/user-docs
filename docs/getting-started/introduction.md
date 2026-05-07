@@ -6,9 +6,9 @@ Learn what Autonomy Edge is, what you can do with it, and whether it's the right
 
 ## What is Autonomy Edge?
 
-Autonomy Edge is a cloud platform for industrial automation. You write, manage, and deploy PLC (Programmable Logic Controller) programs entirely from your web browser — no desktop software required.
+Autonomy Edge is a cloud platform for industrial automation. You write, manage, and deploy PLC (Programmable Logic Controller) programs entirely from your web browser. No desktop software required.
 
-The platform brings together a full **IEC 61131-3 programming environment**, project management, device orchestration, and an AI-powered assistant — all in one place at [edge.autonomylogic.com](https://edge.autonomylogic.com).
+The platform brings together a full **IEC 61131-3 programming environment**, project management, device orchestration, and an AI-powered assistant. All in one place at [edge.autonomylogic.com](https://edge.autonomylogic.com).
 
 Whether you're programming a conveyor belt, designing a water treatment control system, or teaching an automation class, Autonomy Edge gives you the tools to go from code to running device without leaving your browser.
 
@@ -16,12 +16,12 @@ Whether you're programming a conveyor belt, designing a water treatment control 
 
 ## What Can You Do With It?
 
-- **Create and manage projects** — Organize your PLC programs into projects with folders, descriptions, and visibility settings (public or private).
-- **Program in multiple languages** — Write code in Structured Text, Ladder Diagram, Function Block Diagram, Instruction List, Python, or C++.
-- **Deploy to devices** — Connect physical or virtual PLCs to the platform and deploy your programs with a single click.
-- **Monitor in real time** — Track device status, CPU usage, memory, and scan cycle performance from your dashboard.
-- **Collaborate and share** — Publish projects for the community, fork other users' work, and browse public projects in the activity feed.
-- **Get help from AI** — Use the built-in AI assistant to ask questions about IEC 61131-3 programming, platform features, or get help with your code.
+- **Create and manage projects**: Organize your PLC programs into projects with folders, descriptions, and visibility settings (public or private).
+- **Program in multiple languages**: Write code in Structured Text, Ladder Diagram, Function Block Diagram, Instruction List, Python, or C++.
+- **Deploy to devices**: Connect physical or virtual PLCs to the platform and deploy your programs with a single click.
+- **Monitor in real time**: Track device status, CPU usage, memory, and scan cycle performance from your dashboard.
+- **Collaborate and share**: Publish projects for the community, fork other users' work, and browse public projects in the activity feed.
+- **Get help from AI**: Use the built-in AI assistant to ask questions about IEC 61131-3 programming, platform features, or get help with your code.
 
 ---
 
@@ -44,7 +44,7 @@ The IDE includes syntax highlighting, code completion, drag-and-drop graphical e
 
 ## Who is It For?
 
-Autonomy Edge is built for anyone working with industrial automation — from beginners to experienced professionals:
+Autonomy Edge is built for anyone working with industrial automation. From beginners to experienced professionals:
 
 - **Control engineers** developing automation systems for manufacturing, energy, water, or buildings
 - **PLC programmers** who want a modern, browser-based environment instead of traditional desktop tools

@@ -1,6 +1,6 @@
 # Python Editor Features
 
-The Autonomy Edge IDE provides a rich editing experience for Python function blocks. You get syntax highlighting, type checking, autocompletion, hover documentation, and code snippets — all running directly in your browser.
+The Autonomy Edge IDE provides a rich editing experience for Python function blocks. You get syntax highlighting, type checking, autocompletion, hover documentation, and code snippets. All running directly in your browser.
 
 ## Editor Overview
 
@@ -25,7 +25,7 @@ The Python syntax highlighter provides color-coded highlighting for:
 - **Comments**: Lines starting with `#`
 - **Decorators**: Lines starting with `@`
 
-Syntax highlighting activates immediately as you type — no delay or configuration required.
+Syntax highlighting activates immediately as you type. No delay or configuration required.
 
 ## Type Checking and Diagnostics
 
@@ -49,7 +49,7 @@ When you hover your mouse over a variable, function, or module name, the editor 
 - The function signature (for functions and methods)
 - The docstring (for standard library functions and classes)
 
-This is especially handy for standard library modules — hover over a function like `math.sin` or `json.loads` and you'll see its signature and docstring without leaving the editor.
+This is especially handy for standard library modules. Hover over a function like `math.sin` or `json.loads` and you'll see its signature and docstring without leaving the editor.
 
 ## Autocompletion
 

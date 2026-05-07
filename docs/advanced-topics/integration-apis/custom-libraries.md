@@ -46,10 +46,10 @@ Start by deciding what the library contains and how it's organized. Group relate
 
 Create each Function Block and Function in a dedicated test project. Follow the design guidelines from [Code Reusability](../best-practices/code-reusability):
 
-1. **Define clear interfaces** — Use `VAR_INPUT` for parameters, `VAR_OUTPUT` for status, `VAR` for internal state
-2. **Avoid global variables** — The POU should be self-contained
-3. **Use appropriate data types** — Match parameter types to their purpose
-4. **Document the interface** — Add comments describing each input and output
+1. **Define clear interfaces**: Use `VAR_INPUT` for parameters, `VAR_OUTPUT` for status, `VAR` for internal state
+2. **Avoid global variables**: The POU should be self-contained
+3. **Use appropriate data types**: Match parameter types to their purpose
+4. **Document the interface**: Add comments describing each input and output
 
 ```iecst
 (* ============================================
@@ -117,7 +117,7 @@ Create a dedicated Autonomy Edge project for each library:
 
 1. **Name the project** clearly: `Lib_MotorControl`, `Lib_ProcessControl`, `Lib_Utilities`
 2. **Add all library POUs** to the project
-3. **Create a test Program** that exercises all the library's POUs — this serves as both a test and a usage example
+3. **Create a test Program** that exercises all the library's POUs. This serves as both a test and a usage example
 4. **Document each POU** with header comments including purpose, inputs, outputs, and example usage
 
 ### Step 5: Share and Reuse
@@ -227,20 +227,20 @@ Here are typical libraries that automation engineers build over time:
 
 ### Compilation Errors After Adding Library POUs
 
-- **Duplicate names** — Make sure no library POU has the same name as an existing POU in the target project
-- **Missing dependencies** — If a library FB uses another library FB internally, both must be present in the target project
-- **Type conflicts** — Verify that custom data types used by the library are also defined in the target project
+- **Duplicate names**: Make sure no library POU has the same name as an existing POU in the target project
+- **Missing dependencies**: If a library FB uses another library FB internally, both must be present in the target project
+- **Type conflicts**: Verify that custom data types used by the library are also defined in the target project
 
 ### Instance Behavior Differences
 
 If a library block works in the test project but not in the target:
 
-- **Check the task period** — Timing-dependent blocks (with timers) behave differently at different scan rates
-- **Check input wiring** — Verify all required inputs are connected
-- **Check initial values** — Some blocks require specific initialization
+- **Check the task period**: Timing-dependent blocks (with timers) behave differently at different scan rates
+- **Check input wiring**: Verify all required inputs are connected
+- **Check initial values**: Some blocks require specific initialization
 
 ## What's Next?
 
-- [Code Reusability](../best-practices/code-reusability) — Design principles for reusable Function Blocks
-- [Standard Function Blocks Reference](../../reference/function-blocks) — Quick reference for built-in blocks
-- [Project Organization](../best-practices/project-organization) — Structure projects for maintainability
+- [Code Reusability](../best-practices/code-reusability): Design principles for reusable Function Blocks
+- [Standard Function Blocks Reference](../../reference/function-blocks): Quick reference for built-in blocks
+- [Project Organization](../best-practices/project-organization): Structure projects for maintainability

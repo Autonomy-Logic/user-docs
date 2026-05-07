@@ -45,18 +45,18 @@ Your session lasts until you log out or close the browser tab. The next time you
 
 Once connected, the IDE shows the connection status in the Orchestrators panel:
 
-- **Connected** — You have an active connection. All controls (compile, start, stop) are available.
-- **Disconnected** — No active connection. You can still compile to validate your code, but uploading and runtime controls are unavailable.
+- **Connected**: You have an active connection. All controls (compile, start, stop) are available.
+- **Disconnected**: No active connection. You can still compile to validate your code, but uploading and runtime controls are unavailable.
 
 ## What You Can Do When Connected
 
 With an active connection, you can:
 
-- **Compile and deploy** — Click Compile to build your project and upload it to the device.
-- **Start the PLC** — Click the Start/Stop button to begin running your program.
-- **Stop the PLC** — Click the Start/Stop button again to halt execution.
-- **View PLC Logs** — The PLC Logs tab appears in the Console Panel, showing live output from the running program.
-- **Monitor execution stats** — The Orchestrators panel shows scan cycle statistics for a running PLC.
+- **Compile and deploy**: Click Compile to build your project and upload it to the device.
+- **Start the PLC**: Click the Start/Stop button to begin running your program.
+- **Stop the PLC**: Click the Start/Stop button again to halt execution.
+- **View PLC Logs**: The PLC Logs tab appears in the Console Panel, showing live output from the running program.
+- **Monitor execution stats**: The Orchestrators panel shows scan cycle statistics for a running PLC.
 
 ## Runtime Status Polling
 
@@ -66,13 +66,13 @@ While connected, the IDE automatically checks the device in the background for:
 - Runtime log output
 - Task execution timing data
 
-You don't need to manually refresh — updates appear automatically.
+You don't need to manually refresh. Updates appear automatically.
 
 ## Disconnecting
 
 To disconnect, click the **Logout** button in the Orchestrators panel.
 
-**Important:** Disconnecting does not stop the PLC program. The device operates independently — once a program is started, it keeps running even if you close your browser. To stop it, click Stop before disconnecting, or reconnect later.
+**Important:** Disconnecting does not stop the PLC program. The device operates independently. Once a program is started, it keeps running even if you close your browser. To stop it, click Stop before disconnecting, or reconnect later.
 
 ## Troubleshooting
 
@@ -105,6 +105,6 @@ To disconnect, click the **Logout** button in the Orchestrators panel.
 
 ## What's Next?
 
-- [Project Compilation](building-deploying/project-compilation) — Learn how to compile your project and fix errors.
-- [Deployment](building-deploying/deployment-vplc) — Deploy and manage your running program.
-- [Console & Debugging](workspace-overview/console-debugging) — Read and filter build logs.
+- [Project Compilation](building-deploying/project-compilation): Learn how to compile your project and fix errors.
+- [Deployment](building-deploying/deployment-vplc): Deploy and manage your running program.
+- [Console & Debugging](workspace-overview/console-debugging): Read and filter build logs.

@@ -6,9 +6,9 @@ The Task Editor is the primary interface for creating, configuring, and managing
 
 To access the Task Editor, open the **Resource** node in the Project Explorer tree. The Resource Editor opens as a tab and is divided into three sections, top to bottom:
 
-1. **Global Variables** — Variables accessible across all POUs.
-2. **Tasks** — The Task Editor, covered on this page.
-3. **Instances** — The Instances Editor, where you assign programs to tasks.
+1. **Global Variables**: Variables accessible across all POUs.
+2. **Tasks**: The Task Editor, covered on this page.
+3. **Instances**: The Instances Editor, where you assign programs to tasks.
 
 ## Task Editor Layout
 
@@ -29,11 +29,11 @@ The table view is the default and most intuitive way to manage tasks. It display
 | **Interval** | The execution period (for Cyclic tasks) or event source (for Interrupt tasks). | `T#20ms` |
 | **Priority** | Numeric priority from 0 (highest) to 100 (lowest). | `0` |
 
-Each cell is editable — click on any cell to modify its value directly. The Name and Priority columns accept free text input, while Triggering provides a dropdown selector.
+Each cell is editable. Click on any cell to modify its value directly. The Name and Priority columns accept free text input, while Triggering provides a dropdown selector.
 
 ### Code View
 
-Click the code icon (to the right of the table icon) to switch to a text-based editor. The code view uses a Monaco editor and displays the complete resource configuration — both tasks and instances — in a textual format:
+Click the code icon (to the right of the table icon) to switch to a text-based editor. The code view uses a Monaco editor and displays the complete resource configuration. Both tasks and instances. In a textual format:
 
 ```
 TASK Task0(INTERVAL := T#20ms, PRIORITY := 0);
@@ -81,8 +81,8 @@ Click the Name cell and type a new name. Task names must be valid IEC 61131-3 id
 
 Click the Triggering cell to open a dropdown with two options:
 
-- **Cyclic** — The task runs repeatedly at the interval specified.
-- **Interrupt** — The task runs in response to an external event.
+- **Cyclic**: The task runs repeatedly at the interval specified.
+- **Interrupt**: The task runs in response to an external event.
 
 For most applications, use Cyclic. See [Understanding Tasks](understanding-tasks) for a detailed explanation of both modes.
 
@@ -91,9 +91,9 @@ For most applications, use Cyclic. See [Understanding Tasks](understanding-tasks
 Click the Interval cell and type a time literal:
 
 ```
-T#20ms     (* 20 milliseconds — standard for discrete control *)
-T#100ms    (* 100 milliseconds — process control *)
-T#1s       (* 1 second — slow monitoring *)
+T#20ms     (* 20 milliseconds. Standard for discrete control *)
+T#100ms    (* 100 milliseconds. Process control *)
+T#1s       (* 1 second. Slow monitoring *)
 ```
 
 The interval field accepts any valid IEC 61131-3 TIME literal. See the [interval format table](understanding-tasks#interval-format) for the full syntax.
@@ -105,11 +105,11 @@ Click the Priority cell and enter a number between 0 and 100:
 - **0** = highest priority
 - **100** = lowest priority
 
-For single-task projects, priority doesn't matter — just use `0`.
+For single-task projects, priority doesn't matter. Just use `0`.
 
 ## Reordering Tasks
 
-Use the **up arrow** and **down arrow** buttons in the header to move the selected task row up or down. Task order can matter when multiple tasks share the same interval — the runtime processes them in the order defined.
+Use the **up arrow** and **down arrow** buttons in the header to move the selected task row up or down. Task order can matter when multiple tasks share the same interval. The runtime processes them in the order defined.
 
 To reorder:
 
@@ -127,7 +127,7 @@ To reorder:
 
 ## Undo and Redo
 
-Every action in the Task Editor — creating, editing, deleting, reordering — is tracked in the project's undo history:
+Every action in the Task Editor. Creating, editing, deleting, reordering. Is tracked in the project's undo history:
 
 | Action | Shortcut |
 |--------|----------|

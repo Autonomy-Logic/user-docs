@@ -25,9 +25,9 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** Authentication expired, network issue, or rate limiting.
 
 **Fix:**
-1. **Check your token** — If you get `401 Unauthorized`, your access token has expired. Refresh it using the `/auth/refresh` endpoint
-2. **Check rate limits** — If you get `429 Too Many Requests`, wait and retry
-3. **Check connectivity** — Verify you can reach `https://edge.autonomylogic.com` from your machine
+1. **Check your token**: If you get `401 Unauthorized`, your access token has expired. Refresh it using the `/auth/refresh` endpoint
+2. **Check rate limits**: If you get `429 Too Many Requests`, wait and retry
+3. **Check connectivity**: Verify you can reach `https://edge.autonomylogic.com` from your machine
 
 ## Orchestrator Connection Issues
 
@@ -38,7 +38,7 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** The orchestrator service isn't running, or the edge device can't reach the cloud.
 
 **Fix:**
-1. **Verify the orchestrator is running** on your edge device — check the service status
+1. **Verify the orchestrator is running** on your edge device. Check the service status
 2. **Check internet connectivity** from the edge device:
    ```bash
    ping edge.autonomylogic.com
@@ -47,7 +47,7 @@ Autonomy Edge relies on network connectivity between several components: the web
    ```bash
    nslookup edge.autonomylogic.com
    ```
-4. **Check firewall rules** — Outbound HTTPS (port 443) must be open
+4. **Check firewall rules**: Outbound HTTPS (port 443) must be open
 5. **Restart the orchestrator** if the above checks pass
 
 ---
@@ -61,7 +61,7 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Fix:**
 1. Check that the orchestrator credentials are valid
 2. Check for network instability (high latency, packet loss)
-3. The orchestrator automatically reconnects with backoff — if reconnection attempts continue, the issue is likely authentication rather than network
+3. The orchestrator automatically reconnects with backoff. If reconnection attempts continue, the issue is likely authentication rather than network
 
 ## Device Issues
 
@@ -72,8 +72,8 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** The orchestrator is offline, or the edge device lacks resources.
 
 **Fix:**
-1. **Check the orchestrator is online** — The start command goes through the orchestrator
-2. **Check available resources** on the edge device — verify disk space and memory aren't exhausted:
+1. **Check the orchestrator is online**: The start command goes through the orchestrator
+2. **Check available resources** on the edge device. Verify disk space and memory aren't exhausted:
    ```bash
    df -h
    free -h
@@ -89,7 +89,7 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** The runtime is being downloaded (slow network), or there's a resource conflict.
 
 **Fix:**
-1. **Wait** — On slow connections, initial setup can take several minutes
+1. **Wait**: On slow connections, initial setup can take several minutes
 2. **Check the orchestrator status** in the dashboard for error details
 3. If it's stuck for more than 10 minutes, try deleting the device and creating a new one
 
@@ -123,9 +123,9 @@ Autonomy Edge relies on network connectivity between several components: the web
 | Register Type | Read Function | Write Function | IEC Address |
 |---------------|---------------|----------------|-------------|
 | Coils (discrete outputs) | FC01 | FC05/FC15 | `%QX` |
-| Discrete Inputs | FC02 | — (read-only) | `%IX` |
+| Discrete Inputs | FC02 |. (read-only) | `%IX` |
 | Holding Registers | FC03 | FC06/FC16 | `%QW` / `%MW` |
-| Input Registers | FC04 | — (read-only) | `%IW` |
+| Input Registers | FC04 |. (read-only) | `%IW` |
 
 ---
 
@@ -136,10 +136,10 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** Byte order mismatch, register offset, or data type mapping issue.
 
 **Fix:**
-- **Byte order** — Some devices use big-endian, others little-endian. Swapped bytes produce garbled values for 16-bit and 32-bit registers
-- **Register offset** — Some devices use 0-based addressing, others 1-based. A register documented as "40001" might be address 0 or 1 depending on the convention
-- **Data type** — A 32-bit float spans two consecutive Modbus registers. Make sure your mapping accounts for this
-- **Poll rate** — If the Modbus poll interval is slower than your scan cycle, values may appear stale
+- **Byte order**: Some devices use big-endian, others little-endian. Swapped bytes produce garbled values for 16-bit and 32-bit registers
+- **Register offset**: Some devices use 0-based addressing, others 1-based. A register documented as "40001" might be address 0 or 1 depending on the convention
+- **Data type**: A 32-bit float spans two consecutive Modbus registers. Make sure your mapping accounts for this
+- **Poll rate**: If the Modbus poll interval is slower than your scan cycle, values may appear stale
 
 ---
 
@@ -151,7 +151,7 @@ Autonomy Edge relies on network connectivity between several components: the web
 
 **Fix:**
 1. Verify the Modbus server plugin is enabled in the runtime configuration
-2. Check the listening port — default is 502, but it may be configured differently
+2. Check the listening port. Default is 502, but it may be configured differently
 3. Make sure the external client can reach the device's IP address and port
 
 ## OPC-UA Communication Issues
@@ -163,10 +163,10 @@ Autonomy Edge relies on network connectivity between several components: the web
 **Cause:** Wrong endpoint, security mismatch, or firewall blocking the port.
 
 **Fix:**
-- **Endpoint URL** — Verify the OPC-UA server endpoint (e.g., `opc.tcp://192.168.1.100:4840`)
-- **Security policy** — Make sure the security settings match the server's requirements
-- **Certificates** — OPC-UA may require certificate exchange between client and server
-- **Firewall** — OPC-UA typically uses port 4840 but can be configured differently
+- **Endpoint URL**: Verify the OPC-UA server endpoint (e.g., `opc.tcp://192.168.1.100:4840`)
+- **Security policy**: Make sure the security settings match the server's requirements
+- **Certificates**: OPC-UA may require certificate exchange between client and server
+- **Firewall**: OPC-UA typically uses port 4840 but can be configured differently
 
 ## General Network Diagnostics
 
@@ -197,6 +197,6 @@ Make sure these ports are open on your edge hardware:
 
 ## What's Next?
 
-- [Compilation Errors](compilation-errors) — Fix code issues before deployment
-- [Runtime Debugging](runtime-debugging) — Debug your running program
-- [Edge Functions](../integration-apis/edge-functions) — Understand the Autonomy Edge REST API
+- [Compilation Errors](compilation-errors): Fix code issues before deployment
+- [Runtime Debugging](runtime-debugging): Debug your running program
+- [Edge Functions](../integration-apis/edge-functions): Understand the Autonomy Edge REST API

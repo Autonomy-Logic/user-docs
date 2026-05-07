@@ -2,7 +2,7 @@
 
 All reserved keywords in the IEC 61131-3 standard are listed here. These words have special meaning in PLC programming languages and you can't use them as variable names, POU names, or identifiers.
 
-> **Tip:** Keywords are case-insensitive in IEC 61131-3 — `IF`, `If`, and `if` are all treated the same.
+> **Tip:** Keywords are case-insensitive in IEC 61131-3. `IF`, `If`, and `if` are all treated the same.
 
 ## Data Type Keywords
 
@@ -55,10 +55,10 @@ These keywords define variable blocks within POUs.
 | `VAR_GLOBAL` | `END_VAR` | Global variable declarations |
 | `VAR_TEMP` | `END_VAR` | Temporary variables (not retained between calls) |
 | `VAR_ACCESS` | `END_VAR` | Access path declarations for communication |
-| `CONSTANT` | — | Modifier: variable value cannot change after initialization |
-| `RETAIN` | — | Modifier: variable value survives power cycles |
-| `NON_RETAIN` | — | Modifier: variable resets on power cycle |
-| `AT` | — | Binds a variable to a located address (e.g., `AT %IX0.0`) |
+| `CONSTANT` |. | Modifier: variable value cannot change after initialization |
+| `RETAIN` |. | Modifier: variable value survives power cycles |
+| `NON_RETAIN` |. | Modifier: variable resets on power cycle |
+| `AT` |. | Binds a variable to a located address (e.g., `AT %IX0.0`) |
 
 ## POU Declaration Keywords
 
@@ -78,9 +78,9 @@ These keywords define the runtime configuration structure.
 |---------|---------|-------------|
 | `CONFIGURATION` | `END_CONFIGURATION` | Top-level configuration declaration |
 | `RESOURCE` | `END_RESOURCE` | Processing resource within a configuration |
-| `TASK` | — | Task definition (specifies execution interval) |
-| `WITH` | — | Associates a Program with a Task |
-| `ON` | — | Specifies the resource for a task definition |
+| `TASK` |. | Task definition (specifies execution interval) |
+| `WITH` |. | Associates a Program with a Task |
+| `ON` |. | Specifies the resource for a task definition |
 
 ## Structured Text Control Flow Keywords
 
@@ -152,8 +152,8 @@ These keywords define the runtime configuration structure.
 |---------|---------|-------------|
 | `TYPE` | `END_TYPE` | Begins a user-defined type declaration |
 | `STRUCT` | `END_STRUCT` | Declares a structured (record) type |
-| `ARRAY` | — | Declares an array type |
-| `OF` | — | Specifies the element type of an array |
+| `ARRAY` |. | Declares an array type |
+| `OF` |. | Specifies the element type of an array |
 
 ## Standard Function Keywords
 
@@ -180,10 +180,10 @@ These are built-in functions available in all IEC 61131-3 implementations.
 
 | Keyword | Description |
 |---------|-------------|
-| `SEL` | Binary selection: SEL(G, IN0, IN1) — returns IN0 if G=FALSE, IN1 if G=TRUE |
+| `SEL` | Binary selection: SEL(G, IN0, IN1). Returns IN0 if G=FALSE, IN1 if G=TRUE |
 | `MAX` | Maximum of inputs |
 | `MIN` | Minimum of inputs |
-| `LIMIT` | Clamp value: LIMIT(MN, IN, MX) — returns IN clamped to [MN, MX] |
+| `LIMIT` | Clamp value: LIMIT(MN, IN, MX). Returns IN clamped to [MN, MX] |
 | `MUX` | Multiplexer: selects one of N inputs based on index |
 
 ### Comparison Functions
@@ -228,6 +228,6 @@ These prefixes are used in located variable addresses and are reserved:
 
 ## What's Next?
 
-- [Data Types Reference](data-types) — Detailed data type specifications
-- [Standard Function Blocks Reference](function-blocks) — Quick reference for all standard FBs
-- [Glossary](glossary) — Definitions of key terms
+- [Data Types Reference](data-types): Detailed data type specifications
+- [Standard Function Blocks Reference](function-blocks): Quick reference for all standard FBs
+- [Glossary](glossary): Definitions of key terms

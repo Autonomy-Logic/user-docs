@@ -1,12 +1,12 @@
 # Enumerated Data Types
 
-An enumeration defines a data type whose variable can hold exactly one value from a fixed set of named options. Instead of using raw integers to represent states (where `0` means idle, `1` means running, and `2` means faulted — and you have to remember which is which), you define an enumerated type with descriptive names like `IDLE`, `RUNNING`, and `FAULTED`. The result is code that reads like plain language and catches mistakes at design time rather than at runtime.
+An enumeration defines a data type whose variable can hold exactly one value from a fixed set of named options. Instead of using raw integers to represent states (where `0` means idle, `1` means running, and `2` means faulted. And you have to remember which is which), you define an enumerated type with descriptive names like `IDLE`, `RUNNING`, and `FAULTED`. The result is code that reads like plain language and catches mistakes at design time rather than at runtime.
 
 Enumerations are one of the most effective tools for writing clear, maintainable PLC programs.
 
 ## When to Use Enumerations
 
-Enumerations are the right choice whenever a variable represents a **mode**, **state**, **category**, or **option** — anything that should be one of a limited, known set of possibilities.
+Enumerations are the right choice whenever a variable represents a **mode**, **state**, **category**, or **option**: anything that should be one of a limited, known set of possibilities.
 
 Common industrial examples:
 
@@ -205,13 +205,13 @@ controller(commandIn := currentMode);
 
 The order of values in an enumeration can matter when the runtime maps them to underlying integer representations. The first value typically corresponds to 0, the second to 1, and so on. If your program logic depends on comparing enumerations with `<` or `>` operators (which compare the underlying ordinal positions), the order in the values table is significant.
 
-Use the **up/down arrow** buttons in the editor to arrange values in the order that makes logical sense for your application — typically from the "least active" or "default" state to the "most active" or "exceptional" state.
+Use the **up/down arrow** buttons in the editor to arrange values in the order that makes logical sense for your application. Typically from the "least active" or "default" state to the "most active" or "exceptional" state.
 
 ## Tips for Working with Enumerations
 
 > **Tip:** Always set a meaningful initial value. Choose the safest default state. For a machine, that's usually IDLE or STOPPED. For an alarm level, it's NONE.
 
-> **Tip:** Prefer enumerations over integers. Replacing `IF state = 3` with `IF state = FAULTED` eliminates an entire category of bugs — the "magic number" problem.
+> **Tip:** Prefer enumerations over integers. Replacing `IF state = 3` with `IF state = FAULTED` eliminates an entire category of bugs. The "magic number" problem.
 
 - **Use enumerations for state machines.** The CASE statement combined with an enumeration variable is the standard PLC pattern for implementing state machines in Structured Text.
 - **Keep value sets small and stable.** An enumeration with 30+ values may indicate that a different data modeling approach (perhaps a structure or a lookup table) would be more appropriate.

@@ -1,5 +1,5 @@
 {
-  "comment": "TON timer — startup delay",
+  "comment": "TON timer: startup delay",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "start_cmd" },

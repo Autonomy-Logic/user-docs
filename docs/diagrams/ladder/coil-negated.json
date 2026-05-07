@@ -1,5 +1,5 @@
 {
-  "comment": "Negated coil — inverted status",
+  "comment": "Negated coil: inverted status",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "system_fault" },

@@ -1,5 +1,5 @@
 {
-  "comment": "Rising edge coil — one-shot pulse",
+  "comment": "Rising edge coil: one-shot pulse",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "process_complete" },

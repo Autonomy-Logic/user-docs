@@ -8,7 +8,7 @@ To use any of these blocks, declare a variable of the block's type in the **Vari
 
 Timers introduce time-based behavior into your PLC programs. All timers share the same interface pattern: a boolean input `IN`, a time preset `PT`, a boolean output `Q`, and an elapsed time output `ET`.
 
-### TON — On-Delay Timer
+### TON: On-Delay Timer
 
 Delays activation: `Q` goes TRUE only after `IN` has been TRUE for the duration `PT`.
 
@@ -26,7 +26,7 @@ StartDelay(IN := iStartBtn, PT := T#3s);
 oMotor := StartDelay.Q;
 ```
 
-### TOF — Off-Delay Timer
+### TOF: Off-Delay Timer
 
 Extends deactivation: `Q` stays TRUE for duration `PT` after `IN` goes FALSE.
 
@@ -44,7 +44,7 @@ FanDelay(IN := iMotorRunning, PT := T#30s);
 oFan := FanDelay.Q;
 ```
 
-### TP — Pulse Timer
+### TP: Pulse Timer
 
 Generates a fixed-duration pulse: `Q` is TRUE for exactly `PT` starting on the rising edge of `IN`.
 
@@ -55,7 +55,7 @@ Generates a fixed-duration pulse: `Q` is TRUE for exactly `PT` starting on the r
 | Output | `Q` | `BOOL` | TRUE for exactly `PT` duration |
 | Output | `ET` | `TIME` | Elapsed time since pulse started |
 
-**Behavior:** On rising edge of `IN`, `Q` goes TRUE for exactly `PT`. Not retriggerable — a new pulse only starts after the current one ends.
+**Behavior:** On rising edge of `IN`, `Q` goes TRUE for exactly `PT`. Not retriggerable. A new pulse only starts after the current one ends.
 
 ```iecst
 AlarmPulse(IN := iFaultDetected, PT := T#5s);
@@ -68,7 +68,7 @@ oAlarmHorn := AlarmPulse.Q;
 
 Counters track discrete events. They count pulses on their input and compare the count to a preset value.
 
-### CTU — Count Up
+### CTU: Count Up
 
 Counts rising edges on `CU`. Output `Q` goes TRUE when count value `CV` reaches preset `PV`.
 
@@ -86,7 +86,7 @@ oBatchComplete := PartCounter.Q;
 lPartsCount := PartCounter.CV;
 ```
 
-### CTD — Count Down
+### CTD: Count Down
 
 Counts down from a loaded value. Output `Q` goes TRUE when `CV` reaches zero.
 
@@ -104,7 +104,7 @@ oRefillNeeded := Remaining.Q;
 lItemsLeft := Remaining.CV;
 ```
 
-### CTUD — Count Up/Down
+### CTUD: Count Up/Down
 
 Bidirectional counter that counts both up and down.
 
@@ -133,7 +133,7 @@ lStockLevel := Inventory.CV;
 
 Bistable blocks implement set/reset (latch) behavior. They maintain their output state until explicitly changed.
 
-### SR — Set-Dominant Bistable
+### SR: Set-Dominant Bistable
 
 Set input takes priority. If both `S1` and `R` are TRUE simultaneously, output `Q1` is TRUE.
 
@@ -150,7 +150,7 @@ AlarmLatch(S1 := iFaultDetected, R := iAcknowledgeBtn);
 oAlarmLight := AlarmLatch.Q1;
 ```
 
-### RS — Reset-Dominant Bistable
+### RS: Reset-Dominant Bistable
 
 Reset input takes priority. If both `S` and `R1` are TRUE simultaneously, output `Q1` is FALSE.
 
@@ -167,7 +167,7 @@ MotorLatch(S := iStartBtn, R1 := iStopBtn OR iEStop);
 oMotorCmd := MotorLatch.Q1;
 ```
 
-**SR vs. RS — When to Use Which:**
+**SR vs. RS. When to Use Which:**
 
 | Scenario | Use | Reason |
 |----------|-----|--------|
@@ -181,7 +181,7 @@ oMotorCmd := MotorLatch.Q1;
 
 Edge detectors produce a single-scan TRUE pulse when they detect a signal transition.
 
-### R_TRIG — Rising Edge Detector
+### R_TRIG: Rising Edge Detector
 
 Outputs a one-scan pulse when the input transitions from FALSE to TRUE.
 
@@ -197,7 +197,7 @@ IF ButtonEdge.Q THEN
 END_IF;
 ```
 
-### F_TRIG — Falling Edge Detector
+### F_TRIG: Falling Edge Detector
 
 Outputs a one-scan pulse when the input transitions from TRUE to FALSE.
 
@@ -245,11 +245,11 @@ You can declare multiple instances of the same type. Each instance maintains its
 ```iecst
 Timer1(IN := condition1, PT := T#5s);
 Timer2(IN := condition2, PT := T#10s);
-(* Timer1 and Timer2 are independent — different inputs, different timing *)
+(* Timer1 and Timer2 are independent. Different inputs, different timing *)
 ```
 
 ## What's Next?
 
-- [Timer Function Blocks](../openplc-editor/standard-function-blocks/timer-blocks) — Detailed timer documentation with timing diagrams
-- [Counter Function Blocks](../openplc-editor/standard-function-blocks/counter-blocks) — Detailed counter documentation
-- [Data Types Reference](data-types) — Data types used by function block parameters
+- [Timer Function Blocks](../openplc-editor/standard-function-blocks/timer-blocks): Detailed timer documentation with timing diagrams
+- [Counter Function Blocks](../openplc-editor/standard-function-blocks/counter-blocks): Detailed counter documentation
+- [Data Types Reference](data-types): Data types used by function block parameters

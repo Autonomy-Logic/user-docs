@@ -1,6 +1,6 @@
 # IL Language Basics
 
-Instruction List (IL) is a low-level text-based programming language defined in the IEC 61131-3 standard. It works like assembly language for PLCs — each line contains a single instruction that operates on an **accumulator** register. IL is the most compact IEC language but also the least readable, making it best suited for simple programs or legacy migration.
+Instruction List (IL) is a low-level text-based programming language defined in the IEC 61131-3 standard. It works like assembly language for PLCs. Each line contains a single instruction that operates on an **accumulator** register. IL is the most compact IEC language but also the least readable, making it best suited for simple programs or legacy migration.
 
 > **Note:** IL was deprecated in the IEC 61131-3 third edition (2013) in favor of Structured Text. The Autonomy Edge IDE supports IL for backward compatibility, but for new projects, Structured Text is recommended.
 
@@ -22,10 +22,10 @@ Each IL instruction occupies one line:
 [label:]  operator  [operand]  [comment]
 ```
 
-- **Label** (optional) — A name followed by a colon. Used as a jump target.
-- **Operator** — The instruction mnemonic (e.g., `LD`, `AND`, `ST`).
-- **Operand** (optional) — The variable or literal the instruction operates on.
-- **Comment** (optional) — Text inside `(* ... *)`.
+- **Label** (optional): A name followed by a colon. Used as a jump target.
+- **Operator**: The instruction mnemonic (e.g., `LD`, `AND`, `ST`).
+- **Operand** (optional): The variable or literal the instruction operates on.
+- **Comment** (optional): Text inside `(* ... *)`.
 
 Examples:
 
@@ -62,7 +62,7 @@ Examples:
 | `XORN` | Logical exclusive OR NOT | `XORN parity_bit` |
 | `NOT` | Negate the accumulator (no operand) | `NOT` |
 
-The `N` suffix on AND, OR, and XOR means "negate the operand before the operation" — equivalent to operating with NOT(operand).
+The `N` suffix on AND, OR, and XOR means "negate the operand before the operation". Equivalent to operating with NOT(operand).
 
 ### Arithmetic
 
@@ -111,7 +111,7 @@ A complete IL program follows this pattern:
         ST      output_1
 ```
 
-There are no explicit variable declarations in the IL code body — all variables are defined in the Variables Table above the editor.
+There are no explicit variable declarations in the IL code body. All variables are defined in the Variables Table above the editor.
 
 ## Labels and Jumps
 
@@ -166,10 +166,10 @@ This evaluates as: `output := x OR (y AND (z OR w))`. Breaking complex expressio
 
 The Autonomy Edge IDE provides a code editor for IL with:
 
-- **Syntax highlighting** — Keywords (`LD`, `AND`, `OR`, `ST`, etc.) are highlighted in a distinct color. Labels, operands, and comments each have their own color.
-- **Label recognition** — Labels (text followed by `:`) are highlighted differently for easy identification.
-- **Block comments** — The editor supports `(* ... *)` comment blocks.
-- **Case insensitivity** — IL keywords can be uppercase or lowercase; the editor recognizes both.
+- **Syntax highlighting**: Keywords (`LD`, `AND`, `OR`, `ST`, etc.) are highlighted in a distinct color. Labels, operands, and comments each have their own color.
+- **Label recognition**: Labels (text followed by `:`) are highlighted differently for easy identification.
+- **Block comments**: The editor supports `(* ... *)` comment blocks.
+- **Case insensitivity**: IL keywords can be uppercase or lowercase; the editor recognizes both.
 
 Unlike ST, the IL editor does not currently provide IntelliSense autocomplete for variable names. You'll need to reference the Variables Table manually when writing IL code.
 

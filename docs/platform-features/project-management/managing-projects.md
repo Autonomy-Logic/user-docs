@@ -1,6 +1,6 @@
 # Managing Projects
 
-Beyond creating and editing, Autonomy Edge gives you tools to manage your projects day to day — pinning favorites, downloading backups, forking copies, and handling deletion through a soft-delete trash system.
+Beyond creating and editing, Autonomy Edge gives you tools to manage your projects day to day. Pinning favorites, downloading backups, forking copies, and handling deletion through a soft-delete trash system.
 
 ---
 
@@ -16,7 +16,7 @@ Pinning marks important projects so they're always easy to find.
 
 ### Viewing Pinned Projects
 
-In the Projects page sidebar, click **Pinned** to see only your pinned projects. If you have none, the empty state reads: *"No pinned projects — Pin your favorite projects to see them here."*
+In the Projects page sidebar, click **Pinned** to see only your pinned projects. If you have none, the empty state reads: *"No pinned projects. Pin your favorite projects to see them here."*
 
 ---
 
@@ -28,7 +28,7 @@ The **Recent** view (the default on the Projects page) shows your projects sorte
 
 ## Downloading a Project
 
-You can download any project you own as a `.zip` archive — useful for backups, sharing, or importing into another account.
+You can download any project you own as a `.zip` archive. Useful for backups, sharing, or importing into another account.
 
 **Card view:** Click the **download icon** (↓) in the card's action bar.
 
@@ -97,9 +97,9 @@ Click the red **Empty trash** button to permanently delete all trashed items at 
 
 Folders follow the same trash pattern as projects:
 
-- **Move to trash** — From the sidebar, use the three-dot menu on a folder and select **Delete**.
-- **Restore** — Bring it back with all its contents.
-- **Delete permanently** — Removes the folder and everything inside it forever.
+- **Move to trash**: From the sidebar, use the three-dot menu on a folder and select **Delete**.
+- **Restore**: Bring it back with all its contents.
+- **Delete permanently**: Removes the folder and everything inside it forever.
 
 ---
 

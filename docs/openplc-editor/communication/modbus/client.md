@@ -1,6 +1,6 @@
 # Modbus Client Configuration
 
-When configured as a Modbus client (master), Autonomy Edge initiates connections to external Modbus servers and polls data on a configurable schedule. This lets your PLC program read sensor values, monitor remote I/O modules, control variable frequency drives, and exchange data with other PLCs — all from a centralized project.
+When configured as a Modbus client (master), Autonomy Edge initiates connections to external Modbus servers and polls data on a configurable schedule. This lets your PLC program read sensor values, monitor remote I/O modules, control variable frequency drives, and exchange data with other PLCs. All from a centralized project.
 
 ## Adding a Remote Device
 
@@ -181,7 +181,7 @@ Each device is polled independently according to its own cycle time.
 
 ## Configuration Export
 
-When you transfer a project to the runtime, the Modbus client configuration is exported as `modbus_master.json` inside the program package. This file contains all remote device definitions, IO Group mappings, and polling parameters. It is generated automatically by the editor — you do not need to edit it manually.
+When you transfer a project to the runtime, the Modbus client configuration is exported as `modbus_master.json` inside the program package. This file contains all remote device definitions, IO Group mappings, and polling parameters. It is generated automatically by the editor. You do not need to edit it manually.
 
 ## Troubleshooting
 
@@ -195,7 +195,7 @@ When you transfer a project to the runtime, the Modbus client configuration is e
 ### Incorrect or Zero Data Values
 
 1. Verify the function code matches what the remote device expects. Consult the device's Modbus register map documentation.
-2. Check the Modbus offset — some devices use 0-based addressing while others use 1-based. You may need to subtract 1 from the address in the device documentation.
+2. Check the Modbus offset. Some devices use 0-based addressing while others use 1-based. You may need to subtract 1 from the address in the device documentation.
 3. For 32-bit values spanning two registers, confirm the byte order. Autonomy Edge uses big-endian (high word first), which is the Modbus standard, but some devices use little-endian or mid-endian (word-swapped) byte order.
 4. Verify the error handling setting. If set to **Set to Zero**, values will read as zero whenever communication is interrupted.
 
@@ -203,11 +203,11 @@ When you transfer a project to the runtime, the Modbus client configuration is e
 
 1. Check the cycle time settings. Very short cycle times (under 50 ms) may not be achievable depending on network latency and the number of IO Groups.
 2. Reduce the number of IO Groups or combine small reads into larger blocks where the remote device supports it.
-3. Review the cycle time optimization section above — ensure your cycle times share a reasonable GCD.
+3. Review the cycle time optimization section above. Ensure your cycle times share a reasonable GCD.
 4. On serial (RTU) connections, polling is inherently slower than TCP. Account for serial transmission time and turnaround delays.
 
 ## What's Next?
 
-- **[Modbus Server Configuration](server)** — Expose your PLC data to external SCADA and HMI systems
-- **[Modbus Addressing](addressing)** — Detailed address mapping tables, formulas, and runtime version differences
-- **[Communication Protocols Overview](../README)** — Return to the protocols overview
+- **[Modbus Server Configuration](server)**: Expose your PLC data to external SCADA and HMI systems
+- **[Modbus Addressing](addressing)**: Detailed address mapping tables, formulas, and runtime version differences
+- **[Communication Protocols Overview](../README)**: Return to the protocols overview

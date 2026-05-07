@@ -16,8 +16,8 @@ You need:
 
 There are two ways to start:
 
-- **From the orchestrator's Devices tab** — Navigate to **Orchestrators**, click your orchestrator, switch to the **Devices** tab, and click **Add Device**. If this is your first device, you'll see a prominent **Add Device** button in the center.
-- **From the orchestrators list** — Expand an orchestrator row to see its devices, then click **Add Device**.
+- **From the orchestrator's Devices tab**: Navigate to **Orchestrators**, click your orchestrator, switch to the **Devices** tab, and click **Add Device**. If this is your first device, you'll see a prominent **Add Device** button in the center.
+- **From the orchestrators list**: Expand an orchestrator row to see its devices, then click **Add Device**.
 
 Both paths open the same **Add New Device** modal.
 
@@ -27,7 +27,7 @@ Both paths open the same **Add New Device** modal.
 
 ### Device Name
 
-Enter a descriptive name for your vPLC — for example, `Palletizer Machine`, `Lab Controller 1`, or `Demo vPLC`. The name must be unique within the orchestrator.
+Enter a descriptive name for your vPLC. For example, `Palletizer Machine`, `Lab Controller 1`, or `Demo vPLC`. The name must be unique within the orchestrator.
 
 ### Runtime Version
 
@@ -67,28 +67,28 @@ Select which physical network interface on the host this vNIC should use. The dr
 
 Each physical port can only be used by one vNIC per device.
 
-#### IP Address — DHCP or Static
+#### IP Address: DHCP or Static
 
 Choose how the vNIC gets its IP address:
 
-**DHCP (Automatic)** — Your network's DHCP server assigns an IP address automatically. This is the simplest option and works for most setups. No additional configuration needed.
+**DHCP (Automatic)**: Your network's DHCP server assigns an IP address automatically. This is the simplest option and works for most setups. No additional configuration needed.
 
-**Static IP** — You manually specify the network settings. Four additional fields appear:
+**Static IP**: You manually specify the network settings. Four additional fields appear:
 
-- **IP Address** — The fixed IP for this vNIC (e.g., `192.168.1.100`). Required.
-- **Subnet Mask** — The network subnet mask (e.g., `255.255.255.0`). Required.
-- **Gateway** — The default gateway for outbound traffic (e.g., `192.168.1.1`). Optional but recommended.
-- **DNS Server** — The DNS server address (e.g., `8.8.8.8`). Optional.
+- **IP Address**: The fixed IP for this vNIC (e.g., `192.168.1.100`). Required.
+- **Subnet Mask**: The network subnet mask (e.g., `255.255.255.0`). Required.
+- **Gateway**: The default gateway for outbound traffic (e.g., `192.168.1.1`). Optional but recommended.
+- **DNS Server**: The DNS server address (e.g., `8.8.8.8`). Optional.
 
-> **Tip:** Use **DHCP** if you're getting started or prototyping. Use **Static IP** when your vPLC needs a fixed address — for example, when other devices on the network need to connect to it at a known IP.
+> **Tip:** Use **DHCP** if you're getting started or prototyping. Use **Static IP** when your vPLC needs a fixed address. For example, when other devices on the network need to connect to it at a known IP.
 
-All IP fields are validated in real time — invalid formats are flagged immediately.
+All IP fields are validated in real time. Invalid formats are flagged immediately.
 
-#### MAC Address — Auto or Manual
+#### MAC Address: Auto or Manual
 
-**Automatic** (default) — A random MAC address is generated. Works for most cases.
+**Automatic** (default). A random MAC address is generated. Works for most cases.
 
-**Manual** — You specify a MAC address in `XX:XX:XX:XX:XX:XX` format. Use this when your network requires specific MACs (e.g., for MAC-based firewall rules, DHCP reservations, or license-locked devices).
+**Manual**: You specify a MAC address in `XX:XX:XX:XX:XX:XX` format. Use this when your network requires specific MACs (e.g., for MAC-based firewall rules, DHCP reservations, or license-locked devices).
 
 ---
 
@@ -100,9 +100,9 @@ The **Serial Ports** tab lets you pass through USB-to-serial adapters and other 
 
 The left panel shows three groups:
 
-- **Configured** — Serial devices already added to this vPLC.
-- **Available Devices** — Serial devices detected on the host that are not in use. Click a device or its **+** button to add it.
-- **In Use by Other Devices** — Serial devices assigned to other vPLCs on this orchestrator. These are grayed out (a serial device can only be assigned to one vPLC at a time).
+- **Configured**: Serial devices already added to this vPLC.
+- **Available Devices**: Serial devices detected on the host that are not in use. Click a device or its **+** button to add it.
+- **In Use by Other Devices**: Serial devices assigned to other vPLCs on this orchestrator. These are grayed out (a serial device can only be assigned to one vPLC at a time).
 
 Click the **refresh** button (↻) to re-scan the host for newly connected devices.
 
@@ -110,9 +110,9 @@ Click the **refresh** button (↻) to re-scan the host for newly connected devic
 
 When you select a configured serial port:
 
-- **Port Name** — A friendly name (e.g., `serial0`, `rs485-sensor`). You can change this.
-- **Device ID** — The unique identifier of the physical serial device. Read-only. Used for automatic reconnection if the device is unplugged and reconnected.
-- **Device Path** — The path your PLC program will use to access the serial port (e.g., `/dev/ttyUSB0`). You can customize it.
+- **Port Name**: A friendly name (e.g., `serial0`, `rs485-sensor`). You can change this.
+- **Device ID**: The unique identifier of the physical serial device. Read-only. Used for automatic reconnection if the device is unplugged and reconnected.
+- **Device Path**: The path your PLC program will use to access the serial port (e.g., `/dev/ttyUSB0`). You can customize it.
 
 ---
 
@@ -132,9 +132,9 @@ If creation fails (e.g., the orchestrator is offline), an error message is shown
 
 Your vPLC is now running and ready to use. From here you can:
 
-- **View device details** — Click the device row to open the [device detail page](device-detail) with full information, network interfaces, and serial port status.
-- **Upload a program** — Open a project in the IDE, connect to the vPLC through the Device Orchestrators panel, and upload your PLC program.
-- **Manage the device** — Use the three-dot menu (⋮) to restart, rename, or delete the device.
+- **View device details**: Click the device row to open the [device detail page](device-detail) with full information, network interfaces, and serial port status.
+- **Upload a program**: Open a project in the IDE, connect to the vPLC through the Device Orchestrators panel, and upload your PLC program.
+- **Manage the device**: Use the three-dot menu (⋮) to restart, rename, or delete the device.
 
 ---
 
@@ -142,4 +142,4 @@ Your vPLC is now running and ready to use. From here you can:
 
 Explore the device detail page to see your vPLC's full configuration and real-time status:
 
-➡️ [Device Detail Page](device-detail) — Overview tab, network interfaces, serial port status, and all the information available for each device.
+➡️ [Device Detail Page](device-detail): Overview tab, network interfaces, serial port status, and all the information available for each device.

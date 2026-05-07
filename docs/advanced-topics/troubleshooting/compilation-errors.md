@@ -19,11 +19,11 @@ Error on line N (the line after the missing semicolon)
 
 **Fix:** Add the semicolon:
 ```iecst
-(* Before — missing semicolon *)
+(* Before. Missing semicolon *)
 counter := counter + 1
 IF counter > 10 THEN    (* error reported here *)
 
-(* After — fixed *)
+(* After. Fixed *)
 counter := counter + 1;
 IF counter > 10 THEN
 ```
@@ -206,9 +206,9 @@ result := myTimer.Q;
 **Symptom:** Compilation error related to rung connectivity.
 
 **Cause:**
-- **Open rung** — A rung must connect the left power rail to the right through at least one element
-- **Floating element** — Every element must be connected to both rails through a continuous path
-- **Multiple coils on the same variable** — Assigning the same output in multiple rungs can cause unpredictable behavior
+- **Open rung**: A rung must connect the left power rail to the right through at least one element
+- **Floating element**: Every element must be connected to both rails through a continuous path
+- **Multiple coils on the same variable**: Assigning the same output in multiple rungs can cause unpredictable behavior
 
 **Fix:** Ensure every rung forms a complete path from left rail to right rail.
 
@@ -264,24 +264,24 @@ Error: Cannot connect REAL output to BOOL input
 
 **Cause:** There are semantic errors in your PLC code that weren't caught earlier in translation.
 
-**Fix:** Review the full compilation output in the console for specific error messages. The first error is usually the root cause — later errors are often cascading failures.
+**Fix:** Review the full compilation output in the console for specific error messages. The first error is usually the root cause. Later errors are often cascading failures.
 
 ## Troubleshooting Workflow
 
 When you hit a compilation error, follow this process:
 
-1. **Read the error message carefully** — The first error is usually the root cause; subsequent errors often cascade from it
-2. **Check the line number** — The IDE highlights the approximate location
-3. **Verify variable declarations** — Open the Variables Table and confirm all referenced variables exist with correct types
-4. **Check control structure pairing** — Every opening keyword needs its closing counterpart
-5. **Look for typos** — Misspelled variable names and keywords are the most common cause
-6. **Simplify and test** — Comment out suspect code and recompile to isolate the problem
-7. **Check the console** — The full compilation output often has more detail than the inline error display
+1. **Read the error message carefully**: The first error is usually the root cause; subsequent errors often cascade from it
+2. **Check the line number**: The IDE highlights the approximate location
+3. **Verify variable declarations**: Open the Variables Table and confirm all referenced variables exist with correct types
+4. **Check control structure pairing**: Every opening keyword needs its closing counterpart
+5. **Look for typos**: Misspelled variable names and keywords are the most common cause
+6. **Simplify and test**: Comment out suspect code and recompile to isolate the problem
+7. **Check the console**: The full compilation output often has more detail than the inline error display
 
 > **Tip:** When you get multiple errors, always fix the first one and recompile. Many "errors" are just cascading symptoms of a single root cause.
 
 ## What's Next?
 
-- [Runtime Debugging](runtime-debugging) — Debug your running program with the IDE's monitoring tools
-- [Network Issues](network-issues) — Troubleshoot connectivity problems
-- [ST Language Basics](../../openplc-editor/programming-languages/structured-text/st-basics) — Review ST syntax rules
+- [Runtime Debugging](runtime-debugging): Debug your running program with the IDE's monitoring tools
+- [Network Issues](network-issues): Troubleshoot connectivity problems
+- [ST Language Basics](../../openplc-editor/programming-languages/structured-text/st-basics): Review ST syntax rules

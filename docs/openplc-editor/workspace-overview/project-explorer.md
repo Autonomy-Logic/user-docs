@@ -4,7 +4,7 @@ The Project Explorer is the sidebar on the left side of the IDE. It organizes yo
 
 ## Project Name
 
-At the top of the Project Explorer, you'll see your project name with a folder icon. Click the name to edit it inline — type a new name and click away (or press Tab) to save.
+At the top of the Project Explorer, you'll see your project name with a folder icon. Click the name to edit it inline. Type a new name and click away (or press Tab) to save.
 
 Next to the project name is a **+** button. Click it to create new project elements: Programs, Functions, Function Blocks, or Data Types. For POUs, you choose a name and programming language. For Data Types, you choose a name and type (array, enumeration, or structure).
 
@@ -20,21 +20,21 @@ Each function shows an icon indicating its language (ST, LD, FBD, or IL). Click 
 
 ### Function Blocks
 
-All POUs of type **Function Block**. Function blocks are reusable units that can maintain internal state — their local variables persist between calls. You can create multiple instances of the same function block, each with its own data.
+All POUs of type **Function Block**. Function blocks are reusable units that can maintain internal state. Their local variables persist between calls. You can create multiple instances of the same function block, each with its own data.
 
 Function blocks support all five IEC 61131-3 languages plus Python and C/C++.
 
 ### Programs
 
-All POUs of type **Program**. Programs are the top-level units that get assigned to tasks for execution. They're the entry point of your PLC logic — you bind them to tasks through instances in the Resource configuration.
+All POUs of type **Program**. Programs are the top-level units that get assigned to tasks for execution. They're the entry point of your PLC logic. You bind them to tasks through instances in the Resource configuration.
 
 ### Data Types
 
 Your user-defined data types, organized into sub-categories:
 
-- **Arrays** — Array types with a base type and dimensions.
-- **Enumerations** — Types that define a set of named values.
-- **Structures** — Types that group multiple named fields of different types.
+- **Arrays**: Array types with a base type and dimensions.
+- **Enumerations**: Types that define a set of named values.
+- **Structures**: Types that group multiple named fields of different types.
 
 Click any data type to open its editor.
 
@@ -42,24 +42,24 @@ Click any data type to open its editor.
 
 Opens the Resource editor, which has three sections:
 
-1. **Global Variables** — Variables shared across all POUs in the project.
-2. **Tasks** — Execution tasks with triggering mode (Cyclic or Interrupt), interval, and priority.
-3. **Instances** — Binds programs to tasks, defining which program runs under which task.
+1. **Global Variables**: Variables shared across all POUs in the project.
+2. **Tasks**: Execution tasks with triggering mode (Cyclic or Interrupt), interval, and priority.
+3. **Instances**: Binds programs to tasks, defining which program runs under which task.
 
 This is where you configure how your PLC project executes. See [Tasks & Instances](../iec-concepts/tasks-instances) for details.
 
 ### Devices
 
-- **Orchestrators** — Lists all orchestrators registered in your Autonomy Edge account and their devices. From here, you select which device to connect to, and manage runtime login and user creation.
-- **Remote Devices** — Any configured remote device connections (e.g., Modbus TCP/RTU clients).
+- **Orchestrators**: Lists all orchestrators registered in your Autonomy Edge account and their devices. From here, you select which device to connect to, and manage runtime login and user creation.
+- **Remote Devices**: Any configured remote device connections (e.g., Modbus TCP/RTU clients).
 
 ### Servers
 
 Communication server configurations:
 
-- **Modbus TCP Slave** — Expose PLC memory to external SCADA systems or HMIs over Modbus TCP.
-- **S7Comm Server** — Siemens S7 protocol compatibility for S7-compatible clients.
-- **OPC-UA Server** — Publish PLC variables as an OPC-UA address space for standardized industrial communication.
+- **Modbus TCP Slave**: Expose PLC memory to external SCADA systems or HMIs over Modbus TCP.
+- **S7Comm Server**: Siemens S7 protocol compatibility for S7-compatible clients.
+- **OPC-UA Server**: Publish PLC variables as an OPC-UA address space for standardized industrial communication.
 
 Click any server to open its configuration editor.
 

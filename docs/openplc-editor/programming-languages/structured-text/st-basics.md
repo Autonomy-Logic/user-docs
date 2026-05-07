@@ -1,6 +1,6 @@
 # ST Language Basics
 
-Structured Text (ST) is a high-level, text-based programming language defined in the IEC 61131-3 standard. If you've ever written code in Pascal, C, or a similar procedural language, ST will feel familiar right away. It's the go-to choice for complex algorithms, math-heavy calculations, and data processing — tasks that would be awkward to express in graphical languages like Ladder Diagram or Function Block Diagram.
+Structured Text (ST) is a high-level, text-based programming language defined in the IEC 61131-3 standard. If you've ever written code in Pascal, C, or a similar procedural language, ST will feel familiar right away. It's the go-to choice for complex algorithms, math-heavy calculations, and data processing. Tasks that would be awkward to express in graphical languages like Ladder Diagram or Function Block Diagram.
 
 ## Introduction to Structured Text
 
@@ -167,7 +167,7 @@ ELSE
 END_IF;
 ```
 
-**Example — Temperature Control:**
+**Example. Temperature Control:**
 ```
 IF enable THEN
     temp_error := setpoint - sensor_temp;
@@ -369,19 +369,19 @@ delay_time := T#250ms;
 
 ## Best Practices
 
-1. **Use meaningful variable names** — Choose descriptive names that indicate the variable's purpose.
-2. **Add comments** — Document complex logic and non-obvious operations.
-3. **Keep expressions simple** — Break complex calculations into multiple steps for clarity.
-4. **Use parentheses** — Make operator precedence explicit in complex expressions.
-5. **Consistent indentation** — Indent code blocks within control structures for readability.
-6. **One statement per line** — Avoid cramming multiple statements on one line.
-7. **Initialize variables** — Set appropriate initial values in the Variables Table.
-8. **Use appropriate data types** — Choose the smallest data type that meets your needs.
+1. **Use meaningful variable names**: Choose descriptive names that indicate the variable's purpose.
+2. **Add comments**: Document complex logic and non-obvious operations.
+3. **Keep expressions simple**: Break complex calculations into multiple steps for clarity.
+4. **Use parentheses**: Make operator precedence explicit in complex expressions.
+5. **Consistent indentation**: Indent code blocks within control structures for readability.
+6. **One statement per line**: Avoid cramming multiple statements on one line.
+7. **Initialize variables**: Set appropriate initial values in the Variables Table.
+8. **Use appropriate data types**: Choose the smallest data type that meets your needs.
 
 ---
 
 ## What's Next?
 
-- [ST Programming Examples](st-examples) — Practical examples and common patterns
-- [ST Editor Features](st-editor) — Syntax highlighting, IntelliSense, and code completion
-- [Variables and Data Types](../../iec-concepts/variables-datatypes) — Comprehensive guide to variable management
+- [ST Programming Examples](st-examples): Practical examples and common patterns
+- [ST Editor Features](st-editor): Syntax highlighting, IntelliSense, and code completion
+- [Variables and Data Types](../../iec-concepts/variables-datatypes): Comprehensive guide to variable management

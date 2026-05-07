@@ -35,8 +35,8 @@ Most boards use the `arduino-cli` compiler type. When this compiler is active:
 
 - Your IEC 61131-3 program is compiled into firmware for the target board.
 - The firmware is uploaded directly to the board via USB.
-- **Pin Mapping** is enabled — you configure which physical pins map to IEC addresses.
-- **Communication Settings** are enabled — you can configure Modbus RTU and Modbus TCP in the firmware.
+- **Pin Mapping** is enabled. You configure which physical pins map to IEC addresses.
+- **Communication Settings** are enabled. You can configure Modbus RTU and Modbus TCP in the firmware.
 - A serial port selection is available for choosing the USB upload port.
 
 ### `openplc_runtime` Compiler
@@ -44,9 +44,9 @@ Most boards use the `arduino-cli` compiler type. When this compiler is active:
 OpenPLC Runtime targets (v3 and v4) use the `openplc_runtime` compiler type. When this compiler is active:
 
 - The editor packages your program's source code and sends it to the runtime over the network.
-- **Pin Mapping** is disabled — the runtime manages I/O through its own hardware abstraction.
-- **Communication Settings** are disabled — Modbus and other protocols are configured through the runtime's web interface.
-- **Port selection** is disabled — there's no USB connection.
+- **Pin Mapping** is disabled. The runtime manages I/O through its own hardware abstraction.
+- **Communication Settings** are disabled. Modbus and other protocols are configured through the runtime's web interface.
+- **Port selection** is disabled. There's no USB connection.
 
 ## Board Categories
 
@@ -168,7 +168,7 @@ This download happens automatically during the first build. The editor displays 
 You can change your target board at any time:
 
 1. Select a new board from the Board dropdown.
-2. Review the pin mapping — pins are reset to the new board's defaults.
+2. Review the pin mapping. Pins are reset to the new board's defaults.
 3. Verify that communication settings are appropriate for the new board's capabilities.
 4. Rebuild your project.
 
@@ -195,6 +195,6 @@ When switching between an Arduino target and an OpenPLC Runtime target:
 
 ## What's Next?
 
-- [Pin Mapping](pin-mapping) — Configure I/O pin assignments for your selected board
-- [Communication Settings](communication-settings) — Set up Modbus RTU and TCP for microcontroller firmware
-- [Device Configuration Overview](device-config-overview) — Understand the full range of target types
+- [Pin Mapping](pin-mapping): Configure I/O pin assignments for your selected board
+- [Communication Settings](communication-settings): Set up Modbus RTU and TCP for microcontroller firmware
+- [Device Configuration Overview](device-config-overview): Understand the full range of target types

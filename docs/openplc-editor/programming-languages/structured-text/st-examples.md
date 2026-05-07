@@ -76,7 +76,7 @@ END_IF;
 1. **Nested IF statements** for complex decision logic
 2. **Function block calls** with named parameters
 3. **Accessing function block outputs** using dot notation (`timer.Q`)
-4. **Expressions as parameters** — passing `(temp_error > 2.0)` directly to the timer
+4. **Expressions as parameters**: passing `(temp_error > 2.0)` directly to the timer
 5. **Multi-line comments** using `(* ... *)` for documentation
 6. **Boolean logic** with OR operator for alarm conditions
 7. **Arithmetic operations** for error calculation
@@ -142,7 +142,7 @@ CASE state OF
         END_IF;
 
 ELSE
-    (* Error state — reset to stopped *)
+    (* Error state. Reset to stopped *)
     state := 0;
     motor_command := FALSE;
 END_CASE;
@@ -160,7 +160,7 @@ The ELSE clause catches any invalid state values and resets to a safe state.
 
 ## Array Processing
 
-This example shows how to work with arrays for data processing — calculating average, min, and max from a set of sensor readings.
+This example shows how to work with arrays for data processing. Calculating average, min, and max from a set of sensor readings.
 
 ### Variables
 
@@ -214,7 +214,7 @@ This example demonstrates:
 
 ## Counter with Rollover
 
-A bounded counter that rolls over at a maximum value — useful for sequencing, indexing, or cyclic operations.
+A bounded counter that rolls over at a maximum value. Useful for sequencing, indexing, or cyclic operations.
 
 ### Variables
 
@@ -235,7 +235,7 @@ END_VAR
 IF reset THEN
     counter := 0;
 ELSIF increment AND NOT last_increment THEN
-    (* Rising edge detection — increment only once per pulse *)
+    (* Rising edge detection. Increment only once per pulse *)
     IF counter >= max_count THEN
         counter := 0;  // Rollover
     ELSE
@@ -272,7 +272,7 @@ END_VAR
 
 (* Pulse generator logic *)
 IF output THEN
-    (* Output is ON — wait for on_time to expire *)
+    (* Output is ON. Wait for on_time to expire *)
     on_timer(IN := TRUE, PT := on_time);
     off_timer(IN := FALSE, PT := off_time);
 
@@ -281,7 +281,7 @@ IF output THEN
         on_timer(IN := FALSE, PT := on_time);
     END_IF;
 ELSE
-    (* Output is OFF — wait for off_time to expire *)
+    (* Output is OFF. Wait for off_time to expire *)
     off_timer(IN := TRUE, PT := off_time);
     on_timer(IN := FALSE, PT := on_time);
 
@@ -307,7 +307,7 @@ VAR
 END_VAR
 
 IF command THEN
-    (* Command is ON — start delay *)
+    (* Command is ON. Start delay *)
     start_timer(IN := TRUE, PT := start_delay);
     stop_timer(IN := FALSE, PT := stop_delay);
 
@@ -315,7 +315,7 @@ IF command THEN
         output := TRUE;
     END_IF;
 ELSE
-    (* Command is OFF — stop delay *)
+    (* Command is OFF. Stop delay *)
     stop_timer(IN := TRUE, PT := stop_delay);
     start_timer(IN := FALSE, PT := start_delay);
 
@@ -366,39 +366,39 @@ END_IF;
 ## Best Practices Summary
 
 ### Code Organization
-1. **Group related logic** — Keep related operations together.
-2. **Use comments** — Document the purpose of code sections.
-3. **Consistent naming** — Use descriptive, consistent variable names.
-4. **One responsibility** — Each code block should have a clear purpose.
+1. **Group related logic**: Keep related operations together.
+2. **Use comments**: Document the purpose of code sections.
+3. **Consistent naming**: Use descriptive, consistent variable names.
+4. **One responsibility**: Each code block should have a clear purpose.
 
 ### Control Flow
-1. **Prefer CASE over nested IFs** — For multiple discrete values.
-2. **Use ELSIF** — Instead of nested IF statements when possible.
-3. **Handle all cases** — Include ELSE clauses for unexpected conditions.
-4. **Exit early** — Use RETURN or EXIT to avoid deep nesting.
+1. **Prefer CASE over nested IFs**: For multiple discrete values.
+2. **Use ELSIF**: Instead of nested IF statements when possible.
+3. **Handle all cases**: Include ELSE clauses for unexpected conditions.
+4. **Exit early**: Use RETURN or EXIT to avoid deep nesting.
 
 ### Timers and Counters
-1. **Reset timers** — Always reset timers when not in use.
-2. **Check outputs** — Use `.Q` to check timer completion.
-3. **Edge detection** — Implement edge detection for pulse inputs.
-4. **Bounded counters** — Prevent overflow with MOD or explicit checks.
+1. **Reset timers**: Always reset timers when not in use.
+2. **Check outputs**: Use `.Q` to check timer completion.
+3. **Edge detection**: Implement edge detection for pulse inputs.
+4. **Bounded counters**: Prevent overflow with MOD or explicit checks.
 
 ### Data Processing
-1. **Initialize before loops** — Set initial values before FOR loops.
-2. **Bounds checking** — Verify array indices are valid.
-3. **Floating-point care** — Be aware of precision limitations.
-4. **Avoid division by zero** — Check denominators before division.
+1. **Initialize before loops**: Set initial values before FOR loops.
+2. **Bounds checking**: Verify array indices are valid.
+3. **Floating-point care**: Be aware of precision limitations.
+4. **Avoid division by zero**: Check denominators before division.
 
 ### Safety and Reliability
-1. **Fail-safe defaults** — Initialize outputs to safe states.
-2. **Timeout handling** — Use timers to detect stuck conditions.
-3. **Range checking** — Validate sensor inputs are reasonable.
-4. **Error states** — Always handle error conditions explicitly.
+1. **Fail-safe defaults**: Initialize outputs to safe states.
+2. **Timeout handling**: Use timers to detect stuck conditions.
+3. **Range checking**: Validate sensor inputs are reasonable.
+4. **Error states**: Always handle error conditions explicitly.
 
 ---
 
 ## What's Next?
 
-- [ST Language Basics](st-basics) — Review fundamental ST syntax and operators
-- [ST Editor Features](st-editor) — Learn about the IDE's code editing capabilities
-- [Standard Function Blocks Library](../../standard-function-blocks/timer-blocks) — Explore available function blocks
+- [ST Language Basics](st-basics): Review fundamental ST syntax and operators
+- [ST Editor Features](st-editor): Learn about the IDE's code editing capabilities
+- [Standard Function Blocks Library](../../standard-function-blocks/timer-blocks): Explore available function blocks

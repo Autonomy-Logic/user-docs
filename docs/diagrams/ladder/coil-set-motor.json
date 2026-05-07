@@ -1,5 +1,5 @@
 {
-  "comment": "Set coil — latch motor start",
+  "comment": "Set coil: latch motor start",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "start_button" },

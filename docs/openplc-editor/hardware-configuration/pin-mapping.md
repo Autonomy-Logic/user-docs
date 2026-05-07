@@ -64,7 +64,7 @@ Each analog address represents a 16-bit integer value.
 
 ## Adding Pin Mappings
 
-The editor uses an on-demand approach — you add only the pins your application needs rather than configuring the entire board.
+The editor uses an on-demand approach. You add only the pins your application needs rather than configuring the entire board.
 
 To add a new pin:
 
@@ -77,9 +77,9 @@ To add a new pin:
 
 When you open the pin dropdown, the editor presents a filtered list of board-specific default pins:
 
-- **Board-aware suggestions** — Only pins valid for the selected pin type on your specific board are shown. For example, analog input pins are limited to ADC-capable GPIO pins.
-- **Already-used filtering** — Pins already assigned to another mapping are excluded from the dropdown, preventing accidental double-assignment.
-- **Auto-address assignment** — The editor assigns the next available IEC address in sequence. If `%IX0.0` and `%IX0.1` are taken, the next digital input gets `%IX0.2`.
+- **Board-aware suggestions**: Only pins valid for the selected pin type on your specific board are shown. For example, analog input pins are limited to ADC-capable GPIO pins.
+- **Already-used filtering**: Pins already assigned to another mapping are excluded from the dropdown, preventing accidental double-assignment.
+- **Auto-address assignment**: The editor assigns the next available IEC address in sequence. If `%IX0.0` and `%IX0.1` are taken, the next digital input gets `%IX0.2`.
 
 ### Custom Pin Names
 
@@ -112,7 +112,7 @@ This separation of hardware configuration from program logic means you can:
 When you build your project for an Arduino-compatible target, the editor generates a `defines.h` file from your pin mapping. This file contains C preprocessor macros that the board's HAL reads during initialization:
 
 ```c
-// Pin masks — list of physical pins for each I/O type
+// Pin masks. List of physical pins for each I/O type
 #define PINMASK_DIN  2, 3, 4, 5
 #define PINMASK_DOUT 7, 8, 12, 13
 #define PINMASK_AIN  A0, A1, A2
@@ -200,7 +200,7 @@ The order of pins in each `PINMASK_*` macro corresponds directly to the IEC addr
 
 ## What's Next?
 
-- [Board Selection](board-selection) — Choose your target microcontroller board
-- [Communication Settings](communication-settings) — Configure Modbus RTU and TCP for microcontroller firmware
-- [Device Configuration Overview](device-config-overview) — Understand all target types and deployment workflows
-- [Global Variables](../working-with-variables/global-variables) — Declare I/O variables in your PLC program
+- [Board Selection](board-selection): Choose your target microcontroller board
+- [Communication Settings](communication-settings): Configure Modbus RTU and TCP for microcontroller firmware
+- [Device Configuration Overview](device-config-overview): Understand all target types and deployment workflows
+- [Global Variables](../working-with-variables/global-variables): Declare I/O variables in your PLC program

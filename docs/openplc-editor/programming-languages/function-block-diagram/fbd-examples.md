@@ -36,7 +36,7 @@ This example uses comparison blocks and Boolean logic to generate alarms from a 
 2. The **LT** (Less Than) block compares `sensor_temp` against `low_limit`. If the temperature drops below the limit, `low_alarm` goes TRUE.
 3. The **OR** block combines both alarms. If either alarm is active, `any_alarm` is TRUE.
 
-This pattern scales easily — add more comparison blocks for additional thresholds (warning levels, critical levels) and chain them with OR/AND blocks.
+This pattern scales easily. Add more comparison blocks for additional thresholds (warning levels, critical levels) and chain them with OR/AND blocks.
 
 ## Analog Signal Scaling
 
@@ -185,8 +185,8 @@ Choose between automatic and manual control modes.
 
 ```
 [auto_mode]    → [SEL] → [output_speed]
-[manual_speed] →  ↑  (IN0 — selected when G=FALSE)
-[auto_speed]   →  ↑  (IN1 — selected when G=TRUE)
+[manual_speed] →  ↑  (IN0. Selected when G=FALSE)
+[auto_speed]   →  ↑  (IN1. Selected when G=TRUE)
 ```
 
 ### How It Works
@@ -207,12 +207,12 @@ END_IF;
 
 ## Best Practices for FBD
 
-1. **Flow left to right** — Keep data flow consistent. Inputs on the left, outputs on the right.
-2. **Name all variables** — Give every input and output variable a meaningful name in the Variables Table.
-3. **Break complex logic into stages** — Use intermediate variables to split long processing chains into understandable steps.
-4. **Use comments** — Add comment nodes to explain non-obvious logic.
-5. **Group related blocks** — Position blocks that work together close to each other on the canvas.
-6. **Keep it flat** — If your FBD diagram gets too complex, consider refactoring parts into a custom function block.
+1. **Flow left to right**: Keep data flow consistent. Inputs on the left, outputs on the right.
+2. **Name all variables**: Give every input and output variable a meaningful name in the Variables Table.
+3. **Break complex logic into stages**: Use intermediate variables to split long processing chains into understandable steps.
+4. **Use comments**: Add comment nodes to explain non-obvious logic.
+5. **Group related blocks**: Position blocks that work together close to each other on the canvas.
+6. **Keep it flat**: If your FBD diagram gets too complex, consider refactoring parts into a custom function block.
 
 ---
 

@@ -42,9 +42,9 @@ Autonomy Edge works in modern web browsers including Chrome, Firefox, Edge, and 
 
 A POU (Program Organization Unit) is the building block of IEC 61131-3 programs. There are three types:
 
-- **Program** — The top-level executable unit, assigned to a task for cyclic execution
-- **Function Block** — A reusable component with internal state (retains values between calls)
-- **Function** — A stateless computation that returns a single value
+- **Program**: The top-level executable unit, assigned to a task for cyclic execution
+- **Function Block**: A reusable component with internal state (retains values between calls)
+- **Function**: A stateless computation that returns a single value
 
 See [POUs](../openplc-editor/iec-concepts/pous) for details.
 
@@ -61,9 +61,9 @@ See [POUs](../openplc-editor/iec-concepts/pous) for details.
 
 The scan cycle is the fundamental execution loop of a PLC:
 
-1. **Read inputs** — Copy physical input states into the input image table
-2. **Execute program** — Run all assigned PLC logic
-3. **Write outputs** — Copy the output image table to physical outputs
+1. **Read inputs**: Copy physical input states into the input image table
+2. **Execute program**: Run all assigned PLC logic
+3. **Write outputs**: Copy the output image table to physical outputs
 
 This cycle repeats at the interval defined by the task period (e.g., every 50 ms). The time to complete one cycle is the scan time.
 
@@ -83,9 +83,9 @@ Located variables are bound to specific addresses in the I/O image table, mappin
 
 | If you need... | Use |
 |----------------|-----|
-| Complex math or algorithms | **ST** — full expression support, control flow |
-| Relay logic or discrete control | **LD** — intuitive for electricians, mirrors wiring diagrams |
-| Signal flow or data processing | **FBD** — visual data flow, good for connecting blocks |
+| Complex math or algorithms | **ST**: full expression support, control flow |
+| Relay logic or discrete control | **LD**: intuitive for electricians, mirrors wiring diagrams |
+| Signal flow or data processing | **FBD**: visual data flow, good for connecting blocks |
 | Mixed requirements | Use different languages for different POUs in the same project |
 
 You can freely mix languages within a project. Each POU can be written in a different language, and they all interoperate seamlessly.
@@ -173,11 +173,11 @@ The program is packaged and deployed through the orchestrator automatically.
 
 Common compilation issues:
 
-1. **Missing semicolons** — Every ST statement must end with `;`
-2. **Unmatched control structures** — Every `IF` needs `END_IF`, every `FOR` needs `END_FOR`
-3. **Undeclared variables** — All variables must be in the Variables Table
-4. **Type mismatches** — Use explicit conversion functions (`INT_TO_REAL()`, etc.)
-5. **Wrong assignment operator** — Use `:=`, not `=`
+1. **Missing semicolons**: Every ST statement must end with `;`
+2. **Unmatched control structures**: Every `IF` needs `END_IF`, every `FOR` needs `END_FOR`
+3. **Undeclared variables**: All variables must be in the Variables Table
+4. **Type mismatches**: Use explicit conversion functions (`INT_TO_REAL()`, etc.)
+5. **Wrong assignment operator**: Use `:=`, not `=`
 
 See [Common Compilation Errors](../advanced-topics/troubleshooting/compilation-errors) for a comprehensive guide.
 
@@ -194,16 +194,16 @@ See [Network Issues](../advanced-topics/troubleshooting/network-issues) for deta
 
 Common timer issues:
 
-- **`IN` not staying TRUE** — TON requires `IN` to be TRUE continuously for the full duration `PT`
-- **Timer never resets** — TON resets when `IN` goes FALSE; TOF resets when `IN` goes TRUE
-- **Timer too fast/slow** — Check your task period; timers depend on the scan cycle for timing resolution
-- **Using the type instead of an instance** — You must declare a variable of type TON/TOF/TP and call the instance
+- **`IN` not staying TRUE**: TON requires `IN` to be TRUE continuously for the full duration `PT`
+- **Timer never resets**: TON resets when `IN` goes FALSE; TOF resets when `IN` goes TRUE
+- **Timer too fast/slow**: Check your task period; timers depend on the scan cycle for timing resolution
+- **Using the type instead of an instance**: You must declare a variable of type TON/TOF/TP and call the instance
 
 See [Timer Function Blocks](../openplc-editor/standard-function-blocks/timer-blocks) for detailed timing diagrams.
 
 ### How do I check my scan cycle time?
 
-Monitor the console panel in the IDE for scan overrun warnings. If scan time exceeds the configured task period, the runtime logs a warning message. You can also observe timer `ET` values — if they count unevenly, scans may be overrunning.
+Monitor the console panel in the IDE for scan overrun warnings. If scan time exceeds the configured task period, the runtime logs a warning message. You can also observe timer `ET` values. If they count unevenly, scans may be overrunning.
 
 See [Performance Optimization](../advanced-topics/best-practices/performance-optimization) for techniques to reduce scan time.
 
@@ -211,10 +211,10 @@ See [Performance Optimization](../advanced-topics/best-practices/performance-opt
 
 Common Modbus data issues:
 
-- **Byte order mismatch** — Device uses different endianness than expected
-- **Register offset by 1** — Some devices are 0-based, others 1-based
-- **Wrong function code** — Coils vs. holding registers vs. input registers
-- **32-bit values spanning two registers** — Ensure your mapping accounts for multi-register values
+- **Byte order mismatch**: Device uses different endianness than expected
+- **Register offset by 1**: Some devices are 0-based, others 1-based
+- **Wrong function code**: Coils vs. holding registers vs. input registers
+- **32-bit values spanning two registers**: Ensure your mapping accounts for multi-register values
 
 See [Network Issues](../advanced-topics/troubleshooting/network-issues) for Modbus troubleshooting.
 
@@ -226,8 +226,8 @@ See [Network Issues](../advanced-topics/troubleshooting/network-issues) for Modb
 
 Yes. The Autonomy Edge IDE includes an AI assistant that can help with:
 
-- **Code completion** — Context-aware suggestions as you type
-- **Chat** — Ask questions about IEC 61131-3, get help with code, debug issues
+- **Code completion**: Context-aware suggestions as you type
+- **Chat**: Ask questions about IEC 61131-3, get help with code, debug issues
 
 AI features are credit-based. Check your remaining credits via the AI panel in the IDE.
 
@@ -239,9 +239,9 @@ The Autonomy Edge web IDE requires an internet connection to access the platform
 
 Yes. The IDE supports:
 
-- **Import** — Upload a project ZIP file through the IDE's import dialog
-- **Export/Download** — Download a project as a ZIP file from the project details page
-- **Clone** — Clone public projects shared by other users
+- **Import**: Upload a project ZIP file through the IDE's import dialog
+- **Export/Download**: Download a project as a ZIP file from the project details page
+- **Clone**: Clone public projects shared by other users
 
 ### Does Autonomy Edge support team collaboration?
 
@@ -260,6 +260,6 @@ Additional protocols can be added through the runtime's plugin system. See [Cust
 
 ## What's Next?
 
-- [Glossary](glossary) — Key terms and definitions
-- [Keyboard Shortcuts](keyboard-shortcuts) — IDE shortcut reference
-- [Getting Started](../getting-started/introduction) — New to Autonomy Edge? Start here
+- [Glossary](glossary): Key terms and definitions
+- [Keyboard Shortcuts](keyboard-shortcuts): IDE shortcut reference
+- [Getting Started](../getting-started/introduction): New to Autonomy Edge? Start here

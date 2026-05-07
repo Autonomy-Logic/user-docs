@@ -1,15 +1,15 @@
 # Python Function Blocks
 
-Python function blocks let you write automation logic in Python while integrating seamlessly with your IEC 61131-3 program. You get access to Python's rich standard library for tasks like math, string processing, data conversion, and more — all within the Autonomy Edge platform.
+Python function blocks let you write automation logic in Python while integrating seamlessly with your IEC 61131-3 program. You get access to Python's rich standard library for tasks like math, string processing, data conversion, and more. All within the Autonomy Edge platform.
 
 ## Why Python Function Blocks?
 
 Standard IEC 61131-3 languages are built for deterministic, cyclic control logic. They're great at reading sensors, driving outputs, and executing tightly timed sequences. But some tasks are easier in a general-purpose language:
 
-- **Complex calculations** — Statistical analysis, advanced math, or data transformations
-- **String processing** — Parsing messages, formatting data, or building protocol payloads
-- **Data conversion** — Converting between units, encoding/decoding values, or mapping ranges
-- **Algorithm prototyping** — Quickly testing ideas with Python's expressive syntax before deciding whether to reimplement in ST
+- **Complex calculations**: Statistical analysis, advanced math, or data transformations
+- **String processing**: Parsing messages, formatting data, or building protocol payloads
+- **Data conversion**: Converting between units, encoding/decoding values, or mapping ranges
+- **Algorithm prototyping**: Quickly testing ideas with Python's expressive syntax before deciding whether to reimplement in ST
 
 Python function blocks handle these tasks without leaving the Autonomy Edge platform.
 
@@ -76,10 +76,10 @@ def block_loop():
 
 This template defines the two required functions:
 
-- **`block_init()`** — Called exactly once when the Python process starts. Use it for one-time setup, such as initializing persistent variables or preparing data structures.
-- **`block_loop()`** — Called repeatedly, approximately every 100 milliseconds. This is where your main logic goes — reading inputs, performing calculations, and writing outputs.
+- **`block_init()`**: Called exactly once when the Python process starts. Use it for one-time setup, such as initializing persistent variables or preparing data structures.
+- **`block_loop()`**: Called repeatedly, approximately every 100 milliseconds. This is where your main logic goes. Reading inputs, performing calculations, and writing outputs.
 
-> **Note:** Keep the four `import` statements at the top of the template — they're required. Add your own imports below them.
+> **Note:** Keep the four `import` statements at the top of the template. They're required. Add your own imports below them.
 
 ## A Basic Example
 
@@ -116,8 +116,8 @@ def block_loop():
 
 A few notes on the example:
 
-- `raw_value`, `scale_min`, and `scale_max` are inputs — read them by name with their current value at the start of each cycle.
-- `scaled_output` is an output — assign it to send the new value back to the PLC.
+- `raw_value`, `scale_min`, and `scale_max` are inputs. Read them by name with their current value at the start of each cycle.
+- `scaled_output` is an output. Assign it to send the new value back to the PLC.
 - The `global scaled_output` line is a Python rule, not a block-specific one: in Python, you need `global` whenever you **assign** to a module-level variable from inside a function. Reads don't need it.
 
 The pattern is the same as a C++ function block: declare inputs and outputs in the Variables Table, then use them by name in your code.

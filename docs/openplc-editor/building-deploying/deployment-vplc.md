@@ -11,9 +11,9 @@ When you click **Compile** while connected to a device, the IDE automatically:
 3. Uploads it to the connected device.
 4. Monitors the device until it confirms the program is ready.
 
-You don't need a separate "deploy" step — compilation and deployment happen together when a device is connected.
+You don't need a separate "deploy" step. Compilation and deployment happen together when a device is connected.
 
-> **Tip:** If you compile without a connected device, the IDE still validates your code — it just skips the upload. You can connect and recompile later when you're ready to deploy.
+> **Tip:** If you compile without a connected device, the IDE still validates your code. It just skips the upload. You can connect and recompile later when you're ready to deploy.
 
 ## Prerequisites
 
@@ -61,10 +61,10 @@ Stopping doesn't delete the program. You can start it again without recompiling.
 
 Your program can be in one of these states:
 
-- **Empty** — No program has been uploaded yet.
-- **Stopped** — A program is loaded but not executing.
-- **Running** — The program is actively executing.
-- **Error** — The device encountered an error during execution. Check the PLC Logs tab for details.
+- **Empty**: No program has been uploaded yet.
+- **Stopped**: A program is loaded but not executing.
+- **Running**: The program is actively executing.
+- **Error**: The device encountered an error during execution. Check the PLC Logs tab for details.
 
 ## Checking After Deployment
 
@@ -80,16 +80,16 @@ If you see `[ERROR]` messages instead, check the [Troubleshooting](#troubleshoot
 
 ### Monitor with PLC Logs
 
-Once the program is running, switch to the **PLC Logs** tab in the Console Panel. This shows live output from the running PLC program — separate from the compilation logs in the Console tab.
+Once the program is running, switch to the **PLC Logs** tab in the Console Panel. This shows live output from the running PLC program. Separate from the compilation logs in the Console tab.
 
 ### Check Execution Statistics
 
 When connected to a running PLC, the Orchestrators panel displays real-time stats:
 
-- **Scan Count** — Total scan cycles executed since start.
-- **Overruns** — Times a scan cycle exceeded the configured cycle time.
-- **Scan Time** (avg/min/max) — Duration of the PLC logic execution per cycle.
-- **Cycle Time** (avg/min/max) — Total cycle duration including I/O processing.
+- **Scan Count**: Total scan cycles executed since start.
+- **Overruns**: Times a scan cycle exceeded the configured cycle time.
+- **Scan Time** (avg/min/max): Duration of the PLC logic execution per cycle.
+- **Cycle Time** (avg/min/max): Total cycle duration including I/O processing.
 
 ## Redeploying
 
@@ -107,7 +107,7 @@ You don't need to disconnect and reconnect between deployments.
 
 To disconnect from a device, click the **Logout** button in the Orchestrators panel.
 
-**Important:** Disconnecting does not stop the PLC program. The device operates independently — once a program is started, it keeps running even if you close your browser. To stop it, click the Stop button before disconnecting, or reconnect later.
+**Important:** Disconnecting does not stop the PLC program. The device operates independently. Once a program is started, it keeps running even if you close your browser. To stop it, click the Stop button before disconnecting, or reconnect later.
 
 ## Troubleshooting
 
@@ -119,7 +119,7 @@ To disconnect from a device, click the **Logout** button in the Orchestrators pa
 ### Device shows as stopped or offline
 
 - The device may not be running. Go to the platform dashboard and start it.
-- Wait 30–60 seconds after starting — the device needs time to initialize.
+- Wait 30–60 seconds after starting. The device needs time to initialize.
 
 ### Login fails
 
@@ -148,7 +148,7 @@ To disconnect from a device, click the **Logout** button in the Orchestrators pa
 
 ## What's Next?
 
-- [Project Compilation](project-compilation) — Learn how to read and fix compilation errors.
-- [XML Export](xml-export) — Export your project for backup or sharing.
-- [Connecting to Runtimes](../connecting-to-runtimes) — Full reference for the connection flow and authentication.
-- [Console & Debugging](../workspace-overview/console-debugging) — Learn how to read and filter build logs effectively.
+- [Project Compilation](project-compilation): Learn how to read and fix compilation errors.
+- [XML Export](xml-export): Export your project for backup or sharing.
+- [Connecting to Runtimes](../connecting-to-runtimes): Full reference for the connection flow and authentication.
+- [Console & Debugging](../workspace-overview/console-debugging): Learn how to read and filter build logs effectively.

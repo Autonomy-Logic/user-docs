@@ -1,5 +1,5 @@
 {
-  "comment": "Rising edge contact — count button presses",
+  "comment": "Rising edge contact: count button presses",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "risingEdge", "variable": "count_button" },

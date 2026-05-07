@@ -1,6 +1,6 @@
 # Local Variables
 
-Every PLC program needs to store data — sensor readings, calculation results, control flags, and more. In IEC 61131-3, variables declared inside a Program Organization Unit (POU) are called **local variables**. They define the data that a Program, Function, or Function Block works with during execution.
+Every PLC program needs to store data. Sensor readings, calculation results, control flags, and more. In IEC 61131-3, variables declared inside a Program Organization Unit (POU) are called **local variables**. They define the data that a Program, Function, or Function Block works with during execution.
 
 This page covers the different variable classes available within POUs, how they behave during the scan cycle, and when to use each one.
 
@@ -31,7 +31,7 @@ END_VAR
 
 **Key behavior**: In Programs and Function Blocks, local variables **retain their values** between scan cycles. If `counter` is 5 at the end of one cycle, it's still 5 at the beginning of the next. This makes them suitable for accumulators, state machines, and any logic that depends on previous values.
 
-In Functions, local variables do **not** retain their values — they're re-initialized each time the function executes.
+In Functions, local variables do **not** retain their values. They're re-initialized each time the function executes.
 
 ### When to Use Local
 
@@ -42,7 +42,7 @@ In Functions, local variables do **not** retain their values — they're re-init
 
 ## Input Class
 
-Input variables define parameters that a Function or Function Block receives from its caller. Inside the POU, input variables are **read-only** — the POU can read their values but cannot modify them.
+Input variables define parameters that a Function or Function Block receives from its caller. Inside the POU, input variables are **read-only**: the POU can read their values but cannot modify them.
 
 ```
 VAR_INPUT
@@ -77,7 +77,7 @@ END_VAR
 
 ## Output Class
 
-Output variables define values that a Function or Function Block sends back to its caller. Inside the POU, output variables are **read-write** — the POU computes a result and assigns it to the output.
+Output variables define values that a Function or Function Block sends back to its caller. Inside the POU, output variables are **read-write**: the POU computes a result and assigns it to the output.
 
 ```
 VAR_OUTPUT
@@ -115,7 +115,7 @@ END_VAR
 
 ## InOut Class
 
-InOut variables are passed **by reference**. The caller and the POU share the same variable — changes made inside the POU are immediately visible to the caller, and vice versa.
+InOut variables are passed **by reference**. The caller and the POU share the same variable. Changes made inside the POU are immediately visible to the caller, and vice versa.
 
 ```
 VAR_IN_OUT
@@ -153,7 +153,7 @@ VAR_EXTERNAL
 END_VAR
 ```
 
-For an external variable to work, a global variable with the **same name and type** must exist in the Resource. The external declaration doesn't create a new variable — it links to the existing global one.
+For an external variable to work, a global variable with the **same name and type** must exist in the Resource. The external declaration doesn't create a new variable. It links to the existing global one.
 
 ### When to Use External
 
@@ -165,7 +165,7 @@ For a complete explanation of Global variables and the Global-External relations
 
 ## Temp Class
 
-Temp variables are **temporary** — they exist only for the duration of a single execution cycle. Unlike local variables, temp variables are **not retained** between cycles. Each time the POU executes, temp variables start from their initial value (or an undefined state if no initial value is set).
+Temp variables are **temporary**: they exist only for the duration of a single execution cycle. Unlike local variables, temp variables are **not retained** between cycles. Each time the POU executes, temp variables start from their initial value (or an undefined state if no initial value is set).
 
 ```
 VAR_TEMP
@@ -192,9 +192,9 @@ When a variable needs to represent a physical input or output on the PLC hardwar
 
 | Component | Options | Meaning |
 |-----------|---------|---------|
-| **Prefix** | `I` | Input — reading from sensors, switches |
-| | `Q` | Output — writing to actuators, relays |
-| | `M` | Memory — internal storage |
+| **Prefix** | `I` | Input. Reading from sensors, switches |
+| | `Q` | Output. Writing to actuators, relays |
+| | `M` | Memory. Internal storage |
 | **Size** | `X` | Bit (BOOL) |
 | | `B` | Byte (8 bits) |
 | | `W` | Word (16 bits) |
@@ -243,7 +243,7 @@ Understanding when variable values persist between cycles is critical for correc
 
 3. **Name variables descriptively**: A variable named `motor_running` is far more maintainable than `flag1`. Use the Documentation field in the variables table to add context when the name alone isn't sufficient.
 
-4. **Match Input/Output types to function block interfaces**: When designing reusable Function Blocks, choose Input and Output variable types carefully — they form the block's public interface.
+4. **Match Input/Output types to function block interfaces**: When designing reusable Function Blocks, choose Input and Output variable types carefully. They form the block's public interface.
 
 ---
 
@@ -251,4 +251,4 @@ Understanding when variable values persist between cycles is critical for correc
 
 Now that you understand the variable classes available inside POUs, learn how shared data works across the entire project:
 
-- [Global Variables](global-variables) — Declaring project-wide variables in the Resource and accessing them with the External class
+- [Global Variables](global-variables): Declaring project-wide variables in the Resource and accessing them with the External class

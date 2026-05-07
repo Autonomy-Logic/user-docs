@@ -29,7 +29,7 @@ The Global Variables Editor uses a table layout similar to the Variables Editor 
 |--------|-------------|
 | **#** | Row number (auto-assigned) |
 | **Name** | The variable's identifier. Must be unique across all Global variables |
-| **Class** | Always `Global` — not editable |
+| **Class** | Always `Global`. Not editable |
 | **Type** | The data type (BOOL, INT, REAL, custom types, arrays, etc.) |
 | **Location** | Hardware address for physical I/O mapping, with predefined pin options |
 | **Initial Value** | The starting value for the variable |
@@ -51,7 +51,7 @@ The predefined options list the specific pins available on your target hardware.
 
 ### Custom Location Values
 
-If the predefined pin options don't cover your needs — for example, if you need a memory-mapped address (`%MW...`) or an address not in the predefined list — you can type a custom value directly into the Location field. The combobox accepts free-form text in addition to the predefined selections.
+If the predefined pin options don't cover your needs. For example, if you need a memory-mapped address (`%MW...`) or an address not in the predefined list. You can type a custom value directly into the Location field. The combobox accepts free-form text in addition to the predefined selections.
 
 ### Leaving Location Empty
 
@@ -110,7 +110,7 @@ Select one or more rows and click the **−** (minus) button.
 
 ## Reordering Global Variables
 
-Use the **Up Arrow** and **Down Arrow** buttons to reorder variables in the list. While ordering doesn't affect program behavior, keeping them organized improves maintainability — for example, grouping all inputs together, then all outputs, then shared data variables.
+Use the **Up Arrow** and **Down Arrow** buttons to reorder variables in the list. While ordering doesn't affect program behavior, keeping them organized improves maintainability. For example, grouping all inputs together, then all outputs, then shared data variables.
 
 ## Common Configurations
 
@@ -128,7 +128,7 @@ The most common use of Global variables is centralizing all hardware I/O mapping
 | `speed_ref` | Global | INT | %QW0 | 0 | VFD speed reference, 0-10000 |
 | `temp_sensor` | Global | INT | %IW0 | 0 | PT100 temperature, raw ADC |
 
-This approach means you only need to update the Resource if wiring changes — the Programs themselves reference these variables through External declarations and never deal with hardware addresses directly.
+This approach means you only need to update the Resource if wiring changes. The Programs themselves reference these variables through External declarations and never deal with hardware addresses directly.
 
 ### Sharing Data Between Programs
 
@@ -143,7 +143,7 @@ For variables that coordinate logic between Programs but have no hardware connec
 
 ### Mixed Configuration
 
-In practice, most projects combine both patterns — hardware-mapped Globals and data-sharing Globals in the same table:
+In practice, most projects combine both patterns. Hardware-mapped Globals and data-sharing Globals in the same table:
 
 ```
 VAR_GLOBAL
@@ -195,4 +195,4 @@ Using comments in Code View (as shown above) helps visually separate the categor
 
 Now that you know how to declare and manage variables at every level of your project, explore how to create custom data types to organize complex data:
 
-- [Creating Data Types](../custom-data-types/creating-datatypes) — Define structures, enumerations, and other custom types for your variables
+- [Creating Data Types](../custom-data-types/creating-datatypes): Define structures, enumerations, and other custom types for your variables

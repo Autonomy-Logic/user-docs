@@ -20,8 +20,8 @@ The Instances Editor is the third section of the Resource Editor, below the Task
 
 Like the Task Editor, it provides two views:
 
-- **Table View** — A three-column interactive table.
-- **Code View** — A text editor showing the full resource configuration.
+- **Table View**: A three-column interactive table.
+- **Code View**: A text editor showing the full resource configuration.
 
 ## Table View
 
@@ -143,7 +143,7 @@ Key rules for the text format:
 - `TASK` lines define tasks with `INTERVAL` and `PRIORITY` parameters.
 - `PROGRAM` lines define instances with the `WITH` keyword linking to a task and `:` specifying the program.
 - Each line ends with a semicolon.
-- Order matters — instances assigned to the same task execute in the order they appear.
+- Order matters. Instances assigned to the same task execute in the order they appear.
 
 > **Tip:** When either the Task Editor or the Instances Editor is in code view, the other section is hidden to avoid conflicting edits. Switching back to table view parses the text and updates both tables.
 
@@ -182,7 +182,7 @@ Every 10 milliseconds, the runtime executes `SafetyLogic` then `ConveyorControl`
 
 ### Program dropdown is empty
 
-You haven't created any Program POUs yet. Only POUs of type **Program** appear in the dropdown — Functions and Function Blocks are called from within programs, not assigned directly to tasks.
+You haven't created any Program POUs yet. Only POUs of type **Program** appear in the dropdown. Functions and Function Blocks are called from within programs, not assigned directly to tasks.
 
 ### Task dropdown is empty
 

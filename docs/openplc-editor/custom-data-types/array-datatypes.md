@@ -47,8 +47,8 @@ When you open an array data type in the IDE, the editor presents three main cont
 
 A dropdown where you choose the element type for the array. You can select from:
 
-- **Base types** — BOOL, SINT, INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, LREAL, TIME, DATE, TOD, DT, STRING, BYTE, WORD, DWORD, LWORD
-- **User-defined types** — Any structure, enumeration, or other array type you've already created in the project
+- **Base types**: BOOL, SINT, INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, LREAL, TIME, DATE, TOD, DT, STRING, BYTE, WORD, DWORD, LWORD
+- **User-defined types**: Any structure, enumeration, or other array type you've already created in the project
 
 This means you can create arrays of structures (e.g., an array of `SensorData` records) or arrays of enumerations.
 
@@ -115,7 +115,7 @@ TYPE DataBuffer : ARRAY [0..255] OF INT; END_TYPE
 
 ### Lookup Table (2D)
 
-A two-dimensional table for mapping inputs to outputs — for example, a speed lookup indexed by gear and throttle position.
+A two-dimensional table for mapping inputs to outputs. For example, a speed lookup indexed by gear and throttle position.
 
 **Configuration:**
 
@@ -193,7 +193,7 @@ If you need specific initial values for individual elements, set them in the ini
 
 > **Tip:** Choose meaningful index ranges. Starting at 0 is conventional, but IEC 61131-3 allows any starting index. Use 1-based indexing if it matches your domain (e.g., `1..8` for 8 physical channels numbered 1 through 8).
 
-> **Tip:** Combine with structures for rich data. An array of a structure type (e.g., `ARRAY [0..9] OF SensorData`) gives you a table of structured records — far more powerful than parallel arrays.
+> **Tip:** Combine with structures for rich data. An array of a structure type (e.g., `ARRAY [0..9] OF SensorData`) gives you a table of structured records. Far more powerful than parallel arrays.
 
 - **Watch your bounds.** Accessing an index outside the declared range is undefined behavior. Always validate indices before using them, especially when the index comes from a calculated value or an external input.
 - **Use FOR loops** to iterate over array elements in Structured Text. The loop counter naturally maps to the array index.

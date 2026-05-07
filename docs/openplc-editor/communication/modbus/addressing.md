@@ -34,7 +34,7 @@ For bit addresses, the notation uses two numbers separated by a dot: `%IX<byte>.
 
 When Autonomy Edge acts as a Modbus server (slave), external clients access PLC data using the following address maps.
 
-### Discrete Inputs (FC 2 — Read Discrete Inputs)
+### Discrete Inputs (FC 2: Read Discrete Inputs)
 
 Discrete inputs are read-only single-bit values that map to `%IX` addresses.
 
@@ -54,7 +54,7 @@ Discrete inputs are read-only single-bit values that map to `%IX` addresses.
 
 **Total**: Up to 8000 discrete inputs (1000 bytes x 8 bits).
 
-### Coils (FC 1, FC 5, FC 15 — Read/Write Coils)
+### Coils (FC 1, FC 5, FC 15: Read/Write Coils)
 
 Coils are read/write single-bit values that map to `%QX` addresses.
 
@@ -72,7 +72,7 @@ Coils are read/write single-bit values that map to `%QX` addresses.
 
 **Total**: Up to 8000 coils (1000 bytes x 8 bits).
 
-### Input Registers (FC 4 — Read Input Registers)
+### Input Registers (FC 4: Read Input Registers)
 
 Input registers are read-only 16-bit values that map to `%IW` addresses.
 
@@ -86,7 +86,7 @@ Input registers are read-only 16-bit values that map to `%IW` addresses.
 
 **Total**: Up to 1000 input registers.
 
-### Holding Registers (FC 3, FC 6, FC 16 — Read/Write Holding Registers)
+### Holding Registers (FC 3, FC 6, FC 16: Read/Write Holding Registers)
 
 Holding registers are read/write 16-bit values that map to `%QW` addresses.
 
@@ -183,7 +183,7 @@ First Modbus Register = Long_Word_Number * 4
 
 ## Memory Addresses and Runtime Versions
 
-### Runtime v4 (Current) — No %M via Modbus
+### Runtime v4 (Current): No %M via Modbus
 
 **Runtime v4 does not expose memory addresses (`%M`) through the Modbus server.** Only direct I/O addresses (`%I` and `%Q`) are accessible to Modbus clients.
 
@@ -198,7 +198,7 @@ The effective address ranges in v4 are limited to the basic I/O buffers:
 
 If you need to share internal variables with external systems and the v4 I/O buffer limits are too restrictive, consider using the [OPC-UA server](../opc-ua/README), which can expose any project variable regardless of its address type.
 
-### Runtime v3 (Legacy) — Extended %M Ranges
+### Runtime v3 (Legacy): Extended %M Ranges
 
 Runtime v3 extended the Modbus holding register space to include memory addresses:
 
@@ -278,7 +278,7 @@ On Runtime v4, attempting to read or write Modbus addresses beyond the effective
 
 ## What's Next?
 
-- **[Modbus Server Configuration](server)** — Configure the Modbus server settings and buffer sizes
-- **[Modbus Client Configuration](client)** — Set up polling of external Modbus devices
-- **[OPC-UA Server](../opc-ua/README)** — Alternative protocol with no address range limitations
-- **[Communication Protocols Overview](../README)** — Return to the protocols overview
+- **[Modbus Server Configuration](server)**: Configure the Modbus server settings and buffer sizes
+- **[Modbus Client Configuration](client)**: Set up polling of external Modbus devices
+- **[OPC-UA Server](../opc-ua/README)**: Alternative protocol with no address range limitations
+- **[Communication Protocols Overview](../README)**: Return to the protocols overview

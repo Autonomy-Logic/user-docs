@@ -8,22 +8,22 @@ Learn how to create your Autonomy Edge account, verify your email, sign in, and 
 
 You can create an account in two ways: with email and password, or with a social login provider.
 
-### Option A — Email and Password
+### Option A: Email and Password
 
 1. Go to [edge.autonomylogic.com](https://edge.autonomylogic.com).
 2. Click the **Sign up** link on the sign-in page.
 3. Fill in the form:
-   - **Full Name** — The name other users will see.
-   - **Username** — A unique identifier (letters, numbers, and underscores only).
-   - **Email** — A valid email address for verification.
-   - **Password** — At least 8 characters, with one uppercase letter, one lowercase letter, and one number.
-   - **Confirm Password** — Type your password again.
+   - **Full Name**: The name other users will see.
+   - **Username**: A unique identifier (letters, numbers, and underscores only).
+   - **Email**: A valid email address for verification.
+   - **Password**: At least 8 characters, with one uppercase letter, one lowercase letter, and one number.
+   - **Confirm Password**: Type your password again.
 4. Accept the **Terms of Use**.
 5. Click **Sign up**.
 
 You'll be redirected to the email verification screen.
 
-### Option B — Social Login
+### Option B: Social Login
 
 Instead of filling out the form, click one of the provider buttons at the top of the signup page:
 
@@ -33,7 +33,7 @@ Instead of filling out the form, click one of the provider buttons at the top of
 
 You'll be redirected to the provider's login page. After you authorize, your account is created automatically and you're taken into the platform.
 
-> **Tip:** Social login skips email verification — the provider has already verified your email.
+> **Tip:** Social login skips email verification. The provider has already verified your email.
 
 ---
 
@@ -45,7 +45,7 @@ If you signed up with email and password, you need to verify your email before y
 2. Enter the code on the verification page.
 3. Click **Verify**.
 
-That's it — you're in.
+That's it. You're in.
 
 **Didn't receive the code?**
 - Check your spam or junk folder.
@@ -62,7 +62,7 @@ That's it — you're in.
 
 > **Tip:** Only use "Remember Me" on personal devices you trust.
 
-If this is your first login, you'll see a short onboarding walkthrough introducing the platform's main features. You can follow along or skip it — the [Quick Start Guide](./quick-start) covers everything you need.
+If this is your first login, you'll see a short onboarding walkthrough introducing the platform's main features. You can follow along or skip it. The [Quick Start Guide](./quick-start) covers everything you need.
 
 ---
 

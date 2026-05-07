@@ -63,7 +63,7 @@ The process of detecting a transition in a boolean signal. A rising edge (R_TRIG
 One of the five IEC 61131-3 programming languages. FBD uses graphical blocks connected by wires to represent logic flow. Each block performs a function and passes results to connected blocks. Well-suited for data flow and signal processing applications.
 
 ### Function (FC)
-A POU that performs a computation and returns a single value. Functions are stateless — they produce the same output for the same inputs every time. Examples: `ABS()`, `SQRT()`, `MAX()`, type conversion functions.
+A POU that performs a computation and returns a single value. Functions are stateless. They produce the same output for the same inputs every time. Examples: `ABS()`, `SQRT()`, `MAX()`, type conversion functions.
 
 ### Function Block (FB)
 A POU that encapsulates logic with internal state. Unlike Functions, Function Blocks retain their variable values between scan cycles. Each use requires a named instance. Examples: TON (timer), CTU (counter), PID controllers. Function Blocks are the primary mechanism for code reuse in IEC 61131-3.
@@ -199,6 +199,6 @@ A safety mechanism in the OpenPLC Runtime that monitors whether the PLC program 
 
 ## What's Next?
 
-- [Data Types Reference](data-types) — Complete IEC 61131-3 data type details
-- [IEC 61131-3 Keywords](iec-keywords) — Reserved keywords reference
-- [FAQ](faq) — Common questions about Autonomy Edge
+- [Data Types Reference](data-types): Complete IEC 61131-3 data type details
+- [IEC 61131-3 Keywords](iec-keywords): Reserved keywords reference
+- [FAQ](faq): Common questions about Autonomy Edge

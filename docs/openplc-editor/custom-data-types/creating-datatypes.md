@@ -1,6 +1,6 @@
 # Creating Data Types
 
-In any PLC project of meaningful size, the built-in data types (BOOL, INT, REAL, etc.) quickly become insufficient for organizing your data clearly. Imagine a program that tracks 20 temperature sensors, each with a value, an alarm status, and a timestamp. Without user-defined types, you'd need dozens of individual variables with carefully coordinated names — a recipe for confusion and bugs.
+In any PLC project of meaningful size, the built-in data types (BOOL, INT, REAL, etc.) quickly become insufficient for organizing your data clearly. Imagine a program that tracks 20 temperature sensors, each with a value, an alarm status, and a timestamp. Without user-defined types, you'd need dozens of individual variables with carefully coordinated names. A recipe for confusion and bugs.
 
 IEC 61131-3 solves this with **user-defined data types**. These let you define your own types that group, structure, and constrain data in ways that match your application's real-world domain. Once defined, a custom type works just like a built-in type: you can declare variables, pass them to functions and function blocks, and use them across your entire project.
 
@@ -11,16 +11,16 @@ The Autonomy Edge IDE supports three derivations of user-defined data types:
 | Derivation | Purpose | Example Use Case |
 |------------|---------|------------------|
 | **Array** | An ordered collection of elements, all of the same type | A bank of 10 temperature sensors, all stored as REAL values |
-| **Enumeration** | A set of named values — the variable can hold exactly one | Machine states like IDLE, RUNNING, PAUSED, FAULTED |
+| **Enumeration** | A set of named values. The variable can hold exactly one | Machine states like IDLE, RUNNING, PAUSED, FAULTED |
 | **Structure** | A composite type grouping multiple named fields of different types | A sensor reading bundling a REAL value, a BOOL validity flag, and a DT timestamp |
 
 ### When to Use Each Type
 
 **Choose an Array when** you have multiple values of the same type that logically belong together. Arrays are ideal for sensor banks, recipe tables, data buffers, and lookup tables. If you find yourself creating variables like `temp_1`, `temp_2`, `temp_3`, an array is the better approach.
 
-**Choose an Enumeration when** a variable should only hold one value from a fixed set of named options. Enumerations make your code self-documenting — `state := RUNNING` is far clearer than `state := 2`. They're perfect for machine states, operating modes, alarm levels, and command codes.
+**Choose an Enumeration when** a variable should only hold one value from a fixed set of named options. Enumerations make your code self-documenting. `state := RUNNING` is far clearer than `state := 2`. They're perfect for machine states, operating modes, alarm levels, and command codes.
 
-**Choose a Structure when** you have several related values of different types that logically belong together. Structures let you treat a group of fields as a single unit — you can declare one variable instead of five, pass it to a function block as one parameter, and keep your variable tables clean.
+**Choose a Structure when** you have several related values of different types that logically belong together. Structures let you treat a group of fields as a single unit. You can declare one variable instead of five, pass it to a function block as one parameter, and keep your variable tables clean.
 
 ## Creating a Data Type in the IDE
 
@@ -45,7 +45,7 @@ Enter a name for your data type. The name must follow these rules:
 - Must be a valid IEC 61131-3 identifier (letters, digits, and underscores; cannot start with a digit).
 - **Cannot conflict** with any existing POU (Program, Function, or Function Block) name.
 - **Cannot conflict** with any other existing data type name.
-- Should be descriptive — names like `SensorData`, `MachineState`, or `TemperatureBuffer` clearly communicate the type's purpose.
+- Should be descriptive. Names like `SensorData`, `MachineState`, or `TemperatureBuffer` clearly communicate the type's purpose.
 
 ### Step 4: Choose the Derivation
 
@@ -59,9 +59,9 @@ Click **Create**. The new data type appears in the **Data Types** branch of the 
 
 Click the newly created data type in the Project Explorer to open its editor. Each derivation has a specialized editor:
 
-- **Array editor** — Set the base type, define dimensions, and optionally provide an initial value.
-- **Enumeration editor** — Add named values and select a default initial value.
-- **Structure editor** — Add fields with names, types, and optional initial values.
+- **Array editor**: Set the base type, define dimensions, and optionally provide an initial value.
+- **Enumeration editor**: Add named values and select a default initial value.
+- **Structure editor**: Add fields with names, types, and optional initial values.
 
 ## The Data Types Branch
 
@@ -151,7 +151,7 @@ Each is covered in full detail in its respective documentation page.
 
 - **Plan your types before coding.** Sketch out the data model for your application before writing POU logic. Defining the right types upfront saves significant refactoring later.
 
-- **Keep names consistent across the project.** If you name a structure `SensorData`, name the variable `sensorData` or `sensor` — not `sd` or `data1`.
+- **Keep names consistent across the project.** If you name a structure `SensorData`, name the variable `sensorData` or `sensor`. Not `sd` or `data1`.
 
 ---
 

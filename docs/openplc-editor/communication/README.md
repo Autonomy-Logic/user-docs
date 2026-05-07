@@ -18,10 +18,10 @@ Key capabilities:
 
 Documentation pages:
 
-- **[Modbus Overview](modbus/README)** — Concepts, data types, function codes, and terminology
-- **[Modbus Server](modbus/server)** — Configure Autonomy Edge as a Modbus slave
-- **[Modbus Client](modbus/client)** — Configure Autonomy Edge to poll external Modbus devices
-- **[Modbus Addressing](modbus/addressing)** — IEC 61131-3 to Modbus address mapping tables and formulas
+- **[Modbus Overview](modbus/README)**: Concepts, data types, function codes, and terminology
+- **[Modbus Server](modbus/server)**: Configure Autonomy Edge as a Modbus slave
+- **[Modbus Client](modbus/client)**: Configure Autonomy Edge to poll external Modbus devices
+- **[Modbus Addressing](modbus/addressing)**: IEC 61131-3 to Modbus address mapping tables and formulas
 
 ### OPC-UA
 
@@ -38,7 +38,7 @@ Autonomy Edge is developing a full OPC-UA server implementation for Runtime v4 t
 
 Documentation:
 
-- **[OPC-UA Server](opc-ua/README)** — Complete configuration guide covering all five configuration tabs
+- **[OPC-UA Server](opc-ua/README)**: Complete configuration guide covering all five configuration tabs
 
 ## Adding Communication Interfaces
 
@@ -95,8 +95,8 @@ Due to hardware and memory constraints, Arduino targets only support Modbus serv
 
 Understanding the difference between server and client roles is fundamental to configuring communication correctly:
 
-- **Server (Slave)**: Your PLC listens for incoming connections and responds to read/write requests. Use this when an external system (SCADA, HMI, historian, cloud gateway) needs to access PLC data. The server is passive — it never initiates communication.
-- **Client (Master)**: Your PLC initiates connections to remote devices and polls data on a configurable schedule. Use this when your PLC needs to read sensors, control drives, or communicate with other PLCs. The client is active — it controls when and how often data is exchanged.
+- **Server (Slave)**: Your PLC listens for incoming connections and responds to read/write requests. Use this when an external system (SCADA, HMI, historian, cloud gateway) needs to access PLC data. The server is passive. It never initiates communication.
+- **Client (Master)**: Your PLC initiates connections to remote devices and polls data on a configurable schedule. Use this when your PLC needs to read sensors, control drives, or communicate with other PLCs. The client is active. It controls when and how often data is exchanged.
 
 A single project can use both roles simultaneously. For example, your PLC can act as a Modbus server for a SCADA system while also polling temperature sensors as a Modbus client and exposing process data through an OPC-UA server.
 
@@ -121,7 +121,7 @@ When you transfer a project to the runtime, the editor exports protocol configur
 | Modbus Client | `modbus_master.json` | Device connections, IO groups, polling schedules |
 | OPC-UA Server | `opcua.json` | Server settings, security profiles, users, certificates, address space |
 
-These files are generated automatically by the editor — you do not need to edit them by hand. The runtime reads them on startup to initialize the communication plugins.
+These files are generated automatically by the editor. You do not need to edit them by hand. The runtime reads them on startup to initialize the communication plugins.
 
 ### Choosing the Right Protocol
 
@@ -137,7 +137,7 @@ If you are unsure which protocol to use, consider the following guidelines:
 | Communicating with Arduino-based PLCs | Modbus Server |
 | Maximum simplicity with minimal configuration | Modbus Server |
 
-In many industrial deployments, both Modbus and OPC-UA run simultaneously — Modbus for device-level communication with field instruments and OPC-UA for secure, higher-level data exchange with enterprise systems.
+In many industrial deployments, both Modbus and OPC-UA run simultaneously. Modbus for device-level communication with field instruments and OPC-UA for secure, higher-level data exchange with enterprise systems.
 
 ## Troubleshooting Communication Issues
 
@@ -154,6 +154,6 @@ For protocol-specific troubleshooting, see the individual documentation pages li
 
 ## What's Next?
 
-- **[Modbus Overview](modbus/README)** — Start here if you are working with Modbus devices
-- **[OPC-UA Server](opc-ua/README)** — Start here for secure, modern industrial communication
-- **[Modbus Addressing](modbus/addressing)** — Deep dive into IEC-to-Modbus address mapping rules
+- **[Modbus Overview](modbus/README)**: Start here if you are working with Modbus devices
+- **[OPC-UA Server](opc-ua/README)**: Start here for secure, modern industrial communication
+- **[Modbus Addressing](modbus/addressing)**: Deep dive into IEC-to-Modbus address mapping rules

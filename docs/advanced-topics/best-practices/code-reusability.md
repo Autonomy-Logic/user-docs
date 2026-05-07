@@ -6,10 +6,10 @@ Writing logic once and reusing it across projects saves time and reduces bugs. F
 
 You'll encounter the same control patterns over and over: motor start/stop, analog scaling, PID regulation, alarm management, state sequencing. Writing these from scratch every time wastes effort and introduces inconsistency. A well-designed reusable Function Block:
 
-- **Reduces development time** — Instantiate a tested block instead of rewriting logic
-- **Improves reliability** — A block tested in one project carries that confidence to the next
-- **Simplifies maintenance** — Fix a bug once and all instances benefit
-- **Standardizes behavior** — Every motor starter works the same way across all projects
+- **Reduces development time**: Instantiate a tested block instead of rewriting logic
+- **Improves reliability**: A block tested in one project carries that confidence to the next
+- **Simplifies maintenance**: Fix a bug once and all instances benefit
+- **Standardizes behavior**: Every motor starter works the same way across all projects
 
 ## Function Blocks as the Unit of Reuse
 
@@ -17,8 +17,8 @@ You'll encounter the same control patterns over and over: motor start/stop, anal
 
 | Feature | Function (FC) | Function Block (FB) |
 |---------|---------------|---------------------|
-| Internal state | None — stateless | Yes — retains values between calls |
-| Multiple outputs | No — single return value | Yes — multiple output variables |
+| Internal state | None. Stateless | Yes. Retains values between calls |
+| Multiple outputs | No. Single return value | Yes. Multiple output variables |
 | Instances | Not needed | Each use requires a named instance |
 | Typical use | Pure calculations | Stateful control logic |
 
@@ -54,10 +54,10 @@ FUNCTION_BLOCK FB_MotorStarter
 
 **Key design principles:**
 
-1. **Inputs are parameters** — Everything the block needs comes through `VAR_INPUT`
-2. **Outputs are status** — The block exposes its state through `VAR_OUTPUT`
-3. **Internal state is hidden** — `VAR` holds implementation details the caller doesn't need
-4. **No globals** — The block never reads or writes global variables directly
+1. **Inputs are parameters**: Everything the block needs comes through `VAR_INPUT`
+2. **Outputs are status**: The block exposes its state through `VAR_OUTPUT`
+3. **Internal state is hidden**: `VAR` holds implementation details the caller doesn't need
+4. **No globals**: The block never reads or writes global variables directly
 
 ### Designing the Interface
 
@@ -276,7 +276,7 @@ Create a new Function Block when:
 **Don't** create a block for:
 - One-off logic specific to a single application
 - Trivial operations (a single assignment or comparison)
-- Logic that's still changing frequently — stabilize it first, then extract
+- Logic that's still changing frequently. Stabilize it first, then extract
 
 ## Designing for Different Contexts
 
@@ -331,16 +331,16 @@ See [Custom Libraries](../integration-apis/custom-libraries) for details on pack
 
 Before relying on a block in production:
 
-1. **Test with boundary values** — What happens with zero, negative, or maximum inputs?
-2. **Test edge cases** — What if `Enable` is toggled rapidly? What if `Start` and `Stop` are both TRUE?
-3. **Test in isolation** — Use a simple test Program that exercises all inputs and monitors all outputs
-4. **Verify timing** — For blocks with timers, confirm behavior across different scan rates
-5. **Use the debugger** — Monitor internal variables during execution to verify state transitions
+1. **Test with boundary values**: What happens with zero, negative, or maximum inputs?
+2. **Test edge cases**: What if `Enable` is toggled rapidly? What if `Start` and `Stop` are both TRUE?
+3. **Test in isolation**: Use a simple test Program that exercises all inputs and monitors all outputs
+4. **Verify timing**: For blocks with timers, confirm behavior across different scan rates
+5. **Use the debugger**: Monitor internal variables during execution to verify state transitions
 
 > **Tip:** The Autonomy Edge IDE's variable monitoring and console output make it easy to test blocks before deployment. See [Runtime Debugging](../troubleshooting/runtime-debugging) for details.
 
 ## What's Next?
 
-- [Performance Optimization](performance-optimization) — Write efficient code that doesn't overload the scan cycle
-- [Custom Libraries](../integration-apis/custom-libraries) — Package your reusable blocks into importable libraries
-- [Standard Function Blocks](../../openplc-editor/standard-function-blocks/timer-blocks) — Reference for the built-in blocks you can compose with
+- [Performance Optimization](performance-optimization): Write efficient code that doesn't overload the scan cycle
+- [Custom Libraries](../integration-apis/custom-libraries): Package your reusable blocks into importable libraries
+- [Standard Function Blocks](../../openplc-editor/standard-function-blocks/timer-blocks): Reference for the built-in blocks you can compose with

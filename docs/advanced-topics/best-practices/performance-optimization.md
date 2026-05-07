@@ -1,14 +1,14 @@
 # Performance Optimization
 
-In PLC programming, performance means completing all your logic within the configured scan cycle time. If your program takes longer than the task period allows, you get scan overruns — the runtime can't maintain deterministic timing, and your control system becomes unreliable. This guide covers how the scan cycle works, what causes performance problems, and practical techniques for writing efficient PLC code.
+In PLC programming, performance means completing all your logic within the configured scan cycle time. If your program takes longer than the task period allows, you get scan overruns. The runtime can't maintain deterministic timing, and your control system becomes unreliable. This guide covers how the scan cycle works, what causes performance problems, and practical techniques for writing efficient PLC code.
 
 ## Understanding the Scan Cycle
 
 Every PLC scan cycle follows the same three-phase pattern:
 
-1. **Read Inputs** — The runtime reads all physical and mapped inputs into the input image table
-2. **Execute Program** — Your PLC program runs from top to bottom (or in task-assigned order)
-3. **Write Outputs** — The runtime writes the output image table to physical and mapped outputs
+1. **Read Inputs**: The runtime reads all physical and mapped inputs into the input image table
+2. **Execute Program**: Your PLC program runs from top to bottom (or in task-assigned order)
+3. **Write Outputs**: The runtime writes the output image table to physical and mapped outputs
 
 The total time for all three phases is the **scan time**. Your task configuration sets the **scan period** (e.g., 50 ms). If the scan time exceeds the scan period, the runtime logs a warning and the next cycle starts late.
 
@@ -16,9 +16,9 @@ The total time for all three phases is the **scan time**. Your task configuratio
 
 | Scenario | Effect |
 |----------|--------|
-| Scan time < Task period | Normal — runtime idles until next period |
-| Scan time ≈ Task period | Borderline — any spike causes overrun |
-| Scan time > Task period | Scan overrun — missed deadline, non-deterministic behavior |
+| Scan time < Task period | Normal. Runtime idles until next period |
+| Scan time ≈ Task period | Borderline. Any spike causes overrun |
+| Scan time > Task period | Scan overrun. Missed deadline, non-deterministic behavior |
 
 > **Tip:** Keep your average scan time below 50% of the task period. This leaves headroom for worst-case spikes.
 
@@ -88,7 +88,7 @@ Move string operations to slower tasks (500 ms+) where possible.
 Deeply nested IF statements and CASE structures increase complexity and can slow execution. Flatten where you can:
 
 ```iecst
-(* Deep nesting — harder to read and optimize *)
+(* Deep nesting. Harder to read and optimize *)
 IF cond1 THEN
     IF cond2 THEN
         IF cond3 THEN
@@ -97,7 +97,7 @@ IF cond1 THEN
     END_IF;
 END_IF;
 
-(* Flat — same logic, single evaluation *)
+(* Flat. Same logic, single evaluation *)
 IF cond1 AND cond2 AND cond3 THEN
     action := TRUE;
 END_IF;
@@ -225,16 +225,16 @@ END_IF;
 The Autonomy Edge IDE console displays runtime messages including scan overrun warnings. Keep an eye on these during development:
 
 - Filter the console to show **Warning** and **Error** level messages
-- Watch for repeated overrun messages — they indicate sustained performance problems
+- Watch for repeated overrun messages. They indicate sustained performance problems
 - A single overrun during startup is normal; recurring ones need investigation
 
 ### Variable Monitoring
 
 Use the IDE's variable monitoring panel to observe:
 
-- **Timer `ET` values** — If timers show elapsed times jumping (not counting smoothly), scans may be overrunning
-- **Counter increments** — Counters should increment by 1 per event, not skip values
-- **Boolean toggles** — Rapid toggling of outputs can indicate logic issues
+- **Timer `ET` values**: If timers show elapsed times jumping (not counting smoothly), scans may be overrunning
+- **Counter increments**: Counters should increment by 1 per event, not skip values
+- **Boolean toggles**: Rapid toggling of outputs can indicate logic issues
 
 ### Debugging Performance
 
@@ -264,6 +264,6 @@ Use this checklist when reviewing your project:
 
 ## What's Next?
 
-- [Project Organization](project-organization) — Structure your project for maintainability
-- [Runtime Debugging](../troubleshooting/runtime-debugging) — Monitor your program in real-time
-- [Task Configuration](../../openplc-editor/task-configuration/understanding-tasks) — Set up tasks with appropriate scan periods
+- [Project Organization](project-organization): Structure your project for maintainability
+- [Runtime Debugging](../troubleshooting/runtime-debugging): Monitor your program in real-time
+- [Task Configuration](../../openplc-editor/task-configuration/understanding-tasks): Set up tasks with appropriate scan periods

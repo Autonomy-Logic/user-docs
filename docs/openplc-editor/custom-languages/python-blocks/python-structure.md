@@ -4,7 +4,7 @@ Every Python function block has the same shape: two required functions, plus a s
 
 ## The Two Required Functions
 
-Your Python code must define exactly two functions. They're called automatically — you never call them yourself.
+Your Python code must define exactly two functions. They're called automatically. You never call them yourself.
 
 ### `block_init()`
 
@@ -23,11 +23,11 @@ def block_init():
     print('Moving average filter initialized with 20 samples')
 ```
 
-> **Tip:** Use the `global` keyword to declare variables that need to persist between `block_init()` and `block_loop()`, and across multiple calls to `block_loop()` — including the output variables you assign to.
+> **Tip:** Use the `global` keyword to declare variables that need to persist between `block_init()` and `block_loop()`, and across multiple calls to `block_loop()`. Including the output variables you assign to.
 
 ### `block_loop()`
 
-Called **repeatedly**, approximately every **100 milliseconds**, for the entire lifetime of the process. This is where your main logic goes — read inputs, run your logic, assign outputs:
+Called **repeatedly**, approximately every **100 milliseconds**, for the entire lifetime of the process. This is where your main logic goes. Read inputs, run your logic, assign outputs:
 
 ```python
 def block_loop():
@@ -66,12 +66,12 @@ Inside `block_init()` and `block_loop()`, every variable from the table is a nor
 
 A few Python-specific points worth knowing:
 
-- **Reading an input** — just reference it by name: `if temperature > 75.0:`
-- **Writing an output** — declare it `global` at the top of the function, then assign to it. The `global` is a Python rule for assigning to module-level variables from inside a function; reads don't need it.
+- **Reading an input**: just reference it by name: `if temperature > 75.0:`
+- **Writing an output**: declare it `global` at the top of the function, then assign to it. The `global` is a Python rule for assigning to module-level variables from inside a function; reads don't need it.
 
 ### Locals Aren't in the Table
 
-Unlike standard IEC function blocks, Python blocks don't have a Local class in the Variables Table. Anything that's only used inside the block — counters, accumulators, buffers, helper objects — is just a regular Python variable in the script:
+Unlike standard IEC function blocks, Python blocks don't have a Local class in the Variables Table. Anything that's only used inside the block. Counters, accumulators, buffers, helper objects. Is just a regular Python variable in the script:
 
 ```python
 # Module-level locals: persist across block_loop() calls
@@ -111,7 +111,7 @@ When you read a variable, you get a plain Python value of the corresponding type
 
 ### Strings
 
-STRING variables behave as ordinary Python `str` values. The maximum length is **126 characters** — anything longer will be truncated when written to an output.
+STRING variables behave as ordinary Python `str` values. The maximum length is **126 characters**: anything longer will be truncated when written to an output.
 
 ```python
 def block_loop():
@@ -124,7 +124,7 @@ def block_loop():
 
 ### Arrays
 
-Array inputs and outputs appear as Python lists with the size declared in the Variables Table. Read and write individual elements like a normal list, but don't change the length — `append`/`pop` won't survive the round trip.
+Array inputs and outputs appear as Python lists with the size declared in the Variables Table. Read and write individual elements like a normal list, but don't change the length. `append`/`pop` won't survive the round trip.
 
 ```python
 # samples : ARRAY[0..9] OF INT (Input)

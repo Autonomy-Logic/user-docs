@@ -1,5 +1,5 @@
 {
-  "comment": "Falling edge contact — detect button release",
+  "comment": "Falling edge contact: detect button release",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "fallingEdge", "variable": "start_button" },

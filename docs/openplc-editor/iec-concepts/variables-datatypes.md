@@ -28,7 +28,7 @@ InOut variables (also called VAR_IN_OUT) are passed by reference. The caller pro
 
 ### External
 
-External variables reference global variables declared in the Resource configuration. When a POU declares a variable with the `external` class, it's accessing a global variable by name — any changes are visible to all POUs that reference the same global.
+External variables reference global variables declared in the Resource configuration. When a POU declares a variable with the `external` class, it's accessing a global variable by name. Any changes are visible to all POUs that reference the same global.
 
 ### Temp
 
@@ -36,7 +36,7 @@ Temporary variables exist only for the duration of a single POU execution cycle.
 
 ### Global
 
-Global variables are declared in the **Resource configuration** (not inside a POU). They're accessible from any POU in the project via the `external` class. Global variables are used for data sharing between POUs — for example, a setpoint value that multiple programs need to read, or a status flag that one program writes and another reads.
+Global variables are declared in the **Resource configuration** (not inside a POU). They're accessible from any POU in the project via the `external` class. Global variables are used for data sharing between POUs. For example, a setpoint value that multiple programs need to read, or a status flag that one program writes and another reads.
 
 Global variables are managed in the Global Variables table of the Resource editor. See [Global Variables](../working-with-variables/global-variables) for details.
 
@@ -48,7 +48,7 @@ Each POU has a **Variables Table** at the top of its editor. The table shows all
 |--------|-------------|
 | **Name** | The variable identifier. Must be a valid IEC 61131-3 identifier (letters, digits, underscores; cannot start with a digit). |
 | **Class** | The variable class (input, output, inOut, external, local, temp). Select from a dropdown. |
-| **Type** | The data type — a base type, user-defined type, array type, or function block instance. |
+| **Type** | The data type. A base type, user-defined type, array type, or function block instance. |
 | **Location** | The I/O address for hardware-mapped variables (e.g., `%IX0.0`, `%QW3`, `%MD10`). Leave blank for non-located variables. |
 | **Initial Value** | The value the variable starts with when the PLC starts. Optional. |
 | **Documentation** | A free-text description of the variable's purpose. Optional but recommended. |
@@ -143,7 +143,7 @@ A structure type groups multiple named fields of potentially different types int
 - `Timestamp : DT`
 - `SensorId : INT`
 
-Structures are useful for organizing related data — sensor readings with metadata, motor parameters, recipe configurations, etc.
+Structures are useful for organizing related data. Sensor readings with metadata, motor parameters, recipe configurations, etc.
 
 ### Creating a Data Type
 
@@ -167,23 +167,23 @@ Variables can be mapped to physical I/O addresses using the IEC 61131-3 location
 Where:
 
 - **Prefix** indicates direction:
-  - `I` — Input (read from physical input)
-  - `Q` — Output (write to physical output)
-  - `M` — Memory (internal memory, not tied to physical I/O)
+  - `I`: Input (read from physical input)
+  - `Q`: Output (write to physical output)
+  - `M`: Memory (internal memory, not tied to physical I/O)
 
 - **Size** indicates data width:
-  - `X` — Bit (single boolean)
-  - `B` — Byte (8 bits)
-  - `W` — Word (16 bits)
-  - `D` — Double word (32 bits)
-  - `L` — Long word (64 bits)
+  - `X`: Bit (single boolean)
+  - `B`: Byte (8 bits)
+  - `W`: Word (16 bits)
+  - `D`: Double word (32 bits)
+  - `L`: Long word (64 bits)
 
 - **Address** is the numeric address, often with dot notation for bit addressing:
-  - `%IX0.0` — Input bit 0 of byte 0
-  - `%QX1.3` — Output bit 3 of byte 1
-  - `%IW2` — Input word 2
-  - `%QW0` — Output word 0
-  - `%MD10` — Memory double word 10
+  - `%IX0.0`: Input bit 0 of byte 0
+  - `%QX1.3`: Output bit 3 of byte 1
+  - `%IW2`: Input word 2
+  - `%QW0`: Output word 0
+  - `%MD10`: Memory double word 10
 
 ### Example Locations
 

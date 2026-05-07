@@ -1,5 +1,5 @@
 {
-  "comment": "Normally Open contact — start button",
+  "comment": "Normally Open contact: start button",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "start_button" },

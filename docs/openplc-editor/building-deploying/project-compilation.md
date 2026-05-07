@@ -6,7 +6,7 @@ This page shows you how to compile your PLC project, what to expect in the Conso
 
 1. Open your project in the IDE.
 2. Click the **Compile** button in the Activity Bar (left side of the screen).
-3. Watch the Console Panel at the bottom — it shows real-time progress for each step of the build.
+3. Watch the Console Panel at the bottom. It shows real-time progress for each step of the build.
 4. Wait for the final message: `Compilation completed successfully`.
 
 That's it. If you're connected to a device, the compiled program is automatically uploaded and ready to run.
@@ -32,9 +32,9 @@ During compilation, the Console logs each step as it progresses:
 
 Each line is timestamped and color-coded by severity:
 
-- **Info** (blue) — Normal progress
-- **Warning** (yellow) — Something to be aware of, but not a blocker
-- **Error** (red) — Something went wrong; the build stops here
+- **Info** (blue): Normal progress
+- **Warning** (yellow): Something to be aware of, but not a blocker
+- **Error** (red): Something went wrong; the build stops here
 
 ## Successful Compilation
 
@@ -50,7 +50,7 @@ If you compiled without a connected device, the IDE validates your code but can'
 You need to connect to a device to be able to upload the PLC program.
 ```
 
-This is still useful — it tells you your code compiles without errors, so you can connect and deploy later.
+This is still useful. It tells you your code compiles without errors, so you can connect and deploy later.
 
 ## Compiling Without a Device
 
@@ -66,7 +66,7 @@ This is great for catching errors early while you're still developing your logic
 
 ### No program POU found
 
-Your project needs at least one program-type POU. Check the Project Explorer — if the **Programs** branch is empty, create a program first.
+Your project needs at least one program-type POU. Check the Project Explorer. If the **Programs** branch is empty, create a program first.
 
 ### Syntax errors
 
@@ -120,14 +120,14 @@ If your project includes communication servers (Modbus slave, S7Comm, OPC-UA), t
 
 If there's a mismatch, a dialog appears with three options:
 
-- **Cancel** — Stop the upload and fix the address.
-- **Continue** — Upload anyway (the server may fail to start on the device).
-- **Switch to all interfaces** — Temporarily use `0.0.0.0` so the server listens on all available interfaces.
+- **Cancel**: Stop the upload and fix the address.
+- **Continue**: Upload anyway (the server may fail to start on the device).
+- **Switch to all interfaces**: Temporarily use `0.0.0.0` so the server listens on all available interfaces.
 
 ---
 
 ## What's Next?
 
-- [Deployment](deployment-vplc) — Learn what happens after compilation and how to manage your running program.
-- [XML Export](xml-export) — Export your project for backup or sharing.
-- [Console & Debugging](../workspace-overview/console-debugging) — Learn how to read and filter build logs effectively.
+- [Deployment](deployment-vplc): Learn what happens after compilation and how to manage your running program.
+- [XML Export](xml-export): Export your project for backup or sharing.
+- [Console & Debugging](../workspace-overview/console-debugging): Learn how to read and filter build logs effectively.

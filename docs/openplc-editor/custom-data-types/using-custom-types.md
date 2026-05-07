@@ -1,6 +1,6 @@
 # Using Custom Data Types
 
-Creating a data type is only the first step. The real value comes from using your custom types throughout your project — declaring variables, accessing their contents in code, passing them between POUs, and combining them into richer data models. This page shows you how to work with arrays, enumerations, and structures once they're defined.
+Creating a data type is only the first step. The real value comes from using your custom types throughout your project. Declaring variables, accessing their contents in code, passing them between POUs, and combining them into richer data models. This page shows you how to work with arrays, enumerations, and structures once they're defined.
 
 ## Declaring Variables with Custom Types
 
@@ -234,7 +234,7 @@ sensorProcessor(data := mySensor);
 
 ## Nesting Custom Types
 
-One of the most powerful features of IEC 61131-3 data types is **composability** — you can use custom types as building blocks for other custom types.
+One of the most powerful features of IEC 61131-3 data types is **composability**: you can use custom types as building blocks for other custom types.
 
 ### Structures Containing Enumerations
 
@@ -313,17 +313,17 @@ drive.Status.Current := 8.5;
 
 ## Custom Types as Function and Function Block Parameters
 
-Custom types work seamlessly as POU parameters — instead of passing five separate values, you pass one structure:
+Custom types work seamlessly as POU parameters. Instead of passing five separate values, you pass one structure:
 
 ```
-(* As Input — caller passes value to the FB *)
+(* As Input. Caller passes value to the FB *)
 processSensor(data := mySensorReading);
 
-(* As Output — FB produces a value the caller reads *)
+(* As Output. FB produces a value the caller reads *)
 readSensor();
 currentValue := readSensor.result.Value;
 
-(* As InOut — FB modifies the caller's variable in place *)
+(* As InOut. FB modifies the caller's variable in place *)
 updateConfig(config := myMotorParams);
 ```
 
@@ -331,7 +331,7 @@ updateConfig(config := myMotorParams);
 
 In **Ladder Diagram**, custom type variables work with function block instances on rungs. Individual structure fields can serve as contacts or coils using dot notation (e.g., `sensor.Valid` as a contact, `motor.Enabled` as a coil). Array elements use bracket notation (e.g., `outputs[3]`).
 
-In **Function Block Diagram**, custom type variables connect to function block input/output pins by name. The same dot and bracket notation applies — wire `sensor.Value` to a comparison block input, or connect a math block output to `results[i]`.
+In **Function Block Diagram**, custom type variables connect to function block input/output pins by name. The same dot and bracket notation applies. Wire `sensor.Value` to a comparison block input, or connect a math block output to `results[i]`.
 
 ## Practical Example: Complete Sensor Monitoring System
 

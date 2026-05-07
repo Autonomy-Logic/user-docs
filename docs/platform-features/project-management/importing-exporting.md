@@ -14,7 +14,7 @@ Click the **Import Project** button (cloud upload icon) on the Projects page too
 
 ### The Import Form
 
-#### Project Archive (.zip) — Required
+#### Project Archive (.zip): Required
 
 Click the upload area (or drag and drop) to select a `.zip` file. **Only `.zip` files are accepted.**
 
@@ -25,16 +25,16 @@ After selecting a file, you'll see the file name, size, and an **×** button to 
 > - **macOS:** Right-click the project folder → "Compress"
 > - **Linux:** `zip -r project.zip project_folder/`
 
-#### Project Name — Optional
+#### Project Name: Optional
 
 Enter a custom name for the imported project. If you leave this empty, the name is taken from the `project.json` file inside the archive.
 
-#### Visibility — Required
+#### Visibility: Required
 
-- **Private** (default) — Only you can access it.
-- **Public** — Anyone on the platform can view it.
+- **Private** (default): Only you can access it.
+- **Public**: Anyone on the platform can view it.
 
-#### Destination Folder — Required
+#### Destination Folder: Required
 
 Choose where to place the project in your folder hierarchy. **No Folder (Root)** places it at the top level.
 
@@ -43,9 +43,9 @@ Choose where to place the project in your folder hierarchy. **No Folder (Root)**
 Click **Import Project**. A loading spinner shows while the upload is processed.
 
 **On success:** A toast notification appears, and an **Import complete!** modal gives you three options:
-- **Import another file** — Reopen the import modal.
-- **View in project** — Open the imported project in the IDE.
-- **Close** — Dismiss the modal.
+- **Import another file**: Reopen the import modal.
+- **View in project**: Open the imported project in the IDE.
+- **Close**: Dismiss the modal.
 
 **On failure:** An error toast appears with a specific message (invalid ZIP, name conflict, file too large, etc.).
 
@@ -77,7 +77,7 @@ Exporting downloads your project as a `.zip` archive containing all project file
 ### What Gets Downloaded
 
 The ZIP includes:
-- `project.json` — Project metadata.
+- `project.json`: Project metadata.
 - POU source files in their directory structure.
 - Any additional configuration or source files.
 
@@ -111,10 +111,10 @@ Make sure the folder contains a valid `project.json` with a `meta.name` field, a
 
 ## What's Next?
 
-You've covered the full project management lifecycle — creating, organizing, sharing, managing, and importing/exporting.
+You've covered the full project management lifecycle. Creating, organizing, sharing, managing, and importing/exporting.
 
 To continue exploring:
 
-- [Quick Start Tutorial](../../getting-started/quick-start) — Hands-on walkthrough of writing and running a PLC program.
-- [Understanding Orchestrators](../orchestrator-management/understanding-orchestrators) — Deploy your programs to virtual PLC devices.
-- [IDE Overview](../../openplc-editor/overview) — In-depth look at the browser-based editor.
+- [Quick Start Tutorial](../../getting-started/quick-start): Hands-on walkthrough of writing and running a PLC program.
+- [Understanding Orchestrators](../orchestrator-management/understanding-orchestrators): Deploy your programs to virtual PLC devices.
+- [IDE Overview](../../openplc-editor/overview): In-depth look at the browser-based editor.

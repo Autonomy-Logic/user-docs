@@ -1,6 +1,6 @@
 # Timer Function Blocks
 
-Timers are among the most frequently used function blocks in PLC programming. They let you introduce time-based behavior — delaying an action, holding an output for a set duration, or generating a fixed-length pulse. The IEC 61131-3 standard defines three timer function blocks, and all three are available in the Autonomy Edge web IDE as part of the **System Libraries**.
+Timers are among the most frequently used function blocks in PLC programming. They let you introduce time-based behavior. Delaying an action, holding an output for a set duration, or generating a fixed-length pulse. The IEC 61131-3 standard defines three timer function blocks, and all three are available in the Autonomy Edge web IDE as part of the **System Libraries**.
 
 Every timer shares the same basic interface: a boolean input `IN` that triggers the timer, a time preset `PT` that defines the duration, a boolean output `Q` that reflects the timer state, and an elapsed time output `ET` that shows how much time has passed. Where they differ is in *when* `Q` becomes TRUE and how the timer responds to changes on `IN`.
 
@@ -17,7 +17,7 @@ The timer is now available as a local variable. You call it in your code by pass
 
 ---
 
-## TON — On-Delay Timer
+## TON: On-Delay Timer
 
 The TON block delays the activation of an output. When `IN` goes HIGH, the timer begins counting. The output `Q` goes HIGH only after the elapsed time reaches the preset `PT`. If `IN` goes LOW before `PT` is reached, the timer resets and `Q` never activates.
 
@@ -70,11 +70,11 @@ In this example, the conveyor motor only starts if the operator holds the start 
 
 ---
 
-## TOF — Off-Delay Timer
+## TOF: Off-Delay Timer
 
 The TOF block keeps an output active for a set duration after its input goes LOW. When `IN` is HIGH, `Q` is immediately HIGH. When `IN` falls to FALSE, the timer begins counting, and `Q` stays HIGH until `ET` reaches `PT`. If `IN` goes HIGH again during the countdown, the timer resets and `Q` remains HIGH.
 
-Use TOF when you need an output to remain active for a period after a condition is no longer met — for example, keeping a cooling fan running after a motor shuts off.
+Use TOF when you need an output to remain active for a period after a condition is no longer met. For example, keeping a cooling fan running after a motor shuts off.
 
 ### Inputs
 
@@ -123,9 +123,9 @@ The cooling fan activates whenever the motor runs. When the motor shuts off, the
 
 ---
 
-## TP — Pulse Timer
+## TP: Pulse Timer
 
-The TP block generates a single pulse of fixed duration. On the rising edge of `IN`, `Q` goes HIGH and stays HIGH for exactly the duration `PT`, regardless of what happens to `IN` during that time. The timer is **not retriggerable** — if `IN` goes LOW and HIGH again while the pulse is active, it's ignored. A new pulse can only begin after the current one has completed.
+The TP block generates a single pulse of fixed duration. On the rising edge of `IN`, `Q` goes HIGH and stays HIGH for exactly the duration `PT`, regardless of what happens to `IN` during that time. The timer is **not retriggerable**: if `IN` goes LOW and HIGH again while the pulse is active, it's ignored. A new pulse can only begin after the current one has completed.
 
 Use TP when you need a consistent, fixed-duration output regardless of how long the input signal lasts.
 

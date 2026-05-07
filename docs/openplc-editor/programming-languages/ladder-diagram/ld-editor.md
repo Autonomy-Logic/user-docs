@@ -6,8 +6,8 @@ The Autonomy Edge IDE provides a dedicated visual editor for Ladder Diagram prog
 
 When you open a Ladder Diagram POU, the workspace splits into two sections:
 
-1. **Variables Table** (top) — Define the Boolean and other variables your program uses.
-2. **Graphical Editor** (bottom) — The visual canvas where you build the ladder logic.
+1. **Variables Table** (top): Define the Boolean and other variables your program uses.
+2. **Graphical Editor** (bottom): The visual canvas where you build the ladder logic.
 
 The graphical editor displays rungs vertically. Each rung is a self-contained horizontal circuit numbered in order.
 
@@ -27,18 +27,18 @@ Each new rung starts with placeholder nodes where you can add your first element
 
 A rung consists of these element types connected left to right:
 
-- **Left Power Rail** — The starting point (power source)
-- **Contacts** — Input conditions (normally open, normally closed, edge-detect)
-- **Function Blocks** — Timer, counter, and other blocks with multiple I/O pins
-- **Coils** — Output elements (regular, negated, set, reset, edge-detect)
-- **Right Power Rail** — The endpoint (power return)
-- **Parallel branches** — Vertical connections that create OR logic paths
+- **Left Power Rail**: The starting point (power source)
+- **Contacts**: Input conditions (normally open, normally closed, edge-detect)
+- **Function Blocks**: Timer, counter, and other blocks with multiple I/O pins
+- **Coils**: Output elements (regular, negated, set, reset, edge-detect)
+- **Right Power Rail**: The endpoint (power return)
+- **Parallel branches**: Vertical connections that create OR logic paths
 
 ### Reordering Rungs
 
 You can reorder rungs by dragging. Click and hold the rung header (the numbered area on the left), then drag the rung to a new position. The IDE shows visual feedback to indicate valid drop positions.
 
-Rung order determines execution order — the runtime evaluates rungs from top to bottom.
+Rung order determines execution order. The runtime evaluates rungs from top to bottom.
 
 ### Deleting a Rung
 
@@ -131,10 +131,10 @@ The LD editor provides context-aware autocomplete when editing variable names on
 
 The LD editor provides several visual cues to help you work:
 
-- **Blue outline** — The currently selected element
-- **Red text / red element** — A variable name that is undefined or has an incompatible type
-- **Drag opacity** — Elements being dragged become semi-transparent
-- **Hover outline** — A blue highlight appears when hovering over an element
+- **Blue outline**: The currently selected element
+- **Red text / red element**: A variable name that is undefined or has an incompatible type
+- **Drag opacity**: Elements being dragged become semi-transparent
+- **Hover outline**: A blue highlight appears when hovering over an element
 
 ## Undo and Redo
 
@@ -160,12 +160,12 @@ This includes element placement, deletion, variable assignment, rung creation, r
 
 ## Tips for Effective LD Programming
 
-1. **Define variables first** — Fill out the Variables Table before building rungs. This ensures autocomplete works and prevents red-highlighted errors.
-2. **One logical function per rung** — Keep rungs focused on a single operation for readability.
-3. **Use meaningful variable names** — `start_button` is much clearer than `I0_0` when reading the diagram.
-4. **Comment your rungs** — Use rung comments to describe the purpose of each circuit.
-5. **Test incrementally** — Build one or two rungs, compile and test, then add more.
-6. **Leverage parallel branches** — Don't create separate rungs for simple OR logic; use parallel branches on a single rung instead.
+1. **Define variables first**: Fill out the Variables Table before building rungs. This ensures autocomplete works and prevents red-highlighted errors.
+2. **One logical function per rung**: Keep rungs focused on a single operation for readability.
+3. **Use meaningful variable names**: `start_button` is much clearer than `I0_0` when reading the diagram.
+4. **Comment your rungs**: Use rung comments to describe the purpose of each circuit.
+5. **Test incrementally**: Build one or two rungs, compile and test, then add more.
+6. **Leverage parallel branches**: Don't create separate rungs for simple OR logic; use parallel branches on a single rung instead.
 
 ---
 

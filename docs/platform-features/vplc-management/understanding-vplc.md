@@ -6,14 +6,14 @@ A virtual PLC (vPLC) is a software-based programmable logic controller that runs
 
 ## What Is a vPLC?
 
-A vPLC is a software PLC that runs on your orchestrator's host machine. It uses the [OpenPLC Runtime](https://github.com/Autonomy-Logic/openplc-runtime) to execute IEC 61131-3 programs — just like a physical PLC, but created and managed entirely through the Autonomy Edge web interface.
+A vPLC is a software PLC that runs on your orchestrator's host machine. It uses the [OpenPLC Runtime](https://github.com/Autonomy-Logic/openplc-runtime) to execute IEC 61131-3 programs. Just like a physical PLC, but created and managed entirely through the Autonomy Edge web interface.
 
 Each vPLC:
 
 - Runs a dedicated instance of the OpenPLC Runtime.
 - Has its own IP address on your local network.
 - Can optionally use serial port passthrough for communicating with physical devices.
-- Is fully managed from the platform — create, start, stop, restart, rename, and delete without SSH access.
+- Is fully managed from the platform. Create, start, stop, restart, rename, and delete without SSH access.
 
 ---
 
@@ -50,7 +50,7 @@ When creating a vPLC, you select which version of the OpenPLC Runtime to use. Th
 
 ## vPLCs vs Physical PLCs
 
-vPLCs and physical PLCs serve the same purpose — executing automation programs — but differ in how they interface with the physical world:
+vPLCs and physical PLCs serve the same purpose. Executing automation programs. But differ in how they interface with the physical world:
 
 | Aspect | vPLC | Physical PLC |
 |--------|------|-------------|
@@ -67,10 +67,10 @@ vPLCs and physical PLCs serve the same purpose — executing automation programs
 
 vPLCs are ideal for:
 
-- **Rapid prototyping** — Spin up a new PLC in seconds to test automation logic.
-- **Network-based I/O** — Control Modbus TCP/IP devices, communicate with other PLCs, or integrate with SCADA systems.
-- **Education and training** — Create multiple independent PLCs on a single machine for lab exercises.
-- **Consolidation** — Run multiple automation workloads on a single edge device.
+- **Rapid prototyping**: Spin up a new PLC in seconds to test automation logic.
+- **Network-based I/O**: Control Modbus TCP/IP devices, communicate with other PLCs, or integrate with SCADA systems.
+- **Education and training**: Create multiple independent PLCs on a single machine for lab exercises.
+- **Consolidation**: Run multiple automation workloads on a single edge device.
 
 For applications that require direct hardware I/O (sensors and actuators wired to digital/analog inputs and outputs), you can connect a vPLC to remote I/O modules via Modbus TCP/IP, or use serial port passthrough for USB-connected devices.
 
@@ -78,7 +78,7 @@ For applications that require direct hardware I/O (sensors and actuators wired t
 
 ## Compatibility with OpenPLC Editor Desktop
 
-vPLCs run the same OpenPLC Runtime as standalone installations. You can connect to a vPLC using the [OpenPLC Editor](https://openplcproject.com/) desktop application from any computer on the same local network — just point the editor to the vPLC's IP address and port.
+vPLCs run the same OpenPLC Runtime as standalone installations. You can connect to a vPLC using the [OpenPLC Editor](https://openplcproject.com/) desktop application from any computer on the same local network. Just point the editor to the vPLC's IP address and port.
 
 This is useful for:
 
@@ -94,4 +94,4 @@ The desktop editor sees no difference between a vPLC and a standalone OpenPLC in
 
 Ready to create your first device?
 
-➡️ [Creating a vPLC Device](creating-vplc) — Step-by-step guide to naming, configuring, and launching a vPLC.
+➡️ [Creating a vPLC Device](creating-vplc): Step-by-step guide to naming, configuring, and launching a vPLC.

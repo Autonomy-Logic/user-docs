@@ -24,13 +24,13 @@ The Regular coil is the most common output type. It directly reflects the power 
 
 **Key characteristic:** The variable is updated every scan cycle. It follows the rung state in real time.
 
-**Example — Direct output:**
+**Example. Direct output:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-regular.json"></ladder-diagram>
 
 `alarm_light` mirrors `sensor_active`. When the sensor is active, the light is on. When the sensor is inactive, the light is off.
 
-**Example — AND logic with regular coil:**
+**Example. AND logic with regular coil:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-regular-and.json"></ladder-diagram>
 
@@ -45,7 +45,7 @@ The Negated coil writes the **inverse** of the rung's power state:
 
 **Use case:** Creating inverted outputs without needing a separate rung with a normally closed contact.
 
-**Example — Inverted status:**
+**Example. Inverted status:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-negated.json"></ladder-diagram>
 
@@ -57,7 +57,7 @@ Both approaches produce the same result. The negated coil approach is more compa
 
 ## Set Coil (Latch)
 
-The Set coil is a **latching** output. When the rung is energized, it sets the variable to TRUE and **leaves it there**. When the rung is de-energized, the coil does nothing — the variable retains its current value.
+The Set coil is a **latching** output. When the rung is energized, it sets the variable to TRUE and **leaves it there**. When the rung is de-energized, the coil does nothing. The variable retains its current value.
 
 - Rung energized → variable = **TRUE**
 - Rung de-energized → variable **unchanged** (stays at its current value)
@@ -66,7 +66,7 @@ The Set coil is a **latching** output. When the rung is energized, it sets the v
 
 **Use case:** Latch/unlatch pairs for motor control, alarm memory, and any situation where you need to "remember" that a condition occurred.
 
-**Example — Latching motor start:**
+**Example. Latching motor start:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-set-motor.json"></ladder-diagram>
 
@@ -83,7 +83,7 @@ The Reset coil is the counterpart to the Set coil. When the rung is energized, i
 
 **Use case:** Always paired with a Set coil to create a latch/unlatch circuit.
 
-**Example — Emergency stop with latch/unlatch:**
+**Example. Emergency stop with latch/unlatch:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-reset-estop-set.json"></ladder-diagram>
 
@@ -106,7 +106,7 @@ The Rising Edge coil produces a single-scan pulse when the rung transitions from
 
 **Use case:** Generating trigger pulses from sustained conditions, one-shot event signaling.
 
-**Example — One-shot pulse from level signal:**
+**Example. One-shot pulse from level signal:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-rising-edge.json"></ladder-diagram>
 
@@ -121,7 +121,7 @@ The Falling Edge coil produces a single-scan pulse when the rung transitions fro
 
 **Use case:** Detecting when a process ends, counting deactivation events.
 
-**Example — Detect process end:**
+**Example. Detect process end:**
 
 <ladder-diagram src="/docs/diagrams/ladder/coil-falling-edge.json"></ladder-diagram>
 

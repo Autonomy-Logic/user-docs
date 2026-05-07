@@ -112,10 +112,10 @@ GET /projects?page=1&limit=20&sortBy=updatedAt&sortOrder=desc
 ```
 
 Query parameters:
-- `page` — Page number (default: 1)
-- `limit` — Items per page (default: 20)
-- `sortBy` — Sort field (`name`, `createdAt`, `updatedAt`)
-- `sortOrder` — Sort direction (`asc`, `desc`)
+- `page`: Page number (default: 1)
+- `limit`: Items per page (default: 20)
+- `sortBy`: Sort field (`name`, `createdAt`, `updatedAt`)
+- `sortOrder`: Sort direction (`asc`, `desc`)
 
 ### Devices
 
@@ -204,10 +204,10 @@ The AI assistant provides code completion and chat capabilities for PLC programm
 
 Deploy a project to a device programmatically:
 
-1. **Get the project** — `GET /projects/:projectId/details`
-2. **Download the program** — `GET /projects/:projectId/download`
-3. **Ensure the device is stopped** — `POST /devices/:deviceId/stop`
-4. **Deploy and start** — `POST /devices/:deviceId/start`
+1. **Get the project**: `GET /projects/:projectId/details`
+2. **Download the program**: `GET /projects/:projectId/download`
+3. **Ensure the device is stopped**: `POST /devices/:deviceId/stop`
+4. **Deploy and start**: `POST /devices/:deviceId/start`
 
 ### Monitoring Device Status
 
@@ -260,6 +260,6 @@ If you receive a `429 Too Many Requests` response, wait before retrying.
 
 ## What's Next?
 
-- [Custom Libraries](custom-libraries) — Create reusable function block libraries
-- [Network Issues](../troubleshooting/network-issues) — Troubleshoot connectivity
-- [Runtime Debugging](../troubleshooting/runtime-debugging) — Debug deployed programs
+- [Custom Libraries](custom-libraries): Create reusable function block libraries
+- [Network Issues](../troubleshooting/network-issues): Troubleshoot connectivity
+- [Runtime Debugging](../troubleshooting/runtime-debugging): Debug deployed programs

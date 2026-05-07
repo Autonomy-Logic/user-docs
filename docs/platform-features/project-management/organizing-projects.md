@@ -12,18 +12,18 @@ The **Projects page** has a resizable left sidebar that displays your folder tre
 
 At the top of the sidebar:
 
-- **New** dropdown — Create a **New Project**, **New Folder**, or **New Library** (libraries coming soon).
-- **Recent** — Shows your most recently updated projects across all folders.
-- **Pinned** — Shows only projects you've pinned (see [Managing Projects](managing-projects)).
-- **Trash** — Shows projects and folders that have been moved to the trash.
+- **New** dropdown. Create a **New Project**, **New Folder**, or **New Library** (libraries coming soon).
+- **Recent**: Shows your most recently updated projects across all folders.
+- **Pinned**: Shows only projects you've pinned (see [Managing Projects](managing-projects)).
+- **Trash**: Shows projects and folders that have been moved to the trash.
 
 ### Folder Tree
 
 Below the buttons, the sidebar displays your full folder hierarchy as a collapsible tree:
 
-- **Root (/)** — The top-level folder. Always exists, can't be renamed or deleted.
-- **Subfolders** — Folders you create, shown as children of Root or nested inside other folders.
-- **Projects** — Shown inside their parent folder with a project icon.
+- **Root (/)**: The top-level folder. Always exists, can't be renamed or deleted.
+- **Subfolders**: Folders you create, shown as children of Root or nested inside other folders.
+- **Projects**: Shown inside their parent folder with a project icon.
 
 Click a **folder** to filter the main content area to show only projects in that folder. Click a **project** to open it in the IDE.
 
@@ -34,8 +34,8 @@ Click a **folder** to filter the main content area to show only projects in that
 1. Click the **New** dropdown button in the sidebar.
 2. Select **New Folder**.
 3. In the modal:
-   - **Folder Name** (required) — Enter a name.
-   - **Parent Folder** — Choose where to create it. Default is Root (/).
+   - **Folder Name** (required): Enter a name.
+   - **Parent Folder**: Choose where to create it. Default is Root (/).
 4. Click **Create Folder**.
 
 The new folder appears in the sidebar tree.
@@ -44,7 +44,7 @@ The new folder appears in the sidebar tree.
 
 ## Renaming a Folder
 
-1. Hover over the folder in the sidebar tree — a three-dot menu (⋯) appears.
+1. Hover over the folder in the sidebar tree. A three-dot menu (⋯) appears.
 2. Click the menu and select **Rename**.
 3. Enter the new name and click **Save changes**.
 
@@ -58,7 +58,7 @@ The new folder appears in the sidebar tree.
 2. Select **Move**.
 3. In the modal, click the destination folder. The move happens immediately.
 
-Moving a folder moves everything inside it — all subfolders and projects come along.
+Moving a folder moves everything inside it. All subfolders and projects come along.
 
 ---
 
@@ -134,7 +134,7 @@ Projects displayed as table rows with columns:
 | **Access** | Lock (private) or globe (public) icon with label |
 | **Actions** | Three-dot menu (⋯) |
 
-Both views support infinite scroll — more projects load as you scroll down.
+Both views support infinite scroll. More projects load as you scroll down.
 
 ---
 

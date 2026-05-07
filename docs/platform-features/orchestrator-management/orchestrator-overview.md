@@ -10,8 +10,8 @@ From the **Orchestrators** page, click any orchestrator to open its detail page.
 
 The detail page has two tabs:
 
-- **Overview** — System information and resource usage charts.
-- **Devices** — All vPLC devices on this orchestrator.
+- **Overview**: System information and resource usage charts.
+- **Devices**: All vPLC devices on this orchestrator.
 
 ---
 
@@ -23,23 +23,23 @@ The Overview tab shows a snapshot of your orchestrator's current state and resou
 
 A card at the top displays the orchestrator's name, status, and key system details:
 
-- **Status** — Color-coded label:
-  - **Active** (green) — Connected and healthy.
-  - **Not Found** (red) — Cannot be reached (agent may not be running or has lost connectivity).
-  - **Unknown** (gray) — Status could not be determined.
-- **Network** — IP addresses of the host's physical network interfaces, shown as `interface_name (ip_address)`.
-- **Memory** — Total RAM on the host (GB).
-- **OS** — Host operating system (e.g., `Ubuntu 24.04 LTS`).
-- **CPU** — Number of logical CPUs available.
-- **Disk** — Total disk space (GB).
-- **Description** — The description you provided when creating the orchestrator, or `-` if none.
+- **Status**: Color-coded label:
+  - **Active** (green): Connected and healthy.
+  - **Not Found** (red): Cannot be reached (agent may not be running or has lost connectivity).
+  - **Unknown** (gray): Status could not be determined.
+- **Network**: IP addresses of the host's physical network interfaces, shown as `interface_name (ip_address)`.
+- **Memory**: Total RAM on the host (GB).
+- **OS**: Host operating system (e.g., `Ubuntu 24.04 LTS`).
+- **CPU**: Number of logical CPUs available.
+- **Disk**: Total disk space (GB).
+- **Description**: The description you provided when creating the orchestrator, or `-` if none.
 
 ### Resource Usage Charts
 
 Below the system info card, two interactive line charts show resource consumption over time:
 
-- **CPU Usage Chart** — CPU utilization as a percentage (0–100%) over time.
-- **Memory Usage Chart** — Memory usage in megabytes (MB) over time.
+- **CPU Usage Chart**: CPU utilization as a percentage (0–100%) over time.
+- **Memory Usage Chart**: Memory usage in megabytes (MB) over time.
 
 Each chart has a dropdown to select the time window:
 
@@ -50,7 +50,7 @@ Each chart has a dropdown to select the time window:
 | **12h** | Last 12 hours |
 | **24h** | Last 24 hours |
 
-The two charts work independently — you can view CPU over 24 hours while viewing memory for the last hour.
+The two charts work independently. You can view CPU over 24 hours while viewing memory for the last hour.
 
 ---
 
@@ -77,9 +77,9 @@ You can **sort** by Device Name, Project, and Created At by clicking the column 
 
 Each device row has a three-dot menu (⋮) with:
 
-- **Restart** — Restarts the device. A confirmation modal appears first.
-- **Rename** — Opens a modal to change the device's name.
-- **Delete** — Permanently removes the device. A confirmation modal warns this can't be undone.
+- **Restart**: Restarts the device. A confirmation modal appears first.
+- **Rename**: Opens a modal to change the device's name.
+- **Delete**: Permanently removes the device. A confirmation modal warns this can't be undone.
 
 ### Adding a Device
 
@@ -143,4 +143,4 @@ Click a status to apply the filter. Click the same status again to clear it and 
 
 Learn about the devices your orchestrators run:
 
-➡️ [Understanding vPLC Devices](../vplc-management/understanding-vplc) — What virtual PLCs are, what they can do, and when to use them.
+➡️ [Understanding vPLC Devices](../vplc-management/understanding-vplc): What virtual PLCs are, what they can do, and when to use them.

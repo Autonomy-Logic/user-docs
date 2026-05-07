@@ -1,6 +1,6 @@
 # Bistable Function Blocks
 
-Bistable function blocks are memory elements. They remember whether they've been "set" or "reset" and hold that state until the opposite action occurs. In electrical terms, they behave like latching relays — once energized, they stay on until explicitly turned off.
+Bistable function blocks are memory elements. They remember whether they've been "set" or "reset" and hold that state until the opposite action occurs. In electrical terms, they behave like latching relays. Once energized, they stay on until explicitly turned off.
 
 The IEC 61131-3 standard defines two bistable blocks, **SR** and **RS**, plus a **SEMA** (semaphore) block. All three are available in the Autonomy Edge web IDE under **System Libraries**.
 
@@ -17,9 +17,9 @@ To use a bistable block in your program:
 
 ---
 
-## SR — Set-Reset (Set Dominant)
+## SR: Set-Reset (Set Dominant)
 
-In the SR block, the **set input dominates**. If both `S1` and `R` are TRUE simultaneously, the output `Q1` will be TRUE. This makes SR the appropriate choice when it's more important to activate than to deactivate — for example, triggering a safety alarm that must remain active even if a reset condition happens to be true at the same time.
+In the SR block, the **set input dominates**. If both `S1` and `R` are TRUE simultaneously, the output `Q1` will be TRUE. This makes SR the appropriate choice when it's more important to activate than to deactivate. For example, triggering a safety alarm that must remain active even if a reset condition happens to be true at the same time.
 
 ### Inputs
 
@@ -49,8 +49,8 @@ This means:
 
 | S1 | R | Q1 (previous) | Q1 (result) | Explanation |
 |----|---|---------------|-------------|-------------|
-| FALSE | FALSE | FALSE | FALSE | No change — stays off |
-| FALSE | FALSE | TRUE | TRUE | No change — stays on |
+| FALSE | FALSE | FALSE | FALSE | No change. Stays off |
+| FALSE | FALSE | TRUE | TRUE | No change. Stays on |
 | TRUE | FALSE | any | TRUE | Set wins |
 | FALSE | TRUE | any | FALSE | Reset wins |
 | TRUE | TRUE | any | **TRUE** | **Set dominates** |
@@ -75,9 +75,9 @@ The alarm activates when a fault is detected. The operator can only clear the al
 
 ---
 
-## RS — Reset-Set (Reset Dominant)
+## RS: Reset-Set (Reset Dominant)
 
-In the RS block, the **reset input dominates**. If both `S` and `R1` are TRUE simultaneously, the output `Q1` will be FALSE. This makes RS the appropriate choice when safety requires that the off-state takes priority — for example, a motor control where the stop command must always override the start command.
+In the RS block, the **reset input dominates**. If both `S` and `R1` are TRUE simultaneously, the output `Q1` will be FALSE. This makes RS the appropriate choice when safety requires that the off-state takes priority. For example, a motor control where the stop command must always override the start command.
 
 ### Inputs
 
@@ -107,8 +107,8 @@ This means:
 
 | S | R1 | Q1 (previous) | Q1 (result) | Explanation |
 |---|-----|---------------|-------------|-------------|
-| FALSE | FALSE | FALSE | FALSE | No change — stays off |
-| FALSE | FALSE | TRUE | TRUE | No change — stays on |
+| FALSE | FALSE | FALSE | FALSE | No change. Stays off |
+| FALSE | FALSE | TRUE | TRUE | No change. Stays on |
 | TRUE | FALSE | any | TRUE | Set wins |
 | FALSE | TRUE | any | FALSE | Reset wins |
 | TRUE | TRUE | any | **FALSE** | **Reset dominates** |
@@ -129,7 +129,7 @@ PROGRAM MotorControl
 END_PROGRAM
 ```
 
-The motor starts when the operator presses Start and stays running after the button is released (latched). Pressing Stop turns it off. If both buttons are pressed simultaneously, the stop command wins — a standard safety requirement in motor control.
+The motor starts when the operator presses Start and stays running after the button is released (latched). Pressing Stop turns it off. If both buttons are pressed simultaneously, the stop command wins. A standard safety requirement in motor control.
 
 ---
 
@@ -148,7 +148,7 @@ The choice depends on your safety requirements:
 
 ---
 
-## SEMA — Semaphore
+## SEMA: Semaphore
 
 The SEMA block implements a simple resource-locking mechanism. It has a `CLAIM` input and a `RELEASE` input, with a `BUSY` output that indicates whether the resource is currently claimed. Once claimed, subsequent claim attempts are ignored until the resource is released.
 
@@ -219,4 +219,4 @@ The reset condition requires that the acknowledge button is pressed AND the faul
 
 ## What's Next?
 
-Understand how to detect signal transitions — a fundamental building block used inside counters and many control patterns — with [Edge Detection Blocks](edge-detection-blocks).
+Understand how to detect signal transitions. A fundamental building block used inside counters and many control patterns. With [Edge Detection Blocks](edge-detection-blocks).

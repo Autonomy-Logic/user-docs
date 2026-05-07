@@ -20,9 +20,9 @@ When you open Device Configuration in the Autonomy Edge web IDE, you can browse 
 
 The web editor supports configuring communication protocols for your targets:
 
-- **Modbus Server** — Expose PLC registers to external Modbus masters.
-- **Modbus Client** — Poll data from external Modbus slave devices.
-- **OPC-UA Server** — Publish data using the OPC-UA standard (when available).
+- **Modbus Server**: Expose PLC registers to external Modbus masters.
+- **Modbus Client**: Poll data from external Modbus slave devices.
+- **OPC-UA Server**: Publish data using the OPC-UA standard (when available).
 
 These protocols are added through the Project Explorer, not the Device Configuration panel itself. See [Communication Protocols](../communication/README) for setup instructions.
 
@@ -143,11 +143,11 @@ For microcontroller targets, the pin mapping configuration connects these addres
 
 **Web Editor Users:**
 
-- [Connecting to Runtimes](../connecting-to-runtimes) — Full guide to connecting, authenticating, and deploying
-- [Communication Protocols](../communication/README) — Configure Modbus and OPC-UA
+- [Connecting to Runtimes](../connecting-to-runtimes): Full guide to connecting, authenticating, and deploying
+- [Communication Protocols](../communication/README): Configure Modbus and OPC-UA
 
 **Desktop Editor Users:**
 
-- [Board Selection](board-selection) — Choose and configure your target microcontroller board
-- [Pin Mapping](pin-mapping) — Map IEC addresses to physical hardware pins
-- [Communication Settings](communication-settings) — Configure Modbus RTU and TCP for microcontroller firmware
+- [Board Selection](board-selection): Choose and configure your target microcontroller board
+- [Pin Mapping](pin-mapping): Map IEC addresses to physical hardware pins
+- [Communication Settings](communication-settings): Configure Modbus RTU and TCP for microcontroller firmware

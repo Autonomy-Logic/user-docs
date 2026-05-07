@@ -37,15 +37,15 @@ The platform-level status appears as a color-coded label in the Devices table an
 |--------|-------|---------|
 | **Active** | Green | The device is responsive and working normally. |
 | **Not Found** | Red | The device could not be reached. It may have been removed, or the orchestrator is offline. |
-| **Unknown** | Gray | Status could not be determined — typically when the orchestrator hasn't responded yet. |
+| **Unknown** | Gray | Status could not be determined. Typically when the orchestrator hasn't responded yet. |
 
 ### Device State
 
 On the [device detail page](device-detail), the **Status** card shows the device's operational state:
 
-- **running** — The device is up and actively executing.
-- **exited** — The device has stopped (either intentionally or due to an error).
-- **created** — The device exists but hasn't started yet.
+- **running**: The device is up and actively executing.
+- **exited**: The device has stopped (either intentionally or due to an error).
+- **created**: The device exists but hasn't started yet.
 
 ### Running Flag
 
@@ -72,7 +72,7 @@ Restarts the vPLC device. The device is stopped and then started again.
 1. A confirmation modal appears: *"Are you sure you want to restart \<device name\>?"*
 2. After confirmation, the device stops and starts again.
 3. The uptime counter resets and the restart count increments by one.
-4. Any loaded PLC program remains loaded — the runtime re-initializes it on startup.
+4. Any loaded PLC program remains loaded. The runtime re-initializes it on startup.
 
 The device may be briefly unreachable during the restart. Status updates automatically once it's back.
 
@@ -100,8 +100,8 @@ Permanently removes the vPLC device from both the host machine and the platform.
 
 In addition to the table actions, vPLC devices support **start** and **stop** commands:
 
-- **Start** — Resumes a stopped device.
-- **Stop** — Stops a running device. The device is preserved and can be started again later.
+- **Start**: Resumes a stopped device.
+- **Stop**: Stops a running device. The device is preserved and can be started again later.
 
 When you send a start or stop command, the platform communicates with the orchestrator, which carries out the operation and reports the new status.
 
@@ -111,11 +111,11 @@ When you send a start or stop command, the platform communicates with the orches
 
 ### Key Indicators to Watch
 
-- **Uptime** — A healthy device shows steadily increasing uptime. If it keeps resetting to `0h 0m`, the device may be crashing and restarting repeatedly.
-- **Restart Count** — A non-zero count isn't necessarily a problem (you may have restarted manually), but a rapidly increasing count indicates instability.
-- **Status** — Should be `running` for normal operation. If you see `exited`, check if it was intentional.
-- **Running Flag** — Should be `Yes` during normal operation.
-- **Serial Port Status** — If your vPLC uses serial passthrough, check that ports show `Connected`. A `Disconnected` status means the physical device has been unplugged. An `Error` status requires investigation.
+- **Uptime**: A healthy device shows steadily increasing uptime. If it keeps resetting to `0h 0m`, the device may be crashing and restarting repeatedly.
+- **Restart Count**: A non-zero count isn't necessarily a problem (you may have restarted manually), but a rapidly increasing count indicates instability.
+- **Status**: Should be `running` for normal operation. If you see `exited`, check if it was intentional.
+- **Running Flag**: Should be `Yes` during normal operation.
+- **Serial Port Status**: If your vPLC uses serial passthrough, check that ports show `Connected`. A `Disconnected` status means the physical device has been unplugged. An `Error` status requires investigation.
 
 ### Troubleshooting Common Issues
 
@@ -146,4 +146,4 @@ When you send a start or stop command, the platform communicates with the orches
 
 Now that your infrastructure is set up, start writing PLC programs:
 
-➡️ [IDE Workspace Layout](../../openplc-editor/workspace-overview/workspace-layout) — Learn the browser-based editor and start coding.
+➡️ [IDE Workspace Layout](../../openplc-editor/workspace-overview/workspace-layout): Learn the browser-based editor and start coding.

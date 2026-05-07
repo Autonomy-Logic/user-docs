@@ -35,14 +35,14 @@ Private visibility is appropriate for work-in-progress projects, proprietary aut
 
 You can tell a project's visibility at a glance:
 
-- **Card view** — Globe icon (public) or lock icon (private) in the action bar.
-- **List view** — The **Access** column shows a globe or lock icon with a label.
+- **Card view**: Globe icon (public) or lock icon (private) in the action bar.
+- **List view**: The **Access** column shows a globe or lock icon with a label.
 
 ---
 
 ## The Activity Feed
 
-The dashboard's central area shows an **activity feed** — a scrollable list of public projects from across the Autonomy Edge community. This is the main way users discover each other's work.
+The dashboard's central area shows an **activity feed**: a scrollable list of public projects from across the Autonomy Edge community. This is the main way users discover each other's work.
 
 Each card in the feed shows the creator's avatar and name, the project description, star count, and a timestamp. Click a card to open the project in the IDE for viewing.
 
@@ -58,7 +58,7 @@ Every project has a **star count** reflecting community interest. Stars appear o
 
 ## Forking a Public Project
 
-Forking creates a personal copy of someone else's public project. The fork is independent — changes to your fork don't affect the original, and vice versa.
+Forking creates a personal copy of someone else's public project. The fork is independent. Changes to your fork don't affect the original, and vice versa.
 
 ### How to Fork
 

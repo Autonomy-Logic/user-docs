@@ -6,7 +6,7 @@ Counters are essential in industrial automation for tasks like counting parts on
 
 ## How Counters Detect Edges
 
-An important detail about counters: they count **transitions**, not continuous states. If an input stays HIGH for multiple scan cycles, the counter increments only once — on the first scan where the input transitions from FALSE to TRUE.
+An important detail about counters: they count **transitions**, not continuous states. If an input stays HIGH for multiple scan cycles, the counter increments only once. On the first scan where the input transitions from FALSE to TRUE.
 
 You don't need to add your own edge detection when using counters. The edge detection is built in.
 
@@ -23,7 +23,7 @@ The counter is now available as a local variable in your code.
 
 ---
 
-## CTU — Up Counter
+## CTU: Up Counter
 
 The CTU block counts upward from zero. Each rising edge on the `CU` input increments the current value `CV` by one. The output `Q` becomes TRUE when `CV` reaches or exceeds the preset value `PV`. The reset input `R` sets `CV` back to zero at any time.
 
@@ -31,16 +31,16 @@ The CTU block counts upward from zero. Each rising edge on the `CU` input increm
 
 | Name | Type | Description |
 |------|------|-------------|
-| `CU` | `BOOL` | Count Up — increments CV on each rising edge |
-| `R` | `BOOL` | Reset — sets CV to 0 when TRUE |
-| `PV` | `INT` | Preset Value — target count |
+| `CU` | `BOOL` | Count Up. Increments CV on each rising edge |
+| `R` | `BOOL` | Reset. Sets CV to 0 when TRUE |
+| `PV` | `INT` | Preset Value. Target count |
 
 ### Outputs
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE when CV >= PV |
-| `CV` | `INT` | Current Value — the running count |
+| `CV` | `INT` | Current Value. The running count |
 
 ### Behavior
 
@@ -71,7 +71,7 @@ Each time the part sensor transitions to TRUE, the counter increments. When 50 p
 
 ---
 
-## CTD — Down Counter
+## CTD: Down Counter
 
 The CTD block counts downward from a loaded value. When the load input `LD` is TRUE, `CV` is loaded with the preset value `PV`. Each rising edge on the `CD` input decrements `CV` by one. The output `Q` becomes TRUE when `CV` reaches zero or goes below it.
 
@@ -79,16 +79,16 @@ The CTD block counts downward from a loaded value. When the load input `LD` is T
 
 | Name | Type | Description |
 |------|------|-------------|
-| `CD` | `BOOL` | Count Down — decrements CV on each rising edge |
-| `LD` | `BOOL` | Load — loads PV into CV when TRUE |
-| `PV` | `INT` | Preset Value — the starting count |
+| `CD` | `BOOL` | Count Down. Decrements CV on each rising edge |
+| `LD` | `BOOL` | Load. Loads PV into CV when TRUE |
+| `PV` | `INT` | Preset Value. The starting count |
 
 ### Outputs
 
 | Name | Type | Description |
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE when CV <= 0 |
-| `CV` | `INT` | Current Value — the remaining count |
+| `CV` | `INT` | Current Value. The remaining count |
 
 ### Behavior
 
@@ -118,7 +118,7 @@ The operator presses `LoadCommand` to initialize the counter to 100. Each dispen
 
 ---
 
-## CTUD — Up-Down Counter
+## CTUD: Up-Down Counter
 
 The CTUD block combines both counting directions. It can count up on one input and count down on another, simultaneously. It has two output flags: `QU` indicates the count has reached or exceeded the preset, and `QD` indicates the count has reached zero or below.
 
@@ -126,11 +126,11 @@ The CTUD block combines both counting directions. It can count up on one input a
 
 | Name | Type | Description |
 |------|------|-------------|
-| `CU` | `BOOL` | Count Up — increments CV on each rising edge |
-| `CD` | `BOOL` | Count Down — decrements CV on each rising edge |
-| `R` | `BOOL` | Reset — sets CV to 0 when TRUE |
-| `LD` | `BOOL` | Load — loads PV into CV when TRUE |
-| `PV` | `INT` | Preset Value — upper threshold for QU |
+| `CU` | `BOOL` | Count Up. Increments CV on each rising edge |
+| `CD` | `BOOL` | Count Down. Decrements CV on each rising edge |
+| `R` | `BOOL` | Reset. Sets CV to 0 when TRUE |
+| `LD` | `BOOL` | Load. Loads PV into CV when TRUE |
+| `PV` | `INT` | Preset Value. Upper threshold for QU |
 
 ### Outputs
 

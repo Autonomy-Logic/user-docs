@@ -23,7 +23,7 @@ The Normally Open contact is the most common contact type. It acts like a switch
 
 **Use case:** Testing whether an input is active, a button is pressed, or a condition is met.
 
-**Example — Start button controls a motor:**
+**Example. Start button controls a motor:**
 
 <ladder-diagram src="/docs/diagrams/ladder/contact-no-start.json"></ladder-diagram>
 
@@ -41,7 +41,7 @@ The Normally Closed contact is the inverse of the Normally Open contact. It pass
 
 **Use case:** Implementing NOT logic, safety interlocks, and emergency stop conditions.
 
-**Example — Emergency stop circuit:**
+**Example. Emergency stop circuit:**
 
 <ladder-diagram src="/docs/diagrams/ladder/contact-nc-estop.json"></ladder-diagram>
 
@@ -49,7 +49,7 @@ The Normally Closed contact is the inverse of the Normally Open contact. It pass
 
 **Electrical analogy:** A pushbutton that is normally connected. Pressing it opens (breaks) the circuit.
 
-**Example — Safety interlock:**
+**Example. Safety interlock:**
 
 <ladder-diagram src="/docs/diagrams/ladder/contact-nc-interlock.json"></ladder-diagram>
 
@@ -57,7 +57,7 @@ The motor can only start when the safety guard is closed (`guard_open` = FALSE) 
 
 ## Rising Edge Contact (P)
 
-The Rising Edge contact detects the transition of a variable from FALSE to TRUE. It passes power for exactly **one scan cycle** at the moment of transition, then blocks power on subsequent scans — even if the variable remains TRUE.
+The Rising Edge contact detects the transition of a variable from FALSE to TRUE. It passes power for exactly **one scan cycle** at the moment of transition, then blocks power on subsequent scans. Even if the variable remains TRUE.
 
 **Behavior:**
 - Variable transitions FALSE → TRUE → power passes for one scan
@@ -67,7 +67,7 @@ The Rising Edge contact detects the transition of a variable from FALSE to TRUE.
 
 **Use case:** Counting events, triggering one-shot actions, detecting button presses without continuous activation.
 
-**Example — Count button presses:**
+**Example. Count button presses:**
 
 <ladder-diagram src="/docs/diagrams/ladder/contact-rising-edge.json"></ladder-diagram>
 
@@ -87,7 +87,7 @@ The Falling Edge contact detects the transition of a variable from TRUE to FALSE
 
 **Use case:** Detecting release events, triggering actions when a process ends, counting deactivation events.
 
-**Example — Detect button release:**
+**Example. Detect button release:**
 
 <ladder-diagram src="/docs/diagrams/ladder/contact-falling-edge.json"></ladder-diagram>
 
@@ -134,7 +134,7 @@ Each contact must be assigned a BOOL variable:
 2. Type the variable name. Autocomplete shows matching BOOL variables from the Variables Table.
 3. Press **Enter** or click a suggestion to confirm.
 
-If the name doesn't match a defined BOOL variable, the contact turns red. This is a visual error indicator — fix it by correcting the variable name or adding the missing variable to the Variables Table.
+If the name doesn't match a defined BOOL variable, the contact turns red. This is a visual error indicator. Fix it by correcting the variable name or adding the missing variable to the Variables Table.
 
 ---
 

@@ -118,7 +118,7 @@ The Users tab defines the user accounts that can authenticate with the OPC-UA se
 | Property | Description |
 |----------|-------------|
 | **Username** | Login name for the user account |
-| **Password** | Password for the account. Stored using bcrypt hashing — never in plaintext. |
+| **Password** | Password for the account. Stored using bcrypt hashing. Never in plaintext. |
 | **Authentication Type** | `Username/Password` or `Certificate` |
 | **Role** | The access role assigned to this user |
 
@@ -360,6 +360,6 @@ If your application requires security, rich data modeling, or access to variable
 
 ## What's Next?
 
-- **[Communication Protocols Overview](../README)** — Return to the protocols overview for Modbus and other options
-- **[Modbus Server Configuration](../modbus/server)** — Simpler alternative for basic data exchange without security requirements
-- **[Modbus Addressing](../modbus/addressing)** — Understand IEC-to-Modbus address mapping if using both protocols
+- **[Communication Protocols Overview](../README)**: Return to the protocols overview for Modbus and other options
+- **[Modbus Server Configuration](../modbus/server)**: Simpler alternative for basic data exchange without security requirements
+- **[Modbus Addressing](../modbus/addressing)**: Understand IEC-to-Modbus address mapping if using both protocols

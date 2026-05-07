@@ -1,6 +1,6 @@
 # Opening and Editing Projects
 
-Once you've created a project, the next step is to open it in the browser-based IDE — the Autonomy Edge IDE. This guide covers every way to open a project, the IDE layout, and how to edit project settings.
+Once you've created a project, the next step is to open it in the browser-based IDE. The Autonomy Edge IDE. This guide covers every way to open a project, the IDE layout, and how to edit project settings.
 
 ---
 
@@ -34,18 +34,18 @@ After successfully importing a project (see [Importing and Exporting](importing-
 
 When the IDE loads your project, you see the full development environment:
 
-- **Activity Bar** (left edge) — Icons for Search, Toolbox toggle, Compile, Start/Stop PLC, and Debugger.
-- **Project Explorer** (left sidebar) — A tree view of your project structure:
-  - **Functions** — Reusable POUs that return a value.
-  - **Function Blocks** — Reusable POUs with internal state.
-  - **Programs** — The main executable POUs.
-  - **Data Types** — Custom arrays, enumerations, and structures.
-  - **Resource** — Task configuration and program-to-task mapping.
-  - **Device** — Orchestrator and device connection management.
-  - **Servers** — Communication server configurations (Modbus slave, OPC-UA, S7Comm).
-- **Code Editor** (center) — Text editor with syntax highlighting for ST/IL, or visual drag-and-drop editor for LD/FBD.
-- **Variables Table** (below editor) — Define variables for the current POU: name, type, location, initial value, and documentation.
-- **Bottom Panel** — Console (compilation output) and PLC Logs (runtime messages from connected devices).
+- **Activity Bar** (left edge): Icons for Search, Toolbox toggle, Compile, Start/Stop PLC, and Debugger.
+- **Project Explorer** (left sidebar): A tree view of your project structure:
+  - **Functions**: Reusable POUs that return a value.
+  - **Function Blocks**: Reusable POUs with internal state.
+  - **Programs**: The main executable POUs.
+  - **Data Types**: Custom arrays, enumerations, and structures.
+  - **Resource**: Task configuration and program-to-task mapping.
+  - **Device**: Orchestrator and device connection management.
+  - **Servers**: Communication server configurations (Modbus slave, OPC-UA, S7Comm).
+- **Code Editor** (center): Text editor with syntax highlighting for ST/IL, or visual drag-and-drop editor for LD/FBD.
+- **Variables Table** (below editor): Define variables for the current POU: name, type, location, initial value, and documentation.
+- **Bottom Panel**: Console (compilation output) and PLC Logs (runtime messages from connected devices).
 
 > **Tip:** For a complete walkthrough of writing, compiling, and running a program, see the [Quick Start Tutorial](../../getting-started/quick-start).
 

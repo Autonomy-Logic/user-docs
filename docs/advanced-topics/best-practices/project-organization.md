@@ -1,6 +1,6 @@
 # Project Organization
 
-A well-organized project is easier to maintain, debug, and extend. As your Autonomy Edge projects grow — more POUs, more variables, more communication protocols — a consistent structure prevents confusion and saves you time. This guide covers naming conventions, POU organization, and structural patterns that scale.
+A well-organized project is easier to maintain, debug, and extend. As your Autonomy Edge projects grow. More POUs, more variables, more communication protocols. A consistent structure prevents confusion and saves you time. This guide covers naming conventions, POU organization, and structural patterns that scale.
 
 ## Naming Conventions
 
@@ -13,7 +13,7 @@ Clear, consistent naming is the single most impactful thing you can do for maint
 | Prefix by scope | `gEmergencyStop` (global), `iSensorTemp` (input), `oValveOpen` (output) | Distinguishes variable class at a glance |
 | Prefix by data type | `bMotorRunning` (BOOL), `rSetpoint` (REAL), `nCounter` (INT) | Useful when type matters for logic clarity |
 | CamelCase | `ConveyorSpeed`, `TankLevel` | Readable for multi-word names |
-| Snake_case | `conveyor_speed`, `tank_level` | Alternative style — pick one and stay consistent |
+| Snake_case | `conveyor_speed`, `tank_level` | Alternative style. Pick one and stay consistent |
 
 **Recommended prefixes by variable class:**
 
@@ -35,7 +35,7 @@ Name your Programs, Function Blocks, and Functions to clearly convey their purpo
 | Function Block | Describes the reusable behavior | `FB_MotorStarter`, `FB_PIDController`, `FB_Debounce` |
 | Function | Describes the computation | `FC_ScaleAnalog`, `FC_Clamp`, `FC_TempConvert` |
 
-> **Tip:** Use a `FB_` prefix for Function Blocks and `FC_` for Functions to distinguish them from Programs. Avoid generic names like `Control1` or `Test` — they become meaningless fast.
+> **Tip:** Use a `FB_` prefix for Function Blocks and `FC_` for Functions to distinguish them from Programs. Avoid generic names like `Control1` or `Test`. They become meaningless fast.
 
 ### Task and Instance Naming
 
@@ -61,7 +61,7 @@ Organize POUs by what they do, not when they were created:
 
 ### Single Responsibility Principle
 
-Each POU should do one thing well. If a Function Block handles motor control, alarm monitoring, and data logging all at once — split it up:
+Each POU should do one thing well. If a Function Block handles motor control, alarm monitoring, and data logging all at once. Split it up:
 
 ```
 (* Bad: one monolithic block *)
@@ -128,7 +128,7 @@ lCycleCount      : DINT;
 
 ### Minimize Global Variables
 
-Global variables are shared across all POUs — convenient, but risky in larger projects:
+Global variables are shared across all POUs. Convenient, but risky in larger projects:
 
 - **Use globals for**: System-wide state (emergency stop, system mode), shared process values that multiple POUs need
 - **Avoid globals for**: Internal counters, temporary calculations, POU-specific state
@@ -162,7 +162,7 @@ Running everything at 10 ms wastes CPU and can cause scan overruns. See [Perform
 
 ### One Program Per Task (Usually)
 
-Each task should typically execute one main Program. If you need multiple Programs in one task, make sure they have no order-dependent interactions — execution order within a task isn't always guaranteed.
+Each task should typically execute one main Program. If you need multiple Programs in one task, make sure they have no order-dependent interactions. Execution order within a task isn't always guaranteed.
 
 ## Documentation Within Projects
 
@@ -204,7 +204,7 @@ END_CASE;
 
 **When NOT to comment:**
 - Obvious assignments (`counter := counter + 1;` doesn't need one)
-- Every single line — over-commenting adds noise
+- Every single line. Over-commenting adds noise
 
 ## Project Templates
 
@@ -220,6 +220,6 @@ Reusing a template keeps things consistent across projects and cuts setup time.
 
 ## What's Next?
 
-- [Code Reusability](code-reusability) — Design Function Blocks for maximum reuse
-- [Performance Optimization](performance-optimization) — Optimize scan cycles and variable usage
-- [Task Configuration](../../openplc-editor/task-configuration/understanding-tasks) — Configure tasks and assign Programs
+- [Code Reusability](code-reusability): Design Function Blocks for maximum reuse
+- [Performance Optimization](performance-optimization): Optimize scan cycles and variable usage
+- [Task Configuration](../../openplc-editor/task-configuration/understanding-tasks): Configure tasks and assign Programs

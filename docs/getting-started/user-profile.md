@@ -16,10 +16,10 @@ You can also go directly to `edge.autonomylogic.com/profile`.
 
 Click the **Edit Profile** button on your profile page. You can update:
 
-- **Name** — Your display name, visible across the platform (required).
-- **Username** — Your unique identifier, shown in project paths like `your-username / Project Name` (required, must be unique).
-- **Bio** — A short description about yourself (optional). Use `@name` to mention organizations.
-- **Location** — Your city, country, or region (optional).
+- **Name**: Your display name, visible across the platform (required).
+- **Username**: Your unique identifier, shown in project paths like `your-username / Project Name` (required, must be unique).
+- **Bio**: A short description about yourself (optional). Use `@name` to mention organizations.
+- **Location**: Your city, country, or region (optional).
 
 > **Tip:** Your email is shown on this page but can't be changed here. It's used for authentication and is never visible to other users.
 
@@ -29,7 +29,7 @@ Click **Save** to apply your changes, or **Cancel** to discard them.
 
 ## Profile Photo
 
-Your avatar appears throughout the platform — in the navigation bar, on project cards, and on your profile page. Click your avatar image to see your options:
+Your avatar appears throughout the platform. In the navigation bar, on project cards, and on your profile page. Click your avatar image to see your options:
 
 ### Upload a Photo
 
@@ -45,7 +45,7 @@ Your avatar appears throughout the platform — in the navigation bar, on projec
 
 ### No Photo?
 
-If you haven't uploaded a photo, the platform shows your **initials** on a colored circle (e.g., "John Smith" → **JS**). You can customize both the letters and the color — see below.
+If you haven't uploaded a photo, the platform shows your **initials** on a colored circle (e.g., "John Smith" → **JS**). You can customize both the letters and the color. See below.
 
 ---
 
@@ -58,7 +58,7 @@ Prefer initials over a photo? You can pick custom letters and a background color
 3. Choose a **background color** from the palette.
 4. Click **Save**.
 
-Your custom initials are preserved even if you upload a photo later — they'll reappear if you ever remove the photo.
+Your custom initials are preserved even if you upload a photo later. They'll reappear if you ever remove the photo.
 
 ---
 

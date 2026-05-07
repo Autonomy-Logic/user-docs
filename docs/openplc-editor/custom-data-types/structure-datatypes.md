@@ -1,6 +1,6 @@
 # Structure Data Types
 
-A structure (often called a "struct") is a composite data type that groups multiple named fields of potentially different types into a single unit. Where an array holds many values of the same type, a structure holds a fixed set of values that can each be a different type. This mirrors how real-world data is naturally organized — a sensor reading isn't just a number; it's a number paired with a validity flag, a timestamp, and an identifier.
+A structure (often called a "struct") is a composite data type that groups multiple named fields of potentially different types into a single unit. Where an array holds many values of the same type, a structure holds a fixed set of values that can each be a different type. This mirrors how real-world data is naturally organized. A sensor reading isn't just a number; it's a number paired with a validity flag, a timestamp, and an identifier.
 
 Structures are one of the most powerful tools for keeping PLC programs organized, readable, and maintainable.
 
@@ -25,9 +25,9 @@ When you open a structure data type in the IDE, the editor presents a **Variable
 | Column | Description |
 |--------|-------------|
 | **#** | Row number (auto-assigned, not editable) |
-| **Name** | The field name — click to edit |
-| **Type** | The field's data type — click to open a dropdown selector |
-| **Initial Value** | An optional default value for the field — click to edit |
+| **Name** | The field name. Click to edit |
+| **Type** | The field's data type. Click to open a dropdown selector |
+| **Initial Value** | An optional default value for the field. Click to edit |
 
 ### Adding Fields
 
@@ -46,8 +46,8 @@ Use the **up arrow** and **down arrow** buttons to change the order of fields. W
 Field names must be:
 
 - Valid IEC 61131-3 identifiers (letters, digits, underscores; cannot start with a digit).
-- Unique within the structure — no two fields can share the same name.
-- Descriptive — `Temperature` is better than `var1`.
+- Unique within the structure. No two fields can share the same name.
+- Descriptive. `Temperature` is better than `var1`.
 
 ### Choosing Field Types
 
@@ -67,7 +67,7 @@ This flexibility means a structure's fields can be simple base types, other stru
 
 When you select **Array** from the type dropdown, a modal dialog opens where you configure an inline array type for that specific field. The modal works exactly like the standalone [Array editor](array-datatypes): you choose a base type, add dimension rows, and define the ranges.
 
-This is useful when a structure needs to contain a fixed-size collection — for example, a `SensorBank` structure with a field `Readings : ARRAY [0..9] OF REAL`.
+This is useful when a structure needs to contain a fixed-size collection. For example, a `SensorBank` structure with a field `Readings : ARRAY [0..9] OF REAL`.
 
 ### Setting Initial Values
 

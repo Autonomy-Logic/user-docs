@@ -1,6 +1,6 @@
 # Global Variables
 
-In most PLC projects, multiple Programs need to share data — a common setpoint, a system-wide emergency stop flag, or a status register that several routines read and update. IEC 61131-3 provides **Global variables** for exactly this purpose. They're declared once in the Resource configuration and can be accessed from any POU in the project.
+In most PLC projects, multiple Programs need to share data. A common setpoint, a system-wide emergency stop flag, or a status register that several routines read and update. IEC 61131-3 provides **Global variables** for exactly this purpose. They're declared once in the Resource configuration and can be accessed from any POU in the project.
 
 This page explains how Global variables work, how to connect them to POUs using the External class, and common patterns for sharing data across your project.
 
@@ -209,4 +209,4 @@ END_VAR
 
 Learn how to work with the editor tools for managing variables:
 
-- [Variables Editor](variables-editor) — The visual table for creating and editing variables inside POUs
+- [Variables Editor](variables-editor): The visual table for creating and editing variables inside POUs

@@ -4,11 +4,11 @@ In PLC programming, many operations need to happen **once** when a signal change
 
 An **edge** is the transition of a boolean signal from one state to another. A **rising edge** is the transition from FALSE to TRUE. A **falling edge** is the transition from TRUE to FALSE. The IEC 61131-3 standard provides two function blocks for detecting these transitions: **R_TRIG** and **F_TRIG**. Both are available in the Autonomy Edge web IDE under **System Libraries**.
 
-Edge detection blocks produce an output pulse that lasts for exactly **one scan cycle**. On the scan where the transition occurs, the output is TRUE. On all subsequent scans — even if the input remains in its new state — the output returns to FALSE. This one-shot behavior is what makes edge detection so useful for triggering single actions.
+Edge detection blocks produce an output pulse that lasts for exactly **one scan cycle**. On the scan where the transition occurs, the output is TRUE. On all subsequent scans. Even if the input remains in its new state. The output returns to FALSE. This one-shot behavior is what makes edge detection so useful for triggering single actions.
 
 ## Why Edge Detection Matters
 
-Consider a button connected to a PLC input. When the operator presses the button, the input goes TRUE and stays TRUE for as long as the button is held. At a typical scan time of 10ms, holding the button for half a second means the input is TRUE for approximately 50 consecutive scans. Without edge detection, any logic that checks `IF Button THEN DoSomething` will execute 50 times. With a rising edge trigger, the action executes exactly once — on the first scan where the button is detected as TRUE.
+Consider a button connected to a PLC input. When the operator presses the button, the input goes TRUE and stays TRUE for as long as the button is held. At a typical scan time of 10ms, holding the button for half a second means the input is TRUE for approximately 50 consecutive scans. Without edge detection, any logic that checks `IF Button THEN DoSomething` will execute 50 times. With a rising edge trigger, the action executes exactly once. On the first scan where the button is detected as TRUE.
 
 Edge detection is also used internally by other standard function blocks. The counter blocks (CTU, CTD, CTUD) all contain built-in rising edge triggers to ensure they count transitions rather than continuous states.
 
@@ -23,7 +23,7 @@ To use an edge trigger in your program:
 
 ---
 
-## R_TRIG — Rising Edge Trigger
+## R_TRIG: Rising Edge Trigger
 
 The R_TRIG block detects the transition of its input from FALSE to TRUE. The output `Q` is TRUE for exactly one scan cycle on each rising edge. On all other scans, `Q` is FALSE.
 
@@ -42,7 +42,7 @@ The R_TRIG block detects the transition of its input from FALSE to TRUE. The out
 ### Logic
 
 The block internally remembers the previous value of `CLK`. On each scan:
-1. `Q` is TRUE only if `CLK` is currently TRUE **and** it was FALSE on the previous scan — meaning this is the first scan where `CLK` is TRUE.
+1. `Q` is TRUE only if `CLK` is currently TRUE **and** it was FALSE on the previous scan. Meaning this is the first scan where `CLK` is TRUE.
 2. The previous value is then updated for use in the next scan.
 
 ### Timing Behavior
@@ -80,7 +80,7 @@ Each time the door opens, `OpenCount` increments by exactly 1, regardless of how
 
 ---
 
-## F_TRIG — Falling Edge Trigger
+## F_TRIG: Falling Edge Trigger
 
 The F_TRIG block detects the transition of its input from TRUE to FALSE. The output `Q` is TRUE for exactly one scan cycle on each falling edge. On all other scans, `Q` is FALSE.
 
@@ -99,7 +99,7 @@ The F_TRIG block detects the transition of its input from TRUE to FALSE. The out
 ### Logic
 
 The block internally remembers the previous state of `CLK`. On each scan:
-1. `Q` is TRUE only if `CLK` is currently FALSE **and** it was TRUE on the previous scan — meaning `CLK` has just transitioned to FALSE.
+1. `Q` is TRUE only if `CLK` is currently FALSE **and** it was TRUE on the previous scan. Meaning `CLK` has just transitioned to FALSE.
 2. The previous value is then updated for use in the next scan.
 
 ### Timing Behavior
@@ -145,7 +145,7 @@ Each time the power supply fails (transitions from OK to not-OK), the program re
 | Output duration | One scan cycle | One scan cycle |
 | Common use | Button press, sensor activation | Button release, signal loss |
 
-Both blocks are stateful — they maintain internal memory across scan cycles. This is why they must be declared as function block instances (variables), not called as simple functions.
+Both blocks are stateful. They maintain internal memory across scan cycles. This is why they must be declared as function block instances (variables), not called as simple functions.
 
 ---
 
@@ -237,4 +237,4 @@ END_IF;
 
 ## What's Next?
 
-Explore the remaining standard function blocks — including PID control, integration, differentiation, and communication blocks — in [Additional Function Blocks](other-blocks).
+Explore the remaining standard function blocks. Including PID control, integration, differentiation, and communication blocks. In [Additional Function Blocks](other-blocks).

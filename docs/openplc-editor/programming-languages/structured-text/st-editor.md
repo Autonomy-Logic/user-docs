@@ -1,6 +1,6 @@
 # ST Editor Features
 
-The Autonomy Edge IDE includes a powerful code editor for writing Structured Text programs. It comes with modern development features like syntax highlighting, IntelliSense code completion, and real-time error detection — everything you need to write correct and efficient ST code.
+The Autonomy Edge IDE includes a powerful code editor for writing Structured Text programs. It comes with modern development features like syntax highlighting, IntelliSense code completion, and real-time error detection. Everything you need to write correct and efficient ST code.
 
 ## Editor Overview
 
@@ -57,9 +57,9 @@ IntelliSense activates automatically when:
 
 ### What IntelliSense Suggests
 
-**Variable Names** — All variables defined in your Variables Table appear as suggestions.
+**Variable Names**: All variables defined in your Variables Table appear as suggestions.
 
-**Function Block Members** — When you type a function block instance name followed by a dot, IntelliSense shows its members. For example, typing `timer.` on a TON instance displays:
+**Function Block Members**: When you type a function block instance name followed by a dot, IntelliSense shows its members. For example, typing `timer.` on a TON instance displays:
 - **IN**: Boolean input to start the timer
 - **PT**: Preset time (how long to wait)
 - **ET**: Elapsed time (current timer value)
@@ -67,13 +67,13 @@ IntelliSense activates automatically when:
 
 The autocomplete also shows the data type for each member (e.g., "BOOL (input)" for IN), so you know what values are expected.
 
-**Keywords** — ST language keywords for control structures:
+**Keywords**: ST language keywords for control structures:
 ```
 IF, THEN, ELSE, ELSIF, END_IF
 CASE, FOR, WHILE, REPEAT
 ```
 
-**Built-in Functions** — Standard IEC 61131-3 functions:
+**Built-in Functions**: Standard IEC 61131-3 functions:
 ```
 ABS       // Absolute value
 SQRT      // Square root
@@ -83,7 +83,7 @@ CONCAT    // String concatenation
 LEN       // String length
 ```
 
-**Function Blocks** — Available function block types from libraries:
+**Function Blocks**: Available function block types from libraries:
 ```
 TON       // Timer On-Delay
 TOF       // Timer Off-Delay
@@ -94,7 +94,7 @@ RS        // Reset-Set bistable
 SR        // Set-Reset bistable
 ```
 
-**Data Types** — Available data types for declarations:
+**Data Types**: Available data types for declarations:
 ```
 BOOL
 INT, DINT, REAL
@@ -110,7 +110,7 @@ ARRAY
 3. **Navigate** with arrow keys.
 4. **Select** by pressing `Enter` or `Tab`.
 5. **Filter** by continuing to type.
-6. **Manual trigger** — press `Ctrl+Space` any time to show suggestions.
+6. **Manual trigger**: press `Ctrl+Space` any time to show suggestions.
 
 ### IntelliSense for Structures
 
@@ -172,10 +172,10 @@ You can collapse sections of code to focus on specific areas. Look for fold indi
 
 The Variables Table and Code Editor work together seamlessly:
 
-1. **Define first** — Add variables in the Variables Table before using them in code.
-2. **Automatic recognition** — Variables appear in IntelliSense immediately after definition.
-3. **Type checking** — The editor knows each variable's data type.
-4. **Scope awareness** — Only variables in scope are suggested.
+1. **Define first**: Add variables in the Variables Table before using them in code.
+2. **Automatic recognition**: Variables appear in IntelliSense immediately after definition.
+3. **Type checking**: The editor knows each variable's data type.
+4. **Scope awareness**: Only variables in scope are suggested.
 
 For more information, see [Working With Variables in the IDE](../../iec-concepts/variables-datatypes#working-with-variables-in-the-ide).
 
@@ -205,18 +205,18 @@ You can drag functions and function blocks from the library directly into the co
 
 ## Tips for Efficient Coding
 
-1. **Define variables first** — Complete your Variables Table before writing code.
-2. **Use descriptive names** — Longer, clear names are better than cryptic abbreviations. IntelliSense will type them for you.
-3. **Leverage autocomplete** — Press `Ctrl+Space` frequently. Let IntelliSense do the typing.
-4. **Add comments as you go** — Document your logic while it's fresh in your mind.
-5. **Test frequently** — Compile and test code regularly rather than writing everything at once.
-6. **Learn the shortcuts** — Keyboard shortcuts speed up editing significantly.
+1. **Define variables first**: Complete your Variables Table before writing code.
+2. **Use descriptive names**: Longer, clear names are better than cryptic abbreviations. IntelliSense will type them for you.
+3. **Leverage autocomplete**: Press `Ctrl+Space` frequently. Let IntelliSense do the typing.
+4. **Add comments as you go**: Document your logic while it's fresh in your mind.
+5. **Test frequently**: Compile and test code regularly rather than writing everything at once.
+6. **Learn the shortcuts**: Keyboard shortcuts speed up editing significantly.
 
 ---
 
 ## What's Next?
 
-- [ST Language Basics](st-basics) — Review ST syntax, operators, and control structures
-- [ST Programming Examples](st-examples) — Practical ST programming patterns
-- [Variables and Data Types](../../iec-concepts/variables-datatypes) — Variable management guide
-- [Building and Deploying](../../building-deploying/project-compilation) — Compile and deploy your ST programs
+- [ST Language Basics](st-basics): Review ST syntax, operators, and control structures
+- [ST Programming Examples](st-examples): Practical ST programming patterns
+- [Variables and Data Types](../../iec-concepts/variables-datatypes): Variable management guide
+- [Building and Deploying](../../building-deploying/project-compilation): Compile and deploy your ST programs

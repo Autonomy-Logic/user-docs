@@ -47,7 +47,7 @@ Modbus RTU supports **multi-drop** configurations where multiple slave devices s
 | **Server** | Slave | Listens for requests and exposes PLC data. External SCADA systems and HMIs connect to this. | When external systems need to read your PLC data or write setpoints |
 | **Client** | Master | Initiates requests to poll data from remote devices such as sensors, VFDs, or other PLCs. | When your PLC needs to gather data from field devices |
 
-A single Autonomy Edge project can run both roles simultaneously — for example, acting as a Modbus server for a SCADA system while also polling remote I/O modules and sensors as a Modbus client.
+A single Autonomy Edge project can run both roles simultaneously. For example, acting as a Modbus server for a SCADA system while also polling remote I/O modules and sensors as a Modbus client.
 
 ## Modbus Data Types
 
@@ -96,7 +96,7 @@ While native Modbus registers are 16 bits wide, larger data types are supported 
 | DINT / UDINT / REAL | 32 bits | 2 | Big-endian (high word first) |
 | LINT / ULINT / LREAL | 64 bits | 4 | Big-endian (high word first) |
 
-Autonomy Edge uses **big-endian** (network byte order) for all multi-register values, which is the Modbus standard. The first register in a group contains the most significant word. Some third-party devices may use little-endian or word-swapped byte order — consult the device documentation if values appear garbled.
+Autonomy Edge uses **big-endian** (network byte order) for all multi-register values, which is the Modbus standard. The first register in a group contains the most significant word. Some third-party devices may use little-endian or word-swapped byte order. Consult the device documentation if values appear garbled.
 
 ## IEC 61131-3 Address Mapping
 
@@ -143,6 +143,6 @@ Here are some typical scenarios where Modbus is used in Autonomy Edge projects:
 
 ## What's Next?
 
-- **[Server Configuration](server)** — Start here if SCADA or HMI systems need to connect to your PLC
-- **[Client Configuration](client)** — Start here if your PLC needs to read sensors or control drives
-- **[Communication Protocols Overview](../README)** — Return to the protocols overview for OPC-UA and other options
+- **[Server Configuration](server)**: Start here if SCADA or HMI systems need to connect to your PLC
+- **[Client Configuration](client)**: Start here if your PLC needs to read sensors or control drives
+- **[Communication Protocols Overview](../README)**: Return to the protocols overview for OPC-UA and other options

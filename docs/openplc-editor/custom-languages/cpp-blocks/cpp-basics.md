@@ -1,16 +1,16 @@
 # C++ Function Blocks
 
-C++ function blocks let you write native C/C++ code that executes directly within the PLC scan cycle. Unlike Python function blocks — which run asynchronously in a separate process — C++ code runs synchronously inside the runtime, giving you deterministic timing and direct hardware access. This makes C++ the ideal choice when performance, precision, or low-level hardware control matters.
+C++ function blocks let you write native C/C++ code that executes directly within the PLC scan cycle. Unlike Python function blocks. Which run asynchronously in a separate process. C++ code runs synchronously inside the runtime, giving you deterministic timing and direct hardware access. This makes C++ the ideal choice when performance, precision, or low-level hardware control matters.
 
 ## Why Use C++ Function Blocks?
 
 The standard IEC 61131-3 languages (ST, LD, FBD, IL) cover most automation tasks. However, some scenarios call for native C/C++ code:
 
-- **Hardware access** — Directly control GPIO pins, serial ports, I2C/SPI buses, and other peripherals that standard IEC languages cannot reach.
-- **Performance-critical logic** — Implement tight control loops, signal processing, or real-time algorithms that need the speed of compiled native code.
-- **Arduino integration** — When deploying to Arduino-compatible hardware, you get full access to the Arduino API (`pinMode`, `digitalWrite`, `Serial`, `Wire`, `SPI`, `EEPROM`, and more).
-- **Existing C/C++ libraries** — Reuse code from the vast C/C++ ecosystem, including math libraries, communication protocols, and sensor drivers.
-- **Complex algorithms** — Implement PID variants, Kalman filters, FFT, or any algorithm that benefits from the full C++ standard library.
+- **Hardware access**: Directly control GPIO pins, serial ports, I2C/SPI buses, and other peripherals that standard IEC languages cannot reach.
+- **Performance-critical logic**: Implement tight control loops, signal processing, or real-time algorithms that need the speed of compiled native code.
+- **Arduino integration**: When deploying to Arduino-compatible hardware, you get full access to the Arduino API (`pinMode`, `digitalWrite`, `Serial`, `Wire`, `SPI`, `EEPROM`, and more).
+- **Existing C/C++ libraries**: Reuse code from the vast C/C++ ecosystem, including math libraries, communication protocols, and sensor drivers.
+- **Complex algorithms**: Implement PID variants, Kalman filters, FFT, or any algorithm that benefits from the full C++ standard library.
 
 ## C++ vs Python vs IEC Languages
 
@@ -25,7 +25,7 @@ The standard IEC 61131-3 languages (ST, LD, FBD, IL) cover most automation tasks
 | **POU types** | Program, Function, FB | Function Block only | Function Block only |
 | **Best for** | General PLC logic | Hardware, performance | Data processing, scripting |
 
-The key distinction: C++ code runs **inside** the scan cycle, just like native IEC code. When the PLC runtime executes a scan, your C++ function block's `loop()` function is called as part of that scan — it completes before the scan moves on.
+The key distinction: C++ code runs **inside** the scan cycle, just like native IEC code. When the PLC runtime executes a scan, your C++ function block's `loop()` function is called as part of that scan. It completes before the scan moves on.
 
 ## Creating a C++ Function Block
 
@@ -55,8 +55,8 @@ void loop() {
 
 These two functions are the foundation of every C++ function block:
 
-- **`setup()`** — Called exactly once, on the first scan cycle after the PLC starts running. Use it for one-time initialization: configuring hardware pins, setting initial values, or allocating resources.
-- **`loop()`** — Called on every subsequent scan cycle. This is where your main logic lives: reading sensors, computing outputs, updating state machines, and writing to actuators.
+- **`setup()`**: Called exactly once, on the first scan cycle after the PLC starts running. Use it for one-time initialization: configuring hardware pins, setting initial values, or allocating resources.
+- **`loop()`**: Called on every subsequent scan cycle. This is where your main logic lives: reading sensors, computing outputs, updating state machines, and writing to actuators.
 
 The IDE validates that both functions exist in your code. If either `setup()` or `loop()` is missing, you'll get a validation error when building.
 
@@ -64,7 +64,7 @@ The IDE validates that both functions exist in your code. If either `setup()` or
 
 C++ function blocks declare their **inputs and outputs** in the Variables Table. That's the block's interface to the rest of the PLC program. For each variable you specify a name, a class (Input or Output), and an IEC data type, and the variable becomes directly accessible by that name in your C++ code.
 
-Local state — counters, accumulators, helper structures — is **not** declared in the Variables Table. Just declare it in your C++ code like any normal C++ variable: at file scope (above `setup()` / `loop()`) for state that needs to persist between scans, or at function scope for scratch values inside a single call.
+Local state. Counters, accumulators, helper structures. Is **not** declared in the Variables Table. Just declare it in your C++ code like any normal C++ variable: at file scope (above `setup()` / `loop()`) for state that needs to persist between scans, or at function scope for scratch values inside a single call.
 
 For example, if you declare these variables:
 
@@ -151,11 +151,11 @@ Variables declared outside `setup()` and `loop()` (like `buffer`, `index`, and `
 
 ## Tips for Getting Started
 
-1. **Start simple** — Begin with a basic function block that reads one input and writes one output. Verify it works before adding complexity.
-2. **Use the Variables Table for inputs and outputs only** — interface variables (Input, Output) belong in the Variables Table so the rest of the PLC program can connect to them. Internal state is just regular C++ variables in your code; don't try to put it in the Variables Table.
-3. **Keep loop() fast** — Remember that `loop()` runs every scan cycle. Avoid blocking operations (long delays, busy-wait loops) that would stall the PLC.
-4. **Test incrementally** — Build and test your project frequently. The IDE reports build errors with line numbers to help you debug.
-5. **Check data types** — C++ function block variables use IEC type definitions (e.g., `IEC_BOOL` is `uint8_t`, `IEC_INT` is `int16_t`). Be mindful of type sizes, especially when doing arithmetic.
+1. **Start simple**: Begin with a basic function block that reads one input and writes one output. Verify it works before adding complexity.
+2. **Use the Variables Table for inputs and outputs only**: interface variables (Input, Output) belong in the Variables Table so the rest of the PLC program can connect to them. Internal state is just regular C++ variables in your code; don't try to put it in the Variables Table.
+3. **Keep loop() fast**: Remember that `loop()` runs every scan cycle. Avoid blocking operations (long delays, busy-wait loops) that would stall the PLC.
+4. **Test incrementally**: Build and test your project frequently. The IDE reports build errors with line numbers to help you debug.
+5. **Check data types**: C++ function block variables use IEC type definitions (e.g., `IEC_BOOL` is `uint8_t`, `IEC_INT` is `int16_t`). Be mindful of type sizes, especially when doing arithmetic.
 
 ---
 

@@ -2,14 +2,14 @@
 
 The Variables Editor is the visual interface where you create, modify, and organize the variables for each POU (Program, Function, or Function Block) in your project. It appears at the top of every POU editor, above the programming area where you write your logic.
 
-This page covers every feature of the Variables Editor — its table columns, dual-view modes, filtering, and the special behaviors that differ depending on your POU type.
+This page covers every feature of the Variables Editor. Its table columns, dual-view modes, filtering, and the special behaviors that differ depending on your POU type.
 
 ## Opening the Variables Editor
 
 The Variables Editor is always visible when you open a POU. Click on any Program, Function, or Function Block in the Project Explorer to open it. The editor area splits into two sections:
 
-1. **Variables Editor** (top) — the table or code view described on this page
-2. **Programming Editor** (bottom) — where you write logic in your chosen language (LD, FBD, ST, or IL)
+1. **Variables Editor** (top): the table or code view described on this page
+2. **Programming Editor** (bottom): where you write logic in your chosen language (LD, FBD, ST, or IL)
 
 You can resize the boundary between these two sections by dragging the divider.
 
@@ -64,7 +64,7 @@ Click the **+** (plus) button in the Variables Editor toolbar to add a new varia
 - If a row is currently selected, the new variable is inserted **below** the selected row and copies the selected row's configuration as a starting point.
 - If no row is selected, the new variable is appended at the end of the table.
 
-The new variable receives a default name — rename it immediately to something meaningful. Click on any cell in the new row to edit its properties.
+The new variable receives a default name. Rename it immediately to something meaningful. Click on any cell in the new row to edit its properties.
 
 ## Removing Variables
 
@@ -102,7 +102,7 @@ The Variables Editor includes a **class filter dropdown** above the table that l
 
 This is particularly useful in POUs with many variables. For example, if you want to review just the Input parameters of a Function Block, select "Input" from the filter to hide all other variables temporarily.
 
-The filter only affects the display — it doesn't delete or modify any variables.
+The filter only affects the display. It doesn't delete or modify any variables.
 
 ## Type Selector
 
@@ -165,7 +165,7 @@ The Rename Impact Modal shows you every location where the old variable name app
 
 ## Undo and Redo
 
-The Variables Editor supports undo and redo for all operations — adding, removing, editing, and reordering variables:
+The Variables Editor supports undo and redo for all operations. Adding, removing, editing, and reordering variables:
 
 | Action | Shortcut |
 |--------|----------|
@@ -185,11 +185,11 @@ This works in both Table View and Code View.
 
 ## Tips for Effective Use
 
-> **Tip:** Name variables before configuring them. When you add a new variable, change its name first — this helps you track what each row represents as you configure the rest.
+> **Tip:** Name variables before configuring them. When you add a new variable, change its name first. This helps you track what each row represents as you configure the rest.
 
 > **Tip:** Use the class filter for large POUs. If your POU has more than 10–15 variables, filtering by class makes it much easier to find specific variables.
 
-> **Tip:** Review Code View periodically. Switching to Code View gives you a quick overview of all declarations in standard IEC syntax — a good way to verify the table produced what you intended.
+> **Tip:** Review Code View periodically. Switching to Code View gives you a quick overview of all declarations in standard IEC syntax. A good way to verify the table produced what you intended.
 
 1. **Set initial values for state-dependent variables**: Counters, accumulators, and flags should always have explicit initial values to ensure predictable behavior on first run.
 
@@ -201,4 +201,4 @@ This works in both Table View and Code View.
 
 Learn how to manage Global variables that are shared across the entire project:
 
-- [Global Variables Editor](global-variables-editor) — The specialized editor for creating and managing Global variables in the Resource configuration
+- [Global Variables Editor](global-variables-editor): The specialized editor for creating and managing Global variables in the Resource configuration

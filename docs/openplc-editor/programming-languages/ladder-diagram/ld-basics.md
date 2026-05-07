@@ -8,10 +8,10 @@ LD was designed to look like the relay logic diagrams that electricians and cont
 
 Key strengths of LD:
 
-- **Visual and intuitive** — Logic is immediately visible in the diagram structure.
-- **Great for Boolean logic** — AND, OR, NOT, latching, and edge detection are trivially expressed.
-- **Self-documenting** — The graphical layout reveals the logical relationships between inputs and outputs.
-- **Familiar** — The most commonly understood PLC language worldwide.
+- **Visual and intuitive**: Logic is immediately visible in the diagram structure.
+- **Great for Boolean logic**: AND, OR, NOT, latching, and edge detection are trivially expressed.
+- **Self-documenting**: The graphical layout reveals the logical relationships between inputs and outputs.
+- **Familiar**: The most commonly understood PLC language worldwide.
 
 LD is ideal for discrete control: conveyors, motor start/stop, interlocking, safety logic, and simple sequencing. For complex math, string processing, or data manipulation, consider [Structured Text](../structured-text/st-basics) instead.
 
@@ -21,8 +21,8 @@ LD is ideal for discrete control: conveyors, motor start/stop, interlocking, saf
 
 Every rung starts at the **left power rail** and ends at the **right power rail**. These represent the power supply in the relay circuit metaphor:
 
-- **Left Power Rail** — Represents the "live" side. Power originates here.
-- **Right Power Rail** — Represents the "neutral" side. Power terminates here.
+- **Left Power Rail**: Represents the "live" side. Power originates here.
+- **Right Power Rail**: Represents the "neutral" side. Power terminates here.
 
 In the IDE, power rails appear as vertical bars at the left and right edges of each rung.
 
@@ -40,7 +40,7 @@ The IDE displays rungs vertically stacked within the LD editor, each numbered fo
 
 ### Contacts
 
-**Contacts** sit on the left side of a rung and represent input conditions. They test Boolean variable values — a contact either passes power (the condition is met) or blocks it (the condition is not met).
+**Contacts** sit on the left side of a rung and represent input conditions. They test Boolean variable values. A contact either passes power (the condition is met) or blocks it (the condition is not met).
 
 | Contact Type | Symbol | Behavior |
 |-------------|--------|----------|
@@ -118,7 +118,7 @@ An alternative to Set/Reset coils that keeps an output energized after a momenta
 
 <ladder-diagram src="/docs/diagrams/ladder/seal-in.json"></ladder-diagram>
 
-When `start_btn` is pressed, `motor_on` goes TRUE. The parallel `motor_on` contact "seals in" the circuit — power continues to flow through `motor_on` even after `start_btn` is released. Pressing `stop_btn` (normally closed) breaks the circuit.
+When `start_btn` is pressed, `motor_on` goes TRUE. The parallel `motor_on` contact "seals in" the circuit. Power continues to flow through `motor_on` even after `start_btn` is released. Pressing `stop_btn` (normally closed) breaks the circuit.
 
 ## Execution Order
 
@@ -143,7 +143,7 @@ If a contact or coil references a variable that doesn't exist in the Variables T
 
 ### Variable Naming
 
-When you place a contact or coil, you assign it a variable by typing the name directly above the element. The IDE provides autocomplete — as you type, matching variable names from the table appear in a dropdown.
+When you place a contact or coil, you assign it a variable by typing the name directly above the element. The IDE provides autocomplete. As you type, matching variable names from the table appear in a dropdown.
 
 ## Comparison with Other Languages
 

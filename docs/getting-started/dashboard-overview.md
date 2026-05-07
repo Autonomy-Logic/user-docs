@@ -8,8 +8,8 @@ The Dashboard is your home base on Autonomy Edge. Here's a quick tour of what yo
 
 The navigation bar is at the top of every page. It has two key elements:
 
-- **Autonomy Edge logo** (left) — Click it from anywhere to return to the Dashboard. It's your "home" button.
-- **Your avatar** (right) — Click it to open a menu with links to your Profile, Documentation, What's New (changelog), Dark/Light mode toggle, and Logout.
+- **Autonomy Edge logo** (left): Click it from anywhere to return to the Dashboard. It's your "home" button.
+- **Your avatar** (right): Click it to open a menu with links to your Profile, Documentation, What's New (changelog), Dark/Light mode toggle, and Logout.
 
 > **Tip:** If there's a small dot on the "What's New" option, it means there are platform updates you haven't seen yet.
 
@@ -28,7 +28,7 @@ Shows your **5 most recent projects**. Click any project to open it directly in 
 
 ### Orchestrators
 
-Shows the orchestrators linked to your account. Click any orchestrator to see its details — status, resource usage, and the devices attached to it.
+Shows the orchestrators linked to your account. Click any orchestrator to see its details. Status, resource usage, and the devices attached to it.
 
 - Click **Manage orchestrator** at the bottom to view all orchestrators or register a new one.
 
@@ -38,7 +38,7 @@ Shows the orchestrators linked to your account. Click any orchestrator to see it
 
 ## Activity Feed
 
-The center of the dashboard is the **Activity Feed** — a scrollable list of public projects from across the Autonomy Edge community.
+The center of the dashboard is the **Activity Feed**: a scrollable list of public projects from across the Autonomy Edge community.
 
 Each project card shows the creator's name and avatar, a short project description, and how long ago it was updated. Click any card to open the project in the IDE, or click a user's name to visit their profile.
 
@@ -56,7 +56,7 @@ This section is a preview of an upcoming feature. Once organizations are availab
 
 ### Latest Changes
 
-Shows the most recent platform updates (changelog). You'll see a few highlights from the latest version — new features, fixes, and improvements. Click **View all** to see the full changelog.
+Shows the most recent platform updates (changelog). You'll see a few highlights from the latest version. New features, fixes, and improvements. Click **View all** to see the full changelog.
 
 ---
 

@@ -33,7 +33,7 @@ Modbus RTU enables serial communication between your microcontroller and industr
 
 1. In the Device Configuration panel, locate the Communication Settings section.
 2. Enable **Modbus RTU**.
-3. Select the **Interface** — choose the UART port connected to your RS-485 or RS-232 converter.
+3. Select the **Interface**: choose the UART port connected to your RS-485 or RS-232 converter.
 4. Set the **Baud Rate** to match the other devices on your Modbus network.
 5. Assign a unique **Slave ID** for this device (each device on the bus must have a different ID).
 
@@ -61,7 +61,7 @@ Modbus TCP enables communication over Ethernet or WiFi networks. The microcontro
 
 | Parameter | Applies To | Description |
 |-----------|------------|-------------|
-| **Interface** | All | `Ethernet` or `WiFi` — the network hardware to use |
+| **Interface** | All | `Ethernet` or `WiFi`. The network hardware to use |
 | **MAC Address** | Ethernet | Hardware MAC address for the Ethernet interface |
 | **SSID** | WiFi only | The name of the WiFi network to join |
 | **Password** | WiFi only | The WiFi network password |
@@ -81,8 +81,8 @@ Modbus TCP enables communication over Ethernet or WiFi networks. The microcontro
 4. If using WiFi, enter the **SSID** and **Password** for your network.
 5. If using Ethernet, set the **MAC Address** (some boards have a factory-assigned MAC; others require manual entry).
 6. Choose the **IP Mode**:
-   - **DHCP** — The device obtains its IP address automatically from the network.
-   - **Static** — Enter the IP Address, Subnet Mask, Gateway, and DNS manually.
+   - **DHCP**: The device obtains its IP address automatically from the network.
+   - **Static**: Enter the IP Address, Subnet Mask, Gateway, and DNS manually.
 
 ### Board Requirements for Modbus TCP
 
@@ -169,9 +169,9 @@ After configuring and uploading your program:
 
 ## What's Next?
 
-- [Device Configuration Overview](device-config-overview) — Understand all target types and their communication options
-- [Board Selection](board-selection) — Choose a board with the network capabilities you need
-- [Pin Mapping](pin-mapping) — Configure I/O pin assignments alongside communication settings
-- [Modbus Server](../communication/modbus/server) — Configure Modbus server for runtime targets
-- [Modbus Client](../communication/modbus/client) — Configure Modbus client for polling external devices
-- [Modbus Addressing](../communication/modbus/addressing) — Detailed register-to-address mapping reference
+- [Device Configuration Overview](device-config-overview): Understand all target types and their communication options
+- [Board Selection](board-selection): Choose a board with the network capabilities you need
+- [Pin Mapping](pin-mapping): Configure I/O pin assignments alongside communication settings
+- [Modbus Server](../communication/modbus/server): Configure Modbus server for runtime targets
+- [Modbus Client](../communication/modbus/client): Configure Modbus client for polling external devices
+- [Modbus Addressing](../communication/modbus/addressing): Detailed register-to-address mapping reference

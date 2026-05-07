@@ -41,7 +41,7 @@ Every variable in your PLC program has a data type that determines its range, pr
 
 **Literals:** `3.14`, `-0.001`, `1.0E3` (scientific notation)
 
-> **Tip:** Use `REAL` for most analog values (temperature, pressure, level). Use `LREAL` when precision matters — accumulated totals, precise calculations, or high-resolution measurements.
+> **Tip:** Use `REAL` for most analog values (temperature, pressure, level). Use `LREAL` when precision matters. Accumulated totals, precise calculations, or high-resolution measurements.
 
 ### Time Types
 
@@ -154,13 +154,13 @@ Data types determine how located variables map to the I/O image table:
 
 | Address Prefix | Size | Data Type Equivalent | Example |
 |----------------|------|---------------------|---------|
-| `%IX` / `%QX` | 1 bit | `BOOL` | `%IX0.0` — Digital input, byte 0, bit 0 |
-| `%IB` / `%QB` | 8 bits | `BYTE` / `SINT` | `%IB0` — Input byte 0 |
-| `%IW` / `%QW` | 16 bits | `WORD` / `INT` | `%IW0` — Input word 0 (analog) |
-| `%ID` / `%QD` | 32 bits | `DWORD` / `DINT` / `REAL` | `%ID0` — Input double word 0 |
-| `%IL` / `%QL` | 64 bits | `LWORD` / `LINT` / `LREAL` | `%IL0` — Input long word 0 |
-| `%MW` | 16 bits | `WORD` / `INT` | `%MW0` — Memory word 0 |
-| `%MD` | 32 bits | `DWORD` / `DINT` | `%MD0` — Memory double word 0 |
+| `%IX` / `%QX` | 1 bit | `BOOL` | `%IX0.0`. Digital input, byte 0, bit 0 |
+| `%IB` / `%QB` | 8 bits | `BYTE` / `SINT` | `%IB0`. Input byte 0 |
+| `%IW` / `%QW` | 16 bits | `WORD` / `INT` | `%IW0`. Input word 0 (analog) |
+| `%ID` / `%QD` | 32 bits | `DWORD` / `DINT` / `REAL` | `%ID0`. Input double word 0 |
+| `%IL` / `%QL` | 64 bits | `LWORD` / `LINT` / `LREAL` | `%IL0`. Input long word 0 |
+| `%MW` | 16 bits | `WORD` / `INT` | `%MW0`. Memory word 0 |
+| `%MD` | 32 bits | `DWORD` / `DINT` | `%MD0`. Memory double word 0 |
 
 ## Type Compatibility Rules
 
@@ -182,6 +182,6 @@ These combinations require explicit conversion functions:
 
 ## What's Next?
 
-- [IEC 61131-3 Keywords](iec-keywords) — Reserved keywords reference
-- [Glossary](glossary) — Definitions of key terms
-- [Variables and Data Types](../openplc-editor/iec-concepts/variables-datatypes) — Working with variables in the IDE
+- [IEC 61131-3 Keywords](iec-keywords): Reserved keywords reference
+- [Glossary](glossary): Definitions of key terms
+- [Variables and Data Types](../openplc-editor/iec-concepts/variables-datatypes): Working with variables in the IDE

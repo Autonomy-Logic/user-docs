@@ -1,6 +1,6 @@
 # Adding Orchestrators
 
-This guide walks you through registering a new orchestrator on Autonomy Edge. The platform uses a 3-step wizard — **Details → Install → Link** — to get your orchestrator online.
+This guide walks you through registering a new orchestrator on Autonomy Edge. The platform uses a 3-step wizard. **Details → Install → Link**: to get your orchestrator online.
 
 ---
 
@@ -18,25 +18,25 @@ Make sure you have:
 
 You can start the New Orchestrator wizard in two ways:
 
-- **From the Dashboard** — Click **Manage orchestrator** at the bottom of the Orchestrators card in the sidebar, then click **Add Orchestrator** (or the floating `+` button).
-- **From the Orchestrators page** — Navigate to Orchestrators in the sidebar and click **Add Orchestrator**.
+- **From the Dashboard**: Click **Manage orchestrator** at the bottom of the Orchestrators card in the sidebar, then click **Add Orchestrator** (or the floating `+` button).
+- **From the Orchestrators page**: Navigate to Orchestrators in the sidebar and click **Add Orchestrator**.
 
 If you have no orchestrators yet, the page shows an empty state with a prominent **Add Orchestrator** button in the center.
 
 ---
 
-## Step 1 — Details
+## Step 1: Details
 
 Enter basic information about your orchestrator.
 
-- **Orchestrator name** (required) — A human-friendly name to identify this machine. Choose something descriptive, like `Lab Raspberry Pi`, `Production Line 3`, or `Dev VM - Ubuntu`.
-- **Description** (optional) — A short note about purpose, location, or setup. Example: `Located in Building A, Room 102`.
+- **Orchestrator name** (required): A human-friendly name to identify this machine. Choose something descriptive, like `Lab Raspberry Pi`, `Production Line 3`, or `Dev VM - Ubuntu`.
+- **Description** (optional): A short note about purpose, location, or setup. Example: `Located in Building A, Room 102`.
 
 Click **Next** to proceed.
 
 ---
 
-## Step 2 — Install
+## Step 2: Install
 
 Now you'll install the orchestrator agent on your Linux machine.
 
@@ -65,7 +65,7 @@ Autonomy Edge app to link your device.
 =====================================================
 ```
 
-**Copy the Orchestrator ID** from the terminal — you'll need it in the next step.
+**Copy the Orchestrator ID** from the terminal. You'll need it in the next step.
 
 > **Tip:** The install script automatically handles dependencies, setup, and secure credential generation. You don't need to configure anything manually.
 
@@ -73,7 +73,7 @@ Click **Next** in the modal to proceed.
 
 ---
 
-## Step 3 — Link
+## Step 3: Link
 
 The final step connects the installed agent to your Autonomy Edge account.
 
@@ -98,9 +98,9 @@ The Orchestrator ID is valid for **5 minutes** from the moment it's generated. I
 
 Once your orchestrator is linked and online, you can:
 
-- **View it in the orchestrators list** — See name, CPU usage, memory, uptime, and status at a glance.
-- **Open its detail page** — Click the orchestrator to see real-time metrics and charts.
-- **Add vPLC devices** — Create virtual PLCs on this orchestrator to run your programs.
+- **View it in the orchestrators list**: See name, CPU usage, memory, uptime, and status at a glance.
+- **Open its detail page**: Click the orchestrator to see real-time metrics and charts.
+- **Add vPLC devices**: Create virtual PLCs on this orchestrator to run your programs.
 
 ### Troubleshooting
 
@@ -116,4 +116,4 @@ Once your orchestrator is linked and online, you can:
 
 Learn how to monitor and manage your orchestrator:
 
-➡️ [Orchestrator Overview and Controls](orchestrator-overview) — Explore the detail page, system metrics, resource charts, devices tab, and management actions.
+➡️ [Orchestrator Overview and Controls](orchestrator-overview): Explore the detail page, system metrics, resource charts, devices tab, and management actions.

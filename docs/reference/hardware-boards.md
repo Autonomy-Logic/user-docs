@@ -8,8 +8,8 @@ This reference lists all hardware boards supported by the platform for direct mi
 
 The editor supports two categories of deployment targets:
 
-- **Arduino-Compatible Targets** — Microcontroller boards that receive compiled firmware via USB
-- **OpenPLC Runtime Targets** — Linux-based systems or vPLCs running the OpenPLC Runtime
+- **Arduino-Compatible Targets**: Microcontroller boards that receive compiled firmware via USB
+- **OpenPLC Runtime Targets**: Linux-based systems or vPLCs running the OpenPLC Runtime
 
 ## Arduino Official Boards
 
@@ -201,6 +201,6 @@ For boards requiring external board manager definitions, the editor automaticall
 
 ## What's Next?
 
-- [Board Selection](../openplc-editor/hardware-configuration/board-selection) — Choosing and configuring boards
-- [Pin Mapping](../openplc-editor/hardware-configuration/pin-mapping) — I/O configuration
-- [Device Configuration Overview](../openplc-editor/hardware-configuration/device-config-overview) — Understanding target types
+- [Board Selection](../openplc-editor/hardware-configuration/board-selection): Choosing and configuring boards
+- [Pin Mapping](../openplc-editor/hardware-configuration/pin-mapping): I/O configuration
+- [Device Configuration Overview](../openplc-editor/hardware-configuration/device-config-overview): Understanding target types

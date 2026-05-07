@@ -1,6 +1,6 @@
-# Autonomy Edge IDE — Overview
+# Autonomy Edge IDE: Overview
 
-The Autonomy Edge IDE is a modern, browser-based development environment for IEC 61131-3 PLC programming. It runs directly within the Autonomy Edge platform — no desktop software to install.
+The Autonomy Edge IDE is a modern, browser-based development environment for IEC 61131-3 PLC programming. It runs directly within the Autonomy Edge platform. No desktop software to install.
 
 ## What You Can Do
 
@@ -21,10 +21,10 @@ The OpenPLC project also offers a desktop editor that runs as a standalone appli
 
 Key differences:
 
-- **Installation** — The web IDE runs in your browser with no install. The desktop editor requires a local installation.
-- **Platform integration** — The web IDE is built into Autonomy Edge with direct device management and deployment. The desktop editor is a standalone application.
-- **Deployment** — The web IDE deploys directly to your connected devices. The desktop editor requires manual transfer.
-- **Communication config** — The web IDE has visual editors for Modbus, S7Comm, and OPC-UA. The desktop editor has limited support.
+- **Installation**: The web IDE runs in your browser with no install. The desktop editor requires a local installation.
+- **Platform integration**: The web IDE is built into Autonomy Edge with direct device management and deployment. The desktop editor is a standalone application.
+- **Deployment**: The web IDE deploys directly to your connected devices. The desktop editor requires manual transfer.
+- **Communication config**: The web IDE has visual editors for Modbus, S7Comm, and OPC-UA. The desktop editor has limited support.
 
 If you're using the Autonomy Edge platform, the web IDE is the recommended development environment.
 

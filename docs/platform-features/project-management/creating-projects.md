@@ -8,14 +8,14 @@ A project is the home for your PLC program on Autonomy Edge. Each project holds 
 
 You can create a new project from two places:
 
-- **From the Dashboard** — Click the **New** button (with a `+` icon) in the Projects card in the left sidebar.
-- **From the Projects Page** — Click the **New** dropdown button in the sidebar and select **New Project**.
+- **From the Dashboard**: Click the **New** button (with a `+` icon) in the Projects card in the left sidebar.
+- **From the Projects Page**: Click the **New** dropdown button in the sidebar and select **New Project**.
 
 Both paths open the same three-step wizard modal.
 
 ---
 
-## Step 1 of 3 — Project Info
+## Step 1 of 3: Project Info
 
 ### Project Name (Required)
 
@@ -27,10 +27,10 @@ Give your project a descriptive, unique name. This name appears on project cards
 
 Choose where to store the project. The dropdown displays your entire folder hierarchy with indentation showing nesting levels:
 
-- **Root (/)** — The top-level folder. If you haven't created any folders, this is your only option.
-- **Subfolders** — Any folders you've created appear below Root with tree-style indentation.
+- **Root (/)**: The top-level folder. If you haven't created any folders, this is your only option.
+- **Subfolders**: Any folders you've created appear below Root with tree-style indentation.
 
-You can move projects between folders later — see [Organizing Projects](organizing-projects).
+You can move projects between folders later. See [Organizing Projects](organizing-projects).
 
 ### Description (Optional)
 
@@ -40,7 +40,7 @@ Click **Next** to proceed.
 
 ---
 
-## Step 2 of 3 — Configuration
+## Step 2 of 3: Configuration
 
 ### Select Language (Required)
 
@@ -63,13 +63,13 @@ The cycle time defines how frequently the runtime executes your program's scan c
 
 You can set a precise time value using fields for days, hours, minutes, seconds, milliseconds, and microseconds. The result is displayed in IEC 61131-3 `T#` format (e.g., `T#20ms`).
 
-The **default is `T#20ms`** (20 milliseconds) — the runtime executes your program 50 times per second. This works for most general-purpose applications.
+The **default is `T#20ms`** (20 milliseconds). The runtime executes your program 50 times per second. This works for most general-purpose applications.
 
 Click **Next** to proceed.
 
 ---
 
-## Step 3 of 3 — Visibility
+## Step 3 of 3: Visibility
 
 ### Cover Image (Optional)
 
@@ -79,8 +79,8 @@ Upload a `.jpg` or `.png` image as the project's preview image. This appears on 
 
 Choose who can access your project:
 
-- **Public** — Anyone on the platform can view and fork this project. Choose this for open-source projects, learning examples, or community sharing.
-- **Private** — Only you can access this project. Private projects don't appear in the activity feed or other users' searches.
+- **Public**: Anyone on the platform can view and fork this project. Choose this for open-source projects, learning examples, or community sharing.
+- **Private**: Only you can access this project. Private projects don't appear in the activity feed or other users' searches.
 
 The default is **Private**.
 
@@ -96,8 +96,8 @@ Click **Create Project** to finish. When complete:
 
 ## Navigation Tips
 
-- **Back** — Steps 2 and 3 have a Back button to return to the previous step without losing your data.
-- **Cancel** — Available on every step. Closes the modal and discards all entered data.
+- **Back**: Steps 2 and 3 have a Back button to return to the previous step without losing your data.
+- **Cancel**: Available on every step. Closes the modal and discards all entered data.
 - The **Steps indicator** at the top shows your progress.
 
 ---
@@ -106,10 +106,10 @@ Click **Create Project** to finish. When complete:
 
 | Field | Required | Default | Notes |
 |---|---|---|---|
-| Project name | Yes | — | Must be unique per user |
+| Project name | Yes |. | Must be unique per user |
 | Folder | Yes | Root (/) | Can be changed later |
-| Description | No | — | Short text |
-| Language | Yes | — | ST, LD, FBD, or IL |
+| Description | No |. | Short text |
+| Language | Yes |. | ST, LD, FBD, or IL |
 | Cycle time | Yes | `T#20ms` | IEC 61131-3 time format |
 | Cover image | No | Placeholder | `.jpg` or `.png` |
 | Visibility | Yes | Private | Public or Private |

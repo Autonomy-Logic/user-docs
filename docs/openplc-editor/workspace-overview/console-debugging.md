@@ -6,26 +6,26 @@ The Console Panel is the bottom section of the IDE workspace. It shows real-time
 
 The **Console** tab is the primary output area. It shows timestamped log messages generated during:
 
-- **Compilation** — When you click Compile, every step of the build process is logged here with progress updates.
-- **Runtime control** — Start/stop messages, connection status changes, and runtime errors.
-- **Validation** — Warnings about server IP mismatches, validation errors for Python or C/C++ POUs, and other pre-compilation checks.
+- **Compilation**: When you click Compile, every step of the build process is logged here with progress updates.
+- **Runtime control**: Start/stop messages, connection status changes, and runtime errors.
+- **Validation**: Warnings about server IP mismatches, validation errors for Python or C/C++ POUs, and other pre-compilation checks.
 
 Each log entry includes:
 
 - A **timestamp** (configurable format)
 - A **severity level** with color coding:
-  - **Info** (blue) — Normal progress messages
-  - **Warning** (yellow) — Non-fatal issues that may need attention
-  - **Error** (red) — Failures that stop the build or indicate a problem
-  - **Debug** (gray) — Detailed diagnostic output
+  - **Info** (blue): Normal progress messages
+  - **Warning** (yellow): Non-fatal issues that may need attention
+  - **Error** (red): Failures that stop the build or indicate a problem
+  - **Debug** (gray): Detailed diagnostic output
 
 ### Filtering Logs
 
 Click the **Filters** button (top-right corner of the Console tab) to access filtering options:
 
-- **Search** — Type to filter logs in real-time. Only matching entries are shown.
-- **Log Levels** — Toggle switches for Debug, Info, Warning, and Error. Turn off a level to hide those messages.
-- **Timestamp Format** — Choose between full date/time (DD-MM-YY HH:MM:SS), time only (HH:MM:SS), or no timestamp.
+- **Search**: Type to filter logs in real-time. Only matching entries are shown.
+- **Log Levels**: Toggle switches for Debug, Info, Warning, and Error. Turn off a level to hide those messages.
+- **Timestamp Format**: Choose between full date/time (DD-MM-YY HH:MM:SS), time only (HH:MM:SS), or no timestamp.
 
 An indicator appears on the Filters button when any non-default filter is active.
 
@@ -33,9 +33,9 @@ An indicator appears on the Filters button when any non-default filter is active
 
 Click the **Export** button (download icon) to save the currently displayed logs. Supported formats:
 
-- **.txt** — Plain text with timestamps and severity levels.
-- **.csv** — Comma-separated values for spreadsheet analysis.
-- **.json** — Structured JSON array with timestamp, level, and message fields.
+- **.txt**: Plain text with timestamps and severity levels.
+- **.csv**: Comma-separated values for spreadsheet analysis.
+- **.json**: Structured JSON array with timestamp, level, and message fields.
 
 The file downloads automatically with a timestamped name.
 
@@ -53,7 +53,7 @@ The **Search** tab appears when you perform a search using the Activity Bar's Se
 
 ## PLC Logs Tab
 
-The **PLC Logs** tab appears when you're connected to a device. It shows live logs from the running PLC program. This is separate from the Console tab — the Console shows IDE-side messages (compilation, upload), while PLC Logs show output from the PLC process itself.
+The **PLC Logs** tab appears when you're connected to a device. It shows live logs from the running PLC program. This is separate from the Console tab. The Console shows IDE-side messages (compilation, upload), while PLC Logs show output from the PLC process itself.
 
 The PLC Logs tab has its own filtering controls and Clear button.
 

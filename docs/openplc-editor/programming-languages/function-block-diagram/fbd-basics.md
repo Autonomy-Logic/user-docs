@@ -6,10 +6,10 @@ Function Block Diagram (FBD) is a graphical programming language defined in the 
 
 FBD excels in scenarios where you think about your program as a signal processing chain:
 
-- **Control loops** — PID controllers, filters, and regulators where sensor data flows through processing stages to produce actuator commands.
-- **Math-heavy logic** — Calculations involving multiple operations chained together.
-- **Signal routing** — Selecting, multiplexing, and conditioning analog values.
-- **Complex Boolean logic** — When AND/OR/NOT relationships have many inputs and nested structure.
+- **Control loops**: PID controllers, filters, and regulators where sensor data flows through processing stages to produce actuator commands.
+- **Math-heavy logic**: Calculations involving multiple operations chained together.
+- **Signal routing**: Selecting, multiplexing, and conditioning analog values.
+- **Complex Boolean logic**: When AND/OR/NOT relationships have many inputs and nested structure.
 
 FBD is visual like LD but operates on any data type, not just Boolean. It's the preferred language for continuous process control (temperature, pressure, flow) where analog values dominate.
 
@@ -24,14 +24,14 @@ A **block** is the fundamental element in FBD. Each block represents a function 
 - **The block name** (displayed inside) identifies the operation (e.g., `ADD`, `TON`, `GT`, `MUX`).
 
 Blocks come from two sources:
-- **System library** — Standard IEC functions and function blocks (arithmetic, comparison, timers, counters, bistable, edge detectors, etc.)
-- **User library** — Custom function blocks and functions you've defined in your project
+- **System library**: Standard IEC functions and function blocks (arithmetic, comparison, timers, counters, bistable, edge detectors, etc.)
+- **User library**: Custom function blocks and functions you've defined in your project
 
 ### Connections
 
-Connections are lines (wires) drawn from an output pin of one block to an input pin of another. They carry data — a Boolean, integer, real number, time value, or any IEC data type.
+Connections are lines (wires) drawn from an output pin of one block to an input pin of another. They carry data. A Boolean, integer, real number, time value, or any IEC data type.
 
-Connections always flow **left to right**. You can't create feedback loops directly within a single FBD diagram — use variables to carry values between scan cycles for feedback.
+Connections always flow **left to right**. You can't create feedback loops directly within a single FBD diagram. Use variables to carry values between scan cycles for feedback.
 
 ### Variables
 
@@ -64,7 +64,7 @@ The runtime evaluates an FBD diagram by determining the data dependencies betwee
 3. This continues until all blocks have been evaluated.
 4. Output variables are written with the final computed values.
 
-Within a single scan cycle, the entire FBD diagram is evaluated once. The order is determined by data flow — a block can't execute until all its inputs are available.
+Within a single scan cycle, the entire FBD diagram is evaluated once. The order is determined by data flow. A block can't execute until all its inputs are available.
 
 ## FBD vs. Ladder Diagram
 
@@ -80,12 +80,12 @@ Within a single scan cycle, the entire FBD diagram is evaluated once. The order 
 
 The Autonomy Edge IDE provides a visual editor for FBD. Key features:
 
-- **Single canvas** — Unlike LD's multiple rungs, FBD uses a single continuous canvas containing all elements.
-- **Block placement** — Drag blocks from the system and user libraries onto the canvas.
-- **Variable nodes** — Input and output variables appear as separate nodes connected to block pins.
-- **Autocomplete** — When assigning variables to pins, the editor provides autocomplete from the Variables Table, filtered by compatible data type.
-- **Drag and drop** — Drag function blocks from the Library panel directly onto the FBD canvas.
-- **Connection drawing** — Click on an output handle and drag to an input handle to create a wire.
+- **Single canvas**: Unlike LD's multiple rungs, FBD uses a single continuous canvas containing all elements.
+- **Block placement**: Drag blocks from the system and user libraries onto the canvas.
+- **Variable nodes**: Input and output variables appear as separate nodes connected to block pins.
+- **Autocomplete**: When assigning variables to pins, the editor provides autocomplete from the Variables Table, filtered by compatible data type.
+- **Drag and drop**: Drag function blocks from the Library panel directly onto the FBD canvas.
+- **Connection drawing**: Click on an output handle and drag to an input handle to create a wire.
 
 ### Placing Blocks
 
@@ -98,7 +98,7 @@ The Autonomy Edge IDE provides a visual editor for FBD. Key features:
 
 To connect two blocks:
 
-1. Hover over an output pin — the handle becomes visible.
+1. Hover over an output pin. The handle becomes visible.
 2. Click and drag from the output handle.
 3. Release on an input handle of the target block.
 4. A connection line appears between the two pins.

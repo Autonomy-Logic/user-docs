@@ -14,9 +14,9 @@ Click "Orchestrators" to go back to the list, or "Orchestrator" to return to the
 
 The device name appears alongside a color-coded **status label**:
 
-- **Active** (green) — The device is online and healthy.
-- **Not Found** (red) — The device could not be reached (the orchestrator is likely offline).
-- **Unknown** (gray) — Status could not be determined.
+- **Active** (green): The device is online and healthy.
+- **Not Found** (red): The device could not be reached (the orchestrator is likely offline).
+- **Unknown** (gray): Status could not be determined.
 
 ---
 
@@ -31,7 +31,7 @@ Four cards at the top provide an at-a-glance summary:
 | Card | What It Shows |
 |------|---------------|
 | **Status** | The device's current state (e.g., `running`, `exited`, `created`). |
-| **Running** | Whether the device is actively executing — **Yes** or **No**. |
+| **Running** | Whether the device is actively executing. **Yes** or **No**. |
 | **Restart Count** | How many times the device has been restarted since creation. A high count may indicate instability. |
 | **Uptime** | How long the device has been running since its last start (e.g., `24h 30m`). Shows `N/A` if not running. |
 
@@ -44,7 +44,7 @@ Below the status cards, a **Device Information** card shows a two-column grid of
 | Field | Description |
 |-------|-------------|
 | **Device Name** | The name you assigned. |
-| **Network Mode** | How the first vNIC gets its IP — `dhcp` or `static`. |
+| **Network Mode** | How the first vNIC gets its IP. `dhcp` or `static`. |
 | **Status** | Same as the status badge in the breadcrumb. |
 | **Gateway** | The gateway configured on the first vNIC, or `N/A`. |
 | **Running** | `Yes` or `No`. |
@@ -54,7 +54,7 @@ Below the status cards, a **Device Information** card shows a two-column grid of
 | **Uptime** | Same as the status card. |
 | **Created At** | The date the device was created. |
 
-> **Tip:** The fields in Device Information show the **configured** values from when you created the device. The Network Interfaces section below shows **live** values reported at runtime — useful for confirming DHCP-assigned addresses.
+> **Tip:** The fields in Device Information show the **configured** values from when you created the device. The Network Interfaces section below shows **live** values reported at runtime. Useful for confirming DHCP-assigned addresses.
 
 ### Network Interfaces
 
@@ -83,7 +83,7 @@ The **Serial Ports** card only appears if you configured serial port passthrough
 |-------|-------------|
 | **Port Name** | The friendly name you assigned (e.g., `serial0`). |
 | **Status** | Connection state: **Connected** (green), **Disconnected** (gray), **Error** (red), or **Unknown** (gray). |
-| **Device Path** | The path inside the vPLC (e.g., `/dev/ttyUSB0`) — this is what your PLC program references. |
+| **Device Path** | The path inside the vPLC (e.g., `/dev/ttyUSB0`). This is what your PLC program references. |
 | **Host Path** | The current path on the host machine. Shows `N/A` if the device is disconnected. |
 | **Device ID** | The unique identifier of the physical serial device, used for automatic reconnection. |
 
@@ -101,4 +101,4 @@ The **Network Configuration** tab is currently reserved for a future release. Wh
 
 Learn how to manage your device's lifecycle:
 
-➡️ [Managing Device Status](managing-status) — Status indicators, start/stop/restart operations, and troubleshooting tips.
+➡️ [Managing Device Status](managing-status): Status indicators, start/stop/restart operations, and troubleshooting tips.

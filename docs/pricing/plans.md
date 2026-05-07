@@ -1,6 +1,6 @@
 ---
 title: "Pricing & Plans"
-description: "Autonomy Edge pricing information — free during beta with full platform access"
+description: "Autonomy Edge pricing information. Free during beta with full platform access"
 ---
 
 # Pricing & Plans

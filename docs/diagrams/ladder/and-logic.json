@@ -1,5 +1,5 @@
 {
-  "comment": "AND logic — series contacts",
+  "comment": "AND logic: series contacts",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "sensor_A" },

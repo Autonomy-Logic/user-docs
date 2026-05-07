@@ -153,10 +153,10 @@ If your application requires secure, authenticated communication, consider using
 
 1. Confirm your PLC program is running (not stopped or in error).
 2. Verify that the program logic is actually updating the variables mapped to the Modbus addresses.
-3. Check the scan cycle time of your PLC program — very fast Modbus polling may read the same value multiple times per scan cycle.
+3. Check the scan cycle time of your PLC program. Very fast Modbus polling may read the same value multiple times per scan cycle.
 
 ## What's Next?
 
-- **[Modbus Client Configuration](client)** — Configure polling of external Modbus devices
-- **[Modbus Addressing](addressing)** — Full address mapping tables and calculation formulas
-- **[OPC-UA Server](../opc-ua/README)** — Secure, modern alternative to Modbus for data exchange
+- **[Modbus Client Configuration](client)**: Configure polling of external Modbus devices
+- **[Modbus Addressing](addressing)**: Full address mapping tables and calculation formulas
+- **[OPC-UA Server](../opc-ua/README)**: Secure, modern alternative to Modbus for data exchange

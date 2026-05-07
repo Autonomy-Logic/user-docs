@@ -1,5 +1,5 @@
 {
-  "comment": "Emergency stop with latch — set rung",
+  "comment": "Emergency stop with latch: set rung",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "run_command" },

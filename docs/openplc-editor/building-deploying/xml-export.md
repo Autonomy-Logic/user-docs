@@ -6,12 +6,12 @@ You can export your PLC project as a standard IEC 61131-3 XML file. This is the 
 
 The exported XML file is a complete snapshot of your project, including:
 
-- **All POUs** — Every Program, Function, and Function Block with their variable declarations and logic.
-- **Data Types** — All user-defined arrays, enumerations, and structures.
-- **Configuration** — Task definitions, program instance assignments, and global variables.
-- **Project metadata** — Project name, creation date, and version information.
+- **All POUs**: Every Program, Function, and Function Block with their variable declarations and logic.
+- **Data Types**: All user-defined arrays, enumerations, and structures.
+- **Configuration**: Task definitions, program instance assignments, and global variables.
+- **Project metadata**: Project name, creation date, and version information.
 
-The export preserves the full fidelity of your PLC logic regardless of language — Structured Text, Ladder Diagram, Function Block Diagram, Instruction List, and Python/C++ blocks are all included.
+The export preserves the full fidelity of your PLC logic regardless of language. Structured Text, Ladder Diagram, Function Block Diagram, Instruction List, and Python/C++ blocks are all included.
 
 ## How to Export
 
@@ -31,7 +31,7 @@ The export preserves the full fidelity of your PLC logic regardless of language 
 
 ### Project Backup
 
-Export regularly to keep offline backups. The XML file is plain text, so it works well with version control systems like Git — you can track changes over time by committing exports at different stages.
+Export regularly to keep offline backups. The XML file is plain text, so it works well with version control systems like Git. You can track changes over time by committing exports at different stages.
 
 ### Sharing Projects
 
@@ -39,9 +39,9 @@ Share your PLC project with colleagues, clients, or the community by distributin
 
 This is useful for:
 
-- **Team collaboration** — Share snapshots with team members who may not have access to the same workspace.
-- **Code review** — Provide a complete project representation without requiring platform access.
-- **Education** — Distribute example projects or assignments in a standard format.
+- **Team collaboration**: Share snapshots with team members who may not have access to the same workspace.
+- **Code review**: Provide a complete project representation without requiring platform access.
+- **Education**: Distribute example projects or assignments in a standard format.
 
 ### Interoperability
 
@@ -74,6 +74,6 @@ You can export at any time without compiling, and vice versa.
 
 ## What's Next?
 
-- [Project Compilation](project-compilation) — Learn how to compile and deploy your project.
-- [Deployment](deployment-vplc) — Deploy your compiled program to a device.
-- [Connecting to Runtimes](../connecting-to-runtimes) — Connect the IDE to your devices.
+- [Project Compilation](project-compilation): Learn how to compile and deploy your project.
+- [Deployment](deployment-vplc): Deploy your compiled program to a device.
+- [Connecting to Runtimes](../connecting-to-runtimes): Connect the IDE to your devices.
