@@ -2,6 +2,8 @@
 
 Structured Text (ST) is a high-level, text-based programming language defined in the IEC 61131-3 standard. If you've ever written code in Pascal, C, or a similar procedural language, ST will feel familiar right away. It's the go-to choice for complex algorithms, math-heavy calculations, and data processing. Tasks that would be awkward to express in graphical languages like Ladder Diagram or Function Block Diagram.
 
+![Editor showing a simple Structured Text program with the Variables Table](../../../platform-features/vplc-management/images/editor-with-program.png)
+
 ## Introduction to Structured Text
 
 ST gives you a full-featured programming environment with support for:
@@ -18,6 +20,8 @@ Before you write any ST code, you need to define the variables your program will
 
 1. **Variables Table**: Where you declare all variables with their names, types, and classes.
 2. **Code Editor**: Where you write the actual ST code that uses those variables.
+
+![Variables table showing local variables defined for a temperature control program](images/st-variables-table.png)
 
 For detailed information about variable classes (Local, Input, Output, In-Out, External, Global, Temp) and data types, see the [Variables and Data Types](../../iec-concepts/variables-datatypes) section.
 

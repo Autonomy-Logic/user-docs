@@ -8,6 +8,8 @@ As your collection of projects grows, folders help you keep everything structure
 
 The **Projects page** has a resizable left sidebar that displays your folder tree.
 
+![Projects page with the folder sidebar on the left and project cards on the right](images/projects-page.png)
+
 ### Action Buttons
 
 At the top of the sidebar:

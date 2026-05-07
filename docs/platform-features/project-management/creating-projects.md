@@ -17,6 +17,8 @@ Both paths open the same three-step wizard modal.
 
 ## Step 1 of 3: Project Info
 
+![New Project wizard, Step 1 with project name, folder, and description fields](images/create-project-step1.png)
+
 ### Project Name (Required)
 
 Give your project a descriptive, unique name. This name appears on project cards, in the sidebar folder tree, and in URLs for public projects. You can't have two projects with the same name.
@@ -41,6 +43,8 @@ Click **Next** to proceed.
 ---
 
 ## Step 2 of 3: Configuration
+
+![New Project wizard, Step 2 with language selection and cycle time fields](images/create-project-step2.png)
 
 ### Select Language (Required)
 
@@ -70,6 +74,8 @@ Click **Next** to proceed.
 ---
 
 ## Step 3 of 3: Visibility
+
+![New Project wizard, Step 3 with cover image upload and visibility toggle](images/create-project-step3.png)
 
 ### Cover Image (Optional)
 

@@ -93,6 +93,8 @@ You can start the New Orchestrator wizard in two ways:
 
 If you have no orchestrators yet, the page shows an empty state with a prominent **Add Orchestrator** button in the center.
 
+![Orchestrators page empty state with Add Orchestrator button](images/orchestrators-empty-state.png)
+
 ---
 
 ## Step 1: Details
@@ -102,6 +104,8 @@ Enter basic information about your orchestrator.
 - **Orchestrator name** (required): A human-friendly name to identify this machine. Choose something descriptive, like `Lab Raspberry Pi`, `Production Line 3`, or `Dev VM - Ubuntu`.
 - **Description** (optional): A short note about purpose, location, or setup. Example: `Located in Building A, Room 102`.
 
+![New Orchestrator wizard, Details step with name and description fields](images/add-orchestrator-step1.png)
+
 Click **Next** to proceed.
 
 ---
@@ -109,6 +113,8 @@ Click **Next** to proceed.
 ## Step 2: Install
 
 Now you'll install the orchestrator agent on your Linux machine.
+
+![New Orchestrator wizard, Install step showing the install command](images/add-orchestrator-step2.png)
 
 The modal displays a single command:
 
@@ -146,6 +152,8 @@ Click **Next** in the modal to proceed.
 ## Step 3: Link
 
 The final step connects the installed agent to your Autonomy Edge account.
+
+![New Orchestrator wizard, Link step with the Orchestrator ID input](images/add-orchestrator-step3.png)
 
 1. Paste the **Orchestrator ID** into the **ID Orchestrator** field.
 2. Click **Create Orchestrator**.

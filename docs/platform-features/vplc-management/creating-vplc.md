@@ -89,9 +89,16 @@ When you click **Create**, the platform tells your Orchestrator to set up a new 
 There are two ways to start:
 
 - **From the orchestrator's Devices tab**: Navigate to **Orchestrators**, click your orchestrator, switch to the **Devices** tab, and click **Add Device**. If this is your first device, you'll see a prominent **Add Device** button in the center.
+
+![Devices tab empty state with the Add Device button](images/devices-empty-state.png)
+
 - **From the orchestrators list**: Expand an orchestrator row to see its devices, then click **Add Device**.
 
+![Orchestrators list with expandable device rows](images/orchestrators-list-with-devices.png)
+
 Both paths open the same **Add New Device** modal.
+
+![Add New Device modal showing the name and runtime version fields](images/add-device-modal.png)
 
 ---
 
@@ -149,6 +156,8 @@ Choose how the vNIC gets its IP address:
 
 **Static IP**: You manually specify the network settings. Four additional fields appear:
 
+![Network tab with static IP configuration fields](images/add-device-nic-config.png)
+
 - **IP Address**: The fixed IP for this vNIC (e.g., `192.168.1.100`). Required.
 - **Subnet Mask**: The network subnet mask (e.g., `255.255.255.0`). Required.
 - **Gateway**: The default gateway for outbound traffic (e.g., `192.168.1.1`). Optional but recommended.
@@ -194,9 +203,17 @@ When you select a configured serial port:
 
 Once you've configured the name, runtime version, network, and (optionally) serial ports, click **Create**.
 
+![Add New Device modal with all settings filled in, ready to create](images/add-device-filled.png)
+
 The modal shows a loading spinner with "Creating device... Please wait a moment." This typically takes a few seconds as the platform provisions your vPLC on the orchestrator's machine.
 
+![Device creation in progress with spinner](images/device-creating.png)
+
 When complete, the modal shows a green checkmark and **"Device created successfully!"** Your new device appears in the orchestrator's Devices tab.
+
+![Device created successfully confirmation](images/device-created-success.png)
+
+![Devices list showing the newly created vPLC](images/devices-list-with-vplc.png)
 
 If creation fails (e.g., the orchestrator is offline), an error message is shown and the device record is automatically cleaned up.
 

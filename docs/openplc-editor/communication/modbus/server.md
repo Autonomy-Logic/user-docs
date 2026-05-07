@@ -8,7 +8,13 @@ To add a Modbus server to your project in the Autonomy Edge web editor:
 
 1. In the project explorer, click the **+** button.
 2. Select **Server** from the dropdown menu.
+
+![Server creation dialog with protocol selection](images/add-server-dialog.png)
+
 3. Choose **Modbus/TCP** as the protocol and enter a descriptive name.
+
+![Protocol dropdown showing Modbus/TCP option](images/server-protocol-dropdown.png)
+
 4. Click **Create**.
 5. The new server entry appears under the **Servers** folder in the project tree.
 6. Click the server entry to open its configuration panel.

@@ -56,6 +56,12 @@ Each POU has a **Variables Table** at the top of its editor. The table shows all
 
 To add a variable, use the **+** button above the table. To remove, select a row and use the **−** button. You can also reorder variables using the up/down arrow buttons.
 
+![Variables table in graphical mode showing Name, Class, Type, Location, Initial Value, Documentation, and Debug columns](images/variables-table-graphical.png)
+
+The IDE also supports a **text mode** for declaring variables in standard IEC 61131-3 syntax (`VAR ... END_VAR`). Toggle between graphical and text mode using the buttons above the table. Text mode is handy if you prefer typing declarations directly or pasting from existing code.
+
+![Variables in text mode showing standard IEC 61131-3 VAR/END_VAR syntax](images/variables-text-mode.png)
+
 ## Base Data Types
 
 IEC 61131-3 defines a set of elementary data types. Here's the complete reference:
@@ -149,10 +155,28 @@ Structures are useful for organizing related data. Sensor readings with metadata
 
 1. Click the **+** button next to the project name in the Project Explorer.
 2. Choose to create a **Data Type**.
+
+![Data type creation form with name input and derivation dropdown](images/create-datatype-form.png)
+
 3. Enter a name and select the derivation: Array, Enumeration, or Structure.
+
+![Derivation dropdown showing Array, Enumerated, and Structure options](images/datatype-derivation-dropdown.png)
+
 4. Click **Create**.
 5. The data type appears in the Data Types branch. Click it to open its editor.
 6. Configure the type details (base type and dimensions for arrays, values for enumerations, fields for structures).
+
+For arrays, the editor lets you set the base type, an optional initial value, and one or more dimensions:
+
+![Array editor showing base type selection, initial value, and dimensions configuration](images/array-editor-intbuffer.png)
+
+For enumerations, you fill in the value table and pick an initial value:
+
+![Enumeration editor showing the values table and initial value selection](images/enum-editor-color.png)
+
+For structures, you define the fields and their types:
+
+![Structure editor showing the fields table with Name, Type, and Initial Value columns](images/structure-editor-view.png)
 
 User-defined types are available in the type dropdown when declaring variables in any POU.
 

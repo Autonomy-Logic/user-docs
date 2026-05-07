@@ -2,6 +2,8 @@
 
 The Dashboard is your home base on Autonomy Edge. Here's a quick tour of what you'll find and where everything leads.
 
+![Dashboard main view with navigation bar, sidebar, and project area](images/dashboard-main.png)
+
 ---
 
 ## Navigation Bar

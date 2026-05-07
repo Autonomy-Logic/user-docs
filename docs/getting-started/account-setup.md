@@ -23,6 +23,8 @@ You can create an account in two ways: with email and password, or with a social
 
 You'll be redirected to the email verification screen.
 
+![Signup page with name, email, and password fields](images/signup-page.png)
+
 ### Option B: Social Login
 
 Instead of filling out the form, click one of the provider buttons at the top of the signup page:
@@ -60,6 +62,8 @@ That's it. You're in.
 3. Optionally check **Remember Me** to save your email for next time.
 4. Click **Sign in**.
 
+![Sign-in page with email, password, and social login options](images/login-page.png)
+
 > **Tip:** Only use "Remember Me" on personal devices you trust.
 
 ---
@@ -69,6 +73,9 @@ That's it. You're in.
 If you can't remember your password, you can reset it in a few steps:
 
 1. On the sign-in page, click **Forgot password?**
+
+![Forgot password page asking for email](images/forgot-password-page.png)
+
 2. Enter your email address and submit.
 3. Check your inbox for a **6-digit reset code**.
 4. Enter the code on the verification page.

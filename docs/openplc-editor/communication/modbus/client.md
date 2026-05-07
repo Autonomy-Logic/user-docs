@@ -7,14 +7,25 @@ When configured as a Modbus client (master), Autonomy Edge initiates connections
 To add a Modbus client connection in the Autonomy Edge web editor:
 
 1. In the project explorer, click the **+** button.
+
+![Project explorer + button menu showing element types](images/add-element-menu.png)
+
 2. Select **Remote Device** from the dropdown menu.
+
+![Remote Device creation dialog with protocol selection](images/add-remote-device-dialog.png)
+
 3. Choose the transport protocol:
    - **Modbus/TCP** for Ethernet-based communication
    - **Modbus/RTU** for serial (RS-232 / RS-485) communication
+
+![Protocol dropdown showing Modbus/TCP and other protocol options](images/remote-device-protocol-dropdown.png)
+
 4. Enter a descriptive name for the device (e.g., `TempSensors_Rack1`).
 5. Click **Create**.
 6. The new device entry appears under the **Devices** folder in the project tree.
 7. Click the device entry to open its configuration panel.
+
+![Remote device configuration panel with empty IO Tag Mapping](images/remote-device-config.png)
 
 You can add multiple remote devices to a single project. Each device maintains its own independent connection and polling schedule.
 
@@ -70,6 +81,8 @@ The client starts with a 2-second delay between retries, increasing by a factor 
 
 IO Groups are the core of the Modbus client configuration. Each IO Group defines a block of Modbus data to read from or write to the remote device. You can create multiple IO Groups per device to poll different data areas at different rates.
 
+![New IO Group dialog with configuration options](images/new-io-group-dialog.png)
+
 ### IO Group Settings
 
 | Field | Description |
@@ -101,6 +114,8 @@ IO Groups are the core of the Modbus client configuration. Each IO Group defines
 
 When you create an IO Group, the editor automatically assigns the next available IEC location based on the function code. For example:
 
+![IO Group with automatically assigned IEC location](images/io-group-with-iec-location.png)
+
 - First group using FC 3 (Read Holding Registers) might receive `%IW0`
 - A second group using FC 3 with length 4 (after the first group of length 10) would receive `%IW10`
 - A group using FC 16 (Write Multiple Registers) might receive `%QW0`
@@ -110,6 +125,8 @@ You can view and verify these assignments in the IO Tag Mapping table.
 ### Viewing Individual IO Points
 
 Click the expand arrow next to any IO Group to see the individual data points. Each point shows:
+
+![Expanded IO Group showing individual IO points with IEC addresses](images/io-group-expanded.png)
 
 | Column | Description |
 |--------|-------------|

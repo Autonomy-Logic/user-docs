@@ -131,6 +131,8 @@ All of this. Tasks, instances, and global variables. Is configured in the **Reso
 
 Each section supports both a visual table view and a text/code view. You can switch between them using the table/code toggle buttons.
 
+![Resource editor showing Tasks and Instances configuration](images/tasks-instances.png)
+
 > **Tip:** For most projects, start with a single task at `T#20ms` and a single instance pointing to your main program. Add more tasks only when you genuinely need different execution rates.
 
 ---

@@ -10,11 +10,15 @@ Click your **avatar** in the top-right corner of any page and select **Profile**
 
 You can also go directly to `edge.autonomylogic.com/profile`.
 
+![Profile overview page showing name, username, bio, and avatar](images/profile-overview.png)
+
 ---
 
 ## Editing Your Profile
 
 Click the **Edit Profile** button on your profile page. You can update:
+
+![Profile edit form with name, username, bio, and location fields](images/profile-edit.png)
 
 - **Name**: Your display name, visible across the platform (required).
 - **Username**: Your unique identifier, shown in project paths like `your-username / Project Name` (required, must be unique).

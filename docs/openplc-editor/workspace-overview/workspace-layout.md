@@ -2,6 +2,8 @@
 
 The IDE workspace has four main areas: the **Activity Bar** on the left edge, the **Project Explorer** sidebar, the **Editor Area** in the center, and the **Console Panel** at the bottom. Here's a quick tour of each.
 
+![The complete IDE workspace showing the Activity Bar, Project Explorer, Editor Area, and Console Panel](images/workspace-layout-full.png)
+
 ## Activity Bar
 
 The Activity Bar is the narrow vertical strip on the far left. It contains icon buttons for global actions:
