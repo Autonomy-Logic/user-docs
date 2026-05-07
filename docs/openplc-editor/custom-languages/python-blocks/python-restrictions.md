@@ -60,7 +60,7 @@ import requests      # Same — depends on the target device's Python environmen
 
 If an `import` fails because a package isn't installed, the Python process for that block will exit with an error visible in the runtime logs.
 
-> **Don't remove the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). The editor's runtime wrapper relies on them at module scope. You don't need to use them in your own code — just leave them there.
+> **Keep the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). They're required even if you don't reference them in your own code.
 
 ### What You Cannot Do
 
@@ -71,7 +71,7 @@ If an `import` fails because a package isn't installed, the Python process for t
 
 Each Python block runs in its own process, isolated from the PLC. The PLC scan keeps going regardless of what your Python code does — slow Python doesn't stall the PLC. So most of what you might assume is forbidden in a "real-time" context is actually fine here. The one hard rule is:
 
-**`block_loop()` must return on every call.** The runtime wrapper that surrounds your code is the thing that refreshes input variables before each call and pushes output variables back to the PLC after each call. If `block_loop()` never returns, that round-trip never happens, and your block stops exchanging data with the PLC.
+**`block_loop()` must return on every call.** Inputs are refreshed before each call and outputs are sent to the PLC after each call. If `block_loop()` never returns, your block stops exchanging data with the PLC.
 
 ```python
 # Don't do this — block_loop() never returns, so the next refresh never happens
@@ -104,7 +104,7 @@ def block_loop():
     pass
 ```
 
-When a thread reads or writes one of the variables from your Variables Table, you should hold a lock around the access. The wrapper rewrites those variables between cycles, so without coordination the thread might see a half-updated value or have its own write overwritten by the next sync. A simple `threading.Lock` is enough for most cases.
+When a thread reads or writes a variable from your Variables Table, hold a lock around the access. Those variables are refreshed between cycles, so without coordination a thread can read a half-updated value or have its own write overwritten by the next refresh. A simple `threading.Lock` is enough for most cases.
 
 ## Things That Are Fine (But Worth Knowing)
 
@@ -114,7 +114,7 @@ Network requests, file I/O, `time.sleep()`, large reads — all fine. They block
 
 ### Threads
 
-`threading.Thread` works. The caveat is the same one above: any variable from the Variables Table that's touched by both `block_loop()` and a worker thread should be guarded by a lock, because the wrapper reassigns those variables every cycle.
+`threading.Thread` works. The caveat is the same one above: any variable from the Variables Table that's touched by both `block_loop()` and a worker thread should be guarded by a lock, because those variables are refreshed every cycle.
 
 ### Subprocesses
 

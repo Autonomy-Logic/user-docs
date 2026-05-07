@@ -185,7 +185,7 @@ Instead of typing full function names, type the first few characters and press `
 
 ### Leverage the Variables Table
 
-Variables declared in the Variables Table are always available in your code through the generated macros. You don't need to re-declare them. If a variable name doesn't autocomplete, check that it's properly defined in the Variables Table.
+Variables declared in the Variables Table are always available in your code by name. If a variable name doesn't autocomplete, check that it's properly defined in the Variables Table.
 
 ### Watch for Type Mismatches
 

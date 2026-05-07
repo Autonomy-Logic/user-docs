@@ -62,12 +62,12 @@ The class determines the data flow:
 | **Input** | PLC → Python (refreshed before every `block_loop()` call) |
 | **Output** | Python → PLC (sent after every `block_loop()` call) |
 
-Inside `block_init()` and `block_loop()`, every variable from the table is available as a normal Python variable using the same name you typed. You don't need to read from any buffer, unpack any bytes, or compute any offsets — the editor wires that up for you.
+Inside `block_init()` and `block_loop()`, every variable from the table is a normal Python variable using the same name you typed.
 
 A few Python-specific points worth knowing:
 
-- **Reading is automatic** — just reference the input by name: `if temperature > 75.0:`
-- **Writing requires `global`** — to assign to an output (or to any module-level variable that must survive across `block_loop()` calls), declare it `global` at the top of the function. Otherwise Python treats your assignment as a function-local and the value never leaves the function.
+- **Reading an input** — just reference it by name: `if temperature > 75.0:`
+- **Writing an output** — declare it `global` at the top of the function, then assign to it. The `global` is a Python rule for assigning to module-level variables from inside a function; reads don't need it.
 
 ### Locals Aren't in the Table
 

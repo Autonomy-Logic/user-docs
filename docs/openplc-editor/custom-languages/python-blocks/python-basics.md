@@ -25,7 +25,7 @@ Python function blocks run differently from standard IEC function blocks. Here's
 | **Language** | ST, LD, FBD, IL | Python 3 |
 | **Libraries** | IEC standard functions only | Python standard library |
 
-The key point: Python function blocks are **not synchronized** with the PLC scan cycle. The runtime launches a Python process for your block and exchanges input/output values with it on a ~100 ms cadence, independently of the PLC scan. The editor handles all of the cross-process plumbing for you — you just write `block_init()` and `block_loop()` and use your variables by name.
+The key point: Python function blocks are **not synchronized** with the PLC scan cycle. Your block exchanges input and output values with the PLC on a ~100 ms cadence, independently of the PLC scan. You write your logic in `block_init()` and `block_loop()` and reference variables by name.
 
 ## When to Use Python vs. IEC Languages
 
@@ -79,7 +79,7 @@ This template defines the two required functions:
 - **`block_init()`** — Called exactly once when the Python process starts. Use it for one-time setup, such as initializing persistent variables or preparing data structures.
 - **`block_loop()`** — Called repeatedly, approximately every 100 milliseconds. This is where your main logic goes — reading inputs, performing calculations, and writing outputs.
 
-> **Note:** Leave the four `import` statements at the top of the template alone — the editor's runtime wrapper relies on them. You can add your own imports below.
+> **Note:** Keep the four `import` statements at the top of the template — they're required. Add your own imports below them.
 
 ## A Basic Example
 
@@ -92,7 +92,7 @@ Here's a simple Python function block that scales an analog input value from a r
 | `scale_max` | REAL | Input |
 | `scaled_output` | REAL | Output |
 
-The Python code uses those names directly — no shared memory, no struct, no byte offsets:
+The Python code uses those names directly:
 
 ```python
 from multiprocessing import shared_memory
@@ -114,13 +114,13 @@ def block_loop():
         scaled_output = scale_min
 ```
 
-What's happening:
+A few notes on the example:
 
-- `raw_value`, `scale_min`, and `scale_max` are inputs from the Variables Table. The editor's runtime refreshes them before every call to `block_loop()`, so you can read them by name.
-- `scaled_output` is an output. Anything you assign to it is sent back to the PLC after `block_loop()` returns.
-- The `global scaled_output` line is required by Python whenever you **assign** to a module-level variable from inside a function. Reads (`raw_value`, `scale_min`, `scale_max`) don't need it.
+- `raw_value`, `scale_min`, and `scale_max` are inputs — read them by name with their current value at the start of each cycle.
+- `scaled_output` is an output — assign it to send the new value back to the PLC.
+- The `global scaled_output` line is a Python rule, not a block-specific one: in Python, you need `global` whenever you **assign** to a module-level variable from inside a function. Reads don't need it.
 
-That's the whole pattern: declare your variables in the Variables Table, then use them by name in `block_init()` and `block_loop()`, just like you would in a C++ function block.
+The pattern is the same as a C++ function block: declare inputs and outputs in the Variables Table, then use them by name in your code.
 
 ## What's Next?
 

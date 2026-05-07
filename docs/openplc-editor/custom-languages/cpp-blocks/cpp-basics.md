@@ -98,7 +98,7 @@ void loop() {
 }
 ```
 
-You don't need to declare these variables in your C++ code or pull them out of any kind of buffer — they're already wired up by the editor. Just use the names from the Variables Table.
+Use the names from the Variables Table directly in your code.
 
 ## A Complete Example
 
