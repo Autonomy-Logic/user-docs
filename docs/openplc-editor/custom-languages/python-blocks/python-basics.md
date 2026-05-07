@@ -51,9 +51,11 @@ To create a Python function block in the Autonomy Edge IDE:
 
 1. In the left panel, click the blue **+** button.
 2. Hover over **Function Block** in the menu that appears.
-3. In the dialog that opens, enter a name for your block (e.g., `scale_input`). Names must follow CamelCase, PascalCase, or snake_case.
+3. In the dialog that opens, enter a name for your block (e.g., `my_python_block`). Names must follow CamelCase, PascalCase, or snake_case.
 4. Select **Python** from the **Language** dropdown.
 5. Click **Create**.
+
+![New Function Block dialog: + menu on the left, name field and Language dropdown on the right](images/create-function-block.png)
 
 The IDE opens a code editor pre-populated with the Python function block template.
 

@@ -37,6 +37,8 @@ To create a C++ function block in the Autonomy Edge IDE:
 4. Select **C++** from the **Language** dropdown.
 5. Click **Create**.
 
+![New Function Block dialog: + menu on the left, name field and Language dropdown on the right (the screenshot shows Python selected; for a C++ block, pick C++ from the Language dropdown instead)](images/create-function-block.png)
+
 The IDE creates a new function block with a C++ code editor and a Variables Table, pre-populated with a template.
 
 ## The C++ Template
