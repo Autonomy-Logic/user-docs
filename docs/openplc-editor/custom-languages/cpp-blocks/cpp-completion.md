@@ -189,7 +189,7 @@ Variables declared in the Variables Table are always available in your code thro
 
 ### Watch for Type Mismatches
 
-The IEC types map to specific C types (see [C++ Function Block Structure](cpp-structure) for the full table). Common pitfalls:
+The IEC types map to specific C types (see [C++ Function Block Structure](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-structure) for the full table). Common pitfalls:
 
 - `IEC_BOOL` is `uint8_t`, not C++ `bool`. Use `0` and `1`, not `false` and `true`.
 - `IEC_INT` is `int16_t` (16-bit), not `int` (typically 32-bit). Arithmetic overflow can occur at 32,767.
@@ -236,4 +236,4 @@ This prevents build errors when targeting Linux or other non-Arduino platforms.
 
 ## What's Next?
 
-Learn how to declare and manage variables for all POU types, including the variable classes, data types, and editor features: [Local Variables](../../working-with-variables/local-variables).
+Learn how to declare and manage variables for all POU types, including the variable classes, data types, and editor features: [Local Variables](/docs/openplc-editor/working-with-variables/local-variables).

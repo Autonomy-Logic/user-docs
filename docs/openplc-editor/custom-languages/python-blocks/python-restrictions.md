@@ -67,72 +67,58 @@ If an `import` fails because a package isn't installed, the Python process for t
 - **Install packages from inside a block** — `pip install` happens on the device, not from your block code. A block cannot install its own dependencies at runtime.
 - **Import your own `.py` files from the project** — each Python function block is a self-contained script. There's no way to share Python helper modules across blocks within an Autonomy Edge project. (You can still import any module installed on the device.)
 
-## What to Avoid
+## The One Real Rule: `block_loop()` Must Return
 
-### Blocking Operations
+Each Python block runs in its own process, isolated from the PLC. The PLC scan keeps going regardless of what your Python code does — slow Python doesn't stall the PLC. So most of what you might assume is forbidden in a "real-time" context is actually fine here. The one hard rule is:
 
-Since `block_loop()` runs on a ~100 ms cycle, any operation that blocks for a significant amount of time will delay subsequent iterations and disrupt the expected timing:
-
-```python
-# DO NOT do this — blocks the loop
-def block_loop():
-    import urllib.request
-    response = urllib.request.urlopen('http://example.com')  # Network call, may take seconds
-    data = response.read()
-```
-
-Specific operations to avoid:
-
-| Operation | Why It's a Problem |
-|-----------|-------------------|
-| Network requests (HTTP, sockets) | Unpredictable latency, can block for seconds |
-| File I/O on slow storage | Disk access can stall the loop |
-| `time.sleep()` | Directly delays the loop by the sleep duration |
-| Waiting for external processes | Blocks until the process completes |
-| Large file reads/writes | Can take significant time depending on file size |
-
-If you absolutely need to perform a slow operation, keep it in `block_init()` where a one-time delay is acceptable, rather than in `block_loop()` where it would cause recurring delays.
-
-### Threading and Multiprocessing
-
-The Python process is designed as a **single-threaded** execution model. Avoid:
+**`block_loop()` must return on every call.** The runtime wrapper that surrounds your code is the thing that refreshes input variables before each call and pushes output variables back to the PLC after each call. If `block_loop()` never returns, that round-trip never happens, and your block stops exchanging data with the PLC.
 
 ```python
-# DO NOT do this
-import threading
-def block_loop():
-    t = threading.Thread(target=some_function)
-    t.start()  # Creates threads that may conflict with shared memory access
-```
-
-Creating threads can lead to race conditions with the shared memory access and the loop management. Similarly, spawning child processes from within the Python process is not supported.
-
-### Spawning Subprocesses
-
-Do not use `subprocess`, `os.system()`, or `os.popen()` to launch other programs:
-
-```python
-# DO NOT do this
-import subprocess
-def block_loop():
-    result = subprocess.run(['ls', '-la'], capture_output=True)  # Spawns a child process
-```
-
-The Python process is already a child of the PLC runtime. Spawning further children creates an unmanaged process tree that the runtime cannot clean up properly.
-
-### Infinite Loops in block_loop()
-
-The loop timing is already managed for you. Do not create your own infinite loop inside `block_loop()`:
-
-```python
-# DO NOT do this — block_loop is already called repeatedly
+# Don't do this — block_loop() never returns, so the next refresh never happens
 def block_loop():
     while True:
         do_something()
         time.sleep(0.1)
 ```
 
-This would prevent the next call to `block_loop()`, effectively freezing your function block.
+If you genuinely need a long-running background activity (a server socket, a continuous polling loop, etc.), spawn a thread for it from `block_init()` and let `block_loop()` return immediately:
+
+```python
+import threading
+
+worker_lock = threading.Lock()
+
+def background_worker():
+    global some_output
+    while True:
+        result = do_long_running_work()
+        with worker_lock:
+            some_output = result  # protected access to a variable shared with block_loop()
+
+def block_init():
+    t = threading.Thread(target=background_worker, daemon=True)
+    t.start()
+
+def block_loop():
+    # block_loop() can stay short — the worker is doing its own thing in the background
+    pass
+```
+
+When a thread reads or writes one of the variables from your Variables Table, you should hold a lock around the access. The wrapper rewrites those variables between cycles, so without coordination the thread might see a half-updated value or have its own write overwritten by the next sync. A simple `threading.Lock` is enough for most cases.
+
+## Things That Are Fine (But Worth Knowing)
+
+### Blocking Operations
+
+Network requests, file I/O, `time.sleep()`, large reads — all fine. They block your Python script, but the PLC keeps scanning normally. The visible effect is that your block's outputs update less often: if `block_loop()` takes 500 ms, the next sync happens about 600 ms later (500 ms work + 100 ms sleep) instead of every 100 ms. Sometimes that's exactly what you want; sometimes you'd rather move the slow work to a background thread (see above) so the main loop stays responsive.
+
+### Threads
+
+`threading.Thread` works. The caveat is the same one above: any variable from the Variables Table that's touched by both `block_loop()` and a worker thread should be guarded by a lock, because the wrapper reassigns those variables every cycle.
+
+### Subprocesses
+
+`subprocess.run`, `os.system`, `os.popen` should all work — your Python process is already a normal OS process. As with any subprocess use, mind the runtime cost (spawning a process is much slower than calling a Python function, so don't do it on every loop) and clean up your child processes if you launch any long-running ones.
 
 ## Variable Constraints
 
@@ -221,4 +207,4 @@ def block_loop():
 
 ## What's Next?
 
-Continue to [Python Editor Features](python-language-server) to learn about syntax highlighting, type checking, autocompletion, and other editing tools available in the Python code editor.
+Continue to [Python Editor Features](/docs/openplc-editor/custom-languages/python-blocks/python-language-server) to learn about syntax highlighting, type checking, autocompletion, and other editing tools available in the Python code editor.

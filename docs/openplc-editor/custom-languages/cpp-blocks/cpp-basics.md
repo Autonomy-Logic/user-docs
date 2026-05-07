@@ -62,7 +62,9 @@ The IDE validates that both functions exist in your code. If either `setup()` or
 
 ## Working with Variables
 
-C++ function blocks use the same Variables Table as all other POU types. You declare variables in the table — specifying name, class (Input, Output, Local, etc.), and data type — and those variables become accessible directly in your C++ code.
+C++ function blocks declare their **inputs and outputs** in the Variables Table. That's the block's interface to the rest of the PLC program. For each variable you specify a name, a class (Input or Output), and an IEC data type, and the variable becomes directly accessible by that name in your C++ code.
+
+Local state — counters, accumulators, helper structures — is **not** declared in the Variables Table. Just declare it in your C++ code like any normal C++ variable: at file scope (above `setup()` / `loop()`) for state that needs to persist between scans, or at function scope for scratch values inside a single call.
 
 For example, if you declare these variables:
 
@@ -150,7 +152,7 @@ Variables declared outside `setup()` and `loop()` (like `buffer`, `index`, and `
 ## Tips for Getting Started
 
 1. **Start simple** — Begin with a basic function block that reads one input and writes one output. Verify it works before adding complexity.
-2. **Use the Variables Table** — Always declare your interface variables (inputs and outputs) in the Variables Table, not as C++ globals. This ensures proper integration with the IEC runtime.
+2. **Use the Variables Table for inputs and outputs only** — interface variables (Input, Output) belong in the Variables Table so the rest of the PLC program can connect to them. Internal state is just regular C++ variables in your code; don't try to put it in the Variables Table.
 3. **Keep loop() fast** — Remember that `loop()` runs every scan cycle. Avoid blocking operations (long delays, busy-wait loops) that would stall the PLC.
 4. **Test incrementally** — Build and test your project frequently. The IDE reports build errors with line numbers to help you debug.
 5. **Check data types** — C++ function block variables use IEC type definitions (e.g., `IEC_BOOL` is `uint8_t`, `IEC_INT` is `int16_t`). Be mindful of type sizes, especially when doing arithmetic.
@@ -159,4 +161,4 @@ Variables declared outside `setup()` and `loop()` (like `buffer`, `index`, and `
 
 ## What's Next?
 
-Learn the IEC↔C type mappings and how to write portable code with `#ifdef ARDUINO`: [C++ Function Block Structure](cpp-structure).
+Learn the IEC↔C type mappings and how to write portable code with `#ifdef ARDUINO`: [C++ Function Block Structure](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-structure).

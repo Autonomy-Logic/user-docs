@@ -124,4 +124,4 @@ That's the whole pattern: declare your variables in the Variables Table, then us
 
 ## What's Next?
 
-Continue to [Python Function Block Structure](python-structure) for a closer look at `block_init()` / `block_loop()`, the supported variable types, and a complete worked example.
+Continue to [Python Function Block Structure](/docs/openplc-editor/custom-languages/python-blocks/python-structure) for a closer look at `block_init()` / `block_loop()`, the supported variable types, and a complete worked example.

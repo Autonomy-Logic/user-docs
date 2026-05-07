@@ -47,31 +47,51 @@ In this example, `sensor_value` is an Input declared in the Variables Table and 
 
 ## How Variables Work
 
-Variables for a Python function block are **not declared in the Python code**. Instead, you define them in the **Variables Table** in the IDE, just like any other IEC function block.
-
-In the Variables Table, you specify:
+The Variables Table for a Python function block holds **only the inputs and outputs** that connect your block to the rest of the PLC program. You declare each one with:
 
 | Column | Description |
 |--------|-------------|
 | **Name** | The variable name (e.g., `sensor_input`) |
 | **Type** | An IEC 61131-3 data type (e.g., INT, REAL, BOOL) |
-| **Class** | Input, Output, or Local |
+| **Class** | Input or Output |
 
-The variable class determines the data flow:
+The class determines the data flow:
 
 | Class | Direction |
 |-------|-----------|
 | **Input** | PLC → Python (refreshed before every `block_loop()` call) |
 | **Output** | Python → PLC (sent after every `block_loop()` call) |
-| **Local** | Internal to the Python process; not visible to the PLC |
 
 Inside `block_init()` and `block_loop()`, every variable from the table is available as a normal Python variable using the same name you typed. You don't need to read from any buffer, unpack any bytes, or compute any offsets — the editor wires that up for you.
 
 A few Python-specific points worth knowing:
 
 - **Reading is automatic** — just reference the input by name: `if temperature > 75.0:`
-- **Writing requires `global`** — to assign to an output (or to any variable that must survive across `block_loop()` calls), declare it `global` at the top of the function. Otherwise Python treats your assignment as a function-local and the value never leaves the function.
-- **Local variables in the table are independent of Python locals** — a Local declared in the table is a module-level Python variable that persists between cycles. A regular Python local declared with `temp = ...` inside `block_loop()` exists only for that one call.
+- **Writing requires `global`** — to assign to an output (or to any module-level variable that must survive across `block_loop()` calls), declare it `global` at the top of the function. Otherwise Python treats your assignment as a function-local and the value never leaves the function.
+
+### Locals Aren't in the Table
+
+Unlike standard IEC function blocks, Python blocks don't have a Local class in the Variables Table. Anything that's only used inside the block — counters, accumulators, buffers, helper objects — is just a regular Python variable in the script:
+
+```python
+# Module-level locals: persist across block_loop() calls
+sample_buffer = []
+total_count = 0
+
+def block_init():
+    global total_count
+    total_count = 0
+
+def block_loop():
+    global total_count
+    total_count += 1
+
+    # Function-level locals: exist only during this call
+    delta = sensor_input - 100
+    scaled = delta * 0.5
+```
+
+Use module-level variables (with `global` for assignment) when you need state to persist between cycles. Use ordinary function-scoped variables for scratch values that only matter during a single `block_loop()` run.
 
 ## Supported Variable Types
 
@@ -172,4 +192,4 @@ END_IF;
 
 ## What's Next?
 
-Continue to [Python Restrictions and Sandbox](python-restrictions) to understand the execution constraints, available libraries, performance considerations, and best practices for writing reliable Python function blocks.
+Continue to [Python Restrictions and Sandbox](/docs/openplc-editor/custom-languages/python-blocks/python-restrictions) to understand the execution constraints, available libraries, performance considerations, and best practices for writing reliable Python function blocks.

@@ -173,4 +173,4 @@ import statistics # Statistical functions
 
 ## What's Next?
 
-Continue to [C++ Function Blocks](../../custom-languages/cpp-blocks/cpp-basics) to learn about the other custom programming language available for extending PLC functionality with C++ code, including direct hardware access via Arduino-compatible APIs.
+Continue to [C++ Function Blocks](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-basics) to learn about the other custom programming language available for extending PLC functionality with C++ code, including direct hardware access via Arduino-compatible APIs.
