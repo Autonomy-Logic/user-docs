@@ -41,27 +41,31 @@ For time-critical control logic where every scan cycle matters (e.g., safety int
 
 ## Available Libraries
 
-Python function blocks have access to the **Python 3 standard library**. You can import any standard library module you need:
+Python function blocks run inside the Python interpreter on the target device — the same one used by the OpenPLC runtime. So whatever is installed in that interpreter is available to your block.
+
+This includes:
+
+- **The full Python 3 standard library** — `math`, `json`, `datetime`, `re`, `statistics`, `collections`, `itertools`, `hashlib`, and so on. These are always available.
+- **Any third-party packages installed on the device** — if you `pip install` a package on the device running the OpenPLC runtime (NumPy, Requests, paho-mqtt, pyserial, anything you need), your Python blocks can import and use it.
+
+The device controls which packages are installed, not the editor. Two devices can have different sets of packages, and a project that works on one may fail to import on the other if a dependency is missing. Plan ahead: document any non-stdlib packages your project needs and make sure they're installed on every target device before deploying.
 
 ```python
-import math
-import json
-import datetime
-import collections
-import statistics
-import re
-import decimal
-import itertools
-import functools
-import hashlib
+import math          # Always available — standard library
+import statistics    # Always available — standard library
+
+import numpy as np   # Available only if `pip install numpy` was run on the target device
+import requests      # Same — depends on the target device's Python environment
 ```
 
-### What Is NOT Available
-
-- **Third-party packages** — There's no mechanism to install packages via pip. You cannot use NumPy, Pandas, Requests, or any other package outside the Python standard library.
-- **Custom modules** — You cannot import your own `.py` files. Each Python function block is a self-contained script.
+If an `import` fails because a package isn't installed, the Python process for that block will exit with an error visible in the runtime logs.
 
 > **Don't remove the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). The editor's runtime wrapper relies on them at module scope. You don't need to use them in your own code — just leave them there.
+
+### What You Cannot Do
+
+- **Install packages from inside a block** — `pip install` happens on the device, not from your block code. A block cannot install its own dependencies at runtime.
+- **Import your own `.py` files from the project** — each Python function block is a self-contained script. There's no way to share Python helper modules across blocks within an Autonomy Edge project. (You can still import any module installed on the device.)
 
 ## What to Avoid
 
