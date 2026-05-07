@@ -1,0 +1,8 @@
+{
+  "comment": "Normally Closed contact — emergency stop",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "negated", "variable": "e_stop" },
+    { "type": "coil", "variant": "default", "variable": "system_enabled" }
+  ]
+}

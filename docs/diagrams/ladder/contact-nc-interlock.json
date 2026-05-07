@@ -1,0 +1,9 @@
+{
+  "comment": "Safety interlock — NC + NO contacts",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "negated", "variable": "guard_open" },
+    { "type": "contact", "variant": "default", "variable": "motor_ready" },
+    { "type": "coil", "variant": "default", "variable": "motor_start" }
+  ]
+}

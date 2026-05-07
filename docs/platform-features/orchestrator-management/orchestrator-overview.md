@@ -1,91 +1,146 @@
-# Orchestrator Overview
+# Orchestrator Overview and Controls
 
-Once you have added orchestrators to your account, you can monitor their status, view system metrics, and manage the devices they control from the Autonomy Edge platform. This page explains how to use the orchestrator management features.
+Once your orchestrator is linked and online, you can monitor its health, view resource charts, manage its vPLC devices, and perform control actions. This page covers the orchestrator detail page and the orchestrators list.
 
-## Viewing Your Orchestrators
+---
 
-The Orchestrators page displays a list of all orchestrators linked to your account. Each row shows key information at a glance:
+## Navigating to the Detail Page
 
-- **Name**: The name you assigned during setup
-- **Status**: Current connection state (active or inactive)
-- **CPU**: Current CPU utilization percentage
-- **Memory**: Current memory usage
-- **Uptime**: How long the orchestrator has been running
+From the **Orchestrators** page, click any orchestrator to open its detail page. A breadcrumb at the top (`Orchestrators > <name>`) lets you navigate back.
 
-![Orchestrators list](images/orchestrators-list.png)
+The detail page has two tabs:
 
-An orchestrator shows as "active" when it is connected to the cloud and sending regular heartbeat updates. If an orchestrator loses its connection or stops running, its status changes to "inactive".
+- **Overview** — System information and resource usage charts.
+- **Devices** — All vPLC devices on this orchestrator.
 
-You can search for specific orchestrators using the search box at the top of the list. This is helpful when managing many orchestrators across different locations.
+---
 
-## Orchestrator Detail View
+## The Overview Tab
 
-Click on any orchestrator in the list to view its detailed information. The detail view has two tabs: Overview and Devices.
+The Overview tab shows a snapshot of your orchestrator's current state and resource usage.
 
-### Overview Tab
+### Status and System Info
 
-The Overview tab displays comprehensive information about the orchestrator and its host system.
+A card at the top displays the orchestrator's name, status, and key system details:
 
-![Orchestrator detail overview](images/orchestrator-detail-overview.png)
+- **Status** — Color-coded label:
+  - **Active** (green) — Connected and healthy.
+  - **Not Found** (red) — Cannot be reached (agent may not be running or has lost connectivity).
+  - **Unknown** (gray) — Status could not be determined.
+- **Network** — IP addresses of the host's physical network interfaces, shown as `interface_name (ip_address)`.
+- **Memory** — Total RAM on the host (GB).
+- **OS** — Host operating system (e.g., `Ubuntu 24.04 LTS`).
+- **CPU** — Number of logical CPUs available.
+- **Disk** — Total disk space (GB).
+- **Description** — The description you provided when creating the orchestrator, or `-` if none.
 
-**Orchestrator Information Card**: At the top of the page, you'll see the orchestrator's name, current status, and key system details including:
+### Resource Usage Charts
 
-- **IP Address**: The network address of the orchestrator
-- **Memory**: Total system memory available
-- **OS**: Operating system and kernel version
-- **CPU**: Number of CPU cores
-- **Disk**: Total disk space
+Below the system info card, two interactive line charts show resource consumption over time:
 
-**CPU Usage Chart**: A time-series chart showing CPU utilization over time. Use the dropdown menu to select different time ranges (1 hour, 6 hours, 12 hours, 24 hours, or 48 hours) to analyze usage patterns.
+- **CPU Usage Chart** — CPU utilization as a percentage (0–100%) over time.
+- **Memory Usage Chart** — Memory usage in megabytes (MB) over time.
 
-**Memory Usage Chart**: A time-series chart showing memory consumption over time. Like the CPU chart, you can adjust the time range to view historical data.
+Each chart has a dropdown to select the time window:
 
-These charts help you identify performance trends, detect resource constraints, and plan capacity for your automation workloads.
+| Period | Description |
+|--------|-------------|
+| **1h** | Last 1 hour (default) |
+| **6h** | Last 6 hours |
+| **12h** | Last 12 hours |
+| **24h** | Last 24 hours |
 
-### Devices Tab
+The two charts work independently — you can view CPU over 24 hours while viewing memory for the last hour.
 
-The Devices tab shows all virtual PLC devices (vPLCs) managed by this orchestrator.
+---
 
-![Orchestrator devices tab](images/orchestrator-devices-empty.png)
+## The Devices Tab
 
-If no devices have been created yet, you'll see an empty state with an "Add Device" button. Devices are the virtual PLC containers that run your automation programs. Each device can be configured with its own network settings and can run independently on the orchestrator's host machine.
+The Devices tab shows a table of all vPLC devices on this orchestrator.
 
-For more information about creating and managing devices, see [Creating vPLC Devices](../vplc-management/creating-vplc) in the vPLC Management section.
+### Device Table
 
-## Managing Orchestrators
+| Column | Description |
+|--------|-------------|
+| **Device Name** | The name you gave the device. |
+| **Project** | The project deployed to this device, or `N/A` if none. |
+| **Status** | Current status (e.g., `running`, `stopped`, `error`), color-coded. |
+| **Uptime** | How long the device has been running (e.g., `24h 30m`). |
+| **CPU Usage** | Current CPU utilization of the device. |
+| **Memory Usage** | Current memory consumption of the device. |
+| **Created At** | When the device was created. |
+| **Actions** | A dropdown menu with device actions. |
 
-### Renaming an Orchestrator
+You can **sort** by Device Name, Project, and Created At by clicking the column headers. A **search bar** above the table filters devices by name in real time.
 
-You can rename an orchestrator at any time to better reflect its purpose or location. Click on the orchestrator name in the detail view or use the context menu in the list view to access the rename option.
+### Device Actions
 
-### Deleting an Orchestrator
+Each device row has a three-dot menu (⋮) with:
 
-To remove an orchestrator from your account, use the delete option in the context menu. Deleting an orchestrator will:
+- **Restart** — Restarts the device. A confirmation modal appears first.
+- **Rename** — Opens a modal to change the device's name.
+- **Delete** — Permanently removes the device. A confirmation modal warns this can't be undone.
 
-- Remove the orchestrator from your account
-- Stop all devices running on that orchestrator
-- Remove all associated network configurations
+### Adding a Device
 
-**Warning**: Deleting an orchestrator is a permanent action. Make sure you have backed up any important data or configurations before proceeding.
+Click the **Add Device** button to create a new vPLC on this orchestrator. See [Creating a vPLC Device](../vplc-management/creating-vplc) for the full walkthrough.
 
-## Monitoring Best Practices
+Click any device row to open its [detail page](../vplc-management/device-detail).
 
-To get the most out of your orchestrator monitoring:
+---
 
-**Regular Status Checks**: The platform automatically polls orchestrator status every few seconds, but you should periodically review the orchestrators list to ensure all your edge devices are connected and healthy.
+## Orchestrator Management
 
-**Resource Monitoring**: Use the CPU and memory charts to establish baseline usage patterns for your workloads. Sudden spikes or sustained high usage may indicate issues that need attention.
+From the orchestrators list page, each row has a three-dot menu (⋮) with management actions.
 
-**Capacity Planning**: Monitor resource utilization over time to determine when you might need to add more orchestrators or upgrade the hardware on existing ones.
+### Rename
 
-**Network Connectivity**: If an orchestrator shows as inactive, check the network connectivity of the host machine. The orchestrator requires a stable internet connection to maintain its cloud connection.
+Opens a modal to change the orchestrator's display name (up to 100 characters).
 
-## Troubleshooting
+### Delete
 
-**Orchestrator shows inactive**: Verify that the host machine has internet access and that Docker containers are running. Use `docker ps` on the host to check that both the orchestrator-agent and autonomy-netmon containers are running.
+Opens a confirmation modal. What happens depends on whether the orchestrator is online:
 
-**Metrics not updating**: If CPU and memory charts are not showing new data, the orchestrator may be experiencing connectivity issues. Check the network connection and restart the orchestrator containers if necessary.
+**If online:** The platform sends a cleanup command to the agent, which removes all devices and then removes itself from the host. The orchestrator and all its devices are removed from the platform.
 
-**High resource usage**: If you notice consistently high CPU or memory usage, review the number and complexity of devices running on the orchestrator. Consider distributing workloads across multiple orchestrators.
+**If offline:** The platform can't communicate with the agent. You'll be offered a **Force Delete** option that removes the orchestrator and its devices from the platform database only.
 
-For information about adding new orchestrators, see [Adding Orchestrators](adding-orchestrators). For details about what orchestrators are and how they work, see [Understanding Orchestrators](understanding-orchestrators).
+> **Tip:** If you force-delete an offline orchestrator, the software may still be running on the host machine. You can clean it up manually by running the install script again or contacting your system administrator.
+
+---
+
+## Filtering the Orchestrators List
+
+The orchestrators list includes a **Status** filter button:
+
+| Filter | Shows |
+|--------|-------|
+| **Active** | Only online, connected orchestrators |
+| **Inactive** | Only offline or disconnected orchestrators |
+| **Error** | Only orchestrators in an error state |
+
+Click a status to apply the filter. Click the same status again to clear it and show all orchestrators.
+
+---
+
+## Quick Reference: Available Actions
+
+| Action | Where | Description |
+|--------|-------|-------------|
+| **Add Orchestrator** | Orchestrators list page | Opens the 3-step setup wizard |
+| **Search** | Orchestrators list page | Filter by orchestrator name |
+| **Filter by Status** | Orchestrators list page | Show only a specific status |
+| **Rename** | Three-dot menu on row | Change the display name |
+| **Delete** | Three-dot menu on row | Delete the orchestrator |
+| **Add Device** | Devices tab on detail page | Create a new vPLC device |
+| **Restart Device** | Three-dot menu on device row | Restart a specific vPLC |
+| **Rename Device** | Three-dot menu on device row | Change a device's name |
+| **Delete Device** | Three-dot menu on device row | Permanently remove a vPLC |
+
+---
+
+## What's Next?
+
+Learn about the devices your orchestrators run:
+
+➡️ [Understanding vPLC Devices](../vplc-management/understanding-vplc) — What virtual PLCs are, what they can do, and when to use them.

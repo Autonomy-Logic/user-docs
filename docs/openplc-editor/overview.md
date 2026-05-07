@@ -1,114 +1,35 @@
-# Overview
+# Autonomy Edge IDE — Overview
 
-OpenPLC Editor is available in two versions that share the same core functionality but are designed for different use cases and workflows. This page explains the differences between the desktop and web versions to help you choose the right one for your needs.
+The Autonomy Edge IDE is a modern, browser-based development environment for IEC 61131-3 PLC programming. It runs directly within the Autonomy Edge platform — no desktop software to install.
 
-## Desktop Editor
+## What You Can Do
 
-The desktop version of OpenPLC Editor is a standalone application that you download and install on your computer. It runs locally on Windows, macOS, or Linux and provides direct access to all features without requiring an internet connection.
+The IDE gives you everything you need to develop PLC control logic:
 
-### When to Use the Desktop Editor
+- **Write PLC programs** in IEC 61131-3 languages: Ladder Diagram (LD), Structured Text (ST), Function Block Diagram (FBD), and Instruction List (IL).
+- **Use Python and C/C++** for custom function blocks when you need capabilities beyond the standard languages.
+- **Manage variables** with a visual table editor supporting all IEC variable classes (input, output, local, global, etc.) and standard data types.
+- **Define custom data types** including arrays, enumerations, and structures.
+- **Configure tasks and instances** that control when and how your programs execute on the device.
+- **Compile and deploy** your project to devices through the Autonomy Edge platform.
+- **Monitor runtime output** through the Console Panel, which shows compilation progress, runtime logs, and PLC execution output.
+- **Configure communication protocols** including Modbus TCP/RTU (master and slave), S7Comm server, and OPC-UA server.
 
-The desktop editor is ideal when you need to:
+## Web IDE vs. Desktop Editor
 
-- **Program microcontrollers**: The desktop editor supports programming Arduino boards, ESP32, and other microcontrollers directly. This feature is not available in the web version.
-- **Work offline**: Since the editor runs locally, you can develop PLC programs without an internet connection.
-- **Connect to local runtimes**: The desktop editor can connect directly to OpenPLC Runtime instances on your local network without requiring any cloud infrastructure.
-- **Use Runtime v3**: If you have existing OpenPLC Runtime v3 installations, the desktop editor maintains compatibility with them.
+The OpenPLC project also offers a desktop editor that runs as a standalone application on Windows, macOS, and Linux. Both share the same IEC 61131-3 project format, so projects created in one can generally be opened in the other.
 
-### Desktop Editor Features
+Key differences:
 
-The desktop editor includes all the core programming features plus:
+- **Installation** — The web IDE runs in your browser with no install. The desktop editor requires a local installation.
+- **Platform integration** — The web IDE is built into Autonomy Edge with direct device management and deployment. The desktop editor is a standalone application.
+- **Deployment** — The web IDE deploys directly to your connected devices. The desktop editor requires manual transfer.
+- **Communication config** — The web IDE has visual editors for Modbus, S7Comm, and OPC-UA. The desktop editor has limited support.
 
-- Direct LAN connection to OpenPLC Runtime instances
-- Arduino and microcontroller programming and upload
-- Support for both Runtime v3 and v4
-- Local file storage and project management
-- No account or subscription required
+If you're using the Autonomy Edge platform, the web IDE is the recommended development environment.
 
-## Web Editor (Autonomy Edge)
+---
 
-The web version of OpenPLC Editor is integrated into the Autonomy Edge platform and runs entirely in your browser. It provides the same programming capabilities as the desktop editor with additional cloud-based features for team collaboration and remote device management.
+## What's Next?
 
-### When to Use the Web Editor
-
-The web editor is ideal when you need to:
-
-- **Access from anywhere**: Program PLCs from any device with a web browser, without installing software.
-- **Collaborate with teams**: Share projects with colleagues and work together in real-time.
-- **Manage remote devices**: Deploy programs to vPLC instances running on orchestrator agents anywhere in the world.
-- **Automatic backups**: All projects are automatically saved and versioned in the cloud.
-- **Centralized management**: Manage multiple PLCs and edge devices from a single dashboard.
-
-### Web Editor Features
-
-The web editor includes all the core programming features plus:
-
-- Browser-based access from any device
-- Cloud project storage with automatic versioning
-- Team collaboration and project sharing
-- Integration with orchestrator agents for remote deployment
-- vPLC (virtual PLC) management and monitoring
-- No software installation required
-
-## Feature Comparison
-
-| Feature | Desktop Editor | Web Editor |
-|---------|---------------|------------|
-| **Installation** | Download and install | No installation |
-| **Internet Required** | No | Yes |
-| **Runtime Connection** | Direct LAN | Via orchestrator |
-| **Arduino/Microcontrollers** | Yes | No |
-| **Runtime v3 Support** | Yes | No |
-| **Runtime v4 Support** | Yes | Yes |
-| **Project Storage** | Local files | Cloud |
-| **Collaboration** | Manual sharing | Built-in |
-| **vPLC Management** | No | Yes |
-| **Account Required** | No | Yes |
-
-## Shared Features
-
-Both versions of OpenPLC Editor share the same core functionality:
-
-### Programming Languages
-- Structured Text (ST)
-- Ladder Diagram (LD)
-- Function Block Diagram (FBD)
-- Instruction List (IL)
-- Sequential Function Chart (SFC)
-- Python (custom function blocks)
-- C++ (custom function blocks)
-
-### Development Tools
-- Intelligent code editor with syntax highlighting
-- Graphical editors for LD, FBD, and SFC
-- Project explorer with hierarchical view
-- Variable editor and management
-- Real-time console for debugging
-- Standard function block library
-
-### Project Organization
-- Program Organization Units (POUs)
-- Custom data types (arrays, structures, enumerations)
-- Task configuration
-- Hardware configuration
-- Communication protocol setup (Modbus, etc.)
-
-## Choosing the Right Version
-
-**Choose the Desktop Editor if:**
-- You need to program Arduino or other microcontrollers
-- You work primarily with local PLCs on your network
-- You need offline access
-- You have existing Runtime v3 installations
-
-**Choose the Web Editor if:**
-- You need to access projects from multiple devices
-- You work with a team and need collaboration features
-- You manage remote PLCs through orchestrator agents
-- You want automatic cloud backups and versioning
-
-## Using Both Versions
-
-Many users find value in using both versions depending on their current task. Projects created in either version use the same project file format, making it possible to work on the same project in both environments (though manual file transfer is required between them).
-
-For example, you might use the desktop editor for developing and testing programs locally with Arduino boards, then use the web editor to deploy and manage production systems remotely through the Autonomy Edge platform.
+Learn the [Workspace Layout](workspace-overview/workspace-layout) to understand the IDE's interface and start working with your first project.

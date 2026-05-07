@@ -1,371 +1,126 @@
-# Managing Projects - Pinning, Recents, and Trash
+# Managing Projects
 
-Autonomy Edge provides several features to help you organize and manage your project portfolio efficiently. Beyond folders, the platform offers quick access shortcuts through Recents, Pinned projects, and a Trash system for archiving projects you no longer need.
+Beyond creating and editing, Autonomy Edge gives you tools to manage your projects day to day — pinning favorites, downloading backups, forking copies, and handling deletion through a soft-delete trash system.
 
-## Project Categories
+---
 
-The Projects page sidebar organizes your projects into several categories for easy access:
+## Pinning Projects
 
-![Projects Page with Categories](images/projects-page.png)
+Pinning marks important projects so they're always easy to find.
 
-### Available Categories
+### How to Pin
 
-- **Recents**: Your most recently accessed projects
-- **All Projects**: Complete list of all active projects
-- **Pinned**: Projects you've marked as favorites for quick access
-- **Trash**: Archived projects that can be restored or permanently deleted
+**From the project card (Card view):** Click the **pin icon** in the action bar at the bottom of the card. When pinned, the icon fills with color and a **"Pinned"** badge appears.
 
-## Recents
-
-The Recents section provides quick access to projects you've recently worked on.
-
-### How Recents Work
-
-- **Automatic tracking**: Projects are automatically added to Recents when you open them
-- **Chronological order**: Projects are sorted by last access time, with the most recent at the top
-- **Limited display**: Typically shows the 10 most recently accessed projects
-- **Cross-device sync**: Your recent projects are synced across all your devices
-
-### Accessing Recent Projects
-
-**From the Dashboard:**
-
-![Dashboard with Recents](images/dashboard-overview.png)
-
-1. Navigate to the Dashboard
-2. Look at the left sidebar under "Recents"
-3. Click on any project to open it immediately
-4. Projects show their name, folder location (if applicable), and last access time
-
-**From the Projects Page:**
-
-1. Navigate to the Projects page
-2. Click "Recents" in the sidebar
-3. View a table of your recent projects with details
-4. Click on any project name to open it
-
-### Recents Best Practices
-
-- **Quick access**: Use Recents for projects you're actively working on
-- **Context switching**: Easily switch between multiple active projects
-- **No manual management**: Recents updates automatically based on your activity
-- **Temporary organization**: Don't rely on Recents for long-term organization; use folders and pinning instead
-
-## Pinned Projects
-
-Pinning allows you to mark important projects as favorites for persistent quick access, regardless of when you last opened them.
-
-### Understanding Pinned Projects
-
-![Pinned Projects Section](images/pinned-section.png)
-
-- **Manual control**: You explicitly choose which projects to pin
-- **Persistent access**: Pinned projects remain accessible until you unpin them
-- **Position-based ordering**: Pinned projects maintain a specific order
-- **User-specific**: Each user has their own set of pinned projects
-
-### Pinning a Project
-
-To pin a project for quick access:
-
-1. Navigate to the Projects page
-2. Locate the project you want to pin
-3. Click the three-dot menu (⋯) on the project row
-4. Select "Pin project" from the menu
-5. The project will appear in your Pinned section
-
-**Alternative method:**
-- Hover over a project card on the Dashboard
-- Click the pin icon that appears
-- The project is immediately added to your Pinned section
+**From the options menu (Card or List view):** Open the three-dot menu (⋯) and select **Pin** (or **Unpin** if already pinned).
 
 ### Viewing Pinned Projects
 
-To view all your pinned projects:
+In the Projects page sidebar, click **Pinned** to see only your pinned projects. If you have none, the empty state reads: *"No pinned projects — Pin your favorite projects to see them here."*
 
-1. Navigate to the Projects page
-2. Click "Pinned" in the sidebar
-3. View all projects you've pinned
-4. Projects are displayed in the order they were pinned
+---
 
-If you haven't pinned any projects yet, you'll see a message: "No pinned projects. You haven't pinned any projects yet. Pin your favorite projects for quick access."
+## Recent Projects
 
-### Unpinning Projects
+The **Recent** view (the default on the Projects page) shows your projects sorted by most recently updated. The Dashboard also shows your 5 most recent projects in the Projects card.
 
-To remove a project from your pinned list:
+---
 
-1. Navigate to the Projects page
-2. Go to the Pinned section
-3. Locate the project you want to unpin
-4. Click the three-dot menu (⋯) on the project row
-5. Select "Unpin project" from the menu
-6. The project will be removed from your Pinned section
+## Downloading a Project
 
-The project remains in your project list; it's just no longer pinned for quick access.
+You can download any project you own as a `.zip` archive — useful for backups, sharing, or importing into another account.
 
-### Reordering Pinned Projects
+**Card view:** Click the **download icon** (↓) in the card's action bar.
 
-Pinned projects are stored with position-based ordering:
+**List view:** Open the three-dot menu (⋯) and select **Download**.
 
-- Projects are ordered by when they were pinned (newest pins appear last)
-- The platform maintains the pin order automatically
-- Future updates may allow manual reordering of pinned projects
+The ZIP contains all your project files: `project.json` (metadata), POU source files, and any additional configuration files. The file is named after your project (e.g., `motor-control.zip`).
 
-### When to Use Pinning
+> **Tip:** For more details on the ZIP format and how to re-import, see [Importing and Exporting](importing-exporting).
 
-**Ideal use cases:**
-- **Critical projects**: Projects you access frequently and need immediate access to
-- **Active development**: Projects you're currently working on
-- **Reference projects**: Template or reference projects you consult regularly
-- **Client priorities**: High-priority client projects that need quick access
-- **Long-term projects**: Projects you work on consistently over extended periods
+---
 
-**Not ideal for:**
-- Projects you only access occasionally
-- Temporary test projects
-- Completed projects you rarely need to access
-- Projects you're actively working on today (use Recents instead)
+## Forking (Cloning) a Project
 
-## Trash
+Forking creates an independent copy of a project. You can fork your own projects (to create variations) or other users' public projects.
 
-The Trash system allows you to archive projects without permanently deleting them, providing a safety net for project management.
+### How to Fork
 
-### Understanding Trash
+1. Open the project's options menu (three-dot menu ⋯).
+2. Select **Fork**.
+3. In the **Fork Project** modal, click the destination folder.
 
-![Trash Section](images/trash-section.png)
+The fork is created immediately with the name `<Original Name> (Fork)`. It's always **Private**, and all files are copied from the original.
 
-- **Soft delete**: Projects in Trash are archived, not permanently deleted
-- **Recoverable**: Archived projects can be restored at any time
-- **Hidden from main views**: Trash projects don't appear in Recents, Pinned, or All Projects
-- **Permanent deletion**: You can permanently delete projects from Trash when ready
+For more details on forking, see [Project Visibility](project-visibility).
 
-### Moving Projects to Trash
+---
 
-To archive a project:
+## Trash System
 
-1. Navigate to the Projects page
-2. Locate the project you want to archive
-3. Click the three-dot menu (⋯) on the project row
-4. Select "Move to trash" from the menu
-5. Confirm the action if prompted
-6. The project will be moved to the Trash section
+Autonomy Edge uses a two-stage deletion system: projects are first moved to the trash (soft delete), then can be restored or permanently deleted.
 
-**What happens when you move a project to Trash:**
-- The project is marked as archived in the database (`is_archived = true`)
-- It disappears from all active project views
-- It's removed from Recents and Pinned sections
-- It remains accessible in the Trash section
-- All project data is preserved
+### Moving to Trash
 
-### Viewing Trash
+1. Open the project's options menu (⋯).
+2. Select **Move to trash**.
+3. The project moves to the trash immediately.
 
-To view archived projects:
+The project disappears from your regular views but is preserved in the trash.
 
-1. Navigate to the Projects page
-2. Click "Trash" in the sidebar
-3. View all projects you've archived
-4. Projects show their name, type, and last modified date
+### Viewing Trashed Projects
 
-The Trash section displays:
-- Project name
-- Project type (Project or Folder)
-- Last modified date
-- Action menu for each item
+**From the Projects page sidebar:** Click **Trash** to see trashed projects.
 
-### Restoring Projects from Trash
+**From the Trash page:** Navigate to the dedicated Trash page for a comprehensive management interface with:
+- Filter tabs (all items, projects only, folders only)
+- **Empty trash** button to permanently delete everything at once
+- A table with name, type, deletion date, and action buttons
 
-To restore an archived project:
+### Restoring a Project
 
-1. Navigate to the Projects page
-2. Click "Trash" in the sidebar
-3. Locate the project you want to restore
-4. Click the three-dot menu (⋯) on the project row
-5. Select "Restore" from the menu
-6. The project will be restored to its original location
-
-**After restoration:**
-- The project returns to its original folder
-- It becomes visible in All Projects and other views
-- Recent access history is preserved
-- The project can be pinned again if desired
-
-### Permanently Deleting Projects
-
-To permanently delete a project from Trash:
-
-1. Navigate to the Projects page
-2. Click "Trash" in the sidebar
-3. Locate the project you want to delete permanently
-4. Click the three-dot menu (⋯) on the project row
-5. Select "Delete permanently" from the menu
-6. Confirm the deletion (this action cannot be undone)
-
-**Warning:** Permanent deletion removes all project data including:
-- All PLC code and configurations
-- Project settings and metadata
-- Version history (if available)
-- Associated files and resources
-
-### Emptying Trash
-
-To delete all projects in Trash at once:
-
-1. Navigate to the Projects page
-2. Click "Trash" in the sidebar
-3. Click the "Empty Trash" button at the top of the page
-4. Confirm the action (this cannot be undone)
-5. All projects in Trash will be permanently deleted
-
-**Use with caution:** This action permanently deletes all archived projects and cannot be reversed.
-
-### Trash Best Practices
-
-**When to use Trash:**
-- **Completed projects**: Projects that are finished but you want to keep for reference
-- **Obsolete projects**: Projects replaced by newer versions
-- **Test projects**: Experimental projects you might want to reference later
-- **Client projects**: Completed client work you want to archive but not delete
-- **Uncertain deletion**: Projects you're not sure about deleting permanently
-
-**When to permanently delete:**
-- **Duplicate projects**: Accidental duplicates that aren't needed
-- **Failed experiments**: Test projects with no value
-- **Outdated work**: Projects that are no longer relevant
-- **Storage cleanup**: When you need to free up storage space
-- **After review period**: After keeping archived projects for a reasonable time
+From the Trash view, open the options menu on the trashed project and select **Restore**. The project returns to its original location.
 
-## Combining Organization Features
-
-Use all organization features together for optimal project management:
+### Permanently Deleting a Project
 
-### Recommended Workflow
+From the Trash view, select **Delete permanently** from the options menu. A confirmation modal warns this can't be undone.
 
-1. **Create with folders**: Organize new projects into folders from the start
-2. **Pin critical projects**: Pin 3-5 most important projects for quick access
-3. **Use Recents for active work**: Let Recents automatically track your current projects
-4. **Archive completed work**: Move finished projects to Trash
-5. **Review periodically**: Regularly review and clean up your project organization
+> **Warning:** Permanent deletion removes the project and all its files forever. Make sure you no longer need the project before confirming.
 
-### Example Organization Strategy
+### Emptying the Entire Trash
 
-```
-Active Projects:
-├── Pinned (3-5 critical projects)
-├── Recents (10 most recent projects)
-└── Folders (organized by client/application)
-    ├── Client A - Production
-    ├── Client B - Development
-    └── Internal - Templates
+Click the red **Empty trash** button to permanently delete all trashed items at once. A confirmation modal shows what will be deleted.
 
-Archived:
-└── Trash (completed/obsolete projects)
-    ├── Completed - Client A
-    ├── Old Tests
-    └── Superseded Versions
-```
+---
 
-## Keyboard Shortcuts and Quick Actions
+## Folder Trash Behavior
 
-While the platform primarily uses mouse/touch interaction, some quick actions are available:
+Folders follow the same trash pattern as projects:
 
-- **Click project name**: Open project in editor
-- **Three-dot menu**: Access all project actions
-- **Search bar**: Quickly find projects across all categories
-- **Sidebar navigation**: Switch between categories with single clicks
+- **Move to trash** — From the sidebar, use the three-dot menu on a folder and select **Delete**.
+- **Restore** — Bring it back with all its contents.
+- **Delete permanently** — Removes the folder and everything inside it forever.
 
-## Troubleshooting
+---
 
-### Common Issues
+## Quick Reference: Project Actions
 
-**Q: A project disappeared from my Recents**
-- Recents only shows the 10 most recently accessed projects
-- Open the project again to add it back to Recents
-- Consider pinning the project if you need persistent access
-- Check the All Projects view to find any project
+| Action | Where | Effect |
+|---|---|---|
+| **Pin / Unpin** | Card action bar, options menu | Adds to / removes from Pinned view |
+| **Download** | Card action bar (↓), options menu | Downloads project as `.zip` |
+| **Rename** | Options menu → Rename | Changes project name |
+| **Move to...** | Options menu → Move to... | Moves project to another folder |
+| **Fork** | Options menu → Fork | Creates an independent copy |
+| **Move to trash** | Options menu → Move to trash | Soft-deletes the project |
+| **Restore** | Trash view → Restore | Brings project back from trash |
+| **Delete permanently** | Trash view → Delete permanently | Irreversibly removes the project |
+| **Empty trash** | Trash view → Empty trash button | Permanently deletes all trashed items |
 
-**Q: I can't pin more projects**
-- There may be a limit on the number of pinned projects
-- Unpin less critical projects to make room
-- Use folders for additional organization
-- Check platform documentation for current limits
+---
 
-**Q: I accidentally moved a project to Trash**
-- Navigate to the Trash section
-- Find the project and click "Restore"
-- The project will return to its original location
-- No data is lost when moving to Trash
+## What's Next?
 
-**Q: I permanently deleted a project by mistake**
-- Permanent deletion cannot be undone
-- Contact support immediately if the project is critical
-- Check if you have local backups or exports
-- Implement regular backup procedures to prevent data loss
+Learn how to import and export projects:
 
-**Q: My pinned projects are in the wrong order**
-- Pinned projects are ordered by when they were pinned
-- Manual reordering may not be available in the current version
-- Unpin and re-pin projects to change their order
-- Monitor platform updates for reordering features
-
-## Best Practices Summary
-
-### Daily Workflow
-
-- **Use Recents** for projects you're actively working on today
-- **Check Pinned** for your most important ongoing projects
-- **Search when needed** to find specific projects quickly
-- **Archive completed work** to keep your active project list clean
-
-### Weekly Maintenance
-
-- **Review Pinned projects**: Ensure pinned projects are still relevant
-- **Clean up Recents**: Archive or organize projects you're done with
-- **Check Trash**: Restore any accidentally archived projects
-- **Organize new projects**: Ensure new projects are in appropriate folders
-
-### Monthly Cleanup
-
-- **Review Trash**: Permanently delete projects you no longer need
-- **Audit folders**: Reorganize projects if your folder structure has changed
-- **Update pins**: Adjust pinned projects based on current priorities
-- **Archive old work**: Move completed projects to Trash
-
-### Long-term Strategy
-
-- **Maintain folder structure**: Keep your folder organization up to date
-- **Document organization**: Keep notes on your organizational system
-- **Regular backups**: Export important projects periodically
-- **Review and adapt**: Adjust your organization strategy as your needs evolve
-
-## Advanced Tips
-
-### Power User Techniques
-
-1. **Strategic pinning**: Pin template projects for quick duplication
-2. **Folder + Pin combo**: Use folders for organization, pins for quick access
-3. **Trash as archive**: Use Trash as a long-term archive before permanent deletion
-4. **Search mastery**: Learn to use search effectively to find any project instantly
-5. **Consistent naming**: Use consistent project naming to improve searchability
-
-### Team Collaboration
-
-When working with teams:
-
-- **Shared naming conventions**: Agree on project naming standards
-- **Folder structure**: Maintain consistent folder organization
-- **Pin critical projects**: Ensure team members pin shared priority projects
-- **Communication**: Notify team before moving shared projects to Trash
-- **Documentation**: Document your organization system for new team members
-
-## Future Features
-
-The platform is continuously evolving. Planned enhancements include:
-
-- **Custom categories**: Create your own project categories beyond the default ones
-- **Smart collections**: Automatically group projects based on criteria
-- **Bulk operations**: Move, pin, or archive multiple projects at once
-- **Advanced search**: Filter projects by multiple criteria simultaneously
-- **Project tags**: Add custom tags for additional organization
-- **Reorder pins**: Manually reorder your pinned projects
-
-Stay updated with platform announcements for new features and improvements.
+➡️ [Importing and Exporting](importing-exporting)

@@ -1,0 +1,8 @@
+{
+  "comment": "Normally Open contact — start button",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "start_button" },
+    { "type": "coil", "variant": "default", "variable": "motor_run" }
+  ]
+}

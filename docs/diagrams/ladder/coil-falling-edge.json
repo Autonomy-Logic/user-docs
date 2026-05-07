@@ -1,0 +1,8 @@
+{
+  "comment": "Falling edge coil — detect process end",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "cycle_active" },
+    { "type": "coil", "variant": "fallingEdge", "variable": "cycle_ended" }
+  ]
+}

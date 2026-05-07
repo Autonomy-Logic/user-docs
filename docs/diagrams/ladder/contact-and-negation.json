@@ -1,0 +1,9 @@
+{
+  "comment": "AND with negation",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "sensor_a" },
+    { "type": "contact", "variant": "negated", "variable": "sensor_b" },
+    { "type": "coil", "variant": "default", "variable": "output" }
+  ]
+}

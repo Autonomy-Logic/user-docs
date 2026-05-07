@@ -1,187 +1,110 @@
-# Project Visibility and Sharing
+# Project Visibility
 
-Autonomy Edge provides flexible visibility controls to manage who can access your projects. Understanding these settings is crucial for protecting proprietary work while enabling collaboration and community engagement.
+Every project on Autonomy Edge has a visibility setting that controls who can see and interact with it. This guide explains the two visibility levels, how they affect discoverability, and how forking works.
+
+---
 
 ## Visibility Levels
 
-The platform offers two visibility levels for projects:
+You choose visibility in Step 3 of the project creation wizard.
 
-### Public Projects
+### Public
 
-Public projects are accessible to anyone on the platform and appear in community features.
+A public project is visible to **everyone on the platform**:
 
-**Characteristics:**
-- Visible to all users in search results and activity feeds
-- Can be viewed and opened by anyone with an Autonomy Edge account
-- Ideal for open-source projects, educational content, and community contributions
-- Promote collaboration and knowledge sharing within the community
-- Cannot be converted to private if they have been forked or shared extensively
+- It appears in the **activity feed** on the dashboard.
+- Other users can **view** your code, **fork** the project, and **download** it.
+- The project's **star count** is visible, showing community interest.
+- Shown with a **globe icon** (🌐).
 
-**Use Cases:**
-- Educational demonstrations and tutorials
-- Open-source automation libraries
-- Community-contributed function blocks
-- Reference implementations and examples
-- Projects intended for public deployment
+Public visibility is ideal for open-source PLC programs, learning examples, tutorials, and showcasing your work.
 
-### Private Projects
+### Private
 
-Private projects are restricted to the project owner and explicitly invited collaborators.
+A private project is visible **only to you**:
 
-**Characteristics:**
-- Only visible to the project owner and invited users
-- Do not appear in public search results or activity feeds
-- Protected by Row Level Security (RLS) at the database level
-- Can be converted to public at any time
-- Suitable for proprietary and confidential work
+- It does **not** appear in the activity feed.
+- Other users **cannot** find, view, fork, or download it.
+- Shown with a **lock icon** (🔒).
 
-**Use Cases:**
-- Proprietary industrial automation systems
-- Work-in-progress projects
-- Client-specific implementations
-- Confidential or sensitive applications
-- Projects under development before public release
+Private visibility is appropriate for work-in-progress projects, proprietary automation logic, and personal experiments.
 
-## Setting Project Visibility
+---
 
-### During Project Creation
+## Identifying Visibility
 
-You can set the initial visibility when creating a new project in Step 3 of the creation wizard:
+You can tell a project's visibility at a glance:
 
-![Project Visibility Settings](images/create-project-step3.png)
+- **Card view** — Globe icon (public) or lock icon (private) in the action bar.
+- **List view** — The **Access** column shows a globe or lock icon with a label.
 
-1. In the "Visibility & Cover" step, select your preferred visibility option
-2. Choose "Public" for community-accessible projects
-3. Choose "Private" for restricted access projects
-4. Complete the project creation process
+---
 
-The default setting is **Public**, so be sure to change it to Private if needed.
+## The Activity Feed
 
-### Changing Visibility After Creation
+The dashboard's central area shows an **activity feed** — a scrollable list of public projects from across the Autonomy Edge community. This is the main way users discover each other's work.
 
-You can modify a project's visibility at any time through the project settings:
+Each card in the feed shows the creator's avatar and name, the project description, star count, and a timestamp. Click a card to open the project in the IDE for viewing.
 
-1. Open your project
-2. Navigate to project settings (gear icon or settings menu)
-3. Locate the "Visibility" section
-4. Select the new visibility level
-5. Confirm the change
+The feed has a search bar and sorting options (currently **Recents**, with **Recommended** and **Popular** coming soon).
 
-**Important:** Converting a public project to private will immediately remove it from public search results and activity feeds, but users who previously accessed it may have local copies.
+---
 
-## Access Control and Security
+## Stars
 
-### Row Level Security (RLS)
+Every project has a **star count** reflecting community interest. Stars appear on project cards, in the table view, and in the activity feed.
 
-Autonomy Edge implements Row Level Security at the database level to enforce access controls:
+---
 
-- **Database-level protection**: Access restrictions are enforced by the database, not just the application layer
-- **User-based filtering**: Queries automatically filter results based on the authenticated user
-- **Secure by default**: Users can only access projects they own or have been explicitly granted access to
-- **Policy-based access**: Access policies are defined and enforced consistently across all platform features
+## Forking a Public Project
 
-### Authentication Requirements
+Forking creates a personal copy of someone else's public project. The fork is independent — changes to your fork don't affect the original, and vice versa.
 
-All project access requires authentication:
+### How to Fork
 
-- Users must be logged in to view any projects (public or private)
-- Anonymous access is not permitted
-- Session management ensures secure access throughout the platform
-- API access requires valid authentication tokens
+1. Find the project you want to fork.
+2. Open the **options menu** (three-dot menu ⋯).
+3. Select **Fork**.
+4. In the **Fork Project** modal, click the destination folder.
 
-## Sharing Private Projects
+The fork is created immediately.
 
-While the current platform version focuses on individual ownership, future updates will include collaboration features:
+### What Happens
 
-### Planned Collaboration Features
+- The forked project is named `<Original Name> (Fork)`. If that name exists, a number is appended (up to 100).
+- The fork is always **Private**, regardless of the original's visibility.
+- All project files are copied to your fork.
+- The original's fork count is incremented.
+- The fork's description is set to *"Cloned from \<Original Name\>"*.
 
-- **Invite collaborators**: Add team members to private projects
-- **Role-based permissions**: Assign different access levels (viewer, editor, admin)
-- **Organization projects**: Share projects within your organization
-- **Team workspaces**: Collaborative spaces for project development
+### Restrictions
 
-### Current Workarounds
+- You can only fork **public** projects (or your own projects).
+- You can't fork into an archived folder.
 
-For now, if you need to share a private project:
+---
 
-1. **Convert to public**: Change visibility to public temporarily
-2. **Export and share**: Export the project XML and share it directly
-3. **Screen sharing**: Use external tools for collaborative development sessions
+## Changing Visibility After Creation
 
-## Best Practices
+Currently, visibility is set during project creation and can't be changed afterward from the UI. This capability will be added in a future update.
 
-### Choosing the Right Visibility
+---
 
-- **Start private**: Begin with private visibility for new projects until they're ready for public release
-- **Review before publishing**: Ensure no confidential information is included before making a project public
-- **Document public projects**: Add clear descriptions and documentation for public projects to help the community
-- **Use consistent naming**: Follow naming conventions that indicate project purpose and visibility
+## Summary
 
-### Security Considerations
+| Aspect | Public | Private |
+|---|---|---|
+| Visible in activity feed | Yes | No |
+| Other users can view code | Yes | No |
+| Other users can fork | Yes | No |
+| Other users can download | Yes | No |
+| Icon | 🌐 Globe | 🔒 Lock |
+| Default when creating | No (Private is default) | Yes |
 
-- **Protect credentials**: Never include passwords, API keys, or credentials in project code
-- **Review dependencies**: Check that imported libraries and function blocks don't contain sensitive information
-- **Audit access**: Regularly review who has access to your private projects
-- **Backup important work**: Maintain local backups of critical private projects
+---
 
-### Community Engagement
+## What's Next?
 
-For public projects:
+Learn about pinning, downloading, trash management, and more:
 
-- **Provide clear descriptions**: Help others understand your project's purpose
-- **Include documentation**: Add comments and documentation within your code
-- **Use meaningful names**: Choose project names that clearly indicate functionality
-- **Respond to feedback**: Engage with community members who use your projects
-- **Version appropriately**: Use clear versioning for public projects that others may depend on
-
-## Privacy and Data Protection
-
-### What Information is Shared
-
-For public projects, the following information is visible:
-
-- Project name and description
-- Owner's username and profile information
-- Project cover image
-- Programming language and configuration
-- Last modified date
-- Project content (PLC code, configurations, etc.)
-
-For private projects, this information is only visible to:
-
-- The project owner
-- Explicitly invited collaborators (when collaboration features are available)
-
-### What Information Remains Private
-
-Regardless of project visibility:
-
-- User email addresses
-- Account credentials
-- Billing information
-- Private messages and notifications
-- Personal profile settings
-
-## Troubleshooting
-
-### Common Issues
-
-**Q: I can't find my project in search results**
-- Check if the project is set to Private visibility
-- Private projects don't appear in public search results
-- Use the "All Projects" view in your Projects page to see all your projects
-
-**Q: Someone else can see my private project**
-- Verify the project visibility setting in project settings
-- Check if you accidentally set it to Public
-- Contact support if you believe there's a security issue
-
-**Q: I want to collaborate but can't invite users**
-- Collaboration features are planned for future releases
-- Consider using the export/import workflow as a temporary solution
-- Monitor platform updates for new collaboration features
-
-**Q: Can I make a public project private again?**
-- Yes, you can change visibility at any time through project settings
-- Note that users may have already accessed or copied the public version
-- Consider creating a new private project if security is critical
+➡️ [Managing Projects](managing-projects)

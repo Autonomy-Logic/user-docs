@@ -1,188 +1,88 @@
-# 1.2 Account Setup and Authentication
+# Account Setup
 
-This section will guide you through creating your Autonomy Edge account and managing your authentication credentials. The platform uses a secure email-based authentication system with support for password recovery and social login options.
+Learn how to create your Autonomy Edge account, verify your email, sign in, and recover your password.
 
-## Creating a New Account
+---
 
-To get started with Autonomy Edge, you'll need to create an account. Follow these steps:
+## Creating an Account
 
-### Step 1: Navigate to the Signup Page
+You can create an account in two ways: with email and password, or with a social login provider.
 
-1. Open your web browser and go to [https://autonomy-edge.com](https://autonomy-edge.com)
-2. You'll be directed to the login page
-3. Click the **Sign up** link at the bottom of the login form
+### Option A — Email and Password
 
-![Signup Page](images/signup-page.png)
+1. Go to [edge.autonomylogic.com](https://edge.autonomylogic.com).
+2. Click the **Sign up** link on the sign-in page.
+3. Fill in the form:
+   - **Full Name** — The name other users will see.
+   - **Username** — A unique identifier (letters, numbers, and underscores only).
+   - **Email** — A valid email address for verification.
+   - **Password** — At least 8 characters, with one uppercase letter, one lowercase letter, and one number.
+   - **Confirm Password** — Type your password again.
+4. Accept the **Terms of Use**.
+5. Click **Sign up**.
 
-### Step 2: Fill in Your Information
+You'll be redirected to the email verification screen.
 
-The signup form requires the following information:
+### Option B — Social Login
 
-1. **Full Name**: Enter your complete name (e.g., "John Smith")
-   - This will be displayed on your profile and visible to other users
+Instead of filling out the form, click one of the provider buttons at the top of the signup page:
 
-2. **Username**: Choose a unique username (e.g., "john-smith")
-   - Usernames must be unique across the platform
-   - Use lowercase letters, numbers, and hyphens
-   - The system will validate availability as you type
+- **Google**
+- **Microsoft**
+- **Apple**
 
-3. **Email Address**: Provide a valid email address
-   - This will be used for account verification and password recovery
-   - The system will check if the email is already registered
-   - A verification email will be sent to this address
+You'll be redirected to the provider's login page. After you authorize, your account is created automatically and you're taken into the platform.
 
-4. **Password**: Create a secure password
-   - Must be at least 8 characters long
-   - Use a combination of letters, numbers, and special characters for better security
-   - Click the eye icon to toggle password visibility
+> **Tip:** Social login skips email verification — the provider has already verified your email.
 
-5. **Confirm Password**: Re-enter your password to confirm
-   - Must match the password entered above
+---
 
-### Step 3: Submit the Form
+## Email Verification
 
-1. Review the Terms of Use and Privacy Policy notice at the bottom
-2. Click the **Sign up** button to create your account
-3. The button will be disabled until all required fields are filled correctly
+If you signed up with email and password, you need to verify your email before you can use the platform.
 
-### Step 4: Email Verification
+1. Check your inbox for a message from Autonomy Edge with a **6-digit code**.
+2. Enter the code on the verification page.
+3. Click **Verify**.
 
-After successful registration:
+That's it — you're in.
 
-1. A verification modal will appear confirming your account creation
-2. Check your email inbox for a verification message from Autonomy Edge
-3. Click the verification link in the email to activate your account
-4. If you don't receive the email within a few minutes:
-   - Check your spam/junk folder
-   - Click the "Resend verification email" option in the modal
+**Didn't receive the code?**
+- Check your spam or junk folder.
+- Click **Resend code** on the verification page to get a new one.
 
-Once your email is verified, you can proceed to log in to the platform.
+---
 
-## Logging In
+## Signing In
 
-After creating and verifying your account, you can log in to access the platform.
+1. Go to [edge.autonomylogic.com](https://edge.autonomylogic.com).
+2. Enter your **email** and **password** (or click a social login button).
+3. Optionally check **Remember Me** to save your email for next time.
+4. Click **Sign in**.
 
-### Step 1: Access the Login Page
+> **Tip:** Only use "Remember Me" on personal devices you trust.
 
-Navigate to [https://autonomy-edge.com/login](https://autonomy-edge.com/login) or click **Sign in** from the signup page.
+If this is your first login, you'll see a short onboarding walkthrough introducing the platform's main features. You can follow along or skip it — the [Quick Start Guide](./quick-start) covers everything you need.
 
-![Login Page](images/login-page.png)
+---
 
-### Step 2: Enter Your Credentials
+## Forgot Your Password?
 
-1. **Email Address**: Enter the email address you used during registration
-2. **Password**: Enter your account password
-   - Click the eye icon to show/hide your password as you type
+If you can't remember your password, you can reset it in a few steps:
 
-### Step 3: Optional Settings
+1. On the sign-in page, click **Forgot password?**
+2. Enter your email address and submit.
+3. Check your inbox for a **6-digit reset code**.
+4. Enter the code on the verification page.
+5. Choose a new password and confirm it.
+6. Sign in with your new password.
 
-- **Remember Me**: Check this box to stay logged in on this device
-  - Your session will persist even after closing the browser
-  - Only use this option on personal, secure devices
+> **Tip:** If the code doesn't arrive, check spam or click **Resend code** to request a new one.
 
-### Step 4: Sign In
+---
 
-1. Click the **Sign in** button to access your account
-2. If your credentials are correct, you'll be redirected to the Dashboard
-3. If there's an error, you'll see a message indicating the issue:
-   - "Incorrect email or password" - Check your credentials and try again
-   - "Please verify your email" - Check your inbox for the verification email
+## What's Next?
 
-## Alternative Login Methods
+Your account is ready. Let's take a look at what you'll see when you log in.
 
-Autonomy Edge supports social login options for convenience:
-
-- **Google**: Sign in using your Google account
-- **Microsoft**: Sign in using your Microsoft account
-- **Apple**: Sign in using your Apple ID
-
-To use social login, simply click the corresponding icon on the login page. You'll be redirected to the provider's authentication page and then back to Autonomy Edge.
-
-## Password Recovery
-
-If you forget your password, you can reset it using the password recovery feature.
-
-### Step 1: Access Password Reset
-
-1. From the login page, click **Forgot password?**
-2. You'll be directed to the password reset page
-
-![Forgot Password Page](images/forgot-password-page.png)
-
-### Step 2: Request Password Reset
-
-1. Enter the email address associated with your account
-2. Click the **Reset Password** button
-3. Check your email inbox for a password reset link
-
-### Step 3: Create a New Password
-
-1. Click the link in the password reset email
-2. You'll be directed to a page where you can create a new password
-3. Enter your new password (must be at least 8 characters)
-4. Confirm your new password
-5. Click **Update Password** to save your changes
-
-### Step 4: Log In with New Password
-
-After successfully resetting your password, return to the login page and sign in with your new credentials.
-
-## Security Best Practices
-
-To keep your Autonomy Edge account secure:
-
-1. **Use a Strong Password**: 
-   - Combine uppercase and lowercase letters, numbers, and special characters
-   - Avoid using common words or personal information
-   - Use a unique password that you don't use for other services
-
-2. **Enable Two-Factor Authentication** (if available):
-   - Add an extra layer of security to your account
-   - Check your account settings for 2FA options
-
-3. **Keep Your Email Secure**:
-   - Your email is the primary recovery method for your account
-   - Use a strong password for your email account
-   - Enable two-factor authentication on your email if available
-
-4. **Be Cautious with "Remember Me"**:
-   - Only use this feature on personal devices
-   - Always log out when using shared or public computers
-
-5. **Regular Password Updates**:
-   - Consider changing your password periodically
-   - Update your password immediately if you suspect unauthorized access
-
-## Troubleshooting Authentication Issues
-
-### I didn't receive the verification email
-
-- Check your spam/junk folder
-- Verify you entered the correct email address
-- Wait a few minutes and check again
-- Use the "Resend verification email" option if available
-- Contact support if the issue persists
-
-### I can't log in with my credentials
-
-- Verify you're using the correct email address
-- Check that Caps Lock is not enabled
-- Try resetting your password using the "Forgot password?" link
-- Clear your browser cache and cookies
-- Try using a different browser
-
-### My password reset link expired
-
-- Password reset links are typically valid for 24 hours
-- Request a new password reset link from the login page
-- Complete the password reset process promptly after receiving the email
-
-### I'm locked out of my account
-
-- If you've made multiple failed login attempts, your account may be temporarily locked for security
-- Wait 15-30 minutes before trying again
-- If the issue persists, contact Autonomy Logic support
-
-## Next Steps
-
-Once you've successfully created your account and logged in, you'll be directed to the Dashboard, which is covered in the next section. The Dashboard is your central hub for managing projects, accessing the IDE, and navigating the platform's features.
+➡️ Continue to the **[Dashboard Overview](./dashboard-overview)** to learn your way around.

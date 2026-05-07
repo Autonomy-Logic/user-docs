@@ -1,0 +1,9 @@
+{
+  "comment": "AND logic — series contacts",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "sensor_A" },
+    { "type": "contact", "variant": "default", "variable": "sensor_B" },
+    { "type": "coil", "variant": "default", "variable": "alarm" }
+  ]
+}

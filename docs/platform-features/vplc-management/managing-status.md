@@ -1,113 +1,149 @@
 # Managing Device Status
 
-Once you have vPLC devices running on your orchestrators, you can monitor their status, view runtime statistics, and manage their lifecycle from the Autonomy Edge platform.
+Once your vPLC devices are running, you can monitor their health, control their lifecycle, and perform management actions from the platform. This page covers device statuses, available operations, and troubleshooting tips.
 
-## Viewing Device Status
+---
 
-### From the Orchestrator Page
+## Viewing Devices
 
-Navigate to your orchestrator and click on the **Devices** tab to see all vPLC devices. Each device card shows:
+### The Devices Table
 
-- **Device Name**: The name you assigned when creating the device
-- **Status**: Current running state (running, stopped, creating, error)
-- **Network Configuration**: IP address assignment method (DHCP or Static)
+From the orchestrator detail page, the **Devices** tab shows a table of all vPLC devices. Each row displays:
 
-![Devices list with vPLC](images/devices-list-with-vplc.png)
+| Column | Description |
+|--------|-------------|
+| **Device Name** | The name you assigned. Sortable. |
+| **Project** | The project deployed to this device, or `N/A`. Sortable. |
+| **Status** | Color-coded label showing the device's current status. |
+| **Uptime** | How long the device has been running (e.g., `24h 30m`). |
+| **CPU Usage** | Current CPU utilization of the device. |
+| **Memory Usage** | Current memory consumption of the device. |
+| **Created At** | When the device was created. Sortable. |
+| **Actions** | Three-dot menu (⋮) for management actions. |
 
-### From the OpenPLC Editor
+You can **sort** by clicking column headers and **search** by name using the search bar above the table.
 
-When connected to a vPLC through the OpenPLC Editor, you can see detailed runtime information in the Device Orchestrators panel:
+Click any device row to open its [device detail page](device-detail).
 
-- **Connection Status**: Shows "Connected" when actively connected to the vPLC
-- **PLC Status**: Current program state (EMPTY, RUNNING, STOPPED)
-- **Scan Cycle Statistics**: Real-time performance metrics
+---
 
-![Program running](images/program-running.png)
+## Understanding Device Status
 
-## Understanding PLC Status
+### Platform Status
 
-The PLC Status indicator shows the current state of the OpenPLC Runtime:
+The platform-level status appears as a color-coded label in the Devices table and on the device detail page:
 
-**EMPTY**: No program is loaded on the vPLC. The runtime is running but waiting for a program to be uploaded.
+| Status | Color | Meaning |
+|--------|-------|---------|
+| **Active** | Green | The device is responsive and working normally. |
+| **Not Found** | Red | The device could not be reached. It may have been removed, or the orchestrator is offline. |
+| **Unknown** | Gray | Status could not be determined — typically when the orchestrator hasn't responded yet. |
 
-**RUNNING**: A program is loaded and actively executing. The scan cycle is running and processing your PLC logic.
+### Device State
 
-**STOPPED**: A program is loaded but not executing. This can happen when you manually stop the program or when an error occurs.
+On the [device detail page](device-detail), the **Status** card shows the device's operational state:
 
-**COMPILING**: The runtime is compiling a newly uploaded program. This state is temporary and will change to RUNNING once compilation completes.
+- **running** — The device is up and actively executing.
+- **exited** — The device has stopped (either intentionally or due to an error).
+- **created** — The device exists but hasn't started yet.
 
-## Scan Cycle Statistics
+### Running Flag
 
-When a program is running, the OpenPLC Editor displays real-time scan cycle statistics:
+The **Running** indicator shows `Yes` or `No` and reflects whether the device's main process is actively executing. A device can have a "running" state while the OpenPLC Runtime inside it may be in different program states (empty, running a program, or idle).
 
-**Scan Count**: The total number of scan cycles completed since the program started. This counter continuously increments as the PLC executes your program.
+---
 
-**Overruns**: The number of times the scan cycle exceeded the configured cycle time. Ideally, this should be 0. Frequent overruns indicate that your program logic is too complex for the configured cycle time, or the host machine is under heavy load.
+## Device Lifecycle Operations
 
-**Scan Time (avg)**: The average time in microseconds to execute your program logic. This measures only the time spent running your PLC code, not the full cycle time.
+Control your vPLC devices through the **Actions** dropdown menu (⋮) on each device row.
 
-**Cycle Time (avg)**: The average total cycle time in microseconds, including program execution and I/O processing. This should be close to your configured cycle time (default is 20ms or 20000us).
+### Restart
 
-**Cycle Latency (avg)**: The average timing accuracy of the cycle. A value close to 0 indicates the cycle is running on schedule. Positive values mean cycles are starting late; negative values mean they're starting early.
+Restarts the vPLC device. The device is stopped and then started again.
 
-## Managing vPLC Lifecycle
+**When to use:**
 
-### Starting and Stopping Programs
+- The device is unresponsive or behaving unexpectedly.
+- You've made configuration changes that require a fresh start.
+- The runtime is in an error state.
 
-You can control program execution from the OpenPLC Editor:
+**What happens:**
 
-- **Start**: Click the Play button to start a stopped program
-- **Stop**: Click the Stop button to halt a running program
+1. A confirmation modal appears: *"Are you sure you want to restart \<device name\>?"*
+2. After confirmation, the device stops and starts again.
+3. The uptime counter resets and the restart count increments by one.
+4. Any loaded PLC program remains loaded — the runtime re-initializes it on startup.
 
-When you stop a program, all outputs are set to their safe state (typically 0 or OFF) and the scan cycle stops executing.
+The device may be briefly unreachable during the restart. Status updates automatically once it's back.
 
-### Uploading New Programs
+### Rename
 
-To update the program running on a vPLC:
+Changes the device's display name.
 
-1. Make your changes in the OpenPLC Editor
-2. Ensure you're connected to the target vPLC
-3. Click the Download button to compile and upload
+1. A modal opens with the current name pre-filled.
+2. Enter the new name (1–100 characters) and click **Save changes**.
+3. The name updates immediately. This doesn't affect any running programs.
 
-The new program will replace the existing one. The runtime automatically stops the old program, compiles the new one, and starts execution.
+### Delete
 
-### Disconnecting from a vPLC
+Permanently removes the vPLC device from both the host machine and the platform.
 
-Click the **Disconnect** button in the Device Orchestrators panel to close the connection to a vPLC. This does not stop the program running on the vPLC; it only closes the editor's connection.
+1. A confirmation modal appears: *"Are you sure you want to delete \<device name\>? This action cannot be undone."*
+2. After confirmation, the device is stopped, removed from the host, and deleted from the platform.
+3. The device disappears from the Devices table.
 
-The vPLC continues running independently after you disconnect. You can reconnect at any time to monitor status or upload new programs.
+> **Warning:** This action is irreversible. Any program loaded on the device is lost. Download your program from the IDE before deleting if you need to keep it.
 
-## Monitoring Best Practices
+---
 
-**Regular Status Checks**: Periodically review your vPLC devices to ensure they're running as expected. Check for any devices showing error states or unexpected status changes.
+## Start and Stop
 
-**Watch for Overruns**: If you see overruns increasing, investigate the cause. Common reasons include:
-- Program logic that's too complex for the cycle time
-- Host machine CPU under heavy load
-- Network communication delays in Modbus or other protocols
+In addition to the table actions, vPLC devices support **start** and **stop** commands:
 
-**Monitor Scan Times**: Compare your average scan time to the cycle time. If scan time approaches or exceeds cycle time, consider:
-- Optimizing your program logic
-- Increasing the cycle time
-- Moving workloads to a more powerful host machine
+- **Start** — Resumes a stopped device.
+- **Stop** — Stops a running device. The device is preserved and can be started again later.
 
-**Check Connection Status**: If you can't connect to a vPLC, verify:
-- The orchestrator is online and active
-- The vPLC container is running
-- Network connectivity between the platform and orchestrator
+When you send a start or stop command, the platform communicates with the orchestrator, which carries out the operation and reports the new status.
 
-## Troubleshooting
+---
 
-**vPLC shows "stopped" unexpectedly**: Check the PLC Logs tab in the Console panel for error messages. Common causes include runtime errors in your program or resource constraints on the host machine.
+## Monitoring Device Health
 
-**Cannot connect to vPLC**: Ensure the orchestrator is online and the vPLC container is running. Try refreshing the Device Orchestrators list.
+### Key Indicators to Watch
 
-**High overrun count**: Your program may be too complex for the configured cycle time. Try increasing the cycle time in the Resource configuration, or optimize your program logic.
+- **Uptime** — A healthy device shows steadily increasing uptime. If it keeps resetting to `0h 0m`, the device may be crashing and restarting repeatedly.
+- **Restart Count** — A non-zero count isn't necessarily a problem (you may have restarted manually), but a rapidly increasing count indicates instability.
+- **Status** — Should be `running` for normal operation. If you see `exited`, check if it was intentional.
+- **Running Flag** — Should be `Yes` during normal operation.
+- **Serial Port Status** — If your vPLC uses serial passthrough, check that ports show `Connected`. A `Disconnected` status means the physical device has been unplugged. An `Error` status requires investigation.
 
-**Scan time varies significantly**: This can indicate inconsistent host machine performance. Check for other processes consuming CPU resources on the orchestrator's host machine.
+### Troubleshooting Common Issues
 
-## Next Steps
+| Problem | What to Check |
+|---------|---------------|
+| Device shows "Not Found" | Check the orchestrator's status on the Orchestrators page. The orchestrator may be offline. |
+| Device status is "exited" | Try restarting the device. Check if the host machine has sufficient resources (memory, disk space). |
+| High restart count with low uptime | The device is likely crashing repeatedly. This can happen if the runtime version is incompatible with the host, a resource limit is hit, or there's a network config conflict. |
+| Can't connect from the IDE | Verify the device status is **Active** and running. Check that the orchestrator is online. If using static IP, verify the IP on the [device detail page](device-detail). |
 
-- Learn more about [Understanding vPLC Devices](understanding-vplc)
-- Create additional vPLCs by following the [Creating vPLC Devices](creating-vplc) guide
-- Explore the [Orchestrator Management](../orchestrator-management/orchestrator-overview) features for monitoring your edge devices
+---
+
+## Quick Reference: Device Actions
+
+| Action | Where | Description |
+|--------|-------|-------------|
+| **Add Device** | Devices tab / empty state | Create a new vPLC on this orchestrator |
+| **Restart** | Three-dot menu (⋮) | Stop and restart the device |
+| **Rename** | Three-dot menu (⋮) | Change the device's display name |
+| **Delete** | Three-dot menu (⋮) | Permanently remove the device |
+| **Start** | Platform controls | Start a stopped device |
+| **Stop** | Platform controls | Stop a running device |
+| **View Details** | Click device row | Navigate to the device detail page |
+
+---
+
+## What's Next?
+
+Now that your infrastructure is set up, start writing PLC programs:
+
+➡️ [IDE Workspace Layout](../../openplc-editor/workspace-overview/workspace-layout) — Learn the browser-based editor and start coding.

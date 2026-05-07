@@ -1,154 +1,76 @@
 # Project Explorer
 
-The Project Explorer is your central navigation hub in the Autonomy Edge IDE. It provides a hierarchical tree view of all components in your PLC project, making it easy to organize, locate, and access different parts of your program.
+The Project Explorer is the sidebar on the left side of the IDE. It organizes your entire PLC project into a tree, giving you a clear view of everything in your project and quick access to open items in the Editor Area.
 
-## Overview
+## Project Name
 
-The Project Explorer panel is located on the left side of the IDE workspace. It displays your project structure in a collapsible tree format, allowing you to quickly navigate between different elements of your program.
+At the top of the Project Explorer, you'll see your project name with a folder icon. Click the name to edit it inline — type a new name and click away (or press Tab) to save.
 
-![Project Explorer](images/project-explorer-clean.png)
-*The Project Explorer showing the complete project hierarchy*
+Next to the project name is a **+** button. Click it to create new project elements: Programs, Functions, Function Blocks, or Data Types. For POUs, you choose a name and programming language. For Data Types, you choose a name and type (array, enumeration, or structure).
 
-## Project Structure
+## Tree Structure
 
-Every project in the IDE follows a standard IEC 61131-3 structure with the following main sections:
+Below the project name, your project is organized into these branches. Click any branch to expand or collapse it.
 
-### 1. Project Root
+### Functions
 
-At the top of the tree is your project name. Clicking on the project name allows you to edit the project's metadata and settings.
+All POUs of type **Function**. Functions take inputs, perform a computation, and return a single value. They don't maintain internal state between calls.
 
-### 2. Functions
+Each function shows an icon indicating its language (ST, LD, FBD, or IL). Click to open it in the Editor Area.
 
-This section contains all Function POUs (Program Organization Units) in your project. Functions are reusable code blocks that:
-- Accept input parameters
-- Return a single value
-- Have no internal state (no memory between calls)
-- Are ideal for mathematical calculations and data transformations
+### Function Blocks
 
-Functions are displayed with a special icon and can be expanded to show their properties. You can create functions in any of the five IEC 61131-3 languages (ST, LD, IL, FBD, SFC).
+All POUs of type **Function Block**. Function blocks are reusable units that can maintain internal state — their local variables persist between calls. You can create multiple instances of the same function block, each with its own data.
 
-### 3. Function Blocks
+Function blocks support all five IEC 61131-3 languages plus Python and C/C++.
 
-Function Blocks are more complex POUs that:
-- Accept input and output parameters
-- Maintain internal state between calls
-- Can have local variables that persist
-- Are ideal for control algorithms and state machines
+### Programs
 
-Function Blocks can be written in the standard IEC 61131-3 languages, as well as Python and C++ for advanced functionality.
+All POUs of type **Program**. Programs are the top-level units that get assigned to tasks for execution. They're the entry point of your PLC logic — you bind them to tasks through instances in the Resource configuration.
 
-### 4. Programs
+### Data Types
 
-Programs are the top-level POUs that:
-- Are executed by tasks
-- Can call functions and function blocks
-- Contain the main logic of your application
-- Are assigned to tasks for cyclic or interrupt-driven execution
+Your user-defined data types, organized into sub-categories:
 
-Each project must have at least one program. Programs are displayed in the tree and can be opened by clicking on them.
+- **Arrays** — Array types with a base type and dimensions.
+- **Enumerations** — Types that define a set of named values.
+- **Structures** — Types that group multiple named fields of different types.
 
-### 5. Data Types
+Click any data type to open its editor.
 
-The Data Types section contains custom data type definitions that you create for your project:
+### Resources
 
-- **Array**: Multi-dimensional arrays of base types or custom types
-- **Enumerated**: Named constants for improved code readability
-- **Structure**: Complex data types with multiple fields (similar to structs in C)
+Opens the Resource editor, which has three sections:
 
-Custom data types help you organize complex data and make your code more maintainable.
+1. **Global Variables** — Variables shared across all POUs in the project.
+2. **Tasks** — Execution tasks with triggering mode (Cyclic or Interrupt), interval, and priority.
+3. **Instances** — Binds programs to tasks, defining which program runs under which task.
 
-### 6. Resource
+This is where you configure how your PLC project executes. See [Tasks & Instances](../iec-concepts/tasks-instances) for details.
 
-The Resource section contains the runtime configuration for your program:
+### Devices
 
-- **Global Variables**: Variables accessible from all POUs in the project
-- **Tasks**: Cyclic or interrupt-driven execution tasks
-- **Instances**: Assignments of programs to tasks
+- **Orchestrators** — Lists all orchestrators registered in your Autonomy Edge account and their devices. From here, you select which device to connect to, and manage runtime login and user creation.
+- **Remote Devices** — Any configured remote device connections (e.g., Modbus TCP/RTU clients).
 
-This is where you configure how your program will execute on the target device.
+### Servers
 
-### 7. Device
+Communication server configurations:
 
-The Device section contains hardware-specific configuration:
+- **Modbus TCP Slave** — Expose PLC memory to external SCADA systems or HMIs over Modbus TCP.
+- **S7Comm Server** — Siemens S7 protocol compatibility for S7-compatible clients.
+- **OPC-UA Server** — Publish PLC variables as an OPC-UA address space for standardized industrial communication.
 
-- **Configuration**: I/O mapping, communication settings, and board selection
-- **Hardware Setup**: Pin assignments and device-specific parameters
+Click any server to open its configuration editor.
 
-This section allows you to map your program variables to physical inputs and outputs.
+## Opening Elements
 
-## Working with the Project Explorer
+Click any item in the tree to open it as a tab in the Editor Area. If it's already open, clicking switches to that tab. The IDE keeps track of all open tabs in the Navigation bar at the top of the Editor Area.
 
-### Opening Files
+> **Tip:** Use the Search button in the Activity Bar to find specific elements in large projects. Matching items in the Project Explorer are highlighted with the search query.
 
-To open any element in the Project Explorer:
-1. Click on the element name (e.g., a program, function, or data type)
-2. The file will open in a new tab in the editor area
-3. Multiple files can be open simultaneously in tabs
+---
 
-### Creating New Elements
+## What's Next?
 
-To create a new POU, data type, or other element:
-1. Click the **+** button at the top of the Project Explorer
-2. Select the type of element you want to create
-3. Choose the programming language (for POUs)
-4. Enter a name for the new element
-5. The new element will be created and opened in the editor
-
-### Context Menus
-
-Right-clicking on elements in the Project Explorer (indicated by the three-dot menu icon) provides additional options:
-- **Rename**: Change the name of the element
-- **Delete**: Remove the element from the project
-- **Duplicate**: Create a copy of the element
-- **Properties**: View and edit element properties
-
-### Expanding and Collapsing
-
-- Click the arrow icon next to a section to expand or collapse it
-- This helps you focus on the parts of the project you're currently working on
-- The IDE remembers which sections you have expanded
-
-## Library Panel
-
-Below the Project Explorer is the Library panel, which provides access to:
-
-### Standard Function Blocks
-Pre-built function blocks for common operations:
-- **Timers**: TON, TOF, TP for time-based control
-- **Counters**: CTU, CTD, CTUD for counting operations
-- **Bistable**: RS, SR for set/reset logic
-- **Edge Detection**: R_TRIG, F_TRIG for detecting signal changes
-
-### Additional Libraries
-Extended function blocks for specific applications:
-- **Arduino Function Blocks**: Arduino-specific I/O and peripherals
-- **Communication Blocks**: MQTT, Modbus, and other protocols
-- **Hardware-Specific Blocks**: Modules for specific PLC hardware
-
-### Using Library Blocks
-
-To use a library block in your code:
-1. Expand the library category in the Library panel
-2. Drag the function block into your code (for graphical languages)
-3. Or type the function block name in your code (for text languages)
-4. The function block will be automatically included in your program
-
-## Navigation Tips
-
-1. **Use Search**: Press Ctrl+F to search for elements across your entire project
-2. **Breadcrumbs**: Use the breadcrumb trail above the editor to navigate back through your path
-3. **Recent Files**: Use the Recent menu to quickly access files you've worked on recently
-4. **Keyboard Navigation**: Use arrow keys to navigate the tree, Enter to open files
-5. **Filter View**: Collapse sections you're not using to reduce clutter
-
-## Project Organization Best Practices
-
-1. **Group Related Functions**: Keep related functions together by using consistent naming
-2. **Use Descriptive Names**: Choose clear, descriptive names for POUs and data types
-3. **Organize by Purpose**: Group function blocks by their purpose (e.g., all motor control blocks together)
-4. **Document Your Structure**: Use comments and documentation fields to explain the purpose of each element
-5. **Keep It Simple**: Don't create too many nested structures; keep the hierarchy flat when possible
-
-## Next Steps
-
-Now that you understand how to navigate the Project Explorer, you can learn about the Console and Debugging features to monitor and troubleshoot your programs during development and runtime.
+Learn how the [Console & Debugging](console-debugging) panel helps you track compilation and diagnose issues.

@@ -1,0 +1,8 @@
+{
+  "comment": "Regular coil — direct output",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "sensor_active" },
+    { "type": "coil", "variant": "default", "variable": "alarm_light" }
+  ]
+}

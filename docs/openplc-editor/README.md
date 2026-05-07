@@ -1,77 +1,56 @@
-# OpenPLC Editor
+# Autonomy Edge IDE
 
-OpenPLC Editor is a powerful IEC 61131-3 programming environment for creating PLC programs. It is available in two forms: as a standalone desktop application for Windows, macOS, and Linux, and as a browser-based editor integrated into the Autonomy Edge platform.
+The Autonomy Edge IDE is your browser-based environment for creating, compiling, and deploying PLC programs on the Autonomy Edge platform. No installation required — just open your browser and start building.
 
-Both versions share the same core functionality, allowing you to create, edit, and deploy PLC programs using the five standard IEC 61131-3 programming languages, as well as custom languages like Python and C++.
+The IDE supports IEC 61131-3 programming languages — Ladder Diagram (LD), Structured Text (ST), Function Block Diagram (FBD), and Instruction List (IL) — plus Python and C/C++ function blocks. You can manage your entire PLC project from one interface: write programs, configure variables, set up tasks, and deploy to your devices.
 
-## What is IEC 61131-3?
+## In This Section
 
-IEC 61131-3 is the international standard for programmable logic controller (PLC) programming languages. It defines five programming languages that are widely used in industrial automation:
+### Workspace Overview
 
-- **Structured Text (ST)**: A high-level, text-based language similar to Pascal
-- **Ladder Diagram (LD)**: A graphical language that resembles electrical relay logic
-- **Function Block Diagram (FBD)**: A graphical language using interconnected function blocks
-- **Instruction List (IL)**: A low-level, assembly-like text language
-- **Sequential Function Chart (SFC)**: A graphical language for sequential control
+Get familiar with the IDE interface and learn where everything is.
 
-## Key Features
+- [**Workspace Layout**](workspace-overview/workspace-layout) — The overall IDE layout: Activity Bar, Project Explorer, Editor Area, and Console Panel.
+- [**Project Explorer**](workspace-overview/project-explorer) — Navigate your project tree: Functions, Function Blocks, Programs, Data Types, Resources, Devices, and Servers.
+- [**Console & Debugging**](workspace-overview/console-debugging) — Read compilation output, runtime logs, and troubleshoot errors.
 
-OpenPLC Editor provides a comprehensive development environment with the following features:
+### IEC 61131-3 Concepts
 
-### Professional Development Tools
-- **Multi-language Support**: Write code in any of the five IEC 61131-3 languages, plus Python and C++ for custom function blocks
-- **Intelligent Code Editor**: Syntax highlighting, code completion, and error detection
-- **Graphical Editors**: Visual programming tools for Ladder Diagram, Function Block Diagram, and Sequential Function Chart
-- **Project Explorer**: Hierarchical view of all project components including POUs, data types, and configuration
+Understand the building blocks of IEC 61131-3 PLC programming.
 
-### Debugging and Testing
-- **Real-time Console**: Monitor runtime logs and system messages
-- **Variable Debugging**: Watch and modify variable values during execution
+- [**Program Organization Units (POUs)**](iec-concepts/pous) — Programs, Functions, and Function Blocks — what each is and when to use them.
+- [**Variables & Data Types**](iec-concepts/variables-datatypes) — Variable classes, base data types, and user-defined types.
+- [**Tasks & Instances**](iec-concepts/tasks-instances) — How tasks control execution timing and how instances bind programs to tasks.
 
-### Project Organization
-- **Program Organization Units (POUs)**: Organize your code into reusable Programs, Function Blocks, and Functions
-- **Custom Data Types**: Define structures, arrays, and enumerations for complex data handling
-- **Task Configuration**: Configure cyclic and interrupt-driven tasks for real-time control
-- **Hardware Configuration**: Map your program to physical I/O and communication interfaces
+### Task Configuration
 
-## Desktop vs Web Editor
+Configure how and when your PLC programs execute.
 
-OpenPLC Editor is available in two versions to suit different workflows:
+- [**Understanding Tasks**](task-configuration/understanding-tasks) — Cyclic vs. interrupt triggering, intervals, and priorities.
+- [**Task Editor**](task-configuration/task-editor) — Create, edit, and manage tasks in the Resource editor.
+- [**Instance Management**](task-configuration/instance-management) — Bind programs to tasks through instances.
 
-| Feature | Desktop Editor | Web Editor (Autonomy Edge) |
-|---------|---------------|---------------------------|
-| Installation | Download and install locally | No installation required |
-| Runtime Connection | Direct connection over LAN | Connection via orchestrator agent |
-| Arduino/Microcontrollers | Full support | Not available |
-| Runtime v3 Support | Yes | No |
-| Cloud Storage | Local files only | Automatic cloud backup |
-| Collaboration | Manual file sharing | Built-in team collaboration |
+### Building & Deploying
 
-For detailed information about each version, see the [Overview](overview.md) page.
+- [**Project Compilation**](building-deploying/project-compilation) — How to compile your project and read the Console output.
+- [**Deployment**](building-deploying/deployment-vplc) — Deploy your compiled program to a device.
+- [**XML Export**](building-deploying/xml-export) — Export your project as a standard XML file for backup or sharing.
 
-## Getting Started
+### Connecting to Runtimes
 
-**Desktop Editor**: Download and install the editor from [autonomylogic.com/download](https://autonomylogic.com/download), then connect directly to OpenPLC Runtime instances on your local network.
+- [**Connecting to Runtimes**](connecting-to-runtimes) — Connect the IDE to your devices, authenticate, and control program execution.
 
-**Web Editor (Autonomy Edge)**: Sign up at [edge.autonomylogic.com](https://edge.autonomylogic.com) and open any project from your dashboard. The IDE will load in your browser, providing you with a complete development environment.
+---
 
-## What You'll Learn
+## Prerequisites
 
-In this section of the documentation, you will learn:
+Before using the IDE, you need:
 
-1. **Overview**: Understanding the differences between desktop and web versions
-2. **Installation**: How to install the desktop editor on your system
-3. **Connecting to Runtimes**: How to connect to OpenPLC Runtime instances
-4. **Workspace Overview**: Understanding the layout, project explorer, and console
-5. **IEC 61131-3 Concepts**: Core concepts like POUs, variables, data types, tasks, and instances
-6. **Programming Languages**: Detailed guides for each supported programming language
-7. **Custom Languages**: Using Python and C++ for advanced function blocks
-8. **Working with Variables**: Managing local and global variables
-9. **Custom Data Types**: Creating and using arrays, structures, and enumerations
-10. **Standard Function Blocks**: Using the built-in library of standard functions
-11. **Task Configuration**: Setting up cyclic and interrupt-driven execution
-12. **Hardware Configuration**: Configuring target devices, pin mapping, and I/O settings (includes microcontroller programming for desktop editor)
-13. **Communication Protocols**: Setting up Modbus and other industrial protocols
-14. **Building and Deploying**: Compiling and deploying your programs to devices
+1. An Autonomy Edge account at `https://edge.autonomylogic.com`.
+2. At least one orchestrator registered with an active device. See [Managing Device Status](../platform-features/vplc-management/managing-status) for setup instructions.
 
-Whether you're new to PLC programming or an experienced automation engineer, this documentation will help you make the most of OpenPLC Editor.
+---
+
+## What's Next?
+
+Start with the [Workspace Layout](workspace-overview/workspace-layout) to get oriented in the IDE.

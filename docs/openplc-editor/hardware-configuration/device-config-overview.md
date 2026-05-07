@@ -1,126 +1,153 @@
 # Device Configuration Overview
 
-The Device Configuration section is where you configure how your PLC program connects to and controls hardware. The available options differ significantly between the desktop editor and the web editor (Autonomy Edge).
-
-![Device Configuration Screen](images/device-config-overview.png)
+The Device Configuration section defines how your PLC program connects to and controls hardware. In the Autonomy Edge web IDE at [edge.autonomylogic.com](https://edge.autonomylogic.com), you configure connections to target runtimes. The desktop editor adds support for Arduino-compatible microcontrollers and direct connections to OpenPLC Runtime installations.
 
 ## Accessing Device Configuration
 
-To access the Device Configuration:
+To open the Device Configuration panel:
 
-1. Open your project in the editor
-2. In the Project Explorer, expand your project
-3. Click on **Device** under the Configuration section
+1. Open your project in the editor.
+2. In the Project Explorer, expand your project tree.
+3. Click **Device** under the Configuration section.
 
-## Web Editor vs Desktop Editor
+The options displayed depend on whether you're using the web editor or the desktop editor.
 
-The hardware configuration options available depend on which version of OpenPLC Editor you're using.
+## Web Editor
 
-### Web Editor (Autonomy Edge)
+When you open Device Configuration in the Autonomy Edge web IDE, you can browse available runtime targets linked to your account and connect to them.
 
-The web editor can **only** deploy programs to vPLC instances running on orchestrator agents. When you open Device Configuration in the web editor, you'll see options to:
+### Communication Protocols in the Web Editor
 
-- Connect to orchestrators linked to your account
-- Select vPLC devices to deploy your program
-- Configure communication protocols (Modbus)
+The web editor supports configuring communication protocols for your targets:
 
-The web editor does **not** support:
-- Arduino or microcontroller programming
+- **Modbus Server** — Expose PLC registers to external Modbus masters.
+- **Modbus Client** — Poll data from external Modbus slave devices.
+- **OPC-UA Server** — Publish data using the OPC-UA standard (when available).
+
+These protocols are added through the Project Explorer, not the Device Configuration panel itself. See [Communication Protocols](../communication/README) for setup instructions.
+
+### What the Web Editor Does Not Support
+
+The web editor deploys to runtime instances. The following features are **not available** in the web editor:
+
+- Board selection for Arduino or microcontroller targets
+- Pin mapping for physical hardware I/O
+- Modbus RTU/TCP settings embedded in firmware
+- Direct USB upload to microcontrollers
 - Direct connection to local OpenPLC Runtime instances
-- Pin mapping for hardware I/O
-- Board selection
 
-For web editor deployment, see [Connecting to Runtimes](../connecting-to-runtimes.md).
+For these capabilities, use the desktop editor.
 
-![Device Orchestrators View in Web Editor](images/device-orchestrators-expanded.png)
+## Desktop Editor: Full Hardware Configuration
 
-### Desktop Editor
+The desktop editor provides the complete set of hardware configuration options, organized into three areas:
 
-The desktop editor provides full hardware configuration capabilities, including:
+| Configuration Area | Purpose |
+|--------------------|---------|
+| **Board Selection** | Choose from 100+ supported boards, view specs, download platform tools |
+| **Pin Mapping** | Assign physical microcontroller pins to IEC 61131-3 I/O addresses |
+| **Communication Settings** | Configure Modbus RTU and TCP for microcontroller firmware |
 
-- **Board Selection**: Choose from 60+ supported Arduino-compatible boards
-- **Pin Mapping**: Configure which physical pins map to IEC I/O addresses
-- **Communication Settings**: Set up Modbus RTU/TCP for microcontroller targets
-- **Direct Runtime Connection**: Connect to OpenPLC Runtime v3 or v4 instances
+These areas are only active when an Arduino-compatible board is selected. When an OpenPLC Runtime target is selected, pin mapping and embedded communication settings are disabled because the runtime handles I/O and networking independently.
 
-The desktop editor supports two fundamentally different deployment targets:
+## Target Types
 
-## Target Types (Desktop Editor)
+The editor supports three categories of deployment target, each with a different build and deployment workflow.
 
-### Arduino-Compatible Targets
+### Arduino-Compatible Targets (Desktop Editor)
 
-When you select an Arduino-compatible board (such as Arduino Uno, ESP32, STM32), the editor performs **local compilation**:
+When you select an Arduino-compatible board (e.g., Arduino Uno, ESP32, STM32), the editor performs **local compilation**:
 
-1. Your PLC program is transpiled from IEC 61131-3 languages to C/C++ code
-2. The editor uses the bundled OpenPLC runtime code optimized for microcontrollers
-3. The **arduino-cli** toolchain compiles the code into binary firmware
-4. The firmware is uploaded directly to the board via USB
+1. Your IEC 61131-3 program is compiled into firmware.
+2. The **arduino-cli** toolchain builds the binary for your target board.
+3. A `defines.h` file is generated from your pin mapping configuration.
+4. The firmware is uploaded directly to the board via USB.
 
-This approach is ideal for:
+This approach is suitable for:
+
 - Standalone PLC devices running on dedicated microcontrollers
-- Edge devices that operate independently
-- Applications requiring direct hardware I/O control
+- Edge devices that operate independently without network connectivity
 - Prototyping and educational projects
 
-> **Note**: Arduino boards aren't suitable for industrial environments. Use microcontroller targets for prototyping only. For production, deploy to industrial-grade devices running OpenPLC Runtime v4.
+> **Tip:** Arduino development boards are not rated for industrial environments. For production deployments, use industrial-grade devices running OpenPLC Runtime v4 or deploy through Autonomy Edge.
 
-### OpenPLC Runtime Targets
+### OpenPLC Runtime Targets (Desktop Editor)
 
-When you select an OpenPLC Runtime target, the editor prepares source files for **remote compilation**:
+When you select an OpenPLC Runtime target (v3 or v4), the editor prepares your program for **remote deployment**:
 
-1. Your PLC program source code (Structured Text) is packaged
-2. The source is sent over the network to the OpenPLC Runtime
-3. The runtime compiles and executes the program internally
+1. Your PLC program source code is packaged.
+2. The source is sent over the network to the OpenPLC Runtime.
+3. The runtime compiles and executes the program internally.
 
-This approach is ideal for:
-- Linux-based systems (Raspberry Pi, industrial PCs, servers)
-- vPLC instances (virtual PLCs running in containers)
+Pin mapping and embedded communication settings are disabled for runtime targets because:
+
+- I/O addressing is handled by the runtime's own hardware configuration.
+- Modbus and other protocols are configured through the runtime's web interface.
+
+This approach is suitable for:
+
+- Linux-based systems (Raspberry Pi, industrial PCs, edge servers)
 - Applications requiring runtime debugging and monitoring
 - Production systems with remote management needs
 
-## Configuration Workflow
+### Web Editor Targets
 
-### Desktop Editor with Microcontroller
+When you deploy from the Autonomy Edge web IDE, the program goes through a **cloud build pipeline**:
 
-1. **Select Target Board**: Choose your Arduino-compatible board
-2. **Configure Pin Mapping**: Assign physical pins to IEC addresses
-3. **Set Communication Options**: Configure Modbus RTU/TCP if needed
-4. **Build and Upload**: Compile and upload via USB
+1. The IDE generates your project data.
+2. The project is compiled and packaged.
+3. The package is uploaded to the target runtime.
+4. The runtime begins execution.
 
-### Desktop Editor with OpenPLC Runtime
+This approach is suitable for:
 
-1. **Select Runtime Target**: Choose OpenPLC Runtime v3 or v4
-2. **Enter Runtime Address**: Specify the IP address of the runtime
-3. **Connect**: Establish connection to the runtime
-4. **Build and Deploy**: Compile and upload over the network
+- Cloud-managed PLC deployments
+- Teams that need centralized project management and secure remote access
 
-### Web Editor with vPLC
+## IEC 61131-3 Addressing
 
-1. **Open Orchestrators**: View available orchestrator agents
-2. **Select vPLC**: Choose the vPLC device to deploy to
-3. **Connect**: Establish connection through the orchestrator
-4. **Build and Deploy**: Compile and upload through secure channel
-
-## IEC Addressing
-
-Regardless of the target type, all I/O points in your PLC program use IEC 61131-3 standard addressing:
+Regardless of the target type, all I/O points in your PLC program use standard IEC 61131-3 addressing:
 
 | Address Type | Format | Example | Description |
 |--------------|--------|---------|-------------|
-| Digital Input | `%IX[bank].[bit]` | `%IX0.0` | First digital input |
-| Digital Output | `%QX[bank].[bit]` | `%QX0.0` | First digital output |
+| Digital Input | `%IX[byte].[bit]` | `%IX0.0` | First digital input |
+| Digital Output | `%QX[byte].[bit]` | `%QX0.0` | First digital output |
 | Analog Input | `%IW[index]` | `%IW0` | First analog input |
 | Analog Output | `%QW[index]` | `%QW0` | First analog output |
 
-For microcontroller targets, the pin mapping configuration connects these IEC addresses to physical hardware pins. For runtime targets, I/O addressing is handled by the runtime's hardware configuration.
+For microcontroller targets, the pin mapping configuration connects these addresses to physical hardware pins. For runtime targets, I/O addressing is handled by the runtime's hardware abstraction layer.
 
-## Next Steps
+## Configuration Workflows
 
-**Desktop Editor Users:**
-- [Board Selection](board-selection.md) - Choose and configure your target board
-- [Pin Mapping](pin-mapping.md) - Map IEC addresses to physical pins
-- [Communication Settings](communication-settings.md) - Configure Modbus for microcontrollers
+### Web Editor
+
+1. Open the Device section and select a target runtime.
+2. Connect and authenticate with the runtime credentials.
+3. Compile and deploy your program.
+
+### Desktop Editor with Microcontroller
+
+1. Select your target board from the [Board Selection](board-selection) interface.
+2. Configure [Pin Mapping](pin-mapping) to assign physical pins to IEC addresses.
+3. Set up [Communication Settings](communication-settings) for Modbus if needed.
+4. Build and upload via USB.
+
+### Desktop Editor with OpenPLC Runtime
+
+1. Select **OpenPLC Runtime v3** or **OpenPLC Runtime v4** as the target.
+2. Enter the runtime's IP address and port.
+3. Connect to the runtime.
+4. Build and deploy over the network.
+
+## What's Next?
 
 **Web Editor Users:**
-- [Connecting to Runtimes](../connecting-to-runtimes.md) - Connect to vPLC devices via orchestrator
-- [Communication Protocols](../communication/README.md) - Configure Modbus for vPLC devices
+
+- [Connecting to Runtimes](../connecting-to-runtimes) — Full guide to connecting, authenticating, and deploying
+- [Communication Protocols](../communication/README) — Configure Modbus and OPC-UA
+
+**Desktop Editor Users:**
+
+- [Board Selection](board-selection) — Choose and configure your target microcontroller board
+- [Pin Mapping](pin-mapping) — Map IEC addresses to physical hardware pins
+- [Communication Settings](communication-settings) — Configure Modbus RTU and TCP for microcontroller firmware

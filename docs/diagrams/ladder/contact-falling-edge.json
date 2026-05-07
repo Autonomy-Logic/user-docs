@@ -1,0 +1,8 @@
+{
+  "comment": "Falling edge contact — detect button release",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "fallingEdge", "variable": "start_button" },
+    { "type": "coil", "variant": "default", "variable": "released_pulse" }
+  ]
+}

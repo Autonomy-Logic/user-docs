@@ -1,14 +1,12 @@
 # Pin Mapping
 
-> **Desktop Editor Only**: Pin mapping for Arduino-compatible targets is only available in the desktop version of OpenPLC Editor. The web editor (Autonomy Edge) deploys only to vPLC instances where I/O is handled by the runtime.
+> **Desktop Editor Only:** Pin mapping is available exclusively in the desktop version of OpenPLC Editor for Arduino-compatible targets. If you're using the Autonomy Edge web IDE at [edge.autonomylogic.com](https://edge.autonomylogic.com), your programs deploy to runtime instances where I/O is managed by the runtime's hardware abstraction layer. See [Connecting to Runtimes](../connecting-to-runtimes) instead.
 
-Pin mapping connects IEC 61131-3 I/O addresses in your PLC program to physical hardware pins on your target microcontroller. This configuration determines how your program interacts with the real world.
+Pin mapping connects IEC 61131-3 I/O addresses in your PLC program to physical hardware pins on your target microcontroller. When you declare a variable like `StartButton AT %IX0.0 : BOOL`, the pin mapping configuration tells the firmware which GPIO pin to read for that address.
 
-![Pin Mapping Interface](images/pin-mapping-overview.png)
+## How Pin Mapping Works
 
-## Understanding Pin Mapping
-
-When you declare a variable with a hardware address in your PLC program, such as:
+In your PLC program, you reference hardware I/O through standard IEC addresses:
 
 ```iecst
 VAR
@@ -19,183 +17,190 @@ VAR
 END_VAR
 ```
 
-The pin mapping configuration tells the runtime which physical pins on your microcontroller correspond to these addresses.
+The pin mapping table in the Device Configuration panel defines which physical pin on your microcontroller corresponds to each address. During the build, a `defines.h` file is generated that the firmware's Hardware Abstraction Layer (HAL) uses to initialize I/O.
 
 ## Accessing the Pin Mapping Interface
 
-1. Open your project in the desktop editor
-2. Navigate to **Device** in the Project Explorer
-3. Select your target board (Arduino-compatible boards only)
-4. The pin mapping table appears in the configuration panel
+1. Open your project in the desktop editor.
+2. Navigate to **Device** in the Project Explorer.
+3. Select an Arduino-compatible board (pin mapping is disabled for OpenPLC Runtime targets).
+4. The pin mapping table appears in the configuration panel, organized into four sections.
 
-The interface displays four categories of pins:
-- **Digital Inputs** - For reading digital signals (switches, sensors)
-- **Digital Outputs** - For controlling digital signals (relays, LEDs)
-- **Analog Inputs** - For reading analog signals (temperature sensors, potentiometers)
-- **Analog Outputs** - For PWM or DAC outputs
+## Pin Types
 
-![Pin Mapping Table](images/pin-mapping-table.png)
-
-## Adding Pin Mappings
-
-Unlike older versions of OpenPLC, you add only the pins your application needs:
-
-1. In the pin mapping section, click to add a new pin
-2. Select the pin type (Digital Input, Digital Output, Analog Input, or Analog Output)
-3. Choose the physical pin from the dropdown (suggestions based on your board)
-4. The editor automatically assigns the next available IEC address
-5. Optionally, add a descriptive name for the pin
-
-![Adding a Pin](images/pin-add.png)
-
-### Custom Pin Names
-
-You can enter custom pin names that aren't in the suggestion list. This is useful for:
-- Boards with non-standard pin naming
-- Using alternate pin functions
-- Custom hardware configurations
+| Pin Type | IEC Prefix | Purpose | Example Hardware |
+|----------|------------|---------|------------------|
+| **Digital Input** | `%IX` | Read digital signals | Switches, proximity sensors, limit switches |
+| **Digital Output** | `%QX` | Control digital signals | Relays, solenoids, indicator LEDs |
+| **Analog Input** | `%IW` | Read analog signals | Temperature sensors, potentiometers, pressure transducers |
+| **Analog Output** | `%QW` | PWM or DAC output | Motor speed control, valve positioning |
 
 ## IEC Address Format
 
 ### Digital Addresses
 
-Digital I/O uses bit-addressed format with 8 bits per bank:
+Digital I/O uses a bit-addressed format organized into banks of 8 bits:
 
-| Address | Description |
-|---------|-------------|
-| `%IX0.0` - `%IX0.7` | First 8 digital inputs (bank 0) |
-| `%IX1.0` - `%IX1.7` | Next 8 digital inputs (bank 1) |
-| `%QX0.0` - `%QX0.7` | First 8 digital outputs (bank 0) |
-| `%QX1.0` - `%QX1.7` | Next 8 digital outputs (bank 1) |
+| Address Range | Description |
+|---------------|-------------|
+| `%IX0.0` through `%IX0.7` | First 8 digital inputs (bank 0) |
+| `%IX1.0` through `%IX1.7` | Next 8 digital inputs (bank 1) |
+| `%IX2.0` through `%IX2.7` | Next 8 digital inputs (bank 2) |
+| `%QX0.0` through `%QX0.7` | First 8 digital outputs (bank 0) |
+| `%QX1.0` through `%QX1.7` | Next 8 digital outputs (bank 1) |
+
+The format is `%IX[byte].[bit]` for inputs and `%QX[byte].[bit]` for outputs, where `byte` is the bank number (starting at 0) and `bit` is the position within the bank (0 through 7).
 
 ### Analog Addresses
 
-Analog I/O uses word-addressed format:
+Analog I/O uses a sequential word-addressed format:
 
 | Address | Description |
 |---------|-------------|
-| `%IW0`, `%IW1`, `%IW2`... | Analog inputs |
-| `%QW0`, `%QW1`, `%QW2`... | Analog outputs |
+| `%IW0`, `%IW1`, `%IW2`, ... | Analog inputs (sequential) |
+| `%QW0`, `%QW1`, `%QW2`, ... | Analog outputs (sequential) |
+
+Each analog address represents a 16-bit integer value.
+
+## Adding Pin Mappings
+
+The editor uses an on-demand approach — you add only the pins your application needs rather than configuring the entire board.
+
+To add a new pin:
+
+1. In the pin mapping section, click the add button for the desired pin type (Digital Input, Digital Output, Analog Input, or Analog Output).
+2. A new row appears in the table.
+3. Select the physical pin from the dropdown.
+4. The editor automatically assigns the next available IEC address.
+
+### Smart Defaults
+
+When you open the pin dropdown, the editor presents a filtered list of board-specific default pins:
+
+- **Board-aware suggestions** — Only pins valid for the selected pin type on your specific board are shown. For example, analog input pins are limited to ADC-capable GPIO pins.
+- **Already-used filtering** — Pins already assigned to another mapping are excluded from the dropdown, preventing accidental double-assignment.
+- **Auto-address assignment** — The editor assigns the next available IEC address in sequence. If `%IX0.0` and `%IX0.1` are taken, the next digital input gets `%IX0.2`.
+
+### Custom Pin Names
+
+You can type a custom pin name into the dropdown's text field instead of selecting from the suggestion list. This is useful for:
+
+- Boards with non-standard pin naming conventions
+- Using alternate pin functions not listed in the defaults
+- Custom hardware configurations with external I/O expanders
+
+## Removing Pin Mappings
+
+To remove a pin mapping, click the delete button on the corresponding row. The IEC address is freed and becomes available for future assignments. Removing a pin does not automatically renumber the remaining addresses.
 
 ## Connecting Variables to Pins
 
-After configuring your pin mapping, connect your program variables to pins:
+After configuring your pin mappings, link program variables to the mapped addresses:
 
-1. In your POU's variable table, click on the **Location** field
-2. Select one of the pins you defined in the pin mapping
-3. The variable is now linked to that physical pin
+1. In your POU's variable table, click on the **Location** field for a variable.
+2. Select one of the addresses you defined in the pin mapping (e.g., `%IX0.0`).
+3. The variable is now bound to that physical pin at runtime.
 
-![Variable Location Selection](images/variable-location.png)
+This separation of hardware configuration from program logic means you can:
 
-This approach separates the hardware configuration from your program logic, making it easy to:
-- Port programs to different hardware
-- Change pin assignments without modifying code
-- Reuse programs across projects
+- Port programs to different hardware by changing only the pin mapping.
+- Reassign pins without modifying any PLC code.
+- Reuse the same program across multiple projects with different boards.
+
+## Generated Output: `defines.h`
+
+When you build your project for an Arduino-compatible target, the editor generates a `defines.h` file from your pin mapping. This file contains C preprocessor macros that the board's HAL reads during initialization:
+
+```c
+// Pin masks — list of physical pins for each I/O type
+#define PINMASK_DIN  2, 3, 4, 5
+#define PINMASK_DOUT 7, 8, 12, 13
+#define PINMASK_AIN  A0, A1, A2
+#define PINMASK_AOUT 9, 10, 11
+
+// I/O counts
+#define NUM_DISCRETE_INPUT  4
+#define NUM_DISCRETE_OUTPUT 4
+#define NUM_ANALOG_INPUT    3
+#define NUM_ANALOG_OUTPUT   3
+```
+
+The order of pins in each `PINMASK_*` macro corresponds directly to the IEC address order. For example, `PINMASK_DIN 2, 3, 4, 5` means:
+
+| IEC Address | Physical Pin |
+|-------------|--------------|
+| `%IX0.0` | Pin 2 |
+| `%IX0.1` | Pin 3 |
+| `%IX0.2` | Pin 4 |
+| `%IX0.3` | Pin 5 |
 
 ## Board-Specific Considerations
 
 ### Standard Arduino Boards (Uno, Nano, Leonardo)
 
-- Limited number of pins available
-- Analog outputs use PWM (8-bit resolution)
-- Some pins have dual functions (SPI, I2C)
-- Pins 0 and 1 typically used for serial communication
+- Limited pin count; plan your I/O allocation carefully.
+- Analog outputs use PWM (8-bit resolution) on specific PWM-capable pins.
+- Pins 0 and 1 are typically reserved for serial communication. Avoid mapping them unless you don't need Serial.
+- Some pins are shared with SPI or I2C; check for conflicts if using those peripherals.
 
 ### Arduino Mega / Due
 
-- Extended I/O capacity (54+ digital pins)
-- More analog inputs (12-16 channels)
-- Due has true DAC outputs on pins DAC0/DAC1
+- Extended I/O capacity with 54+ digital pins and 12–16 analog inputs.
+- Arduino Due has true DAC outputs on pins DAC0 and DAC1 (12-bit resolution).
+- Larger pin count means more flexibility but also more potential for wiring errors.
 
 ### ESP32 Boards
 
-- More flexible pin assignments
-- Most GPIO pins can be configured as input or output
-- Analog outputs use LEDC PWM peripheral
-- Some pins have restrictions (GPIO 6-11 typically unavailable)
+- Most GPIO pins can be configured as either input or output.
+- Analog outputs use the LEDC PWM peripheral.
+- GPIO 6 through 11 are typically unavailable (connected to internal flash).
+- WiFi operation may interfere with certain ADC channels on some variants.
 
 ### STM32 Boards
 
-- Pin names use port notation (PA0, PB3, PC13)
-- Wide range of configurable alternate functions
-- Higher resolution ADC/DAC available on some models
+- Pin names use port notation (e.g., PA0, PB3, PC13).
+- Wide range of alternate functions per pin.
+- Higher-resolution ADC and DAC available on some models (12-bit or 16-bit).
 
 ### Industrial Boards (CONTROLLINO, P1AM)
 
-- Fixed I/O assignments based on terminal blocks
-- Pin names match physical terminal labels
-- Pre-configured for industrial voltage levels
-
-## How Pin Mapping Works Internally
-
-When you compile your project for an Arduino target, the editor generates a `defines.h` file containing C preprocessor macros:
-
-```c
-// Generated pin masks
-#define PINMASK_DIN 2, 3, 4, 5
-#define PINMASK_DOUT 7, 8, 12, 13
-#define PINMASK_AIN A0, A1, A2
-#define PINMASK_AOUT 9, 10, 11
-
-// I/O counts
-#define NUM_DISCRETE_INPUT 4
-#define NUM_DISCRETE_OUTPUT 4
-#define NUM_ANALOG_INPUT 3
-#define NUM_ANALOG_OUTPUT 3
-```
-
-The board's Hardware Abstraction Layer (HAL) uses these definitions to configure the I/O during initialization.
+- Fixed I/O assignments that match physical terminal block labels.
+- Pin names in the editor correspond directly to the labels printed on the device.
+- Pre-configured for industrial voltage levels (24V digital I/O on some models).
 
 ## Best Practices
 
-### Start with a Simple Test
+**Start simple.** Before building your full application, add one digital output (such as pin 13, which has a built-in LED on most Arduino boards), create a simple blink program, and verify that upload and execution work correctly.
 
-Before building your full application:
-1. Add one digital output (like pin 13 with built-in LED)
-2. Create a simple blink program
-3. Verify the upload and execution works
-4. Then expand to your full pin configuration
+**Use meaningful names.** When you assign variables to pin locations, use descriptive names like `StartButton` or `MotorRelay` rather than generic labels like `Pin2` or `Output1`.
 
-### Document Your Mappings
+**Match pin capabilities to usage.** Use PWM-capable pins for analog outputs. Use ADC-capable pins for analog inputs. Check the board's datasheet if the dropdown suggestions seem limited.
 
-Use meaningful pin names that indicate the physical connection:
-- `StartButton` instead of just `Pin2`
-- `MotorRelay` instead of `Output1`
-
-### Consider Electrical Characteristics
-
-- Use PWM-capable pins for analog outputs
-- Consider current limits when driving loads directly
-- Use appropriate pull-up/pull-down for inputs
-
-### Plan for Expansion
-
-- Leave room for additional I/O if your application might grow
-- Document which addresses are available for future use
+**Plan for expansion.** Leave room for additional I/O points if your application may grow. Document which addresses and pins are still available.
 
 ## Troubleshooting
 
-### Pin Not Responding
+### Pin not responding
 
-1. Verify the pin is correctly mapped in the configuration
-2. Check that your variable has the correct location assigned
-3. Ensure no conflicts with other pin functions (SPI, I2C, Serial)
+1. Verify the pin is correctly mapped in the Device Configuration.
+2. Check that your program variable has the correct `AT %` location assigned.
+3. Ensure the pin is not conflicting with another peripheral (SPI, I2C, Serial).
 
-### Analog Values Incorrect
+### Analog values incorrect
 
-1. Verify the pin supports analog input (ADC-capable)
-2. Check voltage levels are within the board's range
-3. Consider adding filtering for noisy signals
+1. Confirm the pin is ADC-capable (listed in the analog input defaults for your board).
+2. Check that voltage levels are within the board's ADC input range.
+3. Consider adding filtering in your PLC logic for noisy analog signals.
 
-### Upload Succeeds but I/O Doesn't Work
+### Upload succeeds but I/O does not work
 
-1. Double-check physical wiring matches pin configuration
-2. Verify the correct board is selected
-3. Test with a simple program to isolate the issue
+1. Double-check that physical wiring matches the pin mapping configuration.
+2. Verify the correct board is selected in Board Selection.
+3. Test with a minimal program to isolate whether the issue is in wiring or logic.
 
-## Related Topics
+## What's Next?
 
-- [Device Configuration Overview](device-config-overview.md) - Understanding target types
-- [Board Selection](board-selection.md) - Choosing your target hardware
-- [Communication Settings](communication-settings.md) - Configuring Modbus
-- [Global Variables](../working-with-variables/global-variables.md) - Declaring I/O variables
+- [Board Selection](board-selection) — Choose your target microcontroller board
+- [Communication Settings](communication-settings) — Configure Modbus RTU and TCP for microcontroller firmware
+- [Device Configuration Overview](device-config-overview) — Understand all target types and deployment workflows
+- [Global Variables](../working-with-variables/global-variables) — Declare I/O variables in your PLC program

@@ -1,0 +1,9 @@
+{
+  "comment": "TON timer — startup delay",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "start_cmd" },
+    { "type": "contact", "variant": "negated", "variable": "e_stop" },
+    { "type": "block", "name": "TON", "inputs": ["IN", "PT"], "outputs": ["Q", "ET"] }
+  ]
+}

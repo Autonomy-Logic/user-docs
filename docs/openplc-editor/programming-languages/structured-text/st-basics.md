@@ -1,10 +1,10 @@
 # ST Language Basics
 
-Structured Text (ST) is a high-level text-based programming language defined in the IEC 61131-3 standard. With its Pascal-like syntax, ST is ideal for complex algorithms, mathematical calculations, and data processing tasks that would be cumbersome to express in graphical languages like Ladder Diagram or Function Block Diagram.
+Structured Text (ST) is a high-level, text-based programming language defined in the IEC 61131-3 standard. If you've ever written code in Pascal, C, or a similar procedural language, ST will feel familiar right away. It's the go-to choice for complex algorithms, math-heavy calculations, and data processing — tasks that would be awkward to express in graphical languages like Ladder Diagram or Function Block Diagram.
 
 ## Introduction to Structured Text
 
-ST provides a familiar programming environment for developers with experience in languages like Pascal, C, or similar procedural languages. It supports:
+ST gives you a full-featured programming environment with support for:
 
 - Arithmetic and logical operations
 - Control flow structures (IF/THEN/ELSE, CASE, loops)
@@ -14,23 +14,20 @@ ST provides a familiar programming environment for developers with experience in
 
 ## Variables in Structured Text
 
-Before writing ST code, you must define the variables your program will use in the Variables Table. The Autonomy Edge IDE uses a dual-part structure for ST programming:
+Before you write any ST code, you need to define the variables your program will use in the Variables Table. The Autonomy Edge IDE uses a dual-part structure for ST programming:
 
-1. **Variables Table**: Where you declare all variables with their names, types, and classes
-2. **Code Editor**: Where you write the actual ST code that uses those variables
-
-![Variables Table with ST Program](images/st-variables-table.png)
-*Variables table showing local variables defined for a temperature control program*
+1. **Variables Table**: Where you declare all variables with their names, types, and classes.
+2. **Code Editor**: Where you write the actual ST code that uses those variables.
 
 For detailed information about variable classes (Local, Input, Output, In-Out, External, Global, Temp) and data types, see the [Variables and Data Types](../../iec-concepts/variables-datatypes) section.
 
-**Important Note on Variable Classes**: When creating Programs (as opposed to Functions or Function Blocks), you should typically use the **Local** variable class. Input and Output variable classes are more appropriate for Functions and Function Blocks where parameters need to be passed between POUs (see [Program Organization Units (POUs)](../../iec-concepts/pous)).
+> **Tip:** When creating Programs (as opposed to Functions or Function Blocks), you should typically use the **Local** variable class. Input and Output classes are more appropriate for Functions and Function Blocks where parameters need to be passed between POUs (see [Program Organization Units (POUs)](../../iec-concepts/pous)).
 
 ## Basic Syntax
 
 ### Assignment Statements
 
-The assignment operator in ST is `:=` (colon-equals). This assigns a value to a variable.
+The assignment operator in ST is `:=` (colon-equals). It assigns a value to a variable.
 
 ```
 variable_name := expression;
@@ -63,11 +60,11 @@ timer(IN := enable, PT := T#5s);
 
 ### Statements and Semicolons
 
-Each statement in ST must end with a semicolon (`;`). Multiple statements can appear on the same line, but it's recommended to place each statement on its own line for readability.
+Every statement in ST must end with a semicolon (`;`). You can put multiple statements on the same line, but it's best practice to keep one statement per line for readability.
 
 ## Operators
 
-ST provides a comprehensive set of operators for arithmetic, comparison, logical, and bitwise operations.
+ST provides a full set of operators for arithmetic, comparison, logical, and bitwise operations.
 
 ### Arithmetic Operators
 
@@ -139,7 +136,7 @@ ST provides several control structures for managing program flow.
 
 ### IF/THEN/ELSE Statement
 
-The IF statement allows conditional execution of code blocks.
+The IF statement lets you conditionally execute blocks of code.
 
 **Basic IF:**
 ```
@@ -170,11 +167,11 @@ ELSE
 END_IF;
 ```
 
-**Example from Temperature Control:**
+**Example — Temperature Control:**
 ```
 IF enable THEN
     temp_error := setpoint - sensor_temp;
-    
+
     IF timer.Q THEN
         heater_on := TRUE;
         cooler_on := FALSE;
@@ -316,11 +313,11 @@ END_IF;
 
 ## Function and Function Block Calls
 
-ST allows you to call functions and function blocks to perform operations and manage complex logic.
+ST lets you call functions and function blocks to perform operations and manage complex logic.
 
 ### Function Calls
 
-Functions return a single value and can be used in expressions.
+Functions return a single value and can be used directly in expressions.
 
 ```
 result := ABS(value);           // Absolute value
@@ -348,12 +345,9 @@ END_IF;
 ```
 
 In this example:
-- `timer` is the function block instance (declared as type TON in the variables table)
+- `timer` is the function block instance (declared as type TON in the Variables Table)
 - `IN` and `PT` are input parameters
-- `Q` is an output that can be accessed using dot notation (`timer.Q`)
-
-![ST Code with Syntax Highlighting](images/st-syntax-highlighting.png)
-*ST code showing syntax highlighting for keywords, variables, operators, and comments*
+- `Q` is an output accessed using dot notation (`timer.Q`)
 
 ## Time Literals
 
@@ -361,7 +355,7 @@ ST supports time literals for specifying durations:
 
 ```
 T#5s          // 5 seconds
-T#100ms       // 100 milliseconds  
+T#100ms       // 100 milliseconds
 T#1m30s       // 1 minute 30 seconds
 T#2h15m       // 2 hours 15 minutes
 T#1d12h       // 1 day 12 hours
@@ -375,18 +369,19 @@ delay_time := T#250ms;
 
 ## Best Practices
 
-1. **Use meaningful variable names**: Choose descriptive names that indicate the variable's purpose
-2. **Add comments**: Document complex logic and non-obvious operations
-3. **Keep expressions simple**: Break complex calculations into multiple steps for clarity
-4. **Use parentheses**: Make operator precedence explicit in complex expressions
-5. **Consistent indentation**: Indent code blocks within control structures for readability
-6. **One statement per line**: Avoid cramming multiple statements on one line
-7. **Initialize variables**: Set appropriate initial values in the variables table
-8. **Use appropriate data types**: Choose the smallest data type that meets your needs
+1. **Use meaningful variable names** — Choose descriptive names that indicate the variable's purpose.
+2. **Add comments** — Document complex logic and non-obvious operations.
+3. **Keep expressions simple** — Break complex calculations into multiple steps for clarity.
+4. **Use parentheses** — Make operator precedence explicit in complex expressions.
+5. **Consistent indentation** — Indent code blocks within control structures for readability.
+6. **One statement per line** — Avoid cramming multiple statements on one line.
+7. **Initialize variables** — Set appropriate initial values in the Variables Table.
+8. **Use appropriate data types** — Choose the smallest data type that meets your needs.
 
-## Next Steps
+---
 
-Now that you understand ST language basics, explore:
-- [ST Programming Examples](st-examples) - Practical examples and common patterns
-- [ST Editor Features](st-editor) - Learn about syntax highlighting, IntelliSense, and code completion
-- [Variables and Data Types](../../iec-concepts/variables-datatypes) - Comprehensive guide to variable management
+## What's Next?
+
+- [ST Programming Examples](st-examples) — Practical examples and common patterns
+- [ST Editor Features](st-editor) — Syntax highlighting, IntelliSense, and code completion
+- [Variables and Data Types](../../iec-concepts/variables-datatypes) — Comprehensive guide to variable management

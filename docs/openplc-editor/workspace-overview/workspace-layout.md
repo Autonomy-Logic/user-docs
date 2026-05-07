@@ -1,88 +1,81 @@
 # Workspace Layout
 
-The Autonomy Edge IDE provides a comprehensive workspace designed for efficient PLC program development. The interface is organized into several key areas, each serving a specific purpose in your development workflow.
+The IDE workspace has four main areas: the **Activity Bar** on the left edge, the **Project Explorer** sidebar, the **Editor Area** in the center, and the **Console Panel** at the bottom. Here's a quick tour of each.
 
-## Overview of the IDE Interface
+## Activity Bar
 
-When you open a project in the IDE, you'll see a well-organized workspace with multiple panels and tools. The layout is designed to maximize productivity while keeping all essential tools within easy reach.
+The Activity Bar is the narrow vertical strip on the far left. It contains icon buttons for global actions:
 
-![IDE Workspace Layout](images/workspace-layout-full.png)
-*The complete IDE workspace showing all major components*
+- **Search** — Find elements across your project. Results appear in the Console Panel's Search tab.
+- **Open/Close Toolbox** — Toggle the Project Explorer sidebar. When a graphical editor (LD or FBD) is active, this also shows or hides the element toolbox.
+- **Compile** — Build your project and (if connected to a device) deploy it. Progress appears in the Console Panel.
+- **Start / Stop PLC** — Control the PLC program on the connected device. Only active when you're connected.
+- **Debugger** — Reserved for future use.
 
-## Main Components
+The Activity Bar is always visible, so you always have quick access to compile and run controls.
 
-The IDE workspace consists of the following main areas:
+## Project Explorer
 
-### 1. Menu Bar (Top)
+The Project Explorer is the left sidebar, right next to the Activity Bar. It shows your entire project as a collapsible tree:
 
-Located at the very top of the IDE, the menu bar provides access to essential commands and features:
+- **Project name** — Shown at the top. Click to rename.
+- **Create element (+)** — Opens a dialog to create new POUs or Data Types.
+- **Tree branches** — Your project is organized into:
+  - **Functions** — Function-type POUs.
+  - **Function Blocks** — Function block-type POUs.
+  - **Programs** — Program-type POUs.
+  - **Data Types** — User-defined arrays, enumerations, and structures.
+  - **Resources** — Global variables, tasks, and instances.
+  - **Devices** — Orchestrator connections and remote device configurations.
+  - **Servers** — Communication server settings (Modbus, S7Comm, OPC-UA).
 
-- **File**: Project operations like save, export, and close
-- **Edit**: Editing commands like undo, redo, cut, copy, and paste
-- **Display**: View options and zoom controls
-- **Help**: Access to documentation and help resources
-- **Recent**: Quick access to recently opened files
+Click any item to open it as a tab in the Editor Area. You can resize the sidebar by dragging its right border.
 
-### 2. Activity Bar (Left Side)
+For a detailed walkthrough, see [Project Explorer](project-explorer).
 
-The activity bar on the left side of the screen contains icon buttons that control the visibility of different panels:
+## Editor Area
 
-- **Explorer Icon**: Shows/hides the Project Explorer panel
-- **Search Icon**: Opens the search functionality to find text across your project
-- **Zoom Icon**: Toggles the Explorer panel to maximize editor space
-- **Download Icon**: Exports your project to XML format
-- **Play Icon**: Compiles and runs your program
-- **Debugger Icon**: Opens debugging tools and variable monitoring
-- **Exit Icon**: Returns to the dashboard
+The Editor Area is the main workspace in the center where you write and edit your PLC logic. It supports multiple open tabs — click items in the Project Explorer to open them here.
 
-### 3. Project Explorer Panel (Left)
+### Editor Types
 
-The Project Explorer displays your project's hierarchical structure, showing all Programs, Function Blocks, Functions, Data Types, Resources, and Device Configuration. This panel can be collapsed to provide more space for the editor.
+The editor adapts to what you're working on:
 
-The Explorer also includes a Library section at the bottom, which provides access to standard function blocks and additional libraries that you can use in your programs.
+- **Textual editors** — For Structured Text (ST) and Instruction List (IL). Features syntax highlighting, autocomplete, undo/redo, and find/replace.
+- **Graphical editors** — For Ladder Diagram (LD) and Function Block Diagram (FBD). A visual canvas where you place and connect elements.
+- **Python / C++ editors** — For custom function blocks, with appropriate syntax highlighting.
+- **Data Type editor** — A form for defining array dimensions, enumeration values, or structure fields.
+- **Resource editor** — Three sections: Global Variables, Tasks, and Instances.
+- **Device and Server editors** — Configuration panels for connections and communication protocols.
 
-### 4. Editor Area (Center)
+### Variables Table
 
-The central editor area is where you write and edit your code. This area includes:
+When editing a POU, a **Variables Table** appears at the top of the editor. It shows all variables declared for that POU and lets you add, remove, or modify them. You can collapse it or drag the divider to resize.
 
-- **Tab Bar**: Shows all open files with tabs for easy switching between them
-- **Breadcrumb Navigation**: Displays the current file's location in the project hierarchy
-- **Variables Panel**: A table view above the editor showing all variables defined in the current POU
-- **Code Editor**: The main editing area with syntax highlighting and code completion
-- **Graphical Editor**: For visual programming languages like Ladder Diagram and Function Block Diagram
+## Console Panel
 
-The editor area adapts based on the type of file you're editing. For text-based languages (ST, IL), you'll see a code editor with syntax highlighting. For graphical languages (LD, FBD, SFC), you'll see a visual canvas with drag-and-drop functionality.
+The Console Panel sits at the bottom. It has multiple tabs:
 
-### 5. Console Panel (Bottom)
+- **Console** — Build progress messages, compilation output, upload status, and errors. Every compilation step is logged here.
+- **Search** — Appears when you perform a search. Shows results with links to matching elements.
+- **PLC Logs** — Appears when connected to a device. Shows live logs from the running PLC program.
 
-The console panel at the bottom displays runtime logs, compilation messages, and debugging information. It includes:
+The Console includes filtering controls (by log level, search term, and timestamp format) and lets you export logs as TXT, CSV, or JSON. Use the Clear button to reset the output before a new build.
 
-- **Console Tab**: Shows system messages, errors, and runtime logs
-- **Search Tab**: Displays search results when using the search functionality
-- **Clear Console Button**: Removes all messages from the console
+For a detailed guide, see [Console & Debugging](console-debugging).
 
-The console can be resized by dragging its top edge, or collapsed entirely to maximize the editor space.
+## Resizing the Layout
 
-## Resizable Panels
+All major panels are resizable:
 
-All panels in the IDE are resizable, allowing you to customize the workspace to your preferences:
+- Drag the border between the **Project Explorer** and **Editor Area** to adjust sidebar width.
+- Drag the border between the **Editor Area** and **Console Panel** to adjust the vertical split.
+- Drag the border between the **Variables Table** and the code editor within a POU.
 
-- **Drag Panel Edges**: Click and drag the edges between panels to resize them
-- **Collapse Panels**: Use the activity bar icons to show or hide panels
-- **Maximize Editor**: Collapse the Explorer and Console panels to focus on your code
+Both the Project Explorer and Console Panel can be collapsed entirely to maximize your editing space.
 
-## Workspace Customization
+---
 
-The IDE remembers your panel sizes and layout preferences, so your workspace will look the same each time you open a project. This allows you to create a comfortable working environment tailored to your development style.
+## What's Next?
 
-### Tips for Efficient Workspace Usage
-
-1. **Use Keyboard Shortcuts**: Learn keyboard shortcuts for common actions to speed up your workflow
-2. **Collapse Unused Panels**: Hide the Explorer or Console when you need more space for editing
-3. **Use Multiple Tabs**: Keep related files open in tabs for quick switching
-4. **Resize Strategically**: Adjust panel sizes based on the task at hand (e.g., larger console when debugging)
-5. **Use Breadcrumbs**: Navigate quickly through your project using the breadcrumb trail
-
-## Next Steps
-
-Now that you understand the workspace layout, you can explore the Project Explorer to learn how your project is organized, and the Console to understand how to monitor your program's execution.
+Learn how to navigate your project structure in the [Project Explorer](project-explorer).

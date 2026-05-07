@@ -1,64 +1,97 @@
 # Understanding vPLC Devices
 
-Virtual PLCs (vPLCs) are software-based programmable logic controllers that run inside Docker containers on your orchestrator's host machine. They provide the same functionality as physical PLCs but with the flexibility and scalability of containerized applications.
+A virtual PLC (vPLC) is a software-based programmable logic controller that runs on your orchestrator's machine. This page explains what vPLCs are, what they can do, and when to use them.
 
-## What is a vPLC?
+---
 
-A vPLC is a containerized instance of the OpenPLC Runtime that runs on an edge device managed by an orchestrator agent. Each vPLC operates as an independent PLC, capable of running IEC 61131-3 programs written in languages like Structured Text, Ladder Diagram, Function Block Diagram, and more.
+## What Is a vPLC?
 
-When you create a vPLC through the Autonomy Edge platform, the orchestrator agent automatically provisions a new Docker container with the OpenPLC Runtime software. This container runs independently on the host machine and can be managed remotely through the platform.
+A vPLC is a software PLC that runs on your orchestrator's host machine. It uses the [OpenPLC Runtime](https://github.com/Autonomy-Logic/openplc-runtime) to execute IEC 61131-3 programs — just like a physical PLC, but created and managed entirely through the Autonomy Edge web interface.
 
-## Key Benefits
+Each vPLC:
 
-**Rapid Deployment**: Create new PLC instances in seconds without any physical hardware installation. Simply configure the network settings and your vPLC is ready to run programs.
+- Runs a dedicated instance of the OpenPLC Runtime.
+- Has its own IP address on your local network.
+- Can optionally use serial port passthrough for communicating with physical devices.
+- Is fully managed from the platform — create, start, stop, restart, rename, and delete without SSH access.
 
-**Scalability**: Run multiple vPLCs on a single edge device, each with its own network configuration and program. This allows you to consolidate automation workloads and reduce hardware costs.
+---
 
-**Remote Management**: Monitor, configure, and update your vPLCs from anywhere through the Autonomy Edge platform. Upload new programs, check status, and view runtime statistics without physical access to the device.
+## How vPLCs Relate to Orchestrators
 
-**Consistency**: Every vPLC runs the same OpenPLC Runtime software, ensuring consistent behavior across all your automation projects. Programs developed and tested on one vPLC will work identically on others.
+Orchestrators and vPLCs have a parent-child relationship:
 
-**Integration with OpenPLC Editor**: The built-in OpenPLC Editor on Autonomy Edge connects directly to your vPLCs through the orchestrator agent. This seamless integration allows you to develop, compile, and deploy programs without leaving the platform.
+- An **orchestrator** is the agent software installed on a Linux machine. It manages vPLCs and communicates with the Autonomy Edge cloud.
+- A **vPLC** (also called a "device" in the platform) is created and managed by an orchestrator.
 
-## How vPLCs Work
+One orchestrator can manage multiple vPLCs. Each vPLC belongs to exactly one orchestrator. When you delete an orchestrator, all its vPLCs are removed too.
 
-When you create a vPLC, the following happens behind the scenes:
+---
 
-1. The Autonomy Edge platform sends a request to the orchestrator agent running on your edge device
-2. The orchestrator agent creates a new Docker container with the OpenPLC Runtime image
-3. The container is configured with the network settings you specified (DHCP or static IP)
-4. The vPLC starts running and becomes available for program uploads
+## What Can a vPLC Do?
 
-The orchestrator agent continuously monitors the vPLC container and reports its status back to the platform. You can see real-time information about each vPLC including its running state, network configuration, and resource usage.
+### Execute PLC Programs
 
-## vPLC vs Physical PLCs
+The OpenPLC Runtime supports Structured Text (ST), Ladder Diagram (LD), Function Block Diagram (FBD), and Instruction List (IL). Programs are compiled and executed in a real-time scan cycle.
 
-vPLCs and physical PLCs serve the same fundamental purpose: executing automation programs that control industrial processes. However, there are some important differences to consider:
+### Communicate via Modbus
 
-**Network Configuration**: vPLCs use virtual network interfaces (vNICs) that can be configured with DHCP or static IP addresses. The orchestrator agent manages the network bridge that connects vPLCs to the physical network.
+Every vPLC includes built-in Modbus TCP/IP server and client capabilities. This lets your vPLC communicate with remote I/O modules, sensors, actuators, and other PLCs on the network.
 
-**I/O Access**: Physical PLCs have direct access to hardware I/O modules. vPLCs can access I/O through network protocols like Modbus TCP/IP, allowing them to communicate with remote I/O devices and other PLCs on the network.
+### Use Serial Devices
 
-**Performance**: vPLCs share the host machine's CPU and memory resources. For time-critical applications, ensure your edge device has sufficient resources to maintain consistent scan cycle times.
+You can map USB-to-serial adapters and other serial devices from the host machine to your vPLC. This is useful for connecting RS-485 converters, serial sensors, and other physical devices.
 
-**Portability**: vPLC programs can be easily moved between different edge devices. Simply create a new vPLC on another orchestrator and upload the same program.
+### Runtime Versions
+
+When creating a vPLC, you select which version of the OpenPLC Runtime to use. The platform lists available versions from the [openplc-runtime GitHub releases](https://github.com/Autonomy-Logic/openplc-runtime/releases) (v4.0.6 and later). The latest stable release is pre-selected by default.
+
+---
+
+## vPLCs vs Physical PLCs
+
+vPLCs and physical PLCs serve the same purpose — executing automation programs — but differ in how they interface with the physical world:
+
+| Aspect | vPLC | Physical PLC |
+|--------|------|-------------|
+| **Deployment** | Created in seconds from the platform | Requires physical hardware installation |
+| **I/O Access** | Network protocols (Modbus TCP/IP, etc.) and serial passthrough | Direct hardware I/O modules |
+| **Network** | Virtual network interfaces bridged to host network | Physical Ethernet ports |
+| **Scalability** | Multiple instances on one machine | One PLC per hardware unit |
+| **Program Compatibility** | IEC 61131-3 via OpenPLC Runtime | IEC 61131-3 via OpenPLC Runtime |
+| **Remote Management** | Full lifecycle control from the cloud | Requires physical or network access |
+
+---
+
+## When to Use a vPLC
+
+vPLCs are ideal for:
+
+- **Rapid prototyping** — Spin up a new PLC in seconds to test automation logic.
+- **Network-based I/O** — Control Modbus TCP/IP devices, communicate with other PLCs, or integrate with SCADA systems.
+- **Education and training** — Create multiple independent PLCs on a single machine for lab exercises.
+- **Consolidation** — Run multiple automation workloads on a single edge device.
+
+For applications that require direct hardware I/O (sensors and actuators wired to digital/analog inputs and outputs), you can connect a vPLC to remote I/O modules via Modbus TCP/IP, or use serial port passthrough for USB-connected devices.
+
+---
 
 ## Compatibility with OpenPLC Editor Desktop
 
-vPLCs run the exact same OpenPLC Runtime as physical devices running OpenPLC. This means you can also connect to vPLCs using the OpenPLC Editor desktop application from any computer on the same local network.
+vPLCs run the same OpenPLC Runtime as standalone installations. You can connect to a vPLC using the [OpenPLC Editor](https://openplcproject.com/) desktop application from any computer on the same local network — just point the editor to the vPLC's IP address and port.
 
-This is particularly useful for:
+This is useful for:
 
-- Offline operation when internet connectivity is unavailable
-- Local debugging and monitoring
-- Integration with existing OpenPLC workflows
+- Offline development when internet connectivity is unavailable.
+- Local debugging and variable monitoring.
+- Integration with existing OpenPLC workflows.
 
-The OpenPLC Editor desktop application sees no difference between a vPLC and a physical OpenPLC device, so all features work identically.
+The desktop editor sees no difference between a vPLC and a standalone OpenPLC installation.
 
-## Next Steps
+---
 
-Now that you understand what vPLCs are and how they work, you can:
+## What's Next?
 
-- [Create your first vPLC](creating-vplc) on an orchestrator
-- [Upload a program](creating-vplc#uploading-programs) to your vPLC using the OpenPLC Editor
-- [Monitor your vPLC status](managing-status) and view runtime statistics
+Ready to create your first device?
+
+➡️ [Creating a vPLC Device](creating-vplc) — Step-by-step guide to naming, configuring, and launching a vPLC.

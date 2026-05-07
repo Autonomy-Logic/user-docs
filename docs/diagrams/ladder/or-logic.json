@@ -1,0 +1,14 @@
+{
+  "comment": "OR logic — parallel contacts",
+  "rungNumber": 1,
+  "elements": [
+    {
+      "type": "parallel",
+      "branches": [
+        [{ "type": "contact", "variant": "default", "variable": "button_1" }],
+        [{ "type": "contact", "variant": "default", "variable": "button_2" }]
+      ]
+    },
+    { "type": "coil", "variant": "default", "variable": "light" }
+  ]
+}

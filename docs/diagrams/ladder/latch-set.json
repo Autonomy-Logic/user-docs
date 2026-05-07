@@ -1,0 +1,8 @@
+{
+  "comment": "Latch — Set coil",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "start_btn" },
+    { "type": "coil", "variant": "set", "variable": "motor_on" }
+  ]
+}

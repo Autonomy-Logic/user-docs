@@ -1,0 +1,15 @@
+{
+  "comment": "Self-holding (seal-in) circuit",
+  "rungNumber": 1,
+  "elements": [
+    {
+      "type": "parallel",
+      "branches": [
+        [{ "type": "contact", "variant": "default", "variable": "start_btn" }],
+        [{ "type": "contact", "variant": "default", "variable": "motor_on" }]
+      ]
+    },
+    { "type": "contact", "variant": "negated", "variable": "stop_btn" },
+    { "type": "coil", "variant": "default", "variable": "motor_on" }
+  ]
+}

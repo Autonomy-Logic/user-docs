@@ -1,0 +1,8 @@
+{
+  "comment": "Timer output drives motor",
+  "rungNumber": 2,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "delay_timer.Q" },
+    { "type": "coil", "variant": "default", "variable": "motor_run" }
+  ]
+}

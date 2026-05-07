@@ -1,0 +1,10 @@
+{
+  "comment": "Complex interlock — enable AND NOT fault AND ready",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "enable" },
+    { "type": "contact", "variant": "negated", "variable": "fault" },
+    { "type": "contact", "variant": "default", "variable": "ready" },
+    { "type": "coil", "variant": "default", "variable": "run" }
+  ]
+}

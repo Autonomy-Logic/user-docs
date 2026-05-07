@@ -1,0 +1,9 @@
+{
+  "comment": "AND logic with regular coil",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "door_closed" },
+    { "type": "contact", "variant": "default", "variable": "motor_ready" },
+    { "type": "coil", "variant": "default", "variable": "motor_run" }
+  ]
+}

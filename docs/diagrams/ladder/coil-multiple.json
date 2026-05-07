@@ -1,0 +1,9 @@
+{
+  "comment": "Multiple coils on a rung",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "enable" },
+    { "type": "coil", "variant": "default", "variable": "output_1" },
+    { "type": "coil", "variant": "default", "variable": "output_2" }
+  ]
+}

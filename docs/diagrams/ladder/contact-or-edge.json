@@ -1,0 +1,14 @@
+{
+  "comment": "OR with edge detection",
+  "rungNumber": 1,
+  "elements": [
+    {
+      "type": "parallel",
+      "branches": [
+        [{ "type": "contact", "variant": "risingEdge", "variable": "pulse_1" }],
+        [{ "type": "contact", "variant": "risingEdge", "variable": "pulse_2" }]
+      ]
+    },
+    { "type": "coil", "variant": "default", "variable": "trigger" }
+  ]
+}

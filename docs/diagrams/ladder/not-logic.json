@@ -1,0 +1,8 @@
+{
+  "comment": "NOT logic — negated contact",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "negated", "variable": "error" },
+    { "type": "coil", "variant": "default", "variable": "system_ok" }
+  ]
+}

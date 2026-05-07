@@ -1,0 +1,8 @@
+{
+  "comment": "Simple contact-coil rung",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "start_btn" },
+    { "type": "coil", "variant": "default", "variable": "motor_on" }
+  ]
+}

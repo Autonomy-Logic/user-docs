@@ -1,131 +1,123 @@
 # Creating Projects
 
-Creating a new project in Autonomy Edge is a straightforward process that guides you through a 3-step wizard. This wizard helps you configure all essential project settings including basic information, programming language configuration, and visibility settings.
+A project is the home for your PLC program on Autonomy Edge. Each project holds your source code, variable definitions, task configuration, and device mappings. This guide walks you through the 3-step creation wizard.
 
-## Starting a New Project
+---
 
-You can create a new project from multiple locations in the platform:
+## Where to Start
 
-1. **From the Dashboard**: Click the "New" button in the left sidebar under the "Projects" section
-2. **From the Projects Page**: Click the "Create new" button in the top-left corner
+You can create a new project from two places:
 
-Both options will open the same project creation wizard.
+- **From the Dashboard** — Click the **New** button (with a `+` icon) in the Projects card in the left sidebar.
+- **From the Projects Page** — Click the **New** dropdown button in the sidebar and select **New Project**.
 
-## Step 1: Project Information
+Both paths open the same three-step wizard modal.
 
-The first step collects basic information about your project.
+---
 
-![Create Project - Step 1](images/create-project-step1.png)
+## Step 1 of 3 — Project Info
 
-### Required Fields
+### Project Name (Required)
 
-- **Project name**: Enter a descriptive name for your project. This field is required and will be used to identify your project throughout the platform.
+Give your project a descriptive, unique name. This name appears on project cards, in the sidebar folder tree, and in URLs for public projects. You can't have two projects with the same name.
 
-### Optional Fields
+**Examples:** `Traffic Light Controller`, `Motor Speed PID`, `Conveyor Belt Logic`.
 
-- **Folder**: Select a folder to organize your project. You can choose:
-  - **Root folder (/)**: The default location for projects without a specific folder
-  - **Existing folder**: Select from your previously created folders
-  - **Create new folder**: Click the "+" button next to the folder dropdown to create a new folder on the fly
+### Select Folder
 
-- **Description**: Add an optional description to provide context about your project's purpose and functionality.
+Choose where to store the project. The dropdown displays your entire folder hierarchy with indentation showing nesting levels:
 
-### Creating a Folder During Project Creation
+- **Root (/)** — The top-level folder. If you haven't created any folders, this is your only option.
+- **Subfolders** — Any folders you've created appear below Root with tree-style indentation.
 
-If you need to create a new folder while creating a project:
+You can move projects between folders later — see [Organizing Projects](organizing-projects).
 
-1. Click the "+" button next to the Folder dropdown
-2. Enter a folder name in the modal that appears
-3. Click "Create" to save the folder
-4. The new folder will be automatically selected for your project
+### Description (Optional)
 
-Once you've entered the required information, click "Next" to proceed to the configuration step.
+A short description of the project. This appears in the project detail view and helps you remember what it's for.
 
-## Step 2: Configuration
+Click **Next** to proceed.
 
-The second step configures the technical settings for your project.
+---
 
-![Create Project - Step 2](images/create-project-step2.png)
+## Step 2 of 3 — Configuration
 
-### Programming Language Selection
+### Select Language (Required)
 
-Choose the primary programming language for your project from the IEC 61131-3 standard languages:
+Choose the IEC 61131-3 programming language for your project's main Program Organization Unit (POU):
 
-- **LD (Ladder Diagram)**: Visual programming using relay logic symbols
-- **ST (Structured Text)**: High-level text-based programming language
-- **IL (Instruction List)**: Low-level assembly-like programming language
-- **FBD (Function Block Diagram)**: Visual programming using function blocks
+| Code | Language | Description |
+|---|---|---|
+| **ST** | Structured Text | Textual, Pascal-like syntax. Best for complex logic, math, and algorithms. |
+| **LD** | Ladder Diagram | Graphical, based on relay logic. Familiar to electricians and traditional PLC programmers. |
+| **FBD** | Function Block Diagram | Graphical, based on signal flow. Ideal for data processing and control loops. |
+| **IL** | Instruction List | Textual, assembly-like. Compact and low-level. |
 
-The language you select here will be the default language for your project, though you can use multiple languages within the same project through the IDE.
+Click a language card to select it.
 
-### Cycle Time Configuration
+> **Tip:** New to PLC programming? **Structured Text (ST)** is the most versatile choice. If you come from a traditional electrical/relay background, **Ladder Diagram (LD)** will feel familiar.
 
-The cycle time determines how frequently your PLC program executes. The default value is **T#20ms** (20 milliseconds), which is suitable for most applications.
+### Cycle Time (Required)
 
-You can select from predefined cycle times or enter a custom value. Common cycle times include:
-- T#10ms - Fast response applications
-- T#20ms - Standard applications (default)
-- T#50ms - Slower, less time-critical applications
-- T#100ms - Monitoring and data collection applications
+The cycle time defines how frequently the runtime executes your program's scan cycle. Click the field to open the **Set Interval** modal.
 
-Click "Next" to proceed to the final step.
+You can set a precise time value using fields for days, hours, minutes, seconds, milliseconds, and microseconds. The result is displayed in IEC 61131-3 `T#` format (e.g., `T#20ms`).
 
-## Step 3: Visibility & Cover
+The **default is `T#20ms`** (20 milliseconds) — the runtime executes your program 50 times per second. This works for most general-purpose applications.
 
-The final step configures project visibility and allows you to add a cover image.
+Click **Next** to proceed.
 
-![Create Project - Step 3](images/create-project-step3.png)
+---
+
+## Step 3 of 3 — Visibility
 
 ### Cover Image (Optional)
 
-You can upload a custom cover image to make your project more visually distinctive:
+Upload a `.jpg` or `.png` image as the project's preview image. This appears on project cards in the dashboard and Projects page. If you skip this, a default placeholder is used.
 
-1. Click the upload area or drag and drop an image file
-2. Supported formats: JPG, PNG
-3. Maximum file size: 10MB
-
-The cover image will be displayed on project cards throughout the platform.
-
-### Visibility Settings
+### Visibility (Required)
 
 Choose who can access your project:
 
-#### Public
-- **Access**: Anyone can view and access this project
-- **Use case**: Open-source projects, educational content, community contributions
-- **Visibility**: Project will appear in community search results and activity feeds
+- **Public** — Anyone on the platform can view and fork this project. Choose this for open-source projects, learning examples, or community sharing.
+- **Private** — Only you can access this project. Private projects don't appear in the activity feed or other users' searches.
 
-#### Private
-- **Access**: Only you and invited collaborators can access this project
-- **Use case**: Proprietary projects, work-in-progress, confidential applications
-- **Visibility**: Project will only be visible to you and explicitly invited users
+The default is **Private**.
 
-The default visibility setting is **Public**. You can change the visibility setting later from the project settings.
+### Create the Project
 
-## Creating the Project
+Click **Create Project** to finish. When complete:
 
-Once you've configured all settings:
+- A success notification appears: *"Project created successfully!"*
+- The modal closes.
+- Your new project appears in the Projects page and the dashboard's Recent Projects list.
 
-1. Review your selections across all three steps
-2. Click "Create Project" to finalize the creation
-3. The platform will create your project and redirect you to the project view
+---
 
-You can use the "Back" button at any time to return to previous steps and modify your selections.
+## Navigation Tips
 
-## After Project Creation
+- **Back** — Steps 2 and 3 have a Back button to return to the previous step without losing your data.
+- **Cancel** — Available on every step. Closes the modal and discards all entered data.
+- The **Steps indicator** at the top shows your progress.
 
-After successfully creating your project, you can:
+---
 
-- Open the project in the integrated OpenPLC Editor to start programming
-- Share the project with collaborators (for private projects)
-- Organize the project into folders
-- Configure additional project settings
-- Deploy the project to virtual PLC devices
+## Quick Reference
 
-## Best Practices
+| Field | Required | Default | Notes |
+|---|---|---|---|
+| Project name | Yes | — | Must be unique per user |
+| Folder | Yes | Root (/) | Can be changed later |
+| Description | No | — | Short text |
+| Language | Yes | — | ST, LD, FBD, or IL |
+| Cycle time | Yes | `T#20ms` | IEC 61131-3 time format |
+| Cover image | No | Placeholder | `.jpg` or `.png` |
+| Visibility | Yes | Private | Public or Private |
 
-- **Use descriptive names**: Choose project names that clearly indicate the project's purpose
-- **Organize with folders**: Group related projects together using folders for better organization
-- **Add descriptions**: Include helpful descriptions to document the project's purpose and functionality
-- **Choose appropriate visibility**: Use private visibility for proprietary work and public for community contributions
-- **Select the right language**: Choose the programming language that best fits your application and team's expertise
+---
+
+## What's Next?
+
+Now that you've created a project, learn how to open it in the IDE and start editing:
+
+➡️ [Opening and Editing Projects](opening-editing)

@@ -5,10 +5,6 @@
       "path": "getting-started",
       "items": [
         {
-          "title": "Quick Start Guide",
-          "path": "quick-start"
-        },
-        {
           "title": "Introduction to Autonomy Edge",
           "path": "introduction"
         },
@@ -23,6 +19,20 @@
         {
           "title": "User Profile Management",
           "path": "user-profile"
+        },
+        {
+          "title": "Quick Start Guide",
+          "path": "quick-start"
+        }
+      ]
+    },
+    {
+      "title": "Pricing & Plans",
+      "path": "pricing",
+      "items": [
+        {
+          "title": "Plans and Features",
+          "path": "plans"
         }
       ]
     },
@@ -53,6 +63,10 @@
             {
               "title": "Managing Projects - Pinning, Recents, and Trash",
               "path": "managing-projects"
+            },
+            {
+              "title": "Importing and Exporting Projects",
+              "path": "importing-exporting"
             }
           ]
         },
@@ -89,44 +103,34 @@
             {
               "title": "Managing Device Status",
               "path": "managing-status"
-            }
-          ]
-        },
-        {
-          "title": "Community Features",
-          "path": "community-features",
-          "items": [
-            {
-              "title": "Activity Feed",
-              "path": "activity-feed"
             },
             {
-              "title": "Search Functionality",
-              "path": "search-functionality"
+              "title": "Device Detail View",
+              "path": "device-detail"
             }
           ]
         }
       ]
     },
+    {
+      "title": "OpenPLC Editor",
+      "path": "openplc-editor",
+      "items": [
         {
-          "title": "OpenPLC Editor",
-          "path": "openplc-editor",
-          "items": [
-            {
-              "title": "Overview",
-              "path": "overview"
-            },
-            {
-              "title": "Installation",
-              "path": "installation"
-            },
-            {
-              "title": "Connecting to Runtimes",
-              "path": "connecting-to-runtimes"
-            },
-            {
-              "title": "IDE Workspace Overview",
-              "path": "workspace-overview",
+          "title": "Overview",
+          "path": "overview"
+        },
+        {
+          "title": "Installation",
+          "path": "installation"
+        },
+        {
+          "title": "Connecting to Runtimes",
+          "path": "connecting-to-runtimes"
+        },
+        {
+          "title": "IDE Workspace Overview",
+          "path": "workspace-overview",
           "items": [
             {
               "title": "Workspace Layout",
@@ -233,16 +237,6 @@
                 {
                   "title": "IL Programming Examples",
                   "path": "il-examples"
-                }
-              ]
-            },
-            {
-              "title": "Sequential Function Chart (SFC)",
-              "path": "sequential-function-chart",
-              "items": [
-                {
-                  "title": "SFC Language Basics (Coming Soon)",
-                  "path": "sfc-basics"
                 }
               ]
             }
@@ -408,96 +402,56 @@
             }
           ]
         },
-            {
-              "title": "Building and Deploying",
-              "path": "building-deploying",
-              "items": [
-                {
-                  "title": "Project Compilation",
-                  "path": "project-compilation"
-                },
-                {
-                  "title": "XML Export Format",
-                  "path": "xml-export"
-                },
-                {
-                  "title": "Deployment to vPLC Devices",
-                  "path": "deployment-vplc"
-                }
-              ]
-            },
-            {
-              "title": "Communication Protocols",
-              "path": "communication",
-              "items": [
-                {
-                  "title": "Modbus",
-                  "path": "modbus",
-                  "items": [
-                    {
-                      "title": "Modbus Server",
-                      "path": "server"
-                    },
-                    {
-                      "title": "Modbus Client",
-                      "path": "client"
-                    },
-                    {
-                      "title": "Modbus Addressing",
-                      "path": "addressing"
-                    }
-                  ]
-                },
-                {
-                  "title": "OPC-UA (Coming Soon)",
-                  "path": "opc-ua"
-                }
-              ]
-            }
-          ]
-        },
         {
-          "title": "OpenPLC Runtime",
-          "path": "openplc-runtime",
+          "title": "Building and Deploying",
+          "path": "building-deploying",
           "items": [
             {
-              "title": "Overview",
-              "path": "overview"
+              "title": "Project Compilation",
+              "path": "project-compilation"
             },
             {
-              "title": "Installation",
-              "path": "installation"
+              "title": "XML Export Format",
+              "path": "xml-export"
             },
             {
-              "title": "Program Upload",
-              "path": "program-upload"
-            },
-            {
-              "title": "First User Setup",
-              "path": "first-user-setup"
-            },
-            {
-              "title": "Located Variables and Addressing",
-              "path": "located-variables-and-addressing"
-            },
-            {
-              "title": "Hardware Configuration",
-              "path": "hardware",
-              "items": [
-                {
-                  "title": "Overview",
-                  "path": "overview"
-                }
-              ]
-            },
-            {
-              "title": "v3 Legacy",
-              "path": "v3-legacy"
+              "title": "Deployment to vPLC Devices",
+              "path": "deployment-vplc"
             }
           ]
         },
         {
-          "title": "Advanced Topics",
+          "title": "Communication Protocols",
+          "path": "communication",
+          "items": [
+            {
+              "title": "Modbus",
+              "path": "modbus",
+              "items": [
+                {
+                  "title": "Modbus Server",
+                  "path": "server"
+                },
+                {
+                  "title": "Modbus Client",
+                  "path": "client"
+                },
+                {
+                  "title": "Modbus Addressing",
+                  "path": "addressing"
+                }
+              ]
+            },
+            {
+              "title": "OPC-UA (Coming Soon)",
+              "path": "opc-ua"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Advanced Topics",
       "path": "advanced-topics",
       "items": [
         {

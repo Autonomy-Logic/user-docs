@@ -1,0 +1,8 @@
+{
+  "comment": "Emergency stop — fault reset rung",
+  "rungNumber": 3,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "fault" },
+    { "type": "coil", "variant": "reset", "variable": "running" }
+  ]
+}

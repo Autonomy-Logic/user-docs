@@ -1,291 +1,145 @@
-# Organizing Projects with Folders
+# Organizing Projects
 
-As your project portfolio grows, organizing projects into folders becomes essential for maintaining an efficient workflow. Autonomy Edge provides a flexible folder system that helps you categorize and manage projects based on application, client, development stage, or any other criteria that suits your needs.
+As your collection of projects grows, folders help you keep everything structured and easy to find. You can create folders, nest them, rename them, move them around, and move projects between folders at any time.
 
-## Understanding the Folder System
+---
 
-The folder system in Autonomy Edge works similarly to file systems on your computer:
+## The Folder Sidebar
 
-- **Hierarchical structure**: Folders can contain projects but currently do not support nested subfolders
-- **Root folder (/)**: The default location for projects without a specific folder assignment
-- **Folder visibility**: Folders are visible in the sidebar navigation for quick access
-- **Project organization**: Each project can belong to one folder at a time
+The **Projects page** has a resizable left sidebar that displays your folder tree.
 
-## Viewing Folders
+### Action Buttons
 
-Folders are displayed in the left sidebar of the Projects page:
+At the top of the sidebar:
 
-![Projects Page with Folders](images/projects-page.png)
+- **New** dropdown — Create a **New Project**, **New Folder**, or **New Library** (libraries coming soon).
+- **Recent** — Shows your most recently updated projects across all folders.
+- **Pinned** — Shows only projects you've pinned (see [Managing Projects](managing-projects)).
+- **Trash** — Shows projects and folders that have been moved to the trash.
 
-The sidebar shows:
-- **Root folder (/)**: Indicated by a folder icon with a slash
-- **Named folders**: Listed below the root folder with folder icons
-- **Project count**: Visual indication of projects within each folder
-- **Expandable view**: Click on a folder to view its contents
+### Folder Tree
 
-## Creating Folders
+Below the buttons, the sidebar displays your full folder hierarchy as a collapsible tree:
 
-You can create folders in two ways:
+- **Root (/)** — The top-level folder. Always exists, can't be renamed or deleted.
+- **Subfolders** — Folders you create, shown as children of Root or nested inside other folders.
+- **Projects** — Shown inside their parent folder with a project icon.
 
-### Method 1: During Project Creation
+Click a **folder** to filter the main content area to show only projects in that folder. Click a **project** to open it in the IDE.
 
-The most convenient way to create a folder is while creating a new project:
+---
 
-1. Start the project creation wizard
-2. In Step 1 (Project Information), locate the "Folder" dropdown
-3. Click the "+" button next to the dropdown
-4. Enter a descriptive folder name in the modal
-5. Click "Create" to save the folder
-6. The new folder will be automatically selected for your project
-7. Complete the project creation process
+## Creating a Folder
 
-This method ensures your new project is immediately organized into the appropriate folder.
+1. Click the **New** dropdown button in the sidebar.
+2. Select **New Folder**.
+3. In the modal:
+   - **Folder Name** (required) — Enter a name.
+   - **Parent Folder** — Choose where to create it. Default is Root (/).
+4. Click **Create Folder**.
 
-### Method 2: From the Projects Page
+The new folder appears in the sidebar tree.
 
-You can also create folders directly from the Projects page:
+---
 
-1. Navigate to the Projects page
-2. Click the "+" button in the folder section of the sidebar
-3. Enter a folder name in the dialog
-4. Click "Create" to save the folder
-5. The new folder will appear in the sidebar
+## Renaming a Folder
 
-## Moving Projects Between Folders
+1. Hover over the folder in the sidebar tree — a three-dot menu (⋯) appears.
+2. Click the menu and select **Rename**.
+3. Enter the new name and click **Save changes**.
 
-To organize existing projects into folders:
+> **Tip:** The Root folder can't be renamed.
 
-1. Navigate to the Projects page
-2. Locate the project you want to move
-3. Click the three-dot menu (⋯) on the project row
-4. Select "Move to folder" from the menu
-5. Choose the destination folder from the list
-6. Confirm the move
+---
 
-The project will immediately appear in the selected folder.
+## Moving a Folder
 
-## Folder Naming Best Practices
+1. Hover over the folder and click the three-dot menu (⋯).
+2. Select **Move**.
+3. In the modal, click the destination folder. The move happens immediately.
 
-Choose folder names that make your organization system clear and maintainable:
+Moving a folder moves everything inside it — all subfolders and projects come along.
 
-### Recommended Naming Conventions
+---
 
-**By Application Type:**
-- "Water Treatment"
-- "HVAC Systems"
-- "Manufacturing Lines"
-- "Building Automation"
+## Moving a Project Between Folders
 
-**By Client or Project:**
-- "Client - ABC Manufacturing"
-- "Project - Smart Factory 2025"
-- "Demo Projects"
-- "Training Materials"
+1. Open the project's **options menu** (three-dot menu ⋯):
+   - **Card view:** Hover over the card to reveal the menu.
+   - **List view:** Click the menu at the end of the row.
+2. Select **Move to...**.
+3. Click the destination folder. The move happens immediately.
 
-**By Development Stage:**
-- "Production"
-- "Development"
-- "Testing"
-- "Archive"
+---
 
-**By Technology or System:**
-- "Conveyor Systems"
-- "Temperature Control"
-- "Motor Control"
-- "Safety Systems"
+## Deleting a Folder
 
-### Naming Guidelines
+### Move to Trash
 
-- **Be descriptive**: Use clear, meaningful names that indicate the folder's purpose
-- **Keep it concise**: Aim for 2-4 words maximum
-- **Use consistent formatting**: Decide on a naming convention and stick to it
-- **Avoid special characters**: Stick to letters, numbers, spaces, and hyphens
-- **Consider sorting**: Folders are typically sorted alphabetically, so consider prefixes if order matters
+1. Hover over the folder in the sidebar and click the three-dot menu (⋯).
+2. Select **Delete**.
+3. Confirm in the modal.
 
-## Managing Folders
+The folder moves to the trash but can be restored.
 
-### Renaming Folders
+### Permanent Deletion
 
-To rename an existing folder:
+1. Switch to the **Trash** view.
+2. Use the three-dot menu on the trashed folder and select **Delete Permanently**.
+3. Confirm that you want to permanently remove it.
 
-1. Navigate to the Projects page
-2. Locate the folder in the sidebar
-3. Click the folder options menu (if available)
-4. Select "Rename"
-5. Enter the new folder name
-6. Confirm the change
+> **Warning:** Permanently deleting a folder removes it and everything inside it forever. This can't be undone.
 
-All projects within the folder will remain in place with the updated folder name.
+---
 
-### Deleting Folders
+## Folder Rules
 
-To delete a folder:
+- Folders can be nested to any practical depth.
+- Every project lives inside exactly one folder. You choose the folder at creation and can move it later.
+- **Root (/)** can't be renamed, moved, or deleted.
 
-1. Ensure the folder is empty (move all projects to other folders first)
-2. Navigate to the Projects page
-3. Locate the folder in the sidebar
-4. Click the folder options menu
-5. Select "Delete"
-6. Confirm the deletion
+---
 
-**Important:** You cannot delete folders that contain projects. Move all projects out of the folder before attempting to delete it.
+## Searching for Projects
 
-## Working with the Root Folder
+The Projects page has a **search bar** above the project grid/list. Type a project name (or part of it) to filter. You can combine search with folder filtering: select a folder in the sidebar, then search within it.
 
-The root folder (/) serves as the default location for projects:
+To clear the folder filter, click the **×** on the folder badge next to the page heading.
 
-- **Default location**: Projects created without a folder selection go here
-- **Always available**: The root folder cannot be deleted or renamed
-- **Quick access**: Useful for temporary projects or those that don't fit other categories
-- **No organization**: Projects in the root folder have no additional categorization
+---
 
-### When to Use the Root Folder
+## View Modes
 
-- Quick test projects that don't need long-term organization
-- Projects that don't fit into existing folder categories
-- Temporary projects that will be moved or deleted soon
-- Single-project workflows where folders aren't necessary
+Toggle between two view modes using buttons in the top-right corner of the Projects page.
 
-## Folder Navigation
+### Card View
 
-### Sidebar Navigation
+Projects displayed as a responsive grid of cards showing:
 
-The sidebar provides quick access to your folder structure:
+- Preview image (or placeholder)
+- Pinned badge (if pinned)
+- Project name, folder, and last modified date
+- Action buttons: open in editor, visibility icon, star count, share, pin, download
+- Three-dot options menu (on hover)
 
-1. **Click a folder** to view all projects within it
-2. **Click the root folder (/)** to view all unorganized projects
-3. **Use the search bar** to find projects across all folders
-4. **View project count** to see how many projects are in each folder
+### List View
 
-### Filtering by Folder
+Projects displayed as table rows with columns:
 
-When viewing a folder:
+| Column | Content |
+|---|---|
+| **Project Name** | Thumbnail, name (clickable), and star count |
+| **Folder** | The folder the project belongs to |
+| **Last modified** | When the project was last updated |
+| **Access** | Lock (private) or globe (public) icon with label |
+| **Actions** | Three-dot menu (⋯) |
 
-- The main content area displays only projects from that folder
-- The breadcrumb navigation shows your current location
-- You can still access other folders through the sidebar
-- Search functionality can be scoped to the current folder
+Both views support infinite scroll — more projects load as you scroll down.
 
-## Organizing Strategies
+---
 
-### Strategy 1: By Client or Customer
+## What's Next?
 
-Organize projects by the client or customer they're developed for:
+Learn about public and private projects:
 
-```
-/ (Root)
-├── Client - ABC Manufacturing
-├── Client - XYZ Industries
-├── Client - Demo Projects
-└── Internal Projects
-```
-
-**Benefits:**
-- Easy to find all work for a specific client
-- Simplifies billing and project tracking
-- Clear separation of client work
-
-### Strategy 2: By Application Domain
-
-Group projects by their industrial application:
-
-```
-/ (Root)
-├── Water Treatment
-├── HVAC Systems
-├── Manufacturing
-├── Building Automation
-└── Energy Management
-```
-
-**Benefits:**
-- Reuse code and patterns across similar applications
-- Build domain expertise
-- Easy to find reference implementations
-
-### Strategy 3: By Development Stage
-
-Organize based on project maturity:
-
-```
-/ (Root)
-├── Production
-├── Testing
-├── Development
-├── Archive
-└── Templates
-```
-
-**Benefits:**
-- Clear project lifecycle management
-- Easy to identify active vs. archived projects
-- Supports quality assurance processes
-
-### Strategy 4: Hybrid Approach
-
-Combine multiple organizational principles:
-
-```
-/ (Root)
-├── Production - Client A
-├── Production - Client B
-├── Development - New Features
-├── Testing - QA
-├── Templates
-└── Archive
-```
-
-**Benefits:**
-- Flexible organization for complex needs
-- Supports multiple workflows
-- Scalable as project count grows
-
-## Best Practices
-
-### Organization Tips
-
-- **Create folders proactively**: Set up your folder structure before accumulating many projects
-- **Review regularly**: Periodically review and reorganize your folder structure
-- **Keep it simple**: Don't create too many folders; aim for 5-15 main categories
-- **Use consistent naming**: Maintain a consistent naming convention across all folders
-- **Document your system**: Keep notes on your organizational logic for team members
-
-### Maintenance
-
-- **Archive old projects**: Move completed or obsolete projects to an Archive folder
-- **Clean up regularly**: Delete test projects and temporary work
-- **Consolidate when needed**: Merge similar folders if they become too granular
-- **Update folder names**: Rename folders as your organization evolves
-
-### Collaboration Considerations
-
-When working with teams:
-
-- **Agree on conventions**: Establish folder naming and organization standards
-- **Document the structure**: Maintain documentation of your folder organization
-- **Communicate changes**: Notify team members when reorganizing folders
-- **Use descriptive names**: Make folder purposes clear for all team members
-
-## Troubleshooting
-
-### Common Issues
-
-**Q: I can't find a project I created**
-- Check if it's in the root folder (/)
-- Use the search functionality to locate it across all folders
-- Check the "All Projects" view to see all projects regardless of folder
-
-**Q: I want to create nested folders**
-- The current version supports single-level folders only
-- Use naming conventions to simulate hierarchy (e.g., "Client A - Production", "Client A - Development")
-- Monitor platform updates for nested folder support
-
-**Q: How do I move multiple projects at once?**
-- Currently, projects must be moved individually
-- Plan your folder structure before creating many projects
-- Consider using bulk operations if they become available in future updates
-
-**Q: Can I have a project in multiple folders?**
-- No, each project can only belong to one folder at a time
-- Consider using tags or naming conventions if you need multiple categorizations
-- Duplicate the project if it truly needs to exist in multiple contexts
+➡️ [Project Visibility](project-visibility)

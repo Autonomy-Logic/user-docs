@@ -1,15 +1,15 @@
 # Supported Hardware Boards
 
-> **Desktop Editor Only**: Direct programming of Arduino-compatible boards is only available in the desktop version of OpenPLC Editor.
+> **Desktop Editor Only:** Direct programming of Arduino-compatible boards is only available in the desktop version of OpenPLC Editor.
 
-This reference documents all hardware boards supported by OpenPLC Editor for direct microcontroller programming. The editor supports over 60 different boards across multiple microcontroller families and architectures.
+This reference lists all hardware boards supported by the platform for direct microcontroller programming and runtime deployment. The editor supports over 60 different boards across multiple microcontroller families and architectures.
 
 ## Board Types
 
 The editor supports two categories of deployment targets:
 
-- **Arduino-Compatible Targets**: Microcontroller boards that receive compiled firmware via USB
-- **OpenPLC Runtime Targets**: Linux-based systems or vPLCs running OpenPLC Runtime
+- **Arduino-Compatible Targets** — Microcontroller boards that receive compiled firmware via USB
+- **OpenPLC Runtime Targets** — Linux-based systems or vPLCs running the OpenPLC Runtime
 
 ## Arduino Official Boards
 
@@ -164,10 +164,26 @@ The editor supports two categories of deployment targets:
 
 ## OpenPLC Runtime Targets
 
-| Target | Description |
-|--------|-------------|
-| OpenPLC Runtime v3 | Legacy runtime installations |
-| OpenPLC Runtime v4 | Current runtime with Modbus support |
+Runtime targets run the OpenPLC Runtime as a software process on a Linux-based system rather than flashing firmware to a microcontroller. The runtime is architecture-agnostic and uses a plugin system for hardware I/O.
+
+| Target | Architecture | Description |
+|--------|-------------|-------------|
+| OpenPLC Runtime v3 | x86_64, ARM | Legacy runtime installations |
+| OpenPLC Runtime v4 | x86_64, ARM64, ARMv7 | Current runtime with plugin-based I/O |
+
+Runtime v4 supports any Linux-based platform. Hardware I/O is handled through plugins:
+
+| I/O Method | Protocol | Use Case |
+|------------|----------|----------|
+| Modbus TCP (client) | Modbus | Remote I/O modules, sensors, actuators |
+| Modbus TCP (server) | Modbus | Expose PLC data to external systems |
+| OPC-UA | OPC-UA | Industrial OPC-UA server integration |
+| S7Comm | S7 | Siemens PLC communication |
+| GPIO passthrough | Direct | Platforms with GPIO (e.g., Raspberry Pi) |
+| Custom Python plugin | Any | Custom serial protocols, REST APIs, proprietary interfaces |
+| Custom C/C++ plugin | Any | High-performance, real-time I/O drivers |
+
+In the Autonomy Edge ecosystem, Runtime v4 powers vPLCs managed by an orchestrator. The orchestrator handles networking so that vPLCs appear as native devices on your local network. See [Hardware Configuration](../openplc-editor/hardware-configuration/device-config-overview) for details on HAL configuration and pin mapping.
 
 ## Board Manager URLs
 
@@ -183,8 +199,8 @@ For boards requiring external board manager definitions, the editor automaticall
 | RP2040/Pico | `https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json` |
 | P1AM (FACTS) | `https://raw.githubusercontent.com/facts-engineering/facts-engineering.github.io/master/package_productivity-P1AM-boardmanagermodule_index.json` |
 
-## Related Topics
+## What's Next?
 
-- [Board Selection](../openplc-editor/hardware-configuration/board-selection.md) - Choosing and configuring boards
-- [Pin Mapping](../openplc-editor/hardware-configuration/pin-mapping.md) - I/O configuration
-- [Device Configuration Overview](../openplc-editor/hardware-configuration/device-config-overview.md) - Understanding target types
+- [Board Selection](../openplc-editor/hardware-configuration/board-selection) — Choosing and configuring boards
+- [Pin Mapping](../openplc-editor/hardware-configuration/pin-mapping) — I/O configuration
+- [Device Configuration Overview](../openplc-editor/hardware-configuration/device-config-overview) — Understanding target types

@@ -1,0 +1,8 @@
+{
+  "comment": "Equivalent using NC contact + regular coil",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "negated", "variable": "system_fault" },
+    { "type": "coil", "variant": "default", "variable": "system_ok" }
+  ]
+}

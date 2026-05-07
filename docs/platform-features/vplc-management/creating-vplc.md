@@ -1,168 +1,145 @@
-# Creating vPLC Devices
+# Creating a vPLC Device
 
-This guide walks you through creating a new vPLC device on an orchestrator and uploading your first program using the built-in OpenPLC Editor.
+This guide walks you through creating a new vPLC device on an orchestrator. By the end, you'll have a running virtual PLC ready to receive programs from the IDE.
 
-## Prerequisites
+---
 
-Before creating a vPLC, ensure you have:
+## Before You Begin
 
-- An active orchestrator linked to your account (see [Adding Orchestrators](../orchestrator-management/adding-orchestrators))
-- The orchestrator showing "active" status in the platform
+You need:
 
-## Creating a New vPLC
+- An orchestrator linked to your Autonomy Edge account and showing **Active** status. See [Adding Orchestrators](../orchestrator-management/adding-orchestrators) if you haven't set one up yet.
 
-### Step 1: Navigate to the Orchestrator
+---
 
-From the Autonomy Edge dashboard, click on **Orchestrators** in the left sidebar to view your list of orchestrators. Click on the orchestrator where you want to create the vPLC.
+## Opening the New Device Modal
 
-![Orchestrators list](images/orchestrators-list-with-devices.png)
+There are two ways to start:
 
-### Step 2: Open the Devices Tab
+- **From the orchestrator's Devices tab** — Navigate to **Orchestrators**, click your orchestrator, switch to the **Devices** tab, and click **Add Device**. If this is your first device, you'll see a prominent **Add Device** button in the center.
+- **From the orchestrators list** — Expand an orchestrator row to see its devices, then click **Add Device**.
 
-In the orchestrator detail view, click on the **Devices** tab to see existing vPLC devices or create new ones. If this is your first device, you'll see an empty state with an "Add Device" button.
+Both paths open the same **Add New Device** modal.
 
-![Devices empty state](images/devices-empty-state.png)
+---
 
-### Step 3: Click Add Device
+## Basic Settings
 
-Click the **Add Device** button to open the device creation dialog. This dialog allows you to configure the basic settings for your new vPLC.
+### Device Name
 
-![Add device modal](images/add-device-modal.png)
+Enter a descriptive name for your vPLC — for example, `Palletizer Machine`, `Lab Controller 1`, or `Demo vPLC`. The name must be unique within the orchestrator.
 
-### Step 4: Configure Device Settings
+### Runtime Version
 
-Enter the following information for your vPLC:
+Select which version of the OpenPLC Runtime to run. The dropdown lists all available versions (v4.0.6 and later).
 
-- **Device Name**: A descriptive name for your vPLC (e.g., "Production Line Controller", "Demo vPLC")
-- **Description** (optional): Additional details about the device's purpose
+- The **latest stable release** is pre-selected by default.
+- Pre-release versions are marked with a **(Pre-release)** label.
+- The most recent stable version shows a **- Latest** suffix.
 
-### Step 5: Configure Network Settings
+> **Tip:** If you're unsure, keep the default. You can always create a new device with a different version later.
 
-Click on the network configuration section to set up the virtual network interface (vNIC) for your vPLC. You have two options:
+---
 
-**DHCP**: The vPLC will automatically obtain an IP address from your network's DHCP server. This is the simplest option for most setups.
+## Network Configuration
 
-**Static IP**: Manually specify the IP address, subnet mask, gateway, and DNS servers. Use this option when you need a fixed IP address for your vPLC.
+Every vPLC needs at least one virtual network interface (vNIC) to communicate on the network. The **Network** tab lets you configure one or more vNICs.
 
-![Network configuration](images/add-device-nic-config.png)
+### Default Setup
 
-For this example, we'll use DHCP to automatically assign an IP address.
+When the modal opens, a default vNIC named `veth0` is already created and linked to the first physical interface detected on the host. For most setups, you only need to decide between DHCP and static IP.
 
-![Device configuration filled](images/add-device-filled.png)
+### Adding and Removing NICs
 
-### Step 6: Create the Device
+- Click **Add** to create additional vNICs (useful if your vPLC needs to be on multiple network segments).
+- Click the **trash icon** on a NIC to remove it. You must always have at least one.
+- Click a NIC in the list to select it and configure its settings.
 
-Click the **Create** button to create your vPLC. The orchestrator agent will provision a new Docker container with the OpenPLC Runtime.
+### NIC Settings
 
-![Device creating](images/device-creating.png)
+#### Virtual Interface Name
 
-You'll see a brief loading state while the container is being created. This typically takes just a few seconds.
+The name of the virtual interface (e.g., `veth0`, `veth1`). You can rename it to something meaningful.
 
-### Step 7: Verify Device Creation
+#### Link to Physical Port
 
-Once the device is created, you'll see a success message and the new vPLC will appear in the devices list with a "running" status.
+Select which physical network interface on the host this vNIC should use. The dropdown lists all physical interfaces detected on the host (e.g., `eth0`, `enp3s0`, `wlan0`) along with their current IP addresses.
 
-![Device created successfully](images/device-created-success.png)
+Each physical port can only be used by one vNIC per device.
 
-Your vPLC is now running and ready to receive programs!
+#### IP Address — DHCP or Static
 
-![Devices list with vPLC](images/devices-list-with-vplc.png)
+Choose how the vNIC gets its IP address:
 
-## Uploading Programs
+**DHCP (Automatic)** — Your network's DHCP server assigns an IP address automatically. This is the simplest option and works for most setups. No additional configuration needed.
 
-Now that your vPLC is running, you can upload a program using the built-in OpenPLC Editor on Autonomy Edge.
+**Static IP** — You manually specify the network settings. Four additional fields appear:
 
-### Step 1: Open the OpenPLC Editor
+- **IP Address** — The fixed IP for this vNIC (e.g., `192.168.1.100`). Required.
+- **Subnet Mask** — The network subnet mask (e.g., `255.255.255.0`). Required.
+- **Gateway** — The default gateway for outbound traffic (e.g., `192.168.1.1`). Optional but recommended.
+- **DNS Server** — The DNS server address (e.g., `8.8.8.8`). Optional.
 
-From the Autonomy Edge dashboard, click on a project to open it in the OpenPLC Editor, or navigate to the **Projects** page (via "View all projects" on the dashboard) to see all your projects. You can create a new project or open an existing one.
+> **Tip:** Use **DHCP** if you're getting started or prototyping. Use **Static IP** when your vPLC needs a fixed address — for example, when other devices on the network need to connect to it at a known IP.
 
-![OpenPLC Editor new project](images/openplc-editor-new-project.png)
+All IP fields are validated in real time — invalid formats are flagged immediately.
 
-### Step 2: Create Your Program
+#### MAC Address — Auto or Manual
 
-For this example, we'll create a simple Structured Text program that increments a counter variable on each scan cycle.
+**Automatic** (default) — A random MAC address is generated. Works for most cases.
 
-Create a new program called "main" and add a local variable:
-- **Name**: LocalVar
-- **Type**: DINT (32-bit integer)
-- **Class**: Local
+**Manual** — You specify a MAC address in `XX:XX:XX:XX:XX:XX` format. Use this when your network requires specific MACs (e.g., for MAC-based firewall rules, DHCP reservations, or license-locked devices).
 
-Then add the following Structured Text code:
+---
 
-```
-LocalVar := LocalVar + 1;
-```
+## Serial Port Configuration (Optional)
 
-This simple program increments the LocalVar variable by 1 on every scan cycle, demonstrating the basic operation of a PLC program.
+The **Serial Ports** tab lets you pass through USB-to-serial adapters and other serial devices from the host machine into the vPLC. Skip this tab if your vPLC only uses network communication.
 
-![Editor with program](images/editor-with-program.png)
+### Available Devices
 
-### Step 3: Connect to Your vPLC
+The left panel shows three groups:
 
-In the project tree on the left side, expand **Devices** and click on **Orchestrators**. This opens the Device Orchestrators panel where you can see all your orchestrators and their vPLC devices.
+- **Configured** — Serial devices already added to this vPLC.
+- **Available Devices** — Serial devices detected on the host that are not in use. Click a device or its **+** button to add it.
+- **In Use by Other Devices** — Serial devices assigned to other vPLCs on this orchestrator. These are grayed out (a serial device can only be assigned to one vPLC at a time).
 
-![Device orchestrators list](images/device-orchestrators-list.png)
+Click the **refresh** button (↻) to re-scan the host for newly connected devices.
 
-Expand your orchestrator to see the available vPLC devices. Each device shows its current status (running, stopped, etc.).
+### Serial Port Settings
 
-![Device orchestrators expanded](images/device-orchestrators-expanded.png)
+When you select a configured serial port:
 
-Click on your vPLC device to select it, then click the **Connect** button.
+- **Port Name** — A friendly name (e.g., `serial0`, `rs485-sensor`). You can change this.
+- **Device ID** — The unique identifier of the physical serial device. Read-only. Used for automatic reconnection if the device is unplugged and reconnected.
+- **Device Path** — The path your PLC program will use to access the serial port (e.g., `/dev/ttyUSB0`). You can customize it.
 
-![Device selected for connection](images/device-selected-connect.png)
+---
 
-### Step 4: Create First User (First Connection Only)
+## Creating the Device
 
-If this is the first time connecting to a new vPLC, you'll be prompted to create the first user account for the OpenPLC Runtime. This is a security feature that ensures only authorized users can access the runtime.
+Once you've configured the name, runtime version, network, and (optionally) serial ports, click **Create**.
 
-![Create first user dialog](images/create-first-user-dialog.png)
+The modal shows a loading spinner with "Creating device... Please wait a moment." This typically takes a few seconds as the platform provisions your vPLC on the orchestrator's machine.
 
-Enter a username and password, then click **Create User**. These credentials are stored locally on the vPLC and are used for all future connections.
+When complete, the modal shows a green checkmark and **"Device created successfully!"** Your new device appears in the orchestrator's Devices tab.
 
-### Step 5: Verify Connection
+If creation fails (e.g., the orchestrator is offline), an error message is shown and the device record is automatically cleaned up.
 
-Once connected, you'll see the connection status change to "Connected" and the PLC Status will show "EMPTY" (indicating no program is loaded yet).
+---
 
-![vPLC connected](images/vplc-connected.png)
+## After Creation
 
-The Console panel at the bottom shows connection logs and will display build output when you upload a program.
+Your vPLC is now running and ready to use. From here you can:
 
-### Step 6: Upload Your Program
+- **View device details** — Click the device row to open the [device detail page](device-detail) with full information, network interfaces, and serial port status.
+- **Upload a program** — Open a project in the IDE, connect to the vPLC through the Device Orchestrators panel, and upload your PLC program.
+- **Manage the device** — Use the three-dot menu (⋮) to restart, rename, or delete the device.
 
-With your vPLC connected, click the **Download** button (down arrow icon) in the left toolbar to compile and upload your program to the vPLC.
+---
 
-The Console panel shows the build process in real-time:
+## What's Next?
 
-![Build process started](images/build-process-started.png)
+Explore the device detail page to see your vPLC's full configuration and real-time status:
 
-The build process includes several steps:
-1. Generating XML from your project
-2. Compiling Structured Text to C files
-3. Generating debug files
-4. Creating the upload package
-5. Uploading to the runtime
-6. Compiling on the runtime
-
-### Step 7: Program Running
-
-Once the upload completes successfully, the PLC Status changes to "RUNNING" and you'll see the Scan Cycle Statistics panel showing real-time performance metrics:
-
-![Program running](images/program-running.png)
-
-The statistics include:
-- **Scan Count**: Number of scan cycles completed
-- **Overruns**: Number of times the scan exceeded the cycle time
-- **Scan Time (avg)**: Average time to execute the program logic
-- **Cycle Time (avg)**: Average total cycle time including I/O
-- **Cycle Latency (avg)**: Timing accuracy of the cycle
-
-Your program is now running on the vPLC! The LocalVar variable is incrementing on every scan cycle.
-
-## Next Steps
-
-Now that you have a running vPLC with a program, you can:
-
-- [Monitor your vPLC status](managing-status) and view detailed runtime statistics
-- Create more complex programs using Ladder Diagram, Function Block Diagram, or other IEC 61131-3 languages
-- Add Modbus communication to interact with remote I/O devices
-- Create additional vPLCs on the same or different orchestrators
+➡️ [Device Detail Page](device-detail) — Overview tab, network interfaces, serial port status, and all the information available for each device.

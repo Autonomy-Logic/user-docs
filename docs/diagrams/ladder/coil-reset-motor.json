@@ -1,0 +1,8 @@
+{
+  "comment": "Reset coil — unlatch motor",
+  "rungNumber": 2,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "stop_button" },
+    { "type": "coil", "variant": "reset", "variable": "motor" }
+  ]
+}

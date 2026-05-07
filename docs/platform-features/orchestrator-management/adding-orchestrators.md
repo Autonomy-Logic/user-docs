@@ -1,105 +1,119 @@
 # Adding Orchestrators
 
-Adding an orchestrator to your Autonomy Edge account is a three-step process that involves naming your orchestrator, running an installation script on your target machine, and linking the orchestrator to your account. This guide walks you through each step.
+This guide walks you through registering a new orchestrator on Autonomy Edge. The platform uses a 3-step wizard — **Details → Install → Link** — to get your orchestrator online.
+
+---
 
 ## Before You Begin
 
-Ensure your target machine meets the system requirements described in [Understanding Orchestrators](understanding-orchestrators). You will need a Linux machine with root or sudo access and an internet connection.
+Make sure you have:
 
-## Step 1: Start the Add Orchestrator Wizard
+- A **Linux machine** (physical or virtual) where you'll install the agent. Ubuntu, Debian, Fedora, RHEL/CentOS, Raspberry Pi OS, and other major distributions are supported.
+- **Root or sudo access** on that machine.
+- An **internet connection** on both the Linux machine and the browser where you're using Autonomy Edge.
 
-Navigate to the Orchestrators page in the Autonomy Edge platform. If you don't have any orchestrators yet, you'll see an empty state with an "Add Orchestrator" button.
+---
 
-![Orchestrators empty state](images/orchestrators-empty-state.png)
+## Opening the Wizard
 
-Click the **Add Orchestrator** button to open the orchestrator setup wizard.
+You can start the New Orchestrator wizard in two ways:
 
-## Step 2: Enter Orchestrator Details
+- **From the Dashboard** — Click **Manage orchestrator** at the bottom of the Orchestrators card in the sidebar, then click **Add Orchestrator** (or the floating `+` button).
+- **From the Orchestrators page** — Navigate to Orchestrators in the sidebar and click **Add Orchestrator**.
 
-In the first step of the wizard, provide a name and optional description for your orchestrator. Choose a descriptive name that helps you identify this orchestrator later, especially if you plan to manage multiple orchestrators across different locations or purposes.
+If you have no orchestrators yet, the page shows an empty state with a prominent **Add Orchestrator** button in the center.
 
-![Add orchestrator step 1 - Details](images/add-orchestrator-step1.png)
+---
 
-Enter the following information:
+## Step 1 — Details
 
-- **Name**: A descriptive name for your orchestrator (required)
-- **Description**: Additional details about this orchestrator's purpose or location (optional)
+Enter basic information about your orchestrator.
 
-Click **Next** to proceed to the installation step.
+- **Orchestrator name** (required) — A human-friendly name to identify this machine. Choose something descriptive, like `Lab Raspberry Pi`, `Production Line 3`, or `Dev VM - Ubuntu`.
+- **Description** (optional) — A short note about purpose, location, or setup. Example: `Located in Building A, Room 102`.
 
-## Step 3: Install the Orchestrator Agent
+Click **Next** to proceed.
 
-The second step displays the installation command that you need to run on your target Linux machine.
+---
 
-![Add orchestrator step 2 - Install](images/add-orchestrator-step2.png)
+## Step 2 — Install
 
-Copy the installation command by clicking the copy button next to it:
+Now you'll install the orchestrator agent on your Linux machine.
+
+The modal displays a single command:
 
 ```bash
 curl https://getedge.me | bash
 ```
 
-Open a terminal on your target Linux machine and run the command exactly as shown above. The installation script automatically detects if it needs elevated privileges and will prompt for your sudo password if required. You do not need to add `sudo` before the command.
+1. Click the **Copy** button to copy the command.
+2. Open a terminal on your Linux machine.
+3. Paste and run the command.
+4. Wait for the installation to complete (usually 1–3 minutes).
 
-**Note**: If the script prompts for a sudo password, enter it when requested. If your user account does not have sudo privileges, you will need to run the command as root or contact your system administrator.
-
-The installer will perform the following actions automatically:
-
-1. Check for and install required dependencies (curl, jq, openssl, docker)
-2. Create a shared Docker volume for inter-container communication
-3. Deploy the network monitor container
-4. Pull and deploy the orchestrator agent container
-5. Generate a unique orchestrator ID
-6. Create mTLS certificates for secure communication
-7. Register the orchestrator with the Autonomy Edge provisioning service
-
-When the installation completes successfully, you'll see output similar to:
+When the installation finishes, you'll see output like this:
 
 ```
-============================================
-Orchestrator ID: xxxx-xxxx-xxxx
-Certificate expires: [date]
-============================================
+INSTALLATION COMPLETE
+=====================================================
+
+Orchestrator ID: abc1-d2e3-f456
+Expires in: 300 seconds (at 2026-03-14T03:20:00Z)
+
+Copy the Orchestrator ID above and paste it into the
+Autonomy Edge app to link your device.
+=====================================================
 ```
 
-**Important**: Copy the Orchestrator ID displayed at the end of the installation. You will need this ID in the next step to link the orchestrator to your account.
+**Copy the Orchestrator ID** from the terminal — you'll need it in the next step.
 
-Click **Next** in the wizard to proceed to the linking step.
+> **Tip:** The install script automatically handles dependencies, setup, and secure credential generation. You don't need to configure anything manually.
 
-## Step 4: Link the Orchestrator to Your Account
+Click **Next** in the modal to proceed.
 
-In the final step, enter the Orchestrator ID that was displayed at the end of the installation process.
+---
 
-![Add orchestrator step 3 - Link](images/add-orchestrator-step3.png)
+## Step 3 — Link
 
-Paste the Orchestrator ID into the input field and click **Link Orchestrator**. The platform will verify that:
+The final step connects the installed agent to your Autonomy Edge account.
 
-- The ID is valid and was generated by a legitimate installation
-- The orchestrator has uploaded its certificate to the provisioning service
-- The certificate has not expired
+1. Paste the **Orchestrator ID** into the **ID Orchestrator** field.
+2. Click **Create Orchestrator**.
+3. Wait for the success notification: **"Orchestrator created successfully!"**
 
-If verification succeeds, your orchestrator will be linked to your account and will appear in your orchestrators list.
+The modal closes automatically. After a few seconds, your orchestrator should appear on the Orchestrators page with an **Active** status.
 
-## Verifying the Connection
+### ID Expiration
 
-After linking, your orchestrator will appear in the orchestrators list. Initially, it may show as "inactive" while the orchestrator agent establishes its connection to the cloud.
+The Orchestrator ID is valid for **5 minutes** from the moment it's generated. If the ID expires before you complete this step:
 
-![Orchestrators list](images/orchestrators-list.png)
+- You'll see an error: **"Invalid or expired orchestrator ID"**.
+- Re-run `curl https://getedge.me | bash` on the Linux machine to get a new ID. The script detects the existing installation and refreshes it.
 
-Within a few moments, the status should change to "active" and you'll see real-time metrics including CPU usage, memory consumption, and uptime. Click on the orchestrator name to view detailed information and manage devices.
+> **Tip:** The ID format is `xxxx-xxxx-xxxx` (three groups of four characters separated by hyphens). Make sure you copy it exactly.
 
-## Troubleshooting
+---
 
-If you encounter issues during installation or linking, check the following:
+## After Linking
 
-**Installation fails with permission errors**: The installer automatically elevates to root privileges using sudo. If you see permission errors, ensure your user account has sudo privileges and that you entered the correct password when prompted. Alternatively, you can run the command directly as the root user.
+Once your orchestrator is linked and online, you can:
 
-**Installation fails to download images**: Verify that your machine has internet access and can reach Docker Hub and the GitHub Container Registry.
+- **View it in the orchestrators list** — See name, CPU usage, memory, uptime, and status at a glance.
+- **Open its detail page** — Click the orchestrator to see real-time metrics and charts.
+- **Add vPLC devices** — Create virtual PLCs on this orchestrator to run your programs.
 
-**Linking fails with "Invalid ID"**: Double-check that you copied the complete Orchestrator ID from the installation output. The ID format is `xxxx-xxxx-xxxx`.
+### Troubleshooting
 
-**Linking fails with "Expired"**: The orchestrator ID and certificate have a limited validity period. If too much time has passed since installation, you may need to reinstall the orchestrator.
+| Problem | Solution |
+|---------|----------|
+| Orchestrator doesn't appear online after linking | Make sure the agent is running on the Linux machine and the machine has internet access. |
+| "Invalid or expired orchestrator ID" error | The ID expires after 5 minutes. Re-run the install command to get a new one. |
+| Installation fails | Ensure you have root/sudo access and a working internet connection. Check that your Linux distribution is supported. |
 
-**Orchestrator stays inactive**: Ensure the target machine has ongoing internet access. Check that Docker containers are running with `docker ps`. The orchestrator-agent and autonomy-netmon containers should both be running.
+---
 
-For more information about monitoring and managing your orchestrators, see [Orchestrator Overview](orchestrator-overview).
+## What's Next?
+
+Learn how to monitor and manage your orchestrator:
+
+➡️ [Orchestrator Overview and Controls](orchestrator-overview) — Explore the detail page, system metrics, resource charts, devices tab, and management actions.
