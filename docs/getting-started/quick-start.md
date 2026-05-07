@@ -19,32 +19,7 @@ Traditional PLC development requires expensive hardware, proprietary software li
 
 The Autonomy Edge ecosystem consists of four key components that work together:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                  Your Web Browser                           │
-│         (Autonomy Edge Platform + OpenPLC Web IDE)          │
-└─────────────────────────┬───────────────────────────────────┘
-                          │ Secure Cloud Connection
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                   Orchestrator Agent                        │
-│            (Runs on edge device or on-prem server)          │
-│         Manages containers, networking, and security        │
-└─────────────────────────┬───────────────────────────────────┘
-                          │ Container Management
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    vPLC Instances                           │
-│              (OpenPLC Runtime v4 containers)                │
-│         Execute automation programs in real-time            │
-└─────────────────────────┬───────────────────────────────────┘
-                          │ Industrial Protocols (Modbus, OPC-UA)
-                          ▼
-┌─────────────────────────────────────────────────────────────┐
-│                Physical I/O and Devices                     │
-│           (Sensors, actuators, other PLCs, HMIs)            │
-└─────────────────────────────────────────────────────────────┘
-```
+![Autonomy Edge platform architecture: Web Browser, Orchestrator Agent, vPLC Instances, and Physical I/O stacked top to bottom](images/platform-architecture.svg)
 
 **Autonomy Edge Platform**: The cloud-based web application where you manage projects, users, and devices. It includes the browser-based OpenPLC Editor IDE for writing automation programs.
 

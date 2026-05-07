@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="diagramTitle diagramDesc">
+  <title id="diagramTitle">Autonomy Edge Platform Architecture</title>
+  <desc id="diagramDesc">A vertical stack of four layers connected by labeled arrows: Your Web Browser at the top, Orchestrator Agent below it, vPLC Instances next, and Physical I/O and Devices at the bottom.</desc>
+
+  <style>
+    .box-bg     { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
+    .title      { font: 600 17px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #0f172a; }
+    .subtitle   { font: 13px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #475569; }
+    .arrow      { stroke: #94a3b8; stroke-width: 2; fill: none; }
+    .arrow-head { fill: #94a3b8; }
+    .arrow-label{ font: italic 12px ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; fill: #64748b; }
+
+    .accent-1 { fill: #3b82f6; }
+    .accent-2 { fill: #8b5cf6; }
+    .accent-3 { fill: #10b981; }
+    .accent-4 { fill: #f59e0b; }
+
+    @media (prefers-color-scheme: dark) {
+      .box-bg     { fill: #1e293b; stroke: #334155; }
+      .title      { fill: #f1f5f9; }
+      .subtitle   { fill: #cbd5e1; }
+      .arrow      { stroke: #64748b; }
+      .arrow-head { fill: #64748b; }
+      .arrow-label{ fill: #94a3b8; }
+    }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 Z" class="arrow-head"/>
+    </marker>
+  </defs>
+
+  <!-- Layer 1: Your Web Browser -->
+  <g transform="translate(60,20)">
+    <rect class="box-bg" width="600" height="80" rx="8"/>
+    <rect class="accent-1" width="6" height="80" rx="2"/>
+    <text class="title"    x="28" y="35">Your Web Browser</text>
+    <text class="subtitle" x="28" y="60">Autonomy Edge Platform + OpenPLC Web IDE</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(360,100)">
+    <line class="arrow" x1="0" y1="0" x2="0" y2="40" marker-end="url(#arrowhead)"/>
+    <text class="arrow-label" x="12" y="26">Secure Cloud Connection</text>
+  </g>
+
+  <!-- Layer 2: Orchestrator Agent -->
+  <g transform="translate(60,150)">
+    <rect class="box-bg" width="600" height="90" rx="8"/>
+    <rect class="accent-2" width="6" height="90" rx="2"/>
+    <text class="title"    x="28" y="32">Orchestrator Agent</text>
+    <text class="subtitle" x="28" y="56">Runs on edge device or on-prem server</text>
+    <text class="subtitle" x="28" y="76">Manages containers, networking, and security</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(360,240)">
+    <line class="arrow" x1="0" y1="0" x2="0" y2="40" marker-end="url(#arrowhead)"/>
+    <text class="arrow-label" x="12" y="26">Container Management</text>
+  </g>
+
+  <!-- Layer 3: vPLC Instances -->
+  <g transform="translate(60,290)">
+    <rect class="box-bg" width="600" height="90" rx="8"/>
+    <rect class="accent-3" width="6" height="90" rx="2"/>
+    <text class="title"    x="28" y="32">vPLC Instances</text>
+    <text class="subtitle" x="28" y="56">OpenPLC Runtime v4 containers</text>
+    <text class="subtitle" x="28" y="76">Execute automation programs in real-time</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <g transform="translate(360,380)">
+    <line class="arrow" x1="0" y1="0" x2="0" y2="40" marker-end="url(#arrowhead)"/>
+    <text class="arrow-label" x="12" y="26">Industrial Protocols (Modbus, OPC-UA, etc.)</text>
+  </g>
+
+  <!-- Layer 4: Physical I/O -->
+  <g transform="translate(60,430)">
+    <rect class="box-bg" width="600" height="80" rx="8"/>
+    <rect class="accent-4" width="6" height="80" rx="2"/>
+    <text class="title"    x="28" y="35">Physical I/O and Devices</text>
+    <text class="subtitle" x="28" y="60">Sensors, actuators, other PLCs, HMIs</text>
+  </g>
+</svg>
