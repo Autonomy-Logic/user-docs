@@ -1,6 +1,6 @@
 # C++ Function Block Structure
 
-This page explains how C++ function blocks bridge with the IEC runtime. Understanding the variable access mechanism, IEC type mappings, and Arduino conditional compilation will help you write more effective C++ code and debug issues when they arise.
+This page covers the two functions every C++ block contains, the type that each variable in the Variables Table becomes in your C++ code, and how to write portable code that compiles for both Arduino and non-Arduino targets.
 
 ## The Two Required Functions
 
@@ -30,39 +30,29 @@ void loop() {
 }
 ```
 
-The IDE validates that both functions are present. If either `void setup()` or `void loop()` is missing, the build will fail with a validation error. The signatures must match exactly — no parameters, no return value.
+The signatures must match exactly — no parameters, no return value. If either function is missing, the build fails.
 
-## How Variable Access Works
+## Variables: Name in the Table = Name in the Code
 
-When you declare variables in the Variables Table and reference them by name in your C++ code, the IDE generates accessor macros behind the scenes. This lets you write clean code like `OUTPUT_VAL = INPUT_VAL * 2.0;` without managing pointers or memory directly.
+Variables you declare in the Variables Table — inputs, outputs, and locals — are available inside `setup()` and `loop()` as plain C++ variables, using the exact names from the table. You don't declare them in your C++ code, you don't pull them out of a struct, and you don't manage any pointers — the editor wires that up automatically.
 
-For each C++ function block, the IDE generates:
+```cpp
+// With ENABLE (BOOL Input), SPEED (INT Input), MOTOR_ON (BOOL Output) declared in the table:
 
-1. **A pointer struct** holding references to every declared variable
-2. **Accessor macros** (`#define`) that let you use variable names directly
-3. **A wrapper** that handles calling `setup()` on the first scan and `loop()` on every subsequent scan
-
-For example, if your function block is named `MyFilter` with variables `INPUT_VAL` (Input, REAL) and `OUTPUT_VAL` (Output, REAL), the generated macros work like this:
-
-```c
-#define INPUT_VAL (*(vars->INPUT_VAL))
-#define OUTPUT_VAL (*(vars->OUTPUT_VAL))
+void loop() {
+    if (ENABLE && SPEED > 0) {
+        MOTOR_ON = 1;
+    } else {
+        MOTOR_ON = 0;
+    }
+}
 ```
 
-You don't need to manage any of this yourself — just use the variable names directly in your code. When another POU instantiates your C++ function block, it works exactly like any IEC function block.
+When another POU instantiates your function block, it behaves exactly like any IEC function block — the inputs and outputs you declared in the Variables Table are its interface.
 
-## The hasBeenInitialized Variable
+## IEC ↔ C Type Mapping
 
-Every C++ function block automatically receives a local BOOL variable called `hasBeenInitialized`. The wrapper uses this to determine whether to call `setup()` or `loop()`:
-
-- On the **first scan**: `hasBeenInitialized` is FALSE, so `setup()` is called, then `hasBeenInitialized` is set to TRUE.
-- On **every subsequent scan**: `hasBeenInitialized` is TRUE, so `loop()` is called.
-
-You don't need to declare or manage this variable — it's injected automatically.
-
-## IEC Type Definitions
-
-When your C++ code accesses variables from the Variables Table, the values use IEC-standard data types that map to specific C types. Here's the complete mapping:
+The IEC type you pick in the Variables Table determines the C type your variable has in code. You'll mostly think in IEC terms, but the mapping matters when you call standard library functions or interface with hardware libraries.
 
 ### Integer Types
 
@@ -226,8 +216,8 @@ This example demonstrates several important patterns:
 
 - Using `#ifdef ARDUINO` for cross-platform timing
 - Persistent state in global variables across scan cycles
-- Reading IEC inputs and writing IEC outputs through the generated macros
-- Casting between IEC types and standard C types
+- Reading inputs and writing outputs by name, just like any IEC variable
+- Mixing IEC types and standard C types in the same expression
 
 ---
 

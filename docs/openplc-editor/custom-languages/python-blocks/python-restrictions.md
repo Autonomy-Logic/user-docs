@@ -41,14 +41,7 @@ For time-critical control logic where every scan cycle matters (e.g., safety int
 
 ## Available Libraries
 
-Python function blocks have access to the **Python 3 standard library**. The following modules are already imported and available in your code:
-
-- `struct` — Binary data packing and unpacking (essential for shared memory I/O)
-- `time` — Time-related functions
-- `os` — Operating system interface
-- `multiprocessing.shared_memory` — Shared memory access
-
-You can import any additional standard library module:
+Python function blocks have access to the **Python 3 standard library**. You can import any standard library module you need:
 
 ```python
 import math
@@ -67,6 +60,8 @@ import hashlib
 
 - **Third-party packages** — There's no mechanism to install packages via pip. You cannot use NumPy, Pandas, Requests, or any other package outside the Python standard library.
 - **Custom modules** — You cannot import your own `.py` files. Each Python function block is a self-contained script.
+
+> **Don't remove the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). The editor's runtime wrapper relies on them at module scope. You don't need to use them in your own code — just leave them there.
 
 ## What to Avoid
 
@@ -135,12 +130,12 @@ def block_loop():
 
 This would prevent the next call to `block_loop()`, effectively freezing your function block.
 
-## Shared Memory Constraints
+## Variable Constraints
 
-- Shared memory regions have a **fixed size** determined by the declared variables
-- You must not write beyond the allocated size of the output region
-- You must not write to the input region (it's read-only from the Python perspective)
-- Reading past the end of the input region or writing past the end of the output region leads to undefined behavior and may crash the process
+- The set of variables your block exchanges with the PLC is fixed by the Variables Table — you can't add or remove inputs/outputs at runtime.
+- Assigning to an input from inside `block_loop()` has no effect — the next cycle overwrites whatever you wrote with the fresh value from the PLC.
+- Strings are limited to 126 characters; longer values are truncated when written to a STRING output.
+- Array variables keep the length declared in the Variables Table. Don't `append`/`pop` on them.
 
 ## Performance Considerations
 
@@ -178,31 +173,27 @@ def block_loop():
 
 2. **Use `global` for persistent state** — Variables that need to survive between `block_loop()` calls must be declared `global` at the top of the function.
 
-3. **Validate inputs before processing** — Shared memory values can change unexpectedly. Check for division by zero, out-of-range values, and invalid states:
+3. **Validate inputs before processing** — Input values come from outside the block and can take any value the PLC writes. Check for division by zero, out-of-range values, and invalid states:
 
     ```python
     def block_loop():
-        divisor = struct.unpack_from('f', shm_in.buf, 0)[0]
+        global result
         if divisor != 0.0:
             result = 100.0 / divisor
         else:
             result = 0.0
-        struct.pack_into('f', shm_out.buf, 0, result)
     ```
 
 4. **Use `try/except` for robustness** — Wrap your logic in exception handling to prevent the process from crashing:
 
     ```python
     def block_loop():
+        global result
         try:
-            # Your logic here
-            value = struct.unpack_from('h', shm_in.buf, 0)[0]
             result = complex_calculation(value)
-            struct.pack_into('h', shm_out.buf, 0, result)
         except Exception as e:
             print(f'Error in block_loop: {e}')
-            # Write a safe default output
-            struct.pack_into('h', shm_out.buf, 0, 0)
+            result = 0  # Safe default
     ```
 
 5. **Minimize print() in block_loop()** — Use print statements for debugging during development, but remove or comment them out for production.
@@ -212,15 +203,16 @@ def block_loop():
 7. **Pre-compute constants in block_init()** — If your calculation uses constant values (lookup tables, conversion factors), compute them once in `block_init()` and store them as global variables:
 
     ```python
+    import math
+
     def block_init():
         global lookup_table
         lookup_table = [math.sin(i * math.pi / 180) for i in range(360)]
 
     def block_loop():
-        global lookup_table
-        angle = struct.unpack_from('H', shm_in.buf, 0)[0] % 360
-        result = lookup_table[angle]
-        struct.pack_into('f', shm_out.buf, 0, result)
+        global result
+        # angle is a UINT input declared in the Variables Table
+        result = lookup_table[angle % 360]
     ```
 
 ## What's Next?

@@ -49,7 +49,7 @@ When you hover your mouse over a variable, function, or module name, the editor 
 - The function signature (for functions and methods)
 - The docstring (for standard library functions and classes)
 
-This is especially helpful when working with the `struct` module, as you can quickly check format string syntax and function signatures without leaving the editor.
+This is especially handy for standard library modules — hover over a function like `math.sin` or `json.loads` and you'll see its signature and docstring without leaving the editor.
 
 ## Autocompletion
 
@@ -57,7 +57,7 @@ As you type, the editor suggests completions based on:
 
 - Python keywords and built-in functions
 - Variables and functions defined in your code
-- Module members after an import (e.g., typing `struct.` shows `pack`, `unpack`, `calcsize`, etc.)
+- Module members after an import (e.g., typing `math.` shows `sin`, `cos`, `sqrt`, `pi`, etc.)
 - Method names on objects (e.g., typing `my_list.` shows `append`, `extend`, `sort`, etc.)
 
 Press **Tab** or **Enter** to accept a suggestion, or **Escape** to dismiss the completion list.
@@ -122,46 +122,38 @@ With `item` selected as the first placeholder. Type your variable name, press **
 
 ### Use Type Hints for Better Diagnostics
 
-While not required, adding type hints helps Pyright provide more accurate diagnostics:
+While not required, adding type hints to your own helpers and locals helps Pyright provide more accurate diagnostics:
 
 ```python
+def clamp(value: float, lo: float, hi: float) -> float:
+    if value < lo: return lo
+    if value > hi: return hi
+    return value
+
 def block_init() -> None:
     global sample_count
-    sample_count: int = 0
+    sample_count = 0
 
 def block_loop() -> None:
-    global sample_count
-    value: float = struct.unpack_from('f', shm_in.buf, 0)[0]
+    global sample_count, average
     sample_count += 1
-    average: float = value / sample_count
-    struct.pack_into('f', shm_out.buf, 0, average)
+    average = clamp(reading / sample_count, 0.0, 100.0)
 ```
 
 ### Check Diagnostics Before Building
 
 The diagnostics panel catches many errors that would otherwise surface only at build time or at runtime. Before building your project, check that there are no red (error) underlines in your Python code. Yellow (warning) underlines are worth reviewing but don't necessarily indicate problems.
 
-### Explore the struct Module via Hover
-
-Since `struct` is central to Python function blocks, use the hover feature to explore its API. Hover over `struct.pack_into` to see:
-
-```
-(function) pack_into(fmt: str | bytes, buffer: WriteableBuffer, offset: int, *v: Any) -> None
-```
-
-This reminds you of the parameter order without needing external documentation.
-
 ### Use Print Statements for Debugging
 
-The `print()` function is available and its output is captured by the runtime's logging system. During development, use print statements to verify that your shared memory reads and writes produce expected values:
+The `print()` function is available and its output is captured by the runtime's logging system. During development, use print statements to confirm that input values look right and to inspect what your code is producing for outputs:
 
 ```python
 def block_loop():
-    raw = struct.unpack_from('h', shm_in.buf, 0)[0]
+    global result
     print(f'Raw input value: {raw}')  # Visible in runtime logs
 
     result = raw * 2
-    struct.pack_into('h', shm_out.buf, 0, result)
     print(f'Output value: {result}')
 ```
 

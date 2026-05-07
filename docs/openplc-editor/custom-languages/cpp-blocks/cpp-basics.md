@@ -96,7 +96,7 @@ void loop() {
 }
 ```
 
-The IDE generates accessor macros behind the scenes so you can reference variable names directly. You don't need to manage pointers or structs yourself. The next page, [C++ Function Block Structure](cpp-structure), explains this mechanism in detail.
+You don't need to declare these variables in your C++ code or pull them out of any kind of buffer — they're already wired up by the editor. Just use the names from the Variables Table.
 
 ## A Complete Example
 
@@ -159,4 +159,4 @@ Variables declared outside `setup()` and `loop()` (like `buffer`, `index`, and `
 
 ## What's Next?
 
-Learn how C++ function blocks bridge with the IEC runtime, including the variable access mechanism, IEC type mappings, and Arduino conditional compilation: [C++ Function Block Structure](cpp-structure).
+Learn the IEC↔C type mappings and how to write portable code with `#ifdef ARDUINO`: [C++ Function Block Structure](cpp-structure).

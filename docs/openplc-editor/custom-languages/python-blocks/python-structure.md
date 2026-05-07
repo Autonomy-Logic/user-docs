@@ -1,6 +1,6 @@
 # Python Function Block Structure
 
-Every Python function block follows a specific structure: two required functions, a set of variables declared in the IDE's Variables Table, and a shared memory interface that bridges your Python code with the PLC runtime. This page explains each part so you can write Python function blocks with confidence.
+Every Python function block has the same shape: two required functions, plus a set of variables you declare in the IDE's Variables Table that become Python identifiers inside your code.
 
 ## The Two Required Functions
 
@@ -23,24 +23,17 @@ def block_init():
     print('Moving average filter initialized with 20 samples')
 ```
 
-> **Tip:** Use the `global` keyword to declare variables that need to persist between `block_init()` and `block_loop()`, and across multiple calls to `block_loop()`.
+> **Tip:** Use the `global` keyword to declare variables that need to persist between `block_init()` and `block_loop()`, and across multiple calls to `block_loop()` — including the output variables you assign to.
 
 ### `block_loop()`
 
-Called **repeatedly**, approximately every **100 milliseconds**, for the entire lifetime of the process. This is where your main logic goes:
-
-- Read input variables from shared memory
-- Perform calculations or data processing
-- Write output variables to shared memory
+Called **repeatedly**, approximately every **100 milliseconds**, for the entire lifetime of the process. This is where your main logic goes — read inputs, run your logic, assign outputs:
 
 ```python
 def block_loop():
-    global sample_buffer, sample_index, total_count
+    global sample_buffer, sample_index, total_count, average
 
-    # Read a REAL input (32-bit float)
-    sensor_value = struct.unpack('f', shm_in.buf[0:4])[0]
-
-    # Update the moving average buffer
+    # Update the moving average buffer with the current sensor reading
     sample_buffer[sample_index] = sensor_value
     sample_index = (sample_index + 1) % len(sample_buffer)
     total_count += 1
@@ -48,12 +41,11 @@ def block_loop():
     # Calculate average (only over filled portion if not yet full)
     count = min(total_count, len(sample_buffer))
     average = sum(sample_buffer[:count]) / count
-
-    # Write the REAL output (32-bit float)
-    struct.pack_into('f', shm_out.buf, 0, average)
 ```
 
-## How Variables Are Declared
+In this example, `sensor_value` is an Input declared in the Variables Table and `average` is an Output. The editor's runtime refreshes `sensor_value` before each call to `block_loop()` and sends `average` back to the PLC after `block_loop()` returns.
+
+## How Variables Work
 
 Variables for a Python function block are **not declared in the Python code**. Instead, you define them in the **Variables Table** in the IDE, just like any other IEC function block.
 
@@ -65,107 +57,67 @@ In the Variables Table, you specify:
 | **Type** | An IEC 61131-3 data type (e.g., INT, REAL, BOOL) |
 | **Class** | Input, Output, or Local |
 
-The variable class determines how the variable is used:
+The variable class determines the data flow:
 
-| Class | Direction | Shared Memory Region |
-|-------|-----------|---------------------|
-| **Input** | PLC writes, Python reads | Input region (`shm_in`) |
-| **Output** | Python writes, PLC reads | Output region (`shm_out`) |
-| **Local** | Internal to the function block | Not in shared memory |
+| Class | Direction |
+|-------|-----------|
+| **Input** | PLC → Python (refreshed before every `block_loop()` call) |
+| **Output** | Python → PLC (sent after every `block_loop()` call) |
+| **Local** | Internal to the Python process; not visible to the PLC |
 
-### Example Variable Declaration
+Inside `block_init()` and `block_loop()`, every variable from the table is available as a normal Python variable using the same name you typed. You don't need to read from any buffer, unpack any bytes, or compute any offsets — the editor wires that up for you.
 
-Suppose you're building a temperature alarm function block. In the Variables Table, you'd declare:
+A few Python-specific points worth knowing:
 
-| Name | Type | Class |
-|------|------|-------|
-| `temperature` | REAL | Input |
-| `threshold` | REAL | Input |
-| `hysteresis` | REAL | Input |
-| `alarm` | BOOL | Output |
-| `alarm_count` | INT | Output |
+- **Reading is automatic** — just reference the input by name: `if temperature > 75.0:`
+- **Writing requires `global`** — to assign to an output (or to any variable that must survive across `block_loop()` calls), declare it `global` at the top of the function. Otherwise Python treats your assignment as a function-local and the value never leaves the function.
+- **Local variables in the table are independent of Python locals** — a Local declared in the table is a module-level Python variable that persists between cycles. A regular Python local declared with `temp = ...` inside `block_loop()` exists only for that one call.
 
-These five variables define the interface of your function block. When another POU instantiates your Python FB, it connects signals to the inputs and reads the outputs — exactly like a standard IEC function block.
+## Supported Variable Types
 
-## Variable Type Mapping
+You can use any of the following IEC types as inputs, outputs, or locals:
 
-When you read from `shm_in` or write to `shm_out`, you must use the correct `struct` format string for each IEC data type. Here's the complete mapping:
+| IEC type | Python value |
+|----------|--------------|
+| BOOL | `bool` (`True` / `False`) |
+| SINT, INT, DINT, LINT | `int` |
+| USINT, UINT, UDINT, ULINT | `int` |
+| BYTE, WORD, DWORD, LWORD | `int` |
+| REAL, LREAL | `float` |
+| STRING | `str` |
+| ARRAY of any of the above | `list` |
 
-| IEC Type | `struct` Format | Size (bytes) | Python Type | Description |
-|----------|----------------|--------------|-------------|-------------|
-| BOOL | `B` | 1 | int (0 or 1) | Unsigned char |
-| SINT | `b` | 1 | int | Signed 8-bit integer |
-| INT | `h` | 2 | int | Signed 16-bit integer |
-| DINT | `i` | 4 | int | Signed 32-bit integer |
-| LINT | `q` | 8 | int | Signed 64-bit integer |
-| USINT | `B` | 1 | int | Unsigned 8-bit integer |
-| UINT | `H` | 2 | int | Unsigned 16-bit integer |
-| UDINT | `I` | 4 | int | Unsigned 32-bit integer |
-| ULINT | `Q` | 8 | int | Unsigned 64-bit integer |
-| REAL | `f` | 4 | float | 32-bit floating point |
-| LREAL | `d` | 8 | float | 64-bit floating point |
-| BYTE | `B` | 1 | int | 8-bit bit string |
-| WORD | `H` | 2 | int | 16-bit bit string |
-| DWORD | `I` | 4 | int | 32-bit bit string |
-| LWORD | `Q` | 8 | int | 64-bit bit string |
-| STRING | `b126s` | 127 | (int, bytes) | Length byte + 126-byte buffer |
+When you read a variable, you get a plain Python value of the corresponding type. When you assign to an output, the value is converted back to its IEC type and sent to the PLC.
 
-### Calculating Byte Offsets
+### Strings
 
-Variables are packed in the shared memory region **in the order they are declared** in the Variables Table. To calculate the byte offset for each variable, sum the sizes of all preceding variables.
-
-For the temperature alarm example above (all inputs):
-
-| Variable | Type | Format | Size | Offset |
-|----------|------|--------|------|--------|
-| `temperature` | REAL | `f` | 4 | 0 |
-| `threshold` | REAL | `f` | 4 | 4 |
-| `hysteresis` | REAL | `f` | 4 | 8 |
-
-And for the outputs:
-
-| Variable | Type | Format | Size | Offset |
-|----------|------|--------|------|--------|
-| `alarm` | BOOL | `B` | 1 | 0 |
-| `alarm_count` | INT | `h` | 2 | 1 |
-
-> **Tip:** Input and output variables occupy **separate** shared memory regions. Offsets start at 0 for each region independently.
-
-## String Handling
-
-Strings require special attention. A STRING variable is transmitted as **two values** in shared memory:
-
-1. **Length byte** (`b` format, 1 byte): the number of valid characters in the string
-2. **Body buffer** (`126s` format, 126 bytes): the raw character data, padded with null bytes
-
-To read a string input:
+STRING variables behave as ordinary Python `str` values. The maximum length is **126 characters** — anything longer will be truncated when written to an output.
 
 ```python
-# Read a STRING input starting at the given offset
-offset = 0
-length = struct.unpack_from('b', shm_in.buf, offset)[0]
-body = struct.unpack_from('126s', shm_in.buf, offset + 1)[0]
-text = body[:length].decode('ascii')
+def block_loop():
+    global message
+    if temperature > threshold:
+        message = "Over setpoint"
+    else:
+        message = "OK"
 ```
 
-To write a string output:
+### Arrays
+
+Array inputs and outputs appear as Python lists with the size declared in the Variables Table. Read and write individual elements like a normal list, but don't change the length — `append`/`pop` won't survive the round trip.
 
 ```python
-# Write a STRING output starting at the given offset
-offset = 0
-text = "Hello PLC"
-encoded = text.encode('ascii')[:126]  # Truncate to max 126 chars
-length = len(encoded)
-body = encoded.ljust(126, b'\x00')    # Pad to 126 bytes
-struct.pack_into('b', shm_out.buf, offset, length)
-struct.pack_into('126s', shm_out.buf, offset + 1, body)
-```
+# samples : ARRAY[0..9] OF INT (Input)
+# average : REAL (Output)
 
-Each STRING variable occupies **127 bytes** total (1 byte length + 126 bytes body) in the shared memory region.
+def block_loop():
+    global average
+    average = sum(samples) / len(samples)
+```
 
 ## Complete Example
 
-Here's a full example combining variable declarations and Python code. This function block implements a temperature alarm with hysteresis and a counter.
+A function block that implements a temperature alarm with hysteresis and a counter.
 
 **Variables Table:**
 
@@ -186,30 +138,24 @@ import time
 import os
 
 def block_init():
-    global count, alarm_active
-    count = 0
+    global alarm_active
     alarm_active = False
     print('Temperature alarm block initialized')
 
 def block_loop():
-    global count, alarm_active
+    global alarm, alarm_count, alarm_active
 
-    # Read inputs (offsets: temperature=0, threshold=4, hysteresis=8)
-    temp = struct.unpack_from('f', shm_in.buf, 0)[0]
-    thresh = struct.unpack_from('f', shm_in.buf, 4)[0]
-    hyst = struct.unpack_from('f', shm_in.buf, 8)[0]
-
-    # Hysteresis logic: activate above threshold, deactivate below (threshold - hysteresis)
-    if not alarm_active and temp > thresh:
+    # Hysteresis: activate above threshold, deactivate below (threshold - hysteresis)
+    if not alarm_active and temperature > threshold:
         alarm_active = True
-        count += 1
-    elif alarm_active and temp < (thresh - hyst):
+        alarm_count += 1
+    elif alarm_active and temperature < (threshold - hysteresis):
         alarm_active = False
 
-    # Write outputs (offsets: alarm=0, alarm_count=1)
-    struct.pack_into('B', shm_out.buf, 0, 1 if alarm_active else 0)
-    struct.pack_into('h', shm_out.buf, 1, count)
+    alarm = alarm_active
 ```
+
+`alarm_active` is a Python-only flag (not in the Variables Table) that holds state between cycles. `alarm` and `alarm_count` are outputs, so they need `global` to be assigned. `temperature`, `threshold`, and `hysteresis` are inputs and can be read directly.
 
 In the IEC program that uses this function block, you instantiate it just like any other FB:
 
