@@ -8,8 +8,8 @@ Before you can deploy and run your PLC program, you need to connect the IDE to a
 
 Before connecting:
 
-1. **An orchestrator must be registered** in your Autonomy Edge account and must be online. See [Understanding Orchestrators](../platform-features/orchestrator-management/understanding-orchestrators).
-2. **A device must exist** on that orchestrator and must be active. See [Creating Devices](../platform-features/vplc-management/creating-vplc).
+1. **An orchestrator must be registered** in your Autonomy Edge account and must be online. See [Understanding Orchestrators](../platform/orchestrators/overview).
+2. **A device must exist** on that orchestrator and must be active. See [Creating Devices](../platform/vplcs/creating-a-vplc).
 
 ## Selecting a Device
 
@@ -17,7 +17,7 @@ Before connecting:
 2. Click **Orchestrators** inside the Device folder.
 3. The Orchestrators page opens in the Editor Area. At the top, you'll see the **OpenPLC Simulator** (selected by default). Below it, all orchestrators linked to your account are listed.
 
-![Device Orchestrators panel showing the list of orchestrators](../platform-features/vplc-management/images/device-orchestrators-list.png)
+![Device Orchestrators panel showing the list of orchestrators](images/device-orchestrators-list.png)
 
 4. Expand an orchestrator to see its devices. Each device shows its name, status, and whether it's available.
 
@@ -25,7 +25,7 @@ Before connecting:
 
 5. Click on a device to select it.
 
-![Device selected in the Orchestrators panel](../platform-features/vplc-management/images/device-selected-connect.png)
+![Device selected in the Orchestrators panel](images/device-selected-connect.png)
 
 6. Click **Connect**.
 
@@ -41,7 +41,7 @@ When you connect to a device for the very first time, it has no user accounts. T
 
 1. A **Create First User** dialog appears automatically.
 
-![Create First User dialog with username and password fields](../platform-features/vplc-management/images/create-first-user-dialog.png)
+![Create First User dialog with username and password fields](images/create-first-user-dialog.png)
 
 2. Enter a **username** and **password**, then confirm the password.
 3. Click **Create User**.
@@ -63,7 +63,7 @@ Your session lasts until you log out or close the browser tab. The next time you
 
 Once connected, the IDE shows the connection status in the Orchestrators panel:
 
-![Orchestrators panel showing the vPLC with a Connected status badge](../platform-features/vplc-management/images/vplc-connected.png)
+![Orchestrators panel showing the vPLC with a Connected status badge](images/vplc-connected.png)
 
 - **Connected**: You have an active connection. All controls (compile, start, stop) are available.
 - **Disconnected**: No active connection. You can still compile to validate your code, but uploading and runtime controls are unavailable.
@@ -74,14 +74,14 @@ With an active connection, you can:
 
 - **Compile and deploy**: Click Compile to build your project and upload it to the device.
 
-![Console panel showing the build process output during upload](../platform-features/vplc-management/images/build-process-started.png)
+![Console panel showing the build process output during upload](images/build-process-started.png)
 
 - **Start the PLC**: Click the Start/Stop button to begin running your program.
 - **Stop the PLC**: Click the Start/Stop button again to halt execution.
 - **View PLC Logs**: The PLC Logs tab appears in the Console Panel, showing live output from the running program.
 - **Monitor execution stats**: The Orchestrators panel shows scan cycle statistics for a running PLC.
 
-![Running PLC program with the Scan Cycle Statistics panel showing real-time metrics](../platform-features/vplc-management/images/program-running.png)
+![Running PLC program with the Scan Cycle Statistics panel showing real-time metrics](images/program-running.png)
 
 ## Runtime Status Polling
 

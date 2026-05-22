@@ -71,7 +71,7 @@ An orchestrator is an edge agent that manages your vPLC devices. It runs on your
 2. Navigate to **Orchestrators** in the left sidebar
 3. Click the **Add Orchestrator** button
 
-![New Orchestrator wizard - Details step](../platform-features/orchestrator-management/images/add-orchestrator-step1.png)
+![New Orchestrator wizard - Details step](images/add-orchestrator-step1.png)
 
 ### 1.2 Enter Orchestrator Details
 
@@ -83,7 +83,7 @@ An orchestrator is an edge agent that manages your vPLC devices. It runs on your
 
 The wizard provides a curl command to install the orchestrator agent on your Linux device.
 
-![New Orchestrator wizard - Install step](../platform-features/orchestrator-management/images/add-orchestrator-step2.png)
+![New Orchestrator wizard - Install step](images/add-orchestrator-step2.png)
 
 1. Click **Copy** to copy the installation command
 2. Open a terminal on your Linux device (via SSH or directly)
@@ -95,7 +95,7 @@ The wizard provides a curl command to install the orchestrator agent on your Lin
 
 After installation, the agent generates an ID that you need to enter in the platform.
 
-![New Orchestrator wizard - Link step](../platform-features/orchestrator-management/images/add-orchestrator-step3.png)
+![New Orchestrator wizard - Link step](images/add-orchestrator-step3.png)
 
 1. Copy the **Orchestrator ID** from your terminal
 2. Paste it into the **ID Orchestrator** field
@@ -105,7 +105,7 @@ After installation, the agent generates an ID that you need to enter in the plat
 
 Once linked, your orchestrator will appear in the list with its connection status.
 
-![Orchestrators list showing connected orchestrator](../platform-features/orchestrator-management/images/orchestrators-list.png)
+![Orchestrators list showing connected orchestrator](images/orchestrators-list.png)
 
 ---
 
@@ -117,7 +117,7 @@ A vPLC (virtual PLC) is a containerized runtime that executes your automation pr
 2. Navigate to the **Devices** tab
 3. Click **Add Device**
 
-![Add New Device dialog](../platform-features/vplc-management/images/add-device-modal.png)
+![Add New Device dialog](images/add-device-modal.png)
 
 4. Enter a device name (e.g., "Demo vPLC")
 5. Configure the network settings:
@@ -127,7 +127,7 @@ A vPLC (virtual PLC) is a containerized runtime that executes your automation pr
 
 The vPLC will start automatically and show a "success" status when ready.
 
-![Devices list showing the created vPLC](../platform-features/vplc-management/images/devices-list-with-vplc.png)
+![Devices list showing the created vPLC](images/devices-list-with-vplc.png)
 
 ---
 
@@ -325,8 +325,8 @@ Now that you understand the basics, explore these topics to build more sophistic
 - **[Hardware Configuration](../openplc-editor/hardware-configuration)** - Map program variables to physical I/O pins on supported boards
 
 ### Scale Your Deployment
-- **[Orchestrator Management](../platform-features/orchestrator-management)** - Deploy orchestrators to edge devices across multiple sites
-- **[vPLC Management](../platform-features/vplc-management)** - Run multiple vPLCs on a single edge device for workload consolidation
+- **[Orchestrators](../platform/orchestrators/overview)** - Deploy orchestrators to edge devices across multiple sites
+- **[vPLC devices](../platform/vplcs/overview)** - Run multiple vPLCs on a single edge device for workload consolidation
 
 ---
 
@@ -351,4 +351,4 @@ Now that you understand the basics, explore these topics to build more sophistic
 - Run the installation command again on your Linux device
 - A new ID will be generated that you can paste into the Link step
 
-For more help, visit the [Troubleshooting](../advanced-topics/troubleshooting) section or contact support.
+For more help, visit the [Troubleshooting](../troubleshooting/orchestrator-not-connecting) section or contact support.

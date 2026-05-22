@@ -1,204 +1,165 @@
 # Glossary
 
-Key terms used throughout the Autonomy Edge platform and IEC 61131-3 PLC programming documentation.
+A quick reference for the vocabulary the platform uses. This is what the words on screen actually mean.
 
----
+## Account
 
-## A
+Your Autonomy Edge identity, including credentials, profile, and settings. One account per email.
 
-### Analog Input
-An input signal that represents a continuous range of values (e.g., 0–10V, 4–20mA) rather than a discrete ON/OFF state. Mapped to `%IW` (input word) addresses in IEC 61131-3. Commonly used for sensors measuring temperature, pressure, level, and flow.
+## ACU (AI Credit Unit)
 
-### Analog Output
-An output signal that drives a continuous value (e.g., 0–10V, 4–20mA) to an actuator. Mapped to `%QW` (output word) addresses. Used for controlling variable-speed drives, proportional valves, and other modulating devices.
+The credit consumed by AI Engineer jobs. Two pools: monthly allowance and extra credits (never expire). See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
 
----
+## Agent (Orchestrator Agent)
 
-## B
+The Python+Docker daemon that runs on your edge device. Pairs with the cloud via mTLS WebSocket, manages vPLC containers locally. Installed via `curl https://getedge.me | bash`.
 
-### BOOL
-The most basic IEC 61131-3 data type. Represents a single binary value: `TRUE` (1) or `FALSE` (0). Used for digital inputs, outputs, flags, and control signals.
+## Audit log
 
----
+A historical record of changes to an organization (membership, settings, billing). Visible on the org's History tab once the feature ships. See **[Org history](../platform/organizations/history)**.
 
-## C
+## Board
 
-### Coil
-In Ladder Diagram, a coil is an output element placed at the right side of a rung. When the rung logic evaluates to TRUE, the coil is energized (sets its associated BOOL variable to TRUE). Variants include normal coils, negated coils, set coils, and reset coils.
+A forum category. URL: `/forum/board/{boardSlug}`. Contains topics. See **[Forum overview](../platform/forum/overview)**.
 
-### Configuration
-The top-level organizational element in IEC 61131-3. A configuration defines the runtime environment, contains one or more Resources, and specifies global variables. In Autonomy Edge, each project has one configuration.
+## Branch
 
-### Contact
-In Ladder Diagram, a contact is an input element placed on a rung. It reads the value of a BOOL variable. Normally-open contacts pass power when TRUE; normally-closed contacts pass power when FALSE.
+A git branch within a project. Defaults to `main`. Used to develop changes in isolation before merging via a pull request.
 
-### Counter
-A standard function block that counts events. IEC 61131-3 defines three counters: CTU (count up), CTD (count down), and CTUD (count up/down). See [Counter Function Blocks](../openplc-editor/standard-function-blocks/counter-blocks).
+## Commit
 
----
+A versioned snapshot of project files with a message, author, and timestamp. See **[Commits and history](../platform/projects/commits-and-history)**.
 
-## D
+## Community plan
 
-### Data Type
-The classification of a variable that determines its range, precision, and allowed operations. IEC 61131-3 defines elementary types (BOOL, INT, REAL, STRING, TIME) and allows user-defined types. See [Data Types Reference](data-types).
+The free tier. Limits: 1 orchestrator, 2 devices, 0 private projects. AI Chat included, AI Engineer not included. See **[Pricing](../plans-and-billing/pricing)**.
 
-### Digital Input
-A binary input signal that is either ON or OFF. Mapped to `%IX` (input bit) addresses. Used for switches, buttons, proximity sensors, and limit switches.
+## Cycle time
 
-### Digital Output
-A binary output signal that drives a load ON or OFF. Mapped to `%QX` (output bit) addresses. Used for relays, contactors, solenoid valves, and indicator lights.
+How often the vPLC runtime executes the main program. Set at project creation. Default `T#20ms`. See **[Creating a project](../platform/projects/creating-a-project)**.
 
----
+## Device (vPLC device)
 
-## E
+A virtual PLC container running on an orchestrator. Has a name, runtime version, NICs. See **[vPLC overview](../platform/vplcs/overview)**.
 
-### Edge Detection
-The process of detecting a transition in a boolean signal. A rising edge (R_TRIG) detects the FALSE-to-TRUE transition. A falling edge (F_TRIG) detects the TRUE-to-FALSE transition. Edge detection is essential for triggering actions on signal changes rather than signal levels.
+## DHCP mode
 
----
+NIC mode where the vPLC gets its IP from your network's DHCP server. Easy, no configuration. Counter-balance: IP can change. See **[Network modes](../platform/vplcs/network-modes)**.
 
-## F
+## Education plan
 
-### FBD (Function Block Diagram)
-One of the five IEC 61131-3 programming languages. FBD uses graphical blocks connected by wires to represent logic flow. Each block performs a function and passes results to connected blocks. Well-suited for data flow and signal processing applications.
+Paid plan for academic institutions. Per-seat pricing, allows same-domain (.edu) invites. See **[Pricing](../plans-and-billing/pricing)**.
 
-### Function (FC)
-A POU that performs a computation and returns a single value. Functions are stateless. They produce the same output for the same inputs every time. Examples: `ABS()`, `SQRT()`, `MAX()`, type conversion functions.
+## Enterprise plan
 
-### Function Block (FB)
-A POU that encapsulates logic with internal state. Unlike Functions, Function Blocks retain their variable values between scan cycles. Each use requires a named instance. Examples: TON (timer), CTU (counter), PID controllers. Function Blocks are the primary mechanism for code reuse in IEC 61131-3.
+Custom-contract plan with unlimited orchestrators/devices and special terms. Contact sales.
 
----
+## Fork
 
-## G
+A copy of a public project, made into a workspace you control. Edit freely, send PRs back. See **[Importing and forking](../platform/projects/importing-and-forking)**.
 
-### Global Variable
-A variable declared with `VAR_GLOBAL` scope that is accessible from multiple POUs within the same configuration. Use global variables sparingly for data that genuinely needs to be shared (e.g., system mode, emergency stop status).
+## IEC 61131-3
 
-### GPIO (General-Purpose Input/Output)
-Physical pins on a hardware platform that can be configured as digital inputs or outputs. Platforms like Raspberry Pi provide GPIO pins that the OpenPLC Runtime can use through the HAL.
+The international standard that defines five PLC programming languages: ST, LD, FBD, IL, SFC. The OpenPLC Editor supports all five.
 
----
+## Invite link
 
-## H
+A reusable URL that adds anyone who clicks it as an organization member. See **[Invite links](../platform/organizations/invite-links)**.
 
-### HAL (Hardware Abstraction Layer)
-The layer in OpenPLC Runtime that maps IEC 61131-3 located variable addresses (`%I`, `%Q`) to physical hardware pins. The HAL configuration is defined in a `hals.json` file and allows the same PLC program to run on different hardware platforms.
+## MACVLAN
 
-### Heartbeat
-A periodic status check sent by the orchestrator to the Autonomy Edge cloud. The heartbeat confirms the orchestrator is online and healthy, and includes basic system metrics like CPU usage, memory, and uptime.
+Docker networking driver that gives a container its own MAC and IP on the physical LAN. The mechanism behind vPLC networking, vPLCs appear as native devices to the rest of the network.
 
----
+## Notification
 
-## I
+A platform-generated alert about an event (PR review request, @mention, plan limit). Both in-app (bell icon, /notifications) and optionally via email. See **[Notifications](../platform/notifications)**.
 
-### I/O Image Table
-An in-memory buffer that holds the current state of all inputs and outputs. At the start of each scan cycle, physical inputs are read into the input image table. At the end, the output image table is written to physical outputs. This ensures consistent I/O within a single scan.
+## OpenPLC
 
-### IEC 61131-3
-The international standard for programmable logic controller (PLC) programming. It defines five programming languages (ST, LD, FBD, IL, SFC), data types, program organization units, and a common execution model. Autonomy Edge supports ST, LD, FBD, and IL.
+The open-source PLC runtime project that Autonomy Edge is built around. Runs inside each vPLC.
 
-### Instance
-A named copy of a Function Block. Each instance has its own set of internal variables and maintains its own state. For example, declaring `Timer1 : TON;` creates an instance of the TON function block named `Timer1`.
+## Orchestrator
 
----
+The cloud-side entity representing an edge device. Hosts vPLCs. See **[Orchestrator overview](../platform/orchestrators/overview)**.
 
-## L
+## Organization
 
-### LD (Ladder Diagram)
-One of the five IEC 61131-3 programming languages. LD resembles electrical relay logic diagrams with power rails, contacts (inputs), and coils (outputs). It is the most widely used PLC language, particularly for discrete control applications.
+A shared workspace for teams. Has its own slug, dashboard, projects, orchestrators, and billing. See **[Organizations overview](../platform/organizations/overview)**.
 
-### Located Variable
-A variable that is bound to a specific physical or logical address in the I/O image table. The address format is `%<type><size><byte>.<bit>`, for example: `%IX0.0` (digital input, byte 0, bit 0), `%QW2` (analog output, word 2).
+## Pinned project
 
----
+A project you've marked as a personal favorite. Visible only to you, in the **Pinned** view of your projects list. See **[Pinning and stars](../platform/projects/pinning-and-stars)**.
 
-## M
+## POU (Program Organization Unit)
 
-### Modbus
-An industrial communication protocol widely used for connecting PLCs to sensors, actuators, and other devices. Modbus TCP operates over Ethernet. The OpenPLC Runtime supports both Modbus client (master) and Modbus server (slave) modes.
+An IEC 61131-3 unit of code: a Program, a Function, or a Function Block. Lives in the editor.
 
----
+## Private project
 
-## O
+A project visible only to invited people. Requires a paid plan to create. See **[Visibility and sharing](../platform/projects/visibility-and-sharing)**.
 
-### OPC-UA
-An industrial communication standard (Open Platform Communications Unified Architecture) for secure, reliable data exchange. The OpenPLC Runtime supports OPC-UA through a plugin for connecting to OPC-UA servers.
+## Project
 
-### Orchestrator
-A software agent that runs on your edge hardware (e.g., Raspberry Pi, industrial gateway) and manages vPLCs. The orchestrator connects securely to the Autonomy Edge cloud, receives commands, deploys programs, and reports status. Install with `curl https://getedge.me | bash`.
+A git-versioned IEC 61131-3 codebase. The fundamental unit of work. See **[Projects overview](../platform/projects/overview)**.
 
----
+## Pro plan
 
-## P
+Paid personal plan. 20 orchestrators, 100 devices, private projects, full AI Engineer. Recommended for solo professionals. See **[Pricing](../plans-and-billing/pricing)**.
 
-### PLC (Programmable Logic Controller)
-A ruggedized computer designed for industrial control applications. PLCs execute cyclic scan programs that read inputs, process logic, and write outputs in a deterministic loop. Autonomy Edge virtualizes PLCs as vPLCs running on edge hardware.
+## Public project
 
-### Plugin
-An extension module for the OpenPLC Runtime that provides additional functionality. Plugins can be written in Python (for protocols, APIs, custom logic) or C/C++ (for high-performance, real-time I/O). Built-in plugins include Modbus, OPC-UA, and S7Comm drivers.
+A project visible to anyone, including non-account-holders. Stars, forks, and PRs from any account.
 
-### POU (Program Organization Unit)
-The building block of IEC 61131-3 programs. There are three types: Programs (top-level executable units assigned to tasks), Function Blocks (reusable stateful components), and Functions (stateless computations). See [POUs](../openplc-editor/iec-concepts/pous).
+## Pull request (PR)
 
-### Program
-A POU type that serves as the top-level executable unit. Programs are assigned to tasks for execution. They can instantiate Function Blocks and call Functions. Each task executes one or more Programs at its configured interval.
+A proposed merge of one branch into another. Reviewable, commentable, mergeable. See **[Pull requests](../platform/projects/pull-requests)**.
 
----
+## Role (org)
 
-## R
+A member's level of access in an organization: Owner, Admin, or Member. See **[Members and roles](../platform/organizations/members-and-roles)**.
 
-### Resource
-An IEC 61131-3 organizational element within a Configuration. A Resource represents a processing unit (CPU) and contains task definitions and program instances. In Autonomy Edge, each configuration typically has one Resource.
+## Runtime user
 
-### Rung
-A single row in a Ladder Diagram, connecting the left power rail to the right power rail through contacts and coils. Each rung represents one logical statement.
+A user account local to a single vPLC. Separate from your Autonomy Edge account. Created on first connect from the editor. See **[Connecting from the editor](../platform/vplcs/connecting-from-editor)**.
 
-### Runtime
-The OpenPLC Runtime software that executes compiled PLC programs. The runtime manages the scan cycle, I/O image tables, plugin loading, and communication protocols. In Autonomy Edge, the runtime powers each vPLC.
+## Slug
 
----
+The username or organization handle in a URL. `/{slug}/dashboard`, `/{slug}/projects`. See **[Workspaces and slugs](../platform/workspaces-and-slugs)**.
 
-## S
+## Star
 
-### S7Comm
-A Siemens proprietary communication protocol used by S7 series PLCs. The OpenPLC Runtime supports S7Comm through a native plugin, enabling communication with Siemens equipment.
+A public "like" on a public project. Counted publicly. See **[Pinning and stars](../platform/projects/pinning-and-stars)**.
 
-### Scan Cycle
-The fundamental execution loop of a PLC program: read inputs → execute logic → write outputs. One complete pass through this loop is one scan cycle. The time to complete one cycle is the scan time. The configured interval between cycles is the scan period (task period).
+## Static mode
 
-### ST (Structured Text)
-One of the five IEC 61131-3 programming languages. ST is a high-level text-based language with Pascal-like syntax. It supports variables, expressions, control flow (IF, CASE, FOR, WHILE), and function calls. See [ST Language Basics](../openplc-editor/programming-languages/structured-text/st-basics).
+NIC mode where you assign a fixed IP, mask, gateway, DNS. Predictable. Use for production. See **[Network modes](../platform/vplcs/network-modes)**.
 
----
+## Team
 
-## T
+A sub-group within an organization. Teams scope project access and notifications. Teams plan and above. See **[Teams](../platform/organizations/teams)**.
 
-### Task
-An execution unit in IEC 61131-3 that defines when and how often Programs run. Tasks have a type (cyclic or event-driven) and a period (e.g., 50 ms). Programs are assigned to tasks, and the runtime executes each task's programs at the configured interval.
+## Teams plan
 
-### Timer
-A standard function block that introduces time-based behavior. IEC 61131-3 defines three timers: TON (on-delay), TOF (off-delay), and TP (pulse). See [Timer Function Blocks](../openplc-editor/standard-function-blocks/timer-blocks).
+Paid collaborative plan. Adds Organizations with members, invitations, invite links, teams. Seat-priced.
 
----
+## Topic (forum)
 
-## V
+A single conversation thread. Contains an original post and replies. Lives under a board.
 
-### Variable
-A named storage location for data in a PLC program. Variables have a name, a data type, and a class (Local, Input, Output, InOut, External, Global, Temp). They are declared in the Variables Table of each POU.
+## Trash
 
-### vPLC (Virtual PLC)
-A software-based PLC running the OpenPLC Runtime on edge hardware, managed by an orchestrator. Instead of dedicated PLC hardware, vPLCs run as isolated processes on Linux devices. They execute standard IEC 61131-3 programs and connect to physical I/O through Modbus, OPC-UA, or GPIO passthrough.
+A holding area for deleted projects. Items can be restored or permanently deleted. See **[Projects list → Trash](../platform/projects/projects-list)**.
 
----
+## vPLC
 
-## W
+Virtual PLC. A Docker container running the OpenPLC runtime on an orchestrator. Behaves on the network like a standalone PLC. See **[vPLC overview](../platform/vplcs/overview)**.
 
-### Watchdog
-A safety mechanism in the OpenPLC Runtime that monitors whether the PLC program is completing scan cycles. If the program becomes unresponsive (e.g., stuck in an infinite loop), the watchdog triggers an error state and logs a warning.
+## Workspace
 
-## What's Next?
+The unit of scoping for projects and orchestrators. Each user has a personal workspace; each organization is a workspace. URL prefix is the slug. See **[Workspaces and slugs](../platform/workspaces-and-slugs)**.
 
-- [Data Types Reference](data-types): Complete IEC 61131-3 data type details
-- [IEC 61131-3 Keywords](iec-keywords): Reserved keywords reference
-- [FAQ](faq): Common questions about Autonomy Edge
+## Where to next
+
+- **Look up keyboard shortcuts** → **[Keyboard shortcuts](keyboard-shortcuts)**.
+- **Bookmarkable URLs** → **[URL cheat sheet](url-cheatsheet)**.
+- **Frequently asked questions** → **[FAQ](faq)**.

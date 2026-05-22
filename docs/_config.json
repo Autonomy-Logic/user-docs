@@ -5,154 +5,238 @@
       "path": "getting-started",
       "items": [
         {
-          "title": "Introduction to Autonomy Edge",
-          "path": "introduction"
+          "title": "What is Autonomy Edge?",
+          "path": "what-is-autonomy-edge"
         },
         {
-          "title": "Desktop Editor vs. Autonomy Edge",
-          "path": "desktop-vs-edge"
+          "title": "Creating your account",
+          "path": "account-and-signup"
         },
         {
-          "title": "Account Setup and Authentication",
-          "path": "account-setup"
-        },
-        {
-          "title": "Dashboard Overview",
-          "path": "dashboard-overview"
-        },
-        {
-          "title": "User Profile Management",
-          "path": "user-profile"
+          "title": "Dashboard tour",
+          "path": "dashboard-tour"
         },
         {
           "title": "Quick Start Guide",
           "path": "quick-start"
-        },
-        {
-          "title": "Editor Desktop vs Autonomy Edge",
-          "path": "editor-desktop-vs-edge"
         }
       ]
     },
     {
-      "title": "Platform Features",
-      "path": "platform-features",
+      "title": "Platform",
+      "path": "platform",
       "items": [
         {
-          "title": "Project Management",
-          "path": "project-management",
+          "title": "Workspaces and slugs",
+          "path": "workspaces-and-slugs"
+        },
+        {
+          "title": "Projects",
+          "path": "projects",
           "items": [
             {
-              "title": "Creating Projects",
-              "path": "creating-projects"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Project Visibility and Sharing",
-              "path": "project-visibility"
+              "title": "Creating a project",
+              "path": "creating-a-project"
             },
             {
-              "title": "Organizing Projects with Folders",
-              "path": "organizing-projects"
+              "title": "Projects list",
+              "path": "projects-list"
             },
             {
-              "title": "Opening and Editing Projects",
-              "path": "opening-editing"
+              "title": "The project page",
+              "path": "project-page"
             },
             {
-              "title": "Managing Projects - Pinning, Recents, and Trash",
-              "path": "managing-projects"
+              "title": "Commits and history",
+              "path": "commits-and-history"
             },
             {
-              "title": "Importing and Exporting Projects",
-              "path": "importing-exporting"
+              "title": "Pull requests",
+              "path": "pull-requests"
+            },
+            {
+              "title": "Importing and forking",
+              "path": "importing-and-forking"
+            },
+            {
+              "title": "Pinning and stars",
+              "path": "pinning-and-stars"
+            },
+            {
+              "title": "Visibility and sharing",
+              "path": "visibility-and-sharing"
             }
           ]
         },
         {
-          "title": "Orchestrator Management",
-          "path": "orchestrator-management",
+          "title": "Orchestrators",
+          "path": "orchestrators",
           "items": [
             {
-              "title": "Understanding Orchestrators",
-              "path": "understanding-orchestrators"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Adding Orchestrators",
-              "path": "adding-orchestrators"
+              "title": "Installing the agent",
+              "path": "installing-the-agent"
             },
             {
-              "title": "Orchestrator Overview",
-              "path": "orchestrator-overview"
+              "title": "Orchestrators list",
+              "path": "orchestrators-list"
+            },
+            {
+              "title": "Orchestrator detail",
+              "path": "orchestrator-detail"
+            },
+            {
+              "title": "Managing orchestrators",
+              "path": "managing-orchestrators"
             }
           ]
         },
         {
-          "title": "Virtual PLC Device Management",
-          "path": "vplc-management",
+          "title": "vPLC devices",
+          "path": "vplcs",
           "items": [
             {
-              "title": "Understanding vPLC Devices",
-              "path": "understanding-vplc"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Creating vPLC Devices",
-              "path": "creating-vplc"
+              "title": "Creating a vPLC",
+              "path": "creating-a-vplc"
             },
             {
-              "title": "Managing Device Status",
-              "path": "managing-status"
+              "title": "vPLC detail",
+              "path": "vplc-detail"
             },
             {
-              "title": "Device Detail View",
-              "path": "device-detail"
+              "title": "Network modes",
+              "path": "network-modes"
+            },
+            {
+              "title": "Connecting from the editor",
+              "path": "connecting-from-editor"
             }
           ]
         },
         {
-          "title": "Community Forum",
+          "title": "Organizations",
+          "path": "organizations",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Creating an organization",
+              "path": "creating-an-org"
+            },
+            {
+              "title": "Organization dashboard",
+              "path": "org-dashboard"
+            },
+            {
+              "title": "Organization profile",
+              "path": "org-profile"
+            },
+            {
+              "title": "Members and roles",
+              "path": "members-and-roles"
+            },
+            {
+              "title": "Invitations",
+              "path": "invitations"
+            },
+            {
+              "title": "Invite links",
+              "path": "invite-links"
+            },
+            {
+              "title": "Teams",
+              "path": "teams"
+            },
+            {
+              "title": "Organization billing",
+              "path": "billing"
+            },
+            {
+              "title": "Organization history",
+              "path": "history"
+            },
+            {
+              "title": "Leaving and deleting",
+              "path": "leaving-and-deleting"
+            }
+          ]
+        },
+        {
+          "title": "Community",
+          "path": "community",
+          "items": [
+            {
+              "title": "Feed",
+              "path": "feed"
+            },
+            {
+              "title": "Trending topics",
+              "path": "trending-topics"
+            },
+            {
+              "title": "Following users and projects",
+              "path": "following-users-and-projects"
+            }
+          ]
+        },
+        {
+          "title": "Forum",
           "path": "forum",
           "items": [
             {
-              "title": "Forum Overview",
-              "path": "forum-overview"
+              "title": "Forum overview",
+              "path": "overview"
             },
             {
-              "title": "Browsing Topics, Categories, and Search",
-              "path": "browsing-categories"
+              "title": "Reading and searching",
+              "path": "reading-and-searching"
             },
             {
-              "title": "Creating a Topic",
-              "path": "creating-topics"
+              "title": "Posting a topic",
+              "path": "posting-a-topic"
             },
             {
-              "title": "Viewing and Replying to Topics",
-              "path": "viewing-and-replying"
+              "title": "Replying and reactions",
+              "path": "replying-and-reactions"
             },
             {
-              "title": "Editing and Deleting Your Own Posts",
-              "path": "editing-your-posts"
+              "title": "Messaging",
+              "path": "messaging"
             },
             {
-              "title": "@Mentions and Attachments",
-              "path": "mentions-and-attachments"
+              "title": "Members directory",
+              "path": "members"
             },
             {
-              "title": "Members Directory",
-              "path": "members-directory"
-            },
-            {
-              "title": "Direct Messages and Group Chats",
-              "path": "direct-messages"
-            },
-            {
-              "title": "Reporting a Post",
-              "path": "reporting-content"
-            },
-            {
-              "title": "Email and Privacy Preferences",
-              "path": "email-preferences"
+              "title": "Moderation",
+              "path": "moderation"
             }
           ]
+        },
+        {
+          "title": "Notifications",
+          "path": "notifications"
+        },
+        {
+          "title": "Autonomy AI assistant",
+          "path": "autonomy-ai-assistant"
+        },
+        {
+          "title": "Search",
+          "path": "search"
         }
       ]
     },
@@ -613,68 +697,72 @@
       ]
     },
     {
-      "title": "Advanced Topics",
-      "path": "advanced-topics",
+      "title": "Account & Settings",
+      "path": "account",
       "items": [
         {
-          "title": "Best Practices",
-          "path": "best-practices",
-          "items": [
-            {
-              "title": "Project Organization",
-              "path": "project-organization"
-            },
-            {
-              "title": "Code Reusability",
-              "path": "code-reusability"
-            },
-            {
-              "title": "Performance Optimization",
-              "path": "performance-optimization"
-            }
-          ]
+          "title": "Your user profile",
+          "path": "user-profile"
         },
         {
-          "title": "Troubleshooting",
-          "path": "troubleshooting",
-          "items": [
-            {
-              "title": "Common Compilation Errors",
-              "path": "compilation-errors"
-            },
-            {
-              "title": "Runtime Debugging",
-              "path": "runtime-debugging"
-            },
-            {
-              "title": "Network and Connectivity Issues",
-              "path": "network-issues"
-            }
-          ]
+          "title": "Editing your profile",
+          "path": "editing-your-profile"
         },
         {
-          "title": "Integration and APIs",
-          "path": "integration-apis",
+          "title": "Settings",
+          "path": "settings",
           "items": [
             {
-              "title": "Edge Functions",
-              "path": "edge-functions"
+              "title": "Profile",
+              "path": "profile"
             },
             {
-              "title": "Custom Libraries",
-              "path": "custom-libraries"
+              "title": "Security → Email",
+              "path": "security-email"
+            },
+            {
+              "title": "Security → Password",
+              "path": "security-password"
+            },
+            {
+              "title": "Privacy",
+              "path": "privacy"
+            },
+            {
+              "title": "Usage",
+              "path": "usage"
+            },
+            {
+              "title": "Billing",
+              "path": "billing"
+            },
+            {
+              "title": "Account",
+              "path": "account"
             }
           ]
         }
       ]
     },
     {
-      "title": "Pricing & Plans",
-      "path": "pricing",
+      "title": "Plans & Billing",
+      "path": "plans-and-billing",
       "items": [
         {
-          "title": "Plans and Features",
-          "path": "plans"
+          "title": "Pricing",
+          "path": "pricing"
+        },
+        {
+          "title": "Plan limits",
+          "path": "plan-limits"
+        },
+        {
+          "title": "AI Credit Units",
+          "path": "ai-credit-units"
+        },
+        {
+          "title": "Upgrading and downgrading",
+          "path": "upgrading-and-downgrading"
         }
       ]
     },
@@ -683,34 +771,48 @@
       "path": "reference",
       "items": [
         {
-          "title": "Data Types Reference",
-          "path": "data-types"
+          "title": "Glossary",
+          "path": "glossary"
         },
         {
-          "title": "IEC 61131-3 Keywords",
-          "path": "iec-keywords"
-        },
-        {
-          "title": "Standard Function Blocks Reference",
-          "path": "function-blocks"
-        },
-        {
-          "title": "Supported Hardware Boards",
-          "path": "hardware-boards"
-        },
-        {
-          "title": "Keyboard Shortcuts",
+          "title": "Keyboard shortcuts",
           "path": "keyboard-shortcuts"
+        },
+        {
+          "title": "URL cheat sheet",
+          "path": "url-cheatsheet"
         },
         {
           "title": "FAQ",
           "path": "faq"
-        },
-        {
-          "title": "Glossary",
-          "path": "glossary"
         }
       ]
+    },
+    {
+      "title": "Troubleshooting",
+      "path": "troubleshooting",
+      "items": [
+        {
+          "title": "Orchestrator not connecting",
+          "path": "orchestrator-not-connecting"
+        },
+        {
+          "title": "vPLC stuck in Stopped",
+          "path": "vplc-stuck-stopped"
+        },
+        {
+          "title": "Plan limit reached",
+          "path": "plan-limit-reached"
+        },
+        {
+          "title": "Verification email not arriving",
+          "path": "email-not-arriving"
+        }
+      ]
+    },
+    {
+      "title": "Changelog",
+      "path": "changelog-link"
     }
   ]
 }

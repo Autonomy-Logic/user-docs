@@ -20,7 +20,7 @@ You don't need a separate "deploy" step. Compilation and deployment happen toget
 Before deploying, make sure you have:
 
 - A project that compiles successfully. See [Project Compilation](project-compilation).
-- An online orchestrator with at least one active device. See [Understanding Orchestrators](../../platform-features/orchestrator-management/understanding-orchestrators).
+- An online orchestrator with at least one active device. See [Understanding Orchestrators](../../platform/orchestrators/overview).
 - An active connection to the target device. See [Connecting to Runtimes](../connecting-to-runtimes).
 
 ## Selecting a Device

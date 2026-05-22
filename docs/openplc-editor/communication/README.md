@@ -114,7 +114,7 @@ When creating a vPLC Device, the platform shows all available serial ports detec
 
 > **Important:** A serial port can only be assigned to **one vPLC at a time**. This is a hardware limitation. Unlike network interfaces, a serial line cannot be shared between multiple devices. If a port is already assigned to another vPLC, it will appear grayed out.
 
-See [Creating vPLC Devices](../../platform-features/vplc-management/creating-vplc) for the full Device creation walkthrough, including serial port configuration.
+See [Creating vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation walkthrough, including serial port configuration.
 
 ## Adding Communication Interfaces
 
