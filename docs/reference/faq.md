@@ -40,7 +40,7 @@ Today: download the project as a zip, then **Import Project** in the destination
 
 ### A commit hash link gives me a 404. Why?
 
-Commit detail pages (full file diffs) are still being built. Use the editor for diffs in the meantime — it shows file-level changes between commits.
+Commit detail pages (full file diffs) are still being built. Use the editor for diffs in the meantime, it shows file-level changes between commits.
 
 ## Orchestrators and vPLCs
 
@@ -88,7 +88,7 @@ Pro is a **personal** plan. Multi-user collaboration is on the **Teams** plan. S
 
 ### How do I leave an organization?
 
-From the org's Members tab, find yourself and click **Leave organization**. You can't leave if you're the only Owner — promote someone else first.
+From the org's Members tab, find yourself and click **Leave organization**. You can't leave if you're the only Owner, promote someone else first.
 
 ### What happens to my account if I delete an org I own?
 
@@ -116,7 +116,7 @@ Grandfathering. Existing items continue to work; only *new* over-the-limit creat
 
 ### Why aren't I getting forum notification emails?
 
-Check **[Settings → Privacy](../account/settings/privacy)** — the toggles for @mentions, replies, digests, and DMs are independently switchable. Also verify your email isn't going to spam.
+Check **[Settings → Privacy](../account/settings/privacy)**, the toggles for @mentions, replies, digests, and DMs are independently switchable. Also verify your email isn't going to spam.
 
 ### How do I report a post?
 

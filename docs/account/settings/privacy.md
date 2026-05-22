@@ -10,8 +10,8 @@ URL: `edge.autonomylogic.com/profile/settings?tab=privacy`.
 
 **Allow group chat invitations** *(toggle, default on)*
 
-- **On** — anyone on the platform can include you in a new group chat in the forum messaging UI.
-- **Off** — when turned off, you don't appear in search results when someone tries to add members to a group chat. New group chats can't include you. Existing group chats are unaffected.
+- **On**: anyone on the platform can include you in a new group chat in the forum messaging UI.
+- **Off**: when turned off, you don't appear in search results when someone tries to add members to a group chat. New group chats can't include you. Existing group chats are unaffected.
 
 1:1 DMs are always allowed.
 
@@ -44,7 +44,7 @@ The first reply triggers an email; subsequent replies are batched into a single 
 
 **Receive an email when someone directly replies to your post** *(toggle, default on)*
 
-Distinct from the above — this fires for replies to *any* of your posts, not just the topic opener.
+Distinct from the above, this fires for replies to *any* of your posts, not just the topic opener.
 
 ## Direct message notifications
 

@@ -8,7 +8,7 @@ Symptoms:
 
 ![Orchestrator card in Inactive state](images/orchestrator-inactive.png)
 
-Work through the checks below in order — the most common causes are at the top.
+Work through the checks below in order, the most common causes are at the top.
 
 ## 1. Did the install command finish?
 
@@ -16,10 +16,10 @@ Re-check the terminal on the edge device. The installer should have ended with a
 
 Common install-time failures:
 
-- **Docker not installed** — the installer offers to install Docker on supported distributions. If you skipped that, install it manually: `curl -fsSL https://get.docker.com | sh`.
-- **Permission denied** — run with `sudo` or as root.
-- **Kernel module missing** — MACVLAN requires the `macvlan` kernel module. Check with `lsmod | grep macvlan`. If absent: `sudo modprobe macvlan`.
-- **Network unreachable** — the installer downloads the agent container from `ghcr.io/autonomy-logic/orchestrator-agent`. Confirm with `docker pull hello-world` to test general Docker network reachability.
+- **Docker not installed**: the installer offers to install Docker on supported distributions. If you skipped that, install it manually: `curl -fsSL https://get.docker.com | sh`.
+- **Permission denied**: run with `sudo` or as root.
+- **Kernel module missing**: MACVLAN requires the `macvlan` kernel module. Check with `lsmod | grep macvlan`. If absent: `sudo modprobe macvlan`.
+- **Network unreachable**: the installer downloads the agent container from `ghcr.io/autonomy-logic/orchestrator-agent`. Confirm with `docker pull hello-world` to test general Docker network reachability.
 
 Once the install finishes cleanly and prints an Orchestrator ID, return to the wizard and paste it.
 
@@ -33,9 +33,9 @@ Fix: re-run `curl https://getedge.me | bash` on the device. It prints a fresh ID
 
 The agent maintains an outbound WebSocket to `edge.autonomylogic.com` on TCP 443. Things that can block it:
 
-- **Corporate firewall** — outbound 443 to `edge.autonomylogic.com` must be allowed.
-- **Outgoing proxy required** — set `HTTP_PROXY` and `HTTPS_PROXY` env vars when starting the agent. Refer to the agent's docs for proxy configuration.
-- **DNS** — verify with `getent hosts edge.autonomylogic.com` on the device. If it fails, check `/etc/resolv.conf`.
+- **Corporate firewall**: outbound 443 to `edge.autonomylogic.com` must be allowed.
+- **Outgoing proxy required**: set `HTTP_PROXY` and `HTTPS_PROXY` env vars when starting the agent. Refer to the agent's docs for proxy configuration.
+- **DNS**: verify with `getent hosts edge.autonomylogic.com` on the device. If it fails, check `/etc/resolv.conf`.
 
 Test reachability:
 
@@ -43,7 +43,7 @@ Test reachability:
 curl -v https://edge.autonomylogic.com 2>&1 | head -20
 ```
 
-You should see a successful TLS handshake (200 OK or 404 from the API root is fine — both prove network reachability).
+You should see a successful TLS handshake (200 OK or 404 from the API root is fine, both prove network reachability).
 
 ## 4. Is the agent container running?
 
@@ -67,9 +67,9 @@ docker logs --tail 100 orchestrator-agent
 
 Common log entries to look for:
 
-- `ConnectionRefusedError` — cloud is blocked or unreachable.
-- `Certificate validation failed` — the device's clock is wrong. Run `ntpdate -u pool.ntp.org` or `timedatectl set-ntp true`.
-- `Unauthorized` — the orchestrator was deleted in the cloud. Re-pair from the wizard, or run `curl https://getedge.me | bash` to regenerate.
+- `ConnectionRefusedError`: cloud is blocked or unreachable.
+- `Certificate validation failed`: the device's clock is wrong. Run `ntpdate -u pool.ntp.org` or `timedatectl set-ntp true`.
+- `Unauthorized`: the orchestrator was deleted in the cloud. Re-pair from the wizard, or run `curl https://getedge.me | bash` to regenerate.
 
 ## 5. Did somebody delete the orchestrator in the cloud?
 

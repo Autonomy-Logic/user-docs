@@ -28,7 +28,7 @@ See **[Pinning and stars](../projects/pinning-and-stars)** for the full breakdow
 
 ## Watching a project
 
-Watch is a future feature. The idea: subscribe to a project's lifecycle events — new releases, milestone PRs, breaking changes — without starring it for endorsement. The button for this lives in the project page header alongside Star and Fork once it ships.
+Watch is a future feature. The idea: subscribe to a project's lifecycle events, new releases, milestone PRs, breaking changes, without starring it for endorsement. The button for this lives in the project page header alongside Star and Fork once it ships.
 
 ## Who follows you
 
@@ -44,7 +44,7 @@ You can navigate to anyone in the list to see their profile, or click **Unfollow
 
 - Following is public. Anyone visiting your profile can see your follower/following counts.
 - You cannot block followers today. If you receive unwelcome attention, report the user via the forum's flagging mechanism (the same Report action used for posts) and the moderators will take action.
-- Group chat invitations are *not* tied to follows — they're tied to a Privacy setting in your account. See **[Settings → Privacy](../../account/settings/privacy)**.
+- Group chat invitations are *not* tied to follows: they're tied to a Privacy setting in your account. See **[Settings → Privacy](../../account/settings/privacy)**.
 
 ## What follows do *not* do
 

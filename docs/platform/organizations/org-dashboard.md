@@ -2,7 +2,7 @@
 
 Each organization has a dashboard that mirrors your personal dashboard layout, but scoped to the organization. URL: `edge.autonomylogic.com/{org-slug}/dashboard`.
 
-![Org dashboard for Autonomy-Mine — banner, projects, orchestrators, feed, trending](images/org-dashboard.png)
+![Org dashboard for Autonomy-Mine, banner, projects, orchestrators, feed, trending](images/org-dashboard.png)
 
 ## How to get there
 
@@ -25,8 +25,8 @@ The banner disappears once the org has an active plan. See **[Org billing](billi
 
 Same shape as the personal dashboard:
 
-- **Projects** card with **+ New** button — lists the org's projects (or "No recent projects" if there are none yet) and a **View all** link.
-- **Orchestrators** card with **Manage orchestrator** button — lists the org's orchestrators.
+- **Projects** card with **+ New** button: lists the org's projects (or "No recent projects" if there are none yet) and a **View all** link.
+- **Orchestrators** card with **Manage orchestrator** button: lists the org's orchestrators.
 
 Note the difference from your personal dashboard: nothing here is yours individually. Everything belongs to the org.
 
@@ -39,7 +39,7 @@ Same feed format as personal, but the activity is org-scoped. Examples:
 - Member added or removed.
 - vPLC deployed.
 
-The **Filter** dropdown is also present, with **Recents** by default. Switching to an *Organization Feeds* entry shows feeds from other orgs you belong to — useful if you want to compare activity across multiple workspaces.
+The **Filter** dropdown is also present, with **Recents** by default. Switching to an *Organization Feeds* entry shows feeds from other orgs you belong to, useful if you want to compare activity across multiple workspaces.
 
 ## Right column
 

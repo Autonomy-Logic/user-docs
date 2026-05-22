@@ -1,6 +1,6 @@
 # AI Credit Units
 
-**AI Credit Units (ACUs)** are the credits that power the **AI Engineer** features — multi-step automation jobs, deeper code generation, longer context windows. They are *not* required for the free **AI Chat** assistant in the Sparkle panel.
+**AI Credit Units (ACUs)** are the credits that power the **AI Engineer** features, multi-step automation jobs, deeper code generation, longer context windows. They are *not* required for the free **AI Chat** assistant in the Sparkle panel.
 
 ![Usage tab showing ACU pools](images/usage-acus.png)
 
@@ -53,10 +53,10 @@ Pick a pack, confirm payment, and the extra credits land in the Extra Credits po
 
 Concrete examples:
 
-- **A short code generation request** in AI Engineer (e.g. "write a TON timer with a 2-second blink") — single-digit ACUs.
-- **A guided refactor** of a function block — tens of ACUs.
-- **A multi-step debug session** with long context — hundreds of ACUs.
-- **A full project scaffold** — possibly thousands of ACUs.
+- **A short code generation request** in AI Engineer (e.g. "write a TON timer with a 2-second blink"), single-digit ACUs.
+- **A guided refactor** of a function block: tens of ACUs.
+- **A multi-step debug session** with long context: hundreds of ACUs.
+- **A full project scaffold**: possibly thousands of ACUs.
 
 Each job shows an estimate before it runs so you can decide whether to proceed.
 
@@ -64,9 +64,9 @@ Each job shows an estimate before it runs so you can decide whether to proceed.
 
 **[Settings → Usage](../account/settings/usage)** is the canonical view. It shows:
 
-- **This month** — used vs allowance, reset date.
-- **Extra credits** — total available.
-- Per-job log (when available) — what each ACU was spent on.
+- **This month**: used vs allowance, reset date.
+- **Extra credits**: total available.
+- Per-job log (when available): what each ACU was spent on.
 
 ## ACUs and organizations
 

@@ -40,7 +40,7 @@ For sign-up verification specifically, go back to `edge.autonomylogic.com/verify
 Some corporate or institutional mail servers block automated emails from new senders by default. To test:
 
 - Try a personal address (Gmail, Outlook, etc.) for the same flow.
-- If the personal email works, the issue is on the corporate mail server — ask your IT to whitelist `noreply@autonomylogic.com` or `*.autonomylogic.com`.
+- If the personal email works, the issue is on the corporate mail server: ask your IT to whitelist `noreply@autonomylogic.com` or `*.autonomylogic.com`.
 
 ## 6. Aliases and plus-addressing
 

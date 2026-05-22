@@ -17,7 +17,7 @@ The Create Organization dialog opens.
 
 | Field | Required | Notes |
 |---|---|---|
-| **Organization name** | Yes | Free text. Used as the display name. The slug is derived from this — *Autonomy Mine* becomes `autonomy-mine`. |
+| **Organization name** | Yes | Free text. Used as the display name. The slug is derived from this, *Autonomy Mine* becomes `autonomy-mine`. |
 | **Description** *(optional)* | No | A one-liner shown on the org's profile. You can edit it later. |
 | **Website** *(optional)* | No | URL. Renders as a link on the org's profile. |
 

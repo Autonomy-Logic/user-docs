@@ -1,6 +1,6 @@
 # vPLC devices
 
-A **vPLC** (virtual PLC) is a Docker container that runs the OpenPLC v4 runtime on your edge hardware. It's the thing that actually executes your project — the scan loop, the I/O, the communication protocols.
+A **vPLC** (virtual PLC) is a Docker container that runs the OpenPLC v4 runtime on your edge hardware. It's the thing that actually executes your project, the scan loop, the I/O, the communication protocols.
 
 You can run multiple vPLCs on a single piece of hardware. Each one is isolated, gets its own IP address on the physical LAN (via MACVLAN), and behaves like a standalone PLC to the rest of the network.
 
@@ -47,7 +47,7 @@ See **[Network modes](network-modes)** for the details on DHCP vs static and how
 
 When you hit the limit, attempting to create another vPLC shows the plan-limit modal:
 
-![Plan limit reached — Device limit reached (2/2) on plan Community](images/vplc-plan-limit.png)
+![Plan limit reached, Device limit reached (2/2) on plan Community](images/vplc-plan-limit.png)
 
 ## Where to next
 

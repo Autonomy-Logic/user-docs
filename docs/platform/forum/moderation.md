@@ -6,8 +6,8 @@ The forum has a small set of moderation controls that surface to ordinary users 
 
 Two badges may appear next to a topic title:
 
-- **📌 Pinned** — sticky topic. Stays near the top of the category for visibility. Used for announcements, FAQs, and pinned threads moderators want everyone to read.
-- **🔒 Locked** — no new replies accepted. Used for resolved threads, off-topic threads kept for reference, or threads that have run their course.
+- **📌 Pinned**: sticky topic. Stays near the top of the category for visibility. Used for announcements, FAQs, and pinned threads moderators want everyone to read.
+- **🔒 Locked**: no new replies accepted. Used for resolved threads, off-topic threads kept for reference, or threads that have run their course.
 
 You can read pinned and locked topics like any other. You just can't reply on locked ones.
 
@@ -17,11 +17,11 @@ Every post (including topic openers) has a **flag icon** at the top-right of the
 
 Reason options typically include:
 
-- **Spam** — promotional content unrelated to the platform.
-- **Off-topic** — fine content but in the wrong place.
-- **Inappropriate** — violates the code of conduct.
-- **Personal data** — accidentally posted credentials, customer info, or other private data.
-- **Other** — anything else. Add a note.
+- **Spam**: promotional content unrelated to the platform.
+- **Off-topic**: fine content but in the wrong place.
+- **Inappropriate**: violates the code of conduct.
+- **Personal data**: accidentally posted credentials, customer info, or other private data.
+- **Other**: anything else. Add a note.
 
 Add an optional note explaining context. Click **Submit report**.
 
@@ -60,8 +60,8 @@ When a moderator acts on a post you authored, you'll get a notification with the
 
 There are two levels:
 
-- **Temporary ban** — you can read, but cannot post, reply, or DM, for a set period. The platform shows you the duration and reason when you try to post.
-- **Permanent ban** — same as temporary, but indefinite.
+- **Temporary ban**: you can read, but cannot post, reply, or DM, for a set period. The platform shows you the duration and reason when you try to post.
+- **Permanent ban**: same as temporary, but indefinite.
 
 Bans are issued by admins after a pattern of behavior. Appeals go through the platform's support channel.
 

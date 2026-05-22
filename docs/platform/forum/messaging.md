@@ -1,10 +1,10 @@
 # Messaging
 
-The forum has built-in **direct messaging** — one-to-one and group chats with anyone on the platform. It's the right tool when a conversation doesn't belong in a public thread.
+The forum has built-in **direct messaging**, one-to-one and group chats with anyone on the platform. It's the right tool when a conversation doesn't belong in a public thread.
 
 URL: `edge.autonomylogic.com/forum/messages`.
 
-![Messaging UI — conversation list on left, chat on right](images/forum-messages.png)
+![Messaging UI, conversation list on left, chat on right](images/forum-messages.png)
 
 ## Layout
 
@@ -28,8 +28,8 @@ You can also start a DM from a user's profile via the **Message** button (when a
 
 Group chat invitations have a privacy setting: **Allow group chat invitations** in **[Settings → Privacy](../../account/settings/privacy)**.
 
-- **On (default)** — anyone can include you in a group chat.
-- **Off** — you stop appearing in the group-chat user picker and nobody can add you to a new group. Existing group chats are unaffected.
+- **On (default)**: anyone can include you in a group chat.
+- **Off**: you stop appearing in the group-chat user picker and nobody can add you to a new group. Existing group chats are unaffected.
 
 1:1 DMs are always allowed today; toggling the privacy setting only affects group chats.
 
@@ -51,10 +51,10 @@ Hit Enter to send. Shift+Enter inserts a newline.
 
 Each message has a small status indicator:
 
-- **Sending** — message hasn't been delivered yet (briefly).
-- **Sent** — delivered to the platform.
-- **Delivered** — pushed to recipient(s).
-- **Read** — at least one recipient has opened the chat since you sent.
+- **Sending**: message hasn't been delivered yet (briefly).
+- **Sent**: delivered to the platform.
+- **Delivered**: pushed to recipient(s).
+- **Read**: at least one recipient has opened the chat since you sent.
 
 In a 1:1 chat the "read" indicator is straightforward. In a group chat, "read" means at least one of the other participants has opened the chat after you sent.
 
@@ -62,8 +62,8 @@ In a 1:1 chat the "read" indicator is straightforward. In a group chat, "read" m
 
 Hover a message you sent. The actions appear:
 
-- **Edit** — within a short window after sending.
-- **Delete** — removes the message for everyone. The thread shows a small "Message deleted" placeholder so nobody is confused by missing context.
+- **Edit**: within a short window after sending.
+- **Delete**: removes the message for everyone. The thread shows a small "Message deleted" placeholder so nobody is confused by missing context.
 
 You cannot edit or delete other people's messages.
 
@@ -86,7 +86,7 @@ You get a notification (in-app and email, controlled in **[Privacy settings](../
 ## Limits
 
 - **Group size** has a soft cap; group chats are intentionally small (typically up to 15–20 members) to keep conversations useful. Beyond that, a public forum thread or an organization is a better tool.
-- **Attachment size** — typically up to 25 MB per file. For larger transfers, share a link.
+- **Attachment size**: typically up to 25 MB per file. For larger transfers, share a link.
 
 ## Where to next
 

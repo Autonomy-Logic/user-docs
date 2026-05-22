@@ -35,10 +35,10 @@ docker logs --tail 100 <container-id>
 
 Common log entries:
 
-- `Cannot allocate memory` — the host doesn't have enough RAM. Stop other vPLCs or upgrade hardware.
-- `address already in use` — the MAC or IP you assigned conflicts with another device. Free it up or switch to DHCP + auto MAC.
-- `parent device 'eth0' is in use` — another container or process is monopolizing the interface. Restart networking on the host.
-- `permission denied on /dev/ttyUSB0` — a serial port you tried to pass through isn't accessible to Docker.
+- `Cannot allocate memory`: the host doesn't have enough RAM. Stop other vPLCs or upgrade hardware.
+- `address already in use`: the MAC or IP you assigned conflicts with another device. Free it up or switch to DHCP + auto MAC.
+- `parent device 'eth0' is in use`: another container or process is monopolizing the interface. Restart networking on the host.
+- `permission denied on /dev/ttyUSB0`: a serial port you tried to pass through isn't accessible to Docker.
 
 ## 4. Network configuration issues
 
@@ -71,7 +71,7 @@ If that fails, your edge device can't reach the registry. Check firewall and DNS
 
 ## 7. Container restart loop
 
-If RESTARTS keeps climbing on the vPLC detail page, the container is crashing repeatedly. Look at logs — there's an error preventing the runtime from initializing.
+If RESTARTS keeps climbing on the vPLC detail page, the container is crashing repeatedly. Look at logs, there's an error preventing the runtime from initializing.
 
 Common causes:
 

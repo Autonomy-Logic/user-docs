@@ -6,8 +6,8 @@ A single **Search projects or users** field lives in the header on the dashboard
 
 The header search is scoped to two entity types:
 
-- **Projects** — public projects across the platform plus your accessible private projects (your own and any in organizations you belong to).
-- **Users** — display names and usernames.
+- **Projects**: public projects across the platform plus your accessible private projects (your own and any in organizations you belong to).
+- **Users**: display names and usernames.
 
 It does **not** search:
 
@@ -29,19 +29,19 @@ For more results than the inline preview shows, click **See all results** to lan
 
 ## Tips for better matches
 
-- **Project IDs** — pasting a short ID (like `cmj4dy45y...`) finds the exact project.
-- **Owner-prefixed names** — typing `thiagoralves/edf-demo` narrows to projects under that owner.
-- **Username with @** — typing `@thiagoralves` jumps straight to user results.
+- **Project IDs**: pasting a short ID (like `cmj4dy45y...`) finds the exact project.
+- **Owner-prefixed names**: typing `thiagoralves/edf-demo` narrows to projects under that owner.
+- **Username with @**: typing `@thiagoralves` jumps straight to user results.
 
 ## Per-section search
 
 Some sections have their own search box that's better-scoped than the header search:
 
-- **Projects list** — search the current workspace's projects only.
-- **Forum** — search topics across categories.
-- **Forum board** — search topics in one category.
-- **Org Members tab** — search members in the org.
-- **Messaging** — search conversation participants and message text.
+- **Projects list**: search the current workspace's projects only.
+- **Forum**: search topics across categories.
+- **Forum board**: search topics in one category.
+- **Org Members tab**: search members in the org.
+- **Messaging**: search conversation participants and message text.
 
 Use those when you know which surface to look on.
 

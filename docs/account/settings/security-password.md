@@ -10,9 +10,9 @@ URL: `edge.autonomylogic.com/profile/settings?tab=security-password`.
 
 Three password fields and a notice:
 
-- **Current password** — your existing password. Required for re-authentication.
-- **New password** — what you want to change to.
-- **Confirm new password** — type it again to catch typos.
+- **Current password**: your existing password. Required for re-authentication.
+- **New password**: what you want to change to.
+- **Confirm new password**: type it again to catch typos.
 
 Notice: *Changing your password will sign you out of all active sessions on every device.*
 
@@ -56,7 +56,7 @@ This flow does not require knowing the current password, so it's the right path 
 
 If you signed up through Apple, Google, or Microsoft SSO, you may not have a password at all. The Password tab in that case shows a notice that your account is managed through your SSO provider; password changes are made on their side, not here.
 
-You can add a password to an SSO account from the Security section if you want fallback access — useful if you ever lose access to your SSO provider.
+You can add a password to an SSO account from the Security section if you want fallback access, useful if you ever lose access to your SSO provider.
 
 ## Where to next
 

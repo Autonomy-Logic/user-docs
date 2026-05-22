@@ -6,14 +6,14 @@ New projects are created through a three-step wizard. The wizard is the same whe
 
 Two ways:
 
-1. **From the dashboard** — the left column **Projects** card has a blue **+ New** button at the top. Click it.
-2. **From the projects list** — click **+ Create new** at the top-left, then choose **New Project** from the dropdown.
+1. **From the dashboard**: the left column **Projects** card has a blue **+ New** button at the top. Click it.
+2. **From the projects list**: click **+ Create new** at the top-left, then choose **New Project** from the dropdown.
 
 ![The Create new dropdown showing New Project, New Folder, and New Library](images/create-new-dropdown.png)
 
-(The dropdown also has **New Folder** for organizing projects and **New Library** for reusable code — both covered in later sections.)
+(The dropdown also has **New Folder** for organizing projects and **New Library** for reusable code, both covered in later sections.)
 
-## Step 1 — Project info
+## Step 1. Project info
 
 ![Step 1: name, folder, description](images/new-project-step1.png)
 
@@ -25,13 +25,13 @@ Two ways:
 
 Click **Next** to continue.
 
-## Step 2 — Configuration
+## Step 2. Configuration
 
 ![Step 2: language and cycle time](images/new-project-step2.png)
 
 | Field | Required | Notes |
 |---|---|---|
-| **Select language** | Yes | The default programming language for new POUs. Pick one of **Structured Text (ST)**, **Ladder Diagram (LD)**, **Function Block Diagram (FBD)**, **Instruction List (IL)**, or **Sequential Function Chart (SFC)**. You can mix languages inside a project later — this just sets the language the editor opens with. |
+| **Select language** | Yes | The default programming language for new POUs. Pick one of **Structured Text (ST)**, **Ladder Diagram (LD)**, **Function Block Diagram (FBD)**, **Instruction List (IL)**, or **Sequential Function Chart (SFC)**. You can mix languages inside a project later, this just sets the language the editor opens with. |
 | **Cycle time** | Yes | How often the PLC runtime executes the main program. Default is `T#20ms`. Click the field to open a time picker with separate day / hour / minute / second / millisecond / microsecond inputs. |
 
 ![The cycle time picker with separate day, hour, min, sec, ms, us inputs](images/new-project-cycle-time.png)
@@ -46,12 +46,12 @@ You can change cycle time later through the editor (it's stored in `project.json
 
 Click **Back** to revisit step 1, **Cancel** to dismiss the wizard, or **Next** to continue.
 
-## Step 3 — Visibility
+## Step 3. Visibility
 
 The last step asks whether the project is **public** or **private**.
 
-- **Public** — anyone can read, star, and fork it. You decide who can write.
-- **Private** — only people you invite can see it.
+- **Public**: anyone can read, star, and fork it. You decide who can write.
+- **Private**: only people you invite can see it.
 
 The Community plan can only create public projects. If your personal plan or organization plan supports private projects, you'll see both options here. See **[Visibility and sharing](visibility-and-sharing)** for the deeper picture and **[Plan limits](../../plans-and-billing/plan-limits)** for which plans allow private projects.
 

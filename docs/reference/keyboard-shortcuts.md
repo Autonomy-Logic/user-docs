@@ -1,6 +1,6 @@
 # Keyboard shortcuts
 
-Shortcuts that work platform-wide (not specific to the OpenPLC Editor — those live in the editor's own docs).
+Shortcuts that work platform-wide (not specific to the OpenPLC Editor, those live in the editor's own docs).
 
 Modifier convention: **Cmd** on macOS, **Ctrl** on Windows and Linux. Both are shown below as **Ctrl/Cmd**.
 

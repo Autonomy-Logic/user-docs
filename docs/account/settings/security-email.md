@@ -8,8 +8,8 @@ URL: `edge.autonomylogic.com/profile/settings?tab=security-email`.
 
 ## What you see
 
-- **Current email** — your verified email with a green **✓ Verified** check.
-- **Change email** button — opens the change-email flow.
+- **Current email**: your verified email with a green **✓ Verified** check.
+- **Change email** button: opens the change-email flow.
 
 A notice below the email box reminds you of the security rule:
 
@@ -42,7 +42,7 @@ Frequent email changes are a common pattern in account-takeover attacks. The coo
 
 If you can sign in with your password (or SSO), you can change emails normally. The verification goes to the *new* address, not the old one.
 
-If you've lost access to both your old email *and* your password/SSO, contact support — there's a manual recovery process.
+If you've lost access to both your old email *and* your password/SSO, contact support, there's a manual recovery process.
 
 ## Where to next
 

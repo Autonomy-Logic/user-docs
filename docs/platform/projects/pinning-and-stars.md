@@ -3,11 +3,11 @@
 Pins and stars are two separate concepts that both look like favoriting. Don't mix them up:
 
 - A **pin** is private. It puts a project in *your* Pinned view so you can find it quickly. Nobody else sees it.
-- A **star** is public. It's like an upvote — anyone visiting the project sees the star count. The platform uses stars to rank popular projects and to populate the *Stars* tab on user profiles.
+- A **star** is public. It's like an upvote: anyone visiting the project sees the star count. The platform uses stars to rank popular projects and to populate the *Stars* tab on user profiles.
 
 ## Pinning a project
 
-Pinning works on any project you can see — your own, a teammate's, or someone else's public project.
+Pinning works on any project you can see, your own, a teammate's, or someone else's public project.
 
 **From the projects list:**
 
@@ -26,7 +26,7 @@ Click the pin icon again to unpin.
 
 ![Pinned projects view, empty state](images/projects-pinned-empty.png)
 
-When empty: *No pinned projects — Pin your favorite projects to see them here.*
+When empty: *No pinned projects. Pin your favorite projects to see them here.*
 
 ### Practical uses for pinning
 
@@ -44,10 +44,10 @@ Click again to unstar.
 
 ### Where stars show up
 
-- **On the project card** in the projects list — count next to the star icon.
-- **On the project page header** — count next to the star button.
-- **On your profile's Stars tab** — every project you've starred, in reverse chronological order.
-- **In dashboard activity feeds** — popular projects gain visibility as they accumulate stars.
+- **On the project card** in the projects list: count next to the star icon.
+- **On the project page header**: count next to the star button.
+- **On your profile's Stars tab**: every project you've starred, in reverse chronological order.
+- **In dashboard activity feeds**: popular projects gain visibility as they accumulate stars.
 
 ### Practical uses for starring
 

@@ -10,7 +10,7 @@ Once an orchestrator is paired you can rename it, regenerate its registration ID
 
 The name change is reflected immediately everywhere the orchestrator is shown (cards, detail page, breadcrumbs, dropdowns in the editor).
 
-The orchestrator's ID and certificate are unchanged — the agent on the device continues to work without intervention.
+The orchestrator's ID and certificate are unchanged, the agent on the device continues to work without intervention.
 
 ## Regenerating the registration ID
 
@@ -38,8 +38,8 @@ It does **not** automatically uninstall the agent on the device. If the device i
 
 There isn't a "pause" action today. To temporarily disconnect:
 
-- Stop the agent container on the device (`docker stop orchestrator-agent`) — the orchestrator goes Inactive in the web app.
-- Start it again (`docker start orchestrator-agent`) — status returns to Active within a few seconds.
+- Stop the agent container on the device (`docker stop orchestrator-agent`): the orchestrator goes Inactive in the web app.
+- Start it again (`docker start orchestrator-agent`): status returns to Active within a few seconds.
 
 vPLCs that were running before the agent stopped keep running. They reconnect to the agent on restart automatically.
 

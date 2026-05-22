@@ -4,9 +4,9 @@ The **Org Profile** tab is where you set the organization's public-facing identi
 
 URL: `edge.autonomylogic.com/organizations/{orgId}` (Org Profile is the default tab).
 
-The fastest way to get here: type `/{org-slug}/settings` in the address bar — the platform redirects you to the right org management URL automatically.
+The fastest way to get here: type `/{org-slug}/settings` in the address bar, the platform redirects you to the right org management URL automatically.
 
-![Organization Profile tab — header, side nav, profile picture uploader, basic info form](images/org-profile.png)
+![Organization Profile tab, header, side nav, profile picture uploader, basic info form](images/org-profile.png)
 
 ## Page layout
 
@@ -22,7 +22,7 @@ Above the side-nav is a compact header with the org logo, name, description, mem
 
 ## Profile picture
 
-A square image that represents the organization across the platform — on the dashboard's Organizations card, in member lists, in activity feed entries.
+A square image that represents the organization across the platform, on the dashboard's Organizations card, in member lists, in activity feed entries.
 
 To upload:
 
@@ -51,22 +51,22 @@ A character counter appears below each field.
 
 Below the basic information section (scroll down to see them):
 
-- **Website** — a URL. Rendered as a link on the org's public profile.
-- **Location** — free-text city/country.
-- **LinkedIn URL** — your org's LinkedIn page.
-- **X (Twitter) URL** — your org's X account.
+- **Website**: a URL. Rendered as a link on the org's public profile.
+- **Location**: free-text city/country.
+- **LinkedIn URL**: your org's LinkedIn page.
+- **X (Twitter) URL**: your org's X account.
 
 Leave any field blank to omit it from the profile.
 
 ## Saving changes
 
-There's no explicit save button per field; each section has its own save action at the bottom. The platform autosaves nothing — make a change, click **Save**, and the change is persisted. If you navigate away with unsaved changes, the platform warns you.
+There's no explicit save button per field; each section has its own save action at the bottom. The platform autosaves nothing, make a change, click **Save**, and the change is persisted. If you navigate away with unsaved changes, the platform warns you.
 
 ## Who can edit
 
-- **Owner** — full edit.
-- **Admin** — full edit.
-- **Member** — read-only. The form fields are visible but disabled.
+- **Owner**: full edit.
+- **Admin**: full edit.
+- **Member**: read-only. The form fields are visible but disabled.
 
 ## Where to next
 

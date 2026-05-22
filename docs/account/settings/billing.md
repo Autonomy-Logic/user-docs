@@ -4,7 +4,7 @@ The Billing section shows your **personal** subscription and billing history. (O
 
 URL: `edge.autonomylogic.com/profile/settings?tab=billing`.
 
-![Settings → Billing — current plan and billing history](images/billing.png)
+![Settings → Billing, current plan and billing history](images/billing.png)
 
 ## Current plan card
 
@@ -19,24 +19,24 @@ The top card shows the plan you're on and its key metadata:
 
 Actions available depending on plan and status:
 
-- **Change plan** — opens the pricing page to upgrade or downgrade.
-- **Cancel subscription** — paid plans only. Cancels at the end of the current billing cycle.
-- **Manage payment method** — paid plans only. Add, remove, or change default card.
-- **Update billing address** — paid plans only.
+- **Change plan**: opens the pricing page to upgrade or downgrade.
+- **Cancel subscription**: paid plans only. Cancels at the end of the current billing cycle.
+- **Manage payment method**: paid plans only. Add, remove, or change default card.
+- **Update billing address**: paid plans only.
 
 ## Billing history
 
 Below the current plan card, a section labeled **Billing history**.
 
-For Community (free) accounts: *No billing activity yet — Payments and plan changes will appear here.*
+For Community (free) accounts: *No billing activity yet. Payments and plan changes will appear here.*
 
 For paid accounts, each row is one event:
 
 - **Date.**
-- **Description** — e.g. *Pro plan annual renewal*, *ACU top-up 10,000*, *Plan downgrade to Community*.
+- **Description**: e.g. *Pro plan annual renewal*, *ACU top-up 10,000*, *Plan downgrade to Community*.
 - **Amount.**
-- **Status** — Paid, Refunded, Failed.
-- **Invoice** — download icon to grab the PDF.
+- **Status**: Paid, Refunded, Failed.
+- **Invoice**: download icon to grab the PDF.
 
 ## Payment methods
 

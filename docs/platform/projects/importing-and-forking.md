@@ -8,10 +8,10 @@ From the **[projects list](projects-list)**, click **Import Project** at the top
 
 The Import dialog asks for:
 
-- **Project archive** — a `.zip` or OpenPLC project folder. The platform accepts archives created by the OpenPLC desktop editor as well as zipped folders that follow the standard project layout (`programs/`, `functions/`, `function-blocks/`, `devices/`, `project.json`).
-- **Project name** — defaults to the archive's name; you can override.
-- **Folder** — where to place it in your projects list.
-- **Visibility** — public or private. Same rules as new projects (private requires a paid plan).
+- **Project archive**: a `.zip` or OpenPLC project folder. The platform accepts archives created by the OpenPLC desktop editor as well as zipped folders that follow the standard project layout (`programs/`, `functions/`, `function-blocks/`, `devices/`, `project.json`).
+- **Project name**: defaults to the archive's name; you can override.
+- **Folder**: where to place it in your projects list.
+- **Visibility**: public or private. Same rules as new projects (private requires a paid plan).
 
 Click **Import**. The platform extracts the archive, validates the project structure, creates the git repository, and lands you on the new project's Code tab. The first commit is named *Initial commit* and is authored by *Autonomy Edge*.
 

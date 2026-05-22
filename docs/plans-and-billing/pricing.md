@@ -2,7 +2,7 @@
 
 Autonomy Edge has five plans: **Community**, **Education**, **Pro**, **Teams**, and **Enterprise**. The public pricing page is at `edge.autonomylogic.com/pricing` and includes a Monthly / Annual toggle.
 
-![Pricing page — annual billing, five plans](images/pricing-annual.png)
+![Pricing page, annual billing, five plans](images/pricing-annual.png)
 
 ## The plans at a glance
 
@@ -10,13 +10,13 @@ Prices below are the **annual** rates (the lower per-month figure). Monthly bill
 
 | Plan | Price (annual) | ACUs/mo | Orchestrators | Devices | Private projects | AI Engineer | Trial | Best for |
 |---|---|---|---|---|---|---|---|---|
-| **Community** | Free | — | 1 | 2 | 0 | – | – | Trying things out, hobby, public sharing |
+| **Community** | Free | – | 1 | 2 | 0 | – | – | Trying things out, hobby, public sharing |
 | **Education** | $7.50/seat/mo | 1,125 | 1 | 10 / seat | ✓ | ✓ | – | Classrooms, training centers (.edu) |
 | **Pro** *(recommended)* | $40.83/mo | 6,125 | 20 | 100 | ✓ | ✓ | 14 days | Individuals running real production setups |
 | **Teams** | $82.50/seat/mo | 12,375 | 5 / seat | 20 / seat | ✓ | ✓ | 14 days | Multi-person teams, OEMs, integrators |
 | **Enterprise** | Custom | Custom | Unlimited | Unlimited | ✓ | ✓ | – | Large orgs, special agreements, on-prem |
 
-![Pricing page — monthly billing toggle on](images/pricing-monthly.png)
+![Pricing page, monthly billing toggle on](images/pricing-monthly.png)
 
 ## What each plan includes
 
@@ -25,7 +25,7 @@ Prices below are the **annual** rates (the lower per-month figure). Monthly bill
 - IEC 61131-3 editor with Ladder, FBD, and Structured Text.
 - Built-in PLC simulator for testing without hardware.
 - Version control with commits, branches, history.
-- **AI Chat assistant** (the in-page chat panel — different from AI Engineer).
+- **AI Chat assistant** (the in-page chat panel: different from AI Engineer).
 - **Public projects only.** No private projects.
 - 1 Orchestrator, 2 Devices.
 
@@ -35,7 +35,7 @@ Everyone starts here. Stay here as long as the limits work for you.
 
 For schools and training centers. Same features as Pro for individual seats, plus:
 
-- **Same-domain invites (.edu)** — invite members within your educational domain.
+- **Same-domain invites (.edu)**: invite members within your educational domain.
 - Designed for classrooms; the per-seat pricing scales with how many students you bring on.
 - 1 Orchestrator, 10 Devices per seat.
 
@@ -46,7 +46,7 @@ Verification of educational use may be required.
 A personal plan for solo professionals who need more than the Community limits:
 
 - **Private projects.**
-- **Full AI Engineer access** — the ACU-driven automation features.
+- **Full AI Engineer access**: the ACU-driven automation features.
 - 20 Orchestrators, 100 Devices.
 - 6,125 ACUs/month.
 - 14-day trial.
@@ -73,7 +73,7 @@ For large organizations, OEMs with custom agreements, on-prem deployments:
 - Custom contract terms.
 - Same organization features as Teams, expanded.
 - Full AI Engineer access.
-- "Contact sales" — no self-serve checkout.
+- "Contact sales": no self-serve checkout.
 
 Reach out to sales for pricing.
 
@@ -89,7 +89,7 @@ Decision tree:
 
 ## How billing works
 
-- **Monthly** vs **Annual** — annual cycles are ~20% cheaper. Pick what works for your finance flow.
+- **Monthly** vs **Annual**: annual cycles are ~20% cheaper. Pick what works for your finance flow.
 - **Per-seat plans** (Education, Teams) bill based on the number of members in your organization. Add seats as you invite people; the platform pro-rates the charge.
 - **Personal vs organization plans are separate.** Your Pro plan doesn't extend to an org you belong to.
 

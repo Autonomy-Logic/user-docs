@@ -1,6 +1,6 @@
 # Settings → Profile
 
-The Profile tab in your account settings is where your public-facing identity lives — name, username, bio, avatar, location, and time zone.
+The Profile tab in your account settings is where your public-facing identity lives, name, username, bio, avatar, location, and time zone.
 
 URL: `edge.autonomylogic.com/profile/settings?tab=profile`. Default tab when you open settings.
 
@@ -26,11 +26,11 @@ Clicking the avatar opens the upload dialog (PNG/JPG/GIF, square, up to 2 MB). S
 
 ## Profile information
 
-- **Name** — your display name. 80 characters max.
-- **Username** — your unique handle. 3–30 characters, lowercase + digits + `-` + `_`.
-- **Bio** — multi-line free text, up to 500 characters. Plain text.
-- **Location** — free text.
-- **Time zone** — dropdown of IANA time zones (*UTC*, *America/New_York*, *Europe/Berlin*, *Asia/Tokyo*, etc.).
+- **Name**: your display name. 80 characters max.
+- **Username**: your unique handle. 3–30 characters, lowercase + digits + `-` + `_`.
+- **Bio**: multi-line free text, up to 500 characters. Plain text.
+- **Location**: free text.
+- **Time zone**: dropdown of IANA time zones (*UTC*, *America/New_York*, *Europe/Berlin*, *Asia/Tokyo*, etc.).
 
 A **Save changes** button at the bottom commits all of the above in one shot.
 
@@ -47,12 +47,12 @@ A **Save changes** button at the bottom commits all of the above in one shot.
 
 ## Related sections
 
-- **[Settings → Security → Email](security-email)** — change your account email.
-- **[Settings → Security → Password](security-password)** — change your account password.
-- **[Settings → Privacy](privacy)** — DM and notification controls.
-- **[Settings → Usage](usage)** — AI credits and plan limits.
-- **[Settings → Billing](billing)** — your personal subscription.
-- **[Settings → Account](account)** — delete your account.
+- **[Settings → Security → Email](security-email)**: change your account email.
+- **[Settings → Security → Password](security-password)**: change your account password.
+- **[Settings → Privacy](privacy)**: DM and notification controls.
+- **[Settings → Usage](usage)**: AI credits and plan limits.
+- **[Settings → Billing](billing)**: your personal subscription.
+- **[Settings → Account](account)**: delete your account.
 
 ## Where to next
 

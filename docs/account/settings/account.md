@@ -1,10 +1,10 @@
 # Settings → Account
 
-The Account section is for deleting your account. There's nothing else here — it's intentionally a single-purpose page so the destructive action stays separate from everyday settings.
+The Account section is for deleting your account. There's nothing else here, it's intentionally a single-purpose page so the destructive action stays separate from everyday settings.
 
 URL: `edge.autonomylogic.com/profile/settings?tab=account`.
 
-![Settings → Account — Danger zone with Delete my account button](images/account-danger-zone.png)
+![Settings → Account, Danger zone with Delete my account button](images/account-danger-zone.png)
 
 ## Danger zone
 
@@ -25,7 +25,7 @@ A red **Delete my account** button below the description.
 - Your profile fields (name, bio, avatar, location, time zone).
 - Your follows and stars.
 - Your notification history.
-- Your DM threads as a participant — the thread stays for the other participant, but your side shows `[deleted]`.
+- Your DM threads as a participant: the thread stays for the other participant, but your side shows `[deleted]`.
 
 **Kept but attributed to `[deleted]`:**
 
@@ -51,7 +51,7 @@ There's a short grace period (typically 7 days) during which the account is soft
 ## Reasons people consider this
 
 - **Switching jobs / accounts.** Better to keep the existing account and just edit your email/profile, unless you really want a clean break.
-- **Closing a personal account to use only an org's slug.** Doesn't quite work — you need a user account to be an org member. Demote yourself to Member instead.
+- **Closing a personal account to use only an org's slug.** Doesn't quite work: you need a user account to be an org member. Demote yourself to Member instead.
 - **Privacy/GDPR.** Legitimate reason. The deletion will permanently remove personally identifying fields.
 
 ## Recovering after deletion (within the grace period)

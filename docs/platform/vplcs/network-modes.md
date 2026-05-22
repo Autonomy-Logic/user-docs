@@ -4,7 +4,7 @@ Every vPLC has at least one virtual NIC. Two things about that NIC determine how
 
 ## MACVLAN, in one paragraph
 
-Behind the scenes, every NIC you configure uses Docker's **MACVLAN** driver. MACVLAN gives the vPLC container its own MAC and IP address on the physical network — *not* an internal Docker bridge IP that gets NAT'd. From the perspective of every other device on your LAN, a vPLC is just another piece of hardware with its own MAC. Switches, routers, DHCP servers, and Modbus slaves all treat it the same as they would a standalone PLC.
+Behind the scenes, every NIC you configure uses Docker's **MACVLAN** driver. MACVLAN gives the vPLC container its own MAC and IP address on the physical network, *not* an internal Docker bridge IP that gets NAT'd. From the perspective of every other device on your LAN, a vPLC is just another piece of hardware with its own MAC. Switches, routers, DHCP servers, and Modbus slaves all treat it the same as they would a standalone PLC.
 
 This is the difference that matters: regular `docker run` containers hide behind their host. vPLCs do not.
 
@@ -74,7 +74,7 @@ Each NIC is configured independently: its own physical port, its own network mod
 
 ## Dynamic network adaptation
 
-The agent watches the host's network configuration. If the host moves to a new network (different subnet, different DHCP lease), the agent re-runs MACVLAN setup for each vPLC automatically — DHCP NICs get new IPs and Static NICs keep their addresses. You don't need to bounce containers manually.
+The agent watches the host's network configuration. If the host moves to a new network (different subnet, different DHCP lease), the agent re-runs MACVLAN setup for each vPLC automatically. DHCP NICs get new IPs and Static NICs keep their addresses. You don't need to bounce containers manually.
 
 For deeper details on the network monitor sidecar, see the orchestrator agent's own repo. For end users, "it just works when the network changes" is the take-away.
 
@@ -84,12 +84,12 @@ The 3-dot menu on a vPLC card has **Edit**, which reopens the Add Device wizard 
 
 ## Troubleshooting
 
-- **vPLC starts but Internal IP shows `N/A`** — DHCP server not reachable from the chosen physical port, or no DHCP server on that subnet.
-- **Static IP collisions** — two devices answering for the same IP cause connectivity to flap. Use `ping -c 3 <ip>` from another host while the vPLC is **Stopped** to verify the IP is free.
-- **MAC duplicates** — if you set a manual MAC that collides with another device, the switch will get confused. Stick to locally administered MAC prefixes.
+- **vPLC starts but Internal IP shows `N/A`**: DHCP server not reachable from the chosen physical port, or no DHCP server on that subnet.
+- **Static IP collisions**: two devices answering for the same IP cause connectivity to flap. Use `ping -c 3 <ip>` from another host while the vPLC is **Stopped** to verify the IP is free.
+- **MAC duplicates**: if you set a manual MAC that collides with another device, the switch will get confused. Stick to locally administered MAC prefixes.
 
 ## Where to next
 
 - **Create a vPLC with a specific network config** → **[Creating a vPLC](creating-a-vplc)**.
 - **Verify the assigned IP and gateway** → **[vPLC detail](vplc-detail)**.
-- **Talk to the vPLC over Modbus, OPC-UA, etc.** → **[OpenPLC Editor — Communication](../../openplc-editor/connecting-to-runtimes)**.
+- **Talk to the vPLC over Modbus, OPC-UA, etc.** → **[OpenPLC Editor: Communication](../../openplc-editor/connecting-to-runtimes)**.

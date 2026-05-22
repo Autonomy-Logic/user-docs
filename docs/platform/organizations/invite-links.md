@@ -1,6 +1,6 @@
 # Invite links
 
-Invite links are reusable URLs that let anyone with the link join your organization. They're best for known cohorts — a class of students, a team you've already onboarded elsewhere — where you don't want to type 30 emails.
+Invite links are reusable URLs that let anyone with the link join your organization. They're best for known cohorts, a class of students, a team you've already onboarded elsewhere, where you don't want to type 30 emails.
 
 > **Locked on Community.** Requires Teams or Education plan.
 
@@ -15,9 +15,9 @@ URL: `edge.autonomylogic.com/organizations/{orgId}` → click **Invite Links** i
 
 Invite links can have:
 
-- **A maximum number of uses** — once exhausted, the link stops working.
-- **An expiration date** — after that date, the link stops working.
-- **Both, neither, or one of the above** — your call when you create it.
+- **A maximum number of uses**: once exhausted, the link stops working.
+- **An expiration date**: after that date, the link stops working.
+- **Both, neither, or one of the above**: your call when you create it.
 
 ## Creating a link
 
@@ -46,10 +46,10 @@ Each row shows:
 
 ## Per-link actions (3-dot menu)
 
-- **Copy link** — copies the URL to clipboard.
-- **View members who joined via this link** — opens a sub-view showing every member who used this link to join.
-- **Edit** — change role, max uses, or expiration.
-- **Revoke** — deactivates the link immediately. People who already joined keep their membership; the link itself stops accepting new joins.
+- **Copy link**: copies the URL to clipboard.
+- **View members who joined via this link**: opens a sub-view showing every member who used this link to join.
+- **Edit**: change role, max uses, or expiration.
+- **Revoke**: deactivates the link immediately. People who already joined keep their membership; the link itself stops accepting new joins.
 
 ## Removing members who joined through a link
 

@@ -4,11 +4,11 @@ The Usage section shows your AI Credit Units (ACUs) and your current consumption
 
 URL: `edge.autonomylogic.com/profile/settings?tab=usage`.
 
-![Settings → Usage — ACU balance and quotas](images/usage.png)
+![Settings → Usage, ACU balance and quotas](images/usage.png)
 
 ## AI Credit Units (ACUs)
 
-ACUs power the **AI Engineer** features — multi-step automation jobs, deeper code generation, longer context windows. They don't apply to the free **AI Chat** assistant.
+ACUs power the **AI Engineer** features, multi-step automation jobs, deeper code generation, longer context windows. They don't apply to the free **AI Chat** assistant.
 
 Two pools:
 
@@ -16,17 +16,17 @@ Two pools:
 
 Your monthly allowance. Refills at the start of every billing cycle.
 
-- **{used} / {total} ACU** — current consumption.
-- **Resets on {date}** — next refill date.
+- **{used} / {total} ACU**: current consumption.
+- **Resets on {date}**: next refill date.
 - Progress bar shows percent consumed.
 
 Unused monthly ACUs do **not** carry over. If you don't use them this cycle, they're gone.
 
-### Extra credits — never expire
+### Extra credits, never expire
 
 A separate balance you've topped up with one-time purchases.
 
-- **{amount} ACU available** — total extra credits.
+- **{amount} ACU available**: total extra credits.
 - "Never expire" badge.
 - "No top-ups purchased yet" if you haven't bought any.
 
@@ -47,9 +47,9 @@ When you run an AI Engineer job:
 
 Below the ACU card, a **Usage** section shows your consumption against plan-imposed quotas. Three bars:
 
-- **Orchestrators** — N / M used.
-- **Devices** — N / M used.
-- **Private projects** — N / M used.
+- **Orchestrators**: N / M used.
+- **Devices**: N / M used.
+- **Private projects**: N / M used.
 
 A bar turns **red** when you've reached or exceeded the limit. If you exceed (typically because of a recent downgrade), existing items continue working but you can't create new ones until you're back under the limit.
 

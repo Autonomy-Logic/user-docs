@@ -29,7 +29,7 @@ For each member, a row shows:
 A toolbar at the top usually has:
 
 - Search box to filter by name or email.
-- **Invite member** button (opens the invite dialog — see **[Invitations](invitations)**).
+- **Invite member** button (opens the invite dialog: see **[Invitations](invitations)**).
 - Filter by role.
 
 ## Changing a member's role
@@ -40,7 +40,7 @@ A toolbar at the top usually has:
 
 The change is immediate. The affected member gets a notification.
 
-You cannot demote the last Owner. The platform requires at least one Owner at all times — promote someone else first, then demote yourself.
+You cannot demote the last Owner. The platform requires at least one Owner at all times, promote someone else first, then demote yourself.
 
 ## Removing a member
 
@@ -56,8 +56,8 @@ You can re-invite a removed member later with **Invitations**.
 
 A member sees a slightly different menu:
 
-- **Leave organization** — voluntarily exit. See **[Leaving and deleting](leaving-and-deleting)**.
-- **View profile** — open their own profile.
+- **Leave organization**: voluntarily exit. See **[Leaving and deleting](leaving-and-deleting)**.
+- **View profile**: open their own profile.
 
 ## Audit trail
 

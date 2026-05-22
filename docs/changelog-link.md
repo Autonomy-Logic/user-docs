@@ -20,10 +20,10 @@ Each entry has:
 
 Recent highlights (as of writing):
 
-- **v1.3.0** (March 18, 2026) — **Added** AI Chat Assistant (sparkle button + ⌘J shortcut), Feedback system.
-- **v1.2.3** (February 25, 2026) — **Fixed** Add New Device modal layout on smaller screens.
-- **v1.2.2** (February 24, 2026) — **Fixed** Email verification token on sign-up, Resend verification email.
-- **v1.2.1** (February 19, 2026) — **Fixed** Stale content after deploys (removed the PWA/Service Worker that was caching outdated frontends).
+- **v1.3.0** (March 18, 2026): **Added** AI Chat Assistant (sparkle button + ⌘J shortcut), Feedback system.
+- **v1.2.3** (February 25, 2026): **Fixed** Add New Device modal layout on smaller screens.
+- **v1.2.2** (February 24, 2026): **Fixed** Email verification token on sign-up, Resend verification email.
+- **v1.2.1** (February 19, 2026): **Fixed** Stale content after deploys (removed the PWA/Service Worker that was caching outdated frontends).
 
 ## Why this is a one-page reference
 

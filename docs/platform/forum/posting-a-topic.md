@@ -4,7 +4,7 @@ A **topic** is the unit of conversation in the forum. To start one, you need a s
 
 URL: `edge.autonomylogic.com/forum/new-topic`. Reached by clicking **+ New Topic** from the forum home or any board page.
 
-![New Topic page — categories, title, rich-text editor, attachments](images/forum-new-topic.png)
+![New Topic page, categories, title, rich-text editor, attachments](images/forum-new-topic.png)
 
 ## Pick a category
 
@@ -23,7 +23,7 @@ The first thing the page asks for is the category. A row of chips lists every av
 
 If you arrived here from a board page, the category is pre-selected. You can change it.
 
-Pick the most specific category that fits. The wrong category usually leads to fewer responses — wrong-category topics often get moved by moderators, but it costs an hour or two.
+Pick the most specific category that fits. The wrong category usually leads to fewer responses, wrong-category topics often get moved by moderators, but it costs an hour or two.
 
 ## Topic title
 
@@ -31,14 +31,14 @@ Below the categories, a large **Topic title** field. Some guidance:
 
 - Be specific. "ModbusTCP server in OpenPLC won't accept connections from Schneider M580" beats "Modbus problem".
 - Lead with the noun, not "Help with" or "Question about".
-- 60–80 characters is a sweet spot — long enough to be descriptive, short enough to fit in the topic list.
+- 60–80 characters is a sweet spot: long enough to be descriptive, short enough to fit in the topic list.
 
 ## The editor
 
 Below the title is a rich-text editor with two tabs:
 
-- **Write** — markdown editor where you type your post.
-- **Preview** — rendered view to verify formatting before publishing.
+- **Write**: markdown editor where you type your post.
+- **Preview**: rendered view to verify formatting before publishing.
 
 The toolbar across the top has the standard formatting actions:
 
@@ -55,7 +55,7 @@ The toolbar across the top has the standard formatting actions:
 | 1. | Numbered list. |
 | `"` | Block quote. |
 
-The editor accepts markdown syntax directly — typing `**bold**` produces bold without using the toolbar.
+The editor accepts markdown syntax directly, typing `**bold**` produces bold without using the toolbar.
 
 ## Attaching files
 
@@ -63,9 +63,9 @@ Below the editor body is the attachment area: *Paste, drop, or click to add file
 
 Three ways to attach:
 
-- **Paste** — Cmd/Ctrl+V from the clipboard. Useful for screenshots.
-- **Drag and drop** — drag files from your file manager into the area.
-- **Click** — opens a file picker.
+- **Paste**: Cmd/Ctrl+V from the clipboard. Useful for screenshots.
+- **Drag and drop**: drag files from your file manager into the area.
+- **Click**: opens a file picker.
 
 Common attachments:
 
@@ -74,16 +74,16 @@ Common attachments:
 - Small project zips (under 10 MB).
 - Logs as `.txt` or `.log` files.
 
-Large files (videos, big datasets) — link out to YouTube, Google Drive, or GitHub instead of attaching.
+Large files (videos, big datasets), link out to YouTube, Google Drive, or GitHub instead of attaching.
 
 ## Publishing
 
 Top right of the page:
 
-- **Discard** — abandon the draft and go back.
-- **Publish Topic** — publish and land on the thread page. The topic appears in its category immediately.
+- **Discard**: abandon the draft and go back.
+- **Publish Topic**: publish and land on the thread page. The topic appears in its category immediately.
 
-Drafts are not saved server-side today — if you close the browser without publishing, your work is lost. Save important drafts in a markdown file or paste them into a private note while writing.
+Drafts are not saved server-side today, if you close the browser without publishing, your work is lost. Save important drafts in a markdown file or paste them into a private note while writing.
 
 ## Good-topic checklist
 

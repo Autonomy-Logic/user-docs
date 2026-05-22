@@ -12,13 +12,13 @@ Once you have a project and a vPLC, you connect them through the **[OpenPLC Edit
 
 ## First-time runtime user
 
-The first time anyone connects to a freshly-created vPLC, the runtime prompts for a new user account. **This account lives on the vPLC, not on the cloud** — it's how you authenticate to the runtime itself.
+The first time anyone connects to a freshly-created vPLC, the runtime prompts for a new user account. **This account lives on the vPLC, not on the cloud**, it's how you authenticate to the runtime itself.
 
 Pick:
 
-- **Username** — `admin` is conventional.
-- **Password** — at least 8 characters.
-- **Confirm password** — matches the above.
+- **Username**: `admin` is conventional.
+- **Password**: at least 8 characters.
+- **Confirm password**: matches the above.
 
 Click **Create User**. The runtime stores the credentials and signs you in.
 
@@ -30,14 +30,14 @@ On subsequent connections from any browser, the runtime shows a regular sign-in 
 
 When connected, the editor's bottom-right status bar shows:
 
-- **Connected** — green.
+- **Connected**: green.
 - **PLC Status**: `EMPTY` (no program loaded), `STOPPED`, or `RUNNING`.
 
-You can now use the editor's **Download** button (folder with a down arrow, top-left) to compile and upload your project. If compilation succeeds, the program is sent to the runtime and PLC Status moves to `RUNNING`. The **Scan Cycle Statistics** panel becomes useful at this point — it shows live scan counts, average scan time, and overruns.
+You can now use the editor's **Download** button (folder with a down arrow, top-left) to compile and upload your project. If compilation succeeds, the program is sent to the runtime and PLC Status moves to `RUNNING`. The **Scan Cycle Statistics** panel becomes useful at this point, it shows live scan counts, average scan time, and overruns.
 
 ## Reconnecting after a refresh
 
-Browser refresh disconnects the editor from the runtime. Just click **Connect** again — the editor remembers which vPLC you were on.
+Browser refresh disconnects the editor from the runtime. Just click **Connect** again, the editor remembers which vPLC you were on.
 
 ## What happens if the orchestrator goes offline
 

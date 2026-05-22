@@ -4,8 +4,8 @@ Every URL on Autonomy Edge starts with a **slug**. The slug tells the platform w
 
 ## The two kinds of workspaces
 
-- **Personal workspace** — created automatically when you sign up. Its slug is your username. URLs look like `edge.autonomylogic.com/{your-username}/...`. Anything you create that isn't tied to an organization lives here.
-- **Organization workspace** — created when you (or someone else) creates an organization. Its slug is the organization's slug, e.g. `autonomy-mine`. URLs look like `edge.autonomylogic.com/{org-slug}/...`. Organization members share everything in this workspace.
+- **Personal workspace**: created automatically when you sign up. Its slug is your username. URLs look like `edge.autonomylogic.com/{your-username}/...`. Anything you create that isn't tied to an organization lives here.
+- **Organization workspace**: created when you (or someone else) creates an organization. Its slug is the organization's slug, e.g. `autonomy-mine`. URLs look like `edge.autonomylogic.com/{org-slug}/...`. Organization members share everything in this workspace.
 
 Both kinds of workspace use the same routes. `/{slug}/dashboard`, `/{slug}/projects`, `/{slug}/orchestrators` are all valid for *any* slug you have access to. The page layout is identical; only the content (projects, orchestrators, activity feed) changes.
 

@@ -1,6 +1,6 @@
 # Autonomy AI assistant
 
-Every protected page has a sparkle button (✨) in the bottom-right. Click it (or press **⌘J** on macOS / **Ctrl+J** on Windows and Linux) to open the **Autonomy AI** assistant — an in-app chat trained on the platform's own documentation.
+Every protected page has a sparkle button (✨) in the bottom-right. Click it (or press **⌘J** on macOS / **Ctrl+J** on Windows and Linux) to open the **Autonomy AI** assistant, an in-app chat trained on the platform's own documentation.
 
 ![The AI chat panel open over the Changelog page](images/autonomy-ai-chat.png)
 
@@ -24,7 +24,7 @@ It's designed to:
 
 - **Take actions for you.** It can tell you how to create a project, but it doesn't click the buttons.
 - **Access private data it shouldn't.** It can see your own workspace because you authenticated; it can't see anyone else's private projects.
-- **Make up information confidently.** If it doesn't know, it'll say so or point you to the docs to read directly. (Pay attention if it volunteers something with too much certainty — sanity-check unusual claims.)
+- **Make up information confidently.** If it doesn't know, it'll say so or point you to the docs to read directly. (Pay attention if it volunteers something with too much certainty, sanity-check unusual claims.)
 
 ## Opening and closing
 
@@ -32,20 +32,20 @@ It's designed to:
 - **Close**: click **×** in the panel header, press **Esc**, or press the shortcut again.
 - **Expand to full screen**: click the corner-expand icon next to the **×**.
 
-The shortcut works from anywhere — the dashboard, a project, the editor, the forum.
+The shortcut works from anywhere, the dashboard, a project, the editor, the forum.
 
 ## The chat panel
 
 When opened, the panel docks to the right side of the screen.
 
-- **Header** — *New Chat* (with a BETA badge), a chat-history icon, expand, and close.
-- **Chat history icon** — list of your prior conversations.
-- **Conversation area** — your messages on the right, assistant responses on the left.
-- **Input field** — *Ask a question to the AI…*, with a send button.
+- **Header**: *New Chat* (with a BETA badge), a chat-history icon, expand, and close.
+- **Chat history icon**: list of your prior conversations.
+- **Conversation area**: your messages on the right, assistant responses on the left.
+- **Input field**: *Ask a question to the AI…*, with a send button.
 
 The assistant's first message in a fresh chat is a brief intro:
 
-> Hi, I'm **Autonomy AI**, your assistant for the Autonomy Edge platform. I'm here to help you with everything you need. I'm grounded on the full Autonomy Edge documentation — ask me anything about the platform, and I'll guide you through how things work.
+> Hi, I'm **Autonomy AI**, your assistant for the Autonomy Edge platform. I'm here to help you with everything you need. I'm grounded on the full Autonomy Edge documentation, ask me anything about the platform, and I'll guide you through how things work.
 
 The conversation persists in your chat history so you can come back later.
 
@@ -70,7 +70,7 @@ ACU consumption from AI Engineer jobs is tracked in **[Settings → Usage](../ac
 - **Be specific.** "How do I configure a static IP on a vPLC?" beats "network help".
 - **Mention what you've tried.** "I set the IP to 192.168.1.50 with mask 255.255.255.0 but the device shows N/A in Internal IP after restart."
 - **Ask for short answers when you want short.** "In one sentence: …" or "Just the steps, no explanation."
-- **Copy errors verbatim.** Paste the exact error text from the editor or the platform — the assistant matches them against the docs.
+- **Copy errors verbatim.** Paste the exact error text from the editor or the platform, the assistant matches them against the docs.
 
 ## Where to next
 

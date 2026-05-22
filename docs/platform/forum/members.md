@@ -1,19 +1,19 @@
 # Members directory
 
-The forum has a public **Members directory** — a leaderboard-style view of everyone with a forum account.
+The forum has a public **Members directory**, a leaderboard-style view of everyone with a forum account.
 
 URL: `edge.autonomylogic.com/forum/members`.
 
-![Forum Members page — tabs and empty state](images/forum-members.png)
+![Forum Members page, tabs and empty state](images/forum-members.png)
 
 ## Tabs
 
 Across the top:
 
-- **Top Posters** *(default)* — members with the most posts in the selected period.
-- **Most Reputed** — members with the highest reputation score. Reputation comes from upvotes received on posts.
-- **New Members** — most recent signups, newest first.
-- **All Members** — full list, default sort by name.
+- **Top Posters** *(default)*: members with the most posts in the selected period.
+- **Most Reputed**: members with the highest reputation score. Reputation comes from upvotes received on posts.
+- **New Members**: most recent signups, newest first.
+- **All Members**: full list, default sort by name.
 
 Tabs are bookmarkable via URL parameters.
 
@@ -40,7 +40,7 @@ Each row shows:
 - **Joined** date.
 - (Some rows show extra badges for moderators, admins, or Patreons.)
 
-A **Message** action appears on hover (or as part of the row's overflow menu) — opens a DM to that person. See **[Messaging](messaging)**.
+A **Message** action appears on hover (or as part of the row's overflow menu), opens a DM to that person. See **[Messaging](messaging)**.
 
 ## Why use the directory
 
@@ -56,7 +56,7 @@ A **Message** action appears on hover (or as part of the row's overflow menu) �
 ## Privacy
 
 - Every signed-in user is visible in the directory by default.
-- There isn't a "hide me from the directory" toggle today. If you want to be invisible, the only option is not to post — once you post, you appear.
+- There isn't a "hide me from the directory" toggle today. If you want to be invisible, the only option is not to post, once you post, you appear.
 
 ## Where to next
 

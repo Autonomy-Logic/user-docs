@@ -2,7 +2,7 @@
 
 An **organization** is a shared workspace. Members of an organization see and work on the same projects and orchestrators. Organizations are how teams collaborate on Autonomy Edge.
 
-![Organizations list — Autonomy-Mine, Created 04/01/26, with empty projects list](images/organizations-list.png)
+![Organizations list, Autonomy-Mine, Created 04/01/26, with empty projects list](images/organizations-list.png)
 
 ## When you need one
 
@@ -33,9 +33,9 @@ See **[Workspaces and slugs](../workspaces-and-slugs)** for the URL model.
 
 When someone joins an organization they get a role:
 
-- **Owner** — the creator. There can be more than one owner; an owner can promote other admins to owner. Owners can do everything, including deleting the org.
-- **Admin** — can manage members, invite new ones, and edit organization settings. Cannot delete the org.
-- **Member** — can read and edit projects in the org, but can't manage other members.
+- **Owner**: the creator. There can be more than one owner; an owner can promote other admins to owner. Owners can do everything, including deleting the org.
+- **Admin**: can manage members, invite new ones, and edit organization settings. Cannot delete the org.
+- **Member**: can read and edit projects in the org, but can't manage other members.
 
 Specific permissions per feature are listed in **[Members and roles](members-and-roles)**.
 
@@ -53,7 +53,7 @@ Organizations themselves are free to *create* on any plan. But most organization
 | Teams | – | – | – | ✓ | ✓ |
 | Org-level billing | – | ✓ | – | ✓ | ✓ |
 
-The Pro plan is *personal* — it doesn't unlock org features. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
+The Pro plan is *personal*, it doesn't unlock org features. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
 
 See **[Pricing](../../plans-and-billing/pricing)** for the full breakdown.
 

@@ -6,14 +6,14 @@ Once you're past the forum home, most of your time is spent on **board pages** (
 
 URL: `edge.autonomylogic.com/forum/board/{boardSlug}`. Click any category on the forum home to land here.
 
-![Forum board page — News & Announcements category with topic table](images/forum-board.png)
+![Forum board page, News & Announcements category with topic table](images/forum-board.png)
 
-**Header.** A back arrow takes you to the forum home. The category name and description sit above the topic table. Stats — *87 topics · 1696 posts* — are right under the title.
+**Header.** A back arrow takes you to the forum home. The category name and description sit above the topic table. Stats, *87 topics · 1696 posts*, are right under the title.
 
 **Toolbar.** Same actions you saw on the home page, scoped to this board:
 
-- **Search topics** — searches within this category.
-- **+ New Topic** — pre-fills the category when you start a new topic.
+- **Search topics**: searches within this category.
+- **+ New Topic**: pre-fills the category when you start a new topic.
 
 **Topic table.** Each row is a topic. Columns:
 
@@ -32,10 +32,10 @@ Click any topic to open the thread.
 
 Sort options live on the forum home and reuse the same sort across boards:
 
-- **Latest** — by most recent activity (default).
-- **Trending** — current platform-scored "hotness".
-- **Most Replied** — highest reply count first.
-- **Most Viewed** — highest view count first.
+- **Latest**: by most recent activity (default).
+- **Trending**: current platform-scored "hotness".
+- **Most Replied**: highest reply count first.
+- **Most Viewed**: highest view count first.
 
 Bookmarkable: sorts are reflected as URL parameters.
 
@@ -43,7 +43,7 @@ Bookmarkable: sorts are reflected as URL parameters.
 
 URL: `edge.autonomylogic.com/forum/thread/{threadSlug}`. Click a topic title from a board to land here.
 
-![Thread page — pinned + locked, original post by author, one reply](images/forum-thread.png)
+![Thread page, pinned + locked, original post by author, one reply](images/forum-thread.png)
 
 **Header.** Back arrow → board. Topic title with badges. Category name below the title. **Share** button on the right (copy a direct URL to clipboard).
 
@@ -53,7 +53,7 @@ URL: `edge.autonomylogic.com/forum/thread/{threadSlug}`. Click a topic title fro
 - Author display name (clickable → profile).
 - Role badge: **Author** for the original poster, **Member** for normal users, **Moderator** / **Admin** for platform staff.
 - Relative timestamp.
-- Post body, with markdown rendering — links, code blocks, lists, images.
+- Post body, with markdown rendering: links, code blocks, lists, images.
 - **Up/down vote** counters at the bottom of the post.
 - **Flag** icon to report the post (see **[Moderation](moderation)**).
 - A reply/quote action on hover.
@@ -64,9 +64,9 @@ The original post is always at the top. Replies follow chronologically below it.
 
 Search exists at three levels:
 
-1. **Site-wide** (header search on the dashboard) — searches projects and users, not forum content.
-2. **Forum home** — full-text search across every topic in every category.
-3. **Board** — full-text search within one category.
+1. **Site-wide** (header search on the dashboard), searches projects and users, not forum content.
+2. **Forum home**: full-text search across every topic in every category.
+3. **Board**: full-text search within one category.
 
 Search results show topic titles with a snippet of matching text and the category badge.
 
@@ -76,7 +76,7 @@ To navigate to a specific thread by URL when you know the slug, use `/forum/thre
 
 - **Read state** is tracked per topic. A topic with new posts since your last visit shows a small "new" badge.
 - The **Mark All Read** action on the forum home clears the unread state for every topic.
-- Per-topic, you can set notification preferences (Watching / Tracking / Normal / Muted) from the topic page's *Notifications* control once it lands. Today the default is Tracking — you'll see unread badges, you won't get push notifications.
+- Per-topic, you can set notification preferences (Watching / Tracking / Normal / Muted) from the topic page's *Notifications* control once it lands. Today the default is Tracking, you'll see unread badges, you won't get push notifications.
 
 ## Where to next
 

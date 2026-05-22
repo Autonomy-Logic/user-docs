@@ -68,7 +68,7 @@ A reusable URL that adds anyone who clicks it as an organization member. See **[
 
 ## MACVLAN
 
-Docker networking driver that gives a container its own MAC and IP on the physical LAN. The mechanism behind vPLC networking — vPLCs appear as native devices to the rest of the network.
+Docker networking driver that gives a container its own MAC and IP on the physical LAN. The mechanism behind vPLC networking, vPLCs appear as native devices to the rest of the network.
 
 ## Notification
 

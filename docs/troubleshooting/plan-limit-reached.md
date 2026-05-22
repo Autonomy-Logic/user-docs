@@ -2,7 +2,7 @@
 
 You'll hit this modal whenever a creation action would exceed your plan's quota.
 
-![Plan limit reached — Orchestrator limit reached (1/1) on plan Community](images/plan-limit-modal.png)
+![Plan limit reached, Orchestrator limit reached (1/1) on plan Community](images/plan-limit-modal.png)
 
 The modal text follows this pattern:
 

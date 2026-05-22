@@ -1,13 +1,13 @@
 # Notifications
 
-Notifications keep you in the loop about platform events that matter — replies to your topics, PRs awaiting your review, org invitations, plan limit warnings.
+Notifications keep you in the loop about platform events that matter, replies to your topics, PRs awaiting your review, org invitations, plan limit warnings.
 
 There are two surfaces:
 
 1. **The bell icon** in the header on every protected page. A small dot appears when you have unread notifications.
 2. **The notifications page** at `edge.autonomylogic.com/notifications`.
 
-![Notifications page — empty state](images/notifications-empty.png)
+![Notifications page, empty state](images/notifications-empty.png)
 
 ## What appears
 
@@ -47,11 +47,11 @@ You can also navigate to the full page directly: `edge.autonomylogic.com/notific
 
 In-app notifications are always on. Email notifications are opt-in/opt-out per category:
 
-- **Weekly forum digest** — Monday-morning email summarizing the 15 most active forum topics from the past week. Off when you haven't visited the forum recently *and* the digest setting is on.
-- **@mention emails** — when someone tags you with `@username` in a forum post.
-- **Replies to topics you started** — when someone posts in your topic.
-- **Group chat invitations** — when someone adds you to a new group chat.
-- **Project / PR events** — review requests, comments on your PRs, merges.
+- **Weekly forum digest**: Monday-morning email summarizing the 15 most active forum topics from the past week. Off when you haven't visited the forum recently *and* the digest setting is on.
+- **@mention emails**: when someone tags you with `@username` in a forum post.
+- **Replies to topics you started**: when someone posts in your topic.
+- **Group chat invitations**: when someone adds you to a new group chat.
+- **Project / PR events**: review requests, comments on your PRs, merges.
 
 Toggle all of these in **[Settings → Privacy](../account/settings/privacy)**.
 
@@ -67,7 +67,7 @@ If you're getting too few:
 
 1. Verify you're not in "Muted" notification mode on key topics.
 2. Check that the verifying email isn't going to spam.
-3. Confirm your email is verified — unverified accounts have notifications throttled.
+3. Confirm your email is verified, unverified accounts have notifications throttled.
 
 ## What's NOT here
 

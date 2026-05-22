@@ -6,7 +6,7 @@ The detail page has two tabs: **Devices** (default) and **Orchestrator**.
 
 ## Devices tab
 
-![Devices tab — two vPLC cards plus a New Device tile](images/orchestrator-detail-devices.png)
+![Devices tab, two vPLC cards plus a New Device tile](images/orchestrator-detail-devices.png)
 
 The devices tab is a grid of every vPLC running (or stopped) on this orchestrator, plus a **+ New Device** tile to add another.
 
@@ -24,11 +24,11 @@ Each device card shows:
 
 Click anywhere on a card body to open **[vPLC detail](../vplcs/vplc-detail)**.
 
-The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a-vplc)**. If you've used all your device slots on the plan, you'll see the plan-limit modal instead — see **[Plan limits](../../plans-and-billing/plan-limits)**.
+The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a-vplc)**. If you've used all your device slots on the plan, you'll see the plan-limit modal instead, see **[Plan limits](../../plans-and-billing/plan-limits)**.
 
 ## Orchestrator tab
 
-![Orchestrator tab — host stats and CPU/Memory charts](images/orchestrator-info.png)
+![Orchestrator tab, host stats and CPU/Memory charts](images/orchestrator-info.png)
 
 The Orchestrator tab is a read-only view of the edge device's specs and current resource usage.
 
@@ -47,7 +47,7 @@ Live CPU utilization over time. The dropdown at the top right of the chart (`1h`
 
 Same controls and behavior as the CPU chart, for memory.
 
-These charts come from the periodic heartbeat the agent sends. If the agent is alive but the chart is flat, check that the **VERSION** matches the latest release — older agent versions may not stream as many metrics as newer ones.
+These charts come from the periodic heartbeat the agent sends. If the agent is alive but the chart is flat, check that the **VERSION** matches the latest release, older agent versions may not stream as many metrics as newer ones.
 
 ## Switching tabs
 

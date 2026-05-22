@@ -4,7 +4,7 @@ Organization billing is separate from personal billing. Your personal plan gover
 
 URL: `edge.autonomylogic.com/organizations/{orgId}` → click **Billing** in the side-nav.
 
-![Billing tab — No active subscription state](images/org-billing.png)
+![Billing tab, No active subscription state](images/org-billing.png)
 
 ## States the page can be in
 
@@ -47,7 +47,7 @@ From the **Change plan** action you can switch to a smaller plan. Downgrades tak
 
 - Sets the subscription to end at the next billing date.
 - Keeps everything working until that date.
-- Drops you to no-subscription state afterwards — member management, private projects, and other paid features stop working.
+- Drops you to no-subscription state afterwards: member management, private projects, and other paid features stop working.
 
 ## Payment methods
 

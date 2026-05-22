@@ -2,7 +2,7 @@
 
 Each plan caps how much of certain resources you can use. When you hit a cap, the platform shows a modal explaining the limit and offers an **Upgrade plan** button.
 
-![Plan limit reached — Orchestrator limit reached (1/1) on plan Community](images/orchestrator-plan-limit.png)
+![Plan limit reached, Orchestrator limit reached (1/1) on plan Community](images/orchestrator-plan-limit.png)
 
 ## The limits
 
@@ -39,7 +39,7 @@ Examples:
 - Trying to create a 3rd vPLC on Community → device limit modal.
 - Trying to make a project private on Community → private-projects limit message during the New Project wizard.
 
-![Device limit reached — 2/2 on Community](images/device-plan-limit.png)
+![Device limit reached, 2/2 on Community](images/device-plan-limit.png)
 
 ## Grandfathering
 
@@ -57,7 +57,7 @@ You can confirm your current state in **[Settings → Usage](../account/settings
 If the usage page shows a number that doesn't match what you see:
 
 - Click the small refresh icon at the top right of the Usage card to force a recount.
-- Verify you're looking at the right workspace — limits are workspace-scoped.
+- Verify you're looking at the right workspace: limits are workspace-scoped.
 - Recently deleted items may take a few seconds to drop from the count.
 
 If it still looks wrong, contact support via the **Feedback** action in the user menu.

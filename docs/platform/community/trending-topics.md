@@ -6,10 +6,10 @@ The **Trending Topics** widget lives in the right column of your dashboard. It s
 
 Each card in the widget lists the latest trending thread with:
 
-- **Topic title** — clickable, opens the thread.
-- **Author name** — clickable, opens the author's profile.
-- **Category** — e.g. *News & Announcements*, *OpenPLC - General Discussion*, *Patreons Only*.
-- **Comment count and view count** — small icons with numbers.
+- **Topic title**: clickable, opens the thread.
+- **Author name**: clickable, opens the author's profile.
+- **Category**: e.g. *News & Announcements*, *OpenPLC - General Discussion*, *Patreons Only*.
+- **Comment count and view count**: small icons with numbers.
 
 Examples you might see:
 

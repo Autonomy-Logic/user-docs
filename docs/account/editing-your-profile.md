@@ -4,7 +4,7 @@ The **Edit Profile** button on your profile takes you to **Settings → Profile*
 
 URL: `edge.autonomylogic.com/profile/settings?tab=profile`.
 
-![Profile settings — avatar, name, username, bio, location, time zone](settings/images/profile-settings.png)
+![Profile settings, avatar, name, username, bio, location, time zone](settings/images/profile-settings.png)
 
 ## Avatar
 
@@ -20,7 +20,7 @@ To remove a custom avatar and go back to initials, use the **Remove** action in 
 
 ## Name
 
-Free-text field. This is your **display name** — what most of the platform shows.
+Free-text field. This is your **display name**, what most of the platform shows.
 
 - Up to 80 characters.
 - Real names work fine but aren't required.
@@ -53,7 +53,7 @@ A dropdown of standard time zones. Pick yours so timestamps elsewhere (commit ti
 
 ## Saving changes
 
-Each section has a **Save changes** button at the bottom. The platform autosaves nothing — make a change, click **Save**, and the change is persisted. If you navigate away with unsaved changes, the platform warns you.
+Each section has a **Save changes** button at the bottom. The platform autosaves nothing, make a change, click **Save**, and the change is persisted. If you navigate away with unsaved changes, the platform warns you.
 
 ## Updating your email
 
@@ -65,7 +65,7 @@ Also not here. **[Settings → Security → Password](settings/security-password
 
 ## Removing your account
 
-The **[Settings → Account](settings/account)** tab has the danger-zone delete action. Read that page before clicking — deletion is permanent.
+The **[Settings → Account](settings/account)** tab has the danger-zone delete action. Read that page before clicking, deletion is permanent.
 
 ## Where to next
 

@@ -4,7 +4,7 @@ The **History** tab tracks billing events and audit-log entries for the organiza
 
 URL: `edge.autonomylogic.com/organizations/{orgId}` → click **History** in the side-nav.
 
-![Org History tab — Billing history with "History coming soon" message](images/org-history.png)
+![Org History tab, Billing history with "History coming soon" message](images/org-history.png)
 
 ## What's here today
 
@@ -18,10 +18,10 @@ In the meantime, paid invoices are available from the **[Billing](billing)** tab
 
 When the dedicated history endpoint is live, you can expect:
 
-- **Billing events** — every plan change, seat addition, invoice paid, payment failed, refund issued.
-- **Membership audit** — who was invited, who joined, who was promoted/demoted, who left or was removed.
-- **Settings audit** — every change to the org profile, name, description, social links.
-- **Resource audit** — orchestrators registered, vPLCs created/deleted, projects moved into or out of the org.
+- **Billing events**: every plan change, seat addition, invoice paid, payment failed, refund issued.
+- **Membership audit**: who was invited, who joined, who was promoted/demoted, who left or was removed.
+- **Settings audit**: every change to the org profile, name, description, social links.
+- **Resource audit**: orchestrators registered, vPLCs created/deleted, projects moved into or out of the org.
 
 Each entry will have:
 
@@ -33,9 +33,9 @@ Each entry will have:
 
 ## Who can see history
 
-- **Owner** — yes.
-- **Admin** — yes.
-- **Member** — no. The tab is hidden from members.
+- **Owner**: yes.
+- **Admin**: yes.
+- **Member**: no. The tab is hidden from members.
 
 ## Where to next
 

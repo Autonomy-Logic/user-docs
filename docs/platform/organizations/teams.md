@@ -25,10 +25,10 @@ The page has a master/detail layout:
 
 Each team's detail view has tabs:
 
-- **General** — name, description, color/icon.
-- **Members** — who's in the team. Add or remove from the org's pool.
-- **Projects** — which org projects this team has access to, and with what permission level (Read / Write / Admin).
-- **Settings** — delete, rename, change visibility (some teams may be hidden from non-members).
+- **General**: name, description, color/icon.
+- **Members**: who's in the team. Add or remove from the org's pool.
+- **Projects**: which org projects this team has access to, and with what permission level (Read / Write / Admin).
+- **Settings**: delete, rename, change visibility (some teams may be hidden from non-members).
 
 The exact tab list may evolve as the feature matures.
 
@@ -48,21 +48,21 @@ Click **Create team**. The team appears in the list. You can now add members and
 
 In the team's **Members** tab, click **Add members**. Pick from the org's existing members. Use search to narrow down for large orgs.
 
-A member can belong to multiple teams. Permissions are union — if Team A grants Read on Project X and Team B grants Write on Project X, the member gets Write.
+A member can belong to multiple teams. Permissions are union, if Team A grants Read on Project X and Team B grants Write on Project X, the member gets Write.
 
 ## Adding projects
 
 In the team's **Projects** tab, click **Add project**. Pick from the org's projects and choose a permission level:
 
-- **Read** — view files, history, PRs.
-- **Write** — push commits, open and merge PRs.
-- **Admin** — write plus manage project-level settings (when those land).
+- **Read**: view files, history, PRs.
+- **Write**: push commits, open and merge PRs.
+- **Admin**: write plus manage project-level settings (when those land).
 
 The same project can be granted to multiple teams at different permission levels.
 
 ## Removing a team
 
-From the team's **Settings** tab click **Delete team**. Confirm. Members of the team don't leave the org — only the team grouping goes away. Projects scoped to the team revert to org-wide visibility unless they were *only* visible via this team, in which case they become invisible to former team members.
+From the team's **Settings** tab click **Delete team**. Confirm. Members of the team don't leave the org, only the team grouping goes away. Projects scoped to the team revert to org-wide visibility unless they were *only* visible via this team, in which case they become invisible to former team members.
 
 ## Where to next
 

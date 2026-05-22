@@ -22,7 +22,7 @@ Click **Invite member** at the top of the page. The dialog asks for:
 
 | Field | Required | Notes |
 |---|---|---|
-| **Email** | Yes | The recipient's email address. They don't need an Autonomy Edge account yet — the link will prompt them to sign up if needed. |
+| **Email** | Yes | The recipient's email address. They don't need an Autonomy Edge account yet, the link will prompt them to sign up if needed. |
 | **Role** | Yes | The role they'll have on acceptance. Pick from **Owner**, **Admin**, or **Member**. You can change it later from **[Members](members-and-roles)**. |
 | **Message** *(optional)* | No | A note that goes into the invitation email along with the join button. |
 
@@ -43,14 +43,14 @@ Each row shows:
 
 ## Per-invitation actions (3-dot menu)
 
-- **Resend** — sends the same invitation email again. Useful if it got buried.
-- **Copy link** — copies the join link to your clipboard, in case you want to deliver it through a different channel.
-- **Revoke** — cancels the invitation. The link stops working immediately.
+- **Resend**: sends the same invitation email again. Useful if it got buried.
+- **Copy link**: copies the join link to your clipboard, in case you want to deliver it through a different channel.
+- **Revoke**: cancels the invitation. The link stops working immediately.
 
 ## Common scenarios
 
 - **You sent the wrong role.** Revoke and re-send with the correct role. Once accepted, change role from **[Members](members-and-roles)**.
-- **The invitation expired.** Resend it — the platform issues a new link with a fresh expiration.
+- **The invitation expired.** Resend it: the platform issues a new link with a fresh expiration.
 - **The recipient already has an Autonomy Edge account but with a different email.** They have two options: accept on the invited email (they'll have two accounts), or ask you to revoke and re-invite to their primary email.
 
 ## Where to next

@@ -2,8 +2,8 @@
 
 Two different actions:
 
-- **Leaving** — you, personally, exit an organization. The org keeps existing for everyone else.
-- **Deleting** — the entire organization is removed. Affects every member.
+- **Leaving**: you, personally, exit an organization. The org keeps existing for everyone else.
+- **Deleting**: the entire organization is removed. Affects every member.
 
 ## Leaving an organization
 
@@ -25,7 +25,7 @@ You can rejoin later if an admin invites you again.
 
 ### If you're the only Owner
 
-You can't leave as the only Owner — that would leave the org without anyone with permission to manage it.
+You can't leave as the only Owner, that would leave the org without anyone with permission to manage it.
 
 The fix: from the **Members** tab, promote another member to Owner first, then leave. If there's no one else in the org, you have to **delete** the organization instead of leaving it.
 
@@ -55,7 +55,7 @@ What's *not* removed:
 
 ### Active subscriptions
 
-If the org has an active paid subscription, deletion does not refund you. Cancel the subscription first (set it to end at the next billing date), and then delete the org after the cycle ends — or accept that the prorated time is lost.
+If the org has an active paid subscription, deletion does not refund you. Cancel the subscription first (set it to end at the next billing date), and then delete the org after the cycle ends, or accept that the prorated time is lost.
 
 ### Required role
 
@@ -63,7 +63,7 @@ Only **Owners** can delete an org. Admins and Members cannot.
 
 ## Transferring ownership
 
-There's no formal "transfer ownership" action because ownership isn't singular — there can be multiple Owners. To hand off:
+There's no formal "transfer ownership" action because ownership isn't singular, there can be multiple Owners. To hand off:
 
 1. Promote the new person to **Owner**.
 2. Once you confirm they're set up and have access, demote yourself to **Member** or **Admin**, or leave the org entirely.

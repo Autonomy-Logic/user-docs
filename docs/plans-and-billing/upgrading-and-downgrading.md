@@ -54,7 +54,7 @@ The downgrade is scheduled for the **next billing cycle**, not immediate. You ke
 When the downgrade lands:
 
 - Limits drop to the new plan's quotas.
-- Items over the new limit are **grandfathered** — they keep working but you can't add new ones over the limit. See **[Plan limits → Grandfathering](plan-limits)**.
+- Items over the new limit are **grandfathered**: they keep working but you can't add new ones over the limit. See **[Plan limits → Grandfathering](plan-limits)**.
 - ACU monthly allowance drops to the new plan's amount.
 
 ## Canceling
@@ -79,9 +79,9 @@ Annual cycles save ~20%. The platform pro-rates the difference.
 
 ## Plan changes and ACUs
 
-- **Upgrade** — your monthly ACU allowance increases. The unused portion of your current allowance carries forward into the new larger allowance for the rest of the cycle.
-- **Downgrade** — your monthly ACU allowance decreases at the next cycle. Extra credits are unaffected.
-- **Cancel + reactivate later** — you get a fresh monthly allowance from the new activation date. Extra credits persist throughout.
+- **Upgrade**: your monthly ACU allowance increases. The unused portion of your current allowance carries forward into the new larger allowance for the rest of the cycle.
+- **Downgrade**: your monthly ACU allowance decreases at the next cycle. Extra credits are unaffected.
+- **Cancel + reactivate later**: you get a fresh monthly allowance from the new activation date. Extra credits persist throughout.
 
 ## Org plan changes
 

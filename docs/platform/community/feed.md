@@ -1,6 +1,6 @@
 # Feed
 
-The **feed** is the center column of your dashboard. It's a stream of recent activity from across the platform — projects being created, people joining the community, organization settings being updated.
+The **feed** is the center column of your dashboard. It's a stream of recent activity from across the platform, projects being created, people joining the community, organization settings being updated.
 
 ![Dashboard with the feed in the center column](images/dashboard-feed.png)
 
@@ -8,9 +8,9 @@ The **feed** is the center column of your dashboard. It's a stream of recent act
 
 Activity entries the feed surfaces today:
 
-- **{user} created a public project** — with a card linking to the project. You can star the project directly from the entry.
-- **{user} joined the community** — a Welcome card with a wave emoji.
-- **{user} updated organization settings** — when an org admin changes the org profile.
+- **{user} created a public project**: with a card linking to the project. You can star the project directly from the entry.
+- **{user} joined the community**: a Welcome card with a wave emoji.
+- **{user} updated organization settings**: when an org admin changes the org profile.
 
 Each entry has the actor's avatar, name, action, relative timestamp ("1 weeks ago"), and the relevant card (project, user, or org).
 
@@ -20,10 +20,10 @@ Private activity (private projects, internal org events) never appears in feeds.
 
 Top right of the feed area is the **Filter** button. It opens a dropdown:
 
-- **Recommended** — coming soon. Personalized recommendations based on what you star, follow, and view.
-- **Recents** (default) — the global activity stream, newest first.
-- **Popular** — coming soon. Activity weighted by stars, comments, and views.
-- **Organization Feeds** — one entry per organization you belong to. Picking one scopes the feed to that org's activity only.
+- **Recommended**: coming soon. Personalized recommendations based on what you star, follow, and view.
+- **Recents** (default): the global activity stream, newest first.
+- **Popular**: coming soon. Activity weighted by stars, comments, and views.
+- **Organization Feeds**: one entry per organization you belong to. Picking one scopes the feed to that org's activity only.
 
 ![Filter dropdown showing Recommended, Recents, Popular, and Organization Feeds options](images/feed-filter-dropdown.png)
 
@@ -45,13 +45,13 @@ You can:
 
 - **Star** a project directly from its feed card (the star button on the right).
 - **Click into** a project, user, or org to see its full page.
-- **Reply** is not available in the feed itself — the feed is a discovery surface, not a comment thread. Comments live in the forum.
+- **Reply** is not available in the feed itself: the feed is a discovery surface, not a comment thread. Comments live in the forum.
 
 ## How the feed is sourced
 
 - **Recents** pulls activity from the platform globally and trims to public/shareable entries.
 - **Organization Feeds** filters that stream to activity within a specific org slug, including private activity that you have permission to see.
-- Refreshing the dashboard refreshes the feed. The feed itself doesn't push live updates today — new entries appear after a page reload.
+- Refreshing the dashboard refreshes the feed. The feed itself doesn't push live updates today, new entries appear after a page reload.
 
 ## Where to next
 
