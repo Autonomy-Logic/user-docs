@@ -2,7 +2,7 @@
 
 Structured Text (ST) is a high-level, text-based programming language defined in the IEC 61131-3 standard. If you've ever written code in Pascal, C, or a similar procedural language, ST will feel familiar right away. It's the go-to choice for complex algorithms, math-heavy calculations, and data processing. Tasks that would be awkward to express in graphical languages like Ladder Diagram or Function Block Diagram.
 
-![Editor showing a simple Structured Text program with the Variables Table](../../../platform-features/vplc-management/images/editor-with-program.png)
+![Editor showing a simple Structured Text program with the Variables Table](../../images/editor-with-program.png)
 
 ## Introduction to Structured Text
 

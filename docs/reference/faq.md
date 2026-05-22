@@ -1,277 +1,161 @@
 # FAQ
 
-Frequently asked questions about Autonomy Edge and IEC 61131-3 programming.
+The questions we see most often. If your question isn't here, ask the **[Autonomy AI assistant](../platform/autonomy-ai-assistant)** (⌘J / Ctrl+J) or post in the **[forum](../platform/forum/overview)**.
 
----
+## Accounts
 
-## General
+### Why can't I sign in?
 
-### What is Autonomy Edge?
+Check that you've verified your email. Until verification, sign-in succeeds but most actions are blocked. If you don't have the verification email, see **[Verification email not arriving](../troubleshooting/email-not-arriving)**.
 
-Autonomy Edge is a cloud-based platform for industrial automation built on OpenPLC v4. It provides a web-based IDE for writing PLC programs in IEC 61131-3 languages, cloud infrastructure for managing projects and devices, and an orchestrator system for deploying virtual PLCs (vPLCs) to edge hardware. Access the platform at [edge.autonomylogic.com](https://edge.autonomylogic.com).
+### Can I change my email?
 
-### What is OpenPLC?
+Yes, from **[Settings → Security → Email](../account/settings/security-email)**. There's a 7-day cooldown between email changes for security.
 
-OpenPLC is an open-source Programmable Logic Controller platform. It includes an editor for writing PLC programs and a runtime that executes them. Autonomy Edge builds on OpenPLC v4, adding cloud project management, a web-based IDE, AI-assisted programming, orchestrator-managed vPLCs, and team collaboration features.
+### Can I change my username?
 
-### What programming languages are supported?
+Yes, from **[Settings → Profile](../account/settings/profile)**. Old direct links to your forum posts and projects keep working because they use IDs internally, but mentions of your old username won't auto-update.
 
-Autonomy Edge supports three of the five IEC 61131-3 programming languages:
+### How do I delete my account?
 
-| Language | Type | Best For |
-|----------|------|----------|
-| **Structured Text (ST)** | Text-based | Complex algorithms, math, data processing |
-| **Ladder Diagram (LD)** | Graphical | Discrete control, relay logic replacement |
-| **Function Block Diagram (FBD)** | Graphical | Signal processing, data flow |
+**[Settings → Account](../account/settings/account)**. Deletion is permanent. If you own organizations, you must transfer or delete them first.
 
-Instruction List (IL) is available but deprecated in the standard. SFC is not currently supported.
+## Projects
 
-### Is Autonomy Edge free?
+### Why can't I create a private project?
 
-Visit [edge.autonomylogic.com](https://edge.autonomylogic.com) for current pricing and plan details. The platform offers different tiers based on the number of projects, devices, and features you need.
+The Community plan can only create public projects. Upgrade to Pro, Teams, or Enterprise to create private projects. See **[Plan limits](../plans-and-billing/plan-limits)**.
 
-### What browsers are supported?
+### What's the difference between pin and star?
 
-Autonomy Edge works in modern web browsers including Chrome, Firefox, Edge, and Safari. For the best experience, use the latest version of Chrome or Firefox.
+A **pin** is private; only you see it in your Pinned view. A **star** is public; the count is visible everywhere. See **[Pinning and stars](../platform/projects/pinning-and-stars)**.
 
----
+### Can I clone a project with git?
 
-## IEC 61131-3 Programming
+Full git clone access (push from a local checkout) is enabled for paid-plan workspaces. The download icon gives you a zip on all plans. See **[Importing and forking](../platform/projects/importing-and-forking)**.
 
-### What is a POU?
+### How do I move a project between workspaces?
 
-A POU (Program Organization Unit) is the building block of IEC 61131-3 programs. There are three types:
+Today: download the project as a zip, then **Import Project** in the destination workspace. Cross-workspace move-in-place isn't supported yet.
 
-- **Program**: The top-level executable unit, assigned to a task for cyclic execution
-- **Function Block**: A reusable component with internal state (retains values between calls)
-- **Function**: A stateless computation that returns a single value
+### A commit hash link gives me a 404. Why?
 
-See [POUs](../openplc-editor/iec-concepts/pous) for details.
+Commit detail pages (full file diffs) are still being built. Use the editor for diffs in the meantime — it shows file-level changes between commits.
 
-### What is the difference between a Function and a Function Block?
+## Orchestrators and vPLCs
 
-| Feature | Function | Function Block |
-|---------|----------|----------------|
-| State | Stateless (no memory between calls) | Stateful (retains values between scans) |
-| Return value | Single return value | Multiple outputs |
-| Instances | Called directly by name | Requires a named instance |
-| Use case | Math, conversions, pure computations | Timers, counters, controllers, state machines |
+### How do I install the orchestrator agent?
 
-### What is a scan cycle?
+Run `curl https://getedge.me | bash` on a Linux device. See **[Installing the agent](../platform/orchestrators/installing-the-agent)** for the full flow.
 
-The scan cycle is the fundamental execution loop of a PLC:
+### The Orchestrator ID expired before I finished installing. What now?
 
-1. **Read inputs**: Copy physical input states into the input image table
-2. **Execute program**: Run all assigned PLC logic
-3. **Write outputs**: Copy the output image table to physical outputs
+Run the install command again on the device. The installer detects the existing install and prints a fresh ID.
 
-This cycle repeats at the interval defined by the task period (e.g., every 50 ms). The time to complete one cycle is the scan time.
+### Why is my orchestrator stuck "Inactive"?
 
-### What are located variables?
+The agent isn't reporting. See **[Orchestrator not connecting](../troubleshooting/orchestrator-not-connecting)**.
 
-Located variables are bound to specific addresses in the I/O image table, mapping them to physical inputs, outputs, or memory locations:
+### My vPLC stays "Stopped". What should I check?
 
-| Address | Meaning | Example |
-|---------|---------|---------|
-| `%IX0.0` | Digital input, byte 0, bit 0 | Start button |
-| `%QX0.0` | Digital output, byte 0, bit 0 | Motor relay |
-| `%IW0` | Analog input, word 0 | Temperature sensor |
-| `%QW0` | Analog output, word 0 | Speed setpoint |
-| `%MW0` | Memory word 0 | Internal storage |
+See **[vPLC stuck in Stopped](../troubleshooting/vplc-stuck-stopped)**.
 
-### How do I choose between ST, LD, and FBD?
+### Can I run more than 2 vPLCs on Community?
 
-| If you need... | Use |
-|----------------|-----|
-| Complex math or algorithms | **ST**: full expression support, control flow |
-| Relay logic or discrete control | **LD**: intuitive for electricians, mirrors wiring diagrams |
-| Signal flow or data processing | **FBD**: visual data flow, good for connecting blocks |
-| Mixed requirements | Use different languages for different POUs in the same project |
+No. Community is capped at 2 vPLC devices. Upgrade to Pro for 100 or to a per-seat plan for more.
 
-You can freely mix languages within a project. Each POU can be written in a different language, and they all interoperate seamlessly.
+### What is a runtime user, and why do I need to create one?
 
-### What standard function blocks are available?
+The runtime user is local to a single vPLC. It's what the editor uses to authenticate to that PLC's runtime. Separate from your Autonomy Edge account. The first connection creates it; subsequent connections sign in with it. See **[Connecting from the editor](../platform/vplcs/connecting-from-editor)**.
 
-| Block | Category | Purpose |
-|-------|----------|---------|
-| `TON` | Timer | On-delay timer |
-| `TOF` | Timer | Off-delay timer |
-| `TP` | Timer | Pulse timer |
-| `CTU` | Counter | Count up |
-| `CTD` | Counter | Count down |
-| `CTUD` | Counter | Count up/down |
-| `SR` | Bistable | Set-dominant latch |
-| `RS` | Bistable | Reset-dominant latch |
-| `R_TRIG` | Edge | Rising edge detector |
-| `F_TRIG` | Edge | Falling edge detector |
+### Why does my vPLC have its own IP on the LAN?
 
-See [Standard Function Blocks Reference](function-blocks) for complete details.
+MACVLAN. The vPLC's container is attached directly to your physical network with its own MAC, so other devices see it like a standalone PLC. See **[Network modes](../platform/vplcs/network-modes)**.
 
----
+## Organizations
 
-## Devices and Deployment
+### Why is the Members tab grayed out in my org?
 
-### What is a vPLC?
+Member management requires a paid plan (Teams or Education). The Community plan can create an org but can't invite others. See **[Org billing](../platform/organizations/billing)**.
 
-A vPLC (virtual PLC) is a software-based PLC running the OpenPLC Runtime. Instead of dedicated hardware, vPLCs run on edge devices managed by an orchestrator. They execute the same IEC 61131-3 programs as physical PLCs and connect to physical I/O through Modbus, OPC-UA, or GPIO passthrough.
+### Why does Pro not let me invite teammates?
 
-### What is an orchestrator?
+Pro is a **personal** plan. Multi-user collaboration is on the **Teams** plan. See **[Pricing](../plans-and-billing/pricing)**.
 
-An orchestrator is a software agent that runs on your edge hardware (Raspberry Pi, industrial gateway, or any Linux machine). It:
+### What's the difference between Invitations and Invite Links?
 
-- Connects securely to the Autonomy Edge cloud
-- Creates and manages vPLCs on the device
-- Handles networking so vPLCs appear as native devices on your LAN
-- Reports system health (CPU, memory, disk, uptime)
+**Invitations** target a specific email and are single-use. **Invite links** are URLs that anyone with the link can use (with optional usage caps and expiration). See **[Invitations](../platform/organizations/invitations)** and **[Invite links](../platform/organizations/invite-links)**.
 
-Install an orchestrator with:
-```bash
-curl https://getedge.me | bash
-```
+### How do I leave an organization?
 
-### What hardware can I run an orchestrator on?
+From the org's Members tab, find yourself and click **Leave organization**. You can't leave if you're the only Owner — promote someone else first.
 
-The orchestrator runs on any supported Linux machine. Tested platforms include:
+### What happens to my account if I delete an org I own?
 
-| Platform | Architecture |
-|----------|-------------|
-| Raspberry Pi 4/5 | ARM64 |
-| Raspberry Pi 3 | ARM32 (armv7) |
-| Intel/AMD PCs and servers | x86_64 |
-| Industrial edge gateways (Siemens, WAGO, etc.) | Varies |
+The org and all its content disappear; you keep your account. If you delete *your account* while owning an org, the platform forces you to deal with the org first.
 
-### How does a vPLC communicate with field devices?
+## Plans and billing
 
-vPLCs connect to field devices through:
+### What plan am I on?
 
-| Method | Protocol | Use Case |
-|--------|----------|----------|
-| **Modbus TCP** | Modbus client/server | Most common; remote I/O modules, sensors, actuators |
-| **OPC-UA** | OPC-UA client | Industrial systems with OPC-UA servers |
-| **S7Comm** | S7 protocol | Siemens equipment |
-| **GPIO passthrough** | Direct GPIO | When the orchestrator runs on hardware with GPIO (e.g., Raspberry Pi) |
+User menu → **Settings** → **[Billing](../account/settings/billing)**. The plan badge is also visible in the user menu next to your name.
 
-### Can I run multiple vPLCs on one orchestrator?
+### How do trials work?
 
-Yes. Each vPLC runs as an independent process. The orchestrator manages all vPLCs on the host, and each one can have its own network configuration, program, and I/O connections. Resource limits depend on the host hardware (CPU, memory, disk).
+Pro and Teams have 14-day trials. You're not charged during the trial. If you don't add a payment method by trial end, the plan reverts to Community. See **[Upgrading and downgrading](../plans-and-billing/upgrading-and-downgrading)**.
 
-### How do I deploy a program to a vPLC?
+### Do unused monthly ACUs roll over?
 
-1. Write and compile your program in the Autonomy Edge IDE
-2. Navigate to the **Devices** section in the dashboard
-3. Select your target device (vPLC)
-4. Upload the compiled program
-5. Start the device
+No. Monthly ACUs reset at the start of each billing cycle. Extra credits (purchased one-time) never expire. See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
 
-The program is packaged and deployed through the orchestrator automatically.
+### My private project still exists but my plan now disallows private projects. Why?
 
----
+Grandfathering. Existing items continue to work; only *new* over-the-limit creations are blocked. See **[Plan limits → Grandfathering](../plans-and-billing/plan-limits)**.
 
-## Troubleshooting
+## Forum and community
 
-### My program won't compile. What should I check?
+### Why aren't I getting forum notification emails?
 
-Common compilation issues:
+Check **[Settings → Privacy](../account/settings/privacy)** — the toggles for @mentions, replies, digests, and DMs are independently switchable. Also verify your email isn't going to spam.
 
-1. **Missing semicolons**: Every ST statement must end with `;`
-2. **Unmatched control structures**: Every `IF` needs `END_IF`, every `FOR` needs `END_FOR`
-3. **Undeclared variables**: All variables must be in the Variables Table
-4. **Type mismatches**: Use explicit conversion functions (`INT_TO_REAL()`, etc.)
-5. **Wrong assignment operator**: Use `:=`, not `=`
+### How do I report a post?
 
-See [Common Compilation Errors](../advanced-topics/troubleshooting/compilation-errors) for a comprehensive guide.
+The flag icon at the top right of each post. Choose a reason and submit. See **[Moderation](../platform/forum/moderation)**.
 
-### My orchestrator shows offline. What should I do?
+### Can I DM someone who doesn't have an account?
 
-1. Verify internet connectivity from the edge device
-2. Check the orchestrator service is running on the device
-3. Restart the orchestrator service if needed
-4. Check the Autonomy Edge dashboard for status details
+No. DMs are between platform accounts. Invite them to sign up first.
 
-See [Network Issues](../advanced-topics/troubleshooting/network-issues) for detailed diagnostics.
+### Why can't I post in a thread?
 
-### My timer doesn't seem to work correctly.
+The thread may be **🔒 Locked** by moderators. Locked threads are read-only.
 
-Common timer issues:
+## AI features
 
-- **`IN` not staying TRUE**: TON requires `IN` to be TRUE continuously for the full duration `PT`
-- **Timer never resets**: TON resets when `IN` goes FALSE; TOF resets when `IN` goes TRUE
-- **Timer too fast/slow**: Check your task period; timers depend on the scan cycle for timing resolution
-- **Using the type instead of an instance**: You must declare a variable of type TON/TOF/TP and call the instance
+### Is the AI assistant free?
 
-See [Timer Function Blocks](../openplc-editor/standard-function-blocks/timer-blocks) for detailed timing diagrams.
+Yes. The **AI Chat** assistant (the sparkle panel) is free on every plan, including Community. The **AI Engineer** features that consume ACUs require Education+, Pro, Teams, or Enterprise. See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
 
-### How do I check my scan cycle time?
+### What does ⌘J do?
 
-Monitor the console panel in the IDE for scan overrun warnings. If scan time exceeds the configured task period, the runtime logs a warning message. You can also observe timer `ET` values. If they count unevenly, scans may be overrunning.
+Toggles the AI assistant panel from anywhere. **[Autonomy AI assistant](../platform/autonomy-ai-assistant)**.
 
-See [Performance Optimization](../advanced-topics/best-practices/performance-optimization) for techniques to reduce scan time.
+## Privacy
 
-### Why are my Modbus values wrong?
+### Who can see my profile?
 
-Common Modbus data issues:
+Public. Anyone (with or without an account) can visit it. Email is hidden from non-self viewers.
 
-- **Byte order mismatch**: Device uses different endianness than expected
-- **Register offset by 1**: Some devices are 0-based, others 1-based
-- **Wrong function code**: Coils vs. holding registers vs. input registers
-- **32-bit values spanning two registers**: Ensure your mapping accounts for multi-register values
+### Who can DM me?
 
-See [Network Issues](../advanced-topics/troubleshooting/network-issues) for Modbus troubleshooting.
+Anyone with an account, by default. You can disable group-chat invitations specifically in **[Settings → Privacy](../account/settings/privacy)**; 1:1 DMs are always available today.
 
----
+### Can I block a user?
 
-## Platform and Features
+Not yet. For unwelcome behavior, flag their posts or contact the platform admins via the Feedback action.
 
-### Does the IDE support AI assistance?
+## Anything else?
 
-Yes. The Autonomy Edge IDE includes an AI assistant that can help with:
-
-- **Code completion**: Context-aware suggestions as you type
-- **Chat**: Ask questions about IEC 61131-3, get help with code, debug issues
-
-AI features are credit-based. Check your remaining credits via the AI panel in the IDE.
-
-### Can I use the platform offline?
-
-The Autonomy Edge web IDE requires an internet connection to access the platform at edge.autonomylogic.com. Your projects are stored in the cloud. For offline development, you can use the OpenPLC Desktop Editor, which supports the same IEC 61131-3 languages and can export programs compatible with the OpenPLC Runtime.
-
-### Can I import/export projects?
-
-Yes. The IDE supports:
-
-- **Import**: Upload a project ZIP file through the IDE's import dialog
-- **Export/Download**: Download a project as a ZIP file from the project details page
-- **Clone**: Clone public projects shared by other users
-
-### Does Autonomy Edge support team collaboration?
-
-Projects are managed per user account. Team collaboration features are available depending on your plan. Contact Autonomy Logic for details on team plans and shared workspaces.
-
-### What communication protocols does the runtime support?
-
-| Protocol | Direction | Description |
-|----------|-----------|-------------|
-| Modbus TCP (client/master) | PLC reads/writes remote devices | Connect to Modbus-compatible I/O |
-| Modbus TCP (server/slave) | External systems read/write PLC data | Expose data to SCADA or HMI systems |
-| OPC-UA (client) | PLC reads from OPC-UA servers | Industrial OPC-UA integration |
-| S7Comm | PLC communicates with Siemens PLCs | Siemens equipment interoperability |
-
-Additional protocols can be added through the runtime's plugin system. See [Custom Libraries](../advanced-topics/integration-apis/custom-libraries) for information on extending functionality.
-
----
-
-## Runtime
-
-### Do I need to install the OpenPLC Runtime for Autonomy Edge?
-
-No. When you create a Device on an Orchestrator, the platform installs and manages the runtime automatically. The standalone Runtime (available on GitHub) is designed for use with the Desktop Editor only.
-
-### I see a Runtime web interface mentioned online. Where is it?
-
-The runtime web interface is a feature of the standalone Desktop Editor workflow. In Autonomy Edge, all device management and monitoring is done through the cloud platform. There is no separate runtime web interface to access.
-
-## What's Next?
-
-- [Glossary](glossary): Key terms and definitions
-- [Keyboard Shortcuts](keyboard-shortcuts): IDE shortcut reference
-- [Getting Started](../getting-started/introduction): New to Autonomy Edge? Start here
+- Open the **AI assistant** (⌘J) and ask.
+- Post in the **[OpenPLC forum](../platform/forum/overview)**.
+- Use the **Feedback** action in the user menu to report bugs or request features.
