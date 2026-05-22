@@ -1,68 +1,71 @@
 # Invite links
 
-Invite links are reusable URLs that let anyone with the link join your organization. They're best for known cohorts, a class of students, a team you've already onboarded elsewhere, where you don't want to type 30 emails.
+Invite links are reusable URLs that let anyone with the link join your organization. They're best for known cohorts (a class of students, a contractor team) where you don't want to type 30 email addresses.
 
-> **Locked on Community.** Requires Teams or Education plan.
+> Requires the **Teams**, **Education**, or **Enterprise** plan.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` → click **Invite Links** in the side-nav.
+URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Invite Links** in the side-nav.
+
+![Invite Links tab, empty state with Generate Link button](images/org-invite-links.png)
 
 ## How an invite link works
 
-- You create a link with a chosen role.
+- You generate a link with a chosen role.
 - Anyone with the URL can visit it; they're prompted to sign in (or sign up if they don't have an account yet).
 - On sign-in, they're added to the org with the link's role.
-- The platform records *which link* added them, so you can revoke their access later by removing them or by deactivating the link.
+- The platform records which link added each member, so you can revoke their access later by removing them or by deactivating the link.
 
-Invite links can have:
+Invite links have:
 
 - **A maximum number of uses**: once exhausted, the link stops working.
-- **An expiration date**: after that date, the link stops working.
-- **Both, neither, or one of the above**: your call when you create it.
+- **An expiration window**: from 30 minutes up to 7 days, or a custom value. After expiry the link stops working.
 
-## Creating a link
+## Generating a link
 
-Click **Create invite link** at the top of the page. The dialog asks for:
+Click **Generate Link** at the top right of the page. The dialog opens.
+
+![Generate invite link modal showing Maximum uses and Expiration options](images/org-create-invite-link-modal.png)
 
 | Field | Required | Notes |
 |---|---|---|
-| **Name** | Yes | A label for the link, visible only to org admins. e.g. *Fall 2026 class*, *Q3 contractors*. |
-| **Role** | Yes | Role for anyone joining through this link. **Member** is the safe default; use **Admin** sparingly. |
-| **Max uses** | No | Number of times the link can be used. Leave blank for unlimited. |
-| **Expires** | No | A date after which the link no longer works. Leave blank for no expiration. |
+| **Maximum uses** | Yes | Number of times the link can be used before it expires. Defaults to 10. The dialog notes the rule: *How many people can use this link before it expires.* |
+| **Expiration** | Yes | Quick presets: **30 minutes**, **1 hour**, **6 hours**, **12 hours**, **1 day**, **3 days**, **7 days** (default), or **Custom** for a specific date and time. |
 
-Click **Create**. The dialog shows the link; copy it with one click. You can also see the link in the list afterwards and copy it from the 3-dot menu.
+The role for everyone joining through the link is **Member**, as noted in the dialog description: *Everyone who uses this link will join as a member.* If you need a higher role for an individual, send a per-email **[invitation](invitations)** instead, or promote them once they've joined.
 
-## The list
+Click **Generate Link** to finalize. The dialog closes and the link is shown in the list with its short label and copy action.
 
-Each row shows:
+## The invite-links list
 
-- Link name.
-- Role.
+When you have one or more active links, the table shows:
+
+- Link name or short identifier.
+- Role granted (always Member).
 - Uses (consumed / total).
-- Expiration date or "Never expires".
+- Expiration date and time.
 - Status: **Active**, **Expired**, **Exhausted**, **Revoked**.
-- Created by and date.
-- **3-dot menu** with actions.
+- Created by, created on.
+- Per-row actions menu.
 
-## Per-link actions (3-dot menu)
+## Per-link actions
 
-- **Copy link**: copies the URL to clipboard.
+- **Copy link**: copy the URL to your clipboard.
 - **View members who joined via this link**: opens a sub-view showing every member who used this link to join.
-- **Edit**: change role, max uses, or expiration.
-- **Revoke**: deactivates the link immediately. People who already joined keep their membership; the link itself stops accepting new joins.
+- **Edit**: change max uses or expiration (the role is fixed at creation).
+- **Revoke**: deactivates the link immediately. Members who already joined keep their seats; the link stops accepting new joins.
 
-## Removing members who joined through a link
+## Removing members who joined via a link
 
-Use the **Remove invite-link member** action. The dialog lets you select members from the list who joined via this specific link and remove them in bulk. Their access ends immediately; their commits and posts stay attributed to them.
+Use the **View members who joined via this link** action. Pick a subset of members and remove them in bulk. Their access ends immediately; their commits and posts stay attributed to them.
 
 ## Security tips
 
-- **Don't post invite links publicly** unless you've set a low max-uses and an expiration.
-- **Use named links** to track campaigns. Knowing that 40 people came in via "Fall 2026 class" is much more useful than 40 anonymous joins.
-- **Audit periodically.** Revoke links you no longer want active. Members keep their seats; future joins stop.
+- **Don't post invite links publicly** unless you've set a low max uses and a short expiration.
+- **Use one link per cohort** to keep audit trails clean. Knowing 40 people came in via "Fall 2026 class" is much more useful than 40 anonymous joins.
+- **Audit periodically.** Revoke links you no longer need.
 
 ## Where to next
 
-- **One-off invite by email** → **[Invitations](invitations)**.
+- **Per-email invites** → **[Invitations](invitations)**.
 - **Manage existing members** → **[Members and roles](members-and-roles)**.
 - **Group new members into a team** → **[Teams](teams)**.

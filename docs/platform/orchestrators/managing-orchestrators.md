@@ -1,22 +1,30 @@
 # Managing orchestrators
 
-Once an orchestrator is paired you can rename it, regenerate its registration ID, or delete it. All of these live in the orchestrator card's **3-dot menu** on the **[Orchestrators list](orchestrators-list)** or in the equivalent menu on the **[Orchestrator detail](orchestrator-detail)** page.
+Once an orchestrator is paired you can rename it, update its agent, or delete it. All of these live in the orchestrator card's **3-dot menu** on the **[Orchestrators list](orchestrators-list)**.
+
+![Orchestrator card with 3-dot menu open: Rename, Update, Delete](images/orchestrator-3dot-menu.png)
 
 ## Renaming an orchestrator
 
-1. On the orchestrator card, click the **3-dot menu** (top right of the card).
+1. On the orchestrator card, click the **⋮** icon next to the status badge.
 2. Choose **Rename**.
-3. Enter a new name and click **Save**.
+3. Enter a new name and confirm.
 
 The name change is reflected immediately everywhere the orchestrator is shown (cards, detail page, breadcrumbs, dropdowns in the editor).
 
-The orchestrator's ID and certificate are unchanged, the agent on the device continues to work without intervention.
+The orchestrator's ID and certificate are unchanged. The agent on the device continues to work without intervention.
 
-## Regenerating the registration ID
+## Updating the agent
 
-If a device gets reset, reimaged, or moved to different hardware, you may need to re-pair the agent. From the 3-dot menu choose **Regenerate ID**. The cloud invalidates the previous device certificate and shows a new installation command.
+Choose **Update** from the 3-dot menu. The platform pushes a command to the agent to pull the latest image and restart itself.
 
-Run the new `curl https://getedge.me | bash` command on the device. The agent reuses the same orchestrator entry (so any vPLCs and historical metrics are preserved) but with a fresh trust relationship.
+During the update:
+
+- vPLCs that are running keep running. They reconnect to the agent after the restart.
+- The orchestrator's status briefly flips to **Inactive** while the agent restarts, then back to **Active**.
+- The version shown on the orchestrator's **Orchestrator** tab updates to the new version.
+
+You can also re-run the install command on the device (`curl https://getedge.me | bash`) to upgrade manually if the cloud-side **Update** action fails.
 
 ## Deleting an orchestrator
 
@@ -32,14 +40,14 @@ Deletion **permanently removes**:
 It does **not** automatically uninstall the agent on the device. If the device is still running the agent, it will keep retrying to connect with stale credentials and fail. Either:
 
 - Uninstall the agent on the device (`curl https://getedge.me | bash -s -- --uninstall`), or
-- Run the regenerate-ID flow to pair the device with a *new* orchestrator entry.
+- Pair the device with a *new* orchestrator entry by running the install command again.
 
 ## Disconnecting temporarily
 
 There isn't a "pause" action today. To temporarily disconnect:
 
-- Stop the agent container on the device (`docker stop orchestrator-agent`): the orchestrator goes Inactive in the web app.
-- Start it again (`docker start orchestrator-agent`): status returns to Active within a few seconds.
+- Stop the agent container on the device (`docker stop orchestrator-agent`), the orchestrator goes Inactive in the web app.
+- Start it again (`docker start orchestrator-agent`), status returns to Active within a few seconds.
 
 vPLCs that were running before the agent stopped keep running. They reconnect to the agent on restart automatically.
 

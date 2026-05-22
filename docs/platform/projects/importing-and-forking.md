@@ -1,19 +1,35 @@
 # Importing and forking
 
-You don't always start from a blank project. Sometimes you have an existing OpenPLC project on disk, sometimes you want to build on top of someone else's public project. Autonomy Edge supports both flows.
+You don't always start from a blank project. Sometimes you have an existing OpenPLC project on disk, sometimes you want to build on top of someone else's public project. Autonomy Edge supports both.
 
 ## Importing an existing project
 
-From the **[projects list](projects-list)**, click **Import Project** at the top right.
+From the **[projects list](projects-list)**, click **Import Project** at the top right. The platform navigates to a dedicated **Import Project** page.
 
-The Import dialog asks for:
+![Import Project page with zip-archive instructions and upload area](images/project-import.png)
 
-- **Project archive**: a `.zip` or OpenPLC project folder. The platform accepts archives created by the OpenPLC desktop editor as well as zipped folders that follow the standard project layout (`programs/`, `functions/`, `function-blocks/`, `devices/`, `project.json`).
-- **Project name**: defaults to the archive's name; you can override.
-- **Folder**: where to place it in your projects list.
-- **Visibility**: public or private. Same rules as new projects (private requires a paid plan).
+### Preparing the .zip archive
 
-Click **Import**. The platform extracts the archive, validates the project structure, creates the git repository, and lands you on the new project's Code tab. The first commit is named *Initial commit* and is authored by *Autonomy Edge*.
+The platform accepts compressed `.zip` archives only. A short helper box at the top explains how to create one:
+
+- **Windows**: right-click the project folder → **Send to** → **Compressed (zipped) folder**.
+- **macOS**: right-click the project folder → **Compress**.
+- **Linux**: right-click the project folder → **Compress**, or run `zip -r project.zip project_folder/`.
+
+The zip should contain a project folder with the standard layout (`programs/`, `functions/`, `function-blocks/`, `devices/`, `project.json`).
+
+### Fields
+
+| Field | Required | Notes |
+|---|---|---|
+| **Project Archive (.zip)** | Yes | Click the dashed area to pick a file, or drag-and-drop. Only `.zip` is supported. |
+| **Project Name (optional)** | No | Leave blank and the platform reads the name from `project.json` inside the archive. Set a name here to override. |
+| **Visibility** | Yes | **Private** or **Public**, with the same rules as the **[New Project wizard](creating-a-project)**. |
+| **Destination Folder** | Yes | Pick which folder in the projects list to place the import into. |
+
+Click **Import Project** at the bottom right. The platform extracts the archive, validates the project structure, creates the git repository, and lands you on the new project's Code tab. The first commit is named *Initial commit* and is authored by *Autonomy Edge*.
+
+Click **Cancel** to discard and return to the projects list.
 
 ### What gets carried over
 
@@ -52,9 +68,9 @@ Under the hood every project is a git repository. The **download icon** on the p
 
 ## Common scenarios
 
-- **Migrating from the OpenPLC desktop editor.** Open your desktop project, choose *File → Export* (or zip the project folder manually), then **Import Project** in Autonomy Edge.
+- **Migrating from the OpenPLC desktop editor.** Zip the project folder, then **Import Project** in Autonomy Edge.
 - **Trying out a community sample.** Find a public project on someone's profile or in the dashboard feed, click **Fork**, and tweak.
-- **Sharing a private project across your two workspaces.** A private project doesn't move automatically between your personal and org slugs. Export it as a zip, then re-import under the other slug.
+- **Sharing a private project across your two workspaces.** A private project doesn't move automatically between your personal and org slugs. Download it from the project page, then re-import under the other slug.
 
 ## Where to next
 

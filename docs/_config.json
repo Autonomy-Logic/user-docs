@@ -165,6 +165,10 @@
               "path": "billing"
             },
             {
+              "title": "Organization usage",
+              "path": "usage"
+            },
+            {
               "title": "Organization history",
               "path": "history"
             },

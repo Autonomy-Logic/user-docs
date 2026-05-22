@@ -7,13 +7,13 @@ New projects are created through a three-step wizard. The wizard is the same whe
 Two ways:
 
 1. **From the dashboard**: the left column **Projects** card has a blue **+ New** button at the top. Click it.
-2. **From the projects list**: click **+ Create new** at the top-left, then choose **New Project** from the dropdown.
+2. **From the projects list**: click **+ Create new** at the top-left of the sidebar, then choose **New Project** from the dropdown.
 
 ![The Create new dropdown showing New Project, New Folder, and New Library](images/create-new-dropdown.png)
 
-(The dropdown also has **New Folder** for organizing projects and **New Library** for reusable code, both covered in later sections.)
+(The dropdown also has **New Folder** for organizing projects and **New Library** for reusable code.)
 
-## Step 1. Project info
+## Step 1, Project info
 
 ![Step 1: name, folder, description](images/new-project-step1.png)
 
@@ -25,37 +25,56 @@ Two ways:
 
 Click **Next** to continue.
 
-## Step 2. Configuration
+## Step 2, Configuration
 
 ![Step 2: language and cycle time](images/new-project-step2.png)
 
 | Field | Required | Notes |
 |---|---|---|
-| **Select language** | Yes | The default programming language for new POUs. Pick one of **Structured Text (ST)**, **Ladder Diagram (LD)**, **Function Block Diagram (FBD)**, **Instruction List (IL)**, or **Sequential Function Chart (SFC)**. You can mix languages inside a project later, this just sets the language the editor opens with. |
+| **Select language** | Yes | The default programming language for new POUs. Pick from the dropdown. |
 | **Cycle time** | Yes | How often the PLC runtime executes the main program. Default is `T#20ms`. Click the field to open a time picker with separate day / hour / minute / second / millisecond / microsecond inputs. |
+
+### Available languages
+
+Clicking the language dropdown reveals the four IEC 61131-3 languages currently supported in new projects.
+
+![Language dropdown showing FBD, LD, ST, IL](images/new-project-language-dropdown.png)
+
+- **FBD**: Functional Block Diagram.
+- **LD**: Ladder Diagram.
+- **ST**: Structured Text.
+- **IL**: Instruction List.
+
+You can mix languages inside a project later. This step just sets the language the editor opens with.
+
+### Cycle time picker
 
 ![The cycle time picker with separate day, hour, min, sec, ms, us inputs](images/new-project-cycle-time.png)
 
-A few tips for cycle time:
+A few tips on cycle time:
 
-- Most discrete control logic is fine at 10–50 ms.
-- Tight motion control may need 1–5 ms. Be aware that very short cycles increase CPU load on the vPLC.
+- Most discrete control logic is fine at 10 to 50 ms.
+- Tight motion control may need 1 to 5 ms. Be aware that very short cycles increase CPU load on the vPLC.
 - Slow data-collection programs can use 100 ms or longer.
 
 You can change cycle time later through the editor (it's stored in `project.json`).
 
 Click **Back** to revisit step 1, **Cancel** to dismiss the wizard, or **Next** to continue.
 
-## Step 3. Visibility
+## Step 3, Visibility
 
-The last step asks whether the project is **public** or **private**.
+![Step 3: cover image upload, Public/Private radio with Private selected](images/new-project-step3.png)
 
-- **Public**: anyone can read, star, and fork it. You decide who can write.
-- **Private**: only people you invite can see it.
+The last step asks for a cover image and the project's visibility.
 
-The Community plan can only create public projects. If your personal plan or organization plan supports private projects, you'll see both options here. See **[Visibility and sharing](visibility-and-sharing)** for the deeper picture and **[Plan limits](../../plans-and-billing/plan-limits)** for which plans allow private projects.
+| Field | Required | Notes |
+|---|---|---|
+| **Cover Image** | No | An image shown on the project card and at the top of the project page. **JPG or PNG, max 10 MB**. Click the dashed area to upload, or drag-and-drop. Leave blank for the default placeholder. |
+| **Visibility** | Yes | **Public**: anyone can view and access this project. **Private**: only you and invited collaborators can access. |
 
-Click **Create** to finish. The wizard closes, the project is created, and you land on its **Code** tab.
+**Private** is selected by default if your plan allows private projects. On the **Community** plan, only **Public** is available.
+
+Click **Create Project** to finish. The wizard closes, the project is created, and you land on its **Code** tab.
 
 ## What just happened in the background
 
@@ -70,6 +89,6 @@ If you go to the **Code** tab now you'll see the file tree pre-populated and a s
 
 ## Next steps
 
-- **Open in editor and write code** → click **Open in editor** at the top right of the project page. See the **[OpenPLC Editor docs](../../openplc-editor/overview)**.
+- **Open in editor and write code**: click **Open in editor** at the top right of the project page. See the **[OpenPLC Editor docs](../../openplc-editor/overview)**.
 - **End-to-end first program** → **[Quick Start Guide](../../getting-started/quick-start)**.
 - **Find your project later** → **[Projects list](projects-list)**.

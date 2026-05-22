@@ -41,9 +41,9 @@ Private projects do **not** appear in:
 
 ## When you cannot create a private project
 
-The Community (free) plan can't create private projects. If you try, the wizard will hide the **Private** option or show a plan-limit message linking to **[Pricing](../../plans-and-billing/pricing)**.
+The Community (free) plan can't create private projects. If you try, the wizard hides the **Private** option and only Public is selectable. On the **Pro**, **Teams**, **Education**, or **Enterprise** plans, private projects are allowed.
 
-If you previously had a paid plan with private projects and have since downgraded, your existing private projects stay private, they're grandfathered. You just can't create new ones above the new plan's limit. Confirm what you have via **[Settings → Usage](../../account/settings/usage)**.
+If you previously had a paid plan with private projects and have since downgraded, your existing private projects stay private (they're grandfathered). You just can't create new ones above the new plan's limit. Confirm what you have via **[Settings → Usage](../../account/settings/usage)**.
 
 ## Sharing a project URL
 
@@ -73,6 +73,5 @@ This isn't a security feature, public is public, but the platform doesn't go out
 ## Where to next
 
 - **Set visibility on a new project** → **[Creating a project](creating-a-project)**.
-- **Understand who can see what** → see this page above.
 - **Plan limits on private projects** → **[Plan limits](../../plans-and-billing/plan-limits)**.
-- **Add collaborators (when shipped)** → **[The project page](project-page)** → Settings tab.
+- **Import an existing project** → **[Importing and forking](importing-and-forking)**.

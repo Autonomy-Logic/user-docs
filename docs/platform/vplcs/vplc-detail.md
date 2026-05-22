@@ -35,31 +35,35 @@ Below the stats, a panel labelled **Network Interfaces** lists every virtual NIC
 
 For a freshly-created or Stopped vPLC the list reads **No network interfaces found**.
 
-When populated, each row shows the NIC's status (up/down) and its current address(es), useful for verifying the runtime can actually reach the rest of the network.
+When populated, each row shows the NIC's status (up/down) and its current address(es). Useful for verifying the runtime can actually reach the rest of the network.
 
-## Where to find the actions
+## Lifecycle actions
 
-The detail page itself doesn't have action buttons. Lifecycle actions live in the **3-dot menu** on the device card in the orchestrator's Devices tab:
+The detail page itself doesn't have action buttons. Lifecycle actions live in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
 
-- **Start**: start a Stopped container.
-- **Stop**: gracefully stop a Running container.
-- **Restart**: stop + start in one click.
-- **Edit**: open the Add Device wizard pre-populated with this device's settings (renames, NIC changes).
-- **Delete**: permanently remove this vPLC from the orchestrator.
+![3-dot menu on a Stopped vPLC card: Restart, Rename, Delete](images/vplc-3dot-menu.png)
+
+The menu options depend on the vPLC's current state:
+
+| State | Menu options |
+|---|---|
+| **Running** | **Stop**, **Restart**, **Rename**, **Delete**. |
+| **Stopped** | **Restart** (which becomes a Start), **Rename**, **Delete**. |
+| **Inactive** (parent orchestrator offline) | **Rename**, **Delete**. Lifecycle actions are unavailable because the agent isn't reachable. |
 
 Stopping a vPLC does not delete it. Its config and any project deployed to it are preserved, ready to resume.
 
 ## Logs and runtime details
 
-The detail page shows network and lifecycle information. For runtime logs (scan cycles, PLC errors, communication trace) you need to connect to the vPLC from the **[OpenPLC Editor](../../openplc-editor/overview)**, those logs live on the runtime itself, not in the platform's metric stream.
+The detail page shows network and lifecycle information. For runtime logs (scan cycles, PLC errors, communication trace) you need to connect to the vPLC from the **[OpenPLC Editor](../../openplc-editor/overview)**. Those logs live on the runtime itself, not in the platform's metric stream.
 
 ## When things look wrong
 
-- **Status is Inactive but the orchestrator is Active**: check **[vPLC stuck in Stopped](../../troubleshooting/vplc-stuck-stopped)**.
-- **Status is Running but Network Interfaces says "No network interfaces found"**: the runtime hasn't pushed an update yet. Refresh after 10 seconds. If still empty, restart the vPLC from the 3-dot menu.
+- **Status is Inactive but the orchestrator is Active** → check **[vPLC stuck in Stopped](../../troubleshooting/vplc-stuck-stopped)**.
+- **Status is Running but Network Interfaces says "No network interfaces found"** → the runtime hasn't pushed an update yet. Refresh after 10 seconds. If still empty, restart the vPLC from the 3-dot menu.
 
 ## Where to next
 
 - **Deploy a project to this vPLC** → **[Connecting from the editor](connecting-from-editor)**.
-- **Change network settings** → 3-dot menu → **Edit**. See **[Network modes](network-modes)** for what the fields mean.
+- **Change network settings** → 3-dot menu → **Rename** for the name, or delete and recreate for NIC changes. See **[Network modes](network-modes)** for what the fields mean.
 - **Inspect the parent orchestrator's metrics** → **[Orchestrator detail](../orchestrators/orchestrator-detail)**.

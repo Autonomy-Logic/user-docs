@@ -60,7 +60,7 @@ A copy of a public project, made into a workspace you control. Edit freely, send
 
 ## IEC 61131-3
 
-The international standard that defines five PLC programming languages: ST, LD, FBD, IL, SFC. The OpenPLC Editor supports all five.
+The international standard that defines five PLC programming languages: ST, LD, FBD, IL, SFC. Autonomy Edge currently supports ST, LD, FBD, and IL for new projects; SFC is available in the desktop OpenPLC Editor.
 
 ## Invite link
 

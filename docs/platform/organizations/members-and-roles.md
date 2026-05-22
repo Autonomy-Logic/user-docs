@@ -2,13 +2,15 @@
 
 The **Members** tab lists everyone in the organization and lets owners and admins manage their roles.
 
-> **This tab is locked on the free Community plan.** You need an active **Teams** or **Education** plan to add members beyond yourself. See **[Org billing](billing)** and **[Pricing](../../plans-and-billing/pricing)**.
+> Requires the **Teams**, **Education**, or **Enterprise** plan to invite anyone beyond yourself. The tab is read-only on the free Community plan.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` → click **Members** in the side-nav.
+URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Members** in the side-nav.
+
+![Members tab showing the org's single owner](images/org-members.png)
 
 ## The three roles
 
-| Role | Can read projects | Can write projects | Can manage members | Can manage org settings | Can manage billing | Can delete the org |
+| Role | Read projects | Write projects | Manage members | Manage org settings | Manage billing | Delete org |
 |---|---|---|---|---|---|---|
 | **Owner** | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | **Admin** | ✓ | ✓ | ✓ | ✓ | – | – |
@@ -20,37 +22,33 @@ There's always at least one Owner. You can have multiple Owners. Owners can prom
 
 For each member, a row shows:
 
-- Avatar and display name.
-- Username and email (visible to admins/owners; email is hidden from members).
-- **Role** dropdown (when you have permission to change it).
-- **Joined** date.
-- **3-dot menu** with member-level actions.
+- Avatar and display name (e.g. *Thiago Alves*) with a **You** badge if it's you.
+- Email address (visible to admins and owners, hidden from members).
+- **Role badge** on the right (Owner, Admin, Member).
+- Joined date.
+- Per-row actions menu (when you have permission to change it).
 
-A toolbar at the top usually has:
-
-- Search box to filter by name or email.
-- **Invite member** button (opens the invite dialog: see **[Invitations](invitations)**).
-- Filter by role.
+A toolbar at the top has a search box (filter by name or email) and quick role filters.
 
 ## Changing a member's role
 
 1. Find the member in the list.
-2. Click the **Role** dropdown next to their name.
+2. Click the **Role** badge / dropdown next to their name.
 3. Pick **Owner**, **Admin**, or **Member**.
 
 The change is immediate. The affected member gets a notification.
 
-You cannot demote the last Owner. The platform requires at least one Owner at all times, promote someone else first, then demote yourself.
+You cannot demote the last Owner. The platform requires at least one Owner at all times: promote someone else first, then demote yourself.
 
 ## Removing a member
 
-From the 3-dot menu pick **Remove from organization**. A confirmation dialog appears. After confirming:
+From the row's actions menu pick **Remove from organization**. A confirmation dialog appears. After confirming:
 
 - The member loses access to all org projects, orchestrators, and devices.
 - Their commits and forum posts stay attributed to them.
 - Their pull requests on org projects stay open (you can close them manually).
 
-You can re-invite a removed member later with **Invitations**.
+You can re-invite a removed member later from the **[Invitations](invitations)** tab.
 
 ## Self-actions
 

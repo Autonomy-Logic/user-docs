@@ -2,36 +2,40 @@
 
 Organization billing is separate from personal billing. Your personal plan governs your own slug; an organization's plan governs the org's slug.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` → click **Billing** in the side-nav.
+URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Billing** in the side-nav.
 
-![Billing tab, No active subscription state](images/org-billing.png)
+![Org Billing tab with an active Teams Premium subscription](images/org-billing.png)
 
 ## States the page can be in
 
 - **No active subscription.** Fresh org, or after a subscription was canceled. The page shows "No active subscription" with a **Choose a plan** button.
 - **Trialing.** A trial is active; you'll see the trial end date and a payment-method warning.
-- **Active.** The plan is paid; you see the plan name, billing cycle, next billing date, and a list of seats/usage.
+- **Active.** The plan is paid; you see the plan name, billing cycle, next billing date, and any seat counts. This is the screenshot above.
 - **Past due.** A payment failed; the platform shows a warning and asks you to update the payment method.
 
 ## Picking a plan
 
-From the "No active subscription" state, click **Choose a plan**. You'll be redirected to the pricing page filtered to plans available for organizations (Education and Teams; Enterprise is "Contact sales").
+From the "No active subscription" state, click **Choose a plan**. You'll be redirected to the pricing page filtered to plans available for organizations (Education, Teams, Enterprise).
 
-After picking a plan you'll go through a checkout flow with seat count, billing cycle (monthly or annual), and payment details. Once the webhook confirms activation, the billing tab updates to the **Active** state.
+After picking a plan you'll go through checkout with seat count, billing cycle (monthly or annual), and payment details. Once the webhook confirms activation, the billing tab updates to the **Active** state.
 
 ## What you'll see on an active subscription
 
-For a typical Teams subscription:
+For an active Teams subscription:
 
 | Field | Description |
 |---|---|
-| **Plan** | e.g. *Teams · Annual*. Includes seat count and any add-ons. |
+| **Plan** | e.g. *Teams · Premium*. Includes the tier name. |
+| **Billing cycle** | *Annual* or *Monthly*. Annual is cheaper per month. |
+| **Annual cost** | e.g. *$19,800/yr*. |
+| **Seats Active** | How many members are currently using a seat. |
 | **Next billing date** | When the next charge will hit your payment method. |
-| **Seats** | Used / Total. Used = number of members. |
-| **AI Credit Units (ACUs)** | Monthly allowance and balance. |
-| **Devices and orchestrators** | Limits per plan. |
 
-Changing seats, billing cycle, or payment method happens in this tab.
+Three actions at the bottom of the card:
+
+- **Change plan** → switch to a different plan (upgrade or downgrade).
+- **Manage payment method** → add, update, or remove cards.
+- **Cancel subscription** → end at the next billing date.
 
 ## Adding seats
 
@@ -39,19 +43,19 @@ If you've hit your seat cap, the **Add seats** action lets you bump the count. T
 
 ## Downgrading
 
-From the **Change plan** action you can switch to a smaller plan. Downgrades take effect at the next billing cycle, not immediately. If the downgrade would put you below current usage (e.g. you have 12 members but the new plan allows 10), the platform either prompts you to remove members or rejects the change.
+From **Change plan** you can switch to a smaller plan. Downgrades take effect at the next billing cycle, not immediately. If the downgrade would put you below current usage (e.g. you have 12 members but the new plan allows 10), the platform prompts you to remove members first.
 
 ## Canceling
 
-**Cancel subscription** is available under the plan summary. Cancellation:
+**Cancel subscription**:
 
 - Sets the subscription to end at the next billing date.
 - Keeps everything working until that date.
-- Drops you to no-subscription state afterwards: member management, private projects, and other paid features stop working.
+- Drops you to no-subscription state afterwards. Member management, private projects, and other paid features stop working at that point.
 
 ## Payment methods
 
-The platform supports credit cards via its payment processor. Methods are managed inline in this tab: **Add card**, **Set as default**, **Remove**.
+The platform uses Paddle as its payment processor. Methods are managed inline: **Add card**, **Set as default**, **Remove**.
 
 ## Invoices
 

@@ -2,7 +2,7 @@
 
 An **organization** is a shared workspace. Members of an organization see and work on the same projects and orchestrators. Organizations are how teams collaborate on Autonomy Edge.
 
-![Organizations list, Autonomy-Mine, Created 04/01/26, with empty projects list](images/organizations-list.png)
+![Organizations list, one organization (Autonomy-Mine) with no projects yet](images/organizations-list.png)
 
 ## When you need one
 
@@ -24,7 +24,7 @@ Both use the same URL pattern (`/{slug}/...`) and the same screens. The differen
 | Slug | Your username | The org's slug |
 | Who can access | Just you | All members of the org |
 | Plan | Your personal plan (Community by default) | Org plan, separate from your personal plan |
-| Members tab | N/A | Members, Invitations, Invite Links, Teams |
+| Members tab | n/a | Members, Invitations, Invite Links, Teams |
 | Created when | At signup | When someone creates an org |
 
 See **[Workspaces and slugs](../workspaces-and-slugs)** for the URL model.
@@ -41,19 +41,20 @@ Specific permissions per feature are listed in **[Members and roles](members-and
 
 ## What you can do per plan
 
-Organizations themselves are free to *create* on any plan. But most organization features are gated by paid plans:
+Organizations themselves are free to *create* on any plan. Most management features are gated by paid plans:
 
-| Feature | Community | Education | Pro | Teams | Enterprise |
+| Feature | Community | Education | Pro (personal) | Teams | Enterprise |
 |---|---|---|---|---|---|
 | Create an org | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Org profile | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Members (beyond you) | – | ✓ (.edu only) | – | ✓ | ✓ |
+| Edit org profile | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Members beyond you | – | ✓ (.edu only) | – | ✓ | ✓ |
 | Invitations | – | ✓ | – | ✓ | ✓ |
 | Invite Links | – | ✓ | – | ✓ | ✓ |
 | Teams | – | – | – | ✓ | ✓ |
 | Org-level billing | – | ✓ | – | ✓ | ✓ |
+| Shared org ACU pool | – | ✓ | – | ✓ | ✓ |
 
-The Pro plan is *personal*, it doesn't unlock org features. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
+The Pro plan is *personal*. It doesn't unlock org features. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
 
 See **[Pricing](../../plans-and-billing/pricing)** for the full breakdown.
 
@@ -61,5 +62,5 @@ See **[Pricing](../../plans-and-billing/pricing)** for the full breakdown.
 
 - **Create your first organization** → **[Creating an org](creating-an-org)**.
 - **Walk through what's on each tab** → **[Org dashboard](org-dashboard)**, **[Org profile](org-profile)**, **[Members and roles](members-and-roles)**, **[Invitations](invitations)**, **[Invite links](invite-links)**, **[Teams](teams)**.
-- **Billing and history** → **[Org billing](billing)**, **[Org history](history)**.
+- **Billing, usage, history** → **[Org billing](billing)**, **[Org usage](usage)**, **[Org history](history)**.
 - **Leave or delete an org** → **[Leaving and deleting](leaving-and-deleting)**.
