@@ -105,9 +105,7 @@ The new editor ships **exactly four** bundled libraries (as `.stlib` archives vi
 - Keep existing structure, dedash + accuracy pass.
 
 ### 8. Hardware (Board) Configuration
-- *Board selector* (3 boards: Simulator, Runtime v3, Runtime v4; how capabilities differ)
-- **VPP vendor screens** (replaces the obsolete pin-mapping section)
-- **Installing additional boards** (the `__install_additional_boards__` synthetic entry)
+**Web editor ships with the board baked in by the vPLC runtime image. The board selector, VPP vendor screens, and additional-boards installer are desktop-only and not documented here.** This section is replaced by a short note pointing users to the vPLC creation flow in the platform docs, where the runtime image (and therefore the board capabilities) is chosen.
 
 ### 9. Communication
 - **Address mapping fundamentals** (cross-protocol primer: `%IX`, `%QX`, `%MW`, byte.bit notation, why `%QX0.0 → coil 0` but `%QX1.0 → coil 8`)
@@ -122,9 +120,10 @@ The new editor ships **exactly four** bundled libraries (as `.stlib` archives vi
 
 ### 10. Building, Running, Debugging
 - *Build options* (build-only, build-upload, clean-upload)
-- *Simulator* (in-process AVR8JS)
-- *Deployment to runtime* (runtime targets: v3 vs v4)
+- *Deployment to a vPLC* (runtime targets connected via Orchestrators)
 - **Debugger** (debug compile, MD5 verification, polling, time-series chart, opting variables in)
+
+**Note: the in-process AVR8JS simulator is desktop-only — not documented here.**
 
 ### 11. Diagram Renderer (for docs authors)
 - **FBD/LD JSON authoring guide** — schemas, handle conventions, layout tips
@@ -161,7 +160,7 @@ End-to-end recipes connecting all of the above. Each example: project setup → 
 | 15 | IL editor — minimal example | Code area |
 | 16 | Data Type editor — Array, Enumerated, Structure (one each) | Per editor |
 | 17 | Resource editor (Globals + Tasks + Instances) | Full area |
-| 18 | Board selector dropdown — 3 entries + `Install additional…` | Dropdown |
+| 18 | ~~Board selector dropdown~~ | **Desktop-only — skipped** |
 | 19 | Library Manager — System Libraries tab | Modal |
 | 20 | Library Manager — Project Libraries tab | Modal |
 | 21 | Modbus server editor — Server Configuration section | Form |
@@ -230,3 +229,4 @@ After the structural rewrite:
 2. **Platform-specific libraries** — **do not document.** Those libs are no longer surfaced in the new editor; the legacy XMLs are deprecated artifacts.
 3. **Worked examples** — keep four of five; **replace PID temperature loop with a Python function block example** (data-transform FB, run on the connected vPLC).
 4. **Editor source branch** — local checkout must be on `v4.2.0-rc1` to match the deployed editor. Confirmed.
+5. **Desktop-only surfaces excluded.** The editor codebase is shared between desktop (Electron) and web (embedded in autonomy-edge), but several screens render only on desktop. **These are out of scope for these docs:** Board selector / target selection, VPP vendor screens, `Install additional boards…` flow, in-process AVR8JS simulator, Arduino USB upload, local-disk path fields. We only document what a web-editor user can actually reach.
