@@ -30,7 +30,7 @@ Brand-new vPLCs have no users. The first time you connect, the editor opens a **
 
 ![Create First User dialog asking for a username and password, with a confirmation field](images/create-first-user-dialog.png)
 
-Enter a username and password, confirm the password, and click **Create User**. The user lives **on the vPLC itself**, not in your Autonomy Edge account — keep the credentials somewhere safe. If you forget them, you have to recreate the vPLC from the platform.
+Enter a username and password, confirm the password, and click **Create User**. The user lives **on the vPLC itself**, not in your Autonomy Edge account, keep the credentials somewhere safe. If you forget them, you have to recreate the vPLC from the platform.
 
 ## Subsequent connections: log in
 
@@ -60,7 +60,7 @@ You don't refresh anything by hand. Updates land in the console and on the Orche
 
 ## Disconnecting
 
-Click **Logout** in the Orchestrators card. The vPLC keeps running — disconnecting only ends your editor's session with it. Stop the PLC explicitly with the **Stop** button if you want it offline.
+Click **Logout** in the Orchestrators card. The vPLC keeps running, disconnecting only ends your editor's session with it. Stop the PLC explicitly with the **Stop** button if you want it offline.
 
 ## Troubleshooting
 
@@ -78,6 +78,6 @@ The connection may have dropped during the build. Confirm the orchestrator is st
 
 ## What's next
 
-- **[Build options](building-deploying/project-compilation)** — what each build mode does.
-- **[Debugger](building-deploying/debugger)** — live variable inspection on a connected vPLC.
-- **[Console & PLC Logs](workspace-overview/console-debugging)** — reading the streams from your runtime.
+- **[Build options](building-deploying/project-compilation)**: what each build mode does.
+- **[Debugger](building-deploying/debugger)**: live variable inspection on a connected vPLC.
+- **[Console & PLC Logs](workspace-overview/console-debugging)**: reading the streams from your runtime.

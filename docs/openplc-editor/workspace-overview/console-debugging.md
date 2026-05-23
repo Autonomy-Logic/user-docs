@@ -21,9 +21,9 @@ Each entry carries a level: `info`, `warning`, `error`. The console auto-scrolls
 
 Click **Filters** in the console's top-right corner.
 
-- **Search** — free-text match across the message column. Updates as you type.
-- **Levels** — toggle `info` / `warning` / `error` independently.
-- **Timestamp format** — full date+time, time only, or none.
+- **Search**: free-text match across the message column. Updates as you type.
+- **Levels**: toggle `info` / `warning` / `error` independently.
+- **Timestamp format**: full date+time, time only, or none.
 
 A small dot on the **Filters** button indicates an active non-default filter.
 
@@ -43,7 +43,7 @@ Compile errors in the console are clickable. Clicking one jumps to the offending
 
 Visible only when the editor is connected to a Runtime v4 vPLC (the runtime exposes a WebSocket log stream).
 
-The PLC Logs tab is the runtime's own log feed, separate from anything the editor generates. Use it to see what your PLC program is actually doing at runtime — `printf` output from C++ blocks, exceptions from Python blocks, periodic status messages, etc.
+The PLC Logs tab is the runtime's own log feed, separate from anything the editor generates. Use it to see what your PLC program is actually doing at runtime, `printf` output from C++ blocks, exceptions from Python blocks, periodic status messages, etc.
 
 It has the same Filters / Download / Clear controls as the Console.
 

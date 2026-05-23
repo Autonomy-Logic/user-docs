@@ -1,230 +1,87 @@
-# Modbus Client Configuration
+# Modbus remote device (master)
 
-When configured as a Modbus client (master), Autonomy Edge initiates connections to external Modbus servers and polls data on a configurable schedule. This lets your PLC program read sensor values, monitor remote I/O modules, control variable frequency drives, and exchange data with other PLCs. All from a centralized project.
+When you want your vPLC to **read** from or **write** to a remote Modbus slave (a field-level sensor, a meter, an external PLC), configure a **Modbus remote device**. The vPLC becomes the master; the remote is the slave.
 
-## Adding a Remote Device
+This lives under **Device** in the project tree, not under **Servers** (which is the *slave*-side configuration covered on the **[Modbus server](server)** page).
 
-To add a Modbus client connection in the Autonomy Edge web editor:
+## Add a remote device
 
-1. In the project explorer, click the **+** button.
+1. Click the **`+`** button at the top of the project tree.
+2. Pick **remote-device**, then **Modbus**.
+3. Give it a name; click **Create**.
+4. The new entry appears under **Device** in the tree. Click it to open its editor.
 
-![Project explorer + button menu showing element types](images/add-element-menu.png)
+The capability is gated to Runtime v4 and the Simulator targets. Other targets won't offer Modbus in the remote-device picker.
 
-2. Select **Remote Device** from the dropdown menu.
+## Transport configuration
 
-![Remote Device creation dialog with protocol selection](images/add-remote-device-dialog.png)
+At the top of the editor, pick **Modbus TCP** or **Modbus RTU (serial)**.
 
-3. Choose the transport protocol:
-   - **Modbus/TCP** for Ethernet-based communication
-   - **Modbus/RTU** for serial (RS-232 / RS-485) communication
+### TCP transport
 
-![Protocol dropdown showing Modbus/TCP and other protocol options](images/remote-device-protocol-dropdown.png)
+| Field | Default | Notes |
+|---|---|---|
+| **Host** | (empty) | IP or hostname of the remote slave. |
+| **Port** | `502` | TCP port. |
+| **Slave ID** | `1` | Unit identifier (range `0…255` for TCP). |
+| **Timeout (ms)** | `1000` | How long to wait for a response before flagging a read/write as failed. |
 
-4. Enter a descriptive name for the device (e.g., `TempSensors_Rack1`).
-5. Click **Create**.
-6. The new device entry appears under the **Devices** folder in the project tree.
-7. Click the device entry to open its configuration panel.
+### RTU transport (serial)
 
-![Remote device configuration panel with empty IO Tag Mapping](images/remote-device-config.png)
+| Field | Default | Notes |
+|---|---|---|
+| **Serial port** | first available | Combobox populated from `runtime.getSerialPorts`. |
+| **Baud rate** | `9600` | One of `9600 / 19200 / 38400 / 57600 / 115200`. |
+| **Parity** | `N` | `N`one / `E`ven / `O`dd. |
+| **Stop bits** | `1` | `1` or `2`. |
+| **Data bits** | `8` | `7` or `8`. |
+| **Slave ID** | `1` | Unit identifier (range `1…247` for RTU). |
+| **Timeout (ms)** | `1000` | Same meaning as TCP. |
 
-You can add multiple remote devices to a single project. Each device maintains its own independent connection and polling schedule.
+## I/O groups
 
-## Connection Settings
+Below the transport, the editor lists **I/O Groups**. Each group corresponds to one polled Modbus operation against the remote (one function code, one address range, one polling cycle).
 
-### Modbus TCP
+Per group:
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Name** | Descriptive name for this remote device | `Remote Device` |
-| **Host** | IP address or hostname of the Modbus server | -- (required) |
-| **Port** | TCP port of the Modbus server | `502` |
-| **Timeout** | Maximum time (in milliseconds) to wait for a response before declaring a communication error | `1000` |
+| Field | Notes |
+|---|---|
+| **Function code** | `FC 1` Read Coils, `FC 2` Read Discrete Inputs, `FC 3` Read Holding Registers, `FC 4` Read Input Registers, `FC 5` Write Single Coil, `FC 6` Write Single Register, `FC 15` Write Multiple Coils, `FC 16` Write Multiple Registers. |
+| **Cycle time** | How often (ms) to issue this operation. The master pipelines all groups round-robin under their cycles. |
+| **Offset** | Modbus address (on the remote) where the read/write starts. |
+| **Length** | How many addresses to read/write per cycle. |
+| **Error handling** | What to do if a cycle fails: `keep-last-value` (leave the local mirror untouched) or `set-to-zero` (clear the local mirror on failure). |
 
-### Modbus RTU
+### I/O points (per group)
 
-For serial connections, additional settings apply:
+Within a group, you declare the **I/O points** — individual values pulled from (or written into) the polled address range. Each point has:
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Name** | Descriptive name for this remote device | `Remote Device` |
-| **Serial Port** | The serial port device (e.g., `/dev/ttyUSB0`) | -- (required) |
-| **Baud Rate** | Communication speed in bits per second | `9600` |
-| **Slave ID** | The Modbus slave address (1--247) of the target device | `1` |
-| **Timeout** | Maximum time (in milliseconds) to wait for a response | `1000` |
+- **Name** — your local identifier (used in the variables editor as the `Type`).
+- **Type** — `BOOL` for FC 1/2/5/15, `INT` for FC 3/4/6/16. Larger types take consecutive addresses.
+- **IEC location** — the local IEC address into which the remote value is mirrored on read (or from which the local value is written on write). E.g. `%IX0.0` for a remote discrete-input mirrored into the input image.
+- **Alias** (optional) — a stable name for the point. If you reorganise the group later, the alias keeps the variables editor happy without manual rewires.
 
-Modbus RTU supports **multi-drop** configurations where multiple slave devices share a single RS-485 serial bus. Each device is identified by a unique slave ID. Add a separate remote device entry for each slave on the bus.
+## How it shows up in code
 
-## Error Handling
+Once a remote device is configured, its I/O points appear as auto-declared variables in the project. You reference them by their **alias** (preferred) or by their **IEC location** directly. The runtime reads / writes the remote on the cycle time you configured, and the local IEC mirror is kept in sync.
 
-When the client cannot communicate with a remote device (timeout, disconnection, or protocol error), you can choose how the mapped IEC variables behave:
+For pulled points, your program reads the local address as if it were a normal input. For pushed points, you write to the local address and the runtime ships the value to the remote at the next cycle.
 
-| Option | Behavior |
-|--------|----------|
-| **Keep Last Value** | Retain the last successfully read value in the IEC variables. The PLC program continues operating with stale data until communication recovers. |
-| **Set to Zero** | Reset all mapped IEC variables to zero. This provides a clear indication that data is no longer valid. |
+## Diagnostics
 
-Choose the option that best fits your application's safety requirements. For critical processes, **Set to Zero** combined with a watchdog timer in your PLC logic is generally safer.
-
-## Connection Retry Behavior
-
-When a connection to a remote device fails, the Modbus client uses an **exponential backoff** strategy to avoid flooding the network with reconnection attempts:
-
-| Parameter | Value |
-|-----------|-------|
-| Initial retry delay | 2 seconds |
-| Maximum retry delay | 30 seconds |
-| Backoff multiplier | 1.5x |
-
-The client starts with a 2-second delay between retries, increasing by a factor of 1.5 after each failure, up to a maximum of 30 seconds. Once communication is re-established, the retry timer resets.
-
-## IO Groups
-
-IO Groups are the core of the Modbus client configuration. Each IO Group defines a block of Modbus data to read from or write to the remote device. You can create multiple IO Groups per device to poll different data areas at different rates.
-
-![New IO Group dialog with configuration options](images/new-io-group-dialog.png)
-
-### IO Group Settings
-
-| Field | Description |
-|-------|-------------|
-| **Name** | Descriptive name for this group (e.g., `TemperatureInputs`) |
-| **Function Code** | The Modbus function code that determines the operation type |
-| **Modbus Offset** | Starting address on the remote device (decimal or hexadecimal, e.g., `0` or `0x0000`) |
-| **Length** | Number of registers or coils to read/write |
-| **IEC Location** | The IEC 61131-3 address assigned to the first data point in this group (auto-assigned by the editor) |
-| **Cycle Time (ms)** | How frequently this group is polled, in milliseconds |
-| **Error Handling** | What to do on communication error (Keep Last Value or Set to Zero) |
-
-### Supported Function Codes
-
-| FC | Name | Operation | IEC Mapping |
-|----|------|-----------|-------------|
-| 1 | Read Coils | Read digital outputs from remote device | `%IX` (inputs) |
-| 2 | Read Discrete Inputs | Read digital inputs from remote device | `%IX` (inputs) |
-| 3 | Read Holding Registers | Read analog/word data from remote device | `%IW` (inputs) |
-| 4 | Read Input Registers | Read analog input data from remote device | `%IW` (inputs) |
-| 5 | Write Single Coil | Write one digital output to remote device | `%QX` (outputs) |
-| 6 | Write Single Register | Write one analog value to remote device | `%QW` (outputs) |
-| 15 | Write Multiple Coils | Write multiple digital outputs to remote device | `%QX` (outputs) |
-| 16 | Write Multiple Registers | Write multiple analog values to remote device | `%QW` (outputs) |
-
-**Key rule**: Read function codes (FC 1--4) map data to **input** addresses (`%I`), because from the PLC's perspective the data is coming *in* from the remote device. Write function codes (FC 5, 6, 15, 16) map to **output** addresses (`%Q`), because the PLC is sending data *out* to the remote device.
-
-### Automatic IEC Location Assignment
-
-When you create an IO Group, the editor automatically assigns the next available IEC location based on the function code. For example:
-
-![IO Group with automatically assigned IEC location](images/io-group-with-iec-location.png)
-
-- First group using FC 3 (Read Holding Registers) might receive `%IW0`
-- A second group using FC 3 with length 4 (after the first group of length 10) would receive `%IW10`
-- A group using FC 16 (Write Multiple Registers) might receive `%QW0`
-
-You can view and verify these assignments in the IO Tag Mapping table.
-
-### Viewing Individual IO Points
-
-Click the expand arrow next to any IO Group to see the individual data points. Each point shows:
-
-![Expanded IO Group showing individual IO points with IEC addresses](images/io-group-expanded.png)
-
-| Column | Description |
-|--------|-------------|
-| **Name** | Auto-generated name (e.g., `TemperatureInputs_0`, `TemperatureInputs_1`) |
-| **Type** | Data type (`Analog Input` for registers, `Digital Input`/`Digital Output` for coils) |
-| **Address** | The assigned IEC address (`%IW0`, `%IW1`, etc.) |
-| **Alias** | Optional custom name you can set for use in your PLC program |
-
-## Cycle Time Optimization
-
-When multiple IO Groups are configured with different cycle times, the runtime calculates the **greatest common divisor (GCD)** of all cycle times to determine the base polling interval. This optimizes communication by batching requests that fall on the same polling tick.
-
-For example, if you have three IO Groups with cycle times of 100 ms, 200 ms, and 500 ms:
-
-- GCD = 100 ms (the base polling interval)
-- The 100 ms group is polled every tick
-- The 200 ms group is polled every other tick
-- The 500 ms group is polled every fifth tick
-
-**Best practice**: Choose cycle times that are multiples of each other to get the most efficient polling schedule. Avoid prime-number cycle times that would result in a GCD of 1 ms.
-
-## Example Configurations
-
-### Reading Temperature Sensors
-
-Poll four temperature values from a remote sensor module every 500 ms:
-
-| Setting | Value |
-|---------|-------|
-| **Host** | `192.168.1.50` |
-| **Port** | `502` |
-| **Function Code** | FC 4 (Read Input Registers) |
-| **Offset** | `0x0000` |
-| **Length** | `4` |
-| **IEC Location** | `%IW100` (auto-assigned) |
-| **Cycle Time** | `500` ms |
-
-This reads Modbus input registers 0--3 from the remote device and maps them to `%IW100` through `%IW103` in your PLC program. Your Structured Text or Ladder logic can then use these variables directly.
-
-### Controlling a Variable Frequency Drive
-
-Write speed and control commands to a VFD every 100 ms:
-
-| Setting | Value |
-|---------|-------|
-| **Host** | `192.168.1.60` |
-| **Port** | `502` |
-| **Function Code** | FC 16 (Write Multiple Registers) |
-| **Offset** | `0x0000` |
-| **Length** | `2` |
-| **IEC Location** | `%QW200` (auto-assigned) |
-| **Cycle Time** | `100` ms |
-
-This writes the values of `%QW200` (speed setpoint) and `%QW201` (control word) to Modbus holding registers 0--1 on the VFD every 100 ms.
-
-### Multi-Drop RTU Configuration
-
-Reading from three devices on a single RS-485 bus:
-
-Add three separate remote device entries, all pointing to the same serial port but with different slave IDs:
-
-| Device Name | Serial Port | Slave ID | IO Groups |
-|-------------|-------------|----------|-----------|
-| `FlowMeter_1` | `/dev/ttyUSB0` | `1` | FC 4, offset 0, length 2 |
-| `FlowMeter_2` | `/dev/ttyUSB0` | `2` | FC 4, offset 0, length 2 |
-| `PressureSensor` | `/dev/ttyUSB0` | `3` | FC 3, offset 10, length 4 |
-
-Each device is polled independently according to its own cycle time.
-
-## Configuration Export
-
-When you transfer a project to the runtime, the Modbus client configuration is exported as `modbus_master.json` inside the program package. This file contains all remote device definitions, IO Group mappings, and polling parameters. It is generated automatically by the editor. You do not need to edit it manually.
+The console reports each I/O Group's first failure and recovery. Persistent failures appear at every cycle in the runtime logs (the **PLC Logs** tab, visible when connected).
 
 ## Troubleshooting
 
-### Communication Errors
+**No remote-device option in the popover.** The active target doesn't support Modbus master (capability `modbusTcpRemote` or `modbusRtuRemote`). Use Runtime v4 or the Simulator.
 
-1. Verify the remote device is powered on and connected to the network (or serial bus).
-2. Confirm the IP address (or serial port), port, and slave ID settings match the remote device.
-3. Increase the timeout value if you are on a slow or congested network.
-4. Use a Modbus diagnostic tool (e.g., QModMaster, `mbpoll`, or ModRSsim2) to verify the remote device responds correctly.
+**TCP timeouts.** The host or port is unreachable. From a shell on the orchestrator host: `telnet <ip> 502` should connect.
 
-### Incorrect or Zero Data Values
+**RTU never responds.** Match the serial parameters exactly: a single mismatched parity or stop bit silently drops every frame. Cross-check with the slave's data sheet.
 
-1. Verify the function code matches what the remote device expects. Consult the device's Modbus register map documentation.
-2. Check the Modbus offset. Some devices use 0-based addressing while others use 1-based. You may need to subtract 1 from the address in the device documentation.
-3. For 32-bit values spanning two registers, confirm the byte order. Autonomy Edge uses big-endian (high word first), which is the Modbus standard, but some devices use little-endian or mid-endian (word-swapped) byte order.
-4. Verify the error handling setting. If set to **Set to Zero**, values will read as zero whenever communication is interrupted.
+**Reading wrong values.** Modbus tools differ in coil/register numbering (some 1-based, some 0-based). The IEC address in the I/O point is **the wire address**, not the 1-based "PLC address" some HMIs display.
 
-### Slow or Inconsistent Polling
+## What's next
 
-1. Check the cycle time settings. Very short cycle times (under 50 ms) may not be achievable depending on network latency and the number of IO Groups.
-2. Reduce the number of IO Groups or combine small reads into larger blocks where the remote device supports it.
-3. Review the cycle time optimization section above. Ensure your cycle times share a reasonable GCD.
-4. On serial (RTU) connections, polling is inherently slower than TCP. Account for serial transmission time and turnaround delays.
-
-## What's Next?
-
-- **[Modbus Server Configuration](server)**: Expose your PLC data to external SCADA and HMI systems
-- **[Modbus Addressing](addressing)**: Detailed address mapping tables, formulas, and runtime version differences
-- **[Communication Protocols Overview](../README)**: Return to the protocols overview
+- **[Modbus addressing](addressing)** — coil 8 vs. `%QX1.0`, holding-register layout.
+- **[Modbus server](server)** — the slave side.
