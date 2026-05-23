@@ -1,5 +1,7 @@
 # Security Profiles
 
+![OPC-UA Server Security Profiles tab: description, Add Security Profile button, and a table with one default "insecure" profile (Policy: None, Mode: None, Authentication: Anonymous), plus a note about certificate-authentication requirements](images/opcua-security-profiles.png)
+
 The **Security Profiles** tab defines the combinations of encryption, signing, and authentication that clients may use when they connect. Each profile is a separate row, and a client must match exactly one profile (policy + mode + at least one accepted authentication method) to be allowed in.
 
 The on-screen description reads: *"Configure which security profiles clients can use to connect. At least one profile must be enabled."*

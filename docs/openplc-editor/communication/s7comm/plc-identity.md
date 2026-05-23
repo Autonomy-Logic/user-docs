@@ -1,5 +1,7 @@
 # PLC Identity
 
+![PLC Identity section expanded showing fields: PLC Name (OpenPLC Runtime), Module Type (CPU 315-2 PN/DP), Serial Number (S C-OPENPLC01), Copyright (OpenPLC Project), Module Name (OpenPLC)](images/s7-server-full.png)
+
 When an S7 client connects, one of the first things it usually does is query the controller's **SZL** (System Status List) to find out what kind of CPU it is talking to. The SZL response carries identification strings. The device name, the module type, a serial number, a copyright line, and a module name. HMIs and engineering tools display these values, and some of them filter their feature set based on the module type (for example, only enabling certain function block calls when they detect an S7-1500).
 
 The **PLC Identity** accordion lets you customise those strings for the OpenPLC runtime so that S7 clients see whatever model and identifier you want.

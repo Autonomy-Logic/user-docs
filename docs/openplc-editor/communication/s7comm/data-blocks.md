@@ -1,10 +1,37 @@
 # Data Blocks
 
+![Add Data Block modal: DB Number 1, Description (Optional description), Size (bytes) 128, Mapping Type dropdown defaulting to Boolean Input (%IX), Start Buffer 0, Bit Addressing toggle, Cancel / Add Data Block buttons](images/s7-add-data-block.png)
+
 A Siemens **Data Block** (DB) is a chunk of structured memory that S7 clients address as `DB<n>`. In an S7-300 program a DB is created in the engineering tool and filled with named variables. In Autonomy Edge, a Data Block is a *view* onto an existing PLC buffer. You decide what kind of data it exposes (Boolean Output, Word Memory, Long Word Input, …), how big the view is, and where in the buffer it starts.
 
 External clients connect, read or write `DB<n>.DBX<byte>.<bit>` (for bit access) or `DB<n>.DBW<byte>` (for word access), and your PLC program sees the changes on its next scan.
 
 The Data Blocks accordion header includes a counter such as `Data Blocks (1/64)` showing how many DBs are configured against the project's hard limit of 64.
+
+## Mapping Type, the 14 buffer types
+
+The dropdown lists all 14 PLC-memory areas a DB can expose:
+
+![Add Data Block dialog with the Mapping Type dropdown open showing the first six options: Boolean Input (%IX), Boolean Output (%QX), Boolean Memory (%MX), Byte Input (%IB), Byte Output (%QB), Word Input (%IW)](images/s7-add-data-block-mapping-types.png)
+
+| Mapping Type | IEC | Bits/Bytes |
+|---|---|---|
+| Boolean Input | `%IX` | 1 bit |
+| Boolean Output | `%QX` | 1 bit |
+| Boolean Memory | `%MX` | 1 bit |
+| Byte Input | `%IB` | 8 bits |
+| Byte Output | `%QB` | 8 bits |
+| Word Input | `%IW` | 16 bits |
+| Word Output | `%QW` | 16 bits |
+| Word Memory | `%MW` | 16 bits |
+| DWord Input | `%ID` | 32 bits |
+| DWord Output | `%QD` | 32 bits |
+| DWord Memory | `%MD` | 32 bits |
+| LWord Input | `%IL` | 64 bits |
+| LWord Output | `%QL` | 64 bits |
+| LWord Memory | `%ML` | 64 bits |
+
+Note this is a strictly broader set than Modbus exposes. Modbus only surfaces a subset (bits and 16-bit registers). If you need 32-bit or 64-bit values mapped directly without manual word-splitting, S7Comm is the more natural fit.
 
 ## Adding a Data Block
 

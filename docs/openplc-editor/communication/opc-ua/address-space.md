@@ -1,5 +1,7 @@
 # Address Space
 
+![OPC-UA Server Address Space tab: description, Namespace URI field, and a two-pane layout, left pane "Available PLC Variables" shows the project tree with main/blink (BOOL) and main/TON0 (TON), right pane "Selected for OPC-UA" shows "0 variables configured" / "No variables selected"](images/opcua-address-space.png)
+
 The **Address Space** tab is where you choose which PLC variables to expose through OPC-UA and how each user role is allowed to interact with them. The on-screen description reads: *"Select PLC variables to expose via OPC-UA. Variable indices are resolved automatically during project compilation."*
 
 The tab has three areas: a **Namespace URI** field at the top, a split pane with the available variables on the left and the selected variables on the right, and a configuration modal that opens whenever you select or edit a variable.

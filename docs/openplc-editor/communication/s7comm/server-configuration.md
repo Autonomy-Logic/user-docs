@@ -1,5 +1,7 @@
 # Server Configuration
 
+![S7Comm server with all sections expanded: Server Configuration (Enable Server off, Bind Address All Interfaces, Port 102, Max Clients 32, PDU Size 480), Data Blocks (0/64) with Add Data Block button, PLC Identity (PLC Name, Module Type CPU 315-2 PN/DP, Serial Number, Copyright, Module Name), Logging (Log Connections on, Log Data Access off, Log Errors on)](images/s7-server-full.png)
+
 The **Server Configuration** section is the first accordion in the S7Comm Server panel. It controls whether the listener is enabled, which network interface it binds to, and how it negotiates with connecting clients.
 
 ## Field Walk-through

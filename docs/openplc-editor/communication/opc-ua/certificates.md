@@ -1,5 +1,7 @@
 # Certificates
 
+![OPC-UA Server Certificates tab showing Server Certificate section (Certificate Strategy dropdown set to Auto-generate Self-Signed) and Trusted Client Certificates section (Add Trusted Certificate button, "No trusted certificates configured" empty state)](images/opcua-certificates.png)
+
 The **Certificates** tab manages the X.509 certificates the OPC-UA server uses for its own identity and the certificates it accepts from clients. The tab is divided into two sections: **Server Certificate** and **Trusted Client Certificates**.
 
 ## Server Certificate

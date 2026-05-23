@@ -2,6 +2,8 @@
 
 The **General Settings** tab is where you configure the server's network identity, performance, and identification URIs. It is the first tab shown after you create an OPC-UA server entry, and it is divided into four labelled sections: **Server Configuration**, **Application Identity**, **Timing Configuration**, and **Namespace Configuration**.
 
+![OPC-UA Server General Settings tab showing all four sections: Server Configuration (Enable, Name, Network Interface, Port 4840, Endpoint Path /openplc/opcua), Application Identity (Application URI urn:openplc:opcua:server, Product URI urn:openplc:runtime), Timing Configuration (Cycle Time 100 ms), Namespace Configuration (Namespace URI urn:openplc:opcua:namespace)](images/opcua-general-settings.png)
+
 All fields commit on blur. Type a value and click outside the field (or press Tab) to save it.
 
 ## Server Configuration

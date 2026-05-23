@@ -1,5 +1,7 @@
 # Users
 
+![OPC-UA Server Users tab: description, Add User button, an empty-state message ("No users configured. Add users for password or certificate authentication"), and Role Descriptions for Viewer / Operator / Engineer](images/opcua-users.png)
+
 The **Users** tab manages the accounts that can authenticate against the OPC-UA server. Each user is either a **Password** account (username + password) or a **Certificate** account (bound to a trusted client certificate). Every user is assigned a **role** that controls what they can read and write through the [Address Space](address-space).
 
 The on-screen description reads: *"Configure user accounts for OPC-UA client authentication."*
