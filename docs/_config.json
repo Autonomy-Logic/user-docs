@@ -261,20 +261,32 @@
           "path": "connecting-to-runtimes"
         },
         {
-          "title": "IDE Workspace Overview",
+          "title": "Workspace",
           "path": "workspace-overview",
           "items": [
             {
-              "title": "Workspace Layout",
+              "title": "Workspace layout",
               "path": "workspace-layout"
             },
             {
-              "title": "Project Explorer",
+              "title": "Project tree",
               "path": "project-explorer"
             },
             {
-              "title": "Console and Debugging",
+              "title": "Console & PLC Logs",
               "path": "console-debugging"
+            },
+            {
+              "title": "Search in project",
+              "path": "search"
+            },
+            {
+              "title": "Source Control",
+              "path": "source-control"
+            },
+            {
+              "title": "AI Engineer",
+              "path": "ai-engineer"
             }
           ]
         },
@@ -469,9 +481,13 @@
           ]
         },
         {
-          "title": "Standard Function Blocks Library",
+          "title": "Block Library",
           "path": "standard-function-blocks",
           "items": [
+            {
+              "title": "Library Manager",
+              "path": "library-manager"
+            },
             {
               "title": "Timer Function Blocks",
               "path": "timer-blocks"
@@ -513,46 +529,28 @@
           ]
         },
         {
-          "title": "Hardware Configuration",
-          "path": "hardware-configuration",
-          "items": [
-            {
-              "title": "Device Configuration Overview",
-              "path": "device-config-overview"
-            },
-            {
-              "title": "Board Selection",
-              "path": "board-selection"
-            },
-            {
-              "title": "Pin Mapping",
-              "path": "pin-mapping"
-            },
-            {
-              "title": "Communication Settings",
-              "path": "communication-settings"
-            }
-          ]
-        },
-        {
-          "title": "Building and Deploying",
+          "title": "Building and Running",
           "path": "building-deploying",
           "items": [
             {
-              "title": "Project Compilation",
+              "title": "Project compilation",
               "path": "project-compilation"
             },
             {
-              "title": "Running with the Simulator",
+              "title": "Deployment to a vPLC",
+              "path": "deployment-vplc"
+            },
+            {
+              "title": "Debugger",
+              "path": "debugger"
+            },
+            {
+              "title": "In-process simulator (desktop only)",
               "path": "simulator"
             },
             {
               "title": "XML Export Format",
               "path": "xml-export"
-            },
-            {
-              "title": "Deployment to vPLC Devices",
-              "path": "deployment-vplc"
             }
           ]
         },
@@ -697,6 +695,10 @@
               ]
             }
           ]
+        },
+        {
+          "title": "Authoring diagrams in docs",
+          "path": "diagram-authoring"
         }
       ]
     },
