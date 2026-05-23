@@ -1,88 +1,135 @@
-# Function Blocks in Ladder Diagram
+# Function blocks and functions in Ladder Diagram
 
-While contacts and coils handle Boolean logic, many PLC applications need timers, counters, math operations, and custom processing. Function blocks bring this capability into Ladder Diagram by providing multi-input, multi-output processing elements that sit inline on a rung.
+Contacts and coils only deal with `BOOL` signals. The moment you need a timer, a counter, an integer comparison, or any maths, you reach for a **function** or **function block** placed inline on the rung. This page covers how those fit into the LD model and the one detail that trips up almost every new LD user: **execution control**.
 
-## What a Function Block Looks Like in LD
+## What a block looks like in LD
 
-A function block appears as a rectangular box placed on a rung between contacts and coils. It has:
+A function or function block appears as a rectangular box on the rung:
 
-- **Input pins** on the left side. Values fed into the block
-- **Output pins** on the right side. Results produced by the block
-- **A name label** showing the block type (e.g., `TON`, `CTU`, `ADD`)
-- **Variable connections** for each pin, linking to your POU variables
+- **Name** at the top (e.g. `TON`, `CTU`, `GT`, `ADD`).
+- **Input pins** on the left, with their pin names (`IN`, `PT`, `IN1`, `IN2`, …).
+- **Output pins** on the right (`Q`, `ET`, `OUT`, …).
+- A small variable label above each pin where you bind a project variable.
 
-The rung's power flow enters the block from the left, passes through its logic, and continues out the right side. This means you can place contacts *before* a function block to control when it runs, and use its output pins to drive coils or feed into other blocks further along the rung.
+For a function block (stateful), you also bind an **instance name** above the block, that's the variable you declared as type `TON` / `CTU` / `PID` / etc.
 
-## Placing a Function Block
+## Placing a block
 
-To add a function block to a rung:
+Two ways:
 
-1. Click a placeholder position on the rung (the small circular target nodes between elements).
-2. The block selection dialog opens. Browse the available blocks from two sources:
-   - **System library**: Standard IEC 61131-3 function blocks (timers, counters, math, comparators, edge detectors, bistable blocks, etc.)
-   - **User library**: Custom function blocks you've created in your project
-3. Select a block. The editor inserts it at the chosen position with input pins on the left and output pins on the right.
+- Click **Block** in the activity-bar toolbox while an LD body is active, then drop it on a rung position.
+- Drag a block from the **Library** panel directly onto a rung.
 
-## Connecting Variables to Pins
+In either case a picker opens letting you choose the specific block (system library, project user libraries, or your own POUs).
 
-Each input and output pin on a function block has a variable field you need to fill in:
+## The one rule that makes LD click
 
-1. Click the variable area next to a pin.
-2. Type a variable name from the Variables Table. Autocomplete filters by compatible data type.
-3. Input pins accept any variable whose type matches the pin's expected type.
-4. Output pins write their results to the assigned variable each scan cycle.
+> **Contacts and coils can be placed on any BOOL input or output pin of a block.**
 
-Make sure you've declared all the variables you need in the Variables Table before wiring them to pins. For function block types like `TON` or `CTU`, you also need a variable declared with that function block type to hold the block's internal state.
+That's the whole game. The left and right power rails are just the most obvious BOOL connection points; every `BOOL` pin on a block is equally valid as somewhere to attach a contact, a coil, or a rung wire.
 
-## Execution Control with EN/ENO
+Concrete examples:
 
-Some function blocks support `EN` (Enable) and `ENO` (Enable Out) pins:
+- A `TON` block has BOOL pins `IN` (input) and `Q` (output). You can wire the rung's left rail to `IN` and `Q` straight out to a coil on the right rail, the rung flows *through* the timer.
+- A `CTU` counter has BOOL pins `CU` (count up) and `R` (reset) on the input side, plus `Q` (output). Drive `R` from a normally-closed reset contact, `CU` from a rising-edge source, and `Q` straight to a coil.
+- An `R_TRIG` edge detector exposes a BOOL `Q` output: take it straight to a coil.
 
-- **EN** (input): When FALSE, the block does not execute. All outputs retain their previous values.
-- **ENO** (output): Mirrors EN. TRUE when the block executed successfully, FALSE when skipped.
+This is why function blocks like `TON` feel "naturally inline" in a rung: they have BOOL pins on both sides, so the rung wire has somewhere to land.
 
-This gives you fine-grained control over when a block runs, independent of the rung's power flow.
+## The gotcha: blocks with no BOOL inputs
 
-## User-Defined Function Blocks
+Comparison and arithmetic blocks (`GT`, `EQ`, `LT`, `ADD`, `MUL`, `SEL`, `MAX`, …) have **no BOOL input pins**. Their inputs are numbers; their output is either a number (`ADD`, `MUL`) or a single BOOL (`GT`, `EQ`).
 
-Any function block POU you create in your project appears in the user library. You place and wire it on a rung exactly like a standard block. The editor reads your block's variable definitions (inputs and outputs) and creates the corresponding pins automatically.
+When you drop one of these onto a rung, the rung wire has nowhere to land on the input side, so the editor attaches the block to **the top power rail**, dangling above your rung. Lots of new users get stuck here, certain they're doing something wrong because the block won't sit inline. **It's not a bug. The default placement just doesn't have a BOOL pin to enter on.**
 
-This lets you encapsulate complex logic. PID controllers, filters, custom algorithms written in ST or any other language. And reuse it visually in your Ladder Diagrams.
+You have two ways out:
 
-## Practical Example: Motor Start with Timer
+1. **Leave the block where it is and ignore the rail attachment.** The block computes every scan regardless. Use its output (e.g. `GT.OUT`) like any other BOOL signal, drive a coil from it, gate a downstream block, etc.
+2. **Turn on execution control.** This adds `EN` and `ENO` pins to the block, giving you an explicit BOOL way in and out. The block can then be wired into a rung's power flow like a regular FB.
 
-Here's a common pattern that uses a TON timer to add a startup delay to a motor:
+## Execution control (EN / ENO)
 
-**Variables:**
+Every block has an **Execution Control** flag (defaults to **off**). To toggle it:
 
-| Name | Type | Class | Description |
-|------|------|-------|-------------|
-| `start_cmd` | BOOL | Local | Start command from operator |
-| `e_stop` | BOOL | Local | Emergency stop (NC) |
-| `delay_timer` | TON | Local | Startup delay timer instance |
-| `motor_run` | BOOL | Local | Motor run output |
+1. **Double-click the block** in the rung. The **Block Properties** dialog opens.
 
-**Rung 1. Timer logic:**
+   ![Block Properties dialog for a TON: Type picker on the left (iec-std-functions, iec-standard-fb, additional-function-blocks, oscat-basic, User Libraries), Name field, Execution Order, Execution Control toggle (off), Preview showing the block's pins. The TON preview shows IN/Q/PT/ET only](../images/block-properties-ton.png)
 
-<ladder-diagram src="/docs/diagrams/ladder/fb-ton-timer.json"></ladder-diagram>
+2. Flip **Execution Control** to **on**. The preview updates to show the block with `EN` (above the inputs) and `ENO` (above the outputs).
 
-**Rung 2. Motor output:**
+   ![Same dialog with Execution Control toggled on; the preview now shows the TON with EN and ENO pins added above the IN/Q/PT/ET pins](../images/block-properties-ton-eneno.png)
 
-<ladder-diagram src="/docs/diagrams/ladder/fb-ton-output.json"></ladder-diagram>
+3. Click **OK**. The block in your rung redraws with the new pins.
 
-The `start_cmd` contact and `e_stop` normally-closed contact control rung power into the TON block. When both conditions are met, the timer starts counting. After 3 seconds, `delay_timer.Q` goes TRUE and energizes `motor_run` on the second rung.
+### What EN and ENO do
 
-## Standard Function Block Reference
+- **`EN`** (input): when `TRUE`, the block executes this scan. When `FALSE`, the block is skipped, outputs retain their previous values.
+- **`ENO`** (output): mirrors `EN`. `TRUE` while the block is executing, `FALSE` when skipped.
 
-For detailed documentation on each standard function block. Including pin tables, timing behavior, and examples. See the dedicated reference pages:
+The combination gives you an explicit BOOL chain you can wire into a rung:
 
-- [Timer Blocks](../../standard-function-blocks/timer-blocks): TON, TOF, TP
-- [Counter Blocks](../../standard-function-blocks/counter-blocks): CTU, CTD, CTUD
-- [Edge Detection Blocks](../../standard-function-blocks/edge-detection-blocks): R_TRIG, F_TRIG
-- [Bistable Blocks](../../standard-function-blocks/bistable-blocks): SR, RS
+```
+left rail → contact → EN | block | ENO → coil → right rail
+```
 
----
+### When to use each mode
 
-## What's Next?
+| Mode | Best for |
+|---|---|
+| **Execution Control off** (default) | Stateless data-flow blocks: a `GT` that computes every scan and feeds its OUT into other logic, an `ADD` whose result is consumed downstream, an `MUX` selecting one of N values. |
+| **Execution Control on** | Blocks you want to skip under some condition (saves cycles, prevents side effects), or any block you want visually inline between a contact and a coil. |
 
-Explore other programming languages: [FBD Basics](../function-block-diagram/fbd-basics) for a fully graphical block-based approach, or [ST Basics](../structured-text/st-basics) for text-based programming.
+For stateful function blocks (`TON`, `CTU`, etc.) that already have BOOL pins like `IN` / `Q`, you usually don't *need* execution control, wiring the rung through `IN`/`Q` works the same way `EN`/`ENO` would. Execution control is the universal solution; using the block's own BOOL pins is the lighter-touch idiomatic LD way.
+
+## Connecting variables to non-BOOL pins
+
+For non-BOOL pins (`INT`, `REAL`, `TIME`, etc.) you don't wire physically, you **type the variable name** into the small text field next to the pin. The editor autocompletes from your variable table, filtered to types compatible with the pin.
+
+- Inputs accept any variable, constant literal (`5`, `T#500ms`, `2.5`), or output of an upstream block.
+- Outputs write into the named variable each scan they execute.
+
+If the variable doesn't exist yet, just type the new name, the editor offers to add it to the variable table.
+
+## User-authored function blocks
+
+Any `function-block` POU you create in your project appears in the block picker's **User Libraries** section. You drop it and wire it exactly like a standard block; the editor reads your block's variable interface (inputs / outputs) to determine the pins.
+
+You declare an instance variable to hold the block's state (`my_filter : MyFilter;`) and bind that instance to the block when you place it.
+
+## A practical example: motor start with timer
+
+```
+Variables:
+  start_cmd     : BOOL          (start command)
+  e_stop        : BOOL          (emergency stop, NC contact)
+  delay_timer   : TON           (3 s startup delay)
+  motor_run     : BOOL          (motor output)
+```
+
+**Rung 1, start the timer when the operator presses start, gated by E-stop:**
+
+<LadderDiagramViewer src="/docs/diagrams/ladder/fb-ton-timer.json" />
+
+**Rung 2, drive the motor output from the timer's `Q`:**
+
+<LadderDiagramViewer src="/docs/diagrams/ladder/fb-ton-output.json" />
+
+The contact on `start_cmd` and the NC contact on `e_stop` both feed into the TON's `IN` BOOL pin (no execution control needed, the rung wire lands on `IN` directly). After 3 seconds, `delay_timer.Q` goes `TRUE` and rung 2's coil energises `motor_run`.
+
+## Block reference
+
+The detailed per-block pages cover pin types, behaviour, timing diagrams, and common patterns:
+
+- **[Timer blocks](../../standard-function-blocks/timer-blocks)**: `TON`, `TOF`, `TP`
+- **[Counter blocks](../../standard-function-blocks/counter-blocks)**: `CTU`, `CTD`, `CTUD` (and type-suffixed variants)
+- **[Edge detection blocks](../../standard-function-blocks/edge-detection-blocks)**: `R_TRIG`, `F_TRIG`
+- **[Bistable blocks](../../standard-function-blocks/bistable-blocks)**: `SR`, `RS`, `SEMA`
+- **[Other standard blocks](../../standard-function-blocks/other-blocks)**: `RTC`, `INTEGRAL`, `DERIVATIVE`, `PID`, `RAMP`, `HYSTERESIS`
+
+The IEC standard **functions** (comparison, arithmetic, bit-shift, type conversion, etc.) live in the `iec-std-functions` library, see the **[Library Manager](../../standard-function-blocks/library-manager)** page for how to enable them and where to find them in the picker.
+
+## What's next
+
+- **[LD Editor Features](ld-editor)**: toolbox, selection, multi-select, rung management.
+- **[Worked example: Motor start / stop with seal-in](../../examples/start-stop-seal-in)**: applies everything on this page in a single rung.
+- **[FBD Basics](../function-block-diagram/fbd-basics)**: the fully-graphical cousin of LD.
