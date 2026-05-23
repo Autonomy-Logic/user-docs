@@ -6,7 +6,11 @@ The project tree is the top half of the editor's side panel. It lists every arte
 
 ## Header
 
-The project name sits in a blue bar at the top. To the right, a **`+`** button opens the **Create Element** popover. From it you can create:
+The project name sits in a blue bar at the top. To the right, a **`+`** button opens the **Create Element** popover.
+
+![Create Element popover listing Function, Function Block, Program, Data Type, Server, and Remote Device options, each with a small icon and a chevron indicating a sub-menu](../images/create-element-popover.png)
+
+From it you can create:
 
 - `function`: a stateless POU that returns a value
 - `function-block`: a stateful POU you can instantiate

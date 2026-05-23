@@ -18,13 +18,13 @@ Below the Simulator, each card represents one orchestrator: its name, its online
 
 ## Pick a vPLC
 
-Expand the orchestrator. The vPLCs running on it appear as child rows, each with its name and status.
+Expand the orchestrator. The vPLCs running on it appear as child rows, each with its name and a status indicator (green dot + `Running` if the vPLC is up).
 
-![Orchestrator card expanded showing the vPLCs hosted on it, with status and a Connect action per device](images/device-orchestrators-expanded.png)
+![Device Orchestrators screen with SLM-RP4 expanded, showing vPLC 01 with a green Running status](images/orchestrators-expanded.png)
 
-Click a vPLC to select it. The **Connect** button activates on the right.
+Click a vPLC to select it. The row highlights and a **Connect** button appears below the cards.
 
-![A vPLC selected with the Connect button visible](images/device-orchestrators-connect.png)
+![vPLC 01 selected, with the Connect button visible below the orchestrator cards](images/orchestrators-vplc-selected.png)
 
 Click **Connect**.
 
@@ -39,6 +39,8 @@ Enter a username and password, confirm the password, and click **Create User**. 
 ## Subsequent connections: log in
 
 After the first user exists, connecting opens a standard **Login** dialog. Use the credentials you created. The session lasts until you log out or close the editor tab.
+
+![Login to OpenPLC Runtime dialog with Username and Password fields, and Login / Cancel buttons](images/runtime-login-modal.png)
 
 ## What changes once you're connected
 

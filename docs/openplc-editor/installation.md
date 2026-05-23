@@ -20,7 +20,7 @@ Graphical editors (Ladder, FBD) are easiest with a mouse or trackpad. The editor
 
 The OpenPLC project also publishes a standalone desktop editor for Windows, macOS, and Linux. It shares the same project format and most of the same features. A handful of surfaces (the board selector, VPP vendor screens, USB upload, local-disk project paths) live only on the desktop side, so if you need them, install the desktop editor and use it alongside the web one.
 
-For most Autonomy Edge users, the web editor is enough — including the in-browser Simulator for quick tests without setting up hardware.
+For most Autonomy Edge users, the web editor is enough, including the in-browser Simulator for quick tests without setting up hardware.
 
 ## What's next
 

@@ -35,7 +35,7 @@ Typical compile errors and what they mean:
 
 ## Build without a vPLC connection
 
-The **Simulator** is selected by default, so **Build & Upload** is always available — even without an orchestrator-managed vPLC. The "upload" step loads the firmware into the in-browser emulator.
+The **Simulator** is selected by default, so **Build & Upload** is always available, even without an orchestrator-managed vPLC. The "upload" step loads the firmware into the in-browser emulator.
 
 If you've selected a vPLC and then disconnected, `Build & Upload` and `Clean Upload` are disabled until you reconnect. Click **Orchestrators**, log back in, and they come back. (Or switch back to the Simulator and you don't need a connection at all.)
 

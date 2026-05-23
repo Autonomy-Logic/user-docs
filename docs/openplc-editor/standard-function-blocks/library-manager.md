@@ -2,7 +2,9 @@
 
 The **Library Manager** is where you add, remove, and enable libraries for the editor and for your project.
 
-Open it from the bottom of the side panel: click **+ Manage libraries…** under the **Library** section. A modal opens with two tabs.
+Open it from the bottom of the side panel: click **+ Manage libraries…** under the **Library** section. It opens as a tab in the central editor area with two sub-tabs: **System Libraries** and **Project Libraries**.
+
+![Library Manager open on the System Libraries tab, with the four bundled libraries (iec-std-functions, iec-standard-fb, additional-function-blocks, oscat-basic) listed on the left and the iec-std-functions details on the right (Identifier, Version, Source, Description, Contents: 81 POUs)](../images/library-manager.png)
 
 ## System libraries
 
@@ -27,6 +29,8 @@ Each library row shows: name, version, author, origin, and a count of POUs it co
 ## Project libraries
 
 The **Project Libraries** tab shows what's enabled **in this project specifically**. Bundled libraries are always on (and labelled as such). You toggle the others on or off per project.
+
+![Library Manager Project Libraries tab: the left pane is the "Available Libraries" search (empty when every installed library is already enabled), the right pane lists the project's enabled libraries with their "always on" badges for the bundled ones](../images/library-manager-project.png)
 
 When a library is enabled for the project:
 
