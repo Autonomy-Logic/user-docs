@@ -1,83 +1,117 @@
 # Workspace Layout
 
-The IDE workspace has four main areas: the **Activity Bar** on the left edge, the **Project Explorer** sidebar, the **Editor Area** in the center, and the **Console Panel** at the bottom. Here's a quick tour of each.
+The editor has four main areas: the **menu bar** at the very top, the **activity bar** on the left edge, the **side panel** (project tree + library), and the **central editor area** with a **console** docked to its bottom.
 
-![The complete IDE workspace showing the Activity Bar, Project Explorer, Editor Area, and Console Panel](images/workspace-layout-full.png)
+![The editor open on a project, showing the menu bar at the top, the activity bar on the left, the side panel with the project tree and library, the central editor with a Ladder Diagram body and the variables table above it, and the console at the bottom](../images/workspace-overview.png)
 
-## Activity Bar
+## Menu bar
 
-The Activity Bar is the narrow vertical strip on the far left. It contains icon buttons for global actions:
+Across the top: **File**, **Edit**, **Display**, **Help**, **Recent**.
 
-- **Search**: Find elements across your project. Results appear in the Console Panel's Search tab.
-- **Open/Close Toolbox**: Toggle the Project Explorer sidebar. When a graphical editor (LD or FBD) is active, this also shows or hides the element toolbox.
-- **Compile**: Build your project and (if connected to a device) deploy it. Progress appears in the Console Panel.
-- **Start / Stop PLC**: Control the PLC program on the connected device. Only active when you're connected.
-- **Debugger**: Reserved for future use.
+| Menu | What's in it |
+|---|---|
+| File | Save File, Save Project, Close Tab, Close Project, Page Setup, Preview, Print, Check for Updates |
+| Edit | Refresh, Clear Errors, Zoom In/Out, Switch Perspective, Reset Perspective, Full Screen, Sort Alpha, Change Theme |
+| Display | (currently a single entry — kept for future view options) |
+| Help | Community support |
+| Recent | Last few projects you've opened (empty until you've opened more than one) |
 
-The Activity Bar is always visible, so you always have quick access to compile and run controls.
+Most actions are also reachable from the activity bar or with keyboard shortcuts — see the inline `Ctrl + …` hints in the menus.
 
-## Project Explorer
+## Activity bar
 
-The Project Explorer is the left sidebar, right next to the Activity Bar. It shows your entire project as a collapsible tree:
+The narrow vertical strip on the left edge. From top to bottom:
 
-- **Project name**: Shown at the top. Click to rename.
-- **Create element (+)**: Opens a dialog to create new POUs or Data Types.
-- **Tree branches**: Your project is organized into:
-  - **Functions**: Function-type POUs.
-  - **Function Blocks**: Function block-type POUs.
-  - **Programs**: Program-type POUs.
-  - **Data Types**: User-defined arrays, enumerations, and structures.
-  - **Resources**: Global variables, tasks, and instances.
-  - **Devices**: Orchestrator connections and remote device configurations.
-  - **Servers**: Communication server settings (Modbus, S7Comm, OPC-UA).
+| Icon | What it does |
+|---|---|
+| Files (Explorer) | Show/hide the side panel with the project tree and library |
+| Git branch (Source Control) | Open the source control panel (changes, history, branches). A small badge shows how many files have pending edits |
+| Magnifier (Search) | Open the project-wide search panel |
+| Zoom | Toggle the toolbox (only meaningful when a graphical editor is open) |
+| Download (Build options) | Build / build + deploy / clean build menu |
+| Play | Start the PLC on the connected runtime (requires a connected vPLC) |
+| Bug (Debugger) | Open the live-variable debugger |
+| AI | Open the AI Engineer chat panel |
+| **(divider)** | |
+| Block, Coil, Contact, Delete | LD-only toolbox (shown when a Ladder Diagram body is open) |
+| Block, Input/Output Variable, Connector, Continuation, Comment | FBD-only toolbox (shown when a Function Block Diagram body is open) |
+| **(divider)** | |
+| X | Close the project |
+| ← (bottom) | Exit the editor and return to the Autonomy Edge project page |
 
-Click any item to open it as a tab in the Editor Area. You can resize the sidebar by dragging its right border.
+The activity bar is always visible. The middle of the bar changes based on what kind of editor you have open — only LD and FBD bodies trigger context toolboxes.
 
-For a detailed walkthrough, see [Project Explorer](project-explorer).
+## Side panel
 
-## Editor Area
+To the right of the activity bar. Shown when **Explorer** is enabled.
 
-The Editor Area is the main workspace in the center where you write and edit your PLC logic. It supports multiple open tabs. Click items in the Project Explorer to open them here.
+### Project tree (top)
 
-### Editor Types
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Orchestrators, and Servers branches](../images/project-tree.png)
 
-The editor adapts to what you're working on:
+The branches:
 
-- **Textual editors**: For Structured Text (ST) and Instruction List (IL). Features syntax highlighting, autocomplete, undo/redo, and find/replace.
-- **Graphical editors**: For Ladder Diagram (LD) and Function Block Diagram (FBD). A visual canvas where you place and connect elements.
-- **Python / C++ editors**: For custom function blocks, with appropriate syntax highlighting.
-- **Data Type editor**: A form for defining array dimensions, enumeration values, or structure fields.
-- **Resource editor**: Three sections: Global Variables, Tasks, and Instances.
-- **Device and Server editors**: Configuration panels for connections and communication protocols.
+- **Functions** — `function` POUs.
+- **Function Blocks** — `function-block` POUs (including Python and C++ blocks).
+- **Programs** — `program` POUs. The one bound to a task as an instance is what actually runs.
+- **Data Types** — user-defined arrays, enumerations, and structures.
+- **Resource** — the project's global variables, tasks, and instances. Open it to edit any of the three.
+- **Device** — connected orchestrators and remote devices (Modbus master, EtherCAT).
+- **Servers** — communication servers (Modbus TCP slave, OPC-UA, S7Comm).
 
-### Variables Table
+Click any leaf to open it as a tab in the central editor. The **`+`** button at the top of the tree opens the **Create Element** popover (function, function-block, program, data-type, server, remote-device).
 
-When editing a POU, a **Variables Table** appears at the top of the editor. It shows all variables declared for that POU and lets you add, remove, or modify them. You can collapse it or drag the divider to resize.
+For more, see **[Project Tree](project-explorer)**.
 
-## Console Panel
+### Library catalogue (bottom)
 
-The Console Panel sits at the bottom. It has multiple tabs:
+Below the project tree, the **Library** section lists every library that's enabled in this project. The bundled libraries are `iec-std-functions`, `iec-standard-fb`, `additional-function-blocks`, and `oscat-basic`. Click **+ Manage libraries…** to add or remove libraries from the system pool, or to enable a library for this project.
 
-- **Console**: Build progress messages, compilation output, upload status, and errors. Every compilation step is logged here.
-- **Search**: Appears when you perform a search. Shows results with links to matching elements.
-- **PLC Logs**: Appears when connected to a device. Shows live logs from the running PLC program.
+Expanding a library reveals each function and function block it contains — drag them into a graphical body to use them.
 
-The Console includes filtering controls (by log level, search term, and timestamp format) and lets you export logs as TXT, CSV, or JSON. Use the Clear button to reset the output before a new build.
+For more, see the **[Library Manager](../standard-function-blocks/library-manager)** page.
 
-For a detailed guide, see [Console & Debugging](console-debugging).
+## Central editor area
 
-## Resizing the Layout
+Where you write, draw, and configure things. The tabs at the top show what's open.
 
-All major panels are resizable:
+The editor's contents change with what you've selected in the tree:
 
-- Drag the border between the **Project Explorer** and **Editor Area** to adjust sidebar width.
-- Drag the border between the **Editor Area** and **Console Panel** to adjust the vertical split.
-- Drag the border between the **Variables Table** and the code editor within a POU.
+- **POU bodies** open the appropriate language editor: Structured Text, Ladder, Function Block Diagram, Instruction List, Python, or C++.
+- **Data Types** opens a form editor (array dimensions, enum values, or structure fields).
+- **Resource** opens a combined view with three sub-editors: Globals, Tasks, Instances.
+- **Servers** open per-protocol configuration editors.
+- **Device entries** open per-device configuration editors (e.g., Modbus master groups, EtherCAT slave channels).
 
-Both the Project Explorer and Console Panel can be collapsed entirely to maximize your editing space.
+When a POU body is open, the **variables table** appears between the breadcrumb and the body. It lists every variable declared for that POU. Toggle between table mode and raw `VAR ... END_VAR` code mode with the icons on the table's right edge.
 
----
+### Tabs
 
-## What's Next?
+Multiple files can be open simultaneously. Click a tab to switch, or click its `×` to close it. The breadcrumb above the active tab traces the path from the project root to whatever you're editing.
 
-Learn how to navigate your project structure in the [Project Explorer](project-explorer).
+## Console
+
+The strip at the bottom of the editor. It has tabs:
+
+- **Console** — build, compile, runtime connection, debugger, and library messages. Filter by level (info / warning / error) and free-text search.
+- **PLC Logs** — appears once you're connected to a Runtime v4 vPLC. Streams the live log feed from the runtime.
+- **Search results** — populated by the activity-bar **Search** action.
+
+The console has a **Filters** button for level toggles + search, a **Download** button to export logs, and a **Clear console** button to wipe the current view.
+
+## Resizing
+
+Most boundaries are draggable:
+
+- The split between the side panel and the central editor.
+- The split between the editor and the console.
+- The split inside a POU between the variables table and the body.
+- The split between the project tree and the library catalogue.
+
+The side panel and console can both be collapsed entirely to maximise the editing space — click the **Explorer** icon to toggle the side panel; resize the console divider down to zero to hide the console.
+
+## What's next
+
+- Inspect the project structure in detail: **[Project Tree](project-explorer)**.
+- Learn the console and live-debugging surface: **[Console & PLC Logs](console-debugging)**.
+- Jump to a programming language: **[Structured Text](../programming-languages/structured-text/st-basics)** · **[Ladder Diagram](../programming-languages/ladder-diagram/ld-basics)** · **[Function Block Diagram](../programming-languages/function-block-diagram/fbd-basics)** · **[Instruction List](../programming-languages/instruction-list/il-basics)**.

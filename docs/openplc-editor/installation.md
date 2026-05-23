@@ -1,34 +1,27 @@
-# Accessing the IDE
+# Accessing the editor
 
-The Autonomy Edge IDE is entirely browser-based. There's nothing to install. Just open your browser and go to [edge.autonomylogic.com](https://edge.autonomylogic.com).
+The OpenPLC Editor is part of Autonomy Edge. There's nothing to install. Open a project, click **Open in editor**, and you're in.
 
-## Accessing the IDE
+1. Open a modern browser (Chrome, Edge, Firefox, or Safari).
+2. Go to [edge.autonomylogic.com](https://edge.autonomylogic.com) and log in.
+3. Open a project, then click **Open in editor**.
 
-1. Open a modern web browser (Chrome, Firefox, Edge, or Safari).
-2. Navigate to `https://edge.autonomylogic.com`.
-3. Log in with your Autonomy Edge account.
-4. Open or create a project. You're ready to start programming.
+The editor loads in the same tab.
 
-That's it. No downloads, no setup wizards, no dependencies.
+## System requirements
 
-> **Tip:** The IDE works best on a desktop or laptop screen. While it functions on tablets, the graphical editors (Ladder Diagram, Function Block Diagram) are easiest to use with a mouse or trackpad.
+- A modern browser with JavaScript enabled.
+- A stable internet connection.
+- An Autonomy Edge account.
 
-## System Requirements
+Graphical editors (Ladder, FBD) are easiest with a mouse or trackpad. The editor works on tablets but isn't tuned for touch input.
 
-- A modern web browser with JavaScript enabled
-- A stable internet connection
-- An Autonomy Edge account
+## Desktop editor (separate product)
 
-## Desktop Editor (Optional)
+The OpenPLC project also publishes a standalone desktop editor for Windows, macOS, and Linux. It shares the same project format and most of the same features. A handful of surfaces (the board selector, VPP vendor screens, in-process simulator, USB upload) live only on the desktop side, so if you need them, install the desktop editor and use it alongside the web one.
 
-If you need offline development capabilities, the OpenPLC project also maintains a desktop editor available from [autonomylogic.com](https://autonomylogic.com). It runs on Windows, macOS, and Linux.
+For most Autonomy Edge users, the web editor is enough.
 
-Projects are compatible between the web IDE and the desktop editor. You can export from one and import into the other.
+## What's next
 
-For most users on the Autonomy Edge platform, the web IDE is all you need.
-
----
-
-## What's Next?
-
-Explore the [Workspace Layout](workspace-overview/workspace-layout) to learn where everything is in the IDE.
+Take the **[Workspace Layout](workspace-overview/workspace-layout)** tour.
