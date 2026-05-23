@@ -1,135 +1,57 @@
-# Project Compilation
+# Building a project
 
-This page shows you how to compile your PLC project, what to expect in the Console output, and how to fix common errors.
+The **Build options** icon in the activity bar (the download icon, between Zoom and Play) opens a small popover with three actions:
 
-## How to Compile
+| Action | What it does |
+|---|---|
+| **Build only** | Compile the project. Doesn't touch the connected vPLC. Useful for quick syntax checks without redeploying. |
+| **Build & Upload** | Compile, then HTTP-upload the result to the connected vPLC. Doesn't start the PLC; you press **Play** for that. Disabled if you're not connected. |
+| **Clean Upload** | Force a full rebuild (discards build cache) and then upload. Use when something seems off and you suspect the cache. Disabled if you're not connected. |
 
-1. Open your project in the IDE.
-2. Click the **Compile** button in the Activity Bar (left side of the screen).
-3. Watch the Console Panel at the bottom. It shows real-time progress for each step of the build.
-4. Wait for the final message: `Compilation completed successfully`.
+## The build pipeline
 
-That's it. If you're connected to a device, the compiled program is automatically uploaded and ready to run.
+Each compilation runs the same sequence:
 
-> **Note:** If you're using the [Simulator](simulator) (the default target), you don't use the Compile button. Instead, click **Start Simulator**: it compiles and runs in one step. This page covers the compilation flow for deploying to real Devices via Orchestrators.
+1. **Save** any unsaved bodies.
+2. **Sync variable aliases** — for each variable bound to a producer (Modbus master point, EtherCAT channel, etc.), resolve the current address via the alias registry.
+3. **STruC++ compile** — translate every POU body to C++ source. (Earlier builds called out to MatIEC's `iec2c`; the current pipeline uses STruC++ as a drop-in replacement.)
+4. **Generate `defines.h`** — pin map, Modbus address map, MD5 of the program, runtime-side hooks.
+5. **Compile to binary** — `arduino-cli` for Arduino-class targets (desktop only), `openplc-compiler` for runtime targets.
+6. **Upload** (if you picked **Build & Upload** or **Clean Upload**) — HTTP POST to the runtime's webserver.
 
-> **Tip:** Clear the Console before compiling (click the trash icon) so you have a clean view of just this build's output.
+The console shows each step as it runs, with timestamps. A successful run ends with `Compilation completed successfully`.
 
-## What You See in the Console
+## Reading errors
 
-During compilation, the Console logs each step as it progresses:
+When the compiler returns an error, the console message is **clickable** — clicking it jumps to the offending source line in the appropriate POU body.
 
-```
-[INFO]  Build process started
-[INFO]  Generating XML...
-[INFO]  Step 1: Generating Structured Text...
-[INFO]  Step 2: Compiling to program files...
-[INFO]  Step 3: Generating debug files...
-[INFO]  Step 4: Generating variable bindings...
-[INFO]  Step 5: Creating package...
-[INFO]  Step 6: Uploading program to runtime...
-[INFO]  Step 7: Monitoring runtime compilation...
-[INFO]  Compilation completed successfully (exit code: 0).
-```
+Typical compile errors and what they mean:
 
-Each line is timestamped and color-coded by severity:
+- **Syntax errors** — usually a missing semicolon in ST, or an unclosed comment.
+- **Type errors** — assigning a `REAL` to a `BOOL`, calling a function block with wrong-typed inputs, etc. STruC++ reports the offending line and the expected vs. actual type.
+- **Undeclared variable** — referenced but not in the POU's variable table (or globals). Add it before retrying.
+- **Library not enabled** — using a block from a library that isn't enabled for this project. Open the **Library Manager** and tick it on.
+- **Address collision** — two variables claim the same `Location`. Pick a non-overlapping address.
 
-- **Info** (blue): Normal progress
-- **Warning** (yellow): Something to be aware of, but not a blocker
-- **Error** (red): Something went wrong; the build stops here
+## Build without a connection
 
-## Successful Compilation
+You can **Build only** any time, with or without a connected vPLC. This validates your code and produces the build artifacts; it just doesn't ship them anywhere.
 
-When compilation succeeds:
+`Build & Upload` and `Clean Upload` are disabled in the popover until the editor has a live connection. Click **Orchestrators**, log in to a vPLC, then come back.
 
-- The Console shows `Compilation completed successfully`.
-- Your program has been uploaded to the connected device (if one is connected).
-- You can now click the **Start PLC** button to run your program.
+## Build artifacts
 
-If you compiled without a connected device, the IDE validates your code but can't upload it. You'll see this message:
+The compile pipeline produces:
 
-```
-You need to connect to a device to be able to upload the PLC program.
-```
+- `defines.h` — the generated header.
+- A platform-specific binary (`.bin`, `.hex`, or similar) inside `build/`.
+- A debug symbol map (`.dbg`) used by the debugger to read variables by name.
+- An MD5 hash of the final binary, used by the debugger to verify the runtime is executing the same build the editor just compiled.
 
-This is still useful. It tells you your code compiles without errors, so you can connect and deploy later.
+These live inside the project's `build/` directory and are gitignored — no need to commit them.
 
-## Compiling Without a Device
+## What's next
 
-You don't need a device connected to compile. The IDE will:
-
-- Validate your project structure
-- Check your code for syntax errors and type mismatches
-- Report any issues in the Console
-
-This is great for catching errors early while you're still developing your logic.
-
-## Common Compilation Errors
-
-### No program POU found
-
-Your project needs at least one program-type POU. Check the Project Explorer. If the **Programs** branch is empty, create a program first.
-
-### Syntax errors
-
-These show up with line numbers and descriptions:
-
-```
-[ERROR] Line 15: Unexpected token 'THEN' - expected ';'
-```
-
-Go back to your code and fix the issue at the indicated line. Common causes:
-
-- Missing semicolons at the end of statements
-- Missing `END_IF`, `END_FOR`, or `END_WHILE` keywords
-- Misspelled language keywords
-
-### Undeclared variables
-
-```
-[ERROR] Line 23: Undeclared variable 'counter_value'
-```
-
-The variable you're using in your code isn't declared. Open the Variables Table at the top of the editor and add the missing variable with the correct name and type.
-
-### Type mismatches
-
-You're trying to assign a value of one type to a variable of a different type. For example, assigning a `REAL` value to an `INT` variable without a conversion function.
-
-### Python or C/C++ validation errors
-
-If your project includes Python or C/C++ function blocks, the IDE validates the custom code before compilation starts. Check the Console for specific validation messages. Make sure your code follows the required structure (see [Python Blocks](../custom-languages/python-blocks/python-basics) and [C/C++ Blocks](../custom-languages/cpp-blocks/cpp-basics)).
-
-### Upload fails
-
-If the code compiles but upload fails:
-
-- Check that your device is still connected (look at the Orchestrators panel).
-- Make sure the orchestrator is online.
-- Check the Console for specific error messages.
-
-### Compilation timeout
-
-The IDE waits up to 5 minutes for the device to finish processing. If it times out:
-
-- The device may be under heavy load. Try again.
-- Check that the device is still running in the platform dashboard.
-- Reconnect to the device and recompile.
-
-## Server IP Validation
-
-If your project includes communication servers (Modbus slave, S7Comm, OPC-UA), the IDE checks that the configured bind addresses match the target device's network interfaces before uploading.
-
-If there's a mismatch, a dialog appears with three options:
-
-- **Cancel**: Stop the upload and fix the address.
-- **Continue**: Upload anyway (the server may fail to start on the device).
-- **Switch to all interfaces**: Temporarily use `0.0.0.0` so the server listens on all available interfaces.
-
----
-
-## What's Next?
-
-- [Deployment](deployment-vplc): Learn what happens after compilation and how to manage your running program.
-- [XML Export](xml-export): Export your project for backup or sharing.
-- [Console & Debugging](../workspace-overview/console-debugging): Learn how to read and filter build logs effectively.
+- **[Deployment to a vPLC](deployment-vplc)** — the upload step in detail.
+- **[Debugger](debugger)** — live variable inspection on the running PLC.
+- **[Console & PLC Logs](../workspace-overview/console-debugging)** — read the build stream and the runtime's own logs.
