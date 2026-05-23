@@ -697,6 +697,32 @@
           ]
         },
         {
+          "title": "Worked examples",
+          "path": "examples",
+          "items": [
+            {
+              "title": "Blink",
+              "path": "blink"
+            },
+            {
+              "title": "Motor start / stop with seal-in",
+              "path": "start-stop-seal-in"
+            },
+            {
+              "title": "Modbus slave: expose digital outputs",
+              "path": "modbus-slave-outputs"
+            },
+            {
+              "title": "OPC-UA: read a variable from UaExpert",
+              "path": "opcua-read"
+            },
+            {
+              "title": "Python function block: data transform",
+              "path": "python-function-block"
+            }
+          ]
+        },
+        {
           "title": "Authoring diagrams in docs",
           "path": "diagram-authoring"
         }
