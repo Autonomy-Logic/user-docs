@@ -34,16 +34,16 @@ Double-click the name cell, type the new name, hit Enter. If the variable is use
 ### Changing class
 Click the class cell to switch. Two consequences worth knowing:
 
-- Switching to `External` clears `Location` — externals resolve their address from the matching global variable in the Resource editor.
+- Switching to `External` clears `Location`: externals resolve their address from the matching global variable in the Resource editor.
 - Switching away from `Local` clears `Location` likewise (only `Local` and Program-scope variables can hold an address directly).
 
 ### Type picker
 Click the type cell. The dropdown groups:
 
-- **Base types** — IEC scalars: `BOOL`, `BYTE`, `WORD`, `DWORD`, `LWORD`, `SINT`, `INT`, `DINT`, `LINT`, `USINT`, `UINT`, `UDINT`, `ULINT`, `REAL`, `LREAL`, `TIME`, `DATE`, `TIME_OF_DAY`, `DATE_AND_TIME`, `STRING`, `WSTRING`.
-- **User data types** — your project's custom types.
-- **Library types** — types contributed by enabled libraries (typically function-block instance types).
-- **Array** — opens a sub-dialog: pick the element type and dimensions (`[0..9, 0..3]`, etc.).
+- **Base types**: IEC scalars: `BOOL`, `BYTE`, `WORD`, `DWORD`, `LWORD`, `SINT`, `INT`, `DINT`, `LINT`, `USINT`, `UINT`, `UDINT`, `ULINT`, `REAL`, `LREAL`, `TIME`, `DATE`, `TIME_OF_DAY`, `DATE_AND_TIME`, `STRING`, `WSTRING`.
+- **User data types**: your project's custom types.
+- **Library types**: types contributed by enabled libraries (typically function-block instance types).
+- **Array**: opens a sub-dialog: pick the element type and dimensions (`[0..9, 0..3]`, etc.).
 
 ### Location
 
@@ -94,7 +94,7 @@ Code mode is faster for bulk paste-in operations, copying declarations between p
 
 ## Aliases (producer-managed addresses)
 
-Some variables don't get their address typed by hand — they get it from an external producer. Examples:
+Some variables don't get their address typed by hand, they get it from an external producer. Examples:
 
 - A pin assigned to a board's I/O via the device's pin-mapping (desktop only).
 - A channel mapped from an EtherCAT slave.
@@ -108,8 +108,8 @@ If the producer goes away (you delete the EtherCAT channel, for example), the al
 
 A `function` POU has two extra fields above the variable table:
 
-- **Return type** — the type of the value the function returns. Required (every IEC function returns something).
-- **POU description** — free text describing what the function does.
+- **Return type**: the type of the value the function returns. Required (every IEC function returns something).
+- **POU description**: free text describing what the function does.
 
 Function blocks and programs don't have these fields.
 
@@ -121,6 +121,6 @@ See **[Global Variables](global-variables)** for the full Resource walkthrough.
 
 ## What's next
 
-- **[Custom Data Types](../custom-data-types/creating-datatypes)** — define arrays, enumerations, and structures.
-- **[Address mapping](../communication/modbus/addressing)** — `%IX/%QX/%MW` and how they reach a wire protocol.
-- **[Debugger](../building-deploying/debugger)** — what the **Debug** checkbox actually does.
+- **[Custom Data Types](../custom-data-types/creating-datatypes)**: define arrays, enumerations, and structures.
+- **[Address mapping](../communication/modbus/addressing)**: `%IX/%QX/%MW` and how they reach a wire protocol.
+- **[Debugger](../building-deploying/debugger)**: what the **Debug** checkbox actually does.

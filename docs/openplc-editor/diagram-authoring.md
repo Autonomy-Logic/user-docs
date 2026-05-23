@@ -4,8 +4,8 @@ This page is for **documentation authors** (not end users). It explains how to r
 
 The two viewers are React components that ship inside the docs renderer:
 
-- `<LadderDiagramViewer src="..." />` — renders a Ladder Diagram from JSON.
-- `<FBDDiagramViewer src="..." />` — renders a Function Block Diagram from JSON.
+- `<LadderDiagramViewer src="..." />`: renders a Ladder Diagram from JSON.
+- `<FBDDiagramViewer src="..." />`: renders a Function Block Diagram from JSON.
 
 Both fetch their JSON from a path under `/docs/...` in the autonomy-edge frontend's `public/` tree. Paths must be absolute (start with `/`), point at a file inside `public/docs/`, and not contain `..` traversal.
 
@@ -37,7 +37,7 @@ autonomy-edge/apps/frontend/public/docs/diagrams/
       └─ ...
 ```
 
-There are already 26 LD and 22 FBD examples checked in — use them where they fit. Add new ones only when the existing library doesn't cover the case.
+There are already 26 LD and 22 FBD examples checked in, use them where they fit. Add new ones only when the existing library doesn't cover the case.
 
 ## Ladder schema
 
@@ -128,11 +128,11 @@ The renderer auto-lays out the rung horizontally across a fixed 1000-pixel viewB
 
 ### Handle conventions
 
-- **Block** — handle names are the literal pin names from `data.inputs[].name` and `data.outputs[].name`. With `executionControl: true`, implicit `EN` (input) and `ENO` (output) handles come first.
-- **input-variable** — one output handle named `output` (right side).
-- **output-variable** — one input handle named `input` (left side).
-- **inout-variable** — input handle `input` on the left, output handle `output` on the right.
-- **connector** / **continuation** — single handle each; the renderer ignores the handle name.
+- **Block**: handle names are the literal pin names from `data.inputs[].name` and `data.outputs[].name`. With `executionControl: true`, implicit `EN` (input) and `ENO` (output) handles come first.
+- **input-variable**: one output handle named `output` (right side).
+- **output-variable**: one input handle named `input` (left side).
+- **inout-variable**: input handle `input` on the left, output handle `output` on the right.
+- **connector** / **continuation**: single handle each; the renderer ignores the handle name.
 
 ### Layout tips
 
@@ -182,4 +182,4 @@ To wire a block input to an input-variable, place the variable so its connector 
 ## What's next
 
 - Browse the existing example library at `autonomy-edge/apps/frontend/public/docs/diagrams/{ladder,fbd}/`.
-- For block reference pages, use the same JSON-driven approach — see **[Timer function blocks](standard-function-blocks/timer-blocks)** for a worked example.
+- For block reference pages, use the same JSON-driven approach: see **[Timer function blocks](standard-function-blocks/timer-blocks)** for a worked example.

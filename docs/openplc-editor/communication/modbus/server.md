@@ -17,7 +17,7 @@ The top section of the editor:
 |---|---|---|
 | **Enabled** | on | Disable to stop the server from accepting connections on the next runtime start. |
 | **Network Interface** | `0.0.0.0` | The IP to bind to. Use `0.0.0.0` for all interfaces, or pin to a specific NIC. |
-| **Port** | `502` | The standard Modbus TCP port. Ports below 1024 may need extra privileges on Linux — if the runtime can't bind, try `1502`. |
+| **Port** | `502` | The standard Modbus TCP port. Ports below 1024 may need extra privileges on Linux, if the runtime can't bind, try `1502`. |
 
 ## Buffer mapping
 
@@ -57,13 +57,13 @@ One segment:
 
 ## Address Mapping Reference
 
-The last accordion section is the **Address Mapping Reference** — a computed table showing exactly which Modbus address corresponds to which IEC address given your current segment sizes. This is the **single source of truth** for what an external Modbus client will see. If you've changed the defaults, consult this table, not the page on this site.
+The last accordion section is the **Address Mapping Reference**, a computed table showing exactly which Modbus address corresponds to which IEC address given your current segment sizes. This is the **single source of truth** for what an external Modbus client will see. If you've changed the defaults, consult this table, not the page on this site.
 
 For the mapping rule itself (and why `%QX0.0` is coil 0 but `%QX1.0` is coil 8), see **[Modbus addressing](addressing)**.
 
 ## How clients connect
 
-Once the server is enabled and the runtime is started, any standard Modbus TCP client can connect to the vPLC's IP on the configured port. There's no authentication — Modbus TCP has none. If you need access control, place the vPLC behind a firewall or VLAN.
+Once the server is enabled and the runtime is started, any standard Modbus TCP client can connect to the vPLC's IP on the configured port. There's no authentication. Modbus TCP has none. If you need access control, place the vPLC behind a firewall or VLAN.
 
 For testing, [`mbpoll`](https://github.com/epsilonrt/mbpoll) is a quick CLI client:
 
@@ -87,6 +87,6 @@ mbpoll -t 0 -r 8 192.168.1.50 1
 
 ## What's next
 
-- **[Modbus addressing](addressing)** — the canonical mapping rule + tables.
-- **[Modbus remote device](client)** — configure your vPLC as a master that reads remote slaves.
+- **[Modbus addressing](addressing)**: the canonical mapping rule + tables.
+- **[Modbus remote device](client)**: configure your vPLC as a master that reads remote slaves.
 - **Worked example: [Modbus slave: expose digital outputs](../../examples/modbus-slave-outputs)**.

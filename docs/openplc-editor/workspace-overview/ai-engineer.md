@@ -2,8 +2,8 @@
 
 The AI Engineer is the editor's built-in coding assistant. It has two surfaces:
 
-- **Inline completion** — ghost-text suggestions in textual editors as you type.
-- **Chat** — a side panel for conversational help.
+- **Inline completion**: ghost-text suggestions in textual editors as you type.
+- **Chat**: a side panel for conversational help.
 
 Both run on Anthropic models; you pick between **haiku** (faster, cheaper) and **sonnet** (slower, better at hard problems). Usage is metered in **ACUs** (AI Credit Units). See the platform-level **[AI Credit Units](../../plans-and-billing/ai-credit-units)** page for plan limits and billing.
 
@@ -31,13 +31,13 @@ Click **AI** to open the right-side chat panel. The chat:
 
 - Sees the currently active file as context (the editor sends the file content alongside your message).
 - Sees your project's data types and global variables (so it can answer questions about them).
-- **Does not** automatically see other files — paste excerpts in if you need to.
+- **Does not** automatically see other files: paste excerpts in if you need to.
 
 Use the chat for:
 
 - Explaining unfamiliar IEC syntax.
 - Drafting an ST function and pasting the result back.
-- Debugging a tricky FBD — describe the symptom, ask for likely causes.
+- Debugging a tricky FBD: describe the symptom, ask for likely causes.
 - Translating between languages (Python block → equivalent C++, say).
 
 ## Models
@@ -61,11 +61,11 @@ The editor logs anonymised events for completion lifecycle (`requested`, `shown`
 
 - Your prompts and file content are transmitted to Anthropic's API.
 - The editor does **not** send credentials, secrets, or environment variables it might detect in code.
-- If you paste credentials into a chat, **assume they've left the system** — rotate them.
+- If you paste credentials into a chat, **assume they've left the system**: rotate them.
 
 For high-security environments, leave AI disabled. Editor functionality (compile, deploy, debug) works without it.
 
 ## What's next
 
-- **[AI Credit Units](../../plans-and-billing/ai-credit-units)** — plan limits, extra credits, billing.
-- **[Workspace Layout](workspace-layout)** — where the AI icon sits in the activity bar.
+- **[AI Credit Units](../../plans-and-billing/ai-credit-units)**: plan limits, extra credits, billing.
+- **[Workspace Layout](workspace-layout)**: where the AI icon sits in the activity bar.

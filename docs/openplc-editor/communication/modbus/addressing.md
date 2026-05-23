@@ -4,7 +4,7 @@ When a Modbus client talks to your vPLC, it reads and writes **Modbus addresses*
 
 ## The rule, in one paragraph
 
-Within each Modbus block (coils, discrete inputs, holding registers, input registers), the IEC segments you've configured for that block are laid out **sequentially**, starting at Modbus address 0 of that block. Sizes count in the addressable unit of that block: bits for coils and discrete inputs, 16-bit registers for holding and input registers. **Bit addresses are formatted as `[byte].[bit]`** — so the 0th coil bit is `%QX0.0`, the 7th is `%QX0.7`, the 8th rolls over to `%QX1.0`.
+Within each Modbus block (coils, discrete inputs, holding registers, input registers), the IEC segments you've configured for that block are laid out **sequentially**, starting at Modbus address 0 of that block. Sizes count in the addressable unit of that block: bits for coils and discrete inputs, 16-bit registers for holding and input registers. **Bit addresses are formatted as `[byte].[bit]`**, so the 0th coil bit is `%QX0.0`, the 7th is `%QX0.7`, the 8th rolls over to `%QX1.0`.
 
 That's it. The rest of this page is concrete examples.
 
@@ -85,7 +85,7 @@ Maximum 1024 registers.
 
 ## The live address-mapping reference
 
-The **Modbus Server** editor has an **Address Mapping Reference** accordion at the bottom that computes the full table at render time from your current buffer sizes. **This is the source of truth** — if you've changed the default segment sizes, look at that table, not at the defaults on this page.
+The **Modbus Server** editor has an **Address Mapping Reference** accordion at the bottom that computes the full table at render time from your current buffer sizes. **This is the source of truth**, if you've changed the default segment sizes, look at that table, not at the defaults on this page.
 
 ## Why `%QX1.0` is coil 8, not coil 10
 
@@ -97,6 +97,6 @@ Modbus doesn't index byte / double / long input or output segments separately. I
 
 ## What's next
 
-- **[Modbus server](server)** — configure the slave end (what's running on your vPLC).
-- **[Modbus remote device](../../device-config-overview)** — configure your vPLC as a master reading remote slaves.
+- **[Modbus server](server)**: configure the slave end (what's running on your vPLC).
+- **[Modbus remote device](../../device-config-overview)**: configure your vPLC as a master reading remote slaves.
 - **Worked example: [Modbus slave: expose digital outputs](../../examples/modbus-slave-outputs)**.

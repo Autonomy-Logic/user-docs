@@ -28,9 +28,9 @@ The **Play** button is also a **Stop** button. Click it once while the PLC is ru
 
 Three quick checks that the new program is what's actually running:
 
-1. **MD5 verification** — open the **Debugger**. It immediately compares the local MD5 against the runtime's. A mismatch tells you something is off (older build is still running).
-2. **PLC Logs** — open the console's **PLC Logs** tab. New program output starts appearing once you press Play.
-3. **Live variable values** — opt some variables into the Debug column and watch them in the debugger.
+1. **MD5 verification**: open the **Debugger**. It immediately compares the local MD5 against the runtime's. A mismatch tells you something is off (older build is still running).
+2. **PLC Logs**: open the console's **PLC Logs** tab. New program output starts appearing once you press Play.
+3. **Live variable values**: opt some variables into the Debug column and watch them in the debugger.
 
 ## Troubleshooting
 
@@ -40,12 +40,12 @@ Three quick checks that the new program is what's actually running:
 
 **`Play` button is grey.** You're not connected, or the upload failed. Check the console for the specific error.
 
-**PLC starts then immediately stops.** A runtime fault. Open **PLC Logs** — the runtime usually publishes the cause (out-of-range memory access, missing library binding, etc.).
+**PLC starts then immediately stops.** A runtime fault. Open **PLC Logs**, the runtime usually publishes the cause (out-of-range memory access, missing library binding, etc.).
 
 **Program runs but Modbus / OPC-UA / S7Comm clients can't connect.** The server is configured but disabled. Open the server's editor and toggle **Enabled** on, then rebuild and re-upload.
 
 ## What's next
 
-- **[Debugger](debugger)** — live variable monitoring on the deployed program.
-- **[Console & PLC Logs](../workspace-overview/console-debugging)** — reading the runtime's log stream.
-- **[Building a project](project-compilation)** — the compile step before upload.
+- **[Debugger](debugger)**: live variable monitoring on the deployed program.
+- **[Console & PLC Logs](../workspace-overview/console-debugging)**: reading the runtime's log stream.
+- **[Building a project](project-compilation)**: the compile step before upload.

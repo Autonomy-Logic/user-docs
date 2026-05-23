@@ -54,12 +54,12 @@ Per group:
 
 ### I/O points (per group)
 
-Within a group, you declare the **I/O points** — individual values pulled from (or written into) the polled address range. Each point has:
+Within a group, you declare the **I/O points**, individual values pulled from (or written into) the polled address range. Each point has:
 
-- **Name** — your local identifier (used in the variables editor as the `Type`).
-- **Type** — `BOOL` for FC 1/2/5/15, `INT` for FC 3/4/6/16. Larger types take consecutive addresses.
-- **IEC location** — the local IEC address into which the remote value is mirrored on read (or from which the local value is written on write). E.g. `%IX0.0` for a remote discrete-input mirrored into the input image.
-- **Alias** (optional) — a stable name for the point. If you reorganise the group later, the alias keeps the variables editor happy without manual rewires.
+- **Name**: your local identifier (used in the variables editor as the `Type`).
+- **Type**: `BOOL` for FC 1/2/5/15, `INT` for FC 3/4/6/16. Larger types take consecutive addresses.
+- **IEC location**: the local IEC address into which the remote value is mirrored on read (or from which the local value is written on write). E.g. `%IX0.0` for a remote discrete-input mirrored into the input image.
+- **Alias** (optional): a stable name for the point. If you reorganise the group later, the alias keeps the variables editor happy without manual rewires.
 
 ## How it shows up in code
 
@@ -83,5 +83,5 @@ The console reports each I/O Group's first failure and recovery. Persistent fail
 
 ## What's next
 
-- **[Modbus addressing](addressing)** — coil 8 vs. `%QX1.0`, holding-register layout.
-- **[Modbus server](server)** — the slave side.
+- **[Modbus addressing](addressing)**: coil 8 vs. `%QX1.0`, holding-register layout.
+- **[Modbus server](server)**: the slave side.
