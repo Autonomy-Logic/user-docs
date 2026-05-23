@@ -1,16 +1,20 @@
 # Connecting to a vPLC
 
-Before you can deploy and run your program, the editor needs to be connected to a **vPLC** running on one of your orchestrators. This page walks through the flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
+The editor opens with the built-in **OpenPLC Simulator** selected. Anything you build runs in the browser sandbox until you point it at a real (or virtual) PLC.
 
-> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/orchestrators/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs.
+When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks through that flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
+
+> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/orchestrators/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
 
 ## Open the Orchestrators screen
 
 In the project tree, expand **Device** and click **Orchestrators**. The Orchestrators editor opens as a tab in the central editing area.
 
-![Orchestrators editor listing the orchestrators registered for this account, each shown as an expandable card](images/device-orchestrators-list.png)
+![Device Orchestrators screen with OpenPLC Simulator selected by default at the top, followed by the user's registered orchestrators as expandable cards](images/orchestrators-screen.png)
 
-Each card represents one orchestrator: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
+**OpenPLC Simulator** sits at the top with a **Selected** badge. It's a browser-side AVR emulator. Anything you build with it as the target runs in the browser sandbox, no hardware required. See **[Running with the Simulator](building-deploying/simulator)**.
+
+Below the Simulator, each card represents one orchestrator: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
 
 ## Pick a vPLC
 

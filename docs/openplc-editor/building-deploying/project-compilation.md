@@ -16,8 +16,8 @@ Each compilation runs the same sequence:
 2. **Sync variable aliases**: for each variable bound to a producer (Modbus master point, EtherCAT channel, etc.), resolve the current address via the alias registry.
 3. **STruC++ compile**: translate every POU body to C++ source. (Earlier builds called out to MatIEC's `iec2c`; the current pipeline uses STruC++ as a drop-in replacement.)
 4. **Generate `defines.h`**: pin map, Modbus address map, MD5 of the program, runtime-side hooks.
-5. **Compile to binary**: `arduino-cli` for Arduino-class targets (desktop only), `openplc-compiler` for runtime targets.
-6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the runtime's webserver.
+5. **Compile to binary**: `simulator` (in-browser `avr8js`) for the Simulator target, `openplc-compiler` for runtime (vPLC) targets, `arduino-cli` for Arduino-class targets (desktop only).
+6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the runtime's webserver, or load into the in-browser emulator for the Simulator.
 
 The console shows each step as it runs, with timestamps. A successful run ends with `Compilation completed successfully`.
 
@@ -33,11 +33,13 @@ Typical compile errors and what they mean:
 - **Library not enabled**: using a block from a library that isn't enabled for this project. Open the **Library Manager** and tick it on.
 - **Address collision**: two variables claim the same `Location`. Pick a non-overlapping address.
 
-## Build without a connection
+## Build without a vPLC connection
 
-You can **Build only** any time, with or without a connected vPLC. This validates your code and produces the build artifacts; it just doesn't ship them anywhere.
+The **Simulator** is selected by default, so **Build & Upload** is always available — even without an orchestrator-managed vPLC. The "upload" step loads the firmware into the in-browser emulator.
 
-`Build & Upload` and `Clean Upload` are disabled in the popover until the editor has a live connection. Click **Orchestrators**, log in to a vPLC, then come back.
+If you've selected a vPLC and then disconnected, `Build & Upload` and `Clean Upload` are disabled until you reconnect. Click **Orchestrators**, log back in, and they come back. (Or switch back to the Simulator and you don't need a connection at all.)
+
+You can also **Build only** any time. This validates your code and produces the artifacts without loading them anywhere.
 
 ## Build artifacts
 
