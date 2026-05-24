@@ -437,20 +437,16 @@
           "path": "working-with-variables",
           "items": [
             {
-              "title": "Global Variables",
-              "path": "global-variables"
-            },
-            {
-              "title": "Local Variables",
-              "path": "local-variables"
-            },
-            {
-              "title": "Variables Editor",
+              "title": "Variables editor",
               "path": "variables-editor"
             },
             {
-              "title": "Global Variables Editor",
-              "path": "global-variables-editor"
+              "title": "Variable classes inside a POU",
+              "path": "local-variables"
+            },
+            {
+              "title": "Global variables",
+              "path": "global-variables"
             }
           ]
         },

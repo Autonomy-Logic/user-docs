@@ -1,224 +1,89 @@
-# Enumerated Data Types
+# Enumerated data types
 
-An enumeration defines a data type whose variable can hold exactly one value from a fixed set of named options. Instead of using raw integers to represent states (where `0` means idle, `1` means running, and `2` means faulted. And you have to remember which is which), you define an enumerated type with descriptive names like `IDLE`, `RUNNING`, and `FAULTED`. The result is code that reads like plain language and catches mistakes at design time rather than at runtime.
+An enumeration is a type with a fixed set of named values. A variable of the enum type can hold exactly one of those names at a time. Enums make state-machine code, mode flags, and command codes vastly more readable than raw integers.
 
-Enumerations are one of the most effective tools for writing clear, maintainable PLC programs.
+## The enumeration editor
 
-## When to Use Enumerations
+Creating a type with **Enumerated** as the derivation opens this editor:
 
-Enumerations are the right choice whenever a variable represents a **mode**, **state**, **category**, or **option**: anything that should be one of a limited, known set of possibilities.
+![Enumeration editor for the MachineMode type with three values listed in the Description column: IDLE, RUNNING, FAULTED](images/enum-editor.png)
 
-Common industrial examples:
+The editor has three regions:
 
-| Example Type | Values |
-|-------------|--------|
-| Machine state | IDLE, STARTING, RUNNING, STOPPING, FAULTED |
-| Operating mode | MANUAL, AUTOMATIC, MAINTENANCE |
-| Alarm level | NONE, INFO, WARNING, CRITICAL |
-| Command code | START, STOP, PAUSE, RESUME, RESET |
-| Product type | TYPE_A, TYPE_B, TYPE_C |
-| Direction | FORWARD, REVERSE, STOPPED |
+- **Name** at the top.
+- A list of **values** with `+ − ↑ ↓` controls for adding, removing, and reordering.
+- An **Initial Value** dropdown that lets you pick which value the type defaults to.
 
-## The Enumeration Editor
+Each row in the list is one named value. The order matters: the value at index 0 is the first one in the list, and most clients (including the runtime debugger) display the values in declared order.
 
-When you open an enumeration data type in the IDE, the editor presents two main areas:
+The IEC text equivalent, shown in code mode, looks like:
 
-### Values Table
-
-The values table is where you define the named values that make up the enumeration. Each row has a **Description** cell containing the value's name.
-
-| Control | Action |
-|---------|--------|
-| **Add** (+) | Adds a new value row at the bottom of the table |
-| **Remove** (−) | Removes the selected value row |
-| **Up arrow** | Moves the selected value up in the list |
-| **Down arrow** | Moves the selected value down in the list |
-
-To edit a value's name, click directly on its Description cell and type the new name.
-
-**Automatic cleanup:** If you leave a value's name empty and click away, that value row is automatically removed from the table.
-
-### Initial Value Selector
-
-A dropdown below the values table lets you choose which value should be the default when a variable of this type is created. The dropdown is populated with all the values you've defined.
-
-If you don't select an initial value, the first value in the list is used as the default.
-
-## Naming Rules for Values
-
-Enumeration value names must follow these conventions:
-
-- **Valid formats:** CamelCase, PascalCase, or snake_case (e.g., `Running`, `RUNNING`, `machine_running`).
-- **No duplicates:** Each value name must be unique within the enumeration.
-- **Non-empty:** A value cannot have a blank name (blank names are automatically removed).
-- **Valid characters:** Letters, digits, and underscores. Cannot start with a digit.
-
-**Recommended convention:** Use UPPER_CASE for enumeration values. This is the most common convention in IEC 61131-3 and makes enumeration values visually distinct from variable names and type names.
-
-```
-(* Recommended *)
-IDLE, RUNNING, FAULTED
-
-(* Also valid *)
-Idle, Running, Faulted
-idle, running, faulted
+```iec
+TYPE
+    MachineMode : (IDLE, RUNNING, FAULTED);
+END_TYPE
 ```
 
-## Examples
+## Naming conventions
 
-### Machine State
+Each value must be a valid IEC identifier (letters, digits, underscore; no leading digit; case-insensitive in IEC matching). A common convention is `UPPER_SNAKE_CASE` for enum values, the same convention C uses for constants, since enum values feel like constants in code:
 
-A classic state-machine enumeration for controlling equipment.
+- `IDLE`, `RUNNING`, `FAULTED`
+- `MANUAL`, `AUTO`, `OFF`
+- `RECIPE_BREAD`, `RECIPE_CAKE`, `RECIPE_COOKIE`
 
-**Configuration:**
+Names are **shared across the project**, two enum types can't both have a value called `IDLE`. The editor flags the conflict on the next save.
 
-| Property | Value |
-|----------|-------|
-| Name | `MachineState` |
-| Values | IDLE, STARTING, RUNNING, STOPPING, FAULTED |
-| Initial Value | IDLE |
+## Initial value
 
-**IEC 61131-3 representation:**
+Pick one of the declared values from the **Initial Value** dropdown. Any variable declared of this type that doesn't override the initial value starts at the chosen one.
 
-```
-TYPE MachineState : (IDLE, STARTING, RUNNING, STOPPING, FAULTED) := IDLE; END_TYPE
-```
-
-### Alarm Level
-
-Categorizing alarms by severity.
-
-**Configuration:**
-
-| Property | Value |
-|----------|-------|
-| Name | `AlarmLevel` |
-| Values | NONE, INFO, WARNING, CRITICAL |
-| Initial Value | NONE |
-
-**IEC 61131-3 representation:**
-
-```
-TYPE AlarmLevel : (NONE, INFO, WARNING, CRITICAL) := NONE; END_TYPE
+```iec
+TYPE
+    MachineMode : (IDLE, RUNNING, FAULTED) := IDLE;
+END_TYPE
 ```
 
-### Operating Mode
+For a state machine, defaulting to the "safe" or "off" state is usually right.
 
-Switching between manual, automatic, and maintenance modes.
+## Using an enum in your code
 
-**Configuration:**
+Declare a variable of the enum type:
 
-| Property | Value |
-|----------|-------|
-| Name | `OperatingMode` |
-| Values | MANUAL, AUTOMATIC, MAINTENANCE |
-| Initial Value | MANUAL |
-
-**IEC 61131-3 representation:**
-
-```
-TYPE OperatingMode : (MANUAL, AUTOMATIC, MAINTENANCE) := MANUAL; END_TYPE
+```iec
+VAR
+    current_mode : MachineMode;    (* defaults to IDLE *)
+    next_mode    : MachineMode := RUNNING;
+END_VAR
 ```
 
-## Using Enumerations in Code
+Compare against enum names directly:
 
-### Assignment
-
-Assign an enumeration value to a variable by using the value name directly:
-
-```
-(* In the variables table: currentState : MachineState *)
-
-currentState := IDLE;
-currentState := RUNNING;
-```
-
-### Comparison
-
-Compare a variable against enumeration values using standard comparison operators:
-
-```
-IF currentState = RUNNING THEN
-    motor_on := TRUE;
-END_IF;
-
-IF currentState <> FAULTED THEN
-    enable_outputs := TRUE;
+```iec
+IF current_mode = IDLE THEN
+    (* set up to start *)
+    current_mode := RUNNING;
+ELSIF current_mode = RUNNING THEN
+    IF error_detected THEN
+        current_mode := FAULTED;
+    END_IF;
 END_IF;
 ```
 
-### CASE Statements
+In graphical languages, an enum-typed variable behaves like an `INT` for comparison purposes. Drop a `EQ` block, wire your variable to one input and the enum constant to the other, and the output is `BOOL`.
 
-Enumerations work naturally with CASE statements, which is the most common pattern for state machines:
+## Choosing enum over INT
 
-```
-CASE currentState OF
-    IDLE:
-        motor_on := FALSE;
-        ready_light := TRUE;
+The temptation to model modes as a raw `INT` (`0 = IDLE, 1 = RUNNING, 2 = FAULTED`) is real but worth resisting. The cost of switching to an enum is one type declaration; the savings are:
 
-    STARTING:
-        motor_on := TRUE;
-        ready_light := FALSE;
-        IF motor_at_speed THEN
-            currentState := RUNNING;
-        END_IF;
+- **Readable comparisons.** `IF mode = IDLE THEN` beats `IF mode = 0 THEN` every time.
+- **Exhaustiveness pressure.** Adding a new value (`PAUSED`) makes every place in the code that compares against the enum more visible to review, `IF mode = ... THEN` chains either handle the new value or get caught at compile time when the value is referenced.
+- **Debugger clarity.** The runtime debugger displays the value's *name*, not just an integer.
 
-    RUNNING:
-        motor_on := TRUE;
-        ready_light := TRUE;
-        IF stop_requested THEN
-            currentState := STOPPING;
-        END_IF;
+Use INT for modes only when you need arbitrary numbers (an opcode bus, an external API that hands you numbers). Use enums for everything else.
 
-    STOPPING:
-        motor_on := FALSE;
-        IF motor_stopped THEN
-            currentState := IDLE;
-        END_IF;
+## What's next
 
-    FAULTED:
-        motor_on := FALSE;
-        ready_light := FALSE;
-        alarm := TRUE;
-        IF reset_button THEN
-            alarm := FALSE;
-            currentState := IDLE;
-        END_IF;
-END_CASE;
-```
-
-This pattern is far more readable than using integer constants (0, 1, 2, 3, 4) for the same logic.
-
-### Passing to Functions and Function Blocks
-
-Enumeration variables can be passed as inputs to functions and function blocks. Define the function's input parameter with the enumeration type, and the caller provides a value of that type:
-
-```
-(* Function block with an enumeration input *)
-(* FB input: commandIn : OperatingMode *)
-
-controller(commandIn := currentMode);
-```
-
-## Reordering Values
-
-The order of values in an enumeration can matter when the runtime maps them to underlying integer representations. The first value typically corresponds to 0, the second to 1, and so on. If your program logic depends on comparing enumerations with `<` or `>` operators (which compare the underlying ordinal positions), the order in the values table is significant.
-
-Use the **up/down arrow** buttons in the editor to arrange values in the order that makes logical sense for your application. Typically from the "least active" or "default" state to the "most active" or "exceptional" state.
-
-## Tips for Working with Enumerations
-
-> **Tip:** Always set a meaningful initial value. Choose the safest default state. For a machine, that's usually IDLE or STOPPED. For an alarm level, it's NONE.
-
-> **Tip:** Prefer enumerations over integers. Replacing `IF state = 3` with `IF state = FAULTED` eliminates an entire category of bugs. The "magic number" problem.
-
-- **Use enumerations for state machines.** The CASE statement combined with an enumeration variable is the standard PLC pattern for implementing state machines in Structured Text.
-- **Keep value sets small and stable.** An enumeration with 30+ values may indicate that a different data modeling approach (perhaps a structure or a lookup table) would be more appropriate.
-- **Document the meaning of each value** in code comments or in the variable documentation field if the name alone isn't self-explanatory.
-
----
-
-## What's Next?
-
-Learn how to group related fields into composite types with [Structure Data Types](structure-datatypes).
+- **[Array data types](array-datatypes)**: for ordered collections.
+- **[Structure data types](structure-datatypes)**: for grouped fields of mixed types.
+- **[Using custom types in code](using-custom-types)**: declaring variables of custom types and using them in bodies.

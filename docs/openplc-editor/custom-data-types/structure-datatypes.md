@@ -1,241 +1,113 @@
-# Structure Data Types
+# Structure data types
 
-A structure (often called a "struct") is a composite data type that groups multiple named fields of potentially different types into a single unit. Where an array holds many values of the same type, a structure holds a fixed set of values that can each be a different type. This mirrors how real-world data is naturally organized. A sensor reading isn't just a number; it's a number paired with a validity flag, a timestamp, and an identifier.
+A structure is a composite type that groups multiple named fields, each of its own type, under one type name. Where an array gives you "10 of the same thing", a structure gives you "a record with these named pieces".
 
-Structures are one of the most powerful tools for keeping PLC programs organized, readable, and maintainable.
+## The structure editor
 
-## When to Use Structures
+Creating a type with **Structure** as the derivation opens this editor:
 
-Structures are the right choice whenever you have a group of related values that logically belong together and are always used as a unit. Common industrial examples:
+![Structure editor for the SensorReading type: Name field at the top, then a Structure section with a +/-/up/down toolbar and a table containing one field row: # 0, Name structureVar, Type DINT](images/struct-editor.png)
 
-| Structure | Fields | Purpose |
-|-----------|--------|---------|
-| `SensorData` | Value (REAL), Valid (BOOL), Timestamp (DT) | Bundle a measurement with its metadata |
-| `MotorConfig` | Speed (REAL), Direction (INT), Enabled (BOOL), MaxCurrent (REAL) | Group all motor parameters |
-| `PIDParams` | Kp (REAL), Ki (REAL), Kd (REAL), Setpoint (REAL) | Keep PID tuning values together |
-| `RecipeStep` | StepNumber (INT), Duration (TIME), Temperature (REAL), Pressure (REAL) | Define one step of a production recipe |
-| `AlarmRecord` | Active (BOOL), Level (INT), Message (STRING), Time (DT) | Store alarm information |
+The editor has:
 
-**Rule of thumb:** If you find yourself declaring three or more variables that share a common prefix (e.g., `motor_speed`, `motor_direction`, `motor_enabled`, `motor_maxCurrent`), that group is a strong candidate for a structure.
+- **Name** at the top.
+- A **Structure** section listing each field as a row with `#`, Name, Type, and Initial Value columns.
+- `+ − ↑ ↓` controls for adding, removing, and reordering fields.
 
-## The Structure Editor
-
-When you open a structure data type in the IDE, the editor presents a **Variables Table** with the following columns:
-
-| Column | Description |
-|--------|-------------|
-| **#** | Row number (auto-assigned, not editable) |
-| **Name** | The field name. Click to edit |
-| **Type** | The field's data type. Click to open a dropdown selector |
-| **Initial Value** | An optional default value for the field. Click to edit |
-
-### Adding Fields
-
-Click the **+** (Add) button above the table to insert a new field row. The IDE generates a default name following the pattern `structureVar_1`, `structureVar_2`, and so on. Rename these to meaningful names immediately.
-
-### Removing Fields
-
-Select a row and click the **−** (Remove) button to delete that field from the structure.
-
-### Reordering Fields
-
-Use the **up arrow** and **down arrow** buttons to change the order of fields. While field order doesn't usually affect runtime behavior, keeping fields in a logical order (e.g., identification fields first, then measurement fields, then status flags) makes the structure easier to understand.
-
-### Naming Fields
-
-Field names must be:
-
-- Valid IEC 61131-3 identifiers (letters, digits, underscores; cannot start with a digit).
-- Unique within the structure. No two fields can share the same name.
-- Descriptive. `Temperature` is better than `var1`.
-
-### Choosing Field Types
-
-Click the **Type** cell for a field to open a dropdown selector. The available types are organized into categories:
-
-| Category | Description |
-|----------|-------------|
-| **Base Types** | BOOL, SINT, INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, LREAL, TIME, DATE, TOD, DT, STRING, BYTE, WORD, DWORD, LWORD |
-| **User Data Types** | Any structure, enumeration, or array type you've created in the project |
-| **System Libraries** | Types provided by included system libraries |
-| **User Libraries** | Types provided by user-imported libraries |
-| **Array** | Opens an Array modal dialog where you define an inline array type |
-
-This flexibility means a structure's fields can be simple base types, other structures (nesting), enumerations, or arrays.
-
-### Array Fields via the Modal Dialog
-
-When you select **Array** from the type dropdown, a modal dialog opens where you configure an inline array type for that specific field. The modal works exactly like the standalone [Array editor](array-datatypes): you choose a base type, add dimension rows, and define the ranges.
-
-This is useful when a structure needs to contain a fixed-size collection. For example, a `SensorBank` structure with a field `Readings : ARRAY [0..9] OF REAL`.
-
-### Setting Initial Values
-
-The **Initial Value** column lets you specify a default value for individual fields. When a variable of this structure type is created, each field starts with its initial value (or the type's default zero value if none is set).
-
-- For numeric fields: enter a number (e.g., `0`, `100.0`).
-- For BOOL fields: enter `TRUE` or `FALSE`.
-- For TIME fields: enter a time literal (e.g., `T#5s`).
-- For STRING fields: enter the string value.
-
-## Examples
-
-### SensorData
-
-A structure for bundling a sensor reading with its metadata.
-
-**Configuration:**
+Add a row, give the field a name, pick its type, optionally set an initial value, and repeat for each field. A typical "sensor reading" structure might end up looking like:
 
 | # | Name | Type | Initial Value |
-|---|------|------|---------------|
-| 1 | Value | REAL | 0.0 |
-| 2 | Valid | BOOL | FALSE |
-| 3 | Timestamp | DT | |
-| 4 | SensorId | INT | 0 |
+|---|---|---|---|
+| 0 | `value` | REAL | 0.0 |
+| 1 | `valid` | BOOL | FALSE |
+| 2 | `timestamp` | DATE_AND_TIME | |
+| 3 | `range_high` | REAL | 100.0 |
+| 4 | `range_low` | REAL | 0.0 |
 
-**IEC 61131-3 representation:**
+The IEC text equivalent, shown in code mode:
 
-```
-TYPE SensorData :
-  STRUCT
-    Value : REAL := 0.0;
-    Valid : BOOL := FALSE;
-    Timestamp : DT;
-    SensorId : INT := 0;
-  END_STRUCT
+```iec
+TYPE
+    SensorReading : STRUCT
+        value : REAL := 0.0;
+        valid : BOOL := FALSE;
+        timestamp : DATE_AND_TIME;
+        range_high : REAL := 100.0;
+        range_low : REAL := 0.0;
+    END_STRUCT;
 END_TYPE
 ```
 
-### MotorConfig
+## Field types
 
-A structure grouping all parameters for a motor drive.
+The Type picker on each row offers the same categories as anywhere else in the editor:
 
-**Configuration:**
+- **Base types**: IEC scalars.
+- **User data types**: any other structure, enumeration, or array you've defined.
 
-| # | Name | Type | Initial Value |
-|---|------|------|---------------|
-| 1 | Speed | REAL | 0.0 |
-| 2 | Direction | BOOL | FALSE |
-| 3 | Enabled | BOOL | FALSE |
-| 4 | MaxCurrent | REAL | 10.0 |
-| 5 | RampTime | TIME | T#2s |
+That last bullet is the most useful: structures can contain other structures, arrays of structures, and any nesting you want. Common patterns:
 
-**IEC 61131-3 representation:**
+| Outer type | Inner type | When to use |
+|---|---|---|
+| `Recipe : STRUCT temp : REAL; time : TIME; steps : ARRAY[0..9] OF Step; END_STRUCT;` | `Step` is another struct | Recipe with a fixed-size list of step records |
+| `Sensors : STRUCT temp : SensorReading; pressure : SensorReading; END_STRUCT;` | `SensorReading` (struct) reused | Named bundle of sensor records |
+| `History : ARRAY[0..99] OF SensorReading;` | array of struct | Time-series buffer |
 
-```
-TYPE MotorConfig :
-  STRUCT
-    Speed : REAL := 0.0;
-    Direction : BOOL := FALSE;
-    Enabled : BOOL := FALSE;
-    MaxCurrent : REAL := 10.0;
-    RampTime : TIME := T#2s;
-  END_STRUCT
-END_TYPE
-```
+You can mix and match freely. The runtime allocates the storage exactly as declared.
 
-### PIDParams
+## Using a structure in your code
 
-A structure for PID controller tuning parameters.
+Declare a variable of the structure type:
 
-**Configuration:**
-
-| # | Name | Type | Initial Value |
-|---|------|------|---------------|
-| 1 | Kp | REAL | 1.0 |
-| 2 | Ki | REAL | 0.0 |
-| 3 | Kd | REAL | 0.0 |
-| 4 | Setpoint | REAL | 0.0 |
-| 5 | MinOutput | REAL | 0.0 |
-| 6 | MaxOutput | REAL | 100.0 |
-
-**IEC 61131-3 representation:**
-
-```
-TYPE PIDParams :
-  STRUCT
-    Kp : REAL := 1.0;
-    Ki : REAL := 0.0;
-    Kd : REAL := 0.0;
-    Setpoint : REAL := 0.0;
-    MinOutput : REAL := 0.0;
-    MaxOutput : REAL := 100.0;
-  END_STRUCT
-END_TYPE
+```iec
+VAR
+    temp_sensor : SensorReading;
+    pressure_sensor : SensorReading;
+END_VAR
 ```
 
-## Structures Containing Other User-Defined Types
+Access fields with dot notation:
 
-One of the most powerful aspects of structures is that their fields can be other user-defined types. This lets you build layered, domain-specific data models.
+```iec
+temp_sensor.value := raw_input * 0.01;
+temp_sensor.valid := TRUE;
 
-**Example: A structure with an enumeration field:**
-
-Assuming you have the `AlarmLevel` enumeration (NONE, INFO, WARNING, CRITICAL):
-
-| # | Name | Type | Initial Value |
-|---|------|------|---------------|
-| 1 | Active | BOOL | FALSE |
-| 2 | Level | AlarmLevel | NONE |
-| 3 | Message | STRING | |
-| 4 | Time | DT | |
-
-**Example: A structure with an array field:**
-
-| # | Name | Type | Initial Value |
-|---|------|------|---------------|
-| 1 | ChannelId | INT | 0 |
-| 2 | Readings | ARRAY [0..9] OF REAL | |
-| 3 | Average | REAL | 0.0 |
-| 4 | Valid | BOOL | FALSE |
-
-The `Readings` field is configured using the Array modal dialog accessible from the Type dropdown.
-
-## Accessing Structure Fields in Code
-
-In Structured Text, you access individual fields using **dot notation**:
-
-```
-(* Declare in the variables table: sensor : SensorData *)
-
-(* Write to fields *)
-sensor.Value := 23.7;
-sensor.Valid := TRUE;
-sensor.SensorId := 5;
-
-(* Read from fields *)
-currentTemp := sensor.Value;
-IF sensor.Valid THEN
-    process_reading(sensor.Value);
+IF temp_sensor.valid AND temp_sensor.value > temp_sensor.range_high THEN
+    over_temperature := TRUE;
 END_IF;
 ```
 
-For nested structures (a structure containing another structure):
+Pass whole structures into function blocks via the `In Out` class to mutate them in place, or `Input` to pass a copy:
 
-```
-(* If MotorUnit has a field Config of type MotorConfig *)
-myMotor.Config.Speed := 1500.0;
-myMotor.Config.Enabled := TRUE;
-```
-
-For structure fields that are arrays:
-
-```
-(* If ChannelData has a field Readings of type ARRAY [0..9] OF REAL *)
-channel.Readings[3] := 42.5;
-avgValue := channel.Average;
+```iec
+my_fb(reading := temp_sensor);   (* Input: caller passes a copy *)
+update_fb(reading := temp_sensor); (* In Out: function block can write back into temp_sensor *)
 ```
 
-## Tips for Working with Structures
+## Initial values
 
-> **Tip:** Keep structures focused. A structure should represent one coherent concept. If it grows beyond 10–12 fields, consider splitting it into smaller, nested structures.
+Per-field initial values live in the Initial Value column. The structure type doesn't have a single "structure-level" initial value; each variable declared of the structure picks up the per-field defaults unless overridden at declaration:
 
-> **Tip:** Use initial values for safe defaults. Setting `Enabled := FALSE` and `MaxCurrent := 10.0` in the type definition means every new variable of that type starts in a known, safe state.
+```iec
+VAR
+    temp_sensor : SensorReading := (value := 25.0, valid := TRUE);
+    (* unspecified fields use their per-field defaults *)
+END_VAR
+```
 
-- **Combine structures with arrays** for powerful data tables. An array of `SensorData` (declared as `ARRAY [0..19] OF SensorData`) gives you a table of 20 sensor readings, each with its own value, validity, timestamp, and ID.
-- **Reuse structures across POUs.** Once defined, a structure type is available project-wide. Define it once, use it everywhere.
+## When to use a structure vs an array
 
----
+| You want | Reach for |
+|---|---|
+| 10 of the same thing, indexed by number | **Array** |
+| A record with a fixed set of named pieces | **Structure** |
+| A bunch of records of the same shape | **Array of Structure** |
+| A record where some pieces are themselves indexed collections | **Structure with Array fields** |
 
-## What's Next?
+If your fields' names start to feel arbitrary (`item1`, `item2`, `item3`), it's probably an array. If your indices start to feel meaningful (`temperatures[TEMP]`, `temperatures[PRESSURE]`), it's probably a structure.
 
-Learn how to put your custom types to work in real programs with [Using Custom Data Types](using-custom-types).
+## What's next
+
+- **[Array data types](array-datatypes)**: for ordered collections of the same type.
+- **[Enumerated data types](enumerated-datatypes)**: for fixed sets of named values.
+- **[Using custom types in code](using-custom-types)**: declaring variables of custom types, accessing fields, looping arrays.

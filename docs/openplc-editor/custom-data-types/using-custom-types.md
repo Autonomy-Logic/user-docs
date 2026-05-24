@@ -1,397 +1,224 @@
-# Using Custom Data Types
+# Using custom types in code
 
-Creating a data type is only the first step. The real value comes from using your custom types throughout your project. Declaring variables, accessing their contents in code, passing them between POUs, and combining them into richer data models. This page shows you how to work with arrays, enumerations, and structures once they're defined.
+Once you've defined a custom data type, it joins the base types in every type picker across the project. Declaring a variable of a custom type is just like declaring an `INT`, the editor handles the rest.
 
-## Declaring Variables with Custom Types
+## In the variables editor
 
-After you create a custom data type, it becomes available in the **Type** dropdown of any POU's Variables Table. Custom types appear under the **User Data Types** category in the dropdown.
+Open any POU's variable table (or the Resource's Global Variables section) and click the **Type** cell. The dropdown shows three categories you'll care about for custom types:
 
-To declare a variable with a custom type:
+- **Base types**: `BOOL`, `INT`, `REAL`, `TIME`, …
+- **User data types**: everything you've defined in this project's Data Types section.
+- **Array**: opens a sub-dialog to define an *inline* array. For arrays you only need once; reusable arrays should be defined in Data Types.
 
-1. Open a POU (Program, Function, or Function Block) in the Editor Area.
-2. In the Variables Table, click the **+** button to add a new variable.
-3. Enter a name for the variable.
-4. Click the **Type** cell and select your custom type from the **User Data Types** section of the dropdown.
-5. Optionally set a variable class (Local, Input, Output, InOut, External, Temp).
-6. Optionally set an initial value.
+Pick a User Data Type. The variable now has that type, and you can use it in the body code or in a graphical block.
 
-**Example variable declarations:**
+In code mode, the variable looks just like a base-type one:
 
-| Name | Class | Type | Initial Value |
-|------|-------|------|---------------|
-| `temperatures` | Local | `SensorBank` | |
-| `machineState` | Local | `MachineState` | `IDLE` |
-| `motorParams` | Input | `MotorConfig` | |
-| `alarmLog` | Local | `AlarmRecord` | |
-
-## Working with Array Variables
-
-### Accessing Elements
-
-Use bracket notation with an index to read or write individual array elements:
-
-```
-(* Variable: temps of type SensorBank (ARRAY [0..9] OF REAL) *)
-
-(* Write to an element *)
-temps[0] := 22.5;
-temps[5] := sensor_reading;
-
-(* Read from an element *)
-currentTemp := temps[3];
+```iec
+VAR
+    mode : MachineMode := IDLE;
+    sensor : SensorReading;
+    history : TempReadings;
+END_VAR
 ```
 
-### Iterating with FOR Loops
+## Accessing fields and elements
 
-The most common pattern for working with arrays is iterating through all elements with a FOR loop:
+The syntax depends on the type's derivation.
 
+### Enumerations, comparison and assignment
+
+Enum values are usable directly by name:
+
+```iec
+mode := RUNNING;
+
+IF mode = IDLE THEN
+    (* … *)
+END_IF;
 ```
-(* Sum all values in the array *)
-total := 0.0;
+
+You can pass enum-typed variables to function blocks, store them in structures, and put them in arrays.
+
+### Arrays, indexed access
+
+Use `[index]` to get or set an element. Indices can be literals, integer variables, or expressions:
+
+```iec
+history[0] := 25.0;
+last := history[9];
+
 FOR i := 0 TO 9 DO
-    total := total + temps[i];
+    history[i] := 0.0;
 END_FOR;
-average := total / 10.0;
+
+(* multi-dimensional access *)
+recipe[1, 2] := 100;
 ```
 
-```
-(* Find the maximum value *)
-maxTemp := temps[0];
-FOR i := 1 TO 9 DO
-    IF temps[i] > maxTemp THEN
-        maxTemp := temps[i];
-        maxIndex := i;
-    END_IF;
-END_FOR;
+Whole-array assignment works too, when both sides are the same type:
+
+```iec
+backup := history;        (* element-by-element copy *)
 ```
 
-### Multi-Dimensional Array Access
+### Structures, dot-notation field access
 
-For multi-dimensional arrays, provide one index per dimension separated by commas:
+Read or write a field with `instance.field_name`:
 
-```
-(* Variable: matrix of type SpeedTable (ARRAY [1..6, 0..10] OF REAL) *)
+```iec
+sensor.value := raw * 0.01;
+sensor.valid := TRUE;
+sensor.timestamp := DT#2026-05-23-14:30:00;
 
-(* Read a value *)
-targetSpeed := matrix[currentGear, throttlePosition];
-
-(* Write a value *)
-matrix[3, 5] := 1500.0;
-
-(* Iterate over a 2D array *)
-FOR row := 1 TO 6 DO
-    FOR col := 0 TO 10 DO
-        matrix[row, col] := 0.0;
-    END_FOR;
-END_FOR;
-```
-
-### Using an Index Variable
-
-Often the index comes from a calculated value or an input. Always validate that the index is within bounds:
-
-```
-IF (selectedSensor >= 0) AND (selectedSensor <= 9) THEN
-    displayValue := temps[selectedSensor];
-ELSE
-    displayValue := 0.0;
+IF sensor.valid AND sensor.value > sensor.range_high THEN
+    over_temperature := TRUE;
 END_IF;
 ```
 
-## Working with Enumeration Variables
+Whole-structure assignment works the same as arrays, copies every field:
 
-### Assignment
-
-Assign an enumeration value by name:
-
-```
-(* Variable: state of type MachineState *)
-
-state := IDLE;
-state := RUNNING;
+```iec
+backup := sensor;
 ```
 
-### Comparison
+### Nested combinations
 
-Compare enumeration variables using `=` and `<>`:
+The patterns chain naturally:
 
+```iec
+(* array of struct: dot after the index *)
+sensors[3].value := 22.5;
+sensors[3].valid := TRUE;
+
+(* struct of array: index after the field *)
+recipe.steps[0].duration := T#5s;
+
+(* deeper nesting works too *)
+plant.lines[2].sensors[5].value := 100.0;
 ```
-IF state = RUNNING THEN
-    motorEnable := TRUE;
+
+## In graphical bodies (LD, FBD)
+
+Custom-typed variables work just like base-typed ones in graphical bodies. The constraints:
+
+- A pin typed `BOOL` accepts any BOOL-typed variable, including a field that resolves to a BOOL (`sensor.valid`, `mode = IDLE` as a comparison).
+- A pin typed `INT` / `REAL` / etc. accepts any variable or expression of that type, including array elements (`history[3]`) and structure fields (`sensor.value`).
+- Type-matching is checked at compile time. Mis-typed wires fail the build with the offending line surfaced in the console.
+
+For typing variables on a block's pin in LD, type the path directly:
+
+| Pin type | Valid value example |
+|---|---|
+| BOOL input | `sensor.valid` |
+| INT input | `history[3]` |
+| REAL input | `sensor.value` |
+| Enum input | `current_mode` or `IDLE` (the literal) |
+
+## Function block instances are also typed
+
+Function block types (`TON`, `CTU`, a user-authored `MyController`) follow the same model, they're types you declare instances of:
+
+```iec
+VAR
+    my_timer : TON;          (* TON is a function-block type *)
+    my_controller : MyController;
+END_VAR
+```
+
+Then you call the instance and read its outputs by dot notation, the same as structure fields:
+
+```iec
+my_timer(IN := start_btn, PT := T#5s);
+IF my_timer.Q THEN
+    motor := TRUE;
 END_IF;
+```
 
-IF state <> FAULTED THEN
-    allowOperation := TRUE;
+The dot notation is identical to a structure's field access because under the hood a function-block instance is, essentially, a structure that knows how to execute itself.
+
+## Custom types as function-block parameters
+
+You can declare function-block input/output classes with custom types. This is the cleanest way to pass a whole structure into a block:
+
+```iec
+FUNCTION_BLOCK ProcessReading
+VAR_INPUT
+    reading : SensorReading;       (* whole struct in *)
+END_VAR
+VAR_OUTPUT
+    alarm : BOOL;
+END_VAR
+
+(* body *)
+alarm := reading.valid AND (reading.value > reading.range_high);
+
+END_FUNCTION_BLOCK
+```
+
+Calling it:
+
+```iec
+my_proc(reading := temp_sensor);
+IF my_proc.alarm THEN
+    (* … *)
 END_IF;
 ```
 
-### CASE Statements
+For large structures or arrays, use class `In Out` so the data is passed by reference rather than copied.
 
-The CASE statement is the standard pattern for enumeration-based state machines. Each branch handles one (or more) enumeration values:
+## Common patterns
 
-```
-CASE state OF
+Three small examples that combine multiple custom types:
+
+### State machine using an enum
+
+```iec
+VAR
+    mode : MachineMode := IDLE;
+END_VAR
+
+CASE mode OF
     IDLE:
-        motorEnable := FALSE;
-        readyIndicator := TRUE;
-
-    STARTING:
-        motorEnable := TRUE;
-        IF motorAtSpeed THEN
-            state := RUNNING;
-        END_IF;
-
+        IF start_btn THEN mode := RUNNING; END_IF;
     RUNNING:
-        motorEnable := TRUE;
-        readyIndicator := TRUE;
-        IF stopCommand THEN
-            state := STOPPING;
-        ELSIF faultDetected THEN
-            state := FAULTED;
+        IF error THEN mode := FAULTED;
+        ELSIF stop_btn THEN mode := IDLE;
         END_IF;
-
-    STOPPING:
-        motorEnable := FALSE;
-        IF motorStopped THEN
-            state := IDLE;
-        END_IF;
-
     FAULTED:
-        motorEnable := FALSE;
-        readyIndicator := FALSE;
-        alarmOutput := TRUE;
-        IF resetCommand THEN
-            alarmOutput := FALSE;
-            state := IDLE;
-        END_IF;
+        IF reset_btn THEN mode := IDLE; END_IF;
 END_CASE;
 ```
 
-### State Transitions
+### Ring buffer using an array
 
-A common pattern is combining enumeration assignments with conditional logic for clean state transitions:
+```iec
+VAR
+    history : ARRAY[0..99] OF REAL;
+    write_index : INT := 0;
+END_VAR
 
-```
-(* Transition from any state to FAULTED on fault *)
-IF faultDetected AND (state <> FAULTED) THEN
-    previousState := state;
-    state := FAULTED;
+history[write_index] := current_temp;
+write_index := write_index + 1;
+IF write_index > 99 THEN
+    write_index := 0;
 END_IF;
 ```
 
-## Working with Structure Variables
+### Per-sensor records using a structure
 
-### Accessing Fields
+```iec
+VAR
+    sensors : ARRAY[0..3] OF SensorReading;
+END_VAR
 
-Use dot notation to read and write individual fields of a structure variable:
-
-```
-(* Variable: sensor of type SensorData *)
-
-(* Write to fields *)
-sensor.Value := 23.7;
-sensor.Valid := TRUE;
-sensor.SensorId := 1;
-
-(* Read from fields *)
-currentReading := sensor.Value;
-isValid := sensor.Valid;
-```
-
-### Using Multiple Fields Together
-
-Structures are most powerful when you work with several fields in context:
-
-```
-(* Update a sensor reading *)
-sensor.Value := analogInput;
-sensor.Valid := (analogInput > 0.0) AND (analogInput < 1000.0);
-
-(* Only process valid readings *)
-IF sensor.Valid THEN
-    processedValue := sensor.Value * calibrationFactor;
+(* read sensor 2 *)
+IF sensors[2].valid AND sensors[2].value > sensors[2].range_high THEN
+    alarms[2] := TRUE;
 END_IF;
 ```
 
-### Passing Structures to Function Blocks
+## What's next
 
-Structure variables can be passed as inputs or outputs to function blocks. Define the function block's parameter with the structure type:
-
-```
-(* Function block TemperatureMonitor has input: config : MotorConfig *)
-
-tempMonitor(config := myMotorConfig);
-```
-
-For InOut parameters (passed by reference), the function block can modify the structure's fields directly:
-
-```
-(* Function block with InOut: data : SensorData *)
-
-sensorProcessor(data := mySensor);
-(* After the call, mySensor.Valid may have been updated by the FB *)
-```
-
-## Nesting Custom Types
-
-One of the most powerful features of IEC 61131-3 data types is **composability**: you can use custom types as building blocks for other custom types.
-
-### Structures Containing Enumerations
-
-Define a structure with an enumeration field for self-describing data:
-
-```
-(* Assuming AlarmLevel enumeration: NONE, INFO, WARNING, CRITICAL *)
-(* Structure AlarmRecord with field Level of type AlarmLevel *)
-
-alarm.Level := WARNING;
-alarm.Active := TRUE;
-alarm.Message := 'Pressure high';
-
-IF alarm.Level = CRITICAL THEN
-    emergencyStop := TRUE;
-END_IF;
-```
-
-### Structures Containing Arrays
-
-A structure can include array fields for grouped collections:
-
-```
-(* Structure ChannelData with field Readings of type ARRAY [0..9] OF REAL *)
-
-channel.ChannelId := 3;
-channel.Readings[0] := 22.5;
-channel.Readings[1] := 23.1;
-
-(* Compute average from the array inside the structure *)
-sum := 0.0;
-FOR i := 0 TO 9 DO
-    sum := sum + channel.Readings[i];
-END_FOR;
-channel.Average := sum / 10.0;
-```
-
-### Arrays of Structures
-
-Declare an array type whose base type is a structure for a table of structured records:
-
-```
-(* Array type SensorArray: ARRAY [0..19] OF SensorData *)
-(* Variable: sensors of type SensorArray *)
-
-(* Access the Value field of sensor at index 5 *)
-reading := sensors[5].Value;
-
-(* Update all sensors in a loop *)
-FOR i := 0 TO 19 DO
-    sensors[i].Value := rawInputs[i];
-    sensors[i].Valid := (rawInputs[i] > minThreshold);
-END_FOR;
-
-(* Find the first faulted sensor *)
-FOR i := 0 TO 19 DO
-    IF NOT sensors[i].Valid THEN
-        firstFaultIndex := i;
-        EXIT;
-    END_IF;
-END_FOR;
-```
-
-### Structures Containing Structures
-
-Nested structures model hierarchical data:
-
-```
-(* Structure DriveUnit containing a MotorConfig field *)
-
-drive.Config.Speed := 1500.0;
-drive.Config.Enabled := TRUE;
-drive.Status.Running := TRUE;
-drive.Status.Current := 8.5;
-```
-
-## Custom Types as Function and Function Block Parameters
-
-Custom types work seamlessly as POU parameters. Instead of passing five separate values, you pass one structure:
-
-```
-(* As Input. Caller passes value to the FB *)
-processSensor(data := mySensorReading);
-
-(* As Output. FB produces a value the caller reads *)
-readSensor();
-currentValue := readSensor.result.Value;
-
-(* As InOut. FB modifies the caller's variable in place *)
-updateConfig(config := myMotorParams);
-```
-
-## Using Custom Types in Graphical Languages
-
-In **Ladder Diagram**, custom type variables work with function block instances on rungs. Individual structure fields can serve as contacts or coils using dot notation (e.g., `sensor.Valid` as a contact, `motor.Enabled` as a coil). Array elements use bracket notation (e.g., `outputs[3]`).
-
-In **Function Block Diagram**, custom type variables connect to function block input/output pins by name. The same dot and bracket notation applies. Wire `sensor.Value` to a comparison block input, or connect a math block output to `results[i]`.
-
-## Practical Example: Complete Sensor Monitoring System
-
-This example ties together all three custom type derivations in a realistic scenario.
-
-**Type definitions:**
-
-```
-(* Enumeration *)
-TYPE SensorStatus : (OK, WARN, FAULT) := OK; END_TYPE
-
-(* Structure *)
-TYPE SensorReading :
-  STRUCT
-    Value     : REAL := 0.0;
-    Status    : SensorStatus := OK;
-    HighLimit : REAL := 100.0;
-    LowLimit  : REAL := 0.0;
-  END_STRUCT
-END_TYPE
-
-(* Array *)
-TYPE SensorArray : ARRAY [0..7] OF SensorReading; END_TYPE
-```
-
-**Program using these types:**
-
-```
-(* Variables table:
-   sensors    : SensorArray   (Local)
-   faultCount : INT           (Local)
-   warnCount  : INT           (Local)
-   allOk      : BOOL          (Output)
-*)
-
-faultCount := 0;
-warnCount := 0;
-
-FOR i := 0 TO 7 DO
-    (* Check against limits *)
-    IF (sensors[i].Value > sensors[i].HighLimit) OR
-       (sensors[i].Value < sensors[i].LowLimit) THEN
-        sensors[i].Status := FAULT;
-        faultCount := faultCount + 1;
-    ELSIF (sensors[i].Value > sensors[i].HighLimit * 0.9) OR
-          (sensors[i].Value < sensors[i].LowLimit * 1.1) THEN
-        sensors[i].Status := WARN;
-        warnCount := warnCount + 1;
-    ELSE
-        sensors[i].Status := OK;
-    END_IF;
-END_FOR;
-
-allOk := (faultCount = 0) AND (warnCount = 0);
-```
-
-This program monitors 8 sensors, each with its own configurable limits and status, using just three custom types and a handful of variables.
-
----
-
-## What's Next?
-
-Learn about the standard function blocks available for timing and counting with [Timer Function Blocks](../standard-function-blocks/timer-blocks).
+- **[Variables editor](../working-with-variables/variables-editor)**: full reference for the variable table where you declare instances of your custom types.
+- **[Array data types](array-datatypes)** · **[Enumerated data types](enumerated-datatypes)** · **[Structure data types](structure-datatypes)**, the three per-derivation pages.
