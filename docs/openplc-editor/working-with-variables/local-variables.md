@@ -1,50 +1,32 @@
-# Local Variables
+# Variable classes inside a POU
 
-Every PLC program needs to store data. Sensor readings, calculation results, control flags, and more. In IEC 61131-3, variables declared inside a Program Organization Unit (POU) are called **local variables**. They define the data that a Program, Function, or Function Block works with during execution.
+Every variable you declare inside a Program Organization Unit (POU), a Program, Function, or Function Block, has a **class**. In IEC 61131-3 the class describes the variable's role in the POU: whether it's private to the POU, part of its calling interface, a reference to a global, or scratch space that doesn't persist between scans.
 
-This page covers the different variable classes available within POUs, how they behave during the scan cycle, and when to use each one.
+This page covers each class conceptually. For how to edit the variable table in the editor, adding rows, typing addresses, switching modes, see **[Variables editor](variables-editor)**.
 
-## Variable Classes Overview
+![Variables table for the EDF Demo `main` program showing three Local variables: `blink` (BOOL), `TON0` (TON instance), `TOF0` (TOF instance)](images/variables-table.png)
 
-When you create a variable inside a POU, you assign it a **class** that determines its scope, visibility, and behavior:
+## Local, `VAR`
 
-| Class | Description | Available In |
-|-------|-------------|--------------|
-| **Local** | Internal variable, private to the POU | Programs, Functions, Function Blocks |
-| **Input** | Receives a value from the caller | Functions, Function Blocks |
-| **Output** | Sends a value back to the caller | Functions, Function Blocks |
-| **InOut** | Passed by reference; shared between caller and POU | Functions, Function Blocks |
-| **External** | References a Global variable declared in the Resource | Programs, Function Blocks |
-| **Temp** | Temporary variable that exists only for one execution cycle | Programs, Function Blocks |
+The default. A local variable is private to the POU: no caller passes it in and no caller reads it back. In Programs and Function Blocks, local variables **retain their value across scans**, which is what makes counters, latches, state machines, and any logic with memory work.
 
-## Local Class
-
-Local variables are the most common class. They hold internal data that only the POU itself can read and write. No other POU can access them directly.
-
-```
+```iec
 VAR
-    counter : INT;
+    counter : INT := 0;
     running : BOOL;
     setpoint : REAL := 75.0;
 END_VAR
 ```
 
-**Key behavior**: In Programs and Function Blocks, local variables **retain their values** between scan cycles. If `counter` is 5 at the end of one cycle, it's still 5 at the beginning of the next. This makes them suitable for accumulators, state machines, and any logic that depends on previous values.
+In Functions, local variables behave differently: a function's frame is fresh on every call, so locals are re-initialised every time.
 
-In Functions, local variables do **not** retain their values. They're re-initialized each time the function executes.
+When to choose Local: anything internal to the POU. Counters, accumulators, intermediate calculation results, state flags, timer instances. Also anything you want bound to a specific I/O address via the `Location` column, that mapping is done with the address, not by changing the class.
 
-### When to Use Local
+## Input, `VAR_INPUT`
 
-- Internal counters, flags, and intermediate calculations
-- State machine variables
-- Timers and timer-related values
-- Any data that shouldn't be visible outside the POU
+A parameter the caller passes in when invoking the POU. Inside the POU, an input is **read-only**: your code reads it; only the caller can write it.
 
-## Input Class
-
-Input variables define parameters that a Function or Function Block receives from its caller. Inside the POU, input variables are **read-only**: the POU can read their values but cannot modify them.
-
-```
+```iec
 VAR_INPUT
     enable : BOOL;
     target_temp : REAL;
@@ -52,34 +34,21 @@ VAR_INPUT
 END_VAR
 ```
 
-When another POU calls your function block, it provides values for these inputs:
+When another POU calls this function block, it supplies the inputs:
 
-```
+```iec
 my_controller(enable := TRUE, target_temp := 72.5, max_speed := 500);
 ```
 
-### Hardware-Mapped Inputs
+In a graphical body, an `Input`-class variable becomes a pin on the **left** side of the function block. When you drop a TON timer onto a Ladder rung, its `IN` and `PT` pins are exactly this: `VAR_INPUT IN : BOOL; PT : TIME; END_VAR` inside the TON definition.
 
-Input variables can also be mapped to physical hardware addresses. This is how you read data from real-world sensors and switches:
+When to choose Input: only on Functions and Function Blocks, and only for values another POU is meant to feed in. A Program is the top of the call chain, its variables are inputs to "the world" via the Location column, not to a caller.
 
-```
-VAR_INPUT
-    start_button AT %IX0.0 : BOOL;    (* Digital input, byte 0, bit 0 *)
-    pressure AT %IW2 : INT;            (* Analog input, word 2 *)
-END_VAR
-```
+## Output, `VAR_OUTPUT`
 
-### When to Use Input
+The mirror of Input. An output is **read-write inside the POU and read-only outside**: your POU code writes the value; the caller reads it after the call returns.
 
-- Parameters that a Function or Function Block needs from its caller
-- Physical sensor readings mapped to hardware addresses
-- Configuration values passed to reusable logic blocks
-
-## Output Class
-
-Output variables define values that a Function or Function Block sends back to its caller. Inside the POU, output variables are **read-write**: the POU computes a result and assigns it to the output.
-
-```
+```iec
 VAR_OUTPUT
     motor_on : BOOL;
     current_speed : INT;
@@ -87,168 +56,113 @@ VAR_OUTPUT
 END_VAR
 ```
 
-The caller reads outputs using dot notation after invoking the function block:
+The caller reads outputs through dot notation on the function-block instance:
 
-```
+```iec
 my_controller(enable := TRUE, target_temp := 72.5);
 IF my_controller.error_code <> 0 THEN
     alarm := TRUE;
 END_IF;
 ```
 
-### Hardware-Mapped Outputs
+In LD or FBD, an `Output`-class variable becomes a pin on the **right** side of the block, like TON's `Q` and `ET` pins.
 
-Output variables can be mapped to physical hardware addresses to drive actuators, relays, and other output devices:
+When to choose Output: only on Functions and Function Blocks, and only for values another POU is meant to consume.
 
-```
-VAR_OUTPUT
-    motor_relay AT %QX0.0 : BOOL;     (* Digital output, byte 0, bit 0 *)
-    valve_position AT %QW0 : INT;      (* Analog output, word 0 *)
-END_VAR
-```
+## In Out, `VAR_IN_OUT`
 
-### When to Use Output
+Bidirectional. The caller passes a variable **by reference**; the POU can read and write it; changes are visible to the caller after the call.
 
-- Computed results that the caller needs to read
-- Status indicators and error codes
-- Physical actuator and relay control via hardware addresses
-
-## InOut Class
-
-InOut variables are passed **by reference**. The caller and the POU share the same variable. Changes made inside the POU are immediately visible to the caller, and vice versa.
-
-```
+```iec
 VAR_IN_OUT
     shared_buffer : ARRAY[0..99] OF INT;
     accumulator : REAL;
 END_VAR
 ```
 
-When calling a POU with InOut parameters, you must pass an existing variable (not a literal value):
+The caller has to pass an actual variable (not a literal):
 
-```
+```iec
 VAR
     my_buffer : ARRAY[0..99] OF INT;
     my_total : REAL;
 END_VAR
 
 process_data(shared_buffer := my_buffer, accumulator := my_total);
-(* my_buffer and my_total may have been modified by the function block *)
+(* my_buffer and my_total may have been modified in place *)
 ```
 
-### When to Use InOut
+When to choose In Out: large data structures you don't want to copy in and back out (arrays, structures), or accumulators a function block needs to update for the caller.
 
-- Large data structures (arrays, structs) to avoid copying
-- Variables that the POU needs to both read and modify
-- Shared accumulators or buffers between caller and callee
+## External, `VAR_EXTERNAL`
 
-## External Class
+A reference to a Global variable declared in the **Resource**. The External declaration doesn't create a new variable, it links to an existing global by name and type.
 
-External variables create a reference to a **Global variable** declared in the Resource configuration. This is the mechanism that lets POUs share data across the entire project.
-
-```
+```iec
 VAR_EXTERNAL
     system_mode : INT;
     emergency_stop : BOOL;
 END_VAR
 ```
 
-For an external variable to work, a global variable with the **same name and type** must exist in the Resource. The external declaration doesn't create a new variable. It links to the existing global one.
+For the External to work, a `VAR_GLOBAL` with the same name and same type must exist in the Resource editor. Reading or writing the External inside the POU reads or writes the underlying global; any other POU with a matching External sees the change on the next scan.
 
-### When to Use External
+When to choose External: when the same value needs to be visible to several POUs across the project. Setpoints, machine-wide modes, emergency-stop flags. Anything that's project-wide rather than per-POU.
 
-- Accessing shared configuration values (setpoints, modes)
-- Reading or writing status flags shared across multiple POUs
-- Coordinating behavior between Programs running in different Tasks
+Per-POU values that just happen to be bound to physical I/O (a digital input or a digital output your program owns) are not Externals, they're `Local` with a `Location`. Externals exist to share **state between POUs**, not to map to **pins**.
 
-For a complete explanation of Global variables and the Global-External relationship, see [Global Variables](global-variables).
+See **[Global variables](global-variables)** for the Resource side.
 
-## Temp Class
+## Temp, `VAR_TEMP`
 
-Temp variables are **temporary**: they exist only for the duration of a single execution cycle. Unlike local variables, temp variables are **not retained** between cycles. Each time the POU executes, temp variables start from their initial value (or an undefined state if no initial value is set).
+Like `Local`, but **reset to the initial value (or zero / FALSE) at the start of every scan**. Programs and Function Blocks only; functions are already temp by nature.
 
-```
+```iec
 VAR_TEMP
     intermediate_result : REAL;
     loop_index : INT;
 END_VAR
 ```
 
-### When to Use Temp
+When to choose Temp: scratch values that genuinely don't need to persist between scans. Loop counters, intermediate results in a per-scan computation, working values you'd otherwise have to remember to zero at the top of every scan.
 
-- Intermediate calculations that don't need to persist
-- Loop counters
-- Scratch space for data processing within a single cycle
+## Retention summary
 
-## I/O Addressing for Hardware-Mapped Variables
+How each class behaves across scan cycles:
 
-When a variable needs to represent a physical input or output on the PLC hardware, you assign it a **location** using the IEC 61131-3 addressing format:
+| Class | Retained across scans? | Notes |
+|---|---|---|
+| Local (Program / FB) | Yes | The IEC default for stateful logic. |
+| Local (Function) | No | Fresh frame on every call. |
+| Input | Set by caller | The caller writes it on every invocation. |
+| Output | Yes (FBs) | FB outputs persist until the next call rewrites them. |
+| In Out | References caller | The caller's variable retains based on its own class. |
+| External | Yes | The underlying global is retained for the lifetime of the project. |
+| Temp | No | Reset to initial value at the start of every scan. |
 
-```
-%<Prefix><Size><Address>
-```
+`RETAIN` is a separate IEC concept that means "survive a PLC restart" (power cycle), implemented as `VAR RETAIN ... END_VAR`. The table editor doesn't expose a retain flag in this build; declare it directly in code mode if you need it.
 
-### Address Components
+## Picking a class in practice
 
-| Component | Options | Meaning |
-|-----------|---------|---------|
-| **Prefix** | `I` | Input. Reading from sensors, switches |
-| | `Q` | Output. Writing to actuators, relays |
-| | `M` | Memory. Internal storage |
-| **Size** | `X` | Bit (BOOL) |
-| | `B` | Byte (8 bits) |
-| | `W` | Word (16 bits) |
-| | `D` | Double word (32 bits) |
-| | `L` | Long word (64 bits) |
+A short flowchart for the most common cases:
 
-### Address Examples
+| You want… | Class | Notes |
+|---|---|---|
+| To count, latch, or otherwise remember a value within one POU | **Local** | The default. |
+| To read or write a physical I/O pin from a Program | **Local** | Set the `Location` to `%IX...` / `%QX...`. The class stays Local. |
+| To define an input pin on a custom Function Block | **Input** | Only useful for FBs and Functions. |
+| To define an output pin on a custom Function Block | **Output** | Same constraint. |
+| To share a value across multiple POUs | **External** (in each POU) + **Global** (in the Resource) | The same name and type on both ends. |
+| Scratch variables that you don't want to persist | **Temp** | Reset every scan. |
 
-| Address | Meaning |
-|---------|---------|
-| `%IX0.0` | Digital input, byte 0, bit 0 |
-| `%IX1.3` | Digital input, byte 1, bit 3 |
-| `%IW2` | Analog input, word 2 (16-bit) |
-| `%QX0.0` | Digital output, byte 0, bit 0 |
-| `%QX1.3` | Digital output, byte 1, bit 3 |
-| `%QW0` | Analog output, word 0 (16-bit) |
-| `%MD10` | Memory double word 10 (32-bit) |
+## Naming rules
 
-Bit addresses use a two-part number (`byte.bit`), while byte, word, and larger addresses use a single number.
+- ASCII letters, digits, and underscores. Can't start with a digit.
+- Names are **case-insensitive** in IEC matching. `motor` and `Motor` are the same identifier and will collide.
+- Reserved keywords (`VAR`, `END_VAR`, `IF`, `TRUE`, `BOOL`, etc.) are not allowed as names.
 
-For a complete reference on the addressing system, see [Modbus Addressing](../communication/modbus/addressing).
+## What's next
 
-## Retention Behavior Summary
-
-Understanding when variable values persist between cycles is critical for correct PLC logic:
-
-| Class | Retained Between Cycles? | Notes |
-|-------|--------------------------|-------|
-| Local (Program/FB) | Yes | Value carries over from cycle to cycle |
-| Local (Function) | No | Re-initialized on every call |
-| Input | N/A | Set by caller each time the POU executes |
-| Output | Yes (in FBs) | Function Block outputs persist |
-| InOut | N/A | References the caller's variable |
-| External | Yes | Points to a Global, which is always retained |
-| Temp | No | Reset every cycle |
-
-## Best Practices
-
-> **Tip:** Default to the Local class unless you have a specific reason to choose another. Most variables in a typical POU are Local.
-
-> **Tip:** Always provide initial values for variables that depend on a known starting state, especially counters, flags, and setpoints.
-
-1. **Minimize External references**: Each External variable creates a coupling between the POU and the Resource configuration. Use them deliberately for genuinely shared data, not as a convenience shortcut.
-
-2. **Use Temp for scratch data**: If a variable is only needed within one scan cycle and doesn't need to remember its value, declare it as Temp. This communicates intent and helps with debugging.
-
-3. **Name variables descriptively**: A variable named `motor_running` is far more maintainable than `flag1`. Use the Documentation field in the variables table to add context when the name alone isn't sufficient.
-
-4. **Match Input/Output types to function block interfaces**: When designing reusable Function Blocks, choose Input and Output variable types carefully. They form the block's public interface.
-
----
-
-## What's Next?
-
-Now that you understand the variable classes available inside POUs, learn how shared data works across the entire project:
-
-- [Global Variables](global-variables): Declaring project-wide variables in the Resource and accessing them with the External class
+- **[Variables editor](variables-editor)**: the editor UI: columns, dropdowns, code mode, locations.
+- **[Global variables](global-variables)**: the Resource side of the External relationship.
+- **[Modbus addressing](../communication/modbus/addressing)**: how IEC addresses map to wire-protocol addresses.

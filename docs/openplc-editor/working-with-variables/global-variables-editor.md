@@ -1,198 +1,99 @@
-# Global Variables Editor
+# Global variables editor
 
-The Global Variables Editor is where you declare and manage variables that are shared across your entire project. Unlike the Variables Editor inside each POU (which handles local, input, output, and other POU-scoped variables), this editor works exclusively with Global-class variables defined at the Resource level.
+The Global Variables editor is the top section of the **Resource** editor. It declares variables that are visible project-wide, in contrast to the per-POU variables editor which is scoped to a single Program, Function, or Function Block.
 
-This page explains where to find the editor, how to use its features, and common workflows for hardware I/O mapping and data sharing.
+![Resource editor with all three sections visible: Global Variables (with `system_mode` declared as a DINT Global), Tasks (one cyclic task), Instances (binding the `main` program to that task)](images/resource-editor.png)
 
-## Where to Find It
+The table looks and behaves like the per-POU variables editor, with one structural difference: the **Class** column is fixed to `Global` and cannot be changed. Every other column. Name, Type, Location, Initial Value, Documentation, Debug, works the same way. See **[Variables editor](variables-editor)** for the column-by-column reference and the table/code-mode toggle.
 
-The Global Variables Editor lives inside the **Resource Editor**. To open it:
+## Opening it
 
-1. In the **Project Explorer** (the tree panel on the left), find the **Resource** node under the project's configuration section.
-2. Click on **Resource** to open the Resource Editor.
+In the project tree, click **Resource**. The Resource editor opens as a tab in the central editor area. The Global Variables table is the first section at the top; Tasks and Instances are below it.
 
-The Resource Editor is divided into three sections, stacked vertically:
+## What's different from per-POU variables
 
-| Section | Purpose |
-|---------|---------|
-| **Global Variables** | Declare variables shared across all POUs (this page) |
-| **Tasks** | Configure execution tasks with priorities and intervals |
-| **Instances** | Assign Program POUs to Tasks for execution |
+| | Per-POU variables editor | Global Variables editor |
+|---|---|---|
+| Scope | Local to one POU | Project-wide |
+| Class column | Six options (Local / Input / Output / In Out / External / Temp) | Fixed to `Global` |
+| Class filter dropdown | Yes | Not present (only one class) |
+| Return type field | Yes (for Functions) | Not present |
+| POU description field | Yes (for Functions) | Not present |
 
-The Global Variables section is the first (topmost) section.
+Everything else, adding, removing, reordering, the Type picker, code mode, renaming, the alias mechanism, is identical.
 
-## Table Columns
+## Typical patterns
 
-The Global Variables Editor uses a table layout similar to the Variables Editor inside POUs, with one key difference: the **Class** column is always set to `Global` and cannot be changed.
+A clean way to organise globals is to group them by purpose. The two main categories you'll see in practice are **physical I/O** (variables with a `Location`) and **shared data** (variables without one).
 
-| Column | Description |
-|--------|-------------|
-| **#** | Row number (auto-assigned) |
-| **Name** | The variable's identifier. Must be unique across all Global variables |
-| **Class** | Always `Global`. Not editable |
-| **Type** | The data type (BOOL, INT, REAL, custom types, arrays, etc.) |
-| **Location** | Hardware address for physical I/O mapping, with predefined pin options |
-| **Initial Value** | The starting value for the variable |
-| **Documentation** | Free-text description of the variable's purpose |
-| **Debug** | Checkbox to enable monitoring during online debugging |
+### Physical I/O
 
-## The Location Combobox
-
-The **Location** column offers a **combobox** with predefined hardware pin categories. When you click the Location cell, you see organized groups of available addresses:
-
-| Category | Address Pattern | Description |
-|----------|----------------|-------------|
-| **Digital Inputs** | `%IX...` | Physical digital input pins (buttons, switches, proximity sensors) |
-| **Digital Outputs** | `%QX...` | Physical digital output pins (relays, solenoids, LEDs) |
-| **Analog Inputs** | `%IW...` | Physical analog input channels (temperature, pressure, level sensors) |
-| **Analog Outputs** | `%QW...` | Physical analog output channels (variable drives, proportional valves) |
-
-The predefined options list the specific pins available on your target hardware. This prevents addressing errors by letting you pick from valid pins rather than typing addresses manually.
-
-### Custom Location Values
-
-If the predefined pin options don't cover your needs. For example, if you need a memory-mapped address (`%MW...`) or an address not in the predefined list. You can type a custom value directly into the Location field. The combobox accepts free-form text in addition to the predefined selections.
-
-### Leaving Location Empty
-
-Not every Global variable needs a hardware location. Variables used purely for data sharing between POUs (setpoints, status flags, counters) should have the Location field left empty. Only assign a location when the variable represents a physical I/O point.
-
-## Dual View: Table and Code
-
-Like the Variables Editor inside POUs, the Global Variables Editor supports **dual-view** mode:
-
-### Table View
-
-The default spreadsheet-like interface. Best for:
-
-- Browsing and editing individual variable properties
-- Using the Location combobox to pick hardware pins
-- Quick visual overview of all Globals
-
-### Code View
-
-A text-based editor showing the IEC 61131-3 declaration syntax. The declarations appear inside a `VAR_GLOBAL` block:
-
-```
-VAR_GLOBAL
-    start_button AT %IX0.0 : BOOL := FALSE;
-    stop_button AT %IX0.1 : BOOL := FALSE;
-    motor_relay AT %QX0.0 : BOOL := FALSE;
-    pressure AT %IW0 : INT := 0;
-    valve_cmd AT %QW0 : INT := 0;
-    system_mode : INT := 0;
-    alarm_active : BOOL := FALSE;
-END_VAR
-```
-
-Code View is useful for:
-
-- Adding many variables quickly by typing
-- Copying variable declarations from other projects or documentation
-- Reviewing the exact IEC text that the table generates
-
-> **Tip:** When you switch from Code View back to Table View, the editor validates the text. Syntax errors must be corrected before the switch completes.
-
-## Adding Global Variables
-
-Click the **+** (plus) button in the toolbar to add a new Global variable:
-
-- If a row is selected, the new variable is inserted **below** the selected row and copies its configuration as a starting template.
-- If no row is selected, the new variable is appended at the end of the list.
-
-After adding, immediately rename the variable and configure its type, location (if applicable), and initial value.
-
-## Removing Global Variables
-
-Select one or more rows and click the **−** (minus) button.
-
-> **Tip:** If any POU in your project references the removed Global variable via an External declaration, that POU will produce an error until you either recreate the Global or remove the External reference. Before deleting a Global, check which POUs use it.
-
-## Reordering Global Variables
-
-Use the **Up Arrow** and **Down Arrow** buttons to reorder variables in the list. While ordering doesn't affect program behavior, keeping them organized improves maintainability. For example, grouping all inputs together, then all outputs, then shared data variables.
-
-## Common Configurations
-
-### Mapping Physical I/O
-
-The most common use of Global variables is centralizing all hardware I/O mapping in one place. Here's a typical setup for a small machine:
+Globals with a `Location` like `%IX0.0` or `%QX0.0` map directly to physical input or output pins on the runtime. Centralising them in the Resource means each POU references them through `External` declarations and never has to think about wiring; if the wiring changes you only update one place.
 
 | Name | Class | Type | Location | Initial Value | Documentation |
-|------|-------|------|----------|---------------|---------------|
-| `start_btn` | Global | BOOL | %IX0.0 | FALSE | Start pushbutton, NO contact |
-| `stop_btn` | Global | BOOL | %IX0.1 | FALSE | Stop pushbutton, NC contact |
-| `e_stop` | Global | BOOL | %IX0.2 | FALSE | Emergency stop, NC contact |
-| `motor_fwd` | Global | BOOL | %QX0.0 | FALSE | Motor forward contactor |
-| `motor_rev` | Global | BOOL | %QX0.1 | FALSE | Motor reverse contactor |
-| `speed_ref` | Global | INT | %QW0 | 0 | VFD speed reference, 0-10000 |
-| `temp_sensor` | Global | INT | %IW0 | 0 | PT100 temperature, raw ADC |
+|---|---|---|---|---|---|
+| `start_btn` | Global | BOOL | `%IX0.0` | FALSE | Start pushbutton, NO contact |
+| `stop_btn` | Global | BOOL | `%IX0.1` | FALSE | Stop pushbutton, NC contact |
+| `e_stop` | Global | BOOL | `%IX0.2` | FALSE | Emergency stop, NC contact |
+| `motor_fwd` | Global | BOOL | `%QX0.0` | FALSE | Motor forward contactor |
+| `motor_rev` | Global | BOOL | `%QX0.1` | FALSE | Motor reverse contactor |
+| `speed_ref` | Global | INT | `%QW0` | 0 | VFD speed reference, 0–10000 |
+| `temp_sensor` | Global | INT | `%IW0` | 0 | PT100 temperature, raw ADC |
 
-This approach means you only need to update the Resource if wiring changes. The Programs themselves reference these variables through External declarations and never deal with hardware addresses directly.
+This isn't required, a Program can just as easily declare its own `Local`-class variables with `Location` set, and most small projects do. The case for centralising in the Resource is shared visibility: every POU that imports a Global through `External` reads or writes the same physical pin without each POU needing its own Location declaration.
 
-### Sharing Data Between Programs
+### Shared data
 
-For variables that coordinate logic between Programs but have no hardware connection, leave the Location empty:
+Globals without a `Location` are pure in-memory shared state. The runtime allocates storage for them; no physical pin involved.
 
 | Name | Class | Type | Location | Initial Value | Documentation |
-|------|-------|------|----------|---------------|---------------|
-| `system_mode` | Global | INT | | 0 | 0=Off, 1=Manual, 2=Auto |
+|---|---|---|---|---|---|
+| `system_mode` | Global | INT | | 0 | 0 = Off, 1 = Manual, 2 = Auto |
 | `batch_count` | Global | DINT | | 0 | Total parts produced |
-| `alarm_code` | Global | INT | | 0 | Active alarm number, 0=none |
+| `alarm_code` | Global | INT | | 0 | Active alarm number; 0 = none |
 | `recipe_id` | Global | INT | | 1 | Currently loaded recipe |
 
-### Mixed Configuration
+### Mixed
 
-In practice, most projects combine both patterns. Hardware-mapped Globals and data-sharing Globals in the same table:
+Most real projects combine both. The code-mode view groups them inside a single `VAR_GLOBAL` block; comments help separate the groups visually:
 
-```
+```iec
 VAR_GLOBAL
     (* Physical Inputs *)
     start_btn AT %IX0.0 : BOOL := FALSE;
-    stop_btn AT %IX0.1 : BOOL := FALSE;
-    temp_sensor AT %IW0 : INT := 0;
+    stop_btn  AT %IX0.1 : BOOL := FALSE;
+    temp_sensor AT %IW0 : INT  := 0;
 
     (* Physical Outputs *)
     motor_run AT %QX0.0 : BOOL := FALSE;
-    heater AT %QX0.1 : BOOL := FALSE;
-    speed_ref AT %QW0 : INT := 0;
+    heater    AT %QX0.1 : BOOL := FALSE;
+    speed_ref AT %QW0   : INT  := 0;
 
     (* Shared Data *)
-    system_mode : INT := 0;
-    target_temp : REAL := 25.0;
-    alarm_active : BOOL := FALSE;
+    system_mode    : INT  := 0;
+    target_temp    : REAL := 25.0;
+    alarm_active   : BOOL := FALSE;
 END_VAR
 ```
 
-Using comments in Code View (as shown above) helps visually separate the categories.
+Note the `AT %IX...` / `AT %QX...` notation in code mode, this is the IEC syntax for declaring a variable with a Location, and it's legal in `VAR` (Local) and `VAR_GLOBAL` blocks. It's **not** legal in `VAR_INPUT` / `VAR_OUTPUT` blocks, which is why physical I/O lives in Local or Global declarations, never in an FB's interface.
 
-## Differences from the POU Variables Editor
+## Communication servers and globals
 
-| Feature | POU Variables Editor | Global Variables Editor |
-|---------|---------------------|------------------------|
-| Class selection | Multiple classes (Local, Input, Output, InOut, External, Temp) | Always `Global` (not editable) |
-| Class filter | Dropdown to filter by class | Not present (only one class) |
-| Location combobox | Text field for manual address entry | Combobox with predefined hardware pin categories |
-| Return type selector | Present for Functions | Not present |
-| POU description | Present for Functions | Not present |
-| Scope | Local to one POU | Project-wide |
+Modbus / OPC-UA / S7Comm servers expose the IEC memory image to external clients. For a global to be reachable through one of those servers, give it a `Location` in the appropriate memory area:
 
-## Tips for Managing Globals
+- `%QX` / `%QW` / `%MD` etc. for variables the server should make writable (e.g. Modbus holding registers, OPC-UA writable nodes).
+- `%IX` / `%IW` for read-only inputs the server publishes.
+- `%MX` / `%MW` / `%MD` / `%ML` for variables that aren't tied to physical I/O but live in shared memory the server can map.
 
-> **Tip:** Group related variables together. Keep inputs, outputs, and shared data in separate clusters. Use Code View comments or consistent naming prefixes (`io_`, `cfg_`, `sts_`) to reinforce the grouping.
+The mapping rules are protocol-specific; see **[Modbus server](../communication/modbus/server)** and **[OPC-UA address space](../communication/opc-ua/address-space)** for the details.
 
-> **Tip:** Document the Location mapping. For hardware-mapped Globals, use the Documentation column to note the physical wiring (e.g., "Terminal X3-Pin 4, 24VDC proximity sensor"). This is invaluable during commissioning and troubleshooting.
+## Caution before deleting
 
-1. **Set safe initial values**: Outputs should default to their safe state (typically `FALSE` or `0`). If the PLC restarts unexpectedly, the initial values determine the state before any logic executes.
+A Global referenced by an `External` in any POU will produce a compile error on the next build if you remove it. Before deleting, check whether any POU references it, either by searching the project (the activity-bar **Search** action) or by looking for `External` rows with the matching name in your POU variable tables.
 
-2. **Review before deleting**: Since Globals are referenced project-wide via External variables, deleting a Global can break multiple POUs at once. Check all External references first.
+## What's next
 
-3. **Keep the list manageable**: If you find yourself with dozens of Globals, consider whether some should be reorganized. Use User Data Types (structures) to group related variables into a single Global of a custom type.
-
----
-
-## What's Next?
-
-Now that you know how to declare and manage variables at every level of your project, explore how to create custom data types to organize complex data:
-
-- [Creating Data Types](../custom-data-types/creating-datatypes): Define structures, enumerations, and other custom types for your variables
+- **[Global variables](global-variables)**: the conceptual side: how Globals and Externals work together.
+- **[Variables editor](variables-editor)**: the editing UI that this section reuses.
+- **[Modbus server](../communication/modbus/server)**: how globals with `%QW` / `%MX` Locations end up on the wire.
