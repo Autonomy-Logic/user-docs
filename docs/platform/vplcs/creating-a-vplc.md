@@ -20,7 +20,7 @@ Delete one of the existing devices, or upgrade your plan via **[Pricing](../../p
 
 ## Step 2, Details
 
-The wizard opens on a dedicated page (`/{slug}/devices/create?orchestratorId={oid}`). A 3-step indicator at the top shows the flow: **1. Details**, **2. Network**, **3. Serial Ports**.
+The wizard opens on a dedicated page. A 3-step indicator at the top shows the flow: **1. Details**, **2. Network**, **3. Serial Ports**.
 
 ![New Device wizard, Details step: Device Name and Runtime Version](images/new-device-step1.png)
 

@@ -33,7 +33,7 @@ If the email you used has a typo:
 
 Most flows have a **Resend verification email** action on the page after the initial send. Click it; you'll get a new email.
 
-For sign-up verification specifically, go back to `edge.autonomylogic.com/verify-email-code` and click **Resend code**.
+For sign-up verification specifically, go back to the **Enter verification code** screen and click **Resend code**.
 
 ## 5. Domain blocklist
 
@@ -63,4 +63,4 @@ Note: if you're trying to **change** your email rather than verify a new one, yo
 
 - **Sign up flow** → **[Account and signup](../getting-started/account-and-signup)**.
 - **Email change** → **[Settings → Security → Email](../account/settings/security-email)**.
-- **Forgot password** → enter your email at `edge.autonomylogic.com/forgot-password` and watch for the reset email (same delivery rules apply).
+- **Forgot password** → click **Forgot password?** on the sign-in screen and watch for the reset email (same delivery rules apply).

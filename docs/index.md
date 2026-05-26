@@ -15,7 +15,6 @@ If you're brand new, start with **[What is Autonomy Edge?](getting-started/what-
 
 ## Platform
 
-- **[Workspaces and slugs](platform/workspaces-and-slugs)**: How personal and organization workspaces share the same URL pattern.
 - **[Projects](platform/projects/overview)**: Git-backed PLC repositories: create, edit, branch, review, merge.
 - **[Orchestrators](platform/orchestrators/overview)**: The cloud-managed agent that runs on your edge device.
 - **[vPLC devices](platform/vplcs/overview)**: Virtual PLC containers that host your runtime.
@@ -47,7 +46,6 @@ The browser-based IEC 61131-3 IDE. The full editor reference lives under **[Open
 
 - **[Glossary](reference/glossary)**: The platform's vocabulary in one page.
 - **[Keyboard shortcuts](reference/keyboard-shortcuts)**: Every shortcut that works platform-wide.
-- **[URL cheat sheet](reference/url-cheatsheet)**: Bookmarkable routes for every screen.
 - **[FAQ](reference/faq)**: Answers to the questions we hear most often.
 
 ## Troubleshooting

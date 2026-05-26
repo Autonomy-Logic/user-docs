@@ -1,8 +1,6 @@
 # Editing your profile
 
-The **Edit Profile** button on your profile takes you to **Settings → Profile**, where you change your name, username, bio, avatar, location, and time zone.
-
-URL: `edge.autonomylogic.com/profile/settings?tab=profile`.
+The **Edit Profile** button on your profile takes you to **Settings → Profile**, where you change your name, username, bio, avatar, location, and time zone. You can also open the same page by clicking your avatar in the top-right and choosing **Settings**.
 
 ![Profile settings, avatar, name, username, bio, location, time zone](settings/images/profile-settings.png)
 
@@ -28,12 +26,12 @@ Free-text field. This is your **display name**, what most of the platform shows.
 
 ## Username
 
-The handle in your URLs (`/profile/{userId}` shows the ID, but your username also shows everywhere a user is mentioned).
+The handle that identifies you across the platform: it shows next to your commits, replies, project cards, and anywhere else a user is mentioned.
 
 - 3–30 characters.
 - Allowed: lowercase letters, digits, hyphens, underscores.
 - Must be unique across the platform.
-- Changing it will break links to your forum posts and old project URLs **if** people referenced them by username (though IDs continue to resolve). Use the change sparingly.
+- Changing it doesn't break existing links since your underlying identity is stable, but consider keeping it consistent so people can recognise you.
 
 ## Bio
 
@@ -69,6 +67,6 @@ The **[Settings → Account](settings/account)** tab has the danger-zone delete 
 
 ## Where to next
 
-- **Back to your profile** → click **Back to Dashboard** in the top-left of the settings page, then **Profile** in the user menu. Or use the URL `edge.autonomylogic.com/profile`.
+- **Back to your profile** → click **Back to Dashboard** at the top-left of the settings page, then choose **My Profile** from the user menu.
 - **Tune privacy** → **[Settings → Privacy](settings/privacy)**.
 - **Manage your account** → **[Settings → Account](settings/account)**.

@@ -47,13 +47,7 @@ If you previously had a paid plan with private projects and have since downgrade
 
 ## Sharing a project URL
 
-Public or private, every project has a stable URL:
-
-```
-edge.autonomylogic.com/{slug}/projects/{projectId}
-```
-
-You can copy this URL with the **link icon** on the project card or the project page header. People who follow the link:
+Every project has a stable, shareable URL. Copy it with the **link icon** on the project card or the project page header. People who follow the link:
 
 - For public projects, they land on the project page and can read everything.
 - For private projects, they're prompted to sign in. If they're signed in but don't have access, they see a "You don't have permission to view this project" message instead of the project page.

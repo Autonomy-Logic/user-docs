@@ -1,8 +1,6 @@
 # Orchestrator detail
 
-Clicking an orchestrator card opens its detail page. URL: `edge.autonomylogic.com/{slug}/orchestrators/{orchestratorId}`.
-
-The detail page has two tabs: **Devices** (default) and **Orchestrator**.
+Clicking an orchestrator card from the **[Orchestrators list](orchestrators-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
 
 ## Devices tab
 

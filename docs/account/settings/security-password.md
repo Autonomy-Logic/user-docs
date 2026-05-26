@@ -2,7 +2,7 @@
 
 The Password section lets you change your account password.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=security-password`.
+To open it, click your avatar in the top-right, choose **Settings**, then expand **Security** in the left side-nav and click **Password**.
 
 ![Settings → Security → Password](images/security-password.png)
 
@@ -44,8 +44,8 @@ Sign in with the new password to continue.
 
 If you can't sign in because you don't remember your password:
 
-1. Sign-out (if you're somehow signed in but want to reset).
-2. Visit `edge.autonomylogic.com/forgot-password`.
+1. Sign out (if you're somehow signed in but want to reset).
+2. On the sign-in screen, click **Forgot password?**.
 3. Enter your email.
 4. Open the reset email, click the link, set a new password.
 5. You'll be signed in automatically.

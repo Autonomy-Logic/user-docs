@@ -2,7 +2,7 @@
 
 The forum has built-in **direct messaging**, one-to-one and group chats with anyone on the platform. It's the right tool when a conversation doesn't belong in a public thread.
 
-URL: `edge.autonomylogic.com/forum/messages`.
+Open it from the forum's top navigation by clicking **Messages**.
 
 ![Messaging UI, conversation list on left, chat on right](images/forum-messages.png)
 

@@ -19,7 +19,7 @@ Two ways:
 
 | Field | Required | Notes |
 |---|---|---|
-| **Project name** | Yes | Any text. Used as the project identifier and as the URL slug. Two projects in the same workspace can't share a name. |
+| **Project name** | Yes | Any text. Used as the project identifier. Two projects in the same workspace can't share a name. |
 | **Select folder** | No | Leave as **Root (/)** to put the project at the top level. Otherwise pick one of your existing folders. Folders are visible in the left sidebar of the projects list and help group related projects. |
 | **Description** | No | Free text. Shown on the project card in the projects list and in feed activity items. You can edit it later. |
 

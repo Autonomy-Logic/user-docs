@@ -1,6 +1,6 @@
 # vPLC detail
 
-The vPLC detail page is the read-only "I want to see what this device looks like right now" view. URL: `edge.autonomylogic.com/{slug}/devices/{deviceId}?orchestratorId={orchId}`.
+The vPLC detail page is the read-only "I want to see what this device looks like right now" view. Open it by clicking a vPLC card on an **[orchestrator's detail page](../orchestrators/orchestrator-detail)**.
 
 ![vPLC detail page for a Stopped device](images/vplc-detail.png)
 

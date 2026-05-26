@@ -24,7 +24,7 @@ If you already use the [OpenPLC desktop editor](https://autonomylogic.com/), Aut
 
 There are four things in play whenever you ship a program:
 
-1. **The web app** at `edge.autonomylogic.com`. This is what you read, click, and type into. The login, the dashboard, the projects list, the editor, the forum, all of it lives here.
+1. **The web app** at [edge.autonomylogic.com](https://edge.autonomylogic.com). This is what you read, click, and type into. The login, the dashboard, the projects list, the editor, the forum, all of it lives here.
 2. **The orchestrator agent.** A small Python daemon that runs on a Linux edge device (PLC, PAC, industrial PC, server, Raspberry Pi). You install it with one curl command. It connects to the cloud over a secure mTLS WebSocket and waits for instructions.
 3. **vPLC containers.** When you tell the platform to create a vPLC, the orchestrator starts an OpenPLC v4 runtime in a Docker container on that device. Each vPLC appears on your physical LAN with its own IP and MAC address, so it behaves like a standalone PLC. You can run several side by side on one piece of hardware.
 4. **Industrial I/O.** The vPLC talks to your sensors, drives, HMIs, and remote I/O over Modbus TCP/RTU, EtherCAT, EtherNet/IP, OPC-UA, or S7Comm, the same protocols you'd use with any other PLC.
@@ -46,5 +46,4 @@ Private projects, additional orchestrators, more devices, and team features requ
 
 - **You want to try it out** → **[Account and signup](account-and-signup)**, then **[Quick Start](quick-start)**.
 - **You're logged in and looking around** → **[Dashboard tour](dashboard-tour)**.
-- **You're not sure what something on screen does** → use the **[URL cheat sheet](../reference/url-cheatsheet)** to find the page and its docs.
 - **You want a one-page vocabulary refresher** → **[Glossary](../reference/glossary)**.

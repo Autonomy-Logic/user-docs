@@ -4,7 +4,7 @@ The **Usage** tab is the org-level counterpart to **[Settings → Usage](../../a
 
 > Visible on **Teams**, **Education**, and **Enterprise** plans. Owners and admins can manage member grants; members can read.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Usage** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Usage** in the side-nav.
 
 ![Org Usage tab: quota bars, ACU pool, and member access table](images/org-usage.png)
 

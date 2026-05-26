@@ -2,7 +2,7 @@
 
 The forum has a public **Members directory**, a leaderboard-style view of everyone with a forum account.
 
-URL: `edge.autonomylogic.com/forum/members`.
+Open it from the forum home by clicking **Members** in the top navigation.
 
 ![Forum Members page, tabs and empty state](images/forum-members.png)
 

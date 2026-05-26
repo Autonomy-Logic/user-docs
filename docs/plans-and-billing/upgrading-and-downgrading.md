@@ -5,10 +5,10 @@
 Three entry points, all go to the same place:
 
 - **Settings → Billing → Change plan.** From your account settings.
-- **Pricing page** at `edge.autonomylogic.com/pricing`. From the user menu's *Pricing* link, or directly.
+- **[Pricing page](https://edge.autonomylogic.com/pricing).** Open from the user menu's *Pricing* link.
 - **Plan-limit modal.** Click **Upgrade plan** when you hit a limit.
 
-For organization plans, use the org's own Billing tab at `edge.autonomylogic.com/organizations/{orgId}` → **Billing**.
+For organization plans, open the organization (avatar menu → **Organizations** → select the org) and use its **Billing** tab.
 
 ## Upgrading
 

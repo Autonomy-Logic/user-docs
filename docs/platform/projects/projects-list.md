@@ -1,6 +1,6 @@
 # Projects list
 
-The projects list is where every project in a workspace lives. URL: `edge.autonomylogic.com/{slug}/projects`, replace `{slug}` with your username or an organization's slug.
+The projects list is where every project in a workspace lives. To open it, click **Projects** in the dashboard's left column (the **+ Manage Projects** button on the Projects card), or use the **View all** link on that same card.
 
 ![Projects list showing the Recent grid view with project cards](images/projects-recent-grid.png)
 
@@ -66,7 +66,7 @@ Clicking anywhere on the card body (not on an action icon) takes you to the proj
 
 ## Switching workspaces
 
-Remember the slug in the URL: `/{slug}/projects` is *that slug's* projects. To see an organization's projects you need to be on that org's slug. The quickest way is to use the dashboard's **Organizations** card and click the org name; the URL switches, and you can append `/projects` from there.
+Each workspace has its own projects list. To see an organization's projects, open the dashboard's **Organizations** card on the right and click the organization's name; you'll land on that organization's dashboard, where the **Projects** card behaves the same as on your personal one.
 
 ## Where to next
 

@@ -2,13 +2,13 @@
 
 The Autonomy Edge **forum** is a Discourse-style discussion board for everything OpenPLC and Autonomy Edge: news, project sharing, hardware help, bug reports, and general discussion. It's the busiest community surface on the platform.
 
-URL: `edge.autonomylogic.com/forum`.
+Open it from the dashboard by clicking **View Forum** on the **Trending Topics** card, or by clicking your avatar in the top-right and choosing **Forum**.
 
 ![Forum home page, hero banner, stats, categories, and topic list](images/forum-home.png)
 
 ## The forum is global
 
-Unlike projects and orchestrators, the forum is not workspace-scoped. There's one forum for everyone, regardless of which slug you're on. Posting in the forum uses your account identity (display name and avatar) directly.
+Unlike projects and orchestrators, the forum is not workspace-scoped. There's one forum for everyone, regardless of which workspace you're in. Posting in the forum uses your account identity (display name and avatar) directly.
 
 ## What the home page shows
 

@@ -2,7 +2,7 @@
 
 The Profile tab in your account settings is where your public-facing identity lives, name, username, bio, avatar, location, and time zone.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=profile`. Default tab when you open settings.
+To open it, click your avatar in the top-right and choose **Settings**. Profile is the default tab.
 
 ![Settings → Profile tab](images/profile-settings.png)
 

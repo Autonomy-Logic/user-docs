@@ -4,7 +4,7 @@ Invite links are reusable URLs that let anyone with the link join your organizat
 
 > Requires the **Teams**, **Education**, or **Enterprise** plan.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Invite Links** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Invite Links** in the side-nav.
 
 ![Invite Links tab, empty state with Generate Link button](images/org-invite-links.png)
 

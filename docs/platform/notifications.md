@@ -4,8 +4,8 @@ Notifications keep you in the loop about platform events that matter, replies to
 
 There are two surfaces:
 
-1. **The bell icon** in the header on every protected page. A small dot appears when you have unread notifications.
-2. **The notifications page** at `edge.autonomylogic.com/notifications`.
+1. **The bell icon** in the header on every signed-in page. A small dot appears when you have unread notifications.
+2. **The notifications page**, which you can open by clicking the bell, then **See all**.
 
 ![Notifications page, empty state](images/notifications-empty.png)
 
@@ -39,9 +39,7 @@ There's no per-notification delete today. Pruning happens server-side after a re
 
 ## The bell badge
 
-The header bell icon shows a small dot when you have unread notifications. Clicking the bell opens a popover preview of the most recent items, with a **See all** link to the full page.
-
-You can also navigate to the full page directly: `edge.autonomylogic.com/notifications`.
+The header bell icon shows a small dot when you have unread notifications. Clicking the bell opens a popover preview of the most recent items, with a **See all** link to the full notifications page.
 
 ## Email notifications vs in-app
 

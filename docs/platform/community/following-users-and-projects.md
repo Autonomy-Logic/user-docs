@@ -4,7 +4,7 @@ Autonomy Edge has a light social layer: you can **follow** users, **star** proje
 
 ## Following a user
 
-Visit any user's profile (`edge.autonomylogic.com/profile/{userId}`). At the top of their profile is a **Follow** button.
+Open any user's profile (click their avatar or name anywhere on the platform: in a thread, a project card, the followers list). At the top of their profile is a **Follow** button.
 
 - Click **Follow** to start following. The button switches to **Following**.
 - Click **Following** to unfollow.
@@ -32,7 +32,7 @@ Watch is a future feature. The idea: subscribe to a project's lifecycle events, 
 
 ## Who follows you
 
-On your own profile (`edge.autonomylogic.com/profile`):
+On your own profile (click your avatar → **My Profile**):
 
 - Below your avatar, the *N followers · M following* numbers are clickable.
 - Clicking **followers** opens the list of users who follow you.

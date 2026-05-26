@@ -2,7 +2,7 @@
 
 A **topic** is the unit of conversation in the forum. To start one, you need a signed-in account and a few minutes to write a clear title and body.
 
-URL: `edge.autonomylogic.com/forum/new-topic`. Reached by clicking **+ New Topic** from the forum home or any board page.
+Reach the composer by clicking **+ New Topic** from the forum home or any board page.
 
 ![New Topic page, categories, title, rich-text editor, attachments](images/forum-new-topic.png)
 

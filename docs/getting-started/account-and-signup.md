@@ -34,8 +34,8 @@ If you forget your password, click **Forgot password?** on the sign-in screen. Y
 
 When you sign up, the platform provisions:
 
-- A **user profile** at `edge.autonomylogic.com/profile/{your-id}` with a contribution graph, your stars, and your public projects.
-- A **personal workspace** under your username slug (e.g. `/your-username/dashboard`). Projects you create live under this slug by default.
+- A **user profile** with a contribution graph, your stars, and your public projects, reachable from the user menu (avatar → **My Profile**).
+- A **personal workspace** that holds projects, orchestrators, and devices you own.
 - A **Community plan** subscription. This is the free tier and is enough to run one orchestrator with two devices. See **[Pricing](../plans-and-billing/pricing)** for what each plan includes.
 - A **forum identity** that uses the same username. Anything you post in the forum is attributed to this identity.
 

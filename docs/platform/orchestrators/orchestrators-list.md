@@ -1,6 +1,6 @@
 # Orchestrators list
 
-URL: `edge.autonomylogic.com/{slug}/orchestrators`. This page lists every orchestrator under the current workspace. Each one is shown as a card with live stats.
+The Orchestrators list shows every orchestrator under the current workspace, one card per orchestrator with live stats. Open it from the dashboard by clicking **Manage orchestrators** on the **Orchestrators** card.
 
 ![Orchestrators list page, one orchestrator card and the New Orchestrator tile](images/orchestrators-list.png)
 

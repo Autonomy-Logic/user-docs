@@ -28,7 +28,7 @@ The trending list is global. There's no per-workspace trending. Whether you're o
 
 The forum is where most of the community help, bug reports, and discoveries happen. Surfacing trending topics on the dashboard means new users find the conversation quickly without having to make the forum part of their daily check.
 
-If you spend a lot of time in the forum, you probably want to bookmark `edge.autonomylogic.com/forum` directly instead of relying on the widget.
+If you spend a lot of time in the forum, you probably want to bookmark the [Forum home](https://edge.autonomylogic.com/forum) directly instead of relying on the widget.
 
 ## Where to next
 

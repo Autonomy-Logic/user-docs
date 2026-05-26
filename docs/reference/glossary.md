@@ -20,7 +20,7 @@ A historical record of changes to an organization (membership, settings, billing
 
 ## Board
 
-A forum category. URL: `/forum/board/{boardSlug}`. Contains topics. See **[Forum overview](../platform/forum/overview)**.
+A forum category that groups related topics. See **[Forum overview](../platform/forum/overview)**.
 
 ## Branch
 
@@ -84,7 +84,7 @@ The cloud-side entity representing an edge device. Hosts vPLCs. See **[Orchestra
 
 ## Organization
 
-A shared workspace for teams. Has its own slug, dashboard, projects, orchestrators, and billing. See **[Organizations overview](../platform/organizations/overview)**.
+A shared workspace for teams. Has its own dashboard, projects, orchestrators, and billing, separate from your personal workspace. See **[Organizations overview](../platform/organizations/overview)**.
 
 ## Pinned project
 
@@ -122,10 +122,6 @@ A member's level of access in an organization: Owner, Admin, or Member. See **[M
 
 A user account local to a single vPLC. Separate from your Autonomy Edge account. Created on first connect from the editor. See **[Connecting from the editor](../platform/vplcs/connecting-from-editor)**.
 
-## Slug
-
-The username or organization handle in a URL. `/{slug}/dashboard`, `/{slug}/projects`. See **[Workspaces and slugs](../platform/workspaces-and-slugs)**.
-
 ## Star
 
 A public "like" on a public project. Counted publicly. See **[Pinning and stars](../platform/projects/pinning-and-stars)**.
@@ -156,10 +152,9 @@ Virtual PLC. A Docker container running the OpenPLC runtime on an orchestrator. 
 
 ## Workspace
 
-The unit of scoping for projects and orchestrators. Each user has a personal workspace; each organization is a workspace. URL prefix is the slug. See **[Workspaces and slugs](../platform/workspaces-and-slugs)**.
+The unit of scoping for projects and orchestrators. Each user has a personal workspace; each organization is a workspace. Switch between them from the dashboard's **Organizations** card.
 
 ## Where to next
 
 - **Look up keyboard shortcuts** → **[Keyboard shortcuts](keyboard-shortcuts)**.
-- **Bookmarkable URLs** → **[URL cheat sheet](url-cheatsheet)**.
 - **Frequently asked questions** → **[FAQ](faq)**.

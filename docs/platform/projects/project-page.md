@@ -1,6 +1,6 @@
 # The project page
 
-The project page is where you see everything about a single project: its files, its commits, its open pull requests, and its settings. URL: `edge.autonomylogic.com/{slug}/projects/{projectId}`.
+The project page is where you see everything about a single project: its files, its commits, its open pull requests, and its settings. Open it by clicking any project card in the dashboard's **Projects** list or on the **[Projects list](projects-list)** page.
 
 ![A project's Code tab, title, tabs, branch selector, file tree, README placeholder](images/project-code-tab.png)
 
