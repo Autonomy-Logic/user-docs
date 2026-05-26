@@ -2,7 +2,7 @@
 
 The Usage section shows your AI Credit Units (ACUs) and your current consumption against plan limits.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=usage`.
+To open it, click your avatar in the top-right, choose **Settings**, then **Usage** in the left side-nav.
 
 ![Settings → Usage, ACU balance and quotas](images/usage.png)
 
@@ -67,8 +67,8 @@ A small **refresh icon** at the top-right of the Usage card forces a recount.
 
 The fastest way to lift a limit is upgrading the plan.
 
-- For your personal slug, upgrade your personal plan in **[Settings → Billing](billing)** or via **[Pricing](../../plans-and-billing/pricing)**.
-- For an organization slug, the org needs its own plan; upgrade in the org's **[Billing tab](../../platform/organizations/billing)**.
+- For your personal workspace, upgrade your personal plan in **[Settings → Billing](billing)** or via **[Pricing](../../plans-and-billing/pricing)**.
+- For an organization workspace, the organization needs its own plan; upgrade from the org's **[Billing tab](../../platform/organizations/billing)**.
 
 ## Where to next
 

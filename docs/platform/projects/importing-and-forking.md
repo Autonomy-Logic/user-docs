@@ -51,7 +51,7 @@ To fork:
 
 1. Open any public project (yours or someone else's).
 2. Click the **Fork** action in the project header (top of the project page).
-3. Pick the workspace to fork into (your personal slug or any organization you have permission to create projects in).
+3. Pick the workspace to fork into (your personal workspace or any organization you have permission to create projects in).
 4. The fork is created and you land on the fork's project page.
 
 A forked project carries `(Fork)` in its name by default (e.g. *Autonomy Factory (Fork)*). You can rename it from the project page if you prefer.
@@ -70,7 +70,7 @@ Under the hood every project is a git repository. The **download icon** on the p
 
 - **Migrating from the OpenPLC desktop editor.** Zip the project folder, then **Import Project** in Autonomy Edge.
 - **Trying out a community sample.** Find a public project on someone's profile or in the dashboard feed, click **Fork**, and tweak.
-- **Sharing a private project across your two workspaces.** A private project doesn't move automatically between your personal and org slugs. Download it from the project page, then re-import under the other slug.
+- **Sharing a private project across your two workspaces.** A private project doesn't move automatically between your personal and organization workspaces. Download it from the project page, then re-import in the other workspace.
 
 ## Where to next
 

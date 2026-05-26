@@ -18,12 +18,12 @@ Each plan caps how much of certain resources you can use. When you hit a cap, th
 
 ## How limits apply per workspace
 
-Limits are scoped to the **workspace** (slug):
+Limits are scoped to each workspace:
 
-- Your **personal slug** has its own limits, governed by your personal plan.
-- Each **organization slug** has its own limits, governed by that organization's plan.
+- Your **personal workspace** has its own limits, governed by your personal plan.
+- Each **organization workspace** has its own limits, governed by that organization's plan.
 
-So a Pro user (personal) who belongs to a Teams organization has Pro limits in their own slug *and* Teams limits in the org slug. The two pools are independent.
+So a Pro user (personal) who belongs to a Teams organization has Pro limits in their personal workspace *and* Teams limits in the org workspace. The two pools are independent.
 
 ## What happens when you hit a limit
 

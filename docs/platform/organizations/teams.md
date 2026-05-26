@@ -4,7 +4,7 @@ A **team** is a sub-group within an organization. Teams let you scope access and
 
 > Available on **Teams** and **Enterprise** plans.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Teams** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Teams** in the side-nav.
 
 ![Teams tab, empty state with stat cards and New Team button](images/org-teams.png)
 

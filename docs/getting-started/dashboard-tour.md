@@ -4,7 +4,7 @@ The first screen you see after signing in is your **dashboard**. It's the home b
 
 ![The full dashboard, showing the three columns and the top header](images/dashboard-full.png)
 
-The dashboard URL follows the pattern `edge.autonomylogic.com/{your-username}/dashboard`. That username segment is what we call a **slug**; you'll see the same pattern on every screen. If you switch to an organization's workspace, the slug changes to the organization's name. The page layout stays the same. (See **[Workspaces and slugs](../platform/workspaces-and-slugs)** for more on this.)
+If you switch to an organization's workspace the layout stays the same, with the organization's projects, orchestrators, and members in place of your personal ones.
 
 There are five regions to know about.
 
@@ -18,7 +18,7 @@ Stretching across the screen at the very top:
 
 ## 2. Left column: your tools
 
-This column lists the things that are yours under the current slug.
+This column lists the things that are yours in the current workspace.
 
 - **Projects** card with a **+ New** button at the top. Below it, the four most recently modified projects, with a **View all** link at the bottom that takes you to **[your projects list](../platform/projects/projects-list)**.
 - **Orchestrators** card. If you have one or more orchestrators set up, the first one is named here. The blue **Manage orchestrator** button takes you to the **[orchestrators list](../platform/orchestrators/orchestrators-list)**.
@@ -66,7 +66,7 @@ The items, top to bottom:
 
 ## Switching workspaces
 
-Notice that the slug `/{your-username}/dashboard` always points at *your* personal workspace. To switch to an organization's workspace, click the organization's name in the **Organizations** card on the right. The slug in the URL changes to the organization's slug (e.g. `/autonomy-mine/dashboard`) and the dashboard now shows that org's projects and orchestrators. The header, user menu, forum, and AI assistant remain the same, they're personal, not workspace-scoped.
+To switch to an organization's workspace, click the organization's name in the **Organizations** card on the right. You land on that organization's dashboard, with the same layout but the org's projects, orchestrators, and members in place of your personal ones. The header, user menu, forum, and AI assistant stay the same since they're personal, not workspace-scoped.
 
 ## What's next
 

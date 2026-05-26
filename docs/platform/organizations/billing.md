@@ -1,8 +1,8 @@
 # Organization billing
 
-Organization billing is separate from personal billing. Your personal plan governs your own slug; an organization's plan governs the org's slug.
+Organization billing is separate from personal billing. Your personal plan governs your own workspace; an organization's plan governs the organization's workspace.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Billing** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Billing** in the side-nav.
 
 ![Org Billing tab with an active Teams Premium subscription](images/org-billing.png)
 

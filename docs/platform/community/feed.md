@@ -50,7 +50,7 @@ You can:
 ## How the feed is sourced
 
 - **Recents** pulls activity from the platform globally and trims to public/shareable entries.
-- **Organization Feeds** filters that stream to activity within a specific org slug, including private activity that you have permission to see.
+- **Organization Feeds** filters that stream to activity within a specific organization, including private activity that you have permission to see.
 - Refreshing the dashboard refreshes the feed. The feed itself doesn't push live updates today, new entries appear after a page reload.
 
 ## Where to next

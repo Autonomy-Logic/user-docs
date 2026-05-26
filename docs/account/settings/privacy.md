@@ -2,7 +2,7 @@
 
 The Privacy section controls how others interact with you and which email notifications you receive.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=privacy`.
+To open it, click your avatar in the top-right, choose **Settings**, then **Privacy** in the left side-nav.
 
 ![Settings → Privacy with several toggle cards](images/privacy.png)
 

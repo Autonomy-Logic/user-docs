@@ -2,7 +2,7 @@
 
 The Billing section shows your **personal** subscription and billing history. (Organization plans are managed separately on each org's Billing tab.)
 
-URL: `edge.autonomylogic.com/profile/settings?tab=billing`.
+To open it, click your avatar in the top-right, choose **Settings**, then **Billing** in the left side-nav.
 
 ![Settings → Billing, current plan and billing history](images/billing.png)
 
@@ -53,9 +53,9 @@ The platform uses a PCI-compliant payment processor; card numbers are never stor
 
 This page is for your **personal plan only**. Your personal plan governs:
 
-- What you can create in your own slug (`/{your-username}/...`).
+- What you can create in your personal workspace.
 - Your AI Credit Units (separate from any org's ACU pool).
-- Whether you can create private projects on your slug.
+- Whether you can create private projects.
 
 Organization plans are separate:
 

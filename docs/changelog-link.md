@@ -6,7 +6,7 @@ It's the canonical list of platform updates: what's been added, fixed, and chang
 
 ## Quick links
 
-- **In-app changelog**: `edge.autonomylogic.com/changelog`
+- **In-app changelog**: [edge.autonomylogic.com/changelog](https://edge.autonomylogic.com/changelog)
 - **User menu**: click your avatar → **What's new**
 
 ## What you'll find

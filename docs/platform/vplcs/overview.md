@@ -42,12 +42,7 @@ See **[Network modes](network-modes)** for the details on DHCP vs static and how
 
 ## Plan limits
 
-- **Community**: 2 vPLC devices total.
-- Paid plans go much higher; see **[Plan limits](../../plans-and-billing/plan-limits)** for exact numbers.
-
-When you hit the limit, attempting to create another vPLC shows the plan-limit modal:
-
-![Plan limit reached, Device limit reached (2/2) on plan Community](images/vplc-plan-limit.png)
+The number of vPLC devices you can run at once is governed by your plan. See **[Plan limits](../../plans-and-billing/plan-limits)** for the exact quotas per plan.
 
 ## Where to next
 

@@ -2,7 +2,7 @@
 
 The Account section is for deleting your account. There's nothing else here, it's intentionally a single-purpose page so the destructive action stays separate from everyday settings.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=account`.
+To open it, click your avatar in the top-right, choose **Settings**, then **Account** in the left side-nav.
 
 ![Settings → Account, Danger zone with Delete my account button](images/account-danger-zone.png)
 
@@ -51,7 +51,7 @@ There's a short grace period (typically 7 days) during which the account is soft
 ## Reasons people consider this
 
 - **Switching jobs / accounts.** Better to keep the existing account and just edit your email/profile, unless you really want a clean break.
-- **Closing a personal account to use only an org's slug.** Doesn't quite work: you need a user account to be an org member. Demote yourself to Member instead.
+- **Closing a personal account to use only an organization workspace.** Doesn't quite work: you need a user account to be an org member. Demote yourself to Member instead.
 - **Privacy/GDPR.** Legitimate reason. The deletion will permanently remove personally identifying fields.
 
 ## Recovering after deletion (within the grace period)

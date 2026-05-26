@@ -4,7 +4,7 @@ Once you're past the forum home, most of your time is spent on **board pages** (
 
 ## Board pages
 
-URL: `edge.autonomylogic.com/forum/board/{boardSlug}`. Click any category on the forum home to land here.
+Click any category card on the forum home to open its board page.
 
 ![Forum board page, News & Announcements category with topic table](images/forum-board.png)
 
@@ -37,11 +37,9 @@ Sort options live on the forum home and reuse the same sort across boards:
 - **Most Replied**: highest reply count first.
 - **Most Viewed**: highest view count first.
 
-Bookmarkable: sorts are reflected as URL parameters.
-
 ## Thread pages
 
-URL: `edge.autonomylogic.com/forum/thread/{threadSlug}`. Click a topic title from a board to land here.
+Click a topic title from a board to open the thread.
 
 ![Thread page, pinned + locked, original post by author, one reply](images/forum-thread.png)
 
@@ -69,8 +67,6 @@ Search exists at three levels:
 3. **Board**: full-text search within one category.
 
 Search results show topic titles with a snippet of matching text and the category badge.
-
-To navigate to a specific thread by URL when you know the slug, use `/forum/thread/<slug>` directly.
 
 ## Bookmarks and unread state
 

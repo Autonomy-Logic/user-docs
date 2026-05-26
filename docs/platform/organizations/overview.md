@@ -17,17 +17,14 @@ If you're working alone, a personal workspace is enough. You can always create a
 
 ## Personal workspace vs organization workspace
 
-Both use the same URL pattern (`/{slug}/...`) and the same screens. The differences:
+Both kinds of workspace have the same dashboard layout and the same screens. The differences:
 
 | | Personal workspace | Organization workspace |
 |---|---|---|
-| Slug | Your username | The org's slug |
 | Who can access | Just you | All members of the org |
 | Plan | Your personal plan (Community by default) | Org plan, separate from your personal plan |
 | Members tab | n/a | Members, Invitations, Invite Links, Teams |
 | Created when | At signup | When someone creates an org |
-
-See **[Workspaces and slugs](../workspaces-and-slugs)** for the URL model.
 
 ## Roles
 

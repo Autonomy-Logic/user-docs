@@ -1,14 +1,14 @@
 # vPLC detail
 
-The vPLC detail page is the read-only "I want to see what this device looks like right now" view. URL: `edge.autonomylogic.com/{slug}/devices/{deviceId}?orchestratorId={orchId}`.
+The vPLC detail page is the read-only "I want to see what this device looks like right now" view. Open it by clicking a vPLC card on an **[orchestrator's detail page](../orchestrators/orchestrator-detail)**.
 
-![vPLC detail page for a Stopped device](images/vplc-detail.png)
+![vPLC 01 detail page: Running status, 90h 50m uptime, internal IP 172.20.0.2, DHCP network mode, plus a macvlan_eth0 interface with IP 192.168.2.6, MAC 02:42:c0:a8:02:02, gateway 192.168.2.1](images/vplc-detail.png)
 
 ## Header
 
 - **Cube icon** and **vPLC name** at the top left.
 - **Status badge** (Running / Stopped / Inactive).
-- **Subtitle** with the NIC mode (DHCP / Static) and the container engine version (`Container <version>` or `Container unknown` if the agent hasn't reported it yet).
+- **Subtitle** with the NIC mode (DHCP / Static) and the container state (`Container running`, `Container unknown` if the agent hasn't reported yet, etc.).
 
 The breadcrumb at the very top, **Orchestrators → {orchestrator name} → {vplc name}**, lets you jump back one step at a time.
 
@@ -20,9 +20,9 @@ A row of read-only metrics:
 |---|---|
 | **UPTIME** | How long the container has been running since its last start. |
 | **RESTARTS** | How many times the container has restarted. Helpful for spotting crash loops. |
-| **INTERNAL IP** | The IP the vPLC actually got on the LAN (DHCP-assigned address, or the static one if you set one). |
+| **INTERNAL IP** | The container's IP on its own Docker bridge network (not visible from your LAN). |
 | **NETWORK MODE** | `DHCP` or `Static`. |
-| **GATEWAY** | The gateway the vPLC is using. |
+| **GATEWAY** | The default gateway the container is using internally. |
 | **DNS** | DNS server. |
 | **SUBNET MASK** | Subnet mask. |
 | **CREATED** | The date this vPLC was created. |
@@ -31,11 +31,9 @@ Fields show `N/A` when the device hasn't reported back yet (e.g. status is Stopp
 
 ## Network Interfaces section
 
-Below the stats, a panel labelled **Network Interfaces** lists every virtual NIC attached to this vPLC, with its name, physical port, network mode, IP, and MAC.
+Below the stats, a panel labelled **Network Interfaces** lists every virtual NIC attached to this vPLC, with its name, IP address, MAC address, and gateway. These are the addresses other devices on your physical LAN use to reach the vPLC, this is the IP you'd point Modbus clients, HMIs, and OPC-UA clients at.
 
 For a freshly-created or Stopped vPLC the list reads **No network interfaces found**.
-
-When populated, each row shows the NIC's status (up/down) and its current address(es). Useful for verifying the runtime can actually reach the rest of the network.
 
 ## Lifecycle actions
 

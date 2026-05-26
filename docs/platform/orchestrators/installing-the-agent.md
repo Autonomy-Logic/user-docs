@@ -7,16 +7,17 @@ Adding an orchestrator is a three-step wizard. You'll work in two places: your b
 - A Linux edge device with:
   - 64-bit kernel.
   - Docker installed and running (the installer will offer to install it for you on supported distributions).
-  - Network access to `edge.autonomylogic.com` over HTTPS/WebSocket.
+  - Outbound HTTPS/WebSocket connectivity to the Autonomy Edge cloud.
   - Either root access or a user that can `sudo`.
 - A browser session signed in to Autonomy Edge.
-- An orchestrator slot available on your plan. See **[Plan limits](../../plans-and-billing/plan-limits)** if you've used your quota.
+
+The number of orchestrators you can pair at once is governed by your plan, see **[Plan limits](../../plans-and-billing/plan-limits)**.
 
 ## Step 1, Open the wizard
 
-In the web app, navigate to **[Orchestrators](orchestrators-list)** (`edge.autonomylogic.com/{slug}/orchestrators`). Click the **+ New Orchestrator** tile (the dashed card with a plus icon).
+In the web app, open the **[Orchestrators list](orchestrators-list)** (from the dashboard, click **Manage orchestrators** on the Orchestrators card). Click the **+ New Orchestrator** tile (the dashed card with a plus icon).
 
-The wizard opens on a dedicated page at `/{slug}/orchestrators/create`.
+The wizard opens on a dedicated page.
 
 ![New Orchestrator wizard, Details step: Name and Description fields](images/new-orchestrator-step1.png)
 

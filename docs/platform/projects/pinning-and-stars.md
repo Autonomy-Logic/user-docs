@@ -22,7 +22,7 @@ Click the pin icon again to unpin.
 
 ### What the Pinned view looks like
 
-`edge.autonomylogic.com/{slug}/projects?view=pinned`. It shows the same project cards as the Recent view, scoped to projects you've pinned.
+Open the **Projects** list and click **Pinned** in the left sidebar. It shows the same project cards as the Recent view, scoped to projects you've pinned.
 
 ![Pinned projects view, empty state](images/projects-pinned-empty.png)
 
@@ -64,6 +64,6 @@ Click again to unstar.
 
 ## Where to next
 
-- **See your pinned projects** → `edge.autonomylogic.com/{your-username}/projects?view=pinned`.
+- **See your pinned projects** → open **Projects** from the dashboard, then click **Pinned** in the left sidebar.
 - **See your starred projects** → **[Your user profile](../../account/user-profile)** → Stars tab.
 - **Make your own project public** → **[Visibility and sharing](visibility-and-sharing)**.

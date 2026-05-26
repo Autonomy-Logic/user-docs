@@ -2,7 +2,7 @@
 
 Your user profile is your public-facing page on Autonomy Edge. Everyone (including people without an account) can visit it and see your projects, your activity, and your contribution graph.
 
-URL for your own profile: `edge.autonomylogic.com/profile`. URL for another user's profile: `edge.autonomylogic.com/profile/{userId}`.
+To open your own profile, click your avatar in the top-right and choose **My Profile**. To visit someone else's profile, click their avatar or name anywhere on the platform.
 
 ![Profile page, avatar, contribution graph, streaks, README placeholder](images/profile-overview.png)
 
@@ -65,7 +65,7 @@ Deleting an account leaves these in place but credits them to `[deleted]`. See *
 
 ## Visiting other users' profiles
 
-When you visit `edge.autonomylogic.com/profile/{userId}`:
+When you open someone else's profile:
 
 - The Edit Profile button is replaced by **Follow** / **Following** and (if their privacy allows) **Message**.
 - Email and private profile data are hidden.

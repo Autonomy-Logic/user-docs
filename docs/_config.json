@@ -27,10 +27,6 @@
       "path": "platform",
       "items": [
         {
-          "title": "Workspaces and slugs",
-          "path": "workspaces-and-slugs"
-        },
-        {
           "title": "Projects",
           "path": "projects",
           "items": [
@@ -805,10 +801,6 @@
         {
           "title": "Keyboard shortcuts",
           "path": "keyboard-shortcuts"
-        },
-        {
-          "title": "URL cheat sheet",
-          "path": "url-cheatsheet"
         },
         {
           "title": "FAQ",

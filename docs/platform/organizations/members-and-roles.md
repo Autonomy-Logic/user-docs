@@ -4,7 +4,7 @@ The **Members** tab lists everyone in the organization and lets owners and admin
 
 > Requires the **Teams**, **Education**, or **Enterprise** plan to invite anyone beyond yourself. The tab is read-only on the free Community plan.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Members** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Members** in the side-nav.
 
 ![Members tab showing the org's single owner](images/org-members.png)
 

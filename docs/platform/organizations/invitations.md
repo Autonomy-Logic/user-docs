@@ -4,7 +4,7 @@ Invitations are one-shot, email-addressed invites to join an organization. They'
 
 > Requires the **Teams**, **Education**, or **Enterprise** plan. The tab is empty and read-only on Community.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` then click **Invitations** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **Invitations** in the side-nav.
 
 ![Invitations tab, empty state with the Invite button](images/org-invitations.png)
 

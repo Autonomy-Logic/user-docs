@@ -1,12 +1,10 @@
 # Orchestrator detail
 
-Clicking an orchestrator card opens its detail page. URL: `edge.autonomylogic.com/{slug}/orchestrators/{orchestratorId}`.
-
-The detail page has two tabs: **Devices** (default) and **Orchestrator**.
+Clicking an orchestrator card from the **[Orchestrators list](orchestrators-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
 
 ## Devices tab
 
-![Devices tab, two vPLC cards plus a New Device tile](images/orchestrator-detail-devices.png)
+![Devices tab of the Toradex Ivy orchestrator showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/orchestrator-detail-devices.png)
 
 The devices tab is a grid of every vPLC running (or stopped) on this orchestrator, plus a **+ New Device** tile to add another.
 
@@ -24,18 +22,18 @@ Each device card shows:
 
 Click anywhere on a card body to open **[vPLC detail](../vplcs/vplc-detail)**.
 
-The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a-vplc)**. If you've used all your device slots on the plan, you'll see the plan-limit modal instead, see **[Plan limits](../../plans-and-billing/plan-limits)**.
+The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a-vplc)**.
 
 ## Orchestrator tab
 
-![Orchestrator tab, host stats and CPU/Memory charts](images/orchestrator-info.png)
+![SLM-RP4 Orchestrator tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/orchestrator-info.png)
 
 The Orchestrator tab is a read-only view of the edge device's specs and current resource usage.
 
 ### Header row
 
 - **Orchestrator name** and status badge (Inactive / Active).
-- Quick stats: **OS**, **CPU CORES**, **MEMORY** (total), **DISK** (total), **NETWORK** (interface count or hostname), **VERSION** (agent version).
+- Quick stats: **OS**, **CPU CORES**, **MEMORY** (total), **DISK** (total), **NETWORK** (primary interface and IP), **VERSION** (agent version).
 
 These come from the agent's first heartbeat and are refreshed periodically. On an **Inactive** orchestrator they show `-` because no data has been reported yet.
 

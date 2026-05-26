@@ -2,7 +2,7 @@
 
 The **History** tab tracks billing events and audit-log entries for the organization.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` → click **History** in the side-nav.
+To open it, click your avatar in the top-right → **Organizations** → select your organization → **History** in the side-nav.
 
 ![Org History tab, Billing history with "History coming soon" message](images/org-history.png)
 

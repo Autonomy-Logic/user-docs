@@ -12,7 +12,7 @@ For tiny tweaks (one-line fixes, comment updates), most people commit directly t
 
 ## The pull requests tab
 
-Each project has a **Pull Requests** tab next to the **Code** tab. URL: `edge.autonomylogic.com/{slug}/projects/{projectId}` then click the tab (or append `/pull-requests` if you want a direct URL, see the **[URL cheat sheet](../../reference/url-cheatsheet)**).
+From any project page, switch to the **Pull Requests** tab next to the **Code** tab.
 
 ![Pull Requests tab with filter row and empty state](images/project-pull-requests.png)
 

@@ -9,8 +9,8 @@ Two different actions:
 
 If you're a Member or Admin, you can leave at any time.
 
-1. Go to `edge.autonomylogic.com/organizations/{orgId}` → **Members** tab.
-2. Find yourself in the list (or use **Leave organization** from the user menu when on the org's slug).
+1. Open the organization's management page (click your avatar in the top-right → **Organizations** → select the organization) and switch to the **Members** tab.
+2. Find yourself in the list.
 3. Click **Leave organization**.
 4. Confirm the dialog.
 

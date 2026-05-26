@@ -1,15 +1,12 @@
 # Organization dashboard
 
-Each organization has a dashboard that mirrors your personal dashboard layout, but scoped to the organization. URL: `edge.autonomylogic.com/{org-slug}/dashboard`.
+Each organization has its own dashboard, with the same layout as your personal dashboard but scoped to that organization's projects, orchestrators, and members.
 
 ![Org dashboard for Autonomy-Mine, banner, projects, orchestrators, feed, trending](images/org-dashboard.png)
 
 ## How to get there
 
-- From the dashboard's **Organizations** card on the right column, click the organization's name.
-- Or type the URL directly if you know the slug.
-
-The page layout is intentionally identical to your personal dashboard so you don't have to relearn anything. The slug in the URL is the only difference.
+From your personal dashboard, find the **Organizations** card on the right column and click the organization's name. The page layout is intentionally identical to your personal dashboard so you don't have to relearn anything.
 
 ## Top banner: "no active plan yet"
 
@@ -48,15 +45,12 @@ The **Filter** dropdown is also present, with **Recents** by default. Switching 
 
 ## What is NOT here
 
-You won't find member management on this page. Members, Invitations, Invite Links, Teams, Billing, and History all live on the organization management page at `edge.autonomylogic.com/organizations/{orgId}`. The dashboard is for day-to-day work; the management page is for governance.
+You won't find member management on this page. Members, Invitations, Invite Links, Teams, Billing, and History all live on the **organization management** page. The dashboard is for day-to-day work; the management page is for governance.
 
-The fastest route to org management is:
-
-- Type `/{org-slug}/settings` into the URL. The platform automatically redirects you to `/organizations/{orgId}`.
-- Or use the **Manage orchestrator** button as a shortcut to the org's resources, then navigate from there.
+To open org management, click your avatar in the top-right → **Organizations** → select the organization.
 
 ## Where to next
 
 - **Manage members and settings** → **[Org profile](org-profile)**, **[Members and roles](members-and-roles)**.
 - **Pay for a plan** → **[Org billing](billing)** and **[Pricing](../../plans-and-billing/pricing)**.
-- **Create the org's first project** → **[Creating a project](../projects/creating-a-project)** with the org slug in the URL.
+- **Create the org's first project** → from the org dashboard, click **+ New** on the Projects card. See **[Creating a project](../projects/creating-a-project)**.

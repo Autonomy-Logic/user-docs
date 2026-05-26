@@ -55,5 +55,4 @@ When a form field is focused, the shortcuts above are intentionally suppressed s
 ## Where to next
 
 - **Editor-specific shortcuts** → **[OpenPLC Editor](../openplc-editor/overview)**.
-- **Direct URLs to bookmark** → **[URL cheat sheet](url-cheatsheet)**.
 - **AI assistant** → **[Autonomy AI assistant](../platform/autonomy-ai-assistant)**.

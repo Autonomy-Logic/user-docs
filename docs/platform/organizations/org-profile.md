@@ -2,9 +2,7 @@
 
 The **Org Profile** tab is where you set the organization's public-facing identity: name, description, logo, and contact info.
 
-URL: `edge.autonomylogic.com/organizations/{orgId}` (Org Profile is the default tab).
-
-The fastest way to get here: type `/{org-slug}/settings` in the address bar, the platform redirects you to the right org management URL automatically.
+To open it, click your avatar in the top-right, choose **Organizations**, and select the organization. Org Profile is the default tab.
 
 ![Organization Profile tab, header, side nav, profile picture uploader, basic info form](images/org-profile.png)
 
@@ -42,7 +40,7 @@ You can replace or remove the picture at any time.
 
 | Field | Required | Notes |
 |---|---|---|
-| **Organization name** | Yes | Up to 100 characters. Changing this does **not** change the slug (slugs are fixed once created). |
+| **Organization name** | Yes | Up to 100 characters. Changing this does **not** change the organization's underlying handle (it's fixed once created). |
 | **Description** | No | Up to 500 characters. Shown on the org profile and in some places like the org card. |
 
 A character counter appears below each field.

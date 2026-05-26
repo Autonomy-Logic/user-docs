@@ -2,7 +2,7 @@
 
 The Email section lets you change the email address associated with your account.
 
-URL: `edge.autonomylogic.com/profile/settings?tab=security-email`.
+To open it, click your avatar in the top-right, choose **Settings**, then expand **Security** in the left side-nav and click **Email**.
 
 ![Settings → Security → Email](images/security-email.png)
 
