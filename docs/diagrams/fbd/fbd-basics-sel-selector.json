@@ -1,0 +1,26 @@
+{
+  "comment": "SEL selector. Manual_mode selects between auto_speed and manual_speed",
+  "nodes": [
+    { "id": "manual_mode", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "manual_mode" } },
+    { "id": "auto_speed", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "auto_speed" } },
+    { "id": "manual_speed", "type": "input-variable", "position": { "x": 50, "y": 220 }, "data": { "name": "manual_speed" } },
+    {
+      "id": "sel",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "SEL",
+        "blockType": "function",
+        "inputs": [{ "name": "G" }, { "name": "IN0" }, { "name": "IN1" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    { "id": "output_speed", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "output_speed" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "manual_mode", "sourceHandle": "output", "target": "sel", "targetHandle": "G" },
+    { "id": "e2", "source": "auto_speed", "sourceHandle": "output", "target": "sel", "targetHandle": "IN0" },
+    { "id": "e3", "source": "manual_speed", "sourceHandle": "output", "target": "sel", "targetHandle": "IN1" },
+    { "id": "e4", "source": "sel", "sourceHandle": "OUT", "target": "output_speed", "targetHandle": "input" }
+  ]
+}

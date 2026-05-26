@@ -1,6 +1,6 @@
 # Board Selection
 
-> **Desktop Editor Only:** Board selection is available exclusively in the desktop version of OpenPLC Editor. If you're using the Autonomy Edge web IDE at [edge.autonomylogic.com](https://edge.autonomylogic.com), your programs deploy to runtime instances and you don't need to select a board. See [Connecting to Runtimes](../connecting-to-runtimes) instead.
+> **Desktop Editor Only:** The full Board Selection panel (with Arduino boards, pin mapping, and serial port selection) is available exclusively in the desktop version of OpenPLC Editor. If you're using the Autonomy Edge web IDE at [edge.autonomylogic.com](https://edge.autonomylogic.com), your programs run on the built-in [Simulator](../building-deploying/simulator) (selected by default) or deploy to runtime instances via Orchestrators. See [Running with the Simulator](../building-deploying/simulator) to test without hardware, or [Connecting to Runtimes](../connecting-to-runtimes) for device deployment.
 
 The Board Selection interface lets you choose the target hardware for your PLC program. The desktop editor supports over 60 boards, ranging from basic Arduino microcontrollers to industrial PLCs and OpenPLC Runtime targets.
 

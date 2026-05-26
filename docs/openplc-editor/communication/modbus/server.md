@@ -1,168 +1,106 @@
-# Modbus Server Configuration
+# Modbus server
 
-When configured as a Modbus server (slave), Autonomy Edge exposes the PLC's internal memory buffers as Modbus registers. This allows SCADA systems, HMIs, historians, and any other Modbus TCP client to read inputs, read and write outputs, and exchange data with your running PLC program. The Modbus server runs as a built-in plugin inside the runtime.
+The Modbus server (slave) exposes parts of the PLC's memory image as **Modbus addresses** that any Modbus TCP client (SCADA, HMI, historian) can read or write. The server runs as a plugin inside the OpenPLC runtime on your vPLC. There's nothing to install; you only configure it.
 
-## Adding a Modbus Server
+## Add a Modbus server to your project
 
-To add a Modbus server to your project in the Autonomy Edge web editor:
+1. In the project tree, click the **`+`** button at the top.
+2. Pick **Server** in the popover.
 
-1. In the project explorer, click the **+** button.
-2. Select **Server** from the dropdown menu.
+   ![Create Element popover open from the project tree showing Function, Function Block, Program, Data Type, Server, Remote Device options](../../images/create-element-popover.png)
 
-![Server creation dialog with protocol selection](images/add-server-dialog.png)
+3. A small **Server** dialog appears: type a name (at least 3 characters), pick the protocol.
 
-3. Choose **Modbus/TCP** as the protocol and enter a descriptive name.
-
-![Protocol dropdown showing Modbus/TCP option](images/server-protocol-dropdown.png)
+   ![Server creation dialog with Protocol dropdown open showing Modbus/TCP (highlighted), Siemens S7comm, OPC-UA, and EtherNet/IP (greyed out as not yet supported)](images/server-create-dialog.png) *(the protocol dropdown lists Modbus/TCP, Siemens S7comm, OPC-UA, and EtherNet/IP, the last one is greyed out as not yet supported on this build)*
 
 4. Click **Create**.
-5. The new server entry appears under the **Servers** folder in the project tree.
-6. Click the server entry to open its configuration panel.
+5. The new server appears under **Servers** in the project tree. Click it to open the configuration editor.
 
-## Network Settings
+## Server Configuration
 
-The configuration panel provides the following network settings:
+The top section of the editor.
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| **Enabled** | Toggle to enable or disable the Modbus server at runtime | Enabled |
-| **Network Interface** | IP address of the network interface to bind to. Use `0.0.0.0` to listen on all interfaces. | `0.0.0.0` |
-| **Port** | TCP port number for incoming Modbus connections | `502` |
+| Field | Default | Notes |
+|---|---|---|
+| **Enable Server** | off | Toggle on to make the server start when the PLC runs. The helper text reads "Server is disabled" when off and "Server will start when PLC runs" when on. Leave it off until the rest of the configuration is complete. |
+| **Network Interface** | `All Interfaces (0.0.0.0)` | Picks the IP the server binds to. Other options include `Localhost (127.0.0.1)` for local-only access. |
+| **Port** | `502` | Standard Modbus TCP port. Ports below 1024 may need extra privileges on Linux; if the runtime can't bind, try `1502`. |
 
-> **Port 502**: The standard Modbus TCP port is 502. On Linux systems, binding to ports below 1024 may require elevated privileges. If you encounter permission errors, either run the runtime with appropriate privileges or choose a port above 1024 (e.g., 1502).
+![Newly created demo_modbus server showing Server Configuration section: Enable Server toggle, Network Interface dropdown set to All Interfaces (0.0.0.0), Port 502, plus Buffer Mapping section header below](images/modbus-server-overview.png)
 
 ## Buffer Mapping
 
-The Modbus server exposes four data areas, each backed by an internal PLC buffer. You can configure the maximum size of each area in the server settings:
+This is where you decide **which slices of the PLC's memory image are exposed** as Modbus registers and coils. Four accordion sections, one per Modbus block type (Holding Registers, Coils, Discrete Inputs, Input Registers). Each lets you pick how many IEC items of each segment you want to expose; the editor lays the segments out sequentially within their Modbus block.
 
-| Buffer Type | Modbus Function Codes | Default Maximum | IEC Address Range |
-|-------------|----------------------|-----------------|-------------------|
-| **Coils** | FC 1 (Read), FC 5 (Write Single), FC 15 (Write Multiple) | 8000 | `%QX0.0` -- `%QX999.7` |
-| **Discrete Inputs** | FC 2 (Read) | 8000 | `%IX0.0` -- `%IX999.7` |
-| **Holding Registers** | FC 3 (Read), FC 6 (Write Single), FC 16 (Write Multiple) | 1000 | `%QW0` -- `%QW999` |
-| **Input Registers** | FC 4 (Read) | 1000 | `%IW0` -- `%IW999` |
+![Full Modbus server form with all four buffer mapping accordions expanded: Holding Registers (showing %QW=1024, %MW=1024, %MD=1024, %ML=1024), Coils (showing %QX=8192, %MX=0), Discrete Inputs (showing %IX=8192), Input Registers (showing %IW=1024)](images/modbus-server-buffer-mapping.png)
 
-The maximum values represent the upper bound of the addressable range. For example, with 8000 coils you can address individual bits from `%QX0.0` through `%QX999.7` (1000 bytes x 8 bits = 8000 bits).
+### Holding Registers (FC 3 / 6 / 16)
 
-## Address Mapping Summary
+Read/write 16-bit registers. Four IEC segments laid out in this order:
 
-The Modbus server maps each Modbus address directly to an IEC 61131-3 located variable:
+| IEC | Size each | Max | Used for |
+|---|---|---|---|
+| `%QW` | 1 register | 1024 | Integer outputs your program writes |
+| `%MW` | 1 register | 1024 | Integer memory shared between scans |
+| `%MD` | **2 registers** | 1024 | 32-bit doubles |
+| `%ML` | **4 registers** | 1024 | 64-bit longs |
 
-| Modbus Data Type | Modbus Address Range | IEC Address Range | Size per Point |
-|------------------|---------------------|-------------------|----------------|
-| Discrete Inputs | 0 -- 7999 | `%IX0.0` -- `%IX999.7` | 1 bit |
-| Coils | 0 -- 7999 | `%QX0.0` -- `%QX999.7` | 1 bit |
-| Input Registers | 0 -- 999 | `%IW0` -- `%IW999` | 16 bits |
-| Holding Registers | 0 -- 999 | `%QW0` -- `%QW999` | 16 bits |
+So with the defaults all at 1024, the first `%QW0` lands at Modbus holding register 0, `%MW0` at 1024, `%MD0` (which takes 2 registers) at 2048, `%ML0` (which takes 4 registers) at 4096.
 
-For bit addresses, the formula is:
+### Coils (FC 1 / 5 / 15)
 
-```
-Modbus Address = (Byte * 8) + Bit
-```
+Read/write single bits. Two IEC segments:
 
-For example, `%IX5.3` corresponds to Modbus discrete input address `(5 * 8) + 3 = 43`.
+| IEC | Size each | Max | Used for |
+|---|---|---|---|
+| `%QX` | 1 bit | 8192 | Boolean outputs |
+| `%MX` | 1 bit | 8192 | Boolean memory |
 
-For register addresses, the mapping is one-to-one: `%IW25` corresponds to Modbus input register 25.
+Bit addresses use `byte.bit` notation. `%QX0.0` is bit 0 (Modbus coil 0), `%QX0.7` is bit 7 (coil 7), `%QX1.0` rolls over to bit 8 (coil 8). This is the most common source of "why is my coil offset wrong?" confusion, see **[Modbus addressing](addressing)** for the full table.
 
-For detailed mapping tables and multi-register data types, see [Modbus Addressing](addressing).
+### Discrete Inputs (FC 2)
 
-## Runtime v4 vs. v3 Differences
+Read-only single bits. One segment, `%IX`, capped at 8192 bits.
 
-The Modbus server implementation differs significantly between Runtime v4 and v3. If you are migrating an existing project, review these differences carefully.
+### Input Registers (FC 4)
 
-### Runtime v4 (Current)
+Read-only 16-bit registers. One segment, `%IW`, capped at 1024.
 
-Runtime v4 uses a streamlined Modbus server plugin that maps directly to the basic I/O buffers:
+## Address Mapping Reference
 
-| Modbus Type | Internal Buffer | Effective Size | IEC Addresses |
-|-------------|----------------|----------------|---------------|
-| Coils | `bool_output` | 64 bits | `%QX0.0` -- `%QX7.7` |
-| Discrete Inputs | `bool_input` | 64 bits | `%IX0.0` -- `%IX7.7` |
-| Holding Registers | `int_output` | 32 words | `%QW0` -- `%QW31` |
-| Input Registers | `int_input` | 32 words | `%IW0` -- `%IW31` |
+Below the Buffer Mapping accordion there's an **Address Mapping Reference** section that the editor **computes live** from your current segment counts. If you've changed any of the defaults, that table is the source of truth for what an external Modbus client will actually see. Always consult it before configuring an external client.
 
-**Important limitation**: Runtime v4 does **not** support memory locations (`%M` addresses) through the Modbus server. Only direct I/O addresses (`%I` and `%Q`) are accessible via Modbus. If your application requires sharing internal variables with external systems, consider using the [OPC-UA server](../opc-ua/README) instead, which supports exposing any project variable.
+## How clients connect
 
-### Runtime v3 (Legacy)
+Once the server is enabled and the PLC is running, any standard Modbus TCP client can reach it at the vPLC's IP on the configured port. Modbus TCP has no authentication, if you need access control, firewall the port or use a VLAN.
 
-The v3 Modbus server supported extended address ranges, including memory locations:
+For testing, [`mbpoll`](https://github.com/epsilonrt/mbpoll) is a quick CLI client:
 
-| Modbus Address Range | IEC Addresses | Data Type |
-|---------------------|---------------|-----------|
-| Coils 0 -- 7999 | `%QX0.0` -- `%QX999.7` | 1-bit outputs |
-| Discrete Inputs 0 -- 7999 | `%IX0.0` -- `%IX999.7` | 1-bit inputs |
-| Holding Registers 0 -- 999 | `%QW0` -- `%QW999` | 16-bit outputs |
-| Holding Registers 1000 -- 2023 | `%MW0` -- `%MW1023` | 16-bit memory |
-| Holding Registers 2024 -- 4047 | `%MD0` -- `%MD1023` | 32-bit memory (2 registers each) |
-| Holding Registers 4048 -- 8143 | `%ML0` -- `%ML1023` | 64-bit memory (4 registers each) |
-| Input Registers 0 -- 1023 | `%IW0` -- `%IW1023` | 16-bit inputs |
+```bash
+# Read coil 0 from vPLC at 192.168.1.50, port 502
+mbpoll -t 0 -r 0 192.168.1.50
 
-### Migration Considerations
+# Write 1 to coil 8 (the first bit of %QX1.x)
+mbpoll -t 0 -r 0 -1 192.168.1.50 1
 
-When migrating a project from Runtime v3 to v4:
-
-1. **Memory locations are not accessible via Modbus**: If your v3 project exposed `%MW`, `%MD`, or `%ML` variables through Modbus, you must restructure your program to use direct I/O addresses (`%QW`, `%QD`) or switch to OPC-UA for those data points.
-
-2. **Smaller default buffer sizes**: The v4 runtime has smaller I/O buffers (64 bits for coils/discrete inputs, 32 words for registers). Verify that your Modbus clients do not request addresses beyond these limits.
-
-3. **Address remapping required**: Any Modbus client that previously accessed register addresses above 31 or coil/discrete input addresses above 63 will need reconfiguration.
-
-4. **Configuration file format**: The v4 server exports its configuration as `modbus_slave.json` inside the program package. The format differs from v3.
-
-## Example Configuration
-
-A typical Modbus server setup for connecting a SCADA system:
-
-```
-Server Name:       SCADA_Interface
-Enabled:           Yes
-Network Interface: 0.0.0.0
-Port:              502
-Max Coils:         8000
-Max Discrete In:   8000
-Max Holding Reg:   1000
-Max Input Reg:     1000
+# Read holding register 0 (a 16-bit %QW0)
+mbpoll -t 4 -r 0 -1 192.168.1.50
 ```
 
-With this configuration, any Modbus TCP client on the network can connect to port 502 and access the full range of PLC I/O data.
-
-## Security Considerations
-
-The Modbus TCP protocol does not include authentication or encryption. All data is transmitted in plaintext. To protect your system:
-
-- **Network segmentation**: Place PLCs and Modbus devices on a dedicated industrial network, isolated from the corporate IT network.
-- **Firewall rules**: Restrict access to port 502 to known SCADA/HMI IP addresses.
-- **VPN**: Use a VPN tunnel for any remote Modbus access over untrusted networks.
-- **Monitoring**: Log and monitor Modbus connections for unauthorized access attempts.
-
-If your application requires secure, authenticated communication, consider using the [OPC-UA server](../opc-ua/README), which provides built-in encryption, certificate-based authentication, and role-based access control.
+Worked example end-to-end: **[Modbus slave: expose digital outputs](../../examples/modbus-slave-outputs)**.
 
 ## Troubleshooting
 
-### Clients Cannot Connect
+**Modbus is not in the protocol dropdown.** Your target doesn't support a Modbus TCP server. The capability is exposed on Runtime v4 and the Simulator.
 
-1. Verify the Modbus server is enabled in the configuration panel.
-2. Confirm the runtime is running and the PLC program is loaded.
-3. Check that port 502 (or your custom port) is not blocked by a firewall.
-4. If using a specific network interface, ensure the IP address is correct and the interface is up.
-5. Test connectivity with a Modbus diagnostic tool (e.g., ModRSsim2, QModMaster, or `mbpoll`).
+**Connection refused from a client.** Verify the runtime is running (the **Play** button in the activity bar is the toggle). On Linux, ports below 1024 need elevated privileges, switch to `1502` if you're not running the runtime as root.
 
-### Clients Connect but Read Incorrect Values
+**Writes don't land in the PLC.** Check that the variable's `Location` (in the variables editor) actually falls inside an exposed segment range. Open the **Address Mapping Reference** to confirm the variable's IEC address has a Modbus address assigned.
 
-1. Verify the address mapping between your client configuration and the server. Remember that Autonomy Edge uses 0-based addressing.
-2. Confirm you are using the correct function code for the data type you want to access.
-3. For multi-register values (32-bit or 64-bit), ensure your client is configured for big-endian byte order.
-4. Check that the IEC variables are actually being written by your PLC program.
+**Reads always return zero.** Same root cause, the address is outside the exposed segment, or the segment count is `0`. Bump the relevant `%QX` / `%QW` / `%MX` / `%MW` count and rebuild.
 
-### Stale or Unchanging Data
+## What's next
 
-1. Confirm your PLC program is running (not stopped or in error).
-2. Verify that the program logic is actually updating the variables mapped to the Modbus addresses.
-3. Check the scan cycle time of your PLC program. Very fast Modbus polling may read the same value multiple times per scan cycle.
-
-## What's Next?
-
-- **[Modbus Client Configuration](client)**: Configure polling of external Modbus devices
-- **[Modbus Addressing](addressing)**: Full address mapping tables and calculation formulas
-- **[OPC-UA Server](../opc-ua/README)**: Secure, modern alternative to Modbus for data exchange
+- **[Modbus addressing](addressing)**: the canonical mapping rule with worked examples.
+- **[Modbus remote device](client)**: configure your vPLC as a master reading remote slaves.
+- **Worked example: [Modbus slave: expose digital outputs](../../examples/modbus-slave-outputs)**: toggle `%QX0.0` every two seconds and read coil 0 from `mbpoll`.

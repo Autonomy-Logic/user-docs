@@ -1,204 +1,148 @@
-# Variables Editor
+# Variables editor
 
-The Variables Editor is the visual interface where you create, modify, and organize the variables for each POU (Program, Function, or Function Block) in your project. It appears at the top of every POU editor, above the programming area where you write your logic.
+The variables editor is the table at the top of every POU body. It lists each variable declared for that POU and lets you edit, add, remove, and reorder them. A toggle in the top-right corner switches between **table mode** (the default) and **code mode** (raw `VAR ... END_VAR` text).
 
-This page covers every feature of the Variables Editor. Its table columns, dual-view modes, filtering, and the special behaviors that differ depending on your POU type.
+![Variables editor for the EDF Demo main program: toolbar with Description field, Class Filter dropdown, +/-/up/down buttons, and a table/code mode toggle; three rows below showing blink (Local BOOL), TON0 (Local TON), TOF0 (Local TOF)](images/variables-table.png)
 
-## Opening the Variables Editor
+## Columns
 
-The Variables Editor is always visible when you open a POU. Click on any Program, Function, or Function Block in the Project Explorer to open it. The editor area splits into two sections:
+| Column | Notes |
+|---|---|
+| **#** | Row index. Visual only, not editable. |
+| **Name** | Identifier. Must be unique within the POU. IEC naming rules: `a-z`, `A-Z`, `0-9`, `_`; can't start with a digit; case-insensitive in IEC matching. |
+| **Class** | One of `Local`, `Input`, `Output`, `In Out`, `External`, `Temp`. For Python and C++ function blocks only `Input` and `Output` are offered. For globals (in the Resource editor) the class is always `Global`. See below. |
+| **Type** | The data type. Base IEC scalars, user-defined types from the Data Types section, arrays, or function-block instance types. |
+| **Location** | Optional IEC address (`%IX0.0`, `%QW3`, etc.) that binds the variable to a slot in the PLC's I/O image. Shown for Programs and Function Blocks. |
+| **Initial Value** | Optional. Cold-start value. Defaults are `FALSE` for BOOL, `0` for numerics. |
+| **Documentation** | Free-text. Surfaces in hover tooltips and the variable-picker autocomplete. |
+| **Debug** | Per-row toggle. Variables marked for debug are streamed to the **[Debugger](../building-deploying/debugger)** during a debug run. |
 
-1. **Variables Editor** (top): the table or code view described on this page
-2. **Programming Editor** (bottom): where you write logic in your chosen language (LD, FBD, ST, or IL)
+A **class filter** above the table (`All / Local / Input / Output / InOut / External / Temp`) hides rows of the other classes. View-only, the hidden variables stay declared.
 
-You can resize the boundary between these two sections by dragging the divider.
+## Class
 
-## Table View
+In IEC 61131-3, **class** describes a variable's role in its POU's interface. It answers "who can read or write this from outside the POU?", not "is this a physical pin?". The six classes:
 
-The default view presents variables in a spreadsheet-like table. Each row represents one variable, and the columns let you configure every aspect of it.
+| Class | IEC keyword | Meaning |
+|---|---|---|
+| **Local** | `VAR` | Internal to the POU. No outside caller touches it. The value persists across PLC scans in Programs and Function Blocks. The default for almost everything. |
+| **Input** | `VAR_INPUT` | A parameter the caller passes in when invoking the POU. On a function block in LD/FBD, becomes a pin on the **left** side. The POU reads it; the caller writes it. |
+| **Output** | `VAR_OUTPUT` | A value the POU computes for its caller. Becomes a pin on the **right** side of the FB. The POU writes it; the caller reads it via `instance.output_name`. |
+| **In Out** | `VAR_IN_OUT` | Bidirectional. The caller passes a reference; the POU both reads and writes; the caller sees the changes after the call returns. |
+| **External** | `VAR_EXTERNAL` | A reference to a `Global` variable declared in the Resource. The `Location` is inherited from the global, so it's not editable on this row. |
+| **Temp** | `VAR_TEMP` | Like `Local` but **reset to the initial value (or zero / FALSE) at the start of every scan**. Programs and Function Blocks only. |
 
-### Table Columns
+The first three (`Input`, `Output`, `In Out`) describe a POU's calling interface, they only mean something for functions and function blocks that other code calls. A `Program` is the entry point of execution, not something you call, so its interface variables aren't useful in the same way.
 
-The columns displayed depend on the POU type:
+`Local`, `External`, and `Temp` are for variables a POU uses internally (or shares globally), independent of any caller. Physical I/O mapping is independent of class, it's done through the `Location` column, which is covered next.
 
-**For Function Blocks and Functions:**
+## Location, physical I/O mapping
 
-| Column | Description |
-|--------|-------------|
-| **#** | Row number (auto-assigned, not editable) |
-| **Name** | The variable's identifier. Must be unique within the POU and follow IEC naming rules |
-| **Class** | The variable class: Local, Input, Output, InOut, External, or Temp |
-| **Type** | The data type (BOOL, INT, REAL, custom types, arrays, etc.) |
-| **Location** | Optional hardware address (e.g., `%IX0.0`, `%QW0`) for mapping to physical I/O |
-| **Initial Value** | The value the variable starts with (e.g., `0`, `TRUE`, `3.14`) |
-| **Documentation** | A free-text description of the variable's purpose |
-| **Debug** | Checkbox that enables monitoring this variable during online debugging |
+The `Location` column binds the variable to a specific bit, byte, word, or register of the PLC's I/O image. It's independent of class, most variables that map to physical I/O are simply `Local`-class with a `Location` set.
 
-**For Programs:**
-
-| Column | Description |
-|--------|-------------|
-| **#** | Row number |
-| **Name** | The variable's identifier |
-| **Class** | The variable class |
-| **Type** | The data type |
-| **Initial Value** | Starting value |
-| **Documentation** | Description |
-| **Debug** | Debug monitoring toggle |
-
-Notice that Programs **do not show the Location column**. In Programs, hardware I/O mapping is typically handled through Global variables in the Resource configuration rather than directly in the Program's variable table.
-
-### Functions: Special Fields
-
-When editing a **Function**, two additional fields appear above the variable table:
-
-- **Return Type**: A dropdown selector for the Function's return data type. Every Function must return a value, and this field defines its type (e.g., BOOL, INT, REAL).
-- **POU Description**: A text field for documenting what the Function does.
-
-These fields don't appear for Programs or Function Blocks.
-
-## Adding Variables
-
-Click the **+** (plus) button in the Variables Editor toolbar to add a new variable:
-
-- If a row is currently selected, the new variable is inserted **below** the selected row and copies the selected row's configuration as a starting point.
-- If no row is selected, the new variable is appended at the end of the table.
-
-The new variable receives a default name. Rename it immediately to something meaningful. Click on any cell in the new row to edit its properties.
-
-## Removing Variables
-
-Select one or more rows and click the **−** (minus) button to remove them.
-
-> **Tip:** If a variable is referenced in the POU's graphical logic (for example, used in a Ladder Diagram contact or a Function Block Diagram connection), removing it will also remove those references. Review the POU's logic before deleting variables.
-
-## Reordering Variables
-
-Use the **Up Arrow** and **Down Arrow** buttons to move the selected variable up or down in the list. Variable order matters in IEC 61131-3 because it determines the positional mapping of Input and Output parameters when calling Functions and Function Blocks.
-
-For example, if a Function Block has Input variables declared in this order:
-
-| # | Name | Class |
-|---|------|-------|
-| 1 | enable | Input |
-| 2 | setpoint | Input |
-| 3 | timeout | Input |
-
-Then callers can pass values either by name or by position. Reordering these variables changes the positional mapping.
-
-## Class Filter
-
-The Variables Editor includes a **class filter dropdown** above the table that lets you show only variables of a specific class:
-
-| Filter | Shows |
-|--------|-------|
-| All | Every variable in the POU |
-| Local | Only Local variables |
-| Input | Only Input variables |
-| Output | Only Output variables |
-| InOut | Only InOut variables |
-| External | Only External variables |
-| Temp | Only Temp variables |
-
-This is particularly useful in POUs with many variables. For example, if you want to review just the Input parameters of a Function Block, select "Input" from the filter to hide all other variables temporarily.
-
-The filter only affects the display. It doesn't delete or modify any variables.
-
-## Type Selector
-
-When you click on the **Type** cell for a variable, a dropdown selector appears with categories of available types:
-
-| Category | Contents |
-|----------|----------|
-| **Base Types** | Standard IEC types: BOOL, BYTE, WORD, DWORD, LWORD, SINT, INT, DINT, LINT, USINT, UINT, UDINT, ULINT, REAL, LREAL, TIME, DATE, STRING, WSTRING, etc. |
-| **User Data Types** | Custom structures, enumerations, and other types you've created in your project |
-| **System Libraries** | Types provided by system-level libraries included in the project |
-| **User Libraries** | Types from libraries you've added to the project |
-| **Array** | Opens a configuration dialog to define an array type with element type and dimensions |
-
-Select the appropriate category, then choose the specific type. For arrays, you'll specify the element type and the array bounds (e.g., `ARRAY[0..9] OF INT`).
-
-## Code View
-
-The Variables Editor supports a **dual-view** mode. You can switch between the visual table and a text-based **Code View** by clicking the toggle in the editor toolbar.
-
-### What Code View Shows
-
-Code view displays the variable declarations in standard IEC 61131-3 text format, inside a Monaco editor. For example:
+### Address format
 
 ```
-VAR
-    counter : INT := 0;
-    running : BOOL := FALSE;
-END_VAR
-
-VAR_INPUT
-    enable : BOOL;
-    setpoint : REAL := 50.0;
-END_VAR
-
-VAR_OUTPUT
-    motor_on : BOOL;
-    error_code : INT;
-END_VAR
+%I X 0.0
+ │ │ │
+ │ │ └── address (byte and bit for X; byte for B; word index for W/D/L)
+ │ └──── size: X bit, B byte, W word, D double word, L long word
+ └────── area: I input image, Q output image, M memory
 ```
 
-### Editing in Code View
+| Prefix | Area | Use for |
+|---|---|---|
+| `%I` | Input image | Variables your program **reads** that come from physical inputs |
+| `%Q` | Output image | Variables your program **writes** that drive physical outputs |
+| `%M` | Memory area | Variables that have no physical pin. Useful as working memory, or as the canvas Modbus / OPC-UA / S7Comm servers expose to external clients |
 
-You can edit variable declarations directly in the text editor. This is useful for:
+| Size letter | Width | Use with types |
+|---|---|---|
+| `X` | 1 bit | `BOOL` |
+| `B` | 8 bits | `BYTE`, `SINT`, `USINT` |
+| `W` | 16 bits | `WORD`, `INT`, `UINT` |
+| `D` | 32 bits | `DWORD`, `DINT`, `UDINT`, `REAL` |
+| `L` | 64 bits | `LWORD`, `LINT`, `ULINT`, `LREAL` |
 
-- Quickly adding multiple variables by typing
-- Copying and pasting variable declarations from documentation or other projects
-- Reviewing the exact IEC 61131-3 syntax
+Bit addresses use `byte.bit` notation: `%IX0.0`, `%IX0.7`, `%IX1.0` (rolls over to the next byte). See **[Modbus addressing](../communication/modbus/addressing)** for how these IEC addresses end up on the wire when an external client reads them.
 
-### Validation on Switch
+### Examples
 
-When you switch **from Code View back to Table View**, the editor validates the text you entered. If there are syntax errors (missing semicolons, invalid types, malformed declarations), the editor reports them and prevents the switch until the errors are corrected.
+```
+Name           Class  Type  Location
+start_btn      Local  BOOL  %IX0.0
+e_stop         Local  BOOL  %IX0.1
+motor          Local  BOOL  %QX0.0
+alarm_lamp     Local  BOOL  %QX0.1
+process_temp   Local  REAL  %MD2
+```
 
-This ensures that the table always contains valid variable declarations.
+Each row is a normal `Local` variable that happens to be bound to a physical address (or, in the last case, a memory slot the Modbus server would expose).
 
-## Renaming Variables
+## Aliases, when the `Location` is set for you
 
-To rename a variable, double-click the **Name** cell and type the new name. If the variable is used in graphical editors (Ladder Diagram or Function Block Diagram), renaming it triggers a **Rename Impact Modal**.
+Variables that come from a producer, a Modbus master remote device, an EtherCAT slave channel, a board pin-map on the desktop editor, have their `Location` written into the row by the alias registry, not by you. You see the resolved address in the table and reference the variable by name like any other. If the producer moves the underlying address, the row updates automatically on the next save.
 
-The Rename Impact Modal shows you every location where the old variable name appears in the POU's graphical logic. You can review the references before confirming the rename, which automatically updates all occurrences.
+If the producer goes away (you delete the remote device or the EtherCAT channel), the variable becomes **orphaned**. The editor marks the row with an amber warning glyph; the hover tooltip explains how to fix it (re-bind or remove).
 
-## Undo and Redo
+## Toolbar, adding, removing, reordering
 
-The Variables Editor supports undo and redo for all operations. Adding, removing, editing, and reordering variables:
+Four icons in the top-right of the table:
 
-| Action | Shortcut |
-|--------|----------|
-| Undo | `Ctrl+Z` (Windows/Linux) or `Cmd+Z` (macOS) |
-| Redo | `Ctrl+Y` (Windows/Linux) or `Cmd+Shift+Z` (macOS) |
+| Icon | Action |
+|---|---|
+| **`+`** | Add a row. If a row is selected, the new one is inserted below and inherits its class + type. Otherwise it's appended to the end. |
+| **`−`** | Remove the selected row(s). If the variable is used in the body, references are flagged on the next compile (or, in graphical bodies, immediately). |
+| **`↑` / `↓`** | Move the selected row up or down. Order matters when callers pass arguments positionally. |
 
-This works in both Table View and Code View.
+**Renaming** a variable: double-click the Name cell, type, press Enter. The editor finds every reference in the bodies (textual and graphical) and updates them. For graphical-body references it opens a **Rename Impact** dialog listing every match before applying.
 
-## POU-Specific Differences
+**Changing class**: click the Class cell and pick from the dropdown. If you switch to `External`, the `Location` is cleared (externals inherit from their global). If you switch from `Local` to any other class on a Function-Block variable, the `Location` is cleared (only `Local` carries an address).
 
-| Feature | Program | Function | Function Block |
-|---------|---------|----------|----------------|
-| Location column | No | Yes | Yes |
-| Return type selector | No | Yes | No |
-| POU description field | No | Yes | No |
-| Available classes | Local, External, Temp | Local, Input, Output, InOut, Temp | Local, Input, Output, InOut, External, Temp |
+## Type picker
 
-## Tips for Effective Use
+Click the Type cell. The dropdown groups available types:
 
-> **Tip:** Name variables before configuring them. When you add a new variable, change its name first. This helps you track what each row represents as you configure the rest.
+- **Base types**: IEC scalars: `BOOL`, `BYTE`, `WORD`, `DWORD`, `LWORD`, `SINT`, `INT`, `DINT`, `LINT`, `USINT`, `UINT`, `UDINT`, `ULINT`, `REAL`, `LREAL`, `TIME`, `DATE`, `TIME_OF_DAY`, `DATE_AND_TIME`, `STRING`, `WSTRING`.
+- **User data types**: types you've defined in the project's **Data Types** section.
+- **Library types**: types exposed by enabled libraries. Most commonly **function block instance types** (`TON`, `CTU`, `RS`, etc.), declaring a variable as `TON` gives you a `TON` instance you can call from the body.
+- **Array**: opens a sub-dialog to define an inline array (`ARRAY[0..9, 0..3] OF INT`). For arrays you reuse, define them in Data Types instead.
 
-> **Tip:** Use the class filter for large POUs. If your POU has more than 10–15 variables, filtering by class makes it much easier to find specific variables.
+## Table mode vs code mode
 
-> **Tip:** Review Code View periodically. Switching to Code View gives you a quick overview of all declarations in standard IEC syntax. A good way to verify the table produced what you intended.
+The toggle in the top-right of the toolbar switches between the two views. Both show the same variables; they're two ways of editing the same data.
 
-1. **Set initial values for state-dependent variables**: Counters, accumulators, and flags should always have explicit initial values to ensure predictable behavior on first run.
+**Table mode** is the spreadsheet-like default. Faster for individual edits, with typed inputs per column.
 
-2. **Use the Documentation column**: A brief note like "Motor speed in RPM, range 0-3000" saves significant time when revisiting the project later.
+**Code mode** shows the raw IEC declarations in a Monaco editor, grouped by class as `VAR_INPUT / VAR / VAR_OUTPUT / VAR_EXTERNAL / VAR_TEMP` blocks.
 
----
+![Variables editor in code mode, showing the IEC declaration text with the VAR_INPUT block and END_VAR for a sample variable](images/variables-code-mode.png)
 
-## What's Next?
+Code mode is the fastest path when you want to:
 
-Learn how to manage Global variables that are shared across the entire project:
+- Paste a chunk of declarations from another project.
+- Bulk-rename with multi-cursor edits.
+- Audit exactly what was declared without scrolling a long table.
 
-- [Global Variables Editor](global-variables-editor): The specialized editor for creating and managing Global variables in the Resource configuration
+When you switch back to table mode, the editor parses the text. Syntax errors prevent the switch and surface as red squiggles with hover messages.
+
+## Function-specific fields
+
+A `function` POU has two extra fields above the variable table:
+
+- **Return type**: the type of the value the function returns. Required (every IEC function returns something).
+- **POU description**: free text describing what the function does. Shows up in the function picker and IntelliSense tooltips.
+
+Function blocks and programs don't have these fields.
+
+## Globals
+
+Project-wide variables live in the **Resource** editor (the **Resource** entry in the project tree). The Resource has a Globals section that looks and behaves identically to the per-POU table, but the class is fixed to `Global`. POU-level variables can then declare class `External` and reference a global by name.
+
+See **[Global Variables](global-variables)** for the full Resource walkthrough.
+
+## What's next
+
+- **[Custom Data Types](../custom-data-types/creating-datatypes)**: define arrays, enumerations, and structures.
+- **[Modbus addressing](../communication/modbus/addressing)**: how `%IX/%QX/%MW` map to wire-protocol addresses.
+- **[Debugger](../building-deploying/debugger)**: what the **Debug** checkbox actually does.

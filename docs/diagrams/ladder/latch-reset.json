@@ -1,5 +1,5 @@
 {
-  "comment": "Unlatch: Reset coil",
+  "comment": "Unlatch. Reset coil",
   "rungNumber": 2,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "stop_btn" },

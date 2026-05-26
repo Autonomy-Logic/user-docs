@@ -1,93 +1,63 @@
-# Console & Debugging
+# Console & PLC Logs
 
-The Console Panel is the bottom section of the IDE workspace. It shows real-time output from the build process, runtime interactions, and search operations. This is your go-to place for understanding what's happening when you compile, deploy, and run your PLC programs.
+The strip at the bottom of the editor has two distinct streams: **Console** (messages from the editor itself: build progress, validation, connection state, debugger transport) and **PLC Logs** (messages streamed back from a connected vPLC).
 
-## Console Tab
+The console always exists. The PLC Logs tab only appears once you're connected to a Runtime v4 vPLC.
 
-The **Console** tab is the primary output area. It shows timestamped log messages generated during:
+## Console
 
-- **Compilation**: When you click Compile, every step of the build process is logged here with progress updates.
-- **Runtime control**: Start/stop messages, connection status changes, and runtime errors.
-- **Validation**: Warnings about server IP mismatches, validation errors for Python or C/C++ POUs, and other pre-compilation checks.
+The Console tab shows every message the editor generates during a session:
 
-Each log entry includes:
+- **Compilation** progress (one entry per build step), with the final success or error summary.
+- **Library** and **package manager** notices (when you add or remove a library).
+- **Runtime connection** lifecycle (login, MD5 check, transport selection).
+- **Debugger** state changes.
+- **EtherCAT** scan and slave configuration notices.
+- **Validation** errors (e.g., a Python block whose variables don't match its struct format).
 
-- A **timestamp** (configurable format)
-- A **severity level** with color coding:
-  - **Info** (blue): Normal progress messages
-  - **Warning** (yellow): Non-fatal issues that may need attention
-  - **Error** (red): Failures that stop the build or indicate a problem
-  - **Debug** (gray): Detailed diagnostic output
+Each entry carries a level: `info`, `warning`, `error`. The console auto-scrolls to the latest entry as messages arrive; scroll up to pause auto-scroll and read older entries.
 
-### Filtering Logs
+### Filtering
 
-Click the **Filters** button (top-right corner of the Console tab) to access filtering options:
+Click **Filters** in the console's top-right corner.
 
-- **Search**: Type to filter logs in real-time. Only matching entries are shown.
-- **Log Levels**: Toggle switches for Debug, Info, Warning, and Error. Turn off a level to hide those messages.
-- **Timestamp Format**: Choose between full date/time (DD-MM-YY HH:MM:SS), time only (HH:MM:SS), or no timestamp.
+- **Search**: free-text match across the message column. Updates as you type.
+- **Levels**: toggle `info` / `warning` / `error` independently.
+- **Timestamp format**: full date+time, time only, or none.
 
-An indicator appears on the Filters button when any non-default filter is active.
+A small dot on the **Filters** button indicates an active non-default filter.
 
-### Exporting Logs
+### Exporting
 
-Click the **Export** button (download icon) to save the currently displayed logs. Supported formats:
+Click the download icon to save the currently filtered view as `.txt`, `.csv`, or `.json`. The file name carries an ISO timestamp.
 
-- **.txt**: Plain text with timestamps and severity levels.
-- **.csv**: Comma-separated values for spreadsheet analysis.
-- **.json**: Structured JSON array with timestamp, level, and message fields.
+### Clearing
 
-The file downloads automatically with a timestamped name.
+The **Clear console** button at the right end empties the view. Past entries are gone (export first if you need to keep them).
 
-### Clearing Logs
+### Clicking through compile errors
 
-Click the **Clear** button (trash icon) to remove all log entries. This is useful before starting a new build to get a clean view.
+Compile errors in the console are clickable. Clicking one jumps to the offending source line in the appropriate POU body. This is the fastest way to fix a build failure.
 
-### Auto-Scroll
+## PLC Logs
 
-The Console automatically scrolls to the latest entry as new messages arrive. If you scroll up to review earlier messages, auto-scroll pauses so you can read without the view jumping. Scroll back to the bottom to resume.
+Visible only when the editor is connected to a Runtime v4 vPLC (the runtime exposes a WebSocket log stream).
 
-## Search Tab
+The PLC Logs tab is the runtime's own log feed, separate from anything the editor generates. Use it to see what your PLC program is actually doing at runtime, `printf` output from C++ blocks, exceptions from Python blocks, periodic status messages, etc.
 
-The **Search** tab appears when you perform a search using the Activity Bar's Search button. It shows matching results from across your project with links to jump directly to the matching element.
+It has the same Filters / Download / Clear controls as the Console.
 
-## PLC Logs Tab
+## A typical build / run / debug session
 
-The **PLC Logs** tab appears when you're connected to a device. It shows live logs from the running PLC program. This is separate from the Console tab. The Console shows IDE-side messages (compilation, upload), while PLC Logs show output from the PLC process itself.
+1. Clear the console for a fresh view.
+2. Click the **Build options** icon in the activity bar, then choose **Build & Upload** (or **Build** then **Start PLC** separately).
+3. Watch the console: each compilation step logs a line. On error, click the message to jump to the source.
+4. After upload completes, click **Play** to start the PLC.
+5. Switch to **PLC Logs** to monitor runtime output.
+6. Open the **Debugger** to watch live variable values on a time-series chart.
 
-The PLC Logs tab has its own filtering controls and Clear button.
+## What's next
 
-## Using the Console During Development
-
-Here's a typical workflow:
-
-1. **Clear the console** before compiling for a fresh view.
-2. **Click Compile** and watch the progress in the Console tab.
-3. **If errors occur**, read the error messages. Common issues include:
-   - Syntax errors in Structured Text or Instruction List code
-   - Undeclared variables or type mismatches
-   - Python or C/C++ validation failures
-4. **After successful compilation**, wait for the "Compilation completed successfully" message.
-5. **Start the PLC** and switch to the PLC Logs tab to monitor runtime behavior.
-
-> **Tip:** You can resize or collapse the Console Panel to maximize editor space. Drag the border between the Editor Area and Console Panel to adjust the height.
-
-## Troubleshooting
-
-### I don't see the PLC Logs tab
-
-The PLC Logs tab only appears when you're connected to a device. Check your connection status in the Orchestrators panel.
-
-### Console output is too noisy
-
-Use the Filters panel to hide log levels you don't need. For example, turn off Debug to see only Info, Warning, and Error messages.
-
-### I need to share logs with someone
-
-Use the Export button to save logs as TXT, CSV, or JSON. The export includes only the currently filtered view, so you can narrow it down before exporting.
-
----
-
-## What's Next?
-
-Now that you know the workspace, learn about the core building blocks of IEC 61131-3 programs: [Program Organization Units (POUs)](../iec-concepts/pous).
+- Author code: **[Programming Languages](../programming-languages/structured-text/st-basics)**.
+- Watch live variables: **[Debugger](../building-deploying/debugger)**.
+- Get connected: **[Connecting to a vPLC](../connecting-to-runtimes)**.

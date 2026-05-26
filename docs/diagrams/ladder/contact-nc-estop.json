@@ -1,5 +1,5 @@
 {
-  "comment": "Normally Closed contact: emergency stop",
+  "comment": "Normally Closed contact. Emergency stop",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "negated", "variable": "e_stop" },

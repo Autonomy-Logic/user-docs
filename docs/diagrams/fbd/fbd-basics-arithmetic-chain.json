@@ -1,0 +1,38 @@
+{
+  "comment": "Arithmetic chain. ADD then MUL",
+  "nodes": [
+    { "id": "sensor1", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "sensor1" } },
+    { "id": "sensor2", "type": "input-variable", "position": { "x": 50, "y": 180 }, "data": { "name": "sensor2" } },
+    {
+      "id": "add",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "ADD",
+        "blockType": "function",
+        "inputs": [{ "name": "IN1" }, { "name": "IN2" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    { "id": "gain", "type": "input-variable", "position": { "x": 340, "y": 190 }, "data": { "name": "gain" } },
+    {
+      "id": "mul",
+      "type": "block",
+      "position": { "x": 530, "y": 50 },
+      "data": {
+        "name": "MUL",
+        "blockType": "function",
+        "inputs": [{ "name": "IN1" }, { "name": "IN2" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    { "id": "output", "type": "output-variable", "position": { "x": 780, "y": 60 }, "data": { "name": "output" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "sensor1", "sourceHandle": "output", "target": "add", "targetHandle": "IN1" },
+    { "id": "e2", "source": "sensor2", "sourceHandle": "output", "target": "add", "targetHandle": "IN2" },
+    { "id": "e3", "source": "add", "sourceHandle": "OUT", "target": "mul", "targetHandle": "IN1" },
+    { "id": "e4", "source": "gain", "sourceHandle": "output", "target": "mul", "targetHandle": "IN2" },
+    { "id": "e5", "source": "mul", "sourceHandle": "OUT", "target": "output", "targetHandle": "input" }
+  ]
+}

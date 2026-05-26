@@ -1,5 +1,5 @@
 {
-  "comment": "Latch: Set coil",
+  "comment": "Latch. Set coil",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "start_btn" },

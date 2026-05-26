@@ -1,78 +1,84 @@
-# Project Explorer
+# Project Tree
 
-The Project Explorer is the sidebar on the left side of the IDE. It organizes your entire PLC project into a tree, giving you a clear view of everything in your project and quick access to open items in the Editor Area.
+The project tree is the top half of the editor's side panel. It lists every artefact in your project, grouped by kind.
 
-![Project Explorer showing the project hierarchy with Programs, Functions, Function Blocks, Data Types, and Resources branches](images/project-explorer-clean.png)
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Orchestrators, and Servers branches](../images/project-tree.png)
 
-## Project Name
+## Header
 
-At the top of the Project Explorer, you'll see your project name with a folder icon. Click the name to edit it inline. Type a new name and click away (or press Tab) to save.
+The project name sits in a blue bar at the top. To the right, a **`+`** button opens the **Create Element** popover.
 
-Next to the project name is a **+** button. Click it to create new project elements: Programs, Functions, Function Blocks, or Data Types. For POUs, you choose a name and programming language. For Data Types, you choose a name and type (array, enumeration, or structure).
+![Create Element popover listing Function, Function Block, Program, Data Type, Server, and Remote Device options, each with a small icon and a chevron indicating a sub-menu](../images/create-element-popover.png)
 
-## Tree Structure
+From it you can create:
 
-Below the project name, your project is organized into these branches. Click any branch to expand or collapse it.
+- `function`: a stateless POU that returns a value
+- `function-block`: a stateful POU you can instantiate
+- `program`: a top-level POU bound to a task
+- `data-type`: array, enumeration, or structure
+- `server`: Modbus TCP, OPC-UA, or S7Comm
+- `remote-device`: Modbus master, EtherCAT, or other supported remote protocols
+
+Names must use **CamelCase**, **PascalCase**, or **snake_case** and be at least three characters long.
+
+## Branches
 
 ### Functions
-
-All POUs of type **Function**. Functions take inputs, perform a computation, and return a single value. They don't maintain internal state between calls.
-
-Each function shows an icon indicating its language (ST, LD, FBD, or IL). Click to open it in the Editor Area.
+Function-type POUs. A function takes inputs, computes once, returns a value, and keeps no state between calls.
 
 ### Function Blocks
-
-All POUs of type **Function Block**. Function blocks are reusable units that can maintain internal state. Their local variables persist between calls. You can create multiple instances of the same function block, each with its own data.
-
-Function blocks support all five IEC 61131-3 languages plus Python and C/C++.
+Function-block-type POUs. A function block can hold internal state. You declare an *instance* in a variable (or in the Resource editor as a global), and each instance keeps its own state. The language can be ST, LD, FBD, IL, **Python**, or **C/C++**.
 
 ### Programs
-
-All POUs of type **Program**. Programs are the top-level units that get assigned to tasks for execution. They're the entry point of your PLC logic. You bind them to tasks through instances in the Resource configuration.
+Program-type POUs. A program is the entry point, it only runs when an **instance** in the Resource editor binds it to a **task**. A project usually has one or a handful of programs.
 
 ### Data Types
+Your user-defined types. Each one is one of:
 
-Your user-defined data types, organized into sub-categories:
+- **Array**: fixed-shape collection of a base type.
+- **Enumeration**: named symbolic values.
+- **Structure**: named fields with their own types.
 
-- **Arrays**: Array types with a base type and dimensions.
-- **Enumerations**: Types that define a set of named values.
-- **Structures**: Types that group multiple named fields of different types.
+Click a type to edit its definition. Once defined, types appear in the variable table's type-picker alongside the built-in types.
 
-Click any data type to open its editor.
+### Resource
+A single editor with three stacked sections:
 
-### Resources
+1. **Global variables**: declared once, visible to every POU.
+2. **Tasks**: execution schedules (Cyclic with an interval, or Interrupt with a source). Each carries a priority.
+3. **Instances**: bind one **program** to one **task**. Until you have at least one instance, nothing actually runs on the vPLC.
 
-Opens the Resource editor, which has three sections:
+See **[Tasks and Instances](../iec-concepts/tasks-instances)** for the conceptual model.
 
-1. **Global Variables**: Variables shared across all POUs in the project.
-2. **Tasks**: Execution tasks with triggering mode (Cyclic or Interrupt), interval, and priority.
-3. **Instances**: Binds programs to tasks, defining which program runs under which task.
+### Device
+Lists the orchestrator and remote-device entries for this project.
 
-This is where you configure how your PLC project executes. See [Tasks & Instances](../iec-concepts/tasks-instances) for details.
-
-### Devices
-
-- **Orchestrators**: Lists all orchestrators registered in your Autonomy Edge account and their devices. From here, you select which device to connect to, and manage runtime login and user creation.
-- **Remote Devices**: Any configured remote device connections (e.g., Modbus TCP/RTU clients).
+- **Orchestrators**: opens the connection screen. From there you pick an orchestrator + a vPLC and log in. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
+- Below Orchestrators, any **remote devices** you've added live as siblings of the orchestrator entry. Each one (Modbus master, EtherCAT bus master) opens its own editor.
 
 ### Servers
+The communication servers running on this vPLC.
 
-Communication server configurations:
+- **Modbus TCP** slave: expose memory to SCADA / HMIs.
+- **OPC-UA** server: publish a typed address space.
+- **S7Comm** server: Siemens-S7-compatible endpoint.
 
-- **Modbus TCP Slave**: Expose PLC memory to external SCADA systems or HMIs over Modbus TCP.
-- **S7Comm Server**: Siemens S7 protocol compatibility for S7-compatible clients.
-- **OPC-UA Server**: Publish PLC variables as an OPC-UA address space for standardized industrial communication.
+You add servers through the same **`+`** popover at the top of the tree, picking `server` and then the protocol. Each server's editor is one tab in the central area.
 
-Click any server to open its configuration editor.
+## Working with the tree
 
-## Opening Elements
+- **Click** a leaf to open it as a tab.
+- **Right-click** a POU for rename, delete, and duplicate actions.
+- **Drag** items between branches to reorganise (where the project format allows).
+- The active item is highlighted (the dark band you can see around `main` in the screenshot).
+- The breadcrumb above the editor area always reflects the active tree path.
 
-Click any item in the tree to open it as a tab in the Editor Area. If it's already open, clicking switches to that tab. The IDE keeps track of all open tabs in the Navigation bar at the top of the Editor Area.
+## Searching
 
-> **Tip:** Use the Search button in the Activity Bar to find specific elements in large projects. Matching items in the Project Explorer are highlighted with the search query.
+The activity-bar **Search** opens a project-wide text search across POU names, variable names, comments, and body contents. Results render as a tree mirroring the project structure with the matched ranges highlighted, click a result to jump to it.
 
----
+## What's next
 
-## What's Next?
-
-Learn how the [Console & Debugging](console-debugging) panel helps you track compilation and diagnose issues.
+- **[Console & PLC Logs](console-debugging)**: what's at the bottom of the editor.
+- **[Working with Variables](../working-with-variables/variables-editor)**: the table editor above every POU body.
+- **[Connecting to a vPLC](../connecting-to-runtimes)**: log in to a runtime and deploy.

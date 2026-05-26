@@ -47,7 +47,7 @@ Configure how and when your PLC programs execute.
 Before using the IDE, you need:
 
 1. An Autonomy Edge account at `https://edge.autonomylogic.com`.
-2. At least one orchestrator registered with an active device. See [Managing Device Status](../platform-features/vplc-management/managing-status) for setup instructions.
+2. At least one orchestrator registered with an active device. See [Managing Device Status](../platform/vplcs/vplc-detail) for setup instructions.
 
 ---
 

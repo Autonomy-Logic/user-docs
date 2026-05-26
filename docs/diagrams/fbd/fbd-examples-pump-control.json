@@ -1,0 +1,114 @@
+{
+  "comment": "Pump control. TON timers, NOT, AND, SR bistable",
+  "nodes": [
+    { "id": "pump_running_1", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "pump_running" } },
+    { "id": "run_pt", "type": "input-variable", "position": { "x": 50, "y": 190 }, "data": { "name": "T#30s" } },
+    {
+      "id": "run_timer",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "TON",
+        "blockType": "function-block",
+        "instanceName": "run_timer",
+        "inputs": [{ "name": "IN" }, { "name": "PT" }],
+        "outputs": [{ "name": "Q" }, { "name": "ET" }]
+      }
+    },
+    { "id": "min_run_ok", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "min_run_ok" } },
+    { "id": "pump_running_2", "type": "input-variable", "position": { "x": 50, "y": 260 }, "data": { "name": "pump_running" } },
+    {
+      "id": "not1",
+      "type": "block",
+      "position": { "x": 280, "y": 270 },
+      "data": {
+        "name": "NOT",
+        "blockType": "function",
+        "inputs": [{ "name": "IN" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    { "id": "cool_pt", "type": "input-variable", "position": { "x": 340, "y": 410 }, "data": { "name": "T#60s" } },
+    {
+      "id": "cooldown_timer",
+      "type": "block",
+      "position": { "x": 530, "y": 270 },
+      "data": {
+        "name": "TON",
+        "blockType": "function-block",
+        "instanceName": "cooldown_timer",
+        "inputs": [{ "name": "IN" }, { "name": "PT" }],
+        "outputs": [{ "name": "Q" }, { "name": "ET" }]
+      }
+    },
+    { "id": "cooldown_ok", "type": "output-variable", "position": { "x": 780, "y": 280 }, "data": { "name": "cooldown_ok" } },
+    { "id": "start_cmd", "type": "input-variable", "position": { "x": 50, "y": 480 }, "data": { "name": "start_cmd" } },
+    { "id": "cooldown_ok_in", "type": "input-variable", "position": { "x": 50, "y": 560 }, "data": { "name": "cooldown_ok" } },
+    { "id": "pump_running_3", "type": "input-variable", "position": { "x": 50, "y": 640 }, "data": { "name": "pump_running" } },
+    {
+      "id": "not2",
+      "type": "block",
+      "position": { "x": 280, "y": 630 },
+      "data": {
+        "name": "NOT",
+        "blockType": "function",
+        "inputs": [{ "name": "IN" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    {
+      "id": "start_and",
+      "type": "block",
+      "position": { "x": 530, "y": 470 },
+      "data": {
+        "name": "AND",
+        "blockType": "function",
+        "inputs": [{ "name": "IN1" }, { "name": "IN2" }, { "name": "IN3" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    { "id": "stop_cmd", "type": "input-variable", "position": { "x": 50, "y": 780 }, "data": { "name": "stop_cmd" } },
+    { "id": "min_run_ok_in", "type": "input-variable", "position": { "x": 50, "y": 860 }, "data": { "name": "min_run_ok" } },
+    {
+      "id": "stop_and",
+      "type": "block",
+      "position": { "x": 280, "y": 770 },
+      "data": {
+        "name": "AND",
+        "blockType": "function",
+        "inputs": [{ "name": "IN1" }, { "name": "IN2" }],
+        "outputs": [{ "name": "OUT" }]
+      }
+    },
+    {
+      "id": "sr",
+      "type": "block",
+      "position": { "x": 780, "y": 470 },
+      "data": {
+        "name": "SR",
+        "blockType": "function-block",
+        "inputs": [{ "name": "S1" }, { "name": "R" }],
+        "outputs": [{ "name": "Q1" }]
+      }
+    },
+    { "id": "pump_running_out", "type": "output-variable", "position": { "x": 1030, "y": 480 }, "data": { "name": "pump_running" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "pump_running_1", "sourceHandle": "output", "target": "run_timer", "targetHandle": "IN" },
+    { "id": "e2", "source": "run_pt", "sourceHandle": "output", "target": "run_timer", "targetHandle": "PT" },
+    { "id": "e3", "source": "run_timer", "sourceHandle": "Q", "target": "min_run_ok", "targetHandle": "input" },
+    { "id": "e4", "source": "pump_running_2", "sourceHandle": "output", "target": "not1", "targetHandle": "IN" },
+    { "id": "e5", "source": "not1", "sourceHandle": "OUT", "target": "cooldown_timer", "targetHandle": "IN" },
+    { "id": "e6", "source": "cool_pt", "sourceHandle": "output", "target": "cooldown_timer", "targetHandle": "PT" },
+    { "id": "e7", "source": "cooldown_timer", "sourceHandle": "Q", "target": "cooldown_ok", "targetHandle": "input" },
+    { "id": "e8", "source": "start_cmd", "sourceHandle": "output", "target": "start_and", "targetHandle": "IN1" },
+    { "id": "e9", "source": "cooldown_ok_in", "sourceHandle": "output", "target": "start_and", "targetHandle": "IN2" },
+    { "id": "e10", "source": "pump_running_3", "sourceHandle": "output", "target": "not2", "targetHandle": "IN" },
+    { "id": "e11", "source": "not2", "sourceHandle": "OUT", "target": "start_and", "targetHandle": "IN3" },
+    { "id": "e12", "source": "stop_cmd", "sourceHandle": "output", "target": "stop_and", "targetHandle": "IN1" },
+    { "id": "e13", "source": "min_run_ok_in", "sourceHandle": "output", "target": "stop_and", "targetHandle": "IN2" },
+    { "id": "e14", "source": "start_and", "sourceHandle": "OUT", "target": "sr", "targetHandle": "S1" },
+    { "id": "e15", "source": "stop_and", "sourceHandle": "OUT", "target": "sr", "targetHandle": "R" },
+    { "id": "e16", "source": "sr", "sourceHandle": "Q1", "target": "pump_running_out", "targetHandle": "input" }
+  ]
+}

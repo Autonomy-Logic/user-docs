@@ -1,131 +1,89 @@
-# Connecting to Runtimes
+# Connecting to a vPLC
 
-Before you can deploy and run your PLC program, you need to connect the IDE to a device. This page walks you through the connection flow, user setup, authentication, and what to do when things go wrong.
+The editor opens with the built-in **OpenPLC Simulator** selected. Anything you build runs in the browser sandbox until you point it at a real (or virtual) PLC.
 
-## Prerequisites
+When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks through that flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
 
-Before connecting:
+> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/orchestrators/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
 
-1. **An orchestrator must be registered** in your Autonomy Edge account and must be online. See [Understanding Orchestrators](../platform-features/orchestrator-management/understanding-orchestrators).
-2. **A device must exist** on that orchestrator and must be active. See [Creating Devices](../platform-features/vplc-management/creating-vplc).
+## Open the Orchestrators screen
 
-## Selecting a Device
+In the project tree, expand **Device** and click **Orchestrators**. The Orchestrators editor opens as a tab in the central editing area.
 
-1. In the Project Explorer (left sidebar), expand the **Devices** branch.
-2. Click **Orchestrators**.
-3. The Orchestrators panel opens in the Editor Area, listing all orchestrators linked to your account.
+![Device Orchestrators screen with OpenPLC Simulator selected by default at the top, followed by the user's registered orchestrators as expandable cards](images/orchestrators-screen.png)
 
-![Device Orchestrators panel showing the list of orchestrators](../platform-features/vplc-management/images/device-orchestrators-list.png)
+**OpenPLC Simulator** sits at the top with a **Selected** badge. It's a browser-side AVR emulator. Anything you build with it as the target runs in the browser sandbox, no hardware required. See **[Running with the Simulator](building-deploying/simulator)**.
 
-4. Expand an orchestrator to see its devices. Each device shows its name, status, and whether it's available.
+Below the Simulator, each card represents one orchestrator: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
 
-![Device Orchestrators panel expanded to show vPLC devices](images/device-orchestrators-expanded.png)
+## Pick a vPLC
 
-5. Click on a device to select it.
+Expand the orchestrator. The vPLCs running on it appear as child rows, each with its name and a status indicator (green dot + `Running` if the vPLC is up).
 
-![Device selected in the Orchestrators panel](../platform-features/vplc-management/images/device-selected-connect.png)
+![Device Orchestrators screen with SLM-RP4 expanded, showing vPLC 01 with a green Running status](images/orchestrators-expanded.png)
 
-6. Click **Connect**.
+Click a vPLC to select it. The row highlights and a **Connect** button appears below the cards.
 
-![vPLC selected with the Connect button visible](images/device-orchestrators-connect.png)
+![vPLC 01 selected, with the Connect button visible below the orchestrator cards](images/orchestrators-vplc-selected.png)
 
-> **Tip:** Click the **Refresh** button to reload the list if you've recently added an orchestrator or device.
+Click **Connect**.
 
-## First-Time Connection: Creating a User
+## First connection: create a user
 
-When you connect to a device for the very first time, it has no user accounts. The IDE detects this and guides you through setup:
+Brand-new vPLCs have no users. The first time you connect, the editor opens a **Create First User** dialog instead of the login dialog.
 
-1. A **Create First User** dialog appears automatically.
+![Create First User dialog asking for a username and password, with a confirmation field](images/create-first-user-dialog.png)
 
-![Create First User dialog with username and password fields](../platform-features/vplc-management/images/create-first-user-dialog.png)
+Enter a username and password, confirm the password, and click **Create User**. The user lives **on the vPLC itself**, not in your Autonomy Edge account, keep the credentials somewhere safe. If you forget them, you have to recreate the vPLC from the platform.
 
-2. Enter a **username** and **password**, then confirm the password.
-3. Click **Create User**.
+## Subsequent connections: log in
 
-This creates a local account on the device itself. You'll need these credentials every time you connect to this specific device.
+After the first user exists, connecting opens a standard **Login** dialog. Use the credentials you created. The session lasts until you log out or close the editor tab.
 
-> **Tip:** Keep your runtime credentials somewhere safe. If you forget them, the only recovery is to recreate the device from the platform dashboard, which resets all data on it.
+![Login to OpenPLC Runtime dialog with Username and Password fields, and Login / Cancel buttons](images/runtime-login-modal.png)
 
-## Logging In
+## What changes once you're connected
 
-On subsequent connections, the IDE shows a **Login** dialog:
+- The orchestrator card now shows the vPLC with a **Connected** status badge.
 
-1. Enter the **username** and **password** you created for this device.
-2. Click **Login**.
+  ![Orchestrators editor showing a vPLC with the Connected status badge](images/vplc-connected.png)
 
-Your session lasts until you log out or close the browser tab. The next time you visit, you'll need to log in again.
+- The activity-bar **Play** button is enabled. Pressing it calls `runtime.startPlc` on the connected vPLC.
+- The activity-bar **Debugger** becomes available (it needs a connected runtime to talk to).
+- The **PLC Logs** tab appears in the console, streaming the runtime's log feed.
+- **Build options** offers **Build & Upload** and **Clean Upload** in addition to **Build only**.
+- The Orchestrators card shows live runtime stats (CPU, memory, uptime) for the connected vPLC.
 
-## Connection Status
+## Status polling
 
-Once connected, the IDE shows the connection status in the Orchestrators panel:
+The editor polls the runtime in the background for:
 
-![Orchestrators panel showing the vPLC with a Connected status badge](../platform-features/vplc-management/images/vplc-connected.png)
+- PLC running / stopped / error state.
+- Runtime log entries.
+- Task execution timing.
 
-- **Connected**: You have an active connection. All controls (compile, start, stop) are available.
-- **Disconnected**: No active connection. You can still compile to validate your code, but uploading and runtime controls are unavailable.
-
-## What You Can Do When Connected
-
-With an active connection, you can:
-
-- **Compile and deploy**: Click Compile to build your project and upload it to the device.
-
-![Console panel showing the build process output during upload](../platform-features/vplc-management/images/build-process-started.png)
-
-- **Start the PLC**: Click the Start/Stop button to begin running your program.
-- **Stop the PLC**: Click the Start/Stop button again to halt execution.
-- **View PLC Logs**: The PLC Logs tab appears in the Console Panel, showing live output from the running program.
-- **Monitor execution stats**: The Orchestrators panel shows scan cycle statistics for a running PLC.
-
-![Running PLC program with the Scan Cycle Statistics panel showing real-time metrics](../platform-features/vplc-management/images/program-running.png)
-
-## Runtime Status Polling
-
-While connected, the IDE automatically checks the device in the background for:
-
-- PLC running/stopped/error status
-- Runtime log output
-- Task execution timing data
-
-You don't need to manually refresh. Updates appear automatically.
+You don't refresh anything by hand. Updates land in the console and on the Orchestrators card automatically.
 
 ## Disconnecting
 
-To disconnect, click the **Logout** button in the Orchestrators panel.
-
-**Important:** Disconnecting does not stop the PLC program. The device operates independently. Once a program is started, it keeps running even if you close your browser. To stop it, click Stop before disconnecting, or reconnect later.
+Click **Logout** in the Orchestrators card. The vPLC keeps running, disconnecting only ends your editor's session with it. Stop the PLC explicitly with the **Stop** button if you want it offline.
 
 ## Troubleshooting
 
-### Can't see any orchestrators
+**The Orchestrators screen is empty.**
+Verify the orchestrator is online in the platform dashboard. The card only appears if the platform reports it as reachable.
 
-- Verify your orchestrator is registered and online in the platform dashboard.
-- Click Refresh to reload the list.
+**The vPLC shows offline / stopped.**
+Open the vPLC in the platform dashboard and start it there. Allow about a minute for it to initialise before retrying.
 
-### Device shows as offline or stopped
+**Login fails.**
+The credentials are **runtime-side**, not your Autonomy Edge login. If you've forgotten them, recreate the vPLC.
 
-- The device may not be running. Go to the platform dashboard and start it.
-- Wait 30–60 seconds after starting for the device to initialize.
+**Upload fails after compilation succeeded.**
+The connection may have dropped during the build. Confirm the orchestrator is still online, then retry. The console will carry the specific transport error.
 
-### Login fails
+## What's next
 
-- Make sure you're using the **runtime credentials** (the username/password you created during first connection), not your Autonomy Edge platform login.
-- If you've forgotten the credentials, recreate the device from the platform dashboard.
-
-### PLC Logs tab not showing
-
-- The PLC Logs tab only appears when you're connected to a device. Verify your connection status.
-
-### Compilation succeeds but upload fails
-
-- Check that the device is still connected.
-- The orchestrator may have gone offline during compilation. Refresh and reconnect.
-- Check the Console for specific error messages.
-
----
-
-## What's Next?
-
-- [Project Compilation](building-deploying/project-compilation): Learn how to compile your project and fix errors.
-- [Deployment](building-deploying/deployment-vplc): Deploy and manage your running program.
-- [Console & Debugging](workspace-overview/console-debugging): Read and filter build logs.
+- **[Build options](building-deploying/project-compilation)**: what each build mode does.
+- **[Debugger](building-deploying/debugger)**: live variable inspection on a connected vPLC.
+- **[Console & PLC Logs](workspace-overview/console-debugging)**: reading the streams from your runtime.

@@ -1,5 +1,5 @@
 {
-  "comment": "Complex interlock: enable AND NOT fault AND ready",
+  "comment": "Complex interlock. Enable AND NOT fault AND ready",
   "rungNumber": 1,
   "elements": [
     { "type": "contact", "variant": "default", "variable": "enable" },

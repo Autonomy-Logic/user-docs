@@ -1,0 +1,22 @@
+{
+  "comment": "R_TRIG. Rising Edge Trigger",
+  "nodes": [
+    { "id": "clk_var", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "CLK" } },
+    {
+      "id": "rtrig",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "R_TRIG",
+        "blockType": "function-block",
+        "inputs": [{ "name": "CLK" }],
+        "outputs": [{ "name": "Q" }]
+      }
+    },
+    { "id": "q_var", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "Q" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "clk_var", "sourceHandle": "output", "target": "rtrig", "targetHandle": "CLK" },
+    { "id": "e2", "source": "rtrig", "sourceHandle": "Q", "target": "q_var", "targetHandle": "input" }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "comment": "TON timer. Enable_signal + T#5s → delayed_output",
+  "nodes": [
+    { "id": "enable_signal", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "enable_signal" } },
+    { "id": "preset", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "T#5s" } },
+    {
+      "id": "ton",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "TON",
+        "blockType": "function-block",
+        "inputs": [{ "name": "IN" }, { "name": "PT" }],
+        "outputs": [{ "name": "Q" }, { "name": "ET" }]
+      }
+    },
+    { "id": "delayed_output", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "delayed_output" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "enable_signal", "sourceHandle": "output", "target": "ton", "targetHandle": "IN" },
+    { "id": "e2", "source": "preset", "sourceHandle": "output", "target": "ton", "targetHandle": "PT" },
+    { "id": "e3", "source": "ton", "sourceHandle": "Q", "target": "delayed_output", "targetHandle": "input" }
+  ]
+}

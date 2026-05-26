@@ -37,6 +37,10 @@ This is the most common timer in industrial automation. Use it whenever you need
 | `Q` | `BOOL` | TRUE when elapsed time reaches PT |
 | `ET` | `TIME` | Elapsed time since IN went HIGH |
 
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-ton-basic.json"></fbd-diagram>
+
 ### Timing Behavior
 
 ```
@@ -90,6 +94,10 @@ Use TOF when you need an output to remain active for a period after a condition 
 | `Q` | `BOOL` | TRUE while IN is HIGH or countdown is active |
 | `ET` | `TIME` | Elapsed time since IN went LOW |
 
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-tof-basic.json"></fbd-diagram>
+
 ### Timing Behavior
 
 ```
@@ -142,6 +150,10 @@ Use TP when you need a consistent, fixed-duration output regardless of how long 
 |------|------|-------------|
 | `Q` | `BOOL` | TRUE for exactly the duration PT |
 | `ET` | `TIME` | Elapsed time since pulse started |
+
+### FBD Diagram
+
+<fbd-diagram src="/docs/diagrams/fbd/sfb-tp-basic.json"></fbd-diagram>
 
 ### Timing Behavior
 

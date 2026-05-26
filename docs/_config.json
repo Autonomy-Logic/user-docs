@@ -5,20 +5,16 @@
       "path": "getting-started",
       "items": [
         {
-          "title": "Introduction to Autonomy Edge",
-          "path": "introduction"
+          "title": "What is Autonomy Edge?",
+          "path": "what-is-autonomy-edge"
         },
         {
-          "title": "Account Setup and Authentication",
-          "path": "account-setup"
+          "title": "Creating your account",
+          "path": "account-and-signup"
         },
         {
-          "title": "Dashboard Overview",
-          "path": "dashboard-overview"
-        },
-        {
-          "title": "User Profile Management",
-          "path": "user-profile"
+          "title": "Dashboard tour",
+          "path": "dashboard-tour"
         },
         {
           "title": "Quick Start Guide",
@@ -27,88 +23,224 @@
       ]
     },
     {
-      "title": "Pricing & Plans",
-      "path": "pricing",
+      "title": "Platform",
+      "path": "platform",
       "items": [
         {
-          "title": "Plans and Features",
-          "path": "plans"
-        }
-      ]
-    },
-    {
-      "title": "Platform Features",
-      "path": "platform-features",
-      "items": [
+          "title": "Workspaces and slugs",
+          "path": "workspaces-and-slugs"
+        },
         {
-          "title": "Project Management",
-          "path": "project-management",
+          "title": "Projects",
+          "path": "projects",
           "items": [
             {
-              "title": "Creating Projects",
-              "path": "creating-projects"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Project Visibility and Sharing",
-              "path": "project-visibility"
+              "title": "Creating a project",
+              "path": "creating-a-project"
             },
             {
-              "title": "Organizing Projects with Folders",
-              "path": "organizing-projects"
+              "title": "Projects list",
+              "path": "projects-list"
             },
             {
-              "title": "Opening and Editing Projects",
-              "path": "opening-editing"
+              "title": "The project page",
+              "path": "project-page"
             },
             {
-              "title": "Managing Projects - Pinning, Recents, and Trash",
-              "path": "managing-projects"
+              "title": "Commits and history",
+              "path": "commits-and-history"
             },
             {
-              "title": "Importing and Exporting Projects",
-              "path": "importing-exporting"
+              "title": "Pull requests",
+              "path": "pull-requests"
+            },
+            {
+              "title": "Importing and forking",
+              "path": "importing-and-forking"
+            },
+            {
+              "title": "Pinning and stars",
+              "path": "pinning-and-stars"
+            },
+            {
+              "title": "Visibility and sharing",
+              "path": "visibility-and-sharing"
             }
           ]
         },
         {
-          "title": "Orchestrator Management",
-          "path": "orchestrator-management",
+          "title": "Orchestrators",
+          "path": "orchestrators",
           "items": [
             {
-              "title": "Understanding Orchestrators",
-              "path": "understanding-orchestrators"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Adding Orchestrators",
-              "path": "adding-orchestrators"
+              "title": "Installing the agent",
+              "path": "installing-the-agent"
             },
             {
-              "title": "Orchestrator Overview",
-              "path": "orchestrator-overview"
+              "title": "Orchestrators list",
+              "path": "orchestrators-list"
+            },
+            {
+              "title": "Orchestrator detail",
+              "path": "orchestrator-detail"
+            },
+            {
+              "title": "Managing orchestrators",
+              "path": "managing-orchestrators"
             }
           ]
         },
         {
-          "title": "Virtual PLC Device Management",
-          "path": "vplc-management",
+          "title": "vPLC devices",
+          "path": "vplcs",
           "items": [
             {
-              "title": "Understanding vPLC Devices",
-              "path": "understanding-vplc"
+              "title": "Overview",
+              "path": "overview"
             },
             {
-              "title": "Creating vPLC Devices",
-              "path": "creating-vplc"
+              "title": "Creating a vPLC",
+              "path": "creating-a-vplc"
             },
             {
-              "title": "Managing Device Status",
-              "path": "managing-status"
+              "title": "vPLC detail",
+              "path": "vplc-detail"
             },
             {
-              "title": "Device Detail View",
-              "path": "device-detail"
+              "title": "Network modes",
+              "path": "network-modes"
+            },
+            {
+              "title": "Connecting from the editor",
+              "path": "connecting-from-editor"
             }
           ]
+        },
+        {
+          "title": "Organizations",
+          "path": "organizations",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Creating an organization",
+              "path": "creating-an-org"
+            },
+            {
+              "title": "Organization dashboard",
+              "path": "org-dashboard"
+            },
+            {
+              "title": "Organization profile",
+              "path": "org-profile"
+            },
+            {
+              "title": "Members and roles",
+              "path": "members-and-roles"
+            },
+            {
+              "title": "Invitations",
+              "path": "invitations"
+            },
+            {
+              "title": "Invite links",
+              "path": "invite-links"
+            },
+            {
+              "title": "Teams",
+              "path": "teams"
+            },
+            {
+              "title": "Organization billing",
+              "path": "billing"
+            },
+            {
+              "title": "Organization usage",
+              "path": "usage"
+            },
+            {
+              "title": "Organization history",
+              "path": "history"
+            },
+            {
+              "title": "Leaving and deleting",
+              "path": "leaving-and-deleting"
+            }
+          ]
+        },
+        {
+          "title": "Community",
+          "path": "community",
+          "items": [
+            {
+              "title": "Feed",
+              "path": "feed"
+            },
+            {
+              "title": "Trending topics",
+              "path": "trending-topics"
+            },
+            {
+              "title": "Following users and projects",
+              "path": "following-users-and-projects"
+            }
+          ]
+        },
+        {
+          "title": "Forum",
+          "path": "forum",
+          "items": [
+            {
+              "title": "Forum overview",
+              "path": "overview"
+            },
+            {
+              "title": "Reading and searching",
+              "path": "reading-and-searching"
+            },
+            {
+              "title": "Posting a topic",
+              "path": "posting-a-topic"
+            },
+            {
+              "title": "Replying and reactions",
+              "path": "replying-and-reactions"
+            },
+            {
+              "title": "Messaging",
+              "path": "messaging"
+            },
+            {
+              "title": "Members directory",
+              "path": "members"
+            },
+            {
+              "title": "Moderation",
+              "path": "moderation"
+            }
+          ]
+        },
+        {
+          "title": "Notifications",
+          "path": "notifications"
+        },
+        {
+          "title": "Autonomy AI assistant",
+          "path": "autonomy-ai-assistant"
+        },
+        {
+          "title": "Search",
+          "path": "search"
         }
       ]
     },
@@ -129,20 +261,32 @@
           "path": "connecting-to-runtimes"
         },
         {
-          "title": "IDE Workspace Overview",
+          "title": "Workspace",
           "path": "workspace-overview",
           "items": [
             {
-              "title": "Workspace Layout",
+              "title": "Workspace layout",
               "path": "workspace-layout"
             },
             {
-              "title": "Project Explorer",
+              "title": "Project tree",
               "path": "project-explorer"
             },
             {
-              "title": "Console and Debugging",
+              "title": "Console & PLC Logs",
               "path": "console-debugging"
+            },
+            {
+              "title": "Search in project",
+              "path": "search"
+            },
+            {
+              "title": "Source Control",
+              "path": "source-control"
+            },
+            {
+              "title": "AI Engineer",
+              "path": "ai-engineer"
             }
           ]
         },
@@ -293,20 +437,16 @@
           "path": "working-with-variables",
           "items": [
             {
-              "title": "Global Variables",
-              "path": "global-variables"
-            },
-            {
-              "title": "Local Variables",
-              "path": "local-variables"
-            },
-            {
-              "title": "Variables Editor",
+              "title": "Variables editor",
               "path": "variables-editor"
             },
             {
-              "title": "Global Variables Editor",
-              "path": "global-variables-editor"
+              "title": "Variable classes inside a POU",
+              "path": "local-variables"
+            },
+            {
+              "title": "Global variables",
+              "path": "global-variables"
             }
           ]
         },
@@ -337,9 +477,13 @@
           ]
         },
         {
-          "title": "Standard Function Blocks Library",
+          "title": "Block Library",
           "path": "standard-function-blocks",
           "items": [
+            {
+              "title": "Library Manager",
+              "path": "library-manager"
+            },
             {
               "title": "Timer Function Blocks",
               "path": "timer-blocks"
@@ -381,42 +525,28 @@
           ]
         },
         {
-          "title": "Hardware Configuration",
-          "path": "hardware-configuration",
-          "items": [
-            {
-              "title": "Device Configuration Overview",
-              "path": "device-config-overview"
-            },
-            {
-              "title": "Board Selection",
-              "path": "board-selection"
-            },
-            {
-              "title": "Pin Mapping",
-              "path": "pin-mapping"
-            },
-            {
-              "title": "Communication Settings",
-              "path": "communication-settings"
-            }
-          ]
-        },
-        {
-          "title": "Building and Deploying",
+          "title": "Building and Running",
           "path": "building-deploying",
           "items": [
             {
-              "title": "Project Compilation",
+              "title": "Project compilation",
               "path": "project-compilation"
+            },
+            {
+              "title": "Deployment to a vPLC",
+              "path": "deployment-vplc"
+            },
+            {
+              "title": "Debugger",
+              "path": "debugger"
+            },
+            {
+              "title": "Running with the Simulator",
+              "path": "simulator"
             },
             {
               "title": "XML Export Format",
               "path": "xml-export"
-            },
-            {
-              "title": "Deployment to vPLC Devices",
-              "path": "deployment-vplc"
             }
           ]
         },
@@ -443,66 +573,224 @@
               ]
             },
             {
-              "title": "OPC-UA (Coming Soon)",
-              "path": "opc-ua"
+              "title": "OPC-UA",
+              "path": "opc-ua",
+              "items": [
+                {
+                  "title": "General Settings",
+                  "path": "general-settings"
+                },
+                {
+                  "title": "Security Profiles",
+                  "path": "security-profiles"
+                },
+                {
+                  "title": "Users",
+                  "path": "users"
+                },
+                {
+                  "title": "Certificates",
+                  "path": "certificates"
+                },
+                {
+                  "title": "Address Space",
+                  "path": "address-space"
+                },
+                {
+                  "title": "Worked Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
+            },
+            {
+              "title": "S7Comm",
+              "path": "s7comm",
+              "items": [
+                {
+                  "title": "Server Configuration",
+                  "path": "server-configuration"
+                },
+                {
+                  "title": "Data Blocks",
+                  "path": "data-blocks"
+                },
+                {
+                  "title": "PLC Identity",
+                  "path": "plc-identity"
+                },
+                {
+                  "title": "Logging",
+                  "path": "logging"
+                },
+                {
+                  "title": "Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
+            },
+            {
+              "title": "EtherCAT",
+              "path": "ethercat",
+              "items": [
+                {
+                  "title": "Prerequisites",
+                  "path": "prerequisites"
+                },
+                {
+                  "title": "Adding an EtherCAT Segment",
+                  "path": "adding-ethercat"
+                },
+                {
+                  "title": "Bus Tab",
+                  "path": "bus-scan"
+                },
+                {
+                  "title": "Repository Tab",
+                  "path": "bus-repository"
+                },
+                {
+                  "title": "Advanced Tab",
+                  "path": "bus-advanced"
+                },
+                {
+                  "title": "Device Info",
+                  "path": "slave-info"
+                },
+                {
+                  "title": "Configuration",
+                  "path": "slave-configuration"
+                },
+                {
+                  "title": "Startup Parameters",
+                  "path": "slave-startup-params"
+                },
+                {
+                  "title": "Channel Mappings",
+                  "path": "slave-channel-mappings"
+                },
+                {
+                  "title": "Diagnostics",
+                  "path": "diagnostics"
+                },
+                {
+                  "title": "Worked Example",
+                  "path": "example"
+                },
+                {
+                  "title": "Troubleshooting",
+                  "path": "troubleshooting"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Worked examples",
+          "path": "examples",
+          "items": [
+            {
+              "title": "Blink",
+              "path": "blink"
+            },
+            {
+              "title": "Motor start / stop with seal-in",
+              "path": "start-stop-seal-in"
+            },
+            {
+              "title": "Modbus slave: expose digital outputs",
+              "path": "modbus-slave-outputs"
+            },
+            {
+              "title": "OPC-UA: read a variable from UaExpert",
+              "path": "opcua-read"
+            },
+            {
+              "title": "Python function block: data transform",
+              "path": "python-function-block"
+            }
+          ]
+        },
+        {
+          "title": "Authoring diagrams in docs",
+          "path": "diagram-authoring"
+        }
+      ]
+    },
+    {
+      "title": "Account & Settings",
+      "path": "account",
+      "items": [
+        {
+          "title": "Your user profile",
+          "path": "user-profile"
+        },
+        {
+          "title": "Editing your profile",
+          "path": "editing-your-profile"
+        },
+        {
+          "title": "Settings",
+          "path": "settings",
+          "items": [
+            {
+              "title": "Profile",
+              "path": "profile"
+            },
+            {
+              "title": "Security → Email",
+              "path": "security-email"
+            },
+            {
+              "title": "Security → Password",
+              "path": "security-password"
+            },
+            {
+              "title": "Privacy",
+              "path": "privacy"
+            },
+            {
+              "title": "Usage",
+              "path": "usage"
+            },
+            {
+              "title": "Billing",
+              "path": "billing"
+            },
+            {
+              "title": "Account",
+              "path": "account"
             }
           ]
         }
       ]
     },
     {
-      "title": "Advanced Topics",
-      "path": "advanced-topics",
+      "title": "Plans & Billing",
+      "path": "plans-and-billing",
       "items": [
         {
-          "title": "Best Practices",
-          "path": "best-practices",
-          "items": [
-            {
-              "title": "Project Organization",
-              "path": "project-organization"
-            },
-            {
-              "title": "Code Reusability",
-              "path": "code-reusability"
-            },
-            {
-              "title": "Performance Optimization",
-              "path": "performance-optimization"
-            }
-          ]
+          "title": "Pricing",
+          "path": "pricing"
         },
         {
-          "title": "Troubleshooting",
-          "path": "troubleshooting",
-          "items": [
-            {
-              "title": "Common Compilation Errors",
-              "path": "compilation-errors"
-            },
-            {
-              "title": "Runtime Debugging",
-              "path": "runtime-debugging"
-            },
-            {
-              "title": "Network and Connectivity Issues",
-              "path": "network-issues"
-            }
-          ]
+          "title": "Plan limits",
+          "path": "plan-limits"
         },
         {
-          "title": "Integration and APIs",
-          "path": "integration-apis",
-          "items": [
-            {
-              "title": "Edge Functions",
-              "path": "edge-functions"
-            },
-            {
-              "title": "Custom Libraries",
-              "path": "custom-libraries"
-            }
-          ]
+          "title": "AI Credit Units",
+          "path": "ai-credit-units"
+        },
+        {
+          "title": "Upgrading and downgrading",
+          "path": "upgrading-and-downgrading"
         }
       ]
     },
@@ -511,34 +799,48 @@
       "path": "reference",
       "items": [
         {
-          "title": "Data Types Reference",
-          "path": "data-types"
+          "title": "Glossary",
+          "path": "glossary"
         },
         {
-          "title": "IEC 61131-3 Keywords",
-          "path": "iec-keywords"
-        },
-        {
-          "title": "Standard Function Blocks Reference",
-          "path": "function-blocks"
-        },
-        {
-          "title": "Supported Hardware Boards",
-          "path": "hardware-boards"
-        },
-        {
-          "title": "Keyboard Shortcuts",
+          "title": "Keyboard shortcuts",
           "path": "keyboard-shortcuts"
+        },
+        {
+          "title": "URL cheat sheet",
+          "path": "url-cheatsheet"
         },
         {
           "title": "FAQ",
           "path": "faq"
-        },
-        {
-          "title": "Glossary",
-          "path": "glossary"
         }
       ]
+    },
+    {
+      "title": "Troubleshooting",
+      "path": "troubleshooting",
+      "items": [
+        {
+          "title": "Orchestrator not connecting",
+          "path": "orchestrator-not-connecting"
+        },
+        {
+          "title": "vPLC stuck in Stopped",
+          "path": "vplc-stuck-stopped"
+        },
+        {
+          "title": "Plan limit reached",
+          "path": "plan-limit-reached"
+        },
+        {
+          "title": "Verification email not arriving",
+          "path": "email-not-arriving"
+        }
+      ]
+    },
+    {
+      "title": "Changelog",
+      "path": "changelog-link"
     }
   ]
 }

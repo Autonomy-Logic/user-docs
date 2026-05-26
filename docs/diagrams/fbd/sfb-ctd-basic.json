@@ -1,0 +1,28 @@
+{
+  "comment": "CTD. Down Counter",
+  "nodes": [
+    { "id": "cd_var", "type": "input-variable", "position": { "x": 50, "y": 60 }, "data": { "name": "CD" } },
+    { "id": "ld_var", "type": "input-variable", "position": { "x": 50, "y": 140 }, "data": { "name": "LD" } },
+    { "id": "pv_var", "type": "input-variable", "position": { "x": 50, "y": 220 }, "data": { "name": "PV" } },
+    {
+      "id": "ctd",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "CTD",
+        "blockType": "function-block",
+        "inputs": [{ "name": "CD" }, { "name": "LD" }, { "name": "PV" }],
+        "outputs": [{ "name": "Q" }, { "name": "CV" }]
+      }
+    },
+    { "id": "q_var", "type": "output-variable", "position": { "x": 530, "y": 60 }, "data": { "name": "Q" } },
+    { "id": "cv_var", "type": "output-variable", "position": { "x": 530, "y": 140 }, "data": { "name": "CV" } }
+  ],
+  "edges": [
+    { "id": "e1", "source": "cd_var", "sourceHandle": "output", "target": "ctd", "targetHandle": "CD" },
+    { "id": "e2", "source": "ld_var", "sourceHandle": "output", "target": "ctd", "targetHandle": "LD" },
+    { "id": "e3", "source": "pv_var", "sourceHandle": "output", "target": "ctd", "targetHandle": "PV" },
+    { "id": "e4", "source": "ctd", "sourceHandle": "Q", "target": "q_var", "targetHandle": "input" },
+    { "id": "e5", "source": "ctd", "sourceHandle": "CV", "target": "cv_var", "targetHandle": "input" }
+  ]
+}
