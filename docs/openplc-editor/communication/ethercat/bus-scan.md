@@ -30,7 +30,7 @@ Once a NIC is selected, the **Scan** button becomes active **only when**:
 1. The runtime is connected (the editor's runtime indicator reads "connected"), and
 2. The EtherCAT discovery service reports as available on that runtime.
 
-If the runtime is not connected, the Scan button stays disabled. If the runtime is connected but the service is not available, a yellow banner reads `EtherCAT Discovery Service Not Available` along with a short explanation from the runtime. The most common cause is missing OS permissions on the NIC. See [Troubleshooting](troubleshooting).
+If the runtime is not connected, the Scan button stays disabled. If the runtime is connected but the service is not available, a yellow banner reads `EtherCAT Discovery Service Not Available` along with a short explanation from the runtime. See [Troubleshooting](troubleshooting).
 
 When you click **Scan**, the master sends a discovery sweep on the chosen NIC and waits up to a few seconds for slaves to respond. The button text changes to **Scanning…** while it runs. When the scan finishes, you see a `Completed in <N>ms` indicator next to the button along with a short message from the runtime.
 

@@ -9,7 +9,6 @@ EtherCAT is a wire-level real-time protocol. Unlike Modbus or OPC-UA, it does no
 | Runtime | Runtime v4 |
 | Operating system | Linux (any modern distribution that supports raw Ethernet sockets) |
 | Architecture | x86-64 or ARM64 (most edge boxes and industrial PCs) |
-| Privileges | The runtime process needs permission to send raw Ethernet frames on the EtherCAT NIC |
 
 EtherCAT is **not available** on Runtime v3 or on Arduino targets. If you need to run EtherCAT, your project must target a Runtime v4 host.
 
@@ -36,25 +35,6 @@ EtherCAT relies on a low-latency raw-socket path through the kernel. Most server
 | Beckhoff CCAT (built into IPCs) | Native support, optimal latency. |
 
 USB-Ethernet adapters and Wi-Fi devices are **not supported**: they cannot deliver the timing EtherCAT requires.
-
-## Operating-system permissions
-
-To send raw Ethernet frames, the runtime process needs the `CAP_NET_RAW` Linux capability. There are two common ways to grant this:
-
-1. **Run the runtime as root.** Simplest, but discouraged on production hosts.
-2. **Grant the capability to the runtime binary or service unit.** Preferred on production hosts.
-
-If you installed the runtime via a systemd unit, edit the unit (or use a drop-in override) so that the service starts with the capability:
-
-```ini
-[Service]
-AmbientCapabilities=CAP_NET_RAW
-CapabilityBoundingSet=CAP_NET_RAW
-```
-
-Reload systemd (`systemctl daemon-reload`) and restart the runtime. If you prefer not to touch the unit, you can also set the capability on the binary directly with `setcap cap_net_raw+ep <path-to-runtime>`, but this only works when the runtime is launched as a regular executable rather than from a container.
-
-If the capability is missing, the EtherCAT plugin reports a clear error in the runtime log when the bus tries to start, and the Bus Editor's **Bus** tab shows an `EtherCAT Discovery Service Not Available` banner once the runtime is connected. See [Troubleshooting](troubleshooting) for the matching diagnostics.
 
 ## Physical layer and topology
 

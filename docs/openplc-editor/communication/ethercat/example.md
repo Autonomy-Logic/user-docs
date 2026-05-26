@@ -20,7 +20,6 @@ Before opening the editor, make sure the host meets the [Prerequisites](prerequi
 
 - Runtime v4 on Linux.
 - A second NIC dedicated to EtherCAT, separate from the host's management network.
-- `CAP_NET_RAW` granted to the runtime (typically via the systemd unit override described in Prerequisites).
 - The EtherCAT NIC connected to the EK1100's IN port. The EK1100 is powered.
 
 Plug the cable in, confirm the EK1100 link LED is solid, and continue.

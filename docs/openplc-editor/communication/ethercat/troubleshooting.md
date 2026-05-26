@@ -8,17 +8,11 @@ This page is a checklist of common failures grouped by where you see them: in th
 
 **Symptom.** The **Bus** tab shows a yellow banner with this text along with a more detailed message from the runtime. The **Scan** button is disabled.
 
-**Most likely cause.** The runtime cannot send raw Ethernet frames because the Linux `CAP_NET_RAW` capability is missing on the process.
+**Most likely cause.** The vPLC's EtherCAT NIC was not marked as a **Dedicated Interface** when the device was created, so the runtime cannot take exclusive raw-Ethernet access on that port.
 
-**Fix.** Add the capability to the systemd unit running the runtime:
+**Fix.** Recreate the vPLC, this time ticking **Dedicated Interface** on the NIC that will carry the EtherCAT segment. See **[Creating a vPLC](../../../platform/vplcs/creating-a-vplc)** for the wizard step. Once the new device boots, the banner clears and **Scan** becomes active.
 
-```ini
-[Service]
-AmbientCapabilities=CAP_NET_RAW
-CapabilityBoundingSet=CAP_NET_RAW
-```
-
-Run `systemctl daemon-reload` followed by a restart of the runtime service. The banner clears and the **Scan** button becomes active. See [Prerequisites](prerequisites) for the full setup.
+If the dedicated NIC is set correctly and the banner persists, the runtime version may be too old, EtherCAT requires Runtime v4. Check **[Prerequisites](prerequisites)**.
 
 ### Scan button stays disabled
 
