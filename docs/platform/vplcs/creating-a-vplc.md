@@ -12,28 +12,22 @@ From the **[Orchestrators list](../orchestrators/orchestrators-list)**, click th
 
 The Devices tab shows your existing vPLCs as cards, plus a dashed **+ New Device** tile at the end of the grid. Click that tile.
 
-If you've already used your plan's device limit, you'll see the plan-limit modal instead:
-
-![Device limit reached (2/2) on plan Community](images/vplc-plan-limit.png)
-
-Delete one of the existing devices, or upgrade your plan via **[Pricing](../../plans-and-billing/pricing)**.
-
 ## Step 2, Details
 
 The wizard opens on a dedicated page. A 3-step indicator at the top shows the flow: **1. Details**, **2. Network**, **3. Serial Ports**.
 
-![New Device wizard, Details step: Device Name and Runtime Version](images/new-device-step1.png)
+![New Device wizard step 1, Device Details: Device Name field and Runtime Version dropdown, both empty](images/new-device-step1.png)
 
 | Field | Required | Notes |
 |---|---|---|
 | **Device Name** | Yes | A label for this vPLC. Must be unique within the orchestrator. Examples: *Palletizer Machine*, *Conveyor Controller*, *vPLC 02*. |
 | **Runtime Version** | Yes | The OpenPLC v4 runtime image that this vPLC will run. Pick the version marked **Latest** unless you have a specific reason to pin an older version. |
 
-The runtime dropdown lists every available version, with the latest stable one labeled and pre-releases flagged as such:
+The runtime dropdown lists every available version. The newest stable build is labeled **Latest**, with older stable builds below it and pre-release (release-candidate) builds at the top:
 
-![Runtime version dropdown showing v4.0.9 (Latest) and pre-release builds](images/new-device-runtime-dropdown.png)
+![Runtime version dropdown: rc4/rc3/rc2/rc1 pre-release builds, then v4.0.9 - Latest, v4.0.8, v4.0.7, v4.0.6](images/new-device-runtime-dropdown.png)
 
-Each version corresponds to a specific build of the runtime container (`ghcr.io/autonomy-logic/openplc-runtime:<version>`). The agent pulls and caches images on first use.
+Each version corresponds to a specific build of the runtime container. The agent pulls and caches the image on first use, so creation of subsequent vPLCs on the same orchestrator using the same version is much faster.
 
 Click **Next**.
 
@@ -41,20 +35,21 @@ Click **Next**.
 
 The wizard requires **at least one virtual NIC**. A NIC is what gives the vPLC its presence on your physical LAN.
 
-![Network step: a single default NIC (veth0) already configured](images/new-device-step2-network.png)
+![Network step: a single default NIC (veth0) on eth0, DHCP, MAC auto](images/new-device-step2-network.png)
 
 A default NIC named `veth0` is added for you, configured for DHCP on the host's first interface with an auto-generated MAC. Click the NIC row to expand and edit it, click **+ Add Virtual NIC** to add more, or click the trash icon to remove one.
 
-When you expand a NIC, you can configure:
+Expanding the row reveals every NIC option:
+
+![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.2.4), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-device-step2-nic-expanded.png)
 
 | Field | What it does |
 |---|---|
-| **Name** | Logical name for the NIC inside the runtime. `veth0` is the default. |
-| **Physical port** | Which host network interface to attach to (e.g. `eth0`, `enp3s0`, `wlan0`). |
-| **Network mode** | **DHCP** (default, auto-assigned from your router) or **Static**. |
-| **IP address / subnet mask / gateway / DNS** | Required for Static, empty for DHCP. |
-| **MAC mode** | **Auto** (Docker generates one) or **Manual** (you type one in). |
-| **MAC address** | Required if MAC mode is Manual. Useful when your DHCP server or asset tracker expects a fixed MAC. |
+| **Interface Name** | Logical name for the NIC inside the runtime. `veth0` is the default. |
+| **Physical Port** | Which host network interface to attach to (e.g. `eth0`, `enp3s0`, `wlan0`). The dropdown shows each interface with its current IP for easier identification. |
+| **Dedicated Interface** | Reserves the physical NIC for protocols that need raw Ethernet access (EtherCAT). The vPLC takes over the interface entirely. |
+| **Network Mode** | **DHCP (Automatic)** (default, auto-assigned from your router) or **Static IP**. Static reveals IP / subnet / gateway / DNS fields. |
+| **MAC Address** | **Automatic** (Docker generates one) or **Manual** (you type one in). Manual is useful when your DHCP server or asset tracker expects a fixed MAC. |
 
 See **[Network modes](network-modes)** for the deeper picture on DHCP vs Static, multiple NICs, and the MACVLAN model.
 
@@ -62,14 +57,14 @@ Click **Next**.
 
 ## Step 4, Serial Ports (optional)
 
-![Serial Ports step: detect button and "No serial devices detected" empty state](images/new-device-step3-serial.png)
+![Serial Ports step with a Refresh button on the right and the empty-state message "No serial devices detected on the host machine."](images/new-device-step3-serial.png)
 
 If the runtime needs access to host serial devices (USB-to-RS485 adapters, on-board UARTs, etc.), the platform lets you pass them through to the vPLC container.
 
 - **Refresh** in the top-right re-scans the host for available serial devices.
 - Each detected device shows its host path (e.g. `/dev/ttyUSB0`) and a checkbox to expose it.
 
-On staging (or any host without serial hardware), this step shows: *No serial devices detected on the host machine.* That's fine, leave it empty and continue.
+If the host has no serial hardware, this step shows *No serial devices detected on the host machine.* That's fine, leave it empty and continue.
 
 Click **Create Device** at the bottom right.
 

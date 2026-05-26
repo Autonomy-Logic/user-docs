@@ -10,7 +10,8 @@ Adding an orchestrator is a three-step wizard. You'll work in two places: your b
   - Outbound HTTPS/WebSocket connectivity to the Autonomy Edge cloud.
   - Either root access or a user that can `sudo`.
 - A browser session signed in to Autonomy Edge.
-- An orchestrator slot available on your plan. See **[Plan limits](../../plans-and-billing/plan-limits)** if you've used your quota.
+
+The number of orchestrators you can pair at once is governed by your plan, see **[Plan limits](../../plans-and-billing/plan-limits)**.
 
 ## Step 1, Open the wizard
 
