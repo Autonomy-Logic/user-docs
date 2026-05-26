@@ -4,6 +4,8 @@ The **Device Info** tab is the second tab in the Slave Device Editor. It is a re
 
 The header at the top of the editor shows the slave name (e.g. `EL1809 16Ch. Dig. Input 24V, 3ms`) followed by the four tabs. Click **Device Info**.
 
+![Device Info tab for EK1814: Vendor "Beckhoff Automation GmbH & Co. KG", Vendor ID 0x2, Product Code 0x07162c52, Revision 0x00100000, ESI File "Beckhoff EK18xx.xml", Group "System Couplers", Input Channels 4, Output Channels 4](images/slave-info.png)
+
 ## Fields
 
 | Field | What it shows |

@@ -4,6 +4,8 @@ The **Configuration** tab is the third tab in the Slave Device Editor. It is the
 
 When you add a slave (either from a scan or from the repository), the editor fills the tab with sensible defaults that match the SOEM master's recommended values. You only need to come here when the defaults do not fit the device. Typically motion drives that need distributed clocks, or slaves that take unusually long to enter operational state.
 
+![Configuration tab for EK1814: Startup Checks (Verify Vendor ID + Product Code, both ticked), Addressing (EtherCAT Address 0 = auto), Timeouts (SDO 1000 ms, I→P 3000 ms, P→S/S→O 10000 ms), Watchdog (SM Watchdog ticked at 100 ms, PDI Watchdog 100 ms), Distributed Clocks (Enable DC checkbox)](images/slave-configuration.png)
+
 The Configuration tab is organised into five labelled sections, top to bottom:
 
 1. **Startup Checks**

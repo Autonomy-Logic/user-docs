@@ -2,6 +2,8 @@
 
 The **Advanced** tab is the third tab in the EtherCAT Bus Editor. It holds master-wide settings that apply to the whole segment: whether the bus runs at all, how often the master cycles the wire, the priority of the cyclic task, and how long the watchdog waits before declaring a stall.
 
+![Advanced tab showing ENABLE BUS toggle (on), CYCLE TIME 1000 µs, TASK PRIORITY 1, and the start of the WATCHDOG TIMEOUT card](images/bus-advanced.png)
+
 The tab is divided into four cards, each with a single setting.
 
 ## Enable Bus

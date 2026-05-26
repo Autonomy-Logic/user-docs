@@ -4,6 +4,8 @@ The **Channel Mappings** tab is the first tab that opens when you click a slave 
 
 The PDOs (TxPDO for inputs into the controller, RxPDO for outputs out of the controller) are read directly from the matched ESI. You do not pick them by hand. The editor lists every channel the device declares, ready to be referenced from your Ladder, ST, or FBD code.
 
+![Channel Mappings tab for the EK1814 slave: All(8) Inputs(4) Outputs(4) filter pills, then a table with #, Dir, IEC Type, Address, Alias columns, showing 4 BOOL inputs at %IX0.0–%IX0.3 and 4 BOOL outputs at %QX0.0–%QX0.3](images/slave-channel-mappings.png)
+
 ## What gets pre-assigned
 
 When you add a slave (either from a scan or from the [Repository](bus-repository)), the editor automatically:
@@ -64,16 +66,13 @@ The editor picks one address per channel; you do not need to compute byte offset
 
 ### The Alias column
 
-Every row has an editable alias field. The alias is **purely cosmetic**: it does not change the address or how the channel is referenced from your program. Use it to remind yourself what each channel is wired to:
+Every row has an editable alias field. The alias is **purely cosmetic**: it does not change the address or how the channel is referenced from your program. Use it to remind yourself what each channel is wired to.
 
-```
-%IX0.0   alias = pump_running
-%IX0.1   alias = tank_level_high
-%QX0.0   alias = pump_relay
-%QW2     alias = vfd_speed_setpoint
-```
+To set one, click the **Alias** cell of any row and type a name. The change is committed when you tab out of the cell.
 
-Aliases appear next to the address in the variable picker on the editor's other tabs (search, debug). To set one, click the **Alias** cell and type. The change is committed when you tab out of the cell.
+![Channel Mappings tab with two aliases typed in: start_button on %IX0.0 and emergency_stop on %IX0.1; the remaining rows still show the empty "Alias" placeholder](images/slave-channel-mappings-with-alias.png)
+
+Aliases appear next to the address in the variable picker on the editor's other tabs (search, debug). They make the rest of the project read like the wiring diagram rather than like raw IEC addresses.
 
 ## Auto-mapping for DS401 modules
 

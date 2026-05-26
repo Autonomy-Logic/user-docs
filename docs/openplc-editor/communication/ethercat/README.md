@@ -41,14 +41,20 @@ The Bus Editor has three top-level tabs (**Bus**, **Repository**, **Advanced**).
 To add an EtherCAT segment to your project:
 
 1. Open your project in the Autonomy Edge editor.
-2. In the project explorer panel on the left, click the **+** button.
-3. Select **Remote Device** from the menu.
+2. In the project explorer panel on the left, click the blue **`+`** button next to the project name.
+3. Select **Remote Device** from the menu that opens.
+
+   ![Add Remote Device dialog with Device name field and Protocol dropdown](images/add-remote-device.png)
+
 4. In the **Device name** field, enter a short identifier for the bus (e.g. `eth`, `axis_bus`, `field_io`). Names must be at least 3 characters.
-5. From the **Protocol** dropdown, choose **EtherCAT**.
+5. Click the **Protocol** dropdown and choose **EtherCAT**.
+
+   ![Protocol dropdown open showing Modbus, EtherNet/IP, EtherCAT, PROFINET options](images/add-remote-device-protocol-dropdown.png)
+
 6. Click **Create**.
 7. The new bus appears under **Remote Devices** in the project tree. Click it to open the EtherCAT Bus Editor.
 
-Slaves are added underneath the bus from inside the Bus Editor. Either by scanning a connected segment ([Bus tab](bus-scan)) or by picking devices from the ESI repository ([Repository workflow](bus-repository)). Each slave you add becomes a child node under the bus and opens its own [Slave Device Editor](slave-channel-mappings) when clicked.
+Slaves are added underneath the bus from inside the Bus Editor. Either by scanning a connected segment (**[Bus tab](bus-scan)**) or by picking devices from the ESI repository (**[Repository workflow](bus-repository)**). Each slave you add becomes a child node under the bus and opens its own **[Slave Device Editor](slave-channel-mappings)** when clicked.
 
 ## Documentation pages
 

@@ -5,10 +5,16 @@ This page covers the very first step: getting an EtherCAT bus entry into your pr
 ## Step-by-step
 
 1. Open your project in the Autonomy Edge editor and make sure the project explorer panel on the left is visible.
-2. Click the **+** button next to the project name to open the **Create PLC element** menu.
+2. Click the blue **`+`** button next to the project name to open the **Create PLC element** menu.
 3. Select **Remote Device** from the menu. A small form panel appears.
+
+   ![Add Remote Device dialog: Device name field plus Protocol dropdown defaulting to "Select a protocol", Cancel and Create buttons](images/add-remote-device.png)
+
 4. In the **Device name** field, enter a short, descriptive identifier for the bus. The form requires the name to be at least 3 characters. Common choices are `eth`, `axis_bus`, or `field_io`. The name becomes the label of the bus node in the project tree and the heading shown at the top of the Bus Editor.
-5. From the **Protocol** dropdown, choose **EtherCAT**. The dropdown also lists Modbus, EtherNet/IP, and PROFINET. Make sure EtherCAT is selected.
+5. From the **Protocol** dropdown, choose **EtherCAT**. The dropdown also lists Modbus, EtherNet/IP, and PROFINET.
+
+   ![Protocol dropdown expanded showing Modbus, EtherNet/IP, EtherCAT, PROFINET](images/add-remote-device-protocol-dropdown.png)
+
 6. Click **Create**.
 
 The new bus appears in the project tree under a **Remote Devices** folder. The first time you create one, the **Remote Devices** folder is created automatically; if you already have other remote devices (for example a Modbus client), the EtherCAT bus is added alongside them.

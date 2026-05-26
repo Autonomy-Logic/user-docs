@@ -2,6 +2,8 @@
 
 The **Repository** tab is the second tab in the EtherCAT Bus Editor. It is where you upload, browse, and remove the **ESI XML** files that describe the slave devices in your segment. The editor matches scanned devices against this repository to figure out which ESI describes which physical slave.
 
+![Repository tab showing the "ESI Device Files" drop-zone at the top and a Loaded Files table with one entry, Beckhoff EK18xx.xml, 13 devices](images/repository-tab.png)
+
 The repository is saved per user account, not per project. Files you upload while working on one project remain available for every other project you open. There is no need to re-import the same vendor catalog every time you start a new bus.
 
 ## What ESI files are
@@ -47,12 +49,16 @@ Below the upload zone, the **Loaded Files** table lists every ESI in the reposit
 
 ### Inspecting devices inside an ESI
 
-Click the chevron to expand a row. Below the file row, one row per device is shown, indented and highlighted. Each device row carries:
+Click the chevron to expand a row. Below the file row, one row per device is shown, indented and highlighted.
+
+![Repository tab with the Beckhoff EK18xx.xml file row expanded, showing the EK1828-0010 IO-Coupler entry with its product code (0x07242C52), revision (Rev: 0x0011000A), and System Couplers group badge](images/repository-tab-expanded.png)
+
+Each device row carries:
 
 - A small grid icon followed by the **device name** as it will appear in the Bus tab.
 - The **product code** in hex.
 - The **revision** in hex (`Rev: 0x00120000`).
-- An optional group badge (e.g. `Digital Input Terminals (ED1xxx, EL1xxx)`) shown when the ESI groups its devices.
+- An optional group badge (e.g. `System Couplers`) shown when the ESI groups its devices.
 
 If parsing produced any warnings, a yellow row underneath lists them in plain text. Most warnings are harmless. For example, a warning about an unsupported optional element. But they are surfaced so you can decide whether to download a newer version of the ESI from the vendor.
 

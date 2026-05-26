@@ -4,6 +4,8 @@ The **Bus** tab is the first tab in the EtherCAT Bus Editor and the place where 
 
 The header at the top of the editor reads `EtherCAT Bus: <name>` followed by the subtitle `EtherCAT Master Configuration`. The three tabs underneath are **Bus**, **Repository**, and **Advanced**.
 
+![Bus tab of the EtherCAT Bus Editor showing the Network Interface dropdown set to eth0, Scan button, Scanned Devices panel on the left, and Configured Devices panel on the right with one EK1814 entry](images/bus-tab.png)
+
 ## What you see at a glance
 
 The Bus tab is laid out in two side-by-side panels:
@@ -74,11 +76,18 @@ The modal has two buttons: **Go to Repository** (jumps directly to the [Reposito
 
 If the segment is not yet wired up, or you want to plan a project before hardware is on the bench, you can build the configuration entirely from the repository:
 
-1. Switch to the [Repository tab](bus-repository) and upload the ESI files for the devices you intend to use.
+1. Switch to the **[Repository tab](bus-repository)** and upload the ESI files for the devices you intend to use.
 2. Come back to the **Bus** tab.
-3. Click the ➕ icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
-4. Use the search box at the top of the modal (`Search devices by name, product code, or vendor…`) or expand a vendor row to browse. Each device row shows the name, group, product code, revision, and source ESI file.
-5. Select a device and click **Add Device**. The slave appears under your bus with a position assigned automatically (one greater than the highest existing position).
+3. Click the **`+`** icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
+
+   ![Add Device from Repository modal listing one vendor (Beckhoff Automation GmbH & Co. KG) with 13 devices collapsed under a chevron](images/add-device-from-repository.png)
+
+4. Use the search box at the top of the modal (`Search devices by name, product code, or vendor…`) or expand a vendor row to browse.
+
+   ![Modal with Beckhoff vendor expanded, listing EK1814 and EK1818 IO-Coupler variants with product code, revision, and source ESI file](images/add-device-from-repository-expanded.png)
+
+   Each device row shows the name, product code, revision, and source ESI file.
+5. Select a device and click **Add Device**. The slave appears under your bus in the project tree, and in the **Configured Devices** panel, with a position assigned automatically (one greater than the highest existing position).
 
 You can mix the two approaches. Start with what you have, fill in the rest after a scan. Without losing work.
 

@@ -11,6 +11,8 @@ Typical use cases:
 
 If your slave does not need SDO writes. Most digital I/O terminals do not. This tab can be left empty.
 
+![Startup Parameters tab for the EK1814 showing "No CoE Object Dictionary available for this device." since this terminal has no configurable parameters](images/slave-startup-params.png)
+
 ## What you see when there are no parameters
 
 There are two empty states, depending on what the ESI XML for the slave declares:
