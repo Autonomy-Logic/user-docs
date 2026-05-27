@@ -1,0 +1,9 @@
+{
+  "comment": "Pump runs while pump_running is true and tank_low is false",
+  "rungNumber": 1,
+  "elements": [
+    { "type": "contact", "variant": "default", "variable": "pump_running" },
+    { "type": "contact", "variant": "negated", "variable": "tank_low" },
+    { "type": "coil", "variant": "default", "variable": "pump_relay" }
+  ]
+}

@@ -124,13 +124,9 @@ No edits required. Repeat for `EL2809` if you want to be thorough; results are t
 
 With the segment configured, you can wire the I/O into Ladder, ST, or FBD code in the project. A trivial pump-control rung in Ladder:
 
-```
-+----( IX0.0 )-----( IX0.1 )---+----( QX0.0 )---+
-|    pump_running   tank_low   |    pump_relay  |
-+------------------------------+----------------+
-```
+<ladder-diagram src="/docs/diagrams/ladder/ethercat-pump-control.json"></ladder-diagram>
 
-In Structured Text:
+The same logic in Structured Text:
 
 ```pascal
 PROGRAM main
