@@ -34,7 +34,7 @@ The signatures must match exactly. No parameters, no return value. If either fun
 
 ## Variables: Name in the Table = Name in the Code
 
-Variables you declare in the Variables Table. Inputs and Outputs (the only two classes available for C++ blocks). Are plain C++ variables inside `setup()` and `loop()`, using the exact names from the table. Internal state stays in your C++ source: declare ordinary variables at file scope above `setup()`/`loop()` to persist them between scan cycles, or inside the functions for scratch values.
+Variables you declare in the Variables Table (Inputs and Outputs are the only two classes available for C++ blocks) are plain C++ variables inside `setup()` and `loop()`, using the exact names from the table. Internal state stays in your C++ source: declare ordinary variables at file scope above `setup()`/`loop()` to persist them between scan cycles, or inside the functions for scratch values.
 
 ```cpp
 // With ENABLE (BOOL Input), SPEED (INT Input), MOTOR_ON (BOOL Output) declared in the table:
