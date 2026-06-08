@@ -69,7 +69,7 @@ Below the project tree, the **Library** section lists every library that's enabl
 
 Expanding a library reveals each function and function block it contains, drag them into a graphical body to use them.
 
-For more, see the **[Library Manager](../standard-function-blocks/library-manager)** page.
+For more, see the **[Library Manager](../library-manager/overview)** page.
 
 ## Central editor area
 
