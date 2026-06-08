@@ -473,13 +473,9 @@
           ]
         },
         {
-          "title": "Block Library",
+          "title": "Standard Library Blocks",
           "path": "standard-function-blocks",
           "items": [
-            {
-              "title": "Library Manager",
-              "path": "library-manager"
-            },
             {
               "title": "Timer Function Blocks",
               "path": "timer-blocks"
@@ -499,6 +495,28 @@
             {
               "title": "Other Standard Function Blocks",
               "path": "other-blocks"
+            }
+          ]
+        },
+        {
+          "title": "Library Manager",
+          "path": "library-manager",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Creating a Library",
+              "path": "creating-a-library"
+            },
+            {
+              "title": "Publishing a Library",
+              "path": "publishing-a-library"
+            },
+            {
+              "title": "Installing a Library",
+              "path": "installing-a-library"
             }
           ]
         },

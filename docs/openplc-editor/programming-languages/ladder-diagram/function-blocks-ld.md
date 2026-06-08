@@ -126,7 +126,7 @@ The detailed per-block pages cover pin types, behaviour, timing diagrams, and co
 - **[Bistable blocks](../../standard-function-blocks/bistable-blocks)**: `SR`, `RS`, `SEMA`
 - **[Other standard blocks](../../standard-function-blocks/other-blocks)**: `RTC`, `INTEGRAL`, `DERIVATIVE`, `PID`, `RAMP`, `HYSTERESIS`
 
-The IEC standard **functions** (comparison, arithmetic, bit-shift, type conversion, etc.) live in the `iec-std-functions` library, see the **[Library Manager](../../standard-function-blocks/library-manager)** page for how to enable them and where to find them in the picker.
+The IEC standard **functions** (comparison, arithmetic, bit-shift, type conversion, etc.) live in the `iec-std-functions` library, see the **[Library Manager](../../library-manager/overview)** page for how to enable them and where to find them in the picker.
 
 ## What's next
 
