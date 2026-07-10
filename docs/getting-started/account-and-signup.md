@@ -8,17 +8,16 @@ Go to [edge.autonomylogic.com/signup](https://edge.autonomylogic.com/signup).
 
 You have two ways to create an account:
 
-1. **Email and password.** Enter your name, email, and a password. Passwords must be at least 8 characters and contain an uppercase letter, a lowercase letter, and a number.
+1. **Email and password.** Enter your full name, a username (3 to 20 characters; letters, numbers, and underscores only), your email, and a password. Passwords must be at least 8 characters and contain an uppercase letter, a lowercase letter, and a number. You also need to check the box agreeing to the **Terms of Service** and **Privacy Notice** before creating the account.
 2. **Single sign-on (SSO).** Use your Apple, Google, or Microsoft account. The platform pulls your name and email from the SSO provider, so no separate password is required.
 
-After you submit, the platform sends a verification email. You won't be able to use most features (creating projects, posting in the forum, joining organizations) until your email is verified.
+After you submit, the platform emails you a 6-digit verification code and opens the **Verify your email** page. You won't be able to use most features (creating projects, posting in the forum, joining organizations) until your email is verified.
 
 ## Verify your email
 
-Open the email and either:
+Copy the 6-digit code from the email and type or paste it on the **Verify your email** page. The code expires in 30 minutes. If it doesn't arrive or expires, use **Click to resend** on the same page; only the newest code works.
 
-- Click the verification link, or
-- Copy the 6-digit code and paste it on the **Verify email code** page that opened in your browser after signup.
+Once you click **Verify and sign in**, you're signed in automatically and land on your dashboard.
 
 Email not arriving? See **[Verification email not arriving](../troubleshooting/email-not-arriving)** in the troubleshooting section.
 
@@ -28,7 +27,7 @@ Go to [edge.autonomylogic.com/signin](https://edge.autonomylogic.com/signin).
 
 Enter your email and password, or use SSO. Check **Remember me** to keep your email pre-filled on the next visit (the platform stores only the email, never the password).
 
-If you forget your password, click **Forgot password?** on the sign-in screen. You'll receive a reset email; the link opens a page where you set a new password. After resetting you'll be signed in automatically.
+If you forget your password, click **Forgot your password?** on the sign-in screen and enter your email. You'll receive a 6-digit reset code; enter it on the verification page and set a new password. For security, resetting the password closes all of your active sessions, so sign in again with the new password.
 
 ## What gets created behind the scenes
 
