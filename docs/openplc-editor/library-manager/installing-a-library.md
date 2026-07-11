@@ -57,3 +57,8 @@ The project still opens, but compilation will fail until the library is availabl
 - **[Library Manager](overview)**: how system and project libraries fit together.
 - **[Creating a Library](creating-a-library)**: author your own library to install elsewhere.
 - **[Publishing a Library](publishing-a-library)**: put a library on the public catalogue.
+
+
+## Browsing the catalog on the web
+
+The same public catalog is browsable without the editor (and without an account) at [edge.autonomylogic.com/libraries](https://edge.autonomylogic.com/libraries). Search by name, display name, or author, sort by **Popular** (most downloaded) or **Recent**, and download any `.stlib` artifact directly from a library's card.

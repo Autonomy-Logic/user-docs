@@ -1,6 +1,6 @@
 # Pricing
 
-Autonomy Edge has five plans: **Community**, **Education**, **Pro**, **Teams**, and **Enterprise**. The public [Pricing page](https://edge.autonomylogic.com/pricing) includes a Monthly / Annual toggle.
+Autonomy Edge has five plans: **Community**, **Education**, **Pro**, **Teams**, and **Enterprise**. The public [Pricing page](https://edge.autonomylogic.com/pricing) splits them into **Individuals** and **Team & Enterprise** catalogs with a toggle at the top, and shows annual-equivalent monthly prices. You choose the billing cycle (monthly or annual) on the plan's own page after clicking its card.
 
 ![Pricing page, annual billing, five plans](images/pricing-annual.png)
 
