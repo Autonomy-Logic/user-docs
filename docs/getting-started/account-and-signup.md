@@ -27,7 +27,7 @@ Go to [edge.autonomylogic.com/signin](https://edge.autonomylogic.com/signin).
 
 Enter your email and password, or use SSO. Check **Remember me** to keep your email pre-filled on the next visit (the platform stores only the email, never the password).
 
-If you forget your password, click **Forgot your password?** on the sign-in screen and enter your email. You'll receive a 6-digit reset code; enter it on the verification page and set a new password. For security, resetting the password closes all of your active sessions, so sign in again with the new password.
+If you forget your password, click **Forgot your password?** on the sign-in screen and enter your email. You'll receive a 6-digit reset code; enter it on the verification page and set a new password. The new password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a special character. For security, resetting the password closes all of your active sessions, so sign in again with the new password.
 
 ## What gets created behind the scenes
 
