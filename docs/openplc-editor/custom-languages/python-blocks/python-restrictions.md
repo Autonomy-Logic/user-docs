@@ -127,6 +127,83 @@ Network requests, file I/O, `time.sleep()`, large reads. All fine. They block yo
 - Strings are limited to 126 characters; longer values are truncated when written to a STRING output.
 - Array variables keep the length declared in the Variables Table. Don't `append`/`pop` on them.
 
+## Shared Globals (VAR_EXTERNAL): One Writer Only
+
+A Python block can declare a `VAR_EXTERNAL` to reach a global from the project's configuration, and read and write it like any other variable. But because your block runs in a separate process, updating a global is **not** the atomic operation it is in ST, LD or C++. This is the one place where the process boundary changes the meaning of your code rather than just its timing, so it's worth understanding before you rely on it.
+
+### What actually happens
+
+Your block never touches the global directly. Each cycle:
+
+1. The PLC reads the global's current value and sends it in with your inputs.
+2. Your `block_loop()` runs, in a different process, and may change its copy.
+3. The PLC takes your copy back and stores it into the global.
+
+Steps 1 and 3 each take the global's lock, so you never see or write a half-updated value. What isn't protected is the gap between them — and your block's whole cycle sits in that gap.
+
+### The consequence: lost updates
+
+If anything else writes the same global while your block is mid-cycle, step 3 overwrites it. Your block sends back a value computed from what it read at step 1, which is now stale.
+
+So this line does **not** reliably increment a shared counter:
+
+```python
+def block_loop():
+    global shared_count
+    shared_count = shared_count + 1   # unsafe if anything else also writes shared_count
+```
+
+> **Warning:** In ST, LD or C++, `shared_count := shared_count + 1;` completes inside a single scan while holding the global's lock, so no update is lost. The same line in a Python block does not, because the read and the write happen a cycle apart in another process.
+
+Measured on real hardware: a Python block and a C++ block each adding 2 to the same global, every cycle. The global held consistently **two thirds** of the total the two blocks had added between them. The missing third is updates that were read, added to, and then overwritten.
+
+| Where the code runs | `g := g + 1` with another writer |
+|---|---|
+| ST / LD / FBD / IL | Safe. Read-modify-write completes in one scan under the global's lock |
+| C++ function block | Safe. Same. The block runs inside the scan |
+| **Python function block** | **Unsafe. Updates from other tasks in the same window are lost** |
+
+### How to use globals safely from Python
+
+- **Give each global a single writer.** If your Python block writes a global, nothing else should. That case is exact, with no lost updates at all.
+- **Read freely.** Reading a global from Python is always safe. You may read a value that is a cycle old, but never a corrupt one.
+- **Don't accumulate into a shared global.** If several tasks must contribute to one total, have each write its own contribution to its own variable and let an ST block add them up. The addition then happens inside the scan, where it is atomic.
+- **Don't use a global as a lock or a semaphore** between a Python block and the rest of the program. Test-and-set cannot work across the boundary; two blocks can both see it free.
+
+This is a deliberate trade. Holding the global's lock from step 1 to step 3 would make Python's read-modify-write atomic, but it would also block every other task that touches that global for a whole Python cycle (~100 ms), which is far worse for the rest of your program.
+
+## Function Block Instances Are Not Available
+
+You cannot declare a function block instance in a Python block's Variables Table. A `TON`, a counter, or one of your own function blocks is rejected when you compile, with a message explaining why.
+
+The reason is not that the type is unsupported. It's that an instance only advances when something calls it. In ST you write `ton0(IN := start, PT := T#5s);`, and that call is what makes the timer tick. A Python block runs in its own process and has no way to call into the scan cycle, so the instance would sit there and never execute. Its `Q` would never go true and its `ET` would never move. Rather than give you pins that silently never update, the compiler refuses the declaration.
+
+### What to do instead
+
+**For execution control of the Python block itself**, use the `EN` / `ENO` pins that every function block instance has:
+
+```
+(* The Python block only runs while enabled *)
+myPyBlock(EN := systemReady);
+running := myPyBlock.ENO;
+```
+
+When `EN` is false the block does not execute at all, and `ENO` mirrors it.
+
+**When you need a function block's behaviour**, instantiate and call it in an ST, LD or FBD block, then wire its outputs into your Python block as inputs:
+
+```
+(* ST block: owns the timer and calls it *)
+delayDone : TON;
+
+delayDone(IN := startSignal, PT := T#5s);
+analyse(timerElapsed := delayDone.Q, sample := reading);
+```
+
+Your Python block receives `timerElapsed` as an ordinary BOOL input. The timer runs in the scan where it belongs, and Python sees its result.
+
+> **Tip:** C++ function blocks have no such restriction. They run inside the scan cycle, so they can declare a function block instance and call it directly. See [C++ Function Block Structure](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-structure).
+
 ## Performance Considerations
 
 ### Keep block_loop() Fast
