@@ -172,37 +172,81 @@ Measured on real hardware: a Python block and a C++ block each adding 2 to the s
 
 This is a deliberate trade. Holding the global's lock from step 1 to step 3 would make Python's read-modify-write atomic, but it would also block every other task that touches that global for a whole Python cycle (~100 ms), which is far worse for the rest of your program.
 
-## Function Block Instances Are Not Available
+## Function Block Instances: The PLC Calls Them For You
 
-You cannot declare a function block instance in a Python block's Variables Table. A `TON`, a counter, or one of your own function blocks is rejected when you compile, with a message explaining why.
+You can declare a function block instance in a Python block's Variables Table — a `TON`, a counter, one of your own function blocks — and use its pins exactly as you would in ST.
 
-The reason is not that the type is unsupported. It's that an instance only advances when something calls it. In ST you write `ton0(IN := start, PT := T#5s);`, and that call is what makes the timer tick. A Python block runs in its own process and has no way to call into the scan cycle, so the instance would sit there and never execute. Its `Q` would never go true and its `ET` would never move. Rather than give you pins that silently never update, the compiler refuses the declaration.
+What you cannot do is *call* it. `ton0()` has no meaning in Python: your block runs in a separate process, and the instance lives in the PLC's. You don't need to. **The PLC calls every instance your block declares, once per scan cycle**, and your Python code just reads and writes the pins.
 
-### What to do instead
+```python
+def block_loop():
+    global elapsed, finished
+    ton0.IN = start_signal      # drive the timer's inputs
+    ton0.PT = 5_000_000_000     # T#5s, in nanoseconds
 
-**For execution control of the Python block itself**, use the `EN` / `ENO` pins that every function block instance has:
+    finished = ton0.Q           # read what the instance produced
+    elapsed = ton0.ET
+```
+
+Declare it the way you always would:
 
 ```
-(* The Python block only runs while enabled *)
+VAR
+  ton0 : TON;
+END_VAR
+```
+
+### Pin names are upper-cased
+
+The compiler upper-cases members, so the pins are `ton0.IN`, `ton0.PT`, `ton0.Q`, `ton0.ET` — even if your own function block declares them in lower case. `ton0.in` would be a Python keyword anyway.
+
+### What you can write, and what you can only read
+
+| Pin kind | From Python |
+|---|---|
+| The block's inputs (`IN`, `PT`, …) | read and write |
+| The block's in-outs | read and write |
+| The block's outputs (`Q`, `ET`, …) | **read only** |
+| The block's internal state | not available |
+
+Assigning to an output has no effect, for the same reason assigning to one of your own inputs has none: the next cycle overwrites it. Internal state is deliberately not exposed — it belongs to the instance, and writing it from outside would corrupt the block.
+
+### Outputs are one cycle behind
+
+> **Tip:** Setting an input and reading an output in the same `block_loop()` does **not** give you the result of this cycle's call.
+
+The sequence per scan is: the PLC applies what your block wrote, calls the instance, then publishes what it produced. Your block sees that on its *next* cycle. So:
+
+```python
+def block_loop():
+    global result
+    ton0.IN = True
+    result = ton0.Q     # still the PREVIOUS cycle's value, not this one's
+```
+
+This is the same one-cycle lag every Python input already has (see [The ~100 ms Loop](#the-100-ms-loop) above) — it is just easier to overlook here, because setting a pin and reading a pin on adjacent lines *looks* synchronous. For logic where that matters, put the function block in an ST block instead.
+
+### The instance runs every scan, not every Python cycle
+
+The PLC calls the instance on its own scan cycle, which is typically much faster than your block's ~100 ms loop. A `TON` therefore keeps accurate time regardless of how often your Python code looks at it — the timer is not being driven by Python's cadence, only observed by it.
+
+If your block declares several instances, they are called in the order they appear in the Variables Table.
+
+### Controlling whether your block runs at all
+
+Use the `EN` / `ENO` pins that every function block instance has:
+
+```
 myPyBlock(EN := systemReady);
 running := myPyBlock.ENO;
 ```
 
-When `EN` is false the block does not execute at all, and `ENO` mirrors it.
+When `EN` is false the block does not execute — and neither do the instances it declares.
 
-**When you need a function block's behaviour**, instantiate and call it in an ST, LD or FBD block, then wire its outputs into your Python block as inputs:
+### What is still not supported
 
-```
-(* ST block: owns the timer and calls it *)
-delayDone : TON;
-
-delayDone(IN := startSignal, PT := T#5s);
-analyse(timerElapsed := delayDone.Q, sample := reading);
-```
-
-Your Python block receives `timerElapsed` as an ordinary BOOL input. The timer runs in the scan where it belongs, and Python sees its result.
-
-> **Tip:** C++ function blocks have no such restriction. They run inside the scan cycle, so they can declare a function block instance and call it directly. See [C++ Function Block Structure](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-structure).
+- **An array of function block instances** (`ARRAY [0..3] OF TON`) is refused.
+- **A generic pin** (`ANY_NUM` and friends) has no concrete type until it is wired, so a block with one cannot cross. The compiler names the pin it could not describe.
 
 ## Performance Considerations
 

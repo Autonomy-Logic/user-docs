@@ -259,6 +259,8 @@ void loop() {
 
 Each instance keeps its own state across scan cycles, just as it would in ST. Call it once per scan from `loop()`; an instance you never call never advances.
 
+> **Note:** A Python block can hold an instance too, but cannot call it — the PLC calls it instead, once per scan, and Python only uses the pins. That difference costs a one-cycle lag on the outputs. See [Python Restrictions](/docs/openplc-editor/custom-languages/python-blocks/python-restrictions).
+
 > **Note:** `TIME`, `DATE`, `TOD` and `DT` are 64-bit integers in C++. `TIME`, `TOD` and `DT` are counts of nanoseconds, so `T#1s` is `1000000000LL`. `DATE` is a count of **days** since 1970-01-01.
 
 ### Naming a member that matches its own type
