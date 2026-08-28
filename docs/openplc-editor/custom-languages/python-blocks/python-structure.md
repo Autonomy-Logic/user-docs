@@ -104,10 +104,17 @@ You can use any of the following IEC types as inputs, outputs, or locals:
 | USINT, UINT, UDINT, ULINT | `int` |
 | BYTE, WORD, DWORD, LWORD | `int` |
 | REAL, LREAL | `float` |
-| STRING | `str` |
-| ARRAY of any of the above | `list` |
+| STRING, WSTRING | `str` |
+| TIME, TOD, DT | `int` (nanoseconds) |
+| DATE | `int` (days since the epoch) |
+| ARRAY of any type | `list` |
+| A structure from the Data Types editor | a generated class instance |
+| An enumeration from the Data Types editor | a generated `IntEnum` member |
+| A function block instance | an object with its pins as attributes |
 
 When you read a variable, you get a plain Python value of the corresponding type. When you assign to an output, the value is converted back to its IEC type and sent to the PLC.
+
+Structures, enumerations, multi-dimensional arrays, arrays of structures and function block instances all have their own rules — indexing, member spelling and how to construct one. They are covered on their own page: [Python Data Types](/docs/openplc-editor/custom-languages/python-blocks/python-data-types).
 
 ### Strings
 
@@ -134,6 +141,8 @@ def block_loop():
     global average
     average = sum(samples) / len(samples)
 ```
+
+> **Warning:** The list is indexed by the **IEC index**. `ARRAY [0..9]` behaves exactly like a ten-element Python list, but `ARRAY [1..10]` becomes a list of length **11** whose index `0` is `None`. See [Python Data Types](/docs/openplc-editor/custom-languages/python-blocks/python-data-types).
 
 ## Complete Example
 

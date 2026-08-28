@@ -399,6 +399,10 @@
                   "path": "python-structure"
                 },
                 {
+                  "title": "Python Data Types",
+                  "path": "python-data-types"
+                },
+                {
                   "title": "Python Language Server",
                   "path": "python-language-server"
                 },
@@ -419,6 +423,10 @@
                 {
                   "title": "C++ Block Structure",
                   "path": "cpp-structure"
+                },
+                {
+                  "title": "C++ Data Types",
+                  "path": "cpp-data-types"
                 },
                 {
                   "title": "C++ Code Completion",
@@ -759,11 +767,11 @@
               "path": "profile"
             },
             {
-              "title": "Security → Email",
+              "title": "Security \u2192 Email",
               "path": "security-email"
             },
             {
-              "title": "Security → Password",
+              "title": "Security \u2192 Password",
               "path": "security-password"
             },
             {

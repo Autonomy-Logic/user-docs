@@ -62,6 +62,15 @@ If an `import` fails because a package isn't installed, the Python process for t
 
 > **Keep the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). They're required even if you don't reference them in your own code.
 
+The generated wrapper that surrounds your script uses all four and does not import them itself. Dropping one is easy to do — they look unused — and the symptom is misleading: the block starts, exits about a second later, and the log says
+
+```
+[Python] PLC runtime has stopped.
+[Python] Stopping Python block: MyBlock
+```
+
+The runtime has not stopped. The wrapper's liveness check calls `os.kill(plc_pid, 0)`, that raises `NameError` because `os` was never imported, and the handler reports it as a stopped runtime. If you see that message while the PLC is plainly still running, check your imports first.
+
 ### What You Cannot Do
 
 - **Install packages from inside a block**: `pip install` happens on the device, not from your block code. A block cannot install its own dependencies at runtime.
