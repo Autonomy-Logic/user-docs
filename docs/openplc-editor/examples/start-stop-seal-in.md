@@ -30,7 +30,7 @@ In a new LD program, add three variables:
 | `stop_btn` | Local | BOOL | Tick Debug |
 | `motor_on` | Local | BOOL | Tick Debug |
 
-All three are local for this demo. In a real installation, `start_btn` and `stop_btn` would be `Input` class with `Location` mapped to physical discrete inputs (`%IX0.0`, `%IX0.1`); `motor_on` would be `Output` mapped to `%QX0.0`. See **[Variables editor](../working-with-variables/variables-editor)**.
+All three stay `Local` for this demo. In a real installation they would still be `Local` — you would add a `Location`: `%IX0.0` and `%IX0.1` for the two buttons, `%QX0.0` for the motor. The class says how the value moves in and out of this POU; the location says which physical address it is wired to. A Program's I/O is `Local` plus a location, never `Input` or `Output`. See **[Variables editor](../working-with-variables/variables-editor)**.
 
 ## Step 2: Draw the rung
 
@@ -67,6 +67,6 @@ The Simulator has no physical buttons, so you toggle the variables manually from
 
 ## Where to next
 
-- Wire it to real hardware: change `start_btn` / `stop_btn` to `Input` class with `%IX` addresses, `motor_on` to `Output` with `%QX0.0`, deploy to a vPLC, and connect the pins.
+- Wire it to real hardware: leave all three as `Local` and give them locations — `%IX0.0` / `%IX0.1` for the buttons, `%QX0.0` for the motor — then deploy to a vPLC and connect the pins.
 - Expose `motor_on` over Modbus so an HMI can see it. See **[Modbus slave: expose digital outputs](modbus-slave-outputs)**.
 - Try a reset-priority variant: if both buttons are held, which wins? Move `stop_btn` to before the parallel branch.

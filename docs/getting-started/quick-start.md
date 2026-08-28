@@ -167,13 +167,15 @@ In the IDE, you'll see the variables table at the top and the program editor bel
 1. Click **+** again to add another variable
 2. Set the following values:
    - **Name**: `output_state`
-   - **Class**: Output
+   - **Class**: Local
    - **Type**: BOOL (found under Base Type)
    - **Location**: `%QX0.0`
 
 The **Location** field is critical - it maps your program variable to the physical I/O address. The `%QX0.0` address corresponds to the first digital output coil, which we'll configure to communicate via Modbus in Step 6.
 
 > **Understanding Located Variables**: In IEC 61131-3, the `%Q` prefix indicates an output, `X` indicates a bit (boolean), and `0.0` is the address (byte 0, bit 0). This creates a direct link between your program variable and the Modbus coil address.
+
+> **Why the class is Local, not Output**: The class and the location answer two different questions. The **class** says who may pass the value in and out of *this POU* — `Input` and `Output` define the pins of a Function Block, which is why they are not what you want on a Program. The **location** says which physical address the variable is wired to. A variable driving a real output is `Local` with a `%QX` location; a variable reading a real input is `Local` with a `%IX` location. See [Local Variables](/docs/openplc-editor/working-with-variables/local-variables).
 
 ---
 
