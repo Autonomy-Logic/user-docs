@@ -1,6 +1,8 @@
 # Additional Function Blocks
 
-Beyond timers, counters, bistables, and edge detectors, the IEC 61131-3 standard library includes function blocks for real-time clocking, process control, signal generation, and network communication. These blocks are available in the Autonomy Edge web IDE under **System Libraries** and address more specialized automation needs. From PID loop control to TCP socket communication.
+Beyond timers, counters, bistables, and edge detectors, the IEC 61131-3 standard library includes function blocks for real-time clocking, process control, and signal generation. These blocks are always available under **System Libraries** and address more specialized automation needs, from PID loop control to ramp generation.
+
+Network communication is the exception: TCP and UDP blocks are not bundled, and arrive through an installable library instead. The [last section](#tcp-and-udp-communication) covers where to get them.
 
 ---
 
@@ -298,114 +300,105 @@ The heater turns on when the temperature drops below 21.0 (setpoint minus epsilo
 
 ---
 
-## Communication Blocks
+## TCP and UDP Communication
 
-The System Libraries include TCP communication function blocks for network-based data exchange. These blocks let your PLC program open TCP connections, send and receive data, and close connections. They're useful for communicating with external systems, databases, or custom protocols.
+Raw TCP and UDP sockets are **not** part of the standard block library. They come
+from **Network Tools**, a separate library you install from the catalogue — see
+[Installing a Library](../library-manager/installing-a-library).
 
-### TCP_CONNECT
+Earlier OpenPLC versions bundled four blocks named `TCP_CONNECT`, `TCP_SEND`,
+`TCP_RECEIVE` and `TCP_CLOSE`. Those are gone. Network Tools replaces them with a
+larger set that separates the two protocols instead of switching between them
+with a flag, reports failures on their own pins, and can listen as well as
+connect.
 
-Establishes a TCP connection to a remote server.
+### The blocks
 
-**Inputs:**
+Install `network-tools` and enable it for your project, and these appear in the
+side panel:
 
-| Name | Type | Description |
-|------|------|-------------|
-| `CONNECT` | `BOOL` | Initiates connection on rising edge |
-| `IP_ADDRESS` | `STRING` | Remote server IP address |
-| `PORT` | `INT` | Remote server port number |
+| Block | What it does |
+|-------|--------------|
+| `TCP_CLIENT` | Opens a TCP connection to a remote server; gives you a `HANDLE` |
+| `TCP_SERVER` | Listens on a port and accepts one client at a time |
+| `TCP_SEND` / `TCP_RECV` | Send and receive text over a TCP handle |
+| `TCP_SEND_BYTES` / `TCP_RECV_BYTES` | The same over raw bytes |
+| `UDP_CLIENT` | Opens a UDP socket for sending; gives you a `HANDLE` |
+| `UDP_SERVER` | Binds a port so the PLC can receive datagrams |
+| `UDP_SEND` / `UDP_RECV` | Send and receive text over a UDP handle |
+| `UDP_SEND_BYTES` / `UDP_RECV_BYTES` | The same over raw bytes |
 
-**Outputs:**
+Every block follows the same shape: an `ENABLE` input that drives it, a `HANDLE`
+that ties the pieces together, and an `ERROR` output that goes TRUE when the
+operation fails. The client and server blocks close their socket on their own
+when `ENABLE` goes FALSE, so there is no separate close block to remember.
 
-| Name | Type | Description |
-|------|------|-------------|
-| `SOCKET_ID` | `INT` | Socket identifier for subsequent operations |
+`UDP_RECV` additionally reports `SENDER_IP` and `SENDER_PORT`, which is what lets
+a program answer whoever wrote to it — UDP carries no connection, so without
+those a reply has nowhere to go.
 
-### TCP_SEND
+### Example: talking to a remote service over UDP
 
-Sends a string message over an established TCP connection.
-
-**Inputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `SEND` | `BOOL` | Triggers send on rising edge |
-| `SOCKET_ID` | `INT` | Socket identifier from TCP_CONNECT |
-| `MSG` | `STRING` | Message to send |
-
-**Outputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `BYTES_SENT` | `INT` | Number of bytes successfully sent |
-
-### TCP_RECEIVE
-
-Receives data from an established TCP connection.
-
-**Inputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `RECEIVE` | `BOOL` | Triggers receive on rising edge |
-| `SOCKET_ID` | `INT` | Socket identifier from TCP_CONNECT |
-
-**Outputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `BYTES_RECEIVED` | `INT` | Number of bytes received |
-| `MSG` | `STRING` | Received message data |
-
-### TCP_CLOSE
-
-Closes an established TCP connection.
-
-**Inputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `CLOSE` | `BOOL` | Triggers close on rising edge |
-| `SOCKET_ID` | `INT` | Socket identifier from TCP_CONNECT |
-
-**Outputs:**
-
-| Name | Type | Description |
-|------|------|-------------|
-| `SUCCESS` | `INT` | Result code (0 = success) |
-
-### TCP Communication Example
+This program sends a reading once per second and echoes back anything it
+receives, which is enough to prove both directions from the other end.
 
 ```iecst
-PROGRAM DataReporter
+PROGRAM NetReporter
   VAR
-    DoConnect    : BOOL;
-    DoSend       : BOOL;
-    DoClose      : BOOL;
-    SocketID     : INT;
-    BytesSent    : INT;
-    CloseResult  : INT;
-    Connector    : TCP_CONNECT;
-    Sender       : TCP_SEND;
-    Closer       : TCP_CLOSE;
+    Client     : UDP_CLIENT;
+    Sender     : UDP_SEND;
+    Listener   : UDP_SERVER;
+    Receiver   : UDP_RECV;
+    Responder  : UDP_SEND;
+    Tick       : INT;
+    DoSend     : BOOL;
+    DoEcho     : BOOL;
+    SenderIP   : STRING;
+    SenderPort : UINT;
+    EchoMsg    : STRING;
   END_VAR
 
-  (* Step 1: Connect to the data server *)
-  Connector(CONNECT := DoConnect,
-            IP_ADDRESS := '192.168.1.100', PORT := 5000);
-  SocketID := Connector.SOCKET_ID;
+  (* One pulse per second on a 20 ms task *)
+  Tick := Tick + 1;
+  DoSend := Tick >= 50;
+  IF DoSend THEN
+    Tick := 0;
+  END_IF;
 
-  (* Step 2: Send a status message *)
-  Sender(SEND := DoSend, SOCKET_ID := SocketID,
-         MSG := 'TEMP=75.2;PRESSURE=101.3');
-  BytesSent := Sender.BYTES_SENT;
+  (* Outgoing: open a socket and report to 192.168.1.100:5005 *)
+  Client(ENABLE := TRUE, REMOTE_IP := '192.168.1.100', REMOTE_PORT := 5005);
+  Sender(ENABLE := DoSend, HANDLE := Client.HANDLE,
+         REMOTE_IP := '192.168.1.100', REMOTE_PORT := 5005,
+         DATA := 'TEMP=75.2;PRESSURE=101.3');
 
-  (* Step 3: Close when done *)
-  Closer(CLOSE := DoClose, SOCKET_ID := SocketID);
-  CloseResult := Closer.SUCCESS;
+  (* Incoming: listen on 5006 and answer the sender *)
+  Listener(ENABLE := TRUE, PORT := 5006);
+  Receiver(ENABLE := TRUE, HANDLE := Listener.HANDLE, MAX_LEN := 255);
+
+  DoEcho := FALSE;
+  IF Receiver.DONE THEN
+    SenderIP   := Receiver.SENDER_IP;
+    SenderPort := Receiver.SENDER_PORT;
+    EchoMsg    := CONCAT('ack: ', Receiver.DATA);
+    DoEcho     := TRUE;
+  END_IF;
+
+  Responder(ENABLE := DoEcho, HANDLE := Listener.HANDLE,
+            REMOTE_IP := SenderIP, REMOTE_PORT := SenderPort,
+            DATA := EchoMsg);
 END_PROGRAM
 ```
 
-> **Tip:** In practice, you'd sequence these operations using state logic or timers to ensure each step completes before the next begins.
+> **Tip:** Check `Client.ERROR` and `Client.ACTIVE` before relying on the handle.
+> A socket that failed to open leaves `HANDLE` at -1, and every block downstream
+> will refuse to run with it.
+
+### Opening a UDP socket puts nothing on the wire
+
+UDP has no connection to establish. `UDP_CLIENT` only creates the socket — no
+packet leaves the PLC until `UDP_SEND` runs. If you are watching a router log or
+a packet capture right after enabling the client and seeing nothing, that is
+expected; the traffic starts with the first send.
 
 ---
 
