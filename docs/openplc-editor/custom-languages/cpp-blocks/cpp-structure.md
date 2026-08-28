@@ -212,10 +212,10 @@ if (COMMAND == "STOP") { /* ... */ }
 if (COMMAND != PREVIOUS) { /* ... */ }
 ```
 
-For ordering (`<`, `<=`, `>`, `>=`), compare the underlying buffers via `.get()`:
+Ordering (`<`, `<=`, `>`, `>=`) works directly on the variables too:
 
 ```cpp
-if (MY_STRING.get() < OTHER.get()) { /* lexicographic */ }
+if (MY_STRING < OTHER) { /* lexicographic */ }
 ```
 
 ### WSTRING — same shape, wide characters
@@ -272,6 +272,8 @@ motor.MODE_ = MODE::RUNNING;   // member `mode` of type `Mode`
 ```
 
 Autocomplete offers the correct spelling, so you don't have to remember which members are affected.
+
+> **Tip:** Structures, enumerations and arrays have their own spelling and indexing rules — including the fact that the compiler uppercases every member name, and that a multi-dimensional array is indexed with `grid(i, j)` rather than `grid[i][j]`. See [C++ Data Types](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-data-types).
 
 ## Arduino Conditional Compilation
 
