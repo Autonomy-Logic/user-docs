@@ -21,6 +21,7 @@ A **block** is the fundamental element in FBD. Each block represents a function 
 
 - **Input pins** on the left side receive values.
 - **Output pins** on the right side produce results.
+- **In Out pins** sit on the left side too, marked `⟷` after the pin name. The block reads and writes the variable you connect there, so there is one pin rather than a pair, and it takes a single connection. To use the result, read that variable; there is no output pin to wire from. See **[Variable classes inside a POU](../../working-with-variables/local-variables)**.
 - **The block name** (displayed inside) identifies the operation (e.g., `ADD`, `TON`, `GT`, `MUX`).
 
 Blocks come from two sources:
