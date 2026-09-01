@@ -571,6 +571,10 @@
               "path": "persistent-storage"
             },
             {
+              "title": "User management",
+              "path": "user-management"
+            },
+            {
               "title": "Debugger",
               "path": "debugger"
             },
