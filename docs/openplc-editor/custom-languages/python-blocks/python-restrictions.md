@@ -62,6 +62,15 @@ If an `import` fails because a package isn't installed, the Python process for t
 
 > **Keep the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). They're required even if you don't reference them in your own code.
 
+The generated wrapper that surrounds your script uses all four and does not import them itself. Dropping one is easy to do — they look unused — and the symptom is misleading: the block starts, exits about a second later, and the log says
+
+```
+[Python] PLC runtime has stopped.
+[Python] Stopping Python block: MyBlock
+```
+
+The runtime has not stopped. The wrapper's liveness check calls `os.kill(plc_pid, 0)`, that raises `NameError` because `os` was never imported, and the handler reports it as a stopped runtime. If you see that message while the PLC is plainly still running, check your imports first.
+
 ### What You Cannot Do
 
 - **Install packages from inside a block**: `pip install` happens on the device, not from your block code. A block cannot install its own dependencies at runtime.
@@ -126,6 +135,127 @@ Network requests, file I/O, `time.sleep()`, large reads. All fine. They block yo
 - Assigning to an input from inside `block_loop()` has no effect. The next cycle overwrites whatever you wrote with the fresh value from the PLC.
 - Strings are limited to 126 characters; longer values are truncated when written to a STRING output.
 - Array variables keep the length declared in the Variables Table. Don't `append`/`pop` on them.
+
+## Shared Globals (VAR_EXTERNAL): One Writer Only
+
+A Python block can declare a `VAR_EXTERNAL` to reach a global from the project's configuration, and read and write it like any other variable. But because your block runs in a separate process, updating a global is **not** the atomic operation it is in ST, LD or C++. This is the one place where the process boundary changes the meaning of your code rather than just its timing, so it's worth understanding before you rely on it.
+
+### What actually happens
+
+Your block never touches the global directly. Each cycle:
+
+1. The PLC reads the global's current value and sends it in with your inputs.
+2. Your `block_loop()` runs, in a different process, and may change its copy.
+3. The PLC takes your copy back and stores it into the global.
+
+Steps 1 and 3 each take the global's lock, so you never see or write a half-updated value. What isn't protected is the gap between them — and your block's whole cycle sits in that gap.
+
+### The consequence: lost updates
+
+If anything else writes the same global while your block is mid-cycle, step 3 overwrites it. Your block sends back a value computed from what it read at step 1, which is now stale.
+
+So this line does **not** reliably increment a shared counter:
+
+```python
+def block_loop():
+    global shared_count
+    shared_count = shared_count + 1   # unsafe if anything else also writes shared_count
+```
+
+> **Warning:** In ST, LD or C++, `shared_count := shared_count + 1;` completes inside a single scan while holding the global's lock, so no update is lost. The same line in a Python block does not, because the read and the write happen a cycle apart in another process.
+
+Measured on real hardware: a Python block and a C++ block each adding 2 to the same global, every cycle. The global held consistently **two thirds** of the total the two blocks had added between them. The missing third is updates that were read, added to, and then overwritten.
+
+| Where the code runs | `g := g + 1` with another writer |
+|---|---|
+| ST / LD / FBD / IL | Safe. Read-modify-write completes in one scan under the global's lock |
+| C++ function block | Safe. Same. The block runs inside the scan |
+| **Python function block** | **Unsafe. Updates from other tasks in the same window are lost** |
+
+### How to use globals safely from Python
+
+- **Give each global a single writer.** If your Python block writes a global, nothing else should. That case is exact, with no lost updates at all.
+- **Read freely.** Reading a global from Python is always safe. You may read a value that is a cycle old, but never a corrupt one.
+- **Don't accumulate into a shared global.** If several tasks must contribute to one total, have each write its own contribution to its own variable and let an ST block add them up. The addition then happens inside the scan, where it is atomic.
+- **Don't use a global as a lock or a semaphore** between a Python block and the rest of the program. Test-and-set cannot work across the boundary; two blocks can both see it free.
+
+This is a deliberate trade. Holding the global's lock from step 1 to step 3 would make Python's read-modify-write atomic, but it would also block every other task that touches that global for a whole Python cycle (~100 ms), which is far worse for the rest of your program.
+
+## Function Block Instances: The PLC Calls Them For You
+
+You can declare a function block instance in a Python block's Variables Table — a `TON`, a counter, one of your own function blocks — and use its pins exactly as you would in ST.
+
+What you cannot do is *call* it. `ton0()` has no meaning in Python: your block runs in a separate process, and the instance lives in the PLC's. You don't need to. **The PLC calls every instance your block declares, once per scan cycle**, and your Python code just reads and writes the pins.
+
+```python
+def block_loop():
+    global elapsed, finished
+    ton0.IN = start_signal      # drive the timer's inputs
+    ton0.PT = 5_000_000_000     # T#5s, in nanoseconds
+
+    finished = ton0.Q           # read what the instance produced
+    elapsed = ton0.ET
+```
+
+Declare it the way you always would:
+
+```
+VAR
+  ton0 : TON;
+END_VAR
+```
+
+### Pin names are upper-cased
+
+The compiler upper-cases members, so the pins are `ton0.IN`, `ton0.PT`, `ton0.Q`, `ton0.ET` — even if your own function block declares them in lower case. `ton0.in` would be a Python keyword anyway.
+
+### What you can write, and what you can only read
+
+| Pin kind | From Python |
+|---|---|
+| The block's inputs (`IN`, `PT`, …) | read and write |
+| The block's in-outs | read and write |
+| The block's outputs (`Q`, `ET`, …) | **read only** |
+| The block's internal state | not available |
+
+Assigning to an output has no effect, for the same reason assigning to one of your own inputs has none: the next cycle overwrites it. Internal state is deliberately not exposed — it belongs to the instance, and writing it from outside would corrupt the block.
+
+### Outputs are one cycle behind
+
+> **Tip:** Setting an input and reading an output in the same `block_loop()` does **not** give you the result of this cycle's call.
+
+The sequence per scan is: the PLC applies what your block wrote, calls the instance, then publishes what it produced. Your block sees that on its *next* cycle. So:
+
+```python
+def block_loop():
+    global result
+    ton0.IN = True
+    result = ton0.Q     # still the PREVIOUS cycle's value, not this one's
+```
+
+This is the same one-cycle lag every Python input already has (see [The ~100 ms Loop](#the-100-ms-loop) above) — it is just easier to overlook here, because setting a pin and reading a pin on adjacent lines *looks* synchronous. For logic where that matters, put the function block in an ST block instead.
+
+### The instance runs every scan, not every Python cycle
+
+The PLC calls the instance on its own scan cycle, which is typically much faster than your block's ~100 ms loop. A `TON` therefore keeps accurate time regardless of how often your Python code looks at it — the timer is not being driven by Python's cadence, only observed by it.
+
+If your block declares several instances, they are called in the order they appear in the Variables Table.
+
+### Controlling whether your block runs at all
+
+Use the `EN` / `ENO` pins that every function block instance has:
+
+```
+myPyBlock(EN := systemReady);
+running := myPyBlock.ENO;
+```
+
+When `EN` is false the block does not execute — and neither do the instances it declares.
+
+### What is still not supported
+
+- **An array of function block instances** (`ARRAY [0..3] OF TON`) is refused.
+- **A generic pin** (`ANY_NUM` and friends) has no concrete type until it is wired, so a block with one cannot cross. The compiler names the pin it could not describe.
 
 ## Performance Considerations
 

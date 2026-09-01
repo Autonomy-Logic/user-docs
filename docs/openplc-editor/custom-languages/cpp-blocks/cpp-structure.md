@@ -34,7 +34,22 @@ The signatures must match exactly. No parameters, no return value. If either fun
 
 ## Variables: Name in the Table = Name in the Code
 
-Variables you declare in the Variables Table (Inputs and Outputs are the only two classes available for C++ blocks) are plain C++ variables inside `setup()` and `loop()`, using the exact names from the table. Internal state stays in your C++ source: declare ordinary variables at file scope above `setup()`/`loop()` to persist them between scan cycles, or inside the functions for scratch values.
+Variables you declare in the Variables Table are plain C++ variables inside `setup()` and `loop()`, using the exact names from the table.
+
+Every variable class an IEC function block can declare is available to a C++ block:
+
+| Class | In a C++ block |
+|---|---|
+| `VAR_INPUT` | Read the value the caller passed in |
+| `VAR_OUTPUT` | Write the value the caller reads back |
+| `VAR_IN_OUT` | Read and write; the caller sees your changes |
+| `VAR` | The block's own state, persisting across scan cycles |
+| `VAR_TEMP` | Scratch storage |
+| `VAR_EXTERNAL` | A global from the project's configuration, read and written under its lock |
+
+Because a C++ block runs inside the scan cycle, a `VAR_EXTERNAL` behaves exactly as it does in ST: `counter = counter + 1;` completes within one scan while holding that global's lock, so no update is lost. (A Python block cannot offer that guarantee — see [Python Restrictions](/docs/openplc-editor/custom-languages/python-blocks/python-restrictions).)
+
+You can also keep internal state in your C++ source rather than the table: declare ordinary variables at file scope above `setup()`/`loop()` to persist them between scan cycles, or inside the functions for scratch values. Use `VAR` when you want the value visible to the debugger, and a file-scope C++ variable when it's purely an implementation detail.
 
 ```cpp
 // With ENABLE (BOOL Input), SPEED (INT Input), MOTOR_ON (BOOL Output) declared in the table:
@@ -197,10 +212,10 @@ if (COMMAND == "STOP") { /* ... */ }
 if (COMMAND != PREVIOUS) { /* ... */ }
 ```
 
-For ordering (`<`, `<=`, `>`, `>=`), compare the underlying buffers via `.get()`:
+Ordering (`<`, `<=`, `>`, `>=`) works directly on the variables too:
 
 ```cpp
-if (MY_STRING.get() < OTHER.get()) { /* lexicographic */ }
+if (MY_STRING < OTHER) { /* lexicographic */ }
 ```
 
 ### WSTRING — same shape, wide characters
@@ -217,6 +232,48 @@ buf[0] = u'X';
 buf += u" suffix";
 W_STRING = buf;
 ```
+
+## Function Block Instances
+
+A C++ block runs inside the scan cycle, so it can declare a function block instance and call it, exactly as an ST block would. Declare it as a `VAR` in the Variables Table, then set its inputs, call it, and read its outputs.
+
+You refer to the instance by the name you declared in the table, but its **pins are upper-cased**, matching how the compiler emits them:
+
+```cpp
+// With ton0 : TON and acc : Accum declared under VAR,
+// and trigger : BOOL input, elapsed : TIME output, total : DINT output:
+
+void loop() {
+    // Standard library function block
+    ton0.IN = trigger;
+    ton0.PT = 1000000000LL;   // T#1s, in nanoseconds
+    ton0();                   // the call is what makes the timer advance
+    elapsed = ton0.ET;
+
+    // One of your own function blocks
+    acc.STEP = 2;
+    acc();
+    total = acc.TOTAL;
+}
+```
+
+Each instance keeps its own state across scan cycles, just as it would in ST. Call it once per scan from `loop()`; an instance you never call never advances.
+
+> **Note:** A Python block can hold an instance too, but cannot call it — the PLC calls it instead, once per scan, and Python only uses the pins. That difference costs a one-cycle lag on the outputs. See [Python Restrictions](/docs/openplc-editor/custom-languages/python-blocks/python-restrictions).
+
+> **Note:** `TIME`, `DATE`, `TOD` and `DT` are 64-bit integers in C++. `TIME`, `TOD` and `DT` are counts of nanoseconds, so `T#1s` is `1000000000LL`. `DATE` is a count of **days** since 1970-01-01.
+
+### Naming a member that matches its own type
+
+If a structure member is named the same as its type — `mode : Mode`, which CODESYS allows and real projects use — the compiler emits it with a trailing underscore, because C++ rejects a member that changes the meaning of its type name inside the class:
+
+```cpp
+motor.MODE_ = MODE::RUNNING;   // member `mode` of type `Mode`
+```
+
+Autocomplete offers the correct spelling, so you don't have to remember which members are affected.
+
+> **Tip:** Structures, enumerations and arrays have their own spelling and indexing rules — including the fact that the compiler uppercases every member name, and that a multi-dimensional array is indexed with `grid(i, j)` rather than `grid[i][j]`. See [C++ Data Types](/docs/openplc-editor/custom-languages/cpp-blocks/cpp-data-types).
 
 ## Arduino Conditional Compilation
 
