@@ -2,9 +2,9 @@
 
 Every OpenPLC runtime keeps its own list of accounts. Signing in to a device is what lets the editor upload to it, start and stop it, watch variables and read its logs, so those accounts are the device's access control, not the platform's.
 
-**User Management** is where you manage them. It lives under the **Device** branch of the project tree, alongside [Persistent Storage](persistent-storage), and it configures the connected device rather than the project.
+**User Management** is where you manage them. It lives under the **Device** branch of the project tree, and unlike most of what is in that tree it configures the **connected device** rather than the project.
 
-![The project tree with the Device branch expanded, showing Orchestrators, Persistent Storage and User Management](../images/tree-user-management.png)
+![The project tree with the Device branch expanded, showing Configuration, Runtime Status, Persistent Storage and User Management beneath it](../images/tree-user-management.png)
 
 Accounts belong to the device. They do not travel with the project, and two people working on the same project against different PLCs are administering two separate lists. Your Autonomy Edge account is a different thing entirely: it gets you into the platform and the editor, not into any particular PLC.
 
@@ -35,8 +35,7 @@ A brand-new runtime has no accounts, and until it has one anybody on the network
 | Change another account's name or password | Yes | No |
 | Change any account's role | Yes | No |
 | Change **its own** name and password | Yes | Yes |
-| View persistent storage settings | Yes | Yes |
-| **Change** persistent storage settings | Yes | No |
+| [Retrieve the project stored on the device](retrieve-project) | Yes | No |
 
 ## The screen
 
@@ -95,5 +94,5 @@ Deleting an account does not disturb the running program. It only removes that a
 ## Related
 
 - **[Connecting to runtimes](../connecting-to-runtimes)** for signing in and what a device session is.
-- **[Persistent storage](persistent-storage)**, the other device-scoped screen, whose settings need an administrator to change.
+- **[Persistent storage](persistent-storage)**, which sits beside this screen in the tree but is a project setting rather than a device one.
 - **[Retrieve a project from a PLC](retrieve-project)**, which requires an administrator account on the device.

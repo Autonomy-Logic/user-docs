@@ -11,7 +11,7 @@ The variables editor is the table at the top of every POU body. It lists each va
 | **#** | Row index. Visual only, not editable. |
 | **Name** | Identifier. Must be unique within the POU. IEC naming rules: `a-z`, `A-Z`, `0-9`, `_`; can't start with a digit; case-insensitive in IEC matching. |
 | **Class** | One of `Local`, `Input`, `Output`, `In Out`, `External`, `Temp`. For Python and C++ function blocks only `Input` and `Output` are offered. For globals (in the Resource editor) the class is always `Global`. See below. |
-| **Flags** | `—`, `Constant` or `Retain`. The IEC qualifier the variable is declared under. See below. |
+| **Flags** | Blank, `Constant` or `Retain`. The IEC qualifier the variable is declared under. See below. |
 | **Type** | The data type. Base IEC scalars, user-defined types from the Data Types section, arrays, or function-block instance types. |
 | **Location** | Optional IEC address (`%IX0.0`, `%QW3`, etc.) that binds the variable to a slot in the PLC's I/O image. Shown for Programs and Function Blocks. |
 | **Initial Value** | Optional. Cold-start value. Defaults are `FALSE` for BOOL, `0` for numerics. |
@@ -43,15 +43,17 @@ Where `Class` says who may touch a variable, `Flags` says how it behaves. One va
 
 | Flag | IEC declaration | Meaning |
 |---|---|---|
-| **—** | `VAR` | The default. An ordinary variable, starting at its initial value on every start. |
+| *(blank)* | `VAR` | The default. An ordinary variable, starting at its initial value on every start. |
 | **Constant** | `VAR CONSTANT` | Fixed at build time, never written at run time. |
-| **Retain** | `VAR RETAIN` | Preserved across a restart, provided the device has storage configured for it. |
+| **Retain** | `VAR RETAIN` | Preserved across a restart, provided the project has storage configured for it. |
 
-`Constant` and `Retain` are mutually exclusive, which is why this is one dropdown rather than two checkboxes. The dash is a real choice, not a blank: pick it to clear a flag.
+Most variables carry no flag, so the cell is left blank rather than filled with a placeholder. The blank entry in the dropdown is a real choice: pick it to clear a flag you set earlier.
+
+`Constant` and `Retain` are mutually exclusive, which is why this is one dropdown rather than two checkboxes.
 
 A `Constant` cannot have a `Location`. It is folded into the program when you build, so there is no storage behind it for an address to point at, and choosing the flag clears the `Location` cell.
 
-`Retain` on its own does nothing. The device also needs somewhere to keep the values, which is configured per device on the **[Persistent Storage](../building-deploying/persistent-storage)** screen and is **off by default**.
+`Retain` on its own does nothing. The device also needs somewhere to keep the values, which is set up on the **[Persistent Storage](../building-deploying/persistent-storage)** screen, is part of the project, and is **off by default**.
 
 ## Location, physical I/O mapping
 
