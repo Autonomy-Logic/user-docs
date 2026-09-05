@@ -2,6 +2,8 @@
 
 Most non-trivial projects have data that more than one POU needs to see: an emergency-stop flag, a machine mode, a setpoint everyone reads, a counter several routines update. IEC 61131-3 handles this with **global variables**. A global is declared once at the **Resource** level and any POU in the project can read or write it through an `External` declaration.
 
+> There is a second way to share data project-wide: a **[Global Variable List](global-variable-lists)**, a named group of globals whose members are reached as `List.member` with nothing to declare in the POU. It is the object CODESYS calls a GVL. This page covers Resource globals, which remain the right choice for a variable that needs a physical `Location`, a retention flag, or exposure to a communication server. The [comparison table](global-variable-lists#gvl-or-resource-globals) sets the two side by side.
+
 ## Where globals live
 
 Globals live in the **Resource** editor, not inside any POU's variable table. To open it, click **Resource** in the project tree:
@@ -180,6 +182,7 @@ See **[Tasks and instances](../iec-concepts/tasks-instances)** for the conceptua
 
 ## What's next
 
+- **[Global Variable Lists](global-variable-lists)**: named groups of globals reached as `List.member`, the CODESYS-style alternative to the Resource table.
 - **[Variables editor](variables-editor)**: the full reference for the per-POU table that also applies to the Globals section.
 - **[Tasks and instances](../iec-concepts/tasks-instances)**: the other two Resource sections.
 - **[Modbus server](../communication/modbus/server)**: how the Globals' `Location` addresses get exposed to external Modbus clients.

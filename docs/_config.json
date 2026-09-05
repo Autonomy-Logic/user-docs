@@ -451,6 +451,10 @@
             {
               "title": "Global variables",
               "path": "global-variables"
+            },
+            {
+              "title": "Global Variable Lists",
+              "path": "global-variable-lists"
             }
           ]
         },
@@ -559,8 +563,28 @@
               "path": "deployment-vplc"
             },
             {
+              "title": "Retrieve a project from a PLC",
+              "path": "retrieve-project"
+            },
+            {
+              "title": "Persistent storage",
+              "path": "persistent-storage"
+            },
+            {
+              "title": "Runtime status",
+              "path": "runtime-status"
+            },
+            {
+              "title": "User management",
+              "path": "user-management"
+            },
+            {
               "title": "Debugger",
               "path": "debugger"
+            },
+            {
+              "title": "Headless CLI",
+              "path": "headless-cli"
             },
             {
               "title": "Running with the Simulator",

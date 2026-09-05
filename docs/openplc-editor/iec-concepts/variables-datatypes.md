@@ -26,6 +26,8 @@ For Programs, output variables can be mapped to physical output addresses (e.g.,
 
 InOut variables (also called VAR_IN_OUT) are passed by reference. The caller provides an existing variable, and the POU can both read and modify it. Changes made inside the POU are reflected in the caller's variable. This is useful when a POU needs to update a value in-place.
 
+In Ladder and FBD, an InOut appears as a **single pin on the input side** of the block, with a `⟷` marker after its name, and it accepts one connection. There is no separate output pin: the POU writes back through the variable you connected, so that variable holds the updated value once the call returns. See **[Variable classes inside a POU](../working-with-variables/local-variables)** for the details and for converting diagrams drawn before this change.
+
 ### External
 
 External variables reference global variables declared in the Resource configuration. When a POU declares a variable with the `external` class, it's accessing a global variable by name. Any changes are visible to all POUs that reference the same global.

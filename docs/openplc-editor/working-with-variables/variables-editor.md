@@ -11,6 +11,7 @@ The variables editor is the table at the top of every POU body. It lists each va
 | **#** | Row index. Visual only, not editable. |
 | **Name** | Identifier. Must be unique within the POU. IEC naming rules: `a-z`, `A-Z`, `0-9`, `_`; can't start with a digit; case-insensitive in IEC matching. |
 | **Class** | One of `Local`, `Input`, `Output`, `In Out`, `External`, `Temp`. For Python and C++ function blocks only `Input` and `Output` are offered. For globals (in the Resource editor) the class is always `Global`. See below. |
+| **Flags** | Blank, `Constant` or `Retain`. The IEC qualifier the variable is declared under. See below. |
 | **Type** | The data type. Base IEC scalars, user-defined types from the Data Types section, arrays, or function-block instance types. |
 | **Location** | Optional IEC address (`%IX0.0`, `%QW3`, etc.) that binds the variable to a slot in the PLC's I/O image. Shown for Programs and Function Blocks. |
 | **Initial Value** | Optional. Cold-start value. Defaults are `FALSE` for BOOL, `0` for numerics. |
@@ -28,13 +29,31 @@ In IEC 61131-3, **class** describes a variable's role in its POU's interface. It
 | **Local** | `VAR` | Internal to the POU. No outside caller touches it. The value persists across PLC scans in Programs and Function Blocks. The default for almost everything. |
 | **Input** | `VAR_INPUT` | A parameter the caller passes in when invoking the POU. On a function block in LD/FBD, becomes a pin on the **left** side. The POU reads it; the caller writes it. |
 | **Output** | `VAR_OUTPUT` | A value the POU computes for its caller. Becomes a pin on the **right** side of the FB. The POU writes it; the caller reads it via `instance.output_name`. |
-| **In Out** | `VAR_IN_OUT` | Bidirectional. The caller passes a reference; the POU both reads and writes; the caller sees the changes after the call returns. |
+| **In Out** | `VAR_IN_OUT` | Bidirectional. The caller passes a reference; the POU both reads and writes; the caller sees the changes after the call returns. In LD/FBD it becomes a **single pin on the left side**, marked `⟷`, which takes one connection. |
 | **External** | `VAR_EXTERNAL` | A reference to a `Global` variable declared in the Resource. The `Location` is inherited from the global, so it's not editable on this row. |
 | **Temp** | `VAR_TEMP` | Like `Local` but **reset to the initial value (or zero / FALSE) at the start of every scan**. Programs and Function Blocks only. |
 
 The first three (`Input`, `Output`, `In Out`) describe a POU's calling interface, they only mean something for functions and function blocks that other code calls. A `Program` is the entry point of execution, not something you call, so its interface variables aren't useful in the same way.
 
 `Local`, `External`, and `Temp` are for variables a POU uses internally (or shares globally), independent of any caller. Physical I/O mapping is independent of class, it's done through the `Location` column, which is covered next.
+
+## Flags
+
+Where `Class` says who may touch a variable, `Flags` says how it behaves. One value per variable, chosen from a dropdown:
+
+| Flag | IEC declaration | Meaning |
+|---|---|---|
+| *(blank)* | `VAR` | The default. An ordinary variable, starting at its initial value on every start. |
+| **Constant** | `VAR CONSTANT` | Fixed at build time, never written at run time. |
+| **Retain** | `VAR RETAIN` | Preserved across a restart, provided the project has storage configured for it. |
+
+Most variables carry no flag, so the cell is left blank rather than filled with a placeholder. The blank entry in the dropdown is a real choice: pick it to clear a flag you set earlier.
+
+`Constant` and `Retain` are mutually exclusive, which is why this is one dropdown rather than two checkboxes.
+
+A `Constant` cannot have a `Location`. It is folded into the program when you build, so there is no storage behind it for an address to point at, and choosing the flag clears the `Location` cell.
+
+`Retain` on its own does nothing. The device also needs somewhere to keep the values, which is set up on the **[Persistent Storage](../building-deploying/persistent-storage)** screen, is part of the project, and is **off by default**.
 
 ## Location, physical I/O mapping
 
