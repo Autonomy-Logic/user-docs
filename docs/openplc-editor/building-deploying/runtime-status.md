@@ -12,14 +12,14 @@ It lives under the **Device** branch of the project tree.
 
 Everything here is read from a live device, so the leaf appears **while you are connected** to one. Opening it otherwise shows: *"Connect to a runtime to see its status."*
 
-## What the device reports about itself
+## What the device tells you about itself
 
-The header carries the facts about the machine the runtime is running on.
+The header describes the machine your program is running on.
 
 | Field | What it is |
 |---|---|
 | **Runtime version** | The OpenPLC runtime currently installed |
-| **Bootloader** or **Orchestrator agent** | Which of the two supplied the facts below, and its version. See [Where these facts come from](#where-these-facts-come-from) |
+| **Bootloader** | The version of the bootloader on the device |
 | **Host** | The device's hostname |
 | **Operating system** | For example `Debian GNU/Linux 12 (bookworm)` |
 | **Kernel** | The kernel release, which is where you can see whether it is a real-time kernel |
@@ -27,20 +27,7 @@ The header carries the facts about the machine the runtime is running on.
 | **CPU cores** | Worth knowing when you are sizing tasks: the core count is the budget your scan tasks share |
 | **Memory** | Total system memory |
 
-Nothing here is guessed or filled in with a default. A field left blank means whatever supplied the rest did not report that particular fact, so an empty field is honest rather than a sign that something is wrong.
-
-### Where these facts come from
-
-**Not from the runtime.** They come from the **bootloader** on the device, and when there is no bootloader, from the **orchestrator agent** managing it. That is the same condition that decides whether you can [change the runtime version](#changing-the-runtime-version), so the two go together: a device that offers the button reports the fuller set of facts.
-
-The first field after **Runtime version** names the source, so you can always tell which you are looking at.
-
-| Source | What you get |
-|---|---|
-| **Bootloader** | The full set, describing the device itself |
-| **Orchestrator agent** | The facts about the **host** running the vPLC rather than the container it runs in. **Architecture is not reported at all**, and on an older orchestrator neither is the kernel, so the header simply shows less |
-
-Which one answers has nothing to do with the runtime version installed. A device with a bootloader reports the full set whatever runtime it is running, and a vPLC under an orchestrator reports the shorter set whatever runtime it is running.
+**If some of these are empty, the device is a native install, or an installation old enough to predate the bootloader.** It is not a fault, and nothing is wrong with the device. You simply see fewer details about it.
 
 ## The statistics
 
@@ -64,9 +51,7 @@ Below the header are the same tables as before, refreshed while the screen is op
 
 The **Change runtime version** button installs a different OpenPLC runtime on the device.
 
-> **The button appears only when the device can actually do it.** Installing a version is the bootloader's job, so the button is shown when a bootloader answers on the device. A native install or an orchestrator-managed vPLC has nothing that could perform the swap, and the button is hidden rather than offered and then failing.
->
-> This is the same condition as the header above: if the first header field reads **Bootloader**, the button is there. If it reads **Orchestrator agent**, it is not.
+> **The button appears only on devices that can do it.** A native install, or an installation old enough to predate the bootloader, has no way to swap the runtime, so the button is not shown rather than being offered and then failing.
 
 ### Picking a version
 
