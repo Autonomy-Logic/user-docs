@@ -92,7 +92,7 @@ Renaming a **member** is different, and narrower: it changes the declaration onl
 
 These both come from how a list is compiled, and both are worth knowing before you rely on them.
 
-**A qualifier is preserved but not applied.** The **Qualifier** field takes the modifier that follows `VAR_GLOBAL` in the declaration (`CONSTANT`, `RETAIN`, `PERSISTENT`, `NON_RETAIN`). It is kept with the list, so it survives a save and a round trip back to CODESYS, and it appears in the declaration view. It does not reach the compiler, and it does not make the list's members constant or retained. If you need a variable to be retained, declare it in a POU or the Resource and set its flag there. See **[Persistent storage](../building-deploying/persistent-storage)**.
+**A qualifier is preserved but not applied.** The **Qualifier** field takes the modifier that follows `VAR_GLOBAL` in the declaration (`CONSTANT`, `RETAIN`, `PERSISTENT`, `NON_RETAIN`). It is kept with the list, so it survives a save and a round trip back to CODESYS, and it appears in the declaration view. **It has no effect when you build**: it does not make the list's members constant or retained. If you need a variable to be retained, declare it in a POU or the Resource and set its flag there. See **[Persistent storage](../building-deploying/persistent-storage)**.
 
 **A member address is preserved but not bound.** You can write `AT %QX0.0` on a member in the declaration view and the editor keeps it, again for the round trip. It produces no I/O mapping. To bind a variable to a physical address, use the `Location` column on a Resource global or a POU variable, where the address is honoured. See **[Global variables](global-variables)** and **[the variables editor](variables-editor)**.
 

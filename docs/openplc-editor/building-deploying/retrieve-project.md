@@ -66,7 +66,7 @@ The project you have open is closed first, exactly as **File → Close Project**
 
 Two details worth knowing:
 
-- **The check runs after the project has been fetched from the device.** A device that turns out to hold nothing never costs you your open project.
+- **A device that turns out to hold nothing never costs you your open project.** You are only asked about your unsaved changes once there is actually something to replace them with.
 - **Nothing is replaced behind your back.** Your project is still there, unchanged, whichever button you press on the prompt.
 
 ## What you get
