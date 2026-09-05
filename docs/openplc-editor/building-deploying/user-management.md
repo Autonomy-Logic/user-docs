@@ -38,12 +38,6 @@ A brand-new runtime has no accounts, and until it has one anybody on the network
 | View persistent storage settings | Yes | Yes |
 | **Change** persistent storage settings | Yes | No |
 
-The important line in that table is the one people get wrong:
-
-> **`User` is not a read-only role.** A `User` account can upload a program, start and stop the PLC, and force variables. It is a *machine operator*, not an observer.
-
-What `User` cannot do is administer the device: it cannot create or delete accounts, change anyone else's credentials, change roles, or alter persistent-storage settings. If you need an account that genuinely cannot influence the running process, the runtime's roles do not provide one; do not hand out a `User` account expecting it to be harmless.
-
 ## The screen
 
 ![The User Management screen. A heading "User Management" with the line "Manage the accounts that can log in to this runtime", a refresh button and a blue "+ New User" button at the top right. Below, a table with Username, Role and Actions columns; one row reads "op (you)" with role Admin and a pencil icon in Actions](../images/user-management-screen.png)
