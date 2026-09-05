@@ -98,13 +98,7 @@ When to choose In Out: large data structures you don't want to copy in and back 
 
 An In Out parameter gets **one pin, on the input side of the block**, with a `⟷` marker after its name:
 
-```
-        ┌──────────────────┐
-        │   PROCESS_DATA   │
-   ────►│ enable           │
-   ────►│ accumulator ⟷    │
-        └──────────────────┘
-```
+<FBDDiagramViewer src="/docs/diagrams/fbd/inout-single-pin.json" />
 
 There is no matching pin on the right. The single pin is both the read and the write: the block writes back through the variable you connected to it, so that variable already holds the new value after the call. To use the result, read the variable itself rather than looking for an output to wire from.
 

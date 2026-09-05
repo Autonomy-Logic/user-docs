@@ -1,0 +1,43 @@
+{
+  "comment": "VAR_IN_OUT: one pin, on the input side, marked with an arrow",
+  "nodes": [
+    { "id": "enable_var", "type": "input-variable", "position": { "x": 50, "y": 82 }, "data": { "name": "run_batch" } },
+    {
+      "id": "acc_var",
+      "type": "inout-variable",
+      "position": { "x": 50, "y": 130 },
+      "data": { "name": "my_total" }
+    },
+    {
+      "id": "process",
+      "type": "block",
+      "position": { "x": 280, "y": 50 },
+      "data": {
+        "name": "PROCESS_DATA",
+        "blockType": "function-block",
+        "instanceName": "batch_1",
+        "inputs": [
+          { "name": "enable", "type": "BOOL" },
+          { "name": "accumulator ⟷", "type": "REAL" }
+        ],
+        "outputs": []
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "enable_var",
+      "sourceHandle": "output",
+      "target": "process",
+      "targetHandle": "enable"
+    },
+    {
+      "id": "e2",
+      "source": "acc_var",
+      "sourceHandle": "output",
+      "target": "process",
+      "targetHandle": "accumulator ⟷"
+    }
+  ]
+}

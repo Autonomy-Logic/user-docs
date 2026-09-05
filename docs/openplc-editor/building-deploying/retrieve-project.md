@@ -71,9 +71,7 @@ Two details worth knowing:
 
 ## What you get
 
-The retrieved project replaces what was open: its POUs, data types, global variables, resource and library list, exactly as they were when it was uploaded.
-
-![The editor with the retrieved project open. The tree is headed PostMergeCheck with Functions, Function Blocks, Programs containing main, Data Types, Global Variables, Resource and Device; the main program is open showing its ST body and a BOOL local in the variables table](../images/retrieve-project-opened.png)
+The retrieved project replaces what was open: its POUs, data types, global variables, resource and library list, exactly as they were when it was uploaded. From this point it behaves like any other open project, with the one exception below.
 
 ## A retrieved project has no home yet
 

@@ -17,24 +17,39 @@ Every command triggers the same operation the corresponding editor control trigg
 
 ## Installing
 
-The command is a small launcher placed on your `PATH`. The application installs it **the first time it runs**, so opening OpenPLC Editor once is usually all it takes.
-
-To install it explicitly, on a build image that never opens the window, or after moving the application:
+The command is a small launcher placed on your `PATH`. The application installs it **the first time it runs**, so opening OpenPLC Editor once is usually all it takes, on Windows, Linux and macOS alike.
 
 ```sh
-openplc-cli install-cli
+openplc-cli --version
 ```
 
-It goes into the first directory you can write to, preferring one already on your `PATH`:
+The launcher goes into the first directory you can write to, preferring one already on your `PATH`:
 
-| Platform | Directories tried |
+| Platform | Directory |
 |---|---|
 | macOS, Linux | `~/.local/bin`, then `~/bin` |
 | Windows | `%LOCALAPPDATA%\Programs\openplc-cli` |
 
-Nothing is written to a privileged location and you are never asked for an administrator password. If the directory it chose is not on your `PATH`, it prints the single line to add. On Windows the per-user `PATH` is updated for you; open a new terminal afterwards.
+Nothing is written to a privileged location and you are never asked for an administrator password. If the chosen directory is not on your `PATH`, the editor prints the one line to add. On Windows the per-user `PATH` is updated for you, so open a new terminal afterwards.
 
-![A terminal showing `openplc-cli --version` returning a JSON document with the version, run immediately after `openplc-cli install-cli`](../images/cli-install.png)
+### When the editor cannot be opened
+
+A build image that never launches the GUI has nowhere to get the launcher from, so ask the application for it directly. This is the one case where you invoke the **application binary**, not `openplc-cli`:
+
+```sh
+# Linux (AppImage)
+./'OpenPLC Editor-4.2.2.AppImage' --cli install-cli
+
+# macOS
+'/Applications/OpenPLC Editor.app/Contents/MacOS/OpenPLC Editor' --cli install-cli
+```
+
+```bat
+REM Windows
+"%LOCALAPPDATA%\Programs\OpenPLC Editor\OpenPLC Editor.exe" --cli install-cli
+```
+
+Run the same command again if you later move the application, or just open the editor once, which notices and repairs the launcher itself.
 
 ### macOS
 
@@ -44,15 +59,15 @@ Installing from the mounted `.dmg` does not work, and the application says so ra
 
 ### Linux
 
-The editor ships as an AppImage, which is mounted at a new temporary path every time it starts, so the launcher points at the **`.AppImage` file itself**. Put the file where you intend to keep it before installing. If you move it later, run `install-cli` again, or just launch the application, which notices.
+The editor ships as an AppImage, which is mounted at a new temporary path every time it starts, so the launcher points at the **`.AppImage` file itself**. Put the file where you intend to keep it before opening it the first time. If you move it later, open it again, or re-run the `--cli install-cli` form above.
 
 ```sh
 chmod +x 'OpenPLC Editor-4.2.2.AppImage'
-./'OpenPLC Editor-4.2.2.AppImage' --cli install-cli
+./'OpenPLC Editor-4.2.2.AppImage'          # opening it once is what installs the launcher
 openplc-cli --version
 ```
 
-You do **not** need `xvfb-run` or a display server. An SSH session or a CI runner with no display works as it is.
+You do **not** need `xvfb-run` or a display server for the CLI itself. An SSH session or a CI runner with no display works as it is.
 
 Containers are the one case needing an extra switch, and only once. Container runtimes usually block the sandboxing feature the application would otherwise use, so pass `--no-sandbox` on the installing call:
 
@@ -83,7 +98,7 @@ Redirection and piping work normally (`openplc-cli devices > devices.json`), whi
 ```
 openplc-cli create <name> --path <dir> [--type plc-project|plc-library]
                           [--language st|il|ld|sfc|fbd] [--time <interval>] [--force]
-openplc-cli install-cli
+openplc-cli install-cli                   (re-place the launcher; see Installing)
 openplc-cli devices [--timeout <ms>]
 openplc-cli compile <project> [--target <board>] [--port <serial>] [--clean]
 openplc-cli upload  <project> (--host <address> | --port <serial>)
@@ -285,7 +300,27 @@ openplc-cli compile ./my-project --target "OpenPLC Runtime v4"   # 0, or 4 on a 
 openplc-cli upload  ./my-project --host "$PLC_HOST" --yes
 ```
 
-![A CI job log showing openplc-cli compile emitting progress lines on stderr and a single JSON result, followed by a successful upload step](../images/cli-pipeline.png)
+Because stdout carries one JSON document and progress goes to stderr, a step that both reports and gates looks like this:
+
+```sh
+set -e
+BUILD=$(openplc-cli compile ./my-project --target "OpenPLC Runtime v4")
+echo "artifacts: $(echo "$BUILD" | jq -r '.buildDirectory')"
+
+openplc-cli upload ./my-project --host "$PLC_HOST" --yes
+```
+
+The exit code is the thing to branch on. A compile error gives `4`, an unreachable device `5`, refused credentials `6`:
+
+```sh
+if ! openplc-cli compile ./my-project --target "OpenPLC Runtime v4" > build.json; then
+  case $? in
+    4) echo "compile failed";       exit 1 ;;
+    5) echo "could not reach PLC";  exit 1 ;;
+    *) echo "unexpected failure";   exit 1 ;;
+  esac
+fi
+```
 
 On Linux, you need Electron's shared libraries, which a slim base image will not have:
 
