@@ -94,5 +94,6 @@ Deleting an account does not disturb the running program. It only removes that a
 ## Related
 
 - **[Connecting to runtimes](../connecting-to-runtimes)** for signing in and what a device session is.
+- **[Runtime status](runtime-status)**, the other device-scoped screen, for what the device is and how it is running.
 - **[Persistent storage](persistent-storage)**, which sits beside this screen in the tree but is a project setting rather than a device one.
 - **[Retrieve a project from a PLC](retrieve-project)**, which requires an administrator account on the device.

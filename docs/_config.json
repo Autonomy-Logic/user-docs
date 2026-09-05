@@ -571,6 +571,10 @@
               "path": "persistent-storage"
             },
             {
+              "title": "Runtime status",
+              "path": "runtime-status"
+            },
+            {
               "title": "User management",
               "path": "user-management"
             },
