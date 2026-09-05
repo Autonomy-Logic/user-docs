@@ -17,7 +17,7 @@ Every command triggers the same operation the corresponding editor control trigg
 
 ## Installing
 
-The command is a small launcher placed on your `PATH`. The application installs it **the first time it runs**, so opening OpenPLC Editor once is usually all it takes, on Windows, Linux and macOS alike.
+The openplc-cli utility is a small launcher placed on your `PATH`. The application installs it **the first time it runs**, so opening OpenPLC Editor once is usually all it takes, on Windows, Linux and macOS alike.
 
 ```sh
 openplc-cli --version
