@@ -94,6 +94,24 @@ process_data(shared_buffer := my_buffer, accumulator := my_total);
 
 When to choose In Out: large data structures you don't want to copy in and back out (arrays, structures), or accumulators a function block needs to update for the caller.
 
+### How an In Out is drawn in LD and FBD
+
+An In Out parameter gets **one pin, on the input side of the block**, with a `⟷` marker after its name:
+
+<FBDDiagramViewer src="/docs/diagrams/fbd/inout-single-pin.json" />
+
+There is no matching pin on the right. The single pin is both the read and the write: the block writes back through the variable you connected to it, so that variable already holds the new value after the call. To use the result, read the variable itself rather than looking for an output to wire from.
+
+**One connection per In Out pin.** Because the pin is a reference to one variable, a second connection to an occupied In Out pin is refused. Disconnect the first if you meant to change it.
+
+This matches how CODESYS draws and treats an in-out, so a diagram moves between the two without redrawing.
+
+> **Projects drawn before this change.** An In Out used to be drawn with a pin on both sides. A project saved that way still opens exactly as it was, with the old pin and any wires leaving it, and it still compiles to the same program: nothing is rewritten when you open it.
+>
+> Such a POU is named in the **Console** when the project loads. To convert a block, hover it and click the **update badge** in its top-right corner. The block is redrawn with the single pin, and in FBD any wire that read the old output pin is re-pointed at whatever feeds the In Out, which carries the same value. Until you convert it, the old pin still renders but accepts no new connections.
+>
+> ![An FBD block hovered, showing the circular update badge at its top-right corner and a tooltip listing the block's INPUT and OUTPUT parameters, with the in-out parameter listed under INPUT](images/in-out-update-badge.png)
+
 ## External, `VAR_EXTERNAL`
 
 A reference to a Global variable declared in the **Resource**. The External declaration doesn't create a new variable, it links to an existing global by name and type.

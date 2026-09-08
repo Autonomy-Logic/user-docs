@@ -147,16 +147,62 @@ This includes element placement, deletion, variable assignment, rung creation, r
 
 ## Keyboard Shortcuts
 
+The LD editor supports keyboard-driven navigation and editing, so you can build rungs without reaching for the mouse. These canvas shortcuts are active when a rung is focused (click anywhere on a rung — a blue focus ring appears) and **no** variable field is being edited. While you type in a variable field the canvas shortcuts are suppressed so they don't interfere; press **Enter** or **Escape** to leave the field first.
+
+> Modifier convention: **Cmd** on macOS, **Ctrl** on Windows and Linux (shown below as **Ctrl/Cmd**).
+
+### Navigating a rung
+
 | Shortcut | Action |
 |----------|--------|
-| **Delete** | Remove selected element |
-| **Ctrl+Z** | Undo |
-| **Ctrl+Y** | Redo |
-| **Ctrl+S** | Save current file |
-| **Ctrl+Shift+S** | Save entire project |
-| **Enter** | Confirm variable name entry |
-| **Escape** | Cancel variable name entry |
-| **Arrow keys** | Navigate autocomplete suggestions |
+| **Arrow Left / Right** | Move the selection horizontally between elements and the connection edges (wires) that join them. With nothing selected, the first press selects the first connection edge off the left power rail. |
+| **Arrow Up / Down** | Move the selection between stacked parallel paths (elements or edges sharing the same column). |
+| **Shift + Arrow Up / Down** | Move focus to the rung immediately above / below the current one. |
+
+### Creating elements
+
+Select a **connection edge** (the wire between two elements) first, then:
+
+| Shortcut | Action |
+|----------|--------|
+| **C** | Insert a **Contact** at the selected edge. |
+| **Q** | Insert a **Coil** at the selected edge. |
+| **F** | Insert a Function Block (**F**) at the selected edge. |
+| **B** | Add a parallel **Branch** below the selected element. |
+
+### Editing the selected element
+
+| Shortcut | Action |
+|----------|--------|
+| **Enter** | When a contact or coil is selected, jump straight into its variable/tag field to type the name. |
+| **Shift + E** | Cycle the element's type/modifier in place — **Contact**: Default → Negated → Rising Edge → Falling Edge → Default; **Coil**: Default → Set → Reset → Negated → Rising Edge → Falling Edge → Default; **Block**: opens the block properties dialog. |
+
+### Creating rungs
+
+| Shortcut | Action |
+|----------|--------|
+| **Ctrl/Cmd + Arrow Down** | Create a new rung **below** the current one and move focus to it. |
+| **Ctrl/Cmd + Arrow Up** | Create a new rung **above** the current one and move focus to it. |
+
+### General
+
+| Shortcut | Action |
+|----------|--------|
+| **Delete** | Remove the selected element. |
+| **Ctrl/Cmd + Z** | Undo. |
+| **Ctrl/Cmd + Y** (Cmd+Shift+Z on macOS) | Redo. |
+| **Ctrl/Cmd + S** | Save the current file. |
+| **Ctrl/Cmd + Shift + S** | Save the entire project. |
+
+### While editing a variable field
+
+When a contact/coil variable field (or its autocomplete dropdown) is focused:
+
+| Shortcut | Action |
+|----------|--------|
+| **Arrow Down / Up** | Move through autocomplete suggestions. |
+| **Tab / Enter** | Accept the highlighted suggestion / confirm the entry. |
+| **Escape** | Cancel the entry and return focus to the canvas. |
 
 ## Tips for Effective LD Programming
 

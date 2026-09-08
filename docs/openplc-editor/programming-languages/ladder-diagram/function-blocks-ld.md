@@ -9,6 +9,7 @@ A function or function block appears as a rectangular box on the rung:
 - **Name** at the top (e.g. `TON`, `CTU`, `GT`, `ADD`).
 - **Input pins** on the left, with their pin names (`IN`, `PT`, `IN1`, `IN2`, …).
 - **Output pins** on the right (`Q`, `ET`, `OUT`, …).
+- **In Out pins** on the left as well, marked `⟷` after the pin name. An In Out parameter is a reference to one variable that the block reads and writes, so it gets one pin and takes one connection, with nothing on the right side to wire from. See **[Variable classes inside a POU](../../working-with-variables/local-variables)**.
 - A small variable label above each pin where you bind a project variable.
 
 For a function block (stateful), you also bind an **instance name** above the block, that's the variable you declared as type `TON` / `CTU` / `PID` / etc.
