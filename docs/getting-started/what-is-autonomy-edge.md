@@ -15,9 +15,9 @@ If you already use the [OpenPLC desktop editor](https://autonomylogic.com/), Aut
 
 ## What you can build
 
-- **Single-PLC machines.** One project, one vPLC, one device. The Quick Start walks through exactly this case.
+- **Single-PLC machines.** One project, one vPLC, one Device. The Quick Start walks through exactly this case.
 - **Multi-PLC machines.** One beefy Device, several vPLCs each running an isolated runtime, all coordinated from one browser session.
-- **Fleets of identical devices.** Push the same project to many Devices across sites. (Multiple Devices require a paid plan; see [Pricing](../plans-and-billing/pricing).)
+- **Fleets of identical Devices.** Push the same project to many Devices across sites. (Multiple Devices require a paid plan; see [Pricing](../plans-and-billing/pricing).)
 - **Collaborative projects.** Invite teammates to an [organization](../platform/organizations/overview), branch and review changes via [pull requests](../platform/projects/pull-requests), and discuss in the [forum](../platform/forum/overview).
 
 ## How the pieces fit together
