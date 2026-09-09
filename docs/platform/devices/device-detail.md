@@ -1,22 +1,22 @@
-# Orchestrator detail
+# Device detail
 
-Clicking an orchestrator card from the **[Orchestrators list](devices-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
+Clicking a Device card from the **[Devices list](devices-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
 
 ## Devices tab
 
-![Devices tab of the Toradex Ivy orchestrator showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/device-detail-vplcs.png)
+![Devices tab of the Toradex Ivy Device showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/device-detail-vplcs.png)
 
-The devices tab is a grid of every vPLC running (or stopped) on this orchestrator, plus a **+ New Device** tile to add another.
+The devices tab is a grid of every vPLC running (or stopped) on this Device, plus a **+ New Device** tile to add another.
 
-Each device card shows:
+Each vPLC card shows:
 
 | Element | Description |
 |---|---|
 | **Icon** | Cube icon, always blue. |
-| **Name** | The name you gave when you created the device. |
+| **Name** | The name you gave when you created the vPLC. |
 | **Subtitle** | Network mode (`DHCP` or `Static`). |
 | **Status badge** | `Running`, `Stopped`, or `Inactive`. |
-| **3-dot menu** | Per-device actions: start, stop, restart, edit, delete. |
+| **3-dot menu** | Per-vPLC actions: start, stop, restart, edit, delete. |
 | **UPTIME** | How long this vPLC has been up since its last start. |
 | **PROJECT** | The project this vPLC is currently running, if any. |
 
@@ -35,11 +35,11 @@ The Orchestrator tab is a read-only view of the edge device's specs and current 
 - **Orchestrator name** and status badge (Inactive / Active).
 - Quick stats: **OS**, **CPU CORES**, **MEMORY** (total), **DISK** (total), **NETWORK** (primary interface and IP), **VERSION** (agent version).
 
-These come from the agent's first heartbeat and are refreshed periodically. On an **Inactive** orchestrator they show `-` because no data has been reported yet.
+These come from the agent's first heartbeat and are refreshed periodically. On an **Inactive** Device they show `-` because no data has been reported yet.
 
 ### CPU Usage chart
 
-Live CPU utilization over time. The dropdown at the top right of the chart (`1h` by default) lets you change the window: 15m / 1h / 6h / 24h / 7d. The chart is empty for orchestrators that haven't been connected long enough to accumulate data.
+Live CPU utilization over time. The dropdown at the top right of the chart (`1h` by default) lets you change the window: 15m / 1h / 6h / 24h / 7d. The chart is empty for Devices that haven't been connected long enough to accumulate data.
 
 ### Memory Usage chart
 
@@ -49,7 +49,7 @@ These charts come from the periodic heartbeat the agent sends. If the agent is a
 
 ## Switching tabs
 
-The tabs are sticky inside the orchestrator detail page. Refreshing the page keeps you on the same tab thanks to the URL.
+The tabs are sticky inside the Device detail page. Refreshing the page keeps you on the same tab thanks to the URL.
 
 ## Breadcrumb
 
@@ -57,6 +57,6 @@ At the top of the page, a breadcrumb shows **Orchestrators → {orchestrator nam
 
 ## Where to next
 
-- **Add or manage devices** → **[Creating a vPLC](../vplcs/creating-a-vplc)**, **[vPLC detail](../vplcs/vplc-detail)**.
-- **Rename / delete / re-pair** → **[Managing orchestrators](managing-devices)**.
-- **Inspect device-level network info** → **[Network modes](../vplcs/network-modes)**.
+- **Add or manage vPLCs** → **[Creating a vPLC](../vplcs/creating-a-vplc)**, **[vPLC detail](../vplcs/vplc-detail)**.
+- **Rename / delete / re-pair** → **[Managing devices](managing-devices)**.
+- **Inspect vPLC-level network info** → **[Network modes](../vplcs/network-modes)**.
