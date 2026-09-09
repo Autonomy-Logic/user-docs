@@ -34,11 +34,15 @@ decision code, the id of the rule that assigned it, whether the decision is *cha
 The **reason** is written once per code, in the legend below. A row carries the code. That is the
 whole trick: the reason for keeping "remote device" is one sentence, not 184 copies of one sentence.
 
-The census is reproducible: `python3 exploration/rename-census.py` from `docs/`.
+The census is reproducible: `python3 exploration/rename-census.py` from `docs/`, which classifies
+the tree it is run against. The CSV committed here is the run against the base commit; see
+`D-PATH-NEW` below for the one classifier change made after it, and why the CSV was left alone.
 
 ## The legend
 
 Fourteen codes cover all 1237 occurrences. Two further codes are defined and legitimately empty.
+A seventeenth, `D-PATH-NEW`, was added once the section had moved; it is described after the
+tables, and its count at the base commit is 0.
 
 ### Codes whose occurrences must not survive the rewrite
 
@@ -72,6 +76,31 @@ Fourteen codes cover all 1237 occurrences. Two further codes are defined and leg
 |---|---|---|
 | `O-SE` | 0 | The ordinary software-engineering sense of "orchestrator" (BR07). It exists in the code of other repositories, `library-build-orchestrator.ts` among them, which is what RSK01 is about. **It does not occur in this repository at all**, so BR07 has nothing to protect here |
 | `D-LICENSE` | 0 | The VPP licensed device, a physical hardware unit with a serial anchor (BR12, sense 6). **user-docs does not document VPP licensing**, so this sense never appears |
+
+### `D-PATH-NEW`, added at Phase 3
+
+A seventeenth code, and the only one added after the census was written: **a path, link target or image
+filename that correctly names the new entity**. A *stays* code, no action required.
+
+It exists because `D-PATH` carried a hidden assumption. At the base commit no parent-entity path
+contained the word "device", so rule R11 could treat any link target containing it as the child
+entity, to be renamed to `vplc`. Once the section moved to `platform/devices/`, that stopped being
+true: 57 link and image targets now contain "device" **because they are right**, and a *changes* code
+on them would make the Phase 10 gate fail forever on correct paths.
+
+Rule **R11c** assigns it. It is the inverse of the old rule: a path occurrence is `D-PATH-NEW` unless
+it appears in `D_PATH_PENDING`, the enumerated set of captures whose child-sense name is still
+outstanding. Measured after the navigation landed: `D-PATH-NEW` 57, `D-PATH` 2, the two being
+`getting-started/images/add-device-modal.png` and `getting-started/images/devices-list-with-vplc.png`,
+whose renames sit in the phase that rewrites `quick-start.md`. When that phase lands the set is empty
+and `D-PATH` is 0.
+
+The base-commit count for this code is 0, which is why it is absent from the tables above: they
+measure `origin/development` at `79c4faa` and still sum to 1237. `rename-census.csv` was **not**
+regenerated, so re-running the generator over the base tree no longer reproduces its 10 `D-PATH`
+rows: the classifier tracks the tree as it is now, and the CSV is the record of what was decided
+then. The census and the 84 overrides are re-derived against the final tree in the verification
+phase, where the gate is that no *changes*-coded occurrence survives.
 
 ## Where the occurrences are
 

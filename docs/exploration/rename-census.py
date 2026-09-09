@@ -48,6 +48,12 @@ LEGEND = {
     "D-PATH":       ("changes", "path, link target or image filename where device means the child "
                                 "entity -> renamed to vplc (FR18)"),
     # ---- stays -------------------------------------------------------------
+    "D-PATH-NEW":   ("stays",  "a path, link target or image filename that CORRECTLY names the new "
+                               "entity: the renamed platform/devices/ section, its pages and its "
+                               "captures, and troubleshooting/device-not-connecting. No action "
+                               "required. Added at Phase 3, because before the rename no "
+                               "parent-entity path carried the word 'device' and D-PATH could "
+                               "assume any that did meant the child entity"),
     "O-LITERAL":    ("stays",  "a literal the software still emits or resolves: container name, "
                                "image reference, repository URL, or a log line quoted verbatim. "
                                "Changing it would print an instruction that does not work (BR09, BR13)"),
@@ -173,6 +179,13 @@ PLAIN = re.compile(
 )
 
 
+# Paths whose "device" still means the CHILD entity and must become "vplc".
+# The getting-started captures whose rename is deferred to the phase that rewrites
+# the pages quoting them; after that phase this set is empty. Every other path
+# carrying "device" names the parent entity, which is now the correct name.
+D_PATH_PENDING = re.compile(r"add-device-modal|devices-list-with-vplc", re.I)
+
+
 def classify(path, line, col, word, ctx):
     """Return (code, rule_id). Ordered rules; the first that matches wins."""
     w = word.lower()
@@ -216,6 +229,11 @@ def classify(path, line, col, word, ctx):
         if re.search(r"remote-device|device-from-repository|device-config", target, re.I):
             return ("D-REMOTE", "R11a") if "config" not in target.lower() \
                 else ("D-EDITORNODE", "R11b")
+        # R11c - the path already names the new parent entity, so it stays. Only the
+        # paths still carrying the child sense are outstanding work, and they are
+        # enumerated: every other "device" path was written or renamed by the move.
+        if not D_PATH_PENDING.search(target):
+            return "D-PATH-NEW", "R11c"
         return "D-PATH", "R11"
     # R12 - VPP licensing.
     if re.search(r"licensed device|serial anchor|vpp licen", ctx, re.I):
