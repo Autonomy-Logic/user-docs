@@ -228,6 +228,31 @@ The classification is **rule-based and then audited**, not pattern-replaced.
     word boundaries. Same defect class as the agent-window bug: a substring test on a 140-character
     window.
 
+### The root cause behind three of those, named so it is not rediscovered
+
+The agent-window bug, the `pdo`-in-"dropdown" bug and the `on the device`-in-"on the device card" bug
+are **one defect, found three times**:
+
+> **An alternation matching a phrase fragment against a wide window silently absorbs rows that belong
+> to another sense.** The window is 140 characters, so any short or unanchored alternative will
+> eventually be satisfied by text that has nothing to do with the sense the rule is testing for, and
+> the row lands on a plausible-looking code with nothing to report it.
+
+It bites hardest in the invisible direction, because the senses these rules assign are mostly *stays*
+codes, so an absorbed *changes* row disappears from the gate. The three instances:
+
+| Rule | Alternative | What it absorbed |
+|---|---|---|
+| R03, the daemon | `agent` anywhere in the window | 22 rows where the entity, not the daemon, was meant |
+| R13, remote equipment | `pdo`, `esi` as bare substrings | 7 rows on the strength of "dropdown" and "beside", 2 of them *changes* rows |
+| R15, the machine | `on the device` as a phrase fragment | 6 rows reading "on the device **row**" and "on the device **card**", all of them *changes* rows |
+
+The defence used here is the same in all three: **judge positionally, on the text touching the match,
+or anchor the alternative on word boundaries.** A rule that must look at the window should be treated
+as a hypothesis to audit, not an answer. When a new sense pattern is added to this script, the
+question to ask is not "does this phrase appear nearby" but "does this phrase govern *this*
+occurrence".
+
 Two fixes closed holes rather than misclassifications.
 
 **The fenced-block fallback no longer converts a decision, in either direction.** A fenced block is
