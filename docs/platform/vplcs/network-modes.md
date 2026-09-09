@@ -76,11 +76,11 @@ Each NIC is configured independently: its own physical port, its own network mod
 
 The agent watches the host's network configuration. If the host moves to a new network (different subnet, different DHCP lease), the agent re-runs MACVLAN setup for each vPLC automatically. DHCP NICs get new IPs and Static NICs keep their addresses. You don't need to bounce containers manually.
 
-For deeper details on the network monitor sidecar, see the orchestrator agent's own repo. For end users, "it just works when the network changes" is the take-away.
+For deeper details on the network monitor sidecar, see the Device Agent's own repo. For end users, "it just works when the network changes" is the take-away.
 
 ## Changing network mode on an existing vPLC
 
-The 3-dot menu on a vPLC card has **Edit**, which reopens the Add Device wizard pre-populated with the current settings. Change the network mode, IP, or MAC and click **Save**. The agent reconfigures the container in place. Brief downtime (a few seconds) is expected while the container restarts with new networking.
+The 3-dot menu on a vPLC card has **Edit**, which reopens the New vPLC wizard pre-populated with the current settings. Change the network mode, IP, or MAC and click **Save**. The agent reconfigures the container in place. Brief downtime (a few seconds) is expected while the container restarts with new networking.
 
 ## Troubleshooting
 

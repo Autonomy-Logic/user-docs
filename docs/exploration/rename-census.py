@@ -232,6 +232,19 @@ PLAIN = re.compile(
 D_PATH_PENDING = re.compile(r"add-device-modal|devices-list-with-vplc", re.I)
 
 
+# R20 is OFF unless asked for, and that is not a convenience. D_PROSE_DONE means
+# "rewritten IN THE TREE YOU ARE CLASSIFYING", so it is meaningless against the
+# base commit, where these same files still carry the OLD child-sense capitalised
+# "Device": "+ New Device", "Add Device wizard", "Device Name", "the Devices tab".
+# Left on by default it marks 20 genuine *changes* rows on the base tree as
+# stays, corrupting the historical record and destroying the reproducibility
+# check. That is exactly the invisible direction, and it is how this was caught:
+# the base-tree diff jumped from 8 rows to 28.
+#
+#   generating the base-commit CSV : R20 off  (default)
+#   --verify against a live tree   : R20 on
+PROSE_DONE_ACTIVE = False
+
 # Files whose prose has been rewritten into the new vocabulary. Inside these, a
 # capitalised "Device"/"Devices" in prose names the new parent entity and stays.
 #
@@ -248,6 +261,32 @@ D_PROSE_DONE = {
     "platform/devices/managing-devices.md",
     "platform/devices/installing-the-agent.md",
     "troubleshooting/device-not-connecting.md",
+    # Phase 5
+    "index.md",
+    "account/settings/account.md",
+    "account/settings/usage.md",
+    "plans-and-billing/ai-credit-units.md",
+    "plans-and-billing/plan-limits.md",
+    "plans-and-billing/pricing.md",
+    "platform/autonomy-ai-assistant.md",
+    "platform/forum/overview.md",
+    "platform/organizations/creating-an-org.md",
+    "platform/organizations/history.md",
+    "platform/organizations/leaving-and-deleting.md",
+    "platform/organizations/members-and-roles.md",
+    "platform/organizations/org-dashboard.md",
+    "platform/organizations/overview.md",
+    "platform/organizations/usage.md",
+    "platform/projects/overview.md",
+    "platform/projects/visibility-and-sharing.md",
+    "platform/vplcs/connecting-from-editor.md",
+    "platform/vplcs/creating-a-vplc.md",
+    "platform/vplcs/network-modes.md",
+    "platform/vplcs/overview.md",
+    "platform/vplcs/vplc-detail.md",
+    "reference/faq.md",
+    "troubleshooting/plan-limit-reached.md",
+    "troubleshooting/vplc-stuck-stopped.md",
 }
 
 
@@ -319,7 +358,7 @@ def classify(path, line, col, word, ctx):
     # written "Device"/"Devices", while the machine ("edge device"), the Editor's
     # node and plain hardware English all stay lowercase, and the child entity is
     # spelled "vPLC" and so does not match this pattern at all.
-    if path in D_PROSE_DONE and word[:1].isupper():
+    if PROSE_DONE_ACTIVE and path in D_PROSE_DONE and word[:1].isupper():
         return "D-PROSE-NEW", "R20"
     # R09 - the "Device" half of the Editor's screen label "Device Orchestrators",
     # which becomes "Edge Devices" as one label. Both words move together, so the
@@ -358,6 +397,32 @@ OVERRIDES = {}
 # Rows the fenced-block fallback refused to touch, collected for reporting.
 FENCED_UNTOUCHED = []
 
+# Overrides that no longer describe the word sitting at their position, because the
+# prose was rewritten under them. Collected for reporting.
+STALE_OVERRIDES = []
+
+
+def override_still_applies(code, word):
+    """An override is pinned to (file, line, col) at the BASE commit, and the
+    phases that rewrite prose shift what sits there. Chasing the line numbers is
+    the wasted work Phase 10 decided against, but an override that has drifted
+    onto a different word must not keep asserting its old decision: that is how
+    a finished sentence keeps failing the gate forever.
+
+    The guard is a soundness invariant, not a guess: these four codes describe an
+    occurrence of the word "orchestrator" and nothing else, so if the word
+    underneath is no longer that word, the override has drifted and the rules are
+    a better answer than a stale pin.
+
+    Deliberately NOT guarded: O-EDGEDEV and O-PATH, which carry an O- prefix but
+    legitimately sit on a "device" word, because both halves of the Editor's
+    "Device Orchestrators" label move together as one name, in prose (R09) and
+    inside an image filename (R11d). Guarding those broke the base-tree
+    reproducibility check by 21 rows, which is how the over-reach was caught."""
+    if code in ("O-ENTITY", "O-AGENT", "O-REWRITE", "O-SE"):
+        return word.lower().startswith("orchestrat")
+    return True
+
 
 def load_overrides():
     p = os.path.join("exploration", "rename-census-overrides.csv")
@@ -370,6 +435,7 @@ def load_overrides():
 def census():
     load_overrides()
     del FENCED_UNTOUCHED[:]
+    del STALE_OVERRIDES[:]
     rows = []
     for root, _dirs, files in os.walk("."):
         for f in sorted(files):
@@ -386,9 +452,11 @@ def census():
                     a, b = max(0, m.start() - CTX), min(len(line), m.end() + CTX)
                     ctx = line[a:b].strip()
                     key = (p, ln, col)
-                    if key in OVERRIDES:
+                    if key in OVERRIDES and override_still_applies(OVERRIDES[key][0], m.group(0)):
                         code, rule = OVERRIDES[key]
                     else:
+                        if key in OVERRIDES:
+                            STALE_OVERRIDES.append((p, ln, col, OVERRIDES[key][0], m.group(0)))
                         code, rule = classify(p, line, col, m.group(0), ctx)
                         # A fenced block is normally a literal, and this fallback
                         # refines a stays code into the literal code. What it must
@@ -418,8 +486,11 @@ def census():
 
 
 def main():
-    rows = census()
+    global PROSE_DONE_ACTIVE
     verify = "--verify" in sys.argv
+    # R20 applies to the tree in front of us, never to the base-commit record.
+    PROSE_DONE_ACTIVE = verify or "--prose-done" in sys.argv
+    rows = census()
     if not verify:
         out = os.path.join("exploration", "rename-census.csv")
         with open(out, "w", newline="", encoding="utf-8") as fh:
@@ -435,6 +506,13 @@ def main():
     for code, n in sorted(by_code.items(), key=lambda kv: (-kv[1], kv[0])):
         print(f"{code:14} {n:>5}  {LEGEND.get(code, ('REVIEW',))[0]}")
     print(f"{'TOTAL':14} {len(rows):>5}")
+
+    if STALE_OVERRIDES:
+        print(f"\n-- {len(STALE_OVERRIDES)} base-commit overrides have drifted onto a different "
+              f"word and were ignored in favour of the rules. Expected once a phase rewrites "
+              f"the prose under them; see override_still_applies():")
+        for p_, ln_, col_, code_, w_ in STALE_OVERRIDES:
+            print(f"   {code_:11} pinned at {p_}:{ln_}:{col_}, now sits on {w_!r}")
 
     if FENCED_UNTOUCHED:
         print(f"\n?? {len(FENCED_UNTOUCHED)} occurrences sit inside a fenced code block "

@@ -14,8 +14,8 @@ Top of the page: current-period consumption against the org plan's quotas.
 
 | Limit | Counts |
 |---|---|
-| **Orchestrators** | Orchestrator entries in this org (active + inactive). |
-| **Devices** | vPLC entries across all the org's orchestrators. |
+| **Devices** | Device entries in this org (active + inactive). |
+| **vPLCs** | vPLC entries across all the org's Devices. |
 | **Private projects** | Org projects marked private. Public projects don't count. |
 
 Each row shows *N used · M allowed* (or **Unlimited** on Enterprise). A bar turns red at the limit. A refresh icon at the top right of the card forces a recount.

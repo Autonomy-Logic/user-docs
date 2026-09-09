@@ -1,4 +1,4 @@
-# vPLC devices
+# vPLCs
 
 A **vPLC** (virtual PLC) is a Docker container that runs the OpenPLC v4 runtime on your edge hardware. It's the thing that actually executes your project, the scan loop, the I/O, the communication protocols.
 
@@ -14,7 +14,7 @@ Three benefits:
 
 ## How a vPLC fits with the rest of the platform
 
-- A vPLC is created **inside** an orchestrator. Without an orchestrator there's nowhere for a vPLC to run.
+- A vPLC is created **inside** a Device. Without a Device there's nowhere for a vPLC to run.
 - A vPLC runs **one project at a time**. You deploy a project to it from the **[OpenPLC Editor](../../openplc-editor/overview)**.
 - A vPLC has **runtime users**, which are separate from your platform account. When you first connect to a vPLC from the editor, you create the first runtime user. You'll use those credentials every time you connect to that vPLC afterwards.
 
@@ -24,9 +24,9 @@ Three benefits:
 |---|---|
 | **Stopped** | The container exists but isn't running. No scan loop, no I/O. |
 | **Running** | The container is running. A project may or may not be loaded; if not, the runtime is idle. |
-| **Inactive** | The container is unreachable. Usually means the orchestrator itself is offline. |
+| **Inactive** | The container is unreachable. Usually means the Device itself is offline. |
 
-Start / stop / restart actions are available from the vPLC card's **3-dot menu** in the orchestrator's Devices tab.
+Start / stop / restart actions are available from the vPLC card's **3-dot menu** in the Device's vPLCs tab.
 
 ## What a vPLC sees on the network
 
@@ -42,7 +42,7 @@ See **[Network modes](network-modes)** for the details on DHCP vs static and how
 
 ## Plan limits
 
-The number of vPLC devices you can run at once is governed by your plan. See **[Plan limits](../../plans-and-billing/plan-limits)** for the exact quotas per plan.
+The number of vPLCs you can run at once is governed by your plan. See **[Plan limits](../../plans-and-billing/plan-limits)** for the exact quotas per plan.
 
 ## Where to next
 

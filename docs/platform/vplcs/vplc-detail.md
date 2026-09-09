@@ -1,6 +1,6 @@
 # vPLC detail
 
-The vPLC detail page is the read-only "I want to see what this device looks like right now" view. Open it by clicking a vPLC card on an **[orchestrator's detail page](../devices/device-detail)**.
+The vPLC detail page is the read-only "I want to see what this vPLC looks like right now" view. Open it by clicking a vPLC card on a **[Device's detail page](../devices/device-detail)**.
 
 ![vPLC 01 detail page: Running status, 90h 50m uptime, internal IP 172.20.0.2, DHCP network mode, plus a macvlan_eth0 interface with IP 192.168.2.6, MAC 02:42:c0:a8:02:02, gateway 192.168.2.1](images/vplc-detail.png)
 
@@ -10,7 +10,7 @@ The vPLC detail page is the read-only "I want to see what this device looks like
 - **Status badge** (Running / Stopped / Inactive).
 - **Subtitle** with the NIC mode (DHCP / Static) and the container state (`Container running`, `Container unknown` if the agent hasn't reported yet, etc.).
 
-The breadcrumb at the very top, **Orchestrators → {orchestrator name} → {vplc name}**, lets you jump back one step at a time.
+The breadcrumb at the very top, **Devices → {Device name} → {vPLC name}**, lets you jump back one step at a time.
 
 ## Stats grid
 
@@ -27,7 +27,7 @@ A row of read-only metrics:
 | **SUBNET MASK** | Subnet mask. |
 | **CREATED** | The date this vPLC was created. |
 
-Fields show `N/A` when the device hasn't reported back yet (e.g. status is Stopped or Inactive).
+Fields show `N/A` when the vPLC hasn't reported back yet (e.g. status is Stopped or Inactive).
 
 ## Network Interfaces section
 
@@ -37,7 +37,7 @@ For a freshly-created or Stopped vPLC the list reads **No network interfaces fou
 
 ## Lifecycle actions
 
-The detail page itself doesn't have action buttons. Lifecycle actions live in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
+The detail page itself doesn't have action buttons. Lifecycle actions live in the **3-dot menu** (⋮) on the vPLC card in the Device's vPLCs tab.
 
 ![3-dot menu on a Stopped vPLC card: Restart, Rename, Delete](images/vplc-3dot-menu.png)
 
@@ -47,7 +47,7 @@ The menu options depend on the vPLC's current state:
 |---|---|
 | **Running** | **Stop**, **Restart**, **Rename**, **Delete**. |
 | **Stopped** | **Restart** (which becomes a Start), **Rename**, **Delete**. |
-| **Inactive** (parent orchestrator offline) | **Rename**, **Delete**. Lifecycle actions are unavailable because the agent isn't reachable. |
+| **Inactive** (parent Device offline) | **Rename**, **Delete**. Lifecycle actions are unavailable because the agent isn't reachable. |
 
 Stopping a vPLC does not delete it. Its config and any project deployed to it are preserved, ready to resume.
 
@@ -57,11 +57,11 @@ The detail page shows network and lifecycle information. For runtime logs (scan 
 
 ## When things look wrong
 
-- **Status is Inactive but the orchestrator is Active** → check **[vPLC stuck in Stopped](../../troubleshooting/vplc-stuck-stopped)**.
+- **Status is Inactive but the Device is Active** → check **[vPLC stuck in Stopped](../../troubleshooting/vplc-stuck-stopped)**.
 - **Status is Running but Network Interfaces says "No network interfaces found"** → the runtime hasn't pushed an update yet. Refresh after 10 seconds. If still empty, restart the vPLC from the 3-dot menu.
 
 ## Where to next
 
 - **Deploy a project to this vPLC** → **[Connecting from the editor](connecting-from-editor)**.
 - **Change network settings** → 3-dot menu → **Rename** for the name, or delete and recreate for NIC changes. See **[Network modes](network-modes)** for what the fields mean.
-- **Inspect the parent orchestrator's metrics** → **[Orchestrator detail](../devices/device-detail)**.
+- **Inspect the parent Device's metrics** → **[Device detail](../devices/device-detail)**.

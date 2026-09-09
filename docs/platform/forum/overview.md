@@ -8,7 +8,7 @@ Open it from the dashboard by clicking **View Forum** on the **Trending Topics**
 
 ## The forum is global
 
-Unlike projects and orchestrators, the forum is not workspace-scoped. There's one forum for everyone, regardless of which workspace you're in. Posting in the forum uses your account identity (display name and avatar) directly.
+Unlike projects and Devices, the forum is not workspace-scoped. There's one forum for everyone, regardless of which workspace you're in. Posting in the forum uses your account identity (display name and avatar) directly.
 
 ## What the home page shows
 

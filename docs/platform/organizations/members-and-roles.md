@@ -44,7 +44,7 @@ You cannot demote the last Owner. The platform requires at least one Owner at al
 
 From the row's actions menu pick **Remove from organization**. A confirmation dialog appears. After confirming:
 
-- The member loses access to all org projects, orchestrators, and devices.
+- The member loses access to all org projects, Devices, and vPLCs.
 - Their commits and forum posts stay attributed to them.
 - Their pull requests on org projects stay open (you can close them manually).
 

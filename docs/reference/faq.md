@@ -42,19 +42,19 @@ Today: download the project as a zip, then **Import Project** in the destination
 
 Commit detail pages (full file diffs) are still being built. Use the editor for diffs in the meantime, it shows file-level changes between commits.
 
-## Orchestrators and vPLCs
+## Devices and vPLCs
 
-### How do I install the orchestrator agent?
+### How do I install the Device Agent?
 
 Run `curl https://getedge.me | bash` on a Linux device. See **[Installing the agent](../platform/devices/installing-the-agent)** for the full flow.
 
-### The Orchestrator ID expired before I finished installing. What now?
+### The Device ID expired before I finished installing. What now?
 
 Run the install command again on the device. The installer detects the existing install and prints a fresh ID.
 
-### Why is my orchestrator stuck "Inactive"?
+### Why is my Device stuck "Inactive"?
 
-The agent isn't reporting. See **[Orchestrator not connecting](../troubleshooting/device-not-connecting)**.
+The agent isn't reporting. See **[Device not connecting](../troubleshooting/device-not-connecting)**.
 
 ### My vPLC stays "Stopped". What should I check?
 
@@ -62,7 +62,7 @@ See **[vPLC stuck in Stopped](../troubleshooting/vplc-stuck-stopped)**.
 
 ### Can I run more than 2 vPLCs on Community?
 
-No. Community is capped at 2 vPLC devices. Upgrade to Pro for 100 or to a per-seat plan for more.
+No. Community is capped at 2 vPLCs. Upgrade to Pro for 100 or to a per-seat plan for more.
 
 ### What is a runtime user, and why do I need to create one?
 

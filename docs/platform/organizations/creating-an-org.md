@@ -38,7 +38,7 @@ If the platform-derived handle is already taken (because someone else has a simi
 1. **Pick a plan if you need to collaborate.** Click **View plans** on the org dashboard's banner (or go to org → Billing tab) to pick **Teams** or **Education**. Until then, member management is locked.
 2. **Customize the profile.** Upload a logo, fill in the description, add social/contact links. See **[Org profile](org-profile)**.
 3. **Move or create projects.** On the org dashboard, click **+ New** on the Projects card, or fork an existing project into the org. (Cross-workspace moves require a project export/import; see **[Importing and forking](../projects/importing-and-forking)**.)
-4. **Install an orchestrator for the org.** Same flow as personal, but performed while on the organization's dashboard. See **[Installing the agent](../devices/installing-the-agent)**.
+4. **Install a Device for the org.** Same flow as personal, but performed while on the organization's dashboard. See **[Installing the agent](../devices/installing-the-agent)**.
 
 ## Where to next
 

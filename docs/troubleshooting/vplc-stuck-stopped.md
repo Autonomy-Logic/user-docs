@@ -7,24 +7,32 @@ Symptoms:
 
 ![vPLC detail page with Stopped status and N/A fields](images/vplc-stopped.png)
 
-## 1. Is the parent orchestrator Active?
+## 1. Is the parent Device Active?
 
-Open the orchestrator that owns this vPLC. Status badge should be **Active** (or **Connected**), with non-zero CPU / memory / uptime.
+Open the Device that owns this vPLC. Status badge should be **Active** (or **Connected**), with non-zero CPU / memory / uptime.
 
-If the orchestrator is **Inactive**, the agent can't act on your start request. Fix the orchestrator first → **[Orchestrator not connecting](device-not-connecting)**.
+If the Device is **Inactive**, the agent can't act on your start request. Fix the Device first → **[Device not connecting](device-not-connecting)**.
 
 ## 2. Re-issue the Start command
 
-From the orchestrator's Devices tab, click the vPLC card's **3-dot menu → Start**. Wait 10–30 seconds for the agent to pull the image (if it's a first run) and start the container.
+From the Device's vPLCs tab, click the vPLC card's **3-dot menu → Start**. Wait 10–30 seconds for the agent to pull the image (if it's a first run) and start the container.
 
 If the status stays Stopped, look at the vPLC detail page for any error tooltip.
 
 ## 3. Check device-side logs
 
-On the edge device:
+On the edge device, list the runtime containers:
 
 ```bash
-docker ps -a | grep <device-name>
+docker ps -a | grep openplc-runtime
+```
+
+That matches on the image name and shows every vPLC container on this Device. To pick out
+one vPLC, note that its container is named by the vPLC's **id**, not by the name you gave it:
+the id is the last segment of the URL of that vPLC's page in the web app.
+
+```bash
+docker ps -a | grep <vplc-id>
 ```
 
 The container ID lets you look at logs:
@@ -85,12 +93,12 @@ If you can't make the vPLC start, the fastest fix is often to delete it and recr
 
 1. 3-dot menu → **Delete**.
 2. Confirm.
-3. Click **+ New Device** and follow **[Creating a vPLC](../platform/vplcs/creating-a-vplc)**.
+3. Click **+ New vPLC** and follow **[Creating a vPLC](../platform/vplcs/creating-a-vplc)**.
 
 Any project you'd deployed to it will need to be deployed again from the editor.
 
 ## Where to next
 
-- **Check the parent orchestrator** → **[Orchestrator not connecting](device-not-connecting)**.
+- **Check the parent Device** → **[Device not connecting](device-not-connecting)**.
 - **Network config reference** → **[Network modes](../platform/vplcs/network-modes)**.
-- **Recreate the device** → **[Creating a vPLC](../platform/vplcs/creating-a-vplc)**.
+- **Recreate the vPLC** → **[Creating a vPLC](../platform/vplcs/creating-a-vplc)**.
