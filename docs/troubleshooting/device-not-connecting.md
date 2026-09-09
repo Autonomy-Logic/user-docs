@@ -50,19 +50,19 @@ You should see a successful TLS handshake (200 OK or 404 from the API root is fi
 On the device:
 
 ```bash
-docker ps | grep orchestrator-agent
+docker ps | grep orchestrator_agent
 ```
 
 If the container isn't listed, start it:
 
 ```bash
-docker start orchestrator-agent
+docker start orchestrator_agent
 ```
 
 If start fails, look at the logs:
 
 ```bash
-docker logs --tail 100 orchestrator-agent
+docker logs --tail 100 orchestrator_agent
 ```
 
 Common log entries to look for:
@@ -82,7 +82,7 @@ Fix: create a new Device in the wizard. Run the install command on the device ag
 If the device moved networks (different LAN, new ISP), the agent's network-monitor sidecar should auto-detect and reconfigure. If that doesn't happen, restart the agent:
 
 ```bash
-docker restart orchestrator-agent
+docker restart orchestrator_agent
 ```
 
 Wait 30 seconds, then refresh the web app.
@@ -103,7 +103,7 @@ sudo timedatectl set-ntp true
 
 ## 8. Still stuck?
 
-- Run `docker logs orchestrator-agent` and copy the last 100 lines.
+- Run `docker logs orchestrator_agent` and copy the last 100 lines.
 - Post a thread in the **[OpenPLC forum](../platform/forum/overview)** under *Bug Reports* or *General Discussion*, with:
   - Distro and kernel (`uname -a`).
   - Docker version (`docker --version`).
