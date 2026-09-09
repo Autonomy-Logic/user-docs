@@ -6,15 +6,15 @@ This is the fastest path from "I have an idea" to "let me try it", ideal for lea
 
 ## Step 1: Make sure the Simulator is selected
 
-The Simulator is the default target. Until you connect to an orchestrator-managed vPLC, anything you build runs on the Simulator. You'll see a small simulator icon in the status bar at the very bottom-left of the editor when it's selected.
+The Simulator is the default target. Until you connect to a vPLC on an Edge Device, anything you build runs on the Simulator. You'll see a small simulator icon in the status bar at the very bottom-left of the editor when it's selected.
 
 If you've previously connected to a vPLC and want to switch back:
 
-1. In the project tree, expand **Device** and click **Orchestrators**.
-2. The Device Orchestrators screen opens in a tab.
+1. In the project tree, expand **Device** and click **Edge Devices**.
+2. The Edge Devices screen opens in a tab.
 3. **OpenPLC Simulator** sits at the top with a **Selected** badge. Click anywhere on its card to make sure it's selected.
 
-![Device Orchestrators screen with OpenPLC Simulator selected by default at the top, and the user's registered orchestrators listed below](../images/orchestrators-screen.png)
+![Edge Devices screen with OpenPLC Simulator selected by default at the top, and the user's registered Edge Devices listed below](../images/edge-devices-screen.png)
 
 You don't log in to the Simulator. There's no user account, no IP, no password, it's just there.
 
@@ -129,6 +129,6 @@ Stopping halts the emulator's clock. Starting again re-runs the build and loads 
 
 ## What's next
 
-- **[Connecting to a vPLC](../connecting-to-runtimes)**: when you're ready to run on a real (or orchestrator-managed virtual) device.
+- **[Connecting to a vPLC](../connecting-to-runtimes)**: when you're ready to run on a real device, or on a vPLC hosted by an Edge Device.
 - **[Debugger](debugger)**: the full reference for the live-variable chart and how variables get included.
 - **[Project compilation](project-compilation)**: what each step of the build pipeline does.

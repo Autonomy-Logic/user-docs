@@ -1,11 +1,11 @@
 # Connecting from the editor
 
-Once you have a project and a vPLC, you connect them through the **[OpenPLC Editor](../../openplc-editor/overview)**. The editor's left sidebar has a **Devices → Orchestrators** panel; that's the only place the cloud platform and the runtime meet.
+Once you have a project and a vPLC, you connect them through the **[OpenPLC Editor](../../openplc-editor/overview)**. The editor's left sidebar has a **Device → Edge Devices** panel; that's the only place the cloud platform and the runtime meet.
 
 ## Steps
 
 1. **Open the project in the editor.** From the project page click **Open in editor**. The editor loads with your project.
-2. **Open the Devices panel.** In the editor's left sidebar expand **Devices**, then click **Orchestrators**. A panel slides out listing every Device your account has access to.
+2. **Open the Edge Devices panel.** In the editor's left sidebar expand **Device**, then click **Edge Devices**. A panel slides out listing every Device your account has access to.
 3. **Expand the Device that owns your vPLC.** Each Device entry shows its connection status (Active / Inactive). Expand it to reveal its vPLCs.
 4. **Select the target vPLC.** Click on the vPLC row. It should report status **Running** (or you'll need to start it via the vPLC's 3-dot menu from the platform).
 5. **Click Connect** at the top of the panel.

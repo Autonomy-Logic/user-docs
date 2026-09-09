@@ -258,8 +258,8 @@ This configuration maps 8 digital outputs starting at address `%QX0.0` to Modbus
 
 Now let's connect to the vPLC to deploy your program.
 
-1. In the IDE, expand **Devices** in the left sidebar
-2. Click on **Orchestrators** to open the Device Orchestrators panel
+1. In the IDE, expand **Device** in the left sidebar
+2. Click on **Edge Devices** to open the Edge Devices panel
 3. Expand your Device (e.g., "QuickStartDevice") to see your vPLC
 4. Click on your vPLC (e.g., "Demo vPLC") to select it (it should show "Running" status)
 5. Click the **Connect** button
@@ -347,7 +347,7 @@ Now that you understand the basics, explore these topics to build more sophistic
 ### Cannot connect to vPLC
 - Ensure the vPLC is in "Running" status
 - Check that your project is saved before attempting to connect
-- Try refreshing the Orchestrators panel (click the refresh icon)
+- Try refreshing the Edge Devices panel (click the refresh icon)
 
 ### Device ID expired
 - Run the installation command again on your Linux device

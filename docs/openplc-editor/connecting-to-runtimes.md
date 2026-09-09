@@ -2,29 +2,29 @@
 
 The editor opens with the built-in **OpenPLC Simulator** selected. Anything you build runs in the browser sandbox until you point it at a real (or virtual) PLC.
 
-When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks through that flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
+When you're ready to run on a vPLC, use the **Edge Devices** screen to pick one and connect. This page walks through that flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
 
-> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/devices/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
+> If you don't yet have an Edge Device or a vPLC, see **[Devices](../platform/devices/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
 
-## Open the Orchestrators screen
+## Open the Edge Devices screen
 
-In the project tree, expand **Device** and click **Orchestrators**. The Orchestrators editor opens as a tab in the central editing area.
+In the project tree, expand **Device** and click **Edge Devices**. The Edge Devices editor opens as a tab in the central editing area.
 
-![Device Orchestrators screen with OpenPLC Simulator selected by default at the top, followed by the user's registered orchestrators as expandable cards](images/orchestrators-screen.png)
+![Edge Devices screen with OpenPLC Simulator selected by default at the top, followed by the user's registered Edge Devices as expandable cards](images/edge-devices-screen.png)
 
 **OpenPLC Simulator** sits at the top with a **Selected** badge. It's a browser-side AVR emulator. Anything you build with it as the target runs in the browser sandbox, no hardware required. See **[Running with the Simulator](building-deploying/simulator)**.
 
-Below the Simulator, each card represents one orchestrator: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
+Below the Simulator, each card represents one Edge Device: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
 
 ## Pick a vPLC
 
-Expand the orchestrator. The vPLCs running on it appear as child rows, each with its name and a status indicator (green dot + `Running` if the vPLC is up).
+Expand the Edge Device. The vPLCs running on it appear as child rows, each with its name and a status indicator (green dot + `Running` if the vPLC is up).
 
-![Device Orchestrators screen with SLM-RP4 expanded, showing vPLC 01 with a green Running status](images/orchestrators-expanded.png)
+![Edge Devices screen with SLM-RP4 expanded, showing vPLC 01 with a green Running status](images/edge-devices-expanded.png)
 
 Click a vPLC to select it. The row highlights and a **Connect** button appears below the cards.
 
-![vPLC 01 selected, with the Connect button visible below the orchestrator cards](images/orchestrators-vplc-selected.png)
+![vPLC 01 selected, with the Connect button visible below the Edge Device cards](images/edge-devices-vplc-selected.png)
 
 Click **Connect**.
 
@@ -44,15 +44,15 @@ After the first user exists, connecting opens a standard **Login** dialog. Use t
 
 ## What changes once you're connected
 
-- The orchestrator card now shows the vPLC with a **Connected** status badge.
+- The Edge Device card now shows the vPLC with a **Connected** status badge.
 
-  ![Orchestrators editor showing a vPLC with the Connected status badge](images/vplc-connected.png)
+  ![Edge Devices editor showing a vPLC with the Connected status badge](images/vplc-connected.png)
 
 - The activity-bar **Play** button is enabled. Pressing it calls `runtime.startPlc` on the connected vPLC.
 - The activity-bar **Debugger** becomes available (it needs a connected runtime to talk to).
 - The **PLC Logs** tab appears in the console, streaming the runtime's log feed.
 - **Build options** offers **Build & Upload** and **Clean Upload** in addition to **Build only**.
-- The Orchestrators card shows live runtime stats (CPU, memory, uptime) for the connected vPLC.
+- The Edge Devices card shows live runtime stats (CPU, memory, uptime) for the connected vPLC.
 
 ## Status polling
 
@@ -62,16 +62,16 @@ The editor polls the runtime in the background for:
 - Runtime log entries.
 - Task execution timing.
 
-You don't refresh anything by hand. Updates land in the console and on the Orchestrators card automatically.
+You don't refresh anything by hand. Updates land in the console and on the Edge Devices card automatically.
 
 ## Disconnecting
 
-Click **Logout** in the Orchestrators card. The vPLC keeps running, disconnecting only ends your editor's session with it. Stop the PLC explicitly with the **Stop** button if you want it offline.
+Click **Logout** in the Edge Devices card. The vPLC keeps running, disconnecting only ends your editor's session with it. Stop the PLC explicitly with the **Stop** button if you want it offline.
 
 ## Troubleshooting
 
-**The Orchestrators screen is empty.**
-Verify the orchestrator is online in the platform dashboard. The card only appears if the platform reports it as reachable.
+**The Edge Devices screen is empty.**
+Verify the Edge Device is online in the platform dashboard. The card only appears if the platform reports it as reachable.
 
 **The vPLC shows offline / stopped.**
 Open the vPLC in the platform dashboard and start it there. Allow about a minute for it to initialise before retrying.
@@ -80,7 +80,7 @@ Open the vPLC in the platform dashboard and start it there. Allow about a minute
 The credentials are **runtime-side**, not your Autonomy Edge login. If you've forgotten them, recreate the vPLC.
 
 **Upload fails after compilation succeeded.**
-The connection may have dropped during the build. Confirm the orchestrator is still online, then retry. The console will carry the specific transport error.
+The connection may have dropped during the build. Confirm the Edge Device is still online, then retry. The console will carry the specific transport error.
 
 ## What's next
 

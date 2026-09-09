@@ -18,7 +18,7 @@ EtherCAT must own its NIC. The master continuously sends and receives Ethernet f
 
 In practice this means:
 
-- Use a **second NIC** on the host, separate from the one you use for SSH, for the orchestrator connection, and for the rest of your enterprise network.
+- Use a **second NIC** on the host, separate from the one you use for SSH, for the Device Agent connection, and for the rest of your enterprise network.
 - Do not assign an IP address to the EtherCAT NIC. The master uses raw Ethernet, so an IP makes no difference, but it discourages other tools from sending traffic onto that link.
 - Disable any NetworkManager or netplan configuration that brings the EtherCAT interface up automatically with DHCP.
 

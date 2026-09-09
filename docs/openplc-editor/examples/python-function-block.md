@@ -123,7 +123,7 @@ Python FBs have a small per-call overhead, typically tens of microseconds for th
 
 **`AttributeError: 'AdcToCelsius' object has no attribute 'raw'` at runtime.** The variable's class is wrong. Inputs and outputs both need to be declared with the right class in the variables table.
 
-**The Python block is unavailable in the new-element popover.** The Simulator and Runtime v4 support Python. If you're on Runtime v3 (or an Arduino-class target on the desktop), Python is disabled. Switch targets via the Orchestrators screen.
+**The Python block is unavailable in the new-element popover.** The Simulator and Runtime v4 support Python. If you're on Runtime v3 (or an Arduino-class target on the desktop), Python is disabled. Switch targets via the Edge Devices screen.
 
 ## Where to next
 

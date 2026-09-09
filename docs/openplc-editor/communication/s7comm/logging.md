@@ -1,6 +1,6 @@
 # Logging
 
-The **Logging** accordion exposes three independent toggles that control which categories of S7Comm events the runtime records. Logs flow into the runtime's standard log stream. The same stream that surfaces in the orchestrator's runtime view alongside Modbus and OPC-UA logs.
+The **Logging** accordion exposes three independent toggles that control which categories of S7Comm events the runtime records. Logs flow into the runtime's standard log stream. The same stream that surfaces in the Edge Device's runtime view alongside Modbus and OPC-UA logs.
 
 ## Field Walk-through
 
@@ -20,7 +20,7 @@ All toggles apply immediately. Changes are saved as soon as you flip the switch.
 
 ## Where the Logs Appear
 
-S7Comm log entries are written to the runtime's log stream. You can read this stream wherever you normally read runtime logs. Typically in the orchestrator's runtime view on the platform, or in the host's system journal if you run the runtime as a system service.
+S7Comm log entries are written to the runtime's log stream. You can read this stream wherever you normally read runtime logs. Typically in the Edge Device's runtime view on the platform, or in the host's system journal if you run the runtime as a system service.
 
 Each line is tagged with a category and the server's name (the one you entered when you created the project entry), making it straightforward to filter by server when you have multiple S7Comm servers in the same project or multiple plugins on the same runtime.
 

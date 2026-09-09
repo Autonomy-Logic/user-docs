@@ -2,7 +2,7 @@
 
 The project tree is the top half of the editor's side panel. It lists every artefact in your project, grouped by kind.
 
-![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Orchestrators, and Servers branches](../images/project-tree.png)
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
 
 ## Header
 
@@ -51,10 +51,10 @@ A single editor with three stacked sections:
 See **[Tasks and Instances](../iec-concepts/tasks-instances)** for the conceptual model.
 
 ### Device
-Lists the orchestrator and remote-device entries for this project.
+Lists the Edge Device and remote-device entries for this project.
 
-- **Orchestrators**: opens the connection screen. From there you pick an orchestrator + a vPLC and log in. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
-- Below Orchestrators, any **remote devices** you've added live as siblings of the orchestrator entry. Each one (Modbus master, EtherCAT bus master) opens its own editor.
+- **Edge Devices**: opens the connection screen. From there you pick an Edge Device + a vPLC and log in. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
+- Below Edge Devices, any **remote devices** you've added live as siblings of the Edge Device entry. Each one (Modbus master, EtherCAT bus master) opens its own editor.
 
 ### Servers
 The communication servers running on this vPLC.

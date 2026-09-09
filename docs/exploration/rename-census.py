@@ -296,6 +296,31 @@ D_PROSE_DONE = {
     "getting-started/quick-start.md",
     # Phase 6
     "reference/glossary.md",
+    # Phase 7: every openplc-editor page carrying a changes row, plus the three
+    # Phase 5 pages whose Editor-label deferrals landed with this phase.
+    "openplc-editor/README.md",
+    "openplc-editor/overview.md",
+    "openplc-editor/connecting-to-runtimes.md",
+    "openplc-editor/building-deploying/debugger.md",
+    "openplc-editor/building-deploying/deployment-vplc.md",
+    "openplc-editor/building-deploying/project-compilation.md",
+    "openplc-editor/building-deploying/retrieve-project.md",
+    "openplc-editor/building-deploying/runtime-status.md",
+    "openplc-editor/building-deploying/simulator.md",
+    "openplc-editor/communication/README.md",
+    "openplc-editor/communication/ethercat/prerequisites.md",
+    "openplc-editor/communication/ethercat/troubleshooting.md",
+    "openplc-editor/communication/modbus/client.md",
+    "openplc-editor/communication/s7comm/example.md",
+    "openplc-editor/communication/s7comm/logging.md",
+    "openplc-editor/communication/s7comm/troubleshooting.md",
+    "openplc-editor/examples/README.md",
+    "openplc-editor/examples/modbus-slave-outputs.md",
+    "openplc-editor/examples/python-function-block.md",
+    "openplc-editor/hardware-configuration/board-selection.md",
+    "openplc-editor/hardware-configuration/device-config-overview.md",
+    "openplc-editor/workspace-overview/project-explorer.md",
+    "openplc-editor/workspace-overview/workspace-layout.md",
 }
 
 
@@ -368,7 +393,22 @@ def classify(path, line, col, word, ctx):
     # node and plain hardware English all stay lowercase, and the child entity is
     # spelled "vPLC" and so does not match this pattern at all.
     if PROSE_DONE_ACTIVE and path in D_PROSE_DONE and word[:1].isupper():
-        return "D-PROSE-NEW", "R20"
+        # R20a - "Edge Device", the platform entity's correct name inside the
+        # Editor documentation (BR05). Judged positionally on the word before the
+        # match, and it must run ahead of R15: "edge device" is HOST's very first
+        # alternative, so without this every correctly renamed "Edge Device" would
+        # be filed as the machine it is not.
+        if line[:col - 1].lower().endswith("edge "):
+            return "D-PROSE-NEW", "R20a"
+        # R20 proper is NOT applied inside the Editor documentation. There a bare
+        # capitalised "Device" is the Editor's own project-tree node, which keeps
+        # its name (BR06), not the platform entity, which reads "Edge Device" and
+        # is caught above. Letting R20 fire there filed 46 rows that belong to
+        # D-EDITORNODE, D-REMOTE and D-TARGET as the parent entity: all of them
+        # stays codes, so no decision moved, but the record is evidence and the
+        # senses have to be right. D-TARGET dropping from 98 to 93 is what showed it.
+        if not path.startswith("openplc-editor/"):
+            return "D-PROSE-NEW", "R20"
     # R09 - the "Device" half of the Editor's screen label "Device Orchestrators",
     # which becomes "Edge Devices" as one label. Both words move together, so the
     # half that reads "Device" is not one of the senses that stay.
@@ -544,7 +584,16 @@ def main():
             for r in left[:80]:
                 print(f"   [{r['code']}] {r['file']}:{r['line']}  {r['context'][:100]}")
             return 1
-        print("\nPASS: every surviving occurrence carries a 'stays' code.")
+        if todo:
+            print(f"\nHALF PASS: no occurrence carries a CHANGES code, which is the gate that "
+                  f"matters. But {len(todo)} carry REVIEW rather than a 'stays' code from the "
+                  f"legend, so the second half of the gate is NOT met yet. Every one is an "
+                  f"occurrence the base-commit overrides no longer reach: {len(OVERRIDES)} "
+                  f"overrides exist and the prose has moved under most of them. Re-deriving the "
+                  f"overrides against the final tree is Phase 10's job by decision, and it is what "
+                  f"closes these. Do not silence them with a rule.")
+        else:
+            print("\nPASS: every surviving occurrence carries a 'stays' code.")
     return 1 if todo else 0
 
 

@@ -72,9 +72,9 @@ If you're running on the **Simulator**:
 1. Click **Start Simulator**. Watch the console for `Simulator started`.
 2. The Modbus server binds to `127.0.0.1:502` inside the browser's network bridge.
 
-If you're running on a **vPLC** (orchestrator-managed):
+If you're running on a **vPLC** (hosted by an Edge Device):
 
-1. Open the Orchestrators screen, expand your orchestrator, pick a vPLC, click **Connect**, log in.
+1. Open the Edge Devices screen, expand your Edge Device, pick a vPLC, click **Connect**, log in.
 2. Click **Build options** → **Build & Upload**.
 3. Click **Play** to start the program.
 4. The Modbus server is now reachable at the vPLC's IP on port `502`.

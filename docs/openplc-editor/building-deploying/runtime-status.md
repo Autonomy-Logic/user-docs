@@ -6,7 +6,7 @@ It lives under the **Device** branch of the project tree.
 
 ![The Runtime Status screen. A header reading "Runtime Status" with the device name and address beneath it, a "Change runtime version" button at the top right, and a grid of fields: Runtime version v4.2.2, Bootloader bootloader-v1.0.0, Host slm-rp4, Operating system Debian GNU/Linux 12 (bookworm), Kernel 6.12.35-rt10-v8+, Architecture aarch64, CPU cores 4, Memory 1.8 GB. Below the header, tables for Scan Cycle Statistics, EtherCAT Bus Statistics and SLM-RP4 Backplane](../images/runtime-status-mainscreen.png)
 
-> **If you have used the statistics before, this is where they went.** The scan-cycle, EtherCAT and plugin tables used to sit at the bottom of the **Orchestrators** screen in the web editor, and at the bottom of the **Device Configuration** screen in the desktop editor. They were never configuration, and on the desktop you had to scroll past a pin-mapping table to reach them. They are unchanged; they simply have their own screen now.
+> **If you have used the statistics before, this is where they went.** The scan-cycle, EtherCAT and plugin tables used to sit at the bottom of the **Edge Devices** screen in the web editor, and at the bottom of the **Device Configuration** screen in the desktop editor. They were never configuration, and on the desktop you had to scroll past a pin-mapping table to reach them. They are unchanged; they simply have their own screen now.
 
 ## When the screen appears
 
