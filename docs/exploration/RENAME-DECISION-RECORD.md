@@ -319,6 +319,51 @@ base tree reports 529 / 709, the difference being exactly the 8 path rows descri
 as it stands after Phase 3, which is what proves the Phase 10 gate actually fires rather than passing
 vacuously on a tree it never looked at.
 
+### The reproducibility check is a gate, not a formality, and it has fired twice
+
+Both times the only signal was **a number moving in an unexpected direction**, and both times it was
+in the direction `--verify` can never see.
+
+1. **R20 fired on the base tree.** `D_PROSE_DONE` means "rewritten in the tree you are classifying".
+   Run against the base commit, those same files still carry the OLD child-sense capitalised
+   "Device" ("+ New Device", "Add Device wizard", "Device Name"), so R20 marked **20 genuine
+   *changes* rows as *stays* there.** Nothing in `--verify` could have reported it: a stays row is
+   what `--verify` wants to see. What caught it was the base-tree reproducibility diff jumping from
+   8 rows to 28. R20 is now off by default and enabled only under `--verify`, with the reason in the
+   code beside it.
+2. **The stale-override guard was too strong.** Requiring every `O-*` code to sit on an
+   "orchestrat*" word broke reproducibility by **21 rows**, because `O-EDGEDEV` and `O-PATH`
+   legitimately sit on a "device" word: both halves of the Editor's "Device Orchestrators" label
+   move together. Narrowed to `O-ENTITY`, `O-AGENT`, `O-REWRITE`, `O-SE`.
+
+One line on the fenced-block hole, for the same reason. When the container name was corrected to
+`orchestrator_agent`, `is_o_literal` still only knew the hyphen, so four docker commands inside
+fenced blocks fell through to `O-AGENT` and **were reported**. The old fallback would have converted
+them to literals in silence, and nobody would have known the classifier had stopped recognising
+them. That is precisely what closing the hole was for.
+
+### Where a quoted interface string is sourced from
+
+The default, and the reason for it: **quotes are sourced against `origin/development`, because that
+is the screen a reader is looking at.** A string that exists only on a feature branch is not yet what
+the customer sees, and the Phase 4 deferral went wrong by treating already-shipped strings as if they
+were unwritten.
+
+**Phase 7 is the documented exception.** The OpenPLC Editor's labels are sourced from the editor pull
+request branches, `feat/edge-639/rename-device-vplc` in openplc-editor and openplc-web, because BR14
+ships all six repositories together: those labels land in the same release as these pages, so
+quoting them makes the documentation correct at the moment of the joint ship rather than briefly
+wrong. Verified on both branches, which carry a byte-identical shared surface:
+`src/frontend/components/_organisms/explorer/project.tsx:433` renders the tree leaf and the tab name
+as **Edge Devices**, `.../editor/device/orchestrators/orchestrators-list.tsx:333` renders the panel
+heading as **Edge Devices**, no `Orchestrators` label survives in either tree, and a test pins the
+screen's title. The tree's parent `Device` node and its `Configuration` leaf keep their names, which
+is BR06. Line numbers differ from `development` because the trees differ; that is the shared-surface
+restructure, not a discrepancy.
+
+**The single dependency, stated so it is not lost:** if the editor pull requests change those strings
+before they merge, Phase 7 must be revisited. They are under review, so this is a live risk.
+
 **A note on casing, and a divergence from autonomy-node that is deliberate.** The platform entity is
 written capitalised in prose here: "at least one Device", "the Device card", "between Devices". This
 departs from how this repository cased the old word, where 87 of 92 mid-sentence "orchestrator"
