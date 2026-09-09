@@ -1,10 +1,10 @@
 # Dashboard tour
 
-The first screen you see after signing in is your **dashboard**. It's the home base for everything else on the platform: projects, orchestrators, community activity, and the user menu all start here.
+The first screen you see after signing in is your **dashboard**. It's the home base for everything else on the platform: projects, Devices, community activity, and the user menu all start here.
 
 ![The full dashboard, showing the three columns and the top header](images/dashboard-full.png)
 
-If you switch to an organization's workspace the layout stays the same, with the organization's projects, orchestrators, and members in place of your personal ones.
+If you switch to an organization's workspace the layout stays the same, with the organization's projects, Devices, and members in place of your personal ones.
 
 There are five regions to know about.
 
@@ -21,9 +21,9 @@ Stretching across the screen at the very top:
 This column lists the things that are yours in the current workspace.
 
 - **Projects** card with a **+ New** button at the top. Below it, the four most recently modified projects, with a **View all** link at the bottom that takes you to **[your projects list](../platform/projects/projects-list)**.
-- **Orchestrators** card. If you have one or more orchestrators set up, the first one is named here. The blue **Manage orchestrator** button takes you to the **[orchestrators list](../platform/devices/devices-list)**.
+- **Devices** card. If you have one or more Devices set up, the first one is named here. The blue **Manage devices** button takes you to the **[Devices list](../platform/devices/devices-list)**.
 
-When you switch to an organization workspace, this column shows that organization's projects and orchestrators instead of yours.
+When you switch to an organization workspace, this column shows that organization's projects and Devices instead of yours.
 
 ## 3. Center column: the feed
 
@@ -66,10 +66,10 @@ The items, top to bottom:
 
 ## Switching workspaces
 
-To switch to an organization's workspace, click the organization's name in the **Organizations** card on the right. You land on that organization's dashboard, with the same layout but the org's projects, orchestrators, and members in place of your personal ones. The header, user menu, forum, and AI assistant stay the same since they're personal, not workspace-scoped.
+To switch to an organization's workspace, click the organization's name in the **Organizations** card on the right. You land on that organization's dashboard, with the same layout but the org's projects, Devices, and members in place of your personal ones. The header, user menu, forum, and AI assistant stay the same since they're personal, not workspace-scoped.
 
 ## What's next
 
 - **Start a project** → **[Creating a project](../platform/projects/creating-a-project)**.
-- **Install your first orchestrator** → **[Installing the agent](../platform/devices/installing-the-agent)** or follow the end-to-end **[Quick Start](quick-start)**.
+- **Install your first Device** → **[Installing the Device Agent](../platform/devices/installing-the-agent)** or follow the end-to-end **[Quick Start](quick-start)**.
 - **Look around the community** → **[Forum overview](../platform/forum/overview)**.

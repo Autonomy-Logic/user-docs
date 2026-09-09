@@ -287,6 +287,9 @@ D_PROSE_DONE = {
     "reference/faq.md",
     "troubleshooting/plan-limit-reached.md",
     "troubleshooting/vplc-stuck-stopped.md",
+    "getting-started/what-is-autonomy-edge.md",
+    "getting-started/account-and-signup.md",
+    "getting-started/dashboard-tour.md",
 }
 
 
