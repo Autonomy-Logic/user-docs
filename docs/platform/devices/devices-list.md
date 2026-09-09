@@ -1,13 +1,13 @@
 # Devices list
 
-The Devices list shows every Device under the current workspace, one card per Device with live stats. Open it from the dashboard by clicking **Manage orchestrators** on the **Orchestrators** card.
+The Devices list shows every Device under the current workspace, one card per Device with live stats. Open it from the dashboard by clicking **Manage devices** on the **Devices** card.
 
-![Devices list showing two Devices (SLM-RP4 active with 1 vPLC, Toradex Ivy inactive with 2 vPLCs) plus the New Orchestrator tile on the right](images/devices-list.png)
+![Devices list showing two Devices (SLM-RP4 active with 1 vPLC, Toradex Ivy inactive with 2 vPLCs) plus the New Device tile on the right](images/devices-list.png)
 
 ## Toolbar
 
 - **Search…**: filters cards by Device name as you type.
-- **What is an Orchestrator?** floating button (bottom right): opens a short explainer modal. Same content as the **[overview](overview)** page.
+- **What is a Device?** floating button (bottom right): opens a short explainer modal. Same content as the **[overview](overview)** page.
 
 ## Device card
 
@@ -22,13 +22,13 @@ Each card shows:
 | **CPU** | Live CPU usage on the device, in cores (load average) or percent. |
 | **MEMORY** | Live memory usage. Displayed in MB or GB depending on size. |
 | **UPTIME** | How long the agent has been running. Resets if the agent restarts. |
-| **N devices** (expandable) | Number of vPLCs attached to this Device. Click to expand and see the list inline. |
+| **N vPLCs** (expandable) | Number of vPLCs attached to this Device. Click to expand and see the list inline. |
 
 Stats are blank or zero on an **Inactive** Device because the agent isn't reporting anything.
 
 ## Expanding the vPLCs list
 
-Click the **N devices** row at the bottom of any card to expand it inline:
+Click the **N vPLCs** row at the bottom of any card to expand it inline:
 
 ![SLM-RP4 card expanded inline, showing vPLC 01 with 90h 49m uptime and a success badge](images/devices-vplcs-expanded.png)
 
@@ -44,7 +44,7 @@ This is a quick way to see what's running on a given vPLC without leaving the li
 
 ## Adding more Devices
 
-The dashed **+ New Orchestrator** tile to the right of your existing cards opens the **[install wizard](installing-the-agent)**. The number of Devices you can have at once depends on your plan, see **[Plan limits](../../plans-and-billing/plan-limits)**.
+The dashed **+ New Device** tile to the right of your existing cards opens the **[install wizard](installing-the-agent)**. The number of Devices you can have at once depends on your plan, see **[Plan limits](../../plans-and-billing/plan-limits)**.
 
 ## Sorting and filtering
 

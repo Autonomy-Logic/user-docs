@@ -4,7 +4,7 @@ Symptoms:
 
 - The Device card shows **Inactive** indefinitely.
 - CPU / Memory / Uptime fields are blank or `-`.
-- You just ran the install command but the wizard's **Create Orchestrator** button never finds the agent.
+- You just ran the install command but the wizard's **Create Device** button never finds the agent.
 
 ![Device card in Inactive state](images/device-inactive.png)
 

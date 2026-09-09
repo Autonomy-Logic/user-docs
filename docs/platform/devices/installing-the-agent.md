@@ -15,11 +15,11 @@ The number of Devices you can pair at once is governed by your plan, see **[Plan
 
 ## Step 1, Open the wizard
 
-In the web app, open the **[Devices list](devices-list)** (from the dashboard, click **Manage orchestrators** on the Orchestrators card). Click the **+ New Orchestrator** tile (the dashed card with a plus icon).
+In the web app, open the **[Devices list](devices-list)** (from the dashboard, click **Manage devices** on the Devices card). Click the **+ New Device** tile (the dashed card with a plus icon).
 
 The wizard opens on a dedicated page.
 
-![New Orchestrator wizard, Details step: Name and Description fields](images/new-device-step1.png)
+![New Device wizard, Details step: Name and Description fields](images/new-device-step1.png)
 
 At the top: a short summary of what a Device is. Below it, a 3-step indicator: **1. Details** (selected), **2. Install Agent**, **3. Link**.
 
@@ -36,7 +36,7 @@ Click **Next**. (You can also use **Cancel** to abort.)
 
 The wizard now shows three numbered steps (a, b, c) for the install.
 
-![New Orchestrator wizard, Install Agent step: terminal instructions and curl command](images/new-device-step2.png)
+![New Device wizard, Install Agent step: terminal instructions and curl command](images/new-device-step2.png)
 
 The instructions:
 
@@ -65,11 +65,11 @@ Click **Next** when you have the ID.
 
 ## Step 4, Pair the agent with the cloud
 
-![New Orchestrator wizard, Link step: paste the Device ID](images/new-device-step3.png)
+![New Device wizard, Link step: paste the Device ID](images/new-device-step3.png)
 
 A single field: **Device ID**. Paste the ID that was printed in the terminal.
 
-Click **Create Orchestrator** at the bottom right. The platform:
+Click **Create Device** at the bottom right. The platform:
 
 - Validates the ID.
 - Records the public certificate the agent sent over.
@@ -81,7 +81,7 @@ A few seconds later the Device's status flips to **Active** (or **Connected**) o
 
 Run `curl https://getedge.me | bash` again on the device. The installer detects the existing install and offers to re-generate the registration ID. Paste the new one into the wizard.
 
-If the wizard has already timed out, close it and start over from **+ New Orchestrator**.
+If the wizard has already timed out, close it and start over from **+ New Device**.
 
 ## Verifying the install
 

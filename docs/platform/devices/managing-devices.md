@@ -22,7 +22,7 @@ During the update:
 
 - vPLCs that are running keep running. They reconnect to the agent after the restart.
 - The Device's status briefly flips to **Inactive** while the agent restarts, then back to **Active**.
-- The version shown on the Device's **Orchestrator** tab updates to the new version.
+- The version shown on the **Device** tab of its detail page updates to the new version.
 
 You can also re-run the install command on the device (`curl https://getedge.me | bash`) to upgrade manually if the cloud-side **Update** action fails.
 

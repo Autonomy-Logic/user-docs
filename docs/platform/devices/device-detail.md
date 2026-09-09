@@ -1,12 +1,12 @@
 # Device detail
 
-Clicking a Device card from the **[Devices list](devices-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
+Clicking a Device card from the **[Devices list](devices-list)** opens its detail page. The page has two tabs: **vPLCs** (default) and **Device**.
 
-## Devices tab
+## vPLCs tab
 
-![Devices tab of the Toradex Ivy Device showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/device-detail-vplcs.png)
+![vPLCs tab of the Toradex Ivy Device showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New vPLC tile](images/device-detail-vplcs.png)
 
-The devices tab is a grid of every vPLC running (or stopped) on this Device, plus a **+ New Device** tile to add another.
+The vPLCs tab is a grid of every vPLC running (or stopped) on this Device, plus a **+ New vPLC** tile to add another.
 
 Each vPLC card shows:
 
@@ -22,17 +22,17 @@ Each vPLC card shows:
 
 Click anywhere on a card body to open **[vPLC detail](../vplcs/vplc-detail)**.
 
-The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a-vplc)**.
+The **+ New vPLC** tile launches the **[New vPLC wizard](../vplcs/creating-a-vplc)**.
 
-## Orchestrator tab
+## Device tab
 
-![SLM-RP4 Orchestrator tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/device-info.png)
+![SLM-RP4 Device tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/device-info.png)
 
-The Orchestrator tab is a read-only view of the edge device's specs and current resource usage.
+The Device tab is a read-only view of the edge device's specs and current resource usage.
 
 ### Header row
 
-- **Orchestrator name** and status badge (Inactive / Active).
+- **Device name** and status badge (Inactive / Active).
 - Quick stats: **OS**, **CPU CORES**, **MEMORY** (total), **DISK** (total), **NETWORK** (primary interface and IP), **VERSION** (agent version).
 
 These come from the agent's first heartbeat and are refreshed periodically. On an **Inactive** Device they show `-` because no data has been reported yet.
@@ -53,7 +53,7 @@ The tabs are sticky inside the Device detail page. Refreshing the page keeps you
 
 ## Breadcrumb
 
-At the top of the page, a breadcrumb shows **Orchestrators → {orchestrator name}** so you can jump back to the **[list](devices-list)** with one click.
+At the top of the page, a breadcrumb shows **Devices → {Device name}** so you can jump back to the **[list](devices-list)** with one click.
 
 ## Where to next
 
