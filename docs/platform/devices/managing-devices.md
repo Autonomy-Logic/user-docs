@@ -1,8 +1,8 @@
 # Managing orchestrators
 
-Once an orchestrator is paired you can rename it, update its agent, or delete it. All of these live in the orchestrator card's **3-dot menu** on the **[Orchestrators list](orchestrators-list)**.
+Once an orchestrator is paired you can rename it, update its agent, or delete it. All of these live in the orchestrator card's **3-dot menu** on the **[Orchestrators list](devices-list)**.
 
-![Orchestrator card with 3-dot menu open: Rename, Update, Delete](images/orchestrator-3dot-menu.png)
+![Orchestrator card with 3-dot menu open: Rename, Update, Delete](images/device-3dot-menu.png)
 
 ## Renaming an orchestrator
 
@@ -62,5 +62,5 @@ Not supported today. The vPLC entry is bound to its parent orchestrator. To migr
 ## Where to next
 
 - **Add devices to a renamed orchestrator** → **[Creating a vPLC](../vplcs/creating-a-vplc)**.
-- **Check on uptime and metrics** → **[Orchestrator detail](orchestrator-detail)**.
-- **Connection issues** → **[Orchestrator not connecting](../../troubleshooting/orchestrator-not-connecting)**.
+- **Check on uptime and metrics** → **[Orchestrator detail](device-detail)**.
+- **Connection issues** → **[Orchestrator not connecting](../../troubleshooting/device-not-connecting)**.

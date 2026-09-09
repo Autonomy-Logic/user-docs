@@ -4,7 +4,7 @@ The editor opens with the built-in **OpenPLC Simulator** selected. Anything you 
 
 When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks through that flow: picking a vPLC, logging in (or creating the first user), and what changes once you're connected.
 
-> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/orchestrators/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
+> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/devices/overview)** and **[Creating a vPLC](../platform/vplcs/creating-a-vplc)** in the platform docs. Until then, the **[Simulator](building-deploying/simulator)** is the fast lane.
 
 ## Open the Orchestrators screen
 

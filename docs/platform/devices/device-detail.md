@@ -1,10 +1,10 @@
 # Orchestrator detail
 
-Clicking an orchestrator card from the **[Orchestrators list](orchestrators-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
+Clicking an orchestrator card from the **[Orchestrators list](devices-list)** opens its detail page. The page has two tabs: **Devices** (default) and **Orchestrator**.
 
 ## Devices tab
 
-![Devices tab of the Toradex Ivy orchestrator showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/orchestrator-detail-devices.png)
+![Devices tab of the Toradex Ivy orchestrator showing two vPLC cards (vPLC 02 and plc1, both Stopped) plus the New Device tile](images/device-detail-vplcs.png)
 
 The devices tab is a grid of every vPLC running (or stopped) on this orchestrator, plus a **+ New Device** tile to add another.
 
@@ -26,7 +26,7 @@ The **+ New Device** tile launches the **[Add Device wizard](../vplcs/creating-a
 
 ## Orchestrator tab
 
-![SLM-RP4 Orchestrator tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/orchestrator-info.png)
+![SLM-RP4 Orchestrator tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/device-info.png)
 
 The Orchestrator tab is a read-only view of the edge device's specs and current resource usage.
 
@@ -53,10 +53,10 @@ The tabs are sticky inside the orchestrator detail page. Refreshing the page kee
 
 ## Breadcrumb
 
-At the top of the page, a breadcrumb shows **Orchestrators → {orchestrator name}** so you can jump back to the **[list](orchestrators-list)** with one click.
+At the top of the page, a breadcrumb shows **Orchestrators → {orchestrator name}** so you can jump back to the **[list](devices-list)** with one click.
 
 ## Where to next
 
 - **Add or manage devices** → **[Creating a vPLC](../vplcs/creating-a-vplc)**, **[vPLC detail](../vplcs/vplc-detail)**.
-- **Rename / delete / re-pair** → **[Managing orchestrators](managing-orchestrators)**.
+- **Rename / delete / re-pair** → **[Managing orchestrators](managing-devices)**.
 - **Inspect device-level network info** → **[Network modes](../vplcs/network-modes)**.

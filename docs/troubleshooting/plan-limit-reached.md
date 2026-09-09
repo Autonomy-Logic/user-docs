@@ -26,7 +26,7 @@ Buttons: **Cancel** and **Upgrade plan**.
 
 This is the right move if your current usage is bigger than your actual needs.
 
-- **Orchestrators**: delete an orchestrator you don't use. **[Managing orchestrators](../platform/orchestrators/managing-orchestrators)**.
+- **Orchestrators**: delete an orchestrator you don't use. **[Managing orchestrators](../platform/devices/managing-devices)**.
 - **Devices**: delete vPLCs you're not running. 3-dot menu on the device card → **Delete**.
 - **Private projects**: convert a private project to public, or delete projects you no longer need.
 - **Seats**: remove org members you no longer need. **[Members and roles](../platform/organizations/members-and-roles)**.

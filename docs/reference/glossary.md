@@ -80,7 +80,7 @@ The open-source PLC runtime project that Autonomy Edge is built around. Runs ins
 
 ## Orchestrator
 
-The cloud-side entity representing an edge device. Hosts vPLCs. See **[Orchestrator overview](../platform/orchestrators/overview)**.
+The cloud-side entity representing an edge device. Hosts vPLCs. See **[Orchestrator overview](../platform/devices/overview)**.
 
 ## Organization
 

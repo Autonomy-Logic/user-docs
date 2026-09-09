@@ -2,7 +2,7 @@
 
 The Orchestrators list shows every orchestrator under the current workspace, one card per orchestrator with live stats. Open it from the dashboard by clicking **Manage orchestrators** on the **Orchestrators** card.
 
-![Orchestrators list showing two orchestrators (SLM-RP4 active with 1 device, Toradex Ivy inactive with 2 devices) plus the New Orchestrator tile on the right](images/orchestrators-list.png)
+![Orchestrators list showing two orchestrators (SLM-RP4 active with 1 device, Toradex Ivy inactive with 2 devices) plus the New Orchestrator tile on the right](images/devices-list.png)
 
 ## Toolbar
 
@@ -18,7 +18,7 @@ Each card shows:
 | **Icon** (left) | A rack icon, always blue. |
 | **Name** | The name you gave when you created it. |
 | **Status badge** | **Inactive** (gray dot), **Active** (green dot, sometimes called **Connected**). |
-| **3-dot menu** | Per-orchestrator actions: rename, regenerate registration ID, delete. See **[Managing orchestrators](managing-orchestrators)**. |
+| **3-dot menu** | Per-orchestrator actions: rename, regenerate registration ID, delete. See **[Managing orchestrators](managing-devices)**. |
 | **CPU** | Live CPU usage on the device, in cores (load average) or percent. |
 | **MEMORY** | Live memory usage. Displayed in MB or GB depending on size. |
 | **UPTIME** | How long the agent has been running. Resets if the agent restarts. |
@@ -30,7 +30,7 @@ Stats are blank or zero on an **Inactive** orchestrator because the agent isn't 
 
 Click the **N devices** row at the bottom of any card to expand it inline:
 
-![SLM-RP4 card expanded inline, showing vPLC 01 with 90h 49m uptime and a success badge](images/orchestrators-devices-expanded.png)
+![SLM-RP4 card expanded inline, showing vPLC 01 with 90h 49m uptime and a success badge](images/devices-vplcs-expanded.png)
 
 Each device row shows:
 
@@ -52,7 +52,7 @@ Cards are listed in creation order. As more orchestrators are added, the search 
 
 ## Where to next
 
-- **Click into a card** → **[Orchestrator detail](orchestrator-detail)**.
+- **Click into a card** → **[Orchestrator detail](device-detail)**.
 - **Add another orchestrator** → **[Installing the agent](installing-the-agent)**.
-- **Rename or delete one** → **[Managing orchestrators](managing-orchestrators)**.
+- **Rename or delete one** → **[Managing orchestrators](managing-devices)**.
 - **Add a vPLC** → **[Creating a vPLC](../vplcs/creating-a-vplc)**.

@@ -21,7 +21,7 @@ Stretching across the screen at the very top:
 This column lists the things that are yours in the current workspace.
 
 - **Projects** card with a **+ New** button at the top. Below it, the four most recently modified projects, with a **View all** link at the bottom that takes you to **[your projects list](../platform/projects/projects-list)**.
-- **Orchestrators** card. If you have one or more orchestrators set up, the first one is named here. The blue **Manage orchestrator** button takes you to the **[orchestrators list](../platform/orchestrators/orchestrators-list)**.
+- **Orchestrators** card. If you have one or more orchestrators set up, the first one is named here. The blue **Manage orchestrator** button takes you to the **[orchestrators list](../platform/devices/devices-list)**.
 
 When you switch to an organization workspace, this column shows that organization's projects and orchestrators instead of yours.
 
@@ -71,5 +71,5 @@ To switch to an organization's workspace, click the organization's name in the *
 ## What's next
 
 - **Start a project** → **[Creating a project](../platform/projects/creating-a-project)**.
-- **Install your first orchestrator** → **[Installing the agent](../platform/orchestrators/installing-the-agent)** or follow the end-to-end **[Quick Start](quick-start)**.
+- **Install your first orchestrator** → **[Installing the agent](../platform/devices/installing-the-agent)** or follow the end-to-end **[Quick Start](quick-start)**.
 - **Look around the community** → **[Forum overview](../platform/forum/overview)**.

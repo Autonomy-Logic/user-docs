@@ -40,7 +40,7 @@ You set visibility when you **[create the project](creating-a-project)**, and yo
 
 Writing a project gets you a program. Getting that program onto running hardware involves two more concepts:
 
-1. The **orchestrator**, the agent on your edge device. Set one up with **[Installing the agent](../orchestrators/installing-the-agent)**.
+1. The **orchestrator**, the agent on your edge device. Set one up with **[Installing the agent](../devices/installing-the-agent)**.
 2. The **vPLC device**, the container that actually runs the OpenPLC runtime. Create one under your orchestrator following **[Creating a vPLC](../vplcs/creating-a-vplc)**.
 
 From inside the editor, you connect to a vPLC by clicking **Devices → Orchestrators** in the left sidebar and then **Connect** on your vPLC. The first connection asks you to create a runtime user (separate from your platform account; this lives only on that vPLC). Once connected, the **Download** button compiles your project and uploads it. The full sequence is in the **[Quick Start](../../getting-started/quick-start)**.

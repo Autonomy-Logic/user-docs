@@ -15,11 +15,11 @@ The number of orchestrators you can pair at once is governed by your plan, see *
 
 ## Step 1, Open the wizard
 
-In the web app, open the **[Orchestrators list](orchestrators-list)** (from the dashboard, click **Manage orchestrators** on the Orchestrators card). Click the **+ New Orchestrator** tile (the dashed card with a plus icon).
+In the web app, open the **[Orchestrators list](devices-list)** (from the dashboard, click **Manage orchestrators** on the Orchestrators card). Click the **+ New Orchestrator** tile (the dashed card with a plus icon).
 
 The wizard opens on a dedicated page.
 
-![New Orchestrator wizard, Details step: Name and Description fields](images/new-orchestrator-step1.png)
+![New Orchestrator wizard, Details step: Name and Description fields](images/new-device-step1.png)
 
 At the top: a short summary of what an orchestrator is. Below it, a 3-step indicator: **1. Details** (selected), **2. Install Agent**, **3. Link**.
 
@@ -36,7 +36,7 @@ Click **Next**. (You can also use **Cancel** to abort.)
 
 The wizard now shows three numbered steps (a, b, c) for the install.
 
-![New Orchestrator wizard, Install Agent step: terminal instructions and curl command](images/new-orchestrator-step2.png)
+![New Orchestrator wizard, Install Agent step: terminal instructions and curl command](images/new-device-step2.png)
 
 The instructions:
 
@@ -65,7 +65,7 @@ Click **Next** when you have the ID.
 
 ## Step 4, Pair the agent with the cloud
 
-![New Orchestrator wizard, Link step: paste the Orchestrator ID](images/new-orchestrator-step3.png)
+![New Orchestrator wizard, Link step: paste the Orchestrator ID](images/new-device-step3.png)
 
 A single field: **Orchestrator ID**. Paste the ID that was printed in the terminal.
 
@@ -85,12 +85,12 @@ If the wizard has already timed out, close it and start over from **+ New Orches
 
 ## Verifying the install
 
-After pairing, the orchestrator card on the **[Orchestrators list](orchestrators-list)** shows live CPU, memory, and uptime metrics that match what `top` shows on the device. If those numbers stay at zero or the status stays **Inactive**, see **[Orchestrator not connecting](../../troubleshooting/orchestrator-not-connecting)**.
+After pairing, the orchestrator card on the **[Orchestrators list](devices-list)** shows live CPU, memory, and uptime metrics that match what `top` shows on the device. If those numbers stay at zero or the status stays **Inactive**, see **[Orchestrator not connecting](../../troubleshooting/device-not-connecting)**.
 
 You can now:
 
 - Add a vPLC device → **[Creating a vPLC](../vplcs/creating-a-vplc)**.
-- View detailed metrics → **[Orchestrator detail](orchestrator-detail)**.
+- View detailed metrics → **[Orchestrator detail](device-detail)**.
 
 ## Uninstalling the agent
 
@@ -100,4 +100,4 @@ To remove the agent from a device:
 curl https://getedge.me | bash -s -- --uninstall
 ```
 
-This stops the agent and network-monitor containers, removes their images, and deletes the TLS material. The orchestrator entry in the web app is not automatically deleted; remove it from **[Managing orchestrators](managing-orchestrators)**.
+This stops the agent and network-monitor containers, removes their images, and deletes the TLS material. The orchestrator entry in the web app is not automatically deleted; remove it from **[Managing orchestrators](managing-devices)**.

@@ -5,7 +5,7 @@ Deployment is the upload half of **Build & Upload**. Once your project compiles 
 ## Prerequisites
 
 - A project that compiles. See **[Building a project](project-compilation)**.
-- An **online orchestrator** with at least one **running vPLC** on it. See **[Orchestrators](../../platform/orchestrators/overview)** in the platform docs.
+- An **online orchestrator** with at least one **running vPLC** on it. See **[Orchestrators](../../platform/devices/overview)** in the platform docs.
 - A **connected session** with that vPLC. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
 
 ## The deployment flow

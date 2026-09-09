@@ -2,7 +2,7 @@
 
 Each plan caps how much of certain resources you can use. When you hit a cap, the platform shows a modal explaining the limit and offers an **Upgrade plan** button.
 
-![Plan limit reached, Orchestrator limit reached (1/1) on plan Community](images/orchestrator-plan-limit.png)
+![Plan limit reached, Orchestrator limit reached (1/1) on plan Community](images/device-plan-limit.png)
 
 ## The limits
 
@@ -39,7 +39,7 @@ Examples:
 - Trying to create a 3rd vPLC on Community → device limit modal.
 - Trying to make a project private on Community → private-projects limit message during the New Project wizard.
 
-![Device limit reached, 2/2 on Community](images/device-plan-limit.png)
+![Device limit reached, 2/2 on Community](images/vplc-plan-limit.png)
 
 ## Grandfathering
 

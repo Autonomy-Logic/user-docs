@@ -11,7 +11,7 @@ Symptoms:
 
 Open the orchestrator that owns this vPLC. Status badge should be **Active** (or **Connected**), with non-zero CPU / memory / uptime.
 
-If the orchestrator is **Inactive**, the agent can't act on your start request. Fix the orchestrator first → **[Orchestrator not connecting](orchestrator-not-connecting)**.
+If the orchestrator is **Inactive**, the agent can't act on your start request. Fix the orchestrator first → **[Orchestrator not connecting](device-not-connecting)**.
 
 ## 2. Re-issue the Start command
 
@@ -91,6 +91,6 @@ Any project you'd deployed to it will need to be deployed again from the editor.
 
 ## Where to next
 
-- **Check the parent orchestrator** → **[Orchestrator not connecting](orchestrator-not-connecting)**.
+- **Check the parent orchestrator** → **[Orchestrator not connecting](device-not-connecting)**.
 - **Network config reference** → **[Network modes](../platform/vplcs/network-modes)**.
 - **Recreate the device** → **[Creating a vPLC](../platform/vplcs/creating-a-vplc)**.

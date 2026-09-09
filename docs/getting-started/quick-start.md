@@ -327,7 +327,7 @@ Now that you understand the basics, explore these topics to build more sophistic
 - **[Hardware Configuration](../openplc-editor/hardware-configuration)** - Map program variables to physical I/O pins on supported boards
 
 ### Scale Your Deployment
-- **[Orchestrators](../platform/orchestrators/overview)** - Deploy orchestrators to edge devices across multiple sites
+- **[Orchestrators](../platform/devices/overview)** - Deploy orchestrators to edge devices across multiple sites
 - **[vPLC devices](../platform/vplcs/overview)** - Run multiple vPLCs on a single edge device for workload consolidation
 
 ---
@@ -353,4 +353,4 @@ Now that you understand the basics, explore these topics to build more sophistic
 - Run the installation command again on your Linux device
 - A new ID will be generated that you can paste into the Link step
 
-For more help, visit the [Troubleshooting](../troubleshooting/orchestrator-not-connecting) section or contact support.
+For more help, visit the [Troubleshooting](../troubleshooting/device-not-connecting) section or contact support.

@@ -46,7 +46,7 @@ Commit detail pages (full file diffs) are still being built. Use the editor for 
 
 ### How do I install the orchestrator agent?
 
-Run `curl https://getedge.me | bash` on a Linux device. See **[Installing the agent](../platform/orchestrators/installing-the-agent)** for the full flow.
+Run `curl https://getedge.me | bash` on a Linux device. See **[Installing the agent](../platform/devices/installing-the-agent)** for the full flow.
 
 ### The Orchestrator ID expired before I finished installing. What now?
 
@@ -54,7 +54,7 @@ Run the install command again on the device. The installer detects the existing 
 
 ### Why is my orchestrator stuck "Inactive"?
 
-The agent isn't reporting. See **[Orchestrator not connecting](../troubleshooting/orchestrator-not-connecting)**.
+The agent isn't reporting. See **[Orchestrator not connecting](../troubleshooting/device-not-connecting)**.
 
 ### My vPLC stays "Stopped". What should I check?
 

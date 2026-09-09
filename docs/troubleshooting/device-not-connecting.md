@@ -6,7 +6,7 @@ Symptoms:
 - CPU / Memory / Uptime fields are blank or `-`.
 - You just ran the install command but the wizard's **Create Orchestrator** button never finds the agent.
 
-![Orchestrator card in Inactive state](images/orchestrator-inactive.png)
+![Orchestrator card in Inactive state](images/device-inactive.png)
 
 Work through the checks below in order, the most common causes are at the top.
 
@@ -112,6 +112,6 @@ sudo timedatectl set-ntp true
 
 ## Where to next
 
-- **Install or re-install the agent** → **[Installing the agent](../platform/orchestrators/installing-the-agent)**.
-- **Manage orchestrators in the cloud** → **[Managing orchestrators](../platform/orchestrators/managing-orchestrators)**.
+- **Install or re-install the agent** → **[Installing the agent](../platform/devices/installing-the-agent)**.
+- **Manage orchestrators in the cloud** → **[Managing orchestrators](../platform/devices/managing-devices)**.
 - **vPLC stuck after orchestrator becomes Active** → **[vPLC stuck in Stopped](vplc-stuck-stopped)**.

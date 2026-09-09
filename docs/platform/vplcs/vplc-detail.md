@@ -1,6 +1,6 @@
 # vPLC detail
 
-The vPLC detail page is the read-only "I want to see what this device looks like right now" view. Open it by clicking a vPLC card on an **[orchestrator's detail page](../orchestrators/orchestrator-detail)**.
+The vPLC detail page is the read-only "I want to see what this device looks like right now" view. Open it by clicking a vPLC card on an **[orchestrator's detail page](../devices/device-detail)**.
 
 ![vPLC 01 detail page: Running status, 90h 50m uptime, internal IP 172.20.0.2, DHCP network mode, plus a macvlan_eth0 interface with IP 192.168.2.6, MAC 02:42:c0:a8:02:02, gateway 192.168.2.1](images/vplc-detail.png)
 
@@ -64,4 +64,4 @@ The detail page shows network and lifecycle information. For runtime logs (scan 
 
 - **Deploy a project to this vPLC** → **[Connecting from the editor](connecting-from-editor)**.
 - **Change network settings** → 3-dot menu → **Rename** for the name, or delete and recreate for NIC changes. See **[Network modes](network-modes)** for what the fields mean.
-- **Inspect the parent orchestrator's metrics** → **[Orchestrator detail](../orchestrators/orchestrator-detail)**.
+- **Inspect the parent orchestrator's metrics** → **[Orchestrator detail](../devices/device-detail)**.

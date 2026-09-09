@@ -38,7 +38,7 @@ If you want to dig deeper, the agent's own documentation lives in its [GitHub re
 ## Where to next
 
 - **Install the agent on a device** → **[Installing the agent](installing-the-agent)**.
-- **See your orchestrators in the web app** → **[Orchestrators list](orchestrators-list)**.
-- **Inspect a single orchestrator** → **[Orchestrator detail](orchestrator-detail)**.
-- **Rename, delete, or replace an orchestrator** → **[Managing orchestrators](managing-orchestrators)**.
+- **See your orchestrators in the web app** → **[Orchestrators list](devices-list)**.
+- **Inspect a single orchestrator** → **[Orchestrator detail](device-detail)**.
+- **Rename, delete, or replace an orchestrator** → **[Managing orchestrators](managing-devices)**.
 - **Add a vPLC to an orchestrator** → **[Creating a vPLC](../vplcs/creating-a-vplc)**.

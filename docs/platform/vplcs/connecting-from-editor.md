@@ -53,4 +53,4 @@ When the orchestrator returns to **Active**, your editor connection resumes auto
 
 - **Walkthrough of a full first deploy** → **[Quick Start](../../getting-started/quick-start)**.
 - **Editor reference** → **[OpenPLC Editor overview](../../openplc-editor/overview)**.
-- **Troubleshooting connectivity** → **[Orchestrator not connecting](../../troubleshooting/orchestrator-not-connecting)**.
+- **Troubleshooting connectivity** → **[Orchestrator not connecting](../../troubleshooting/device-not-connecting)**.
