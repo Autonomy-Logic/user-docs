@@ -132,6 +132,33 @@ it is `O-AGENT` and not `O-REWRITE`: `openplc-editor/communication/ethercat/prer
 mandates that its `Orchestrator` entry be redefined as the customer machine running the Device Agent,
 so the rewrite is instructed there by the requirement rather than by this record.
 
+### `D-PROSE-NEW`, added at Phase 5
+
+The prose analogue of `D-PATH-NEW`, and it exists for the same reason one layer up. `D-PATH-NEW`
+was needed because after the section moved, a link target containing "device" was usually right.
+`D-PROSE-NEW` is needed because after a page is rewritten, a **sentence** containing "Device" is
+usually right, and R18 cannot tell: "Device" with a "vPLC" nearby is exactly what the child sense
+used to look like. Left alone, R18 codes 35 correct new sentences on the rewritten pages as `D-VPLC`,
+a *changes* code, and the Phase 10 gate fails forever on prose that is already finished.
+
+**Capitalisation is what makes it decidable.** The platform entity is written `Device` / `Devices`;
+the machine stays lowercase "edge device", the Editor's node and plain hardware English stay
+lowercase, and the child entity is spelled `vPLC` and so cannot match at all. That is why the
+capitalised-in-prose convention is recorded as a decision rather than left as a preference: the gate
+depends on it.
+
+Rule **R20** assigns it, and the rule is scoped to an **enumerated set of finished files**,
+`D_PROSE_DONE`, not applied tree-wide. A bare capitalisation rule would be unsafe, because before a
+page is rewritten its capitalised "Device" is usually the *child* ("Add Device wizard", "vPLC
+Device", "## Step 2: Create a vPLC Device"), so the rule would mark outstanding work as done. That is
+the invisible direction and the gate cannot catch it. A file joins the set in the commit that
+rewrites it.
+
+Measured when it was added, over the six pages the rename had finished: 117 rows, of which 65 would
+otherwise have been `REVIEW` (base-commit overrides no longer line up once the prose moves), 35 would
+have been `D-VPLC` and therefore *changes*, and 17 would have been `D-HOST` or `D-PLAIN`, both
+*stays*. Outstanding *changes* rows on those six pages went to **0**.
+
 ### `D-PATH-NEW`, added at Phase 3
 
 A seventeenth code, and the only one added after the census was written: **a path, link target or image
@@ -286,6 +313,24 @@ base tree reports 529 / 709, the difference being exactly the 8 path rows descri
 as it stands after Phase 3, which is what proves the Phase 10 gate actually fires rather than passing
 vacuously on a tree it never looked at.
 
+**A note on casing, and a divergence from autonomy-node that is deliberate.** The platform entity is
+written capitalised in prose here: "at least one Device", "the Device card", "between Devices". This
+departs from how this repository cased the old word, where 87 of 92 mid-sentence "orchestrator"
+occurrences were lowercase. It also **diverges from autonomy-node**, whose implementer derived the
+opposite rule from that repository's own shipped copy: `Device Agent` capitalised as a proper name,
+`device` lowercase in running prose.
+
+Both rules are locally right, for a reason that is worth writing down rather than harmonising away.
+Node's interface carries one sense of the word. These pages carry five in the same paragraphs: the
+platform entity, the machine the agent runs on, the Editor's `Device` node, the connected PLC target
+and plain hardware English, and four of the five stay lowercase. Capitalising the entity is the only
+thing that keeps them apart, and it is the same reasoning that produced "Edge Device" inside the
+editors under BR05. It is also what makes rule R20 decidable at all.
+
+**We chose disambiguation over cross-repository symmetry.** A reader moving between user-docs and
+autonomy-node will see different casing for the same thing. That is known and accepted; nobody should
+"fix" one to match the other without re-opening this decision.
+
 **What is approximate:** among the *stays* codes, a small number of rows sit on the boundary between
 two senses that both stay, most often `D-EDITORNODE` against `D-REMOTE` where a page discusses the
 Editor's Device node and remote devices in one sentence. The decision on those rows is right and the
@@ -392,6 +437,43 @@ current classifier, because it is `docker ps -a | grep <device-name>` and no rul
 codes an unclassified row; it was not escaping the changes-to-literal flip. **The hole itself is
 real** and is now closed, as described above and proved against a probe file; only the causal story
 is wrong.
+
+## Every census total, with the commit and the script it belongs to
+
+These numbers were being quoted without provenance, and two of them looked like a contradiction that
+would have made the Phase 10 gate read a correct tree as a loss. They are all true; they measure
+different trees with different classifiers. **Measured, each at its own commit, with that commit's
+own script.**
+
+| Commit | Phase | Committed CSV | That commit's script over that commit's tree | Reproduces its own CSV? |
+|---|---|---|---|---|
+| `c86992f` | 1 | **1237** | **1237** | **yes, byte-identical** |
+| `21230b3` | 2 | 1237 | **1229** | no, and deliberately: the CSV was not regenerated |
+| `d08ae9c` | 3 | 1237 | **1229** | no, same reason |
+| `073ad86` | census review | **1238** | **1230** | against the BASE tree, yes but for 8 path rows |
+| this commit | 4 and 5 | 1238 | **1205** | as above |
+
+Reading the table:
+
+- **1237** is the base at `c86992f`, and it is the only figure that is both a committed CSV and a
+  live measurement of the same tree.
+- **1238** is that same base corrected: widening the pattern to see `orchestration` added the one
+  `O-SE` row the old pattern could not match. It is a base-commit figure, not a live one.
+- **1229** and **1230** are the same *live* tree after Phase 3, measured with the old and the
+  corrected classifier respectively. The +1 is that same `O-SE` row.
+- The live total falls as the rename lands, legitimately: renaming
+  `orchestrator-detail-devices.png` to `device-detail-vplcs.png` removes an occurrence, and
+  rewriting "vPLC devices" to "vPLCs" removes another. **1205** is where it stands now.
+
+The reproducibility claim, stated exactly: the current generator run **against the base tree**
+reproduces the committed CSV byte for byte except for 8 rows, the `D-PATH` / `D-PATH-NEW` rows
+described above. Run against a *later* tree it differs in hundreds of rows, which is not a failure
+but the documented consequence of the CSV being a historical record while the classifier tracks the
+tree in front of it.
+
+**What Phase 10 should assert is the code check, not a count.** No occurrence carrying a *changes*
+code survives, and every survivor carries a *stays* code that is in this legend. A target total is
+not a useful gate, because it moves with every phase for correct reasons.
 
 ## Corrections to the demand's documents
 

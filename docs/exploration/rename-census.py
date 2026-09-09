@@ -72,6 +72,14 @@ LEGEND = {
     "D-PATH":       ("changes", "path, link target or image filename where device means the child "
                                 "entity -> renamed to vplc (FR18)"),
     # ---- stays -------------------------------------------------------------
+    "D-PROSE-NEW":  ("stays",  "PROSE that correctly names the new parent entity: the word is spelled "
+                               "Device or Devices with a capital D, in a file whose rewrite is "
+                               "complete. The prose analogue of D-PATH-NEW, and it exists for the same "
+                               "reason: R18 reads the new vocabulary as the old child sense, because "
+                               "'Device' plus a nearby 'vPLC' is exactly what the child sense used to "
+                               "look like. Without it the gate fails forever on correct sentences. "
+                               "Capitalisation is what makes it decidable, which is why the "
+                               "capitalised-in-prose convention is a decision and not a preference"),
     "D-PATH-NEW":   ("stays",  "a path, link target or image filename that CORRECTLY names the new "
                                "entity: the renamed platform/devices/ section, its pages and its "
                                "captures, and troubleshooting/device-not-connecting. No action "
@@ -131,7 +139,14 @@ def code_blocks(text):
 def is_o_literal(line, start, end):
     after = line[end:end + 8].lower()
     before = line[max(0, start - 24):start].lower()
-    if after.startswith("-agent"):          # orchestrator-agent, the container/image/repo
+    # Both separators: orchestrator-agent is the IMAGE and the repository,
+    # orchestrator_agent is the CONTAINER the installer actually creates. The
+    # docs name both, and neither is ever rewritten. Only the hyphen was
+    # recognised until the container name was corrected, at which point four
+    # docker commands inside fenced blocks fell through to O-AGENT and were
+    # reported. That report is the closed fenced-block hole doing its job: the
+    # old fallback would have converted them to O-LITERAL and said nothing.
+    if after.startswith("-agent") or after.startswith("_agent"):
         return True
     if "/var/" in before:                   # /var/orchestrator, written on the machine
         return True
@@ -217,6 +232,25 @@ PLAIN = re.compile(
 D_PATH_PENDING = re.compile(r"add-device-modal|devices-list-with-vplc", re.I)
 
 
+# Files whose prose has been rewritten into the new vocabulary. Inside these, a
+# capitalised "Device"/"Devices" in prose names the new parent entity and stays.
+#
+# This is enumerated rather than inferred, deliberately. A bare capitalisation
+# rule applied tree-wide would be unsafe: before a file is rewritten, capitalised
+# "Device" is usually the CHILD entity ("Add Device wizard", "vPLC Device",
+# "## Step 2: Create a vPLC Device"), so the rule would silently mark
+# outstanding work as done. That is the invisible direction, and it is the one
+# the gate cannot catch. A file joins this set in the commit that rewrites it.
+D_PROSE_DONE = {
+    "platform/devices/overview.md",
+    "platform/devices/devices-list.md",
+    "platform/devices/device-detail.md",
+    "platform/devices/managing-devices.md",
+    "platform/devices/installing-the-agent.md",
+    "troubleshooting/device-not-connecting.md",
+}
+
+
 def classify(path, line, col, word, ctx):
     """Return (code, rule_id). Ordered rules; the first that matches wins."""
     w = word.lower()
@@ -280,6 +314,13 @@ def classify(path, line, col, word, ctx):
         if not D_PATH_PENDING.search(target):
             return "D-PATH-NEW", "R11c"
         return "D-PATH", "R11"
+    # R20 - prose that already names the new parent entity, in a file whose
+    # rewrite is complete. Capitalisation is the discriminator: the entity is
+    # written "Device"/"Devices", while the machine ("edge device"), the Editor's
+    # node and plain hardware English all stay lowercase, and the child entity is
+    # spelled "vPLC" and so does not match this pattern at all.
+    if path in D_PROSE_DONE and word[:1].isupper():
+        return "D-PROSE-NEW", "R20"
     # R09 - the "Device" half of the Editor's screen label "Device Orchestrators",
     # which becomes "Edge Devices" as one label. Both words move together, so the
     # half that reads "Device" is not one of the senses that stay.
