@@ -1,6 +1,6 @@
 file,line,col,word,code,rule,decision,context
 changelog-link.md,24,53,Device,X-HIST,H08,stays,"- **v1.2.3** (February 25, 2026): **Fixed** Add New Device modal layout on smaller screens."
-index.md,19,6,Orchestrator,O-ENTITY,R05,changes,- **[Orchestrators](platform/orchestrators/overview)**: The cloud-managed agent that ru
+index.md,19,6,Orchestrator,O-REWRITE,H14,changes,- **[Orchestrators](platform/orchestrators/overview)**: The cloud-managed agent that ru
 index.md,19,30,orchestrator,O-PATH,R02,changes,- **[Orchestrators](platform/orchestrators/overview)**: The cloud-managed agent that runs on your edge device.
 index.md,19,104,device,D-HOST,R15,stays,estrators/overview)**: The cloud-managed agent that runs on your edge device.
 index.md,20,11,device,D-VPLC,R18,changes,- **[vPLC devices](platform/vplcs/overview)**: Virtual PLC containers that host your r
@@ -11,8 +11,8 @@ openplc-editor/README.md,14,153,Device,D-EDITORNODE,R17,stays,"ct tree: Function
 openplc-editor/README.md,36,91,device,D-EDITORNODE,R17,stays,uilding-deploying/deployment-vplc): Deploy your compiled program to a device.
 openplc-editor/README.md,41,81,device,D-HOST,R15,stays,"cting to Runtimes**](connecting-to-runtimes): Connect the IDE to your devices, authenticate, and control program execution."
 openplc-editor/README.md,50,17,orchestrator,O-EDGEDEV,R04,changes,2. At least one orchestrator registered with an active device. See [Managing Device Status](../pla
-openplc-editor/README.md,50,56,device,D-EDITORNODE,R17,stays,2. At least one orchestrator registered with an active device. See [Managing Device Status](../platform/vplcs/vplc-detail) for setu
-openplc-editor/README.md,50,78,Device,D-EDITORNODE,R17,stays,east one orchestrator registered with an active device. See [Managing Device Status](../platform/vplcs/vplc-detail) for setup instructions.
+openplc-editor/README.md,50,56,device,D-VPLC,H12,changes,2. At least one orchestrator registered with an active device. See [Managing Device Status](../platform/vplcs/vplc-detail) for setu
+openplc-editor/README.md,50,78,Device,D-VPLC,H12,changes,east one orchestrator registered with an active device. See [Managing Device Status](../platform/vplcs/vplc-detail) for setup instructions.
 openplc-editor/connecting-to-runtimes.md,5,47,Device,O-EDGEDEV,R09,changes,"When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks throu"
 openplc-editor/connecting-to-runtimes.md,5,54,Orchestrator,O-EDGEDEV,R04,changes,"When you're ready to run on a vPLC, use the **Device Orchestrators** screen to pick one and connect. This page walks through that flow:"
 openplc-editor/connecting-to-runtimes.md,7,28,orchestrator,O-EDGEDEV,R04,changes,"> If you don't yet have an orchestrator or a vPLC, see **[Orchestrators](../platform/orchestrators/overview)*"
@@ -67,7 +67,7 @@ openplc-editor/building-deploying/headless-cli.md,94,52,device,D-LITERAL,R10,sta
 openplc-editor/building-deploying/headless-cli.md,94,62,device,D-LITERAL,R10,stays,"Redirection and piping work normally (`openplc-cli devices > devices.json`), which is what matters for a test harness."
 openplc-editor/building-deploying/headless-cli.md,102,13,device,D-LITERAL,R16+fenced,stays,openplc-cli devices [--timeout <ms>]
 openplc-editor/building-deploying/headless-cli.md,110,6,device,D-LITERAL,R10,stays,### `devices`
-openplc-editor/building-deploying/headless-cli.md,112,135,device,D-REMOTE,R13,stays,the serial ports on this machine. The same two searches the editor's device picker and port dropdown run.
+openplc-editor/building-deploying/headless-cli.md,112,135,device,D-TARGET,R16,stays,the serial ports on this machine. The same two searches the editor's device picker and port dropdown run.
 openplc-editor/building-deploying/headless-cli.md,115,13,device,D-LITERAL,R16+fenced,stays,openplc-cli devices
 openplc-editor/building-deploying/headless-cli.md,116,13,device,D-LITERAL,R16+fenced,stays,openplc-cli devices --timeout 5000
 openplc-editor/building-deploying/headless-cli.md,142,36,device,D-TARGET,R16,stays,"Builds, then sends the result to a device. Give it either a network address or a serial port:"
@@ -79,8 +79,8 @@ openplc-editor/building-deploying/headless-cli.md,279,61,device,D-TARGET,R16,sta
 openplc-editor/building-deploying/headless-cli.md,313,84,device,D-TARGET,R16,stays,"is the thing to branch on. A compile error gives `4`, an unreachable device `5`, refused credentials `6`:"
 openplc-editor/building-deploying/persistent-storage.md,8,13,device,D-TARGET,R16,stays,"2. Tell the device where to keep the values, on the **Persistent Storage** screen."
 openplc-editor/building-deploying/persistent-storage.md,22,66,device,D-TARGET,R16,stays,"| **Retain** | `VAR RETAIN` | Preserved across a restart, if the device has somewhere to keep it. |"
-openplc-editor/building-deploying/persistent-storage.md,32,42,Device,D-TARGET,R16,stays,**Persistent Storage** lives under the **Device** branch of the project tree.
-openplc-editor/building-deploying/persistent-storage.md,34,29,Device,D-TARGET,R16,stays,"![The project tree with the Device branch expanded, showing Configuration, Persistent Storage and User M"
+openplc-editor/building-deploying/persistent-storage.md,32,42,Device,D-EDITORNODE,H15,stays,**Persistent Storage** lives under the **Device** branch of the project tree.
+openplc-editor/building-deploying/persistent-storage.md,34,29,Device,D-EDITORNODE,H15,stays,"![The project tree with the Device branch expanded, showing Configuration, Persistent Storage and User M"
 openplc-editor/building-deploying/persistent-storage.md,36,165,device,D-TARGET,R16,stays,"saved with the project like everything else in it, and they reach the device when you upload. There is nothing to connect to and nothing to config"
 openplc-editor/building-deploying/persistent-storage.md,38,100,device,D-HOST,R15,stays,"en. A heading and explanatory line, a ""Keep retained variables on the device"" checkbox with its help text, a File location field showing the place"
 openplc-editor/building-deploying/persistent-storage.md,40,34,device,D-HOST,R15,stays,**Keep retained variables on the device**
@@ -120,7 +120,7 @@ openplc-editor/building-deploying/retrieve-project.md,46,118,device,D-TARGET,R16
 openplc-editor/building-deploying/retrieve-project.md,48,56,device,D-TARGET,R16,stays,**Retrieving requires an administrator account on that device.** A `User`-role account can sign in to the runtime but cannot pull t
 openplc-editor/building-deploying/retrieve-project.md,50,39,device,D-TARGET,R16,stays,"If you are **already connected to the device you picked**, this step is skipped entirely and retrieval starts at o"
 openplc-editor/building-deploying/retrieve-project.md,52,41,device,D-TARGET,R16,stays,### If you are connected to a different device
-openplc-editor/building-deploying/retrieve-project.md,54,163,device,D-REMOTE,R13,stays,".168.2.4 signs you out of it."" with a second line explaining that one device is connected at a time, and a ""Disconnect and continue"" button beside"
+openplc-editor/building-deploying/retrieve-project.md,54,163,device,D-TARGET,R16,stays,".168.2.4 signs you out of it."" with a second line explaining that one device is connected at a time, and a ""Disconnect and continue"" button beside"
 openplc-editor/building-deploying/retrieve-project.md,56,36,device,D-TARGET,R16,stays,"The editor holds a session for one device at a time, so signing in to another ends the one you have. Rather tha"
 openplc-editor/building-deploying/retrieve-project.md,56,194,device,D-TARGET,R16,stays,"quietly as a side effect of browsing, the dialog stops and names the device you are about to be signed out of. **Disconnect and continue** accept"
 openplc-editor/building-deploying/retrieve-project.md,65,121,device,D-TARGET,R16,stays,"waiting for your answer. Behind the prompt, the dialog returns to the device list carrying a message telling you to save or discard first and retr"
@@ -143,10 +143,10 @@ openplc-editor/building-deploying/retrieve-project.md,121,100,device,D-HOST,R15,
 openplc-editor/building-deploying/retrieve-project.md,123,67,device,D-TARGET,R16,stays,- **[Connecting to runtimes](../connecting-to-runtimes)** for how device sessions work.
 openplc-editor/building-deploying/runtime-status.md,3,52,device,D-TARGET,R16,stays,"**Runtime Status** answers two questions about the device you are connected to: what it is, and how it is running. It also hold"
 openplc-editor/building-deploying/runtime-status.md,3,158,device,D-TARGET,R16,stays,"is, and how it is running. It also holds the one action that needs a device rather than a project, changing the runtime version installed on it."
-openplc-editor/building-deploying/runtime-status.md,5,22,Device,D-TARGET,R16,stays,It lives under the **Device** branch of the project tree.
+openplc-editor/building-deploying/runtime-status.md,5,22,Device,D-EDITORNODE,H15,stays,It lives under the **Device** branch of the project tree.
 openplc-editor/building-deploying/runtime-status.md,7,73,device,D-TARGET,R16,stays,"The Runtime Status screen. A header reading ""Runtime Status"" with the device name and address beneath it, a ""Change runtime version"" button at the"
 openplc-editor/building-deploying/runtime-status.md,9,150,Orchestrator,O-EDGEDEV,R04,changes,"-cycle, EtherCAT and plugin tables used to sit at the bottom of the **Orchestrators** screen in the web editor, and at the bottom of the **Device Config"
-openplc-editor/building-deploying/runtime-status.md,9,219,Device,D-TARGET,R16,stays,"*Orchestrators** screen in the web editor, and at the bottom of the **Device Configuration** screen in the desktop editor. They were never configu"
+openplc-editor/building-deploying/runtime-status.md,9,219,Device,D-EDITORNODE,H15,stays,"*Orchestrators** screen in the web editor, and at the bottom of the **Device Configuration** screen in the desktop editor. They were never configu"
 openplc-editor/building-deploying/runtime-status.md,13,37,device,D-TARGET,R16,stays,"Everything here is read from a live device, so the leaf appears **while you are connected** to one. Opening it o"
 openplc-editor/building-deploying/runtime-status.md,15,13,device,D-TARGET,R16,stays,## What the device tells you about itself
 openplc-editor/building-deploying/runtime-status.md,22,57,device,D-HOST,R15,stays,| **Bootloader** | The version of the bootloader on the device |
@@ -157,7 +157,7 @@ openplc-editor/building-deploying/runtime-status.md,52,83,device,D-HOST,R15,stay
 openplc-editor/building-deploying/runtime-status.md,54,32,device,D-TARGET,R16,stays,"> **The button appears only on devices that can do it.** A native install, or an installation old enough to"
 openplc-editor/building-deploying/runtime-status.md,58,59,device,D-TARGET,R16,stays,"![The Change Runtime Version dialog. It explains that the device downloads the version you choose and restarts its runtime, and that i"
 openplc-editor/building-deploying/runtime-status.md,60,101,device,D-HOST,R15,stays,"published runtime releases, newest first. The version already on the device is marked **(installed)** and cannot be chosen, since installing what"
-openplc-editor/building-deploying/runtime-status.md,64,110,device,D-REMOTE,R13,stays,"the dropdown is replaced by a field you can type a version into, so a device that is offline but holding an image you side-loaded is still install"
+openplc-editor/building-deploying/runtime-status.md,64,110,device,D-TARGET,R16,stays,"the dropdown is replaced by a field you can type a version into, so a device that is offline but holding an image you side-loaded is still install"
 openplc-editor/building-deploying/runtime-status.md,68,191,device,D-TARGET,R16,stays,"reads ""Downloading v4.2.1 — Downloading"" at 38%, and a note says the device continues on its own if you close the editor and that on a slow conne"
 openplc-editor/building-deploying/runtime-status.md,70,5,device,D-TARGET,R16,stays,"The device does the work: it downloads the image, replaces the runtime and then"
 openplc-editor/building-deploying/runtime-status.md,78,53,device,D-HOST,R15,stays,| **The update failed** | Shown with the reason the device gave |
@@ -168,7 +168,7 @@ openplc-editor/building-deploying/runtime-status.md,86,140,device,D-HOST,R15,sta
 openplc-editor/building-deploying/runtime-status.md,92,80,device,D-TARGET,R16,stays,ecting to runtimes](../connecting-to-runtimes)** for establishing the device session this screen needs.
 openplc-editor/building-deploying/runtime-status.md,94,90,device,D-TARGET,R16,stays,"t](user-management)**, the other screen that configures the connected device rather than the project."
 openplc-editor/building-deploying/simulator.md,9,62,orchestrator,O-EDGEDEV,R04,changes,"The Simulator is the default target. Until you connect to an orchestrator-managed vPLC, anything you build runs on the Simulator. You'll see a"
-openplc-editor/building-deploying/simulator.md,13,34,Device,D-TARGET,R16,stays,"1. In the project tree, expand **Device** and click **Orchestrators**."
+openplc-editor/building-deploying/simulator.md,13,34,Device,D-EDITORNODE,H15,stays,"1. In the project tree, expand **Device** and click **Orchestrators**."
 openplc-editor/building-deploying/simulator.md,13,55,Orchestrator,O-EDGEDEV,R04,changes,"1. In the project tree, expand **Device** and click **Orchestrators**."
 openplc-editor/building-deploying/simulator.md,14,8,Device,O-EDGEDEV,R09,changes,2. The Device Orchestrators screen opens in a tab.
 openplc-editor/building-deploying/simulator.md,14,15,Orchestrator,O-EDGEDEV,R04,changes,2. The Device Orchestrators screen opens in a tab.
@@ -180,9 +180,9 @@ openplc-editor/building-deploying/simulator.md,132,97,orchestrator,O-EDGEDEV,R04
 openplc-editor/building-deploying/simulator.md,132,127,device,D-TARGET,R16,stays,when you're ready to run on a real (or orchestrator-managed virtual) device.
 openplc-editor/building-deploying/user-management.md,3,71,device,D-TARGET,R16,stays,"Every OpenPLC runtime keeps its own list of accounts. Signing in to a device is what lets the editor upload to it, start and stop it, watch variab"
 openplc-editor/building-deploying/user-management.md,3,196,device,D-TARGET,R16,stays,"stop it, watch variables and read its logs, so those accounts are the device's access control, not the platform's."
-openplc-editor/building-deploying/user-management.md,5,68,Device,D-TARGET,R16,stays,"**User Management** is where you manage them. It lives under the **Device** branch of the project tree, and unlike most of what is in that tree"
+openplc-editor/building-deploying/user-management.md,5,68,Device,D-EDITORNODE,H15,stays,"**User Management** is where you manage them. It lives under the **Device** branch of the project tree, and unlike most of what is in that tree"
 openplc-editor/building-deploying/user-management.md,5,175,device,D-TARGET,R16,stays,and unlike most of what is in that tree it configures the **connected device** rather than the project.
-openplc-editor/building-deploying/user-management.md,7,29,Device,D-TARGET,R16,stays,"![The project tree with the Device branch expanded, showing Configuration, Runtime Status, Persistent St"
+openplc-editor/building-deploying/user-management.md,7,29,Device,D-EDITORNODE,H15,stays,"![The project tree with the Device branch expanded, showing Configuration, Runtime Status, Persistent St"
 openplc-editor/building-deploying/user-management.md,9,24,device,D-TARGET,R16,stays,"Accounts belong to the device. They do not travel with the project, and two people working on the s"
 openplc-editor/building-deploying/user-management.md,13,55,device,D-TARGET,R16,stays,The leaf is in the tree when you are **connected to a device** running **runtime 4.1.9 or newer**. Older runtimes predate the acco
 openplc-editor/building-deploying/user-management.md,19,140,device,D-TARGET,R16,stays,"the network could claim it. So the first time you connect to an empty device, the editor asks you to create an account instead of asking you to si"
@@ -197,7 +197,7 @@ openplc-editor/building-deploying/user-management.md,86,3,device,D-TARGET,R16,st
 openplc-editor/building-deploying/user-management.md,96,85,device,D-TARGET,R16,stays,g to runtimes](../connecting-to-runtimes)** for signing in and what a device session is.
 openplc-editor/building-deploying/user-management.md,97,51,device,D-TARGET,R16,stays,"- **[Runtime status](runtime-status)**, the other device-scoped screen, for what the device is and how it is running."
 openplc-editor/building-deploying/user-management.md,97,86,device,D-TARGET,R16,stays,"atus](runtime-status)**, the other device-scoped screen, for what the device is and how it is running."
-openplc-editor/building-deploying/user-management.md,98,130,device,D-REMOTE,R13,stays,beside this screen in the tree but is a project setting rather than a device one.
+openplc-editor/building-deploying/user-management.md,98,130,device,D-TARGET,R16,stays,beside this screen in the tree but is a project setting rather than a device one.
 openplc-editor/building-deploying/user-management.md,99,105,device,D-HOST,R15,stays,"](retrieve-project)**, which requires an administrator account on the device."
 openplc-editor/building-deploying/xml-export.md,69,85,device,D-TARGET,R16,stays,n** builds your project into a deployable program and uploads it to a device.
 openplc-editor/building-deploying/xml-export.md,78,68,device,D-TARGET,R16,stays,- [Deployment](deployment-vplc): Deploy your compiled program to a device.
@@ -266,7 +266,7 @@ openplc-editor/hardware-configuration/device-config-overview.md,11,12,Device,D-E
 openplc-editor/hardware-configuration/device-config-overview.md,17,15,Device,D-EDITORNODE,R17,stays,"When you open Device Configuration in the Autonomy Edge web IDE, you can browse available"
 openplc-editor/hardware-configuration/device-config-overview.md,19,3,Device,O-EDGEDEV,R09,changes,![Device Orchestrators view in the web editor showing available targets](../im
 openplc-editor/hardware-configuration/device-config-overview.md,19,10,Orchestrator,O-EDGEDEV,R04,changes,![Device Orchestrators view in the web editor showing available targets](../images/device-o
-openplc-editor/hardware-configuration/device-config-overview.md,19,84,device,O-EDGEDEV,R09,changes,estrators view in the web editor showing available targets](../images/device-orchestrators-expanded.png)
+openplc-editor/hardware-configuration/device-config-overview.md,19,84,device,O-PATH,R11d,changes,estrators view in the web editor showing available targets](../images/device-orchestrators-expanded.png)
 openplc-editor/hardware-configuration/device-config-overview.md,19,91,orchestrator,O-PATH,R02,changes,rs view in the web editor showing available targets](../images/device-orchestrators-expanded.png)
 openplc-editor/hardware-configuration/device-config-overview.md,26,59,device,D-REMOTE,R13,stays,- **Modbus Client**: Poll data from external Modbus slave devices.
 openplc-editor/hardware-configuration/device-config-overview.md,29,65,Device,D-EDITORNODE,R17,stays,"These protocols are added through the Project Explorer, not the Device Configuration panel itself. See [Communication Protocols](../communic"
@@ -293,12 +293,12 @@ openplc-editor/communication/README.md,17,92,device,D-REMOTE,R13,stays,municate 
 openplc-editor/communication/README.md,23,87,device,D-REMOTE,R13,stays,nt](modbus/client)**: Configure Autonomy Edge to poll external Modbus devices
 openplc-editor/communication/README.md,45,79,device,D-REMOTE,R13,stays,"tab](ethercat/bus-scan)**: Network interface, scan, matching scanned devices to the repository"
 openplc-editor/communication/README.md,49,6,Device,D-REMOTE,R13,stays,- **[Device Info](ethercat/slave-info)**: Read-only slave identification
-openplc-editor/communication/README.md,108,87,Orchestrator,O-EDGEDEV,R04,changes,"ver RS-485, you need a serial port available on the machine where the Orchestrator is installed (this could be a Raspberry Pi, an industrial PC, an edge"
+openplc-editor/communication/README.md,108,87,Orchestrator,O-REWRITE,H14,changes,"ver RS-485, you need a serial port available on the machine where the Orchestrator is installed (this could be a Raspberry Pi, an industrial PC, an edge"
 openplc-editor/communication/README.md,108,193,device,D-HOST,R15,stays,"d be a Raspberry Pi, an industrial PC, an edge computer, or any Linux device). This can be either:"
-openplc-editor/communication/README.md,113,22,Device,D-EDITORNODE,R17,stays,"When creating a vPLC Device, the platform shows all available serial ports detected on the host."
-openplc-editor/communication/README.md,115,186,device,D-EDITORNODE,R17,stays,"e network interfaces, a serial line cannot be shared between multiple devices. If a port is already assigned to another vPLC, it will appear graye"
-openplc-editor/communication/README.md,117,20,Device,D-EDITORNODE,R17,stays,See [Creating vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation
-openplc-editor/communication/README.md,117,80,Device,D-EDITORNODE,R17,stays,"ting vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation walkthrough, including serial port configuration."
+openplc-editor/communication/README.md,113,22,Device,D-VPLC,H12,changes,"When creating a vPLC Device, the platform shows all available serial ports detected on the host."
+openplc-editor/communication/README.md,115,186,device,D-VPLC,H12,changes,"e network interfaces, a serial line cannot be shared between multiple devices. If a port is already assigned to another vPLC, it will appear graye"
+openplc-editor/communication/README.md,117,20,Device,D-VPLC,H12,changes,See [Creating vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation
+openplc-editor/communication/README.md,117,80,Device,D-VPLC,H12,changes,"ting vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation walkthrough, including serial port configuration."
 openplc-editor/communication/README.md,132,12,Device,D-REMOTE,R13,stays,| **Remote Device > Modbus/TCP** | A Modbus client (master) connection to poll an exter
 openplc-editor/communication/README.md,132,92,device,D-REMOTE,R13,stays,odbus/TCP** | A Modbus client (master) connection to poll an external device over Ethernet |
 openplc-editor/communication/README.md,133,12,Device,D-REMOTE,R13,stays,| **Remote Device > Modbus/RTU** | A Modbus client over serial (RS-232/RS-485) for lega
@@ -367,13 +367,13 @@ openplc-editor/communication/ethercat/bus-repository.md,56,6,device,D-EDITORNODE
 openplc-editor/communication/ethercat/bus-repository.md,58,39,device,D-EDITORNODE,R17,stays,- A small grid icon followed by the **device name** as it will appear in the Bus tab.
 openplc-editor/communication/ethercat/bus-repository.md,61,82,device,D-REMOTE,R13,stays,al group badge (e.g. `System Couplers`) shown when the ESI groups its devices.
 openplc-editor/communication/ethercat/bus-repository.md,67,308,device,D-EDITORNODE,R17,stays,es with the same name and product code but different revisions in the device browser.
-openplc-editor/communication/ethercat/bus-repository.md,69,23,device,D-EDITORNODE,R17,stays,"When matching scanned devices to the repository, the editor looks for an exact revision match firs"
+openplc-editor/communication/ethercat/bus-repository.md,69,23,device,D-REMOTE,R13,stays,"When matching scanned devices to the repository, the editor looks for an exact revision match firs"
 openplc-editor/communication/ethercat/bus-repository.md,69,224,device,D-EDITORNODE,R17,stays,"vendor and product code. If your scan returns a `No XML` badge for a device whose product code you can clearly see in the repository, the most li"
 openplc-editor/communication/ethercat/bus-repository.md,82,183,Device,D-EDITORNODE,R17,stays,can) to scan the wire or browse the repository directly via the **Add Device** ➕ button.
 openplc-editor/communication/ethercat/bus-scan.md,7,111,Device,D-REMOTE,R13,stays,"wing the Network Interface dropdown set to eth0, Scan button, Scanned Devices panel on the left, and Configured Devices panel on the right with on"
-openplc-editor/communication/ethercat/bus-scan.md,7,153,Device,D-EDITORNODE,R17,stays,"eth0, Scan button, Scanned Devices panel on the left, and Configured Devices panel on the right with one EK1814 entry](images/bus-tab.png)"
-openplc-editor/communication/ethercat/bus-scan.md,15,19,Device,D-EDITORNODE,R17,stays,| Left. **Scanned Devices** | Devices discovered on the wire after the most recent Scan. Each
-openplc-editor/communication/ethercat/bus-scan.md,15,31,Device,D-EDITORNODE,R17,stays,| Left. **Scanned Devices** | Devices discovered on the wire after the most recent Scan. Each one has a ch
+openplc-editor/communication/ethercat/bus-scan.md,7,153,Device,D-REMOTE,R13,stays,"eth0, Scan button, Scanned Devices panel on the left, and Configured Devices panel on the right with one EK1814 entry](images/bus-tab.png)"
+openplc-editor/communication/ethercat/bus-scan.md,15,19,Device,D-REMOTE,R13,stays,| Left. **Scanned Devices** | Devices discovered on the wire after the most recent Scan. Each
+openplc-editor/communication/ethercat/bus-scan.md,15,31,Device,D-REMOTE,R13,stays,| Left. **Scanned Devices** | Devices discovered on the wire after the most recent Scan. Each one has a ch
 openplc-editor/communication/ethercat/bus-scan.md,15,165,device,D-EDITORNODE,R17,stays,one has a checkbox; selecting and clicking **Add Selected** moves the device into the right panel. |
 openplc-editor/communication/ethercat/bus-scan.md,16,23,Device,D-REMOTE,R13,stays,| Right. **Configured Devices** | The slaves that are part of your project. Each row becomes a chi
 openplc-editor/communication/ethercat/bus-scan.md,16,167,device,D-EDITORNODE,R17,stays,hild node in the project tree. The ➕ and ➖ icons at the top right add devices manually from the repository or remove a selected one. |
@@ -381,18 +381,18 @@ openplc-editor/communication/ethercat/bus-scan.md,22,116,device,D-EDITORNODE,R17
 openplc-editor/communication/ethercat/bus-scan.md,39,55,device,D-LITERAL,R10,stays,"If no slaves respond, the table on the left shows `No devices found. Click ""Scan"" to discover EtherCAT devices on the network.`"
 openplc-editor/communication/ethercat/bus-scan.md,39,104,device,D-LITERAL,R10,stays,"n the left shows `No devices found. Click ""Scan"" to discover EtherCAT devices on the network.`"
 openplc-editor/communication/ethercat/bus-scan.md,41,27,device,D-EDITORNODE,R17,stays,## Reading the discovered-device table
-openplc-editor/communication/ethercat/bus-scan.md,43,14,device,D-EDITORNODE,R17,stays,Each scanned device is one row with these columns:
+openplc-editor/communication/ethercat/bus-scan.md,43,14,device,D-REMOTE,R13,stays,Each scanned device is one row with these columns:
 openplc-editor/communication/ethercat/bus-scan.md,47,26,device,D-LITERAL,R10,stays,| Checkbox | Select this device for **Add Selected**. |
 openplc-editor/communication/ethercat/bus-scan.md,49,23,device,D-REMOTE,R13,stays,"| **Name** | Friendly device name, taken from the matched ESI XML when available. If no match was"
-openplc-editor/communication/ethercat/bus-scan.md,55,19,device,D-EDITORNODE,R17,stays,## Adding scanned devices to the configuration
+openplc-editor/communication/ethercat/bus-scan.md,55,19,device,D-REMOTE,R13,stays,## Adding scanned devices to the configuration
 openplc-editor/communication/ethercat/bus-scan.md,59,25,device,D-REMOTE,R13,stays,1. Creates a configured device with default per-slave settings. See [Configuration](slave-configurat
 openplc-editor/communication/ethercat/bus-scan.md,60,121,device,D-EDITORNODE,R17,stays,"pre-assigns IEC located variables (`%IX`, `%QX`, `%IW`, `%QW`) so the device is immediately mappable."
 openplc-editor/communication/ethercat/bus-scan.md,63,60,Device,D-REMOTE,R13,stays,The successfully-added rows have their checkboxes cleared. Devices that failed because of a missing ESI stay selected so you can see wh
 openplc-editor/communication/ethercat/bus-scan.md,67,107,device,D-REMOTE,R13,stays,"and click **Add Selected**, a modal titled **Missing ESI XML for some devices** appears. It lists the affected slaves with their position, name, v"
 openplc-editor/communication/ethercat/bus-scan.md,69,34,device,D-REMOTE,R13,stays,1. Download the ESI XML for each device from the manufacturer's website.
 openplc-editor/communication/ethercat/bus-scan.md,79,88,device,D-REMOTE,R13,stays,**[Repository tab](bus-repository)** and upload the ESI files for the devices you intend to use.
-openplc-editor/communication/ethercat/bus-scan.md,81,64,Device,D-EDITORNODE,R17,stays,3. Click the **`+`** icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
-openplc-editor/communication/ethercat/bus-scan.md,81,91,Device,D-EDITORNODE,R17,stays,icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
+openplc-editor/communication/ethercat/bus-scan.md,81,64,Device,D-REMOTE,R13,stays,3. Click the **`+`** icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
+openplc-editor/communication/ethercat/bus-scan.md,81,91,Device,D-REMOTE,R13,stays,icon at the top right of the **Configured Devices** panel. The **Add Device from Repository** modal opens.
 openplc-editor/communication/ethercat/bus-scan.md,83,10,Device,D-EDITORNODE,R17,stays,![Add Device from Repository modal listing one vendor (Beckhoff Automation GmbH &
 openplc-editor/communication/ethercat/bus-scan.md,83,102,device,D-EDITORNODE,R17,stays,modal listing one vendor (Beckhoff Automation GmbH & Co. KG) with 13 devices collapsed under a chevron](images/add-device-from-repository.png)
 openplc-editor/communication/ethercat/bus-scan.md,83,148,device,D-REMOTE,R11a,stays,GmbH & Co. KG) with 13 devices collapsed under a chevron](images/add-device-from-repository.png)
@@ -401,11 +401,11 @@ openplc-editor/communication/ethercat/bus-scan.md,87,150,device,D-REMOTE,R11a,st
 openplc-editor/communication/ethercat/bus-scan.md,89,9,device,D-REMOTE,R13,stays,"Each device row shows the name, product code, revision, and source ESI file."
 openplc-editor/communication/ethercat/bus-scan.md,90,13,device,D-REMOTE,R13,stays,5. Select a device and click **Add Device**. The slave appears under your bus in the pro
 openplc-editor/communication/ethercat/bus-scan.md,90,36,Device,D-REMOTE,R13,stays,"5. Select a device and click **Add Device**. The slave appears under your bus in the project tree, and in the *"
-openplc-editor/communication/ethercat/bus-scan.md,90,124,Device,D-EDITORNODE,R17,stays,"e appears under your bus in the project tree, and in the **Configured Devices** panel, with a position assigned automatically (one greater than th"
-openplc-editor/communication/ethercat/bus-scan.md,94,26,device,D-EDITORNODE,R17,stays,## Removing a configured device
-openplc-editor/communication/ethercat/bus-scan.md,96,21,Device,D-EDITORNODE,R17,stays,"In the **Configured Devices** panel, click a row to select it (the row is highlighted). Click th"
+openplc-editor/communication/ethercat/bus-scan.md,90,124,Device,D-REMOTE,R13,stays,"e appears under your bus in the project tree, and in the **Configured Devices** panel, with a position assigned automatically (one greater than th"
+openplc-editor/communication/ethercat/bus-scan.md,94,26,device,D-REMOTE,R13,stays,## Removing a configured device
+openplc-editor/communication/ethercat/bus-scan.md,96,21,Device,D-REMOTE,R13,stays,"In the **Configured Devices** panel, click a row to select it (the row is highlighted). Click th"
 openplc-editor/communication/ethercat/bus-scan.md,96,256,device,D-REMOTE,R13,stays,but leaves the underlying ESI in the repository so you can re-add the device later.
-openplc-editor/communication/ethercat/diagnostics.md,39,113,Device,D-EDITORNODE,R17,stays,", 2, 3, …). Matches the **Pos** column in the Bus Editor's Configured Devices panel. |"
+openplc-editor/communication/ethercat/diagnostics.md,39,113,Device,D-REMOTE,R13,stays,", 2, 3, …). Matches the **Pos** column in the Bus Editor's Configured Devices panel. |"
 openplc-editor/communication/ethercat/diagnostics.md,60,85,Device,D-REMOTE,R13,stays,SI revision mismatch between configured and physical slave. | Check **Device Info** for this slave; download a newer ESI from the vendor and re-ad
 openplc-editor/communication/ethercat/example.md,7,14,Device,D-EDITORNODE,R17,stays,| Position | Device | Function | I/O |
 openplc-editor/communication/ethercat/example.md,31,20,Device,D-REMOTE,R13,stays,3. Select **Remote Device**.
@@ -416,13 +416,13 @@ openplc-editor/communication/ethercat/example.md,49,47,Device,D-REMOTE,R13,stays
 openplc-editor/communication/ethercat/example.md,50,140,device,D-EDITORNODE,R17,stays,files with a `Beckhoff Automation GmbH & Co. KG (0x2)` vendor and the device count for each.
 openplc-editor/communication/ethercat/example.md,55,24,device,D-LITERAL,R17+fenced,stays,Loaded Files (3) - 317 device(s)
 openplc-editor/communication/ethercat/example.md,62,5,device,D-EDITORNODE,R17,stays,The device counts will vary as Beckhoff publishes new revisions; the structure i
-openplc-editor/communication/ethercat/example.md,79,126,Device,D-EDITORNODE,R17,stays,the master enumerates the segment. After a few seconds the **Scanned Devices** table fills in:
+openplc-editor/communication/ethercat/example.md,79,126,Device,D-REMOTE,R13,stays,the master enumerates the segment. After a few seconds the **Scanned Devices** table fills in:
 openplc-editor/communication/ethercat/example.md,88,167,Device,D-REMOTE,R13,stays,ts revision does not match. Re-check Step 3 and look at the slave's **Device Info** for the revision the wire is reporting.
 openplc-editor/communication/ethercat/example.md,93,45,Device,D-REMOTE,R13,stays,The three slaves move into the **Configured Devices** panel on the right. The project tree updates: under **Remote Devic
 openplc-editor/communication/ethercat/example.md,93,116,Device,D-REMOTE,R13,stays,evices** panel on the right. The project tree updates: under **Remote Devices > eth** you now see three child nodes:
 openplc-editor/communication/ethercat/example.md,101,45,Device,D-REMOTE,R13,stays,1. Click the `EL1809` child node. The Slave Device Editor opens with the **Channel Mappings** tab selected.
 openplc-editor/communication/ethercat/example.md,108,79,device,D-LITERAL,R10,stays,"`EK1100`. **Channel Mappings** shows `No channels available for this device.`. Couplers do not contribute process data, only mechanical and bus c"
-openplc-editor/communication/ethercat/prerequisites.md,21,84,orchestrator,O-EDGEDEV,R04,changes,"ond NIC** on the host, separate from the one you use for SSH, for the orchestrator connection, and for the rest of your enterprise network."
+openplc-editor/communication/ethercat/prerequisites.md,21,84,orchestrator,O-AGENT,H16,changes,"ond NIC** on the host, separate from the one you use for SSH, for the orchestrator connection, and for the rest of your enterprise network."
 openplc-editor/communication/ethercat/prerequisites.md,37,33,device,D-REMOTE,R13,stays,USB-Ethernet adapters and Wi-Fi devices are **not supported**: they cannot deliver the timing EtherCAT requi
 openplc-editor/communication/ethercat/slave-channel-mappings.md,3,140,Device,D-REMOTE,R13,stays,ck a slave in the project tree. It is the most-used part of the Slave Device Editor and the place where each PDO entry described by the slave's ES
 openplc-editor/communication/ethercat/slave-channel-mappings.md,5,195,device,D-REMOTE,R13,stays,"ESI. You do not pick them by hand. The editor lists every channel the device declares, ready to be referenced from your Ladder, ST, or FBD code."
@@ -440,7 +440,7 @@ openplc-editor/communication/ethercat/slave-info.md,3,7,Device,D-REMOTE,R13,stay
 openplc-editor/communication/ethercat/slave-info.md,3,56,Device,D-REMOTE,R13,stays,The **Device Info** tab is the second tab in the Slave Device Editor. It is a read-only summary of the slave's identity. There is n
 openplc-editor/communication/ethercat/slave-info.md,5,135,Device,D-EDITORNODE,R17,stays,"EL1809 16Ch. Dig. Input 24V, 3ms`) followed by the four tabs. Click **Device Info**."
 openplc-editor/communication/ethercat/slave-info.md,7,3,Device,D-EDITORNODE,R17,stays,"![Device Info tab for EK1814: Vendor ""Beckhoff Automation GmbH & Co. KG"", Vend"
-openplc-editor/communication/ethercat/slave-info.md,14,155,device,D-EDITORNODE,R17,stays,ve reports on the wire and the value the editor uses to match scanned devices to the repository. |
+openplc-editor/communication/ethercat/slave-info.md,14,155,device,D-REMOTE,R13,stays,ve reports on the wire and the value the editor uses to match scanned devices to the repository. |
 openplc-editor/communication/ethercat/slave-info.md,17,84,device,D-REMOTE,R13,stays,"* | The filename of the ESI XML in the repository that describes this device, e.g. `Beckhoff EL1xxx.xml`. Reads `Not found` if the linked ESI is n"
 openplc-editor/communication/ethercat/slave-info.md,19,92,device,D-REMOTE,R13,stays,| Number of input channels (TxPDO entries) the ESI describes for this device. |
 openplc-editor/communication/ethercat/slave-info.md,20,94,device,D-REMOTE,R13,stays,Number of output channels (RxPDO entries) the ESI describes for this device. |
@@ -454,14 +454,14 @@ openplc-editor/communication/ethercat/slave-startup-params.md,22,48,device,D-LIT
 openplc-editor/communication/ethercat/slave-startup-params.md,23,45,device,D-LITERAL,R10,stays,| `CoE Object Dictionary available for this device. Auto-configure startup parameters?` with an **Auto-configure from ES
 openplc-editor/communication/ethercat/slave-startup-params.md,24,49,device,D-LITERAL,R10,stays,| `No configurable SDO parameters found in this device's CoE dictionary.` | The CoE dictionary exists but contains no SDOs m
 openplc-editor/communication/ethercat/troubleshooting.md,3,114,Device,D-REMOTE,R13,stays,"grouped by where you see them: in the **Bus Editor**, in the **Slave Device Editor**, in the **Repository**, and at runtime once the bus is start"
-openplc-editor/communication/ethercat/troubleshooting.md,11,101,device,D-REMOTE,R13,stays,"C's EtherCAT NIC was not marked as a **Dedicated Interface** when the device was created, so the runtime cannot take exclusive raw-Ethernet access"
-openplc-editor/communication/ethercat/troubleshooting.md,13,221,device,D-EDITORNODE,R17,stays,"./platform/vplcs/creating-a-vplc)** for the wizard step. Once the new device boots, the banner clears and **Scan** becomes active."
+openplc-editor/communication/ethercat/troubleshooting.md,11,101,device,D-VPLC,H12,changes,"C's EtherCAT NIC was not marked as a **Dedicated Interface** when the device was created, so the runtime cannot take exclusive raw-Ethernet access"
+openplc-editor/communication/ethercat/troubleshooting.md,13,221,device,D-VPLC,H12,changes,"./platform/vplcs/creating-a-vplc)** for the wizard step. Once the new device boots, the banner clears and **Scan** becomes active."
 openplc-editor/communication/ethercat/troubleshooting.md,27,9,device,D-EDITORNODE,R17,stays,"### ""No devices found"" after a successful scan"
 openplc-editor/communication/ethercat/troubleshooting.md,29,76,Device,D-REMOTE,R13,stays,"ptom.** The **Scan** completes (`Completed in <N>ms`) but the Scanned Devices table reads `No devices found. Click ""Scan"" to discover EtherCAT dev"
 openplc-editor/communication/ethercat/troubleshooting.md,29,100,device,D-LITERAL,R10,stays,"pletes (`Completed in <N>ms`) but the Scanned Devices table reads `No devices found. Click ""Scan"" to discover EtherCAT devices on the network.`"
 openplc-editor/communication/ethercat/troubleshooting.md,29,149,device,D-LITERAL,R10,stays,"ices table reads `No devices found. Click ""Scan"" to discover EtherCAT devices on the network.`"
 openplc-editor/communication/ethercat/troubleshooting.md,40,14,device,D-EDITORNODE,R17,stays,"### Selected device shows ""No XML"" badge"
-openplc-editor/communication/ethercat/troubleshooting.md,42,35,Device,D-EDITORNODE,R17,stays,**Symptom.** A row in the Scanned Devices table has a small `No XML` badge next to the name. If you tick it an
+openplc-editor/communication/ethercat/troubleshooting.md,42,35,Device,D-REMOTE,R13,stays,**Symptom.** A row in the Scanned Devices table has a small `No XML` badge next to the name. If you tick it an
 openplc-editor/communication/ethercat/troubleshooting.md,42,168,device,D-REMOTE,R13,stays,"ou tick it and click **Add Selected**, the **Missing ESI XML for some devices** modal appears."
 openplc-editor/communication/ethercat/troubleshooting.md,49,33,device,D-REMOTE,R13,stays,2. Download the ESI XML for the device from the manufacturer's website.
 openplc-editor/communication/ethercat/troubleshooting.md,51,32,device,D-EDITORNODE,R17,stays,4. Re-run the scan and add the device again.
@@ -487,7 +487,7 @@ openplc-editor/communication/s7comm/data-blocks.md,87,53,device,D-EDITORNODE,R17
 openplc-editor/communication/s7comm/data-blocks.md,88,53,device,D-EDITORNODE,R17,stays,| **Double Word Output (%QD)** | 4 bytes | Write to device | `%QD` | DWord outputs |
 openplc-editor/communication/s7comm/data-blocks.md,90,51,device,D-EDITORNODE,R17,stays,| **Long Word Input (%IL)** | 8 bytes | Read from device | `%IL` | LWord inputs |
 openplc-editor/communication/s7comm/data-blocks.md,91,51,device,D-EDITORNODE,R17,stays,| **Long Word Output (%QL)** | 8 bytes | Write to device | `%QL` | LWord outputs |
-openplc-editor/communication/s7comm/example.md,53,44,device,D-EDITORNODE,R17,stays,Save the project and transfer it to a vPLC device the same way you would any other project. The runtime starts the S7Co
+openplc-editor/communication/s7comm/example.md,53,44,device,D-VPLC,H12,changes,Save the project and transfer it to a vPLC device the same way you would any other project. The runtime starts the S7Co
 openplc-editor/communication/s7comm/logging.md,3,216,orchestrator,O-EDGEDEV,R04,changes,e runtime's standard log stream. The same stream that surfaces in the orchestrator's runtime view alongside Modbus and OPC-UA logs.
 openplc-editor/communication/s7comm/logging.md,23,144,orchestrator,O-EDGEDEV,R04,changes,"this stream wherever you normally read runtime logs. Typically in the orchestrator's runtime view on the platform, or in the host's system journal if yo"
 openplc-editor/communication/s7comm/plc-identity.md,5,224,device,D-EDITORNODE,R17,stays,"t is talking to. The SZL response carries identification strings. The device name, the module type, a serial number, a copyright line, and a modul"
@@ -536,7 +536,7 @@ openplc-editor/communication/modbus/client.md,110,188,device,D-REMOTE,R11a,stays
 openplc-editor/communication/modbus/client.md,125,120,device,D-REMOTE,R11a,stays,"HoldingRegisters_0 now has alias ""sensor_pressure_psi""](images/remote-device-io-group-with-alias.png)"
 openplc-editor/communication/modbus/client.md,133,18,device,D-REMOTE,R13,stays,A typical remote-device configuration has several groups:
 openplc-editor/communication/modbus/client.md,156,13,Device,D-REMOTE,R13,stays,**No Remote Device option in the popover.** The active target doesn't support Modbus mas
-openplc-editor/communication/modbus/client.md,158,65,orchestrator,O-EDGEDEV,R04,changes,"**TCP timeouts.** Host or port unreachable. From a shell on the orchestrator host: `telnet <ip> 502` should connect. Check firewalls, NAT, and tha"
+openplc-editor/communication/modbus/client.md,158,65,orchestrator,O-REWRITE,H14,changes,"**TCP timeouts.** Host or port unreachable. From a shell on the orchestrator host: `telnet <ip> 502` should connect. Check firewalls, NAT, and tha"
 openplc-editor/communication/modbus/server.md,10,125,Device,D-REMOTE,R13,stays,"showing Function, Function Block, Program, Data Type, Server, Remote Device options](../../images/create-element-popover.png)"
 openplc-editor/communication/modbus/server.md,105,20,device,D-REMOTE,R13,stays,- **[Modbus remote device](client)**: configure your vPLC as a master reading remote slaves.
 plans-and-billing/ai-credit-units.md,78,16,orchestrator,O-ENTITY,R05,changes,"- Plan quotas (orchestrators, devices, private projects)."
@@ -598,7 +598,7 @@ platform/vplcs/connecting-from-editor.md,8,94,Orchestrator,O-ENTITY,R05,changes,
 platform/vplcs/connecting-from-editor.md,8,144,orchestrator,O-ENTITY,R05,changes,"ces**, then click **Orchestrators**. A panel slides out listing every orchestrator your account has access to."
 platform/vplcs/connecting-from-editor.md,9,17,orchestrator,O-ENTITY,R05,changes,3. **Expand the orchestrator that owns your vPLC.** Each orchestrator entry shows its connection s
 platform/vplcs/connecting-from-editor.md,9,58,orchestrator,O-ENTITY,R05,changes,3. **Expand the orchestrator that owns your vPLC.** Each orchestrator entry shows its connection status (Active / Inactive). Expand it to r
-platform/vplcs/connecting-from-editor.md,10,45,device,D-HOST,R15,stays,4. **Select the target vPLC.** Click on the device row. It should report status **Running** (or you'll need to start it
+platform/vplcs/connecting-from-editor.md,10,45,device,D-VPLC,H13,changes,4. **Select the target vPLC.** Click on the device row. It should report status **Running** (or you'll need to start it
 platform/vplcs/connecting-from-editor.md,10,129,device,D-VPLC,H01,changes,should report status **Running** (or you'll need to start it via the device's 3-dot menu from the platform).
 platform/vplcs/connecting-from-editor.md,42,24,orchestrator,O-ENTITY,R05,changes,## What happens if the orchestrator goes offline
 platform/vplcs/connecting-from-editor.md,44,8,orchestrator,O-AGENT,H07,changes,If the orchestrator-agent loses its cloud connection while you're connected to a vPLC:
@@ -622,8 +622,8 @@ platform/vplcs/creating-a-vplc.md,11,189,Device,D-VPLC,R18,changes,chestrator de
 platform/vplcs/creating-a-vplc.md,13,5,Device,D-VPLC,R18,changes,"The Devices tab shows your existing vPLCs as cards, plus a dashed **+ New Device"
 platform/vplcs/creating-a-vplc.md,13,75,Device,D-VPLC,R18,changes,"Devices tab shows your existing vPLCs as cards, plus a dashed **+ New Device** tile at the end of the grid. Click that tile."
 platform/vplcs/creating-a-vplc.md,19,7,Device,D-VPLC,R18,changes,"![New Device wizard step 1, Device Details: Device Name field and Runtime Version"
-platform/vplcs/creating-a-vplc.md,19,29,Device,D-REMOTE,R13,stays,"![New Device wizard step 1, Device Details: Device Name field and Runtime Version dropdown, both empty]("
-platform/vplcs/creating-a-vplc.md,19,45,Device,D-REMOTE,R13,stays,"![New Device wizard step 1, Device Details: Device Name field and Runtime Version dropdown, both empty](images/new-devic"
+platform/vplcs/creating-a-vplc.md,19,29,Device,D-VPLC,R18,changes,"![New Device wizard step 1, Device Details: Device Name field and Runtime Version dropdown, both empty]("
+platform/vplcs/creating-a-vplc.md,19,45,Device,D-VPLC,R18,changes,"![New Device wizard step 1, Device Details: Device Name field and Runtime Version dropdown, both empty](images/new-devic"
 platform/vplcs/creating-a-vplc.md,19,116,device,D-PATH,R11,changes,"evice Name field and Runtime Version dropdown, both empty](images/new-device-step1.png)"
 platform/vplcs/creating-a-vplc.md,23,5,Device,D-VPLC,R18,changes,| **Device Name** | Yes | A label for this vPLC. Must be unique within the orche
 platform/vplcs/creating-a-vplc.md,23,76,orchestrator,O-ENTITY,R05,changes,"evice Name** | Yes | A label for this vPLC. Must be unique within the orchestrator. Examples: *Palletizer Machine*, *Conveyor Controller*, *vPLC 02*. |"
@@ -665,9 +665,9 @@ platform/vplcs/vplc-detail.md,13,35,Orchestrator,O-ENTITY,R05,changes,"The bread
 platform/vplcs/vplc-detail.md,13,52,orchestrator,O-ENTITY,R05,changes,"The breadcrumb at the very top, **Orchestrators → {orchestrator name} → {vplc name}**, lets you jump back one step at a time."
 platform/vplcs/vplc-detail.md,30,28,device,D-VPLC,H01,changes,Fields show `N/A` when the device hasn't reported back yet (e.g. status is Stopped or Inactive).
 platform/vplcs/vplc-detail.md,34,188,device,D-PLAIN,H02,stays,", IP address, MAC address, and gateway. These are the addresses other devices on your physical LAN use to reach the vPLC, this is the IP you'd poi"
-platform/vplcs/vplc-detail.md,40,109,device,D-HOST,R15,stays,tion buttons. Lifecycle actions live in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
+platform/vplcs/vplc-detail.md,40,109,device,D-VPLC,H13,changes,tion buttons. Lifecycle actions live in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
 platform/vplcs/vplc-detail.md,40,128,orchestrator,O-ENTITY,R05,changes,ycle actions live in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
-platform/vplcs/vplc-detail.md,40,143,Device,D-HOST,R15,stays,ve in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
+platform/vplcs/vplc-detail.md,40,143,Device,D-VPLC,H13,changes,ve in the **3-dot menu** (⋮) on the device card in the orchestrator's Devices tab.
 platform/vplcs/vplc-detail.md,50,24,orchestrator,O-ENTITY,R05,changes,"| **Inactive** (parent orchestrator offline) | **Rename**, **Delete**. Lifecycle actions are unavailable"
 platform/vplcs/vplc-detail.md,60,32,orchestrator,O-ENTITY,R05,changes,- **Status is Inactive but the orchestrator is Active** → check **[vPLC stuck in Stopped](../../troubleshooting/v
 platform/vplcs/vplc-detail.md,67,24,orchestrator,O-ENTITY,R05,changes,- **Inspect the parent orchestrator's metrics** → **[Orchestrator detail](../orchestrators/orchestrator-d
@@ -679,7 +679,7 @@ platform/projects/importing-and-forking.md,19,115,device,D-LITERAL,R10,stays,"th
 platform/projects/overview.md,3,305,device,D-EDITORNODE,H03,stays,"nce is that the file tree contains PLC programs, function blocks, and device configurations instead of generic source files, and the editor that o"
 platform/projects/overview.md,16,4,device,D-LITERAL,R10,stays,"| `devices/` | Per-device configuration: hardware boards, communication protoco"
 platform/projects/overview.md,16,20,device,D-EDITORNODE,H03,stays,"| `devices/` | Per-device configuration: hardware boards, communication protocols, remote I/O m"
-platform/projects/overview.md,43,10,orchestrator,O-ENTITY,R05,changes,"1. The **orchestrator**, the agent on your edge device. Set one up with **[Installing the a"
+platform/projects/overview.md,43,10,orchestrator,O-REWRITE,H14,changes,"1. The **orchestrator**, the agent on your edge device. Set one up with **[Installing the a"
 platform/projects/overview.md,43,49,device,D-HOST,R15,stays,"1. The **orchestrator**, the agent on your edge device. Set one up with **[Installing the agent](../orchestrators/installing"
 platform/projects/overview.md,43,101,orchestrator,O-PATH,R02,changes,gent on your edge device. Set one up with **[Installing the agent](../orchestrators/installing-the-agent)**.
 platform/projects/overview.md,44,15,device,D-VPLC,R18,changes,"2. The **vPLC device**, the container that actually runs the OpenPLC runtime. Create one u"
@@ -852,7 +852,7 @@ platform/orchestrators/orchestrators-list.md,56,17,orchestrator,O-ENTITY,R05,cha
 platform/orchestrators/orchestrators-list.md,57,42,orchestrator,O-ENTITY,R05,changes,- **Rename or delete one** → **[Managing orchestrators](managing-orchestrators)**.
 platform/orchestrators/orchestrators-list.md,57,66,orchestrator,O-PATH,R02,changes,- **Rename or delete one** → **[Managing orchestrators](managing-orchestrators)**.
 platform/orchestrators/overview.md,1,3,Orchestrator,O-ENTITY,R05,changes,# Orchestrators
-platform/orchestrators/overview.md,3,6,orchestrator,O-ENTITY,R05,changes,An **orchestrator** is the cloud-side representation of a small piece of software (the
+platform/orchestrators/overview.md,3,6,orchestrator,O-REWRITE,H14,changes,An **orchestrator** is the cloud-side representation of a small piece of software (the
 platform/orchestrators/overview.md,3,89,orchestrator,O-AGENT,R03,changes,* is the cloud-side representation of a small piece of software (the *orchestrator agent*) that you run on your edge hardware. The agent's job is to man
 platform/orchestrators/overview.md,5,23,orchestrator,O-ENTITY,R05,changes,"You need at least one orchestrator before you can deploy a project. The agent runs on Linux only, typica"
 platform/orchestrators/overview.md,11,140,device,D-HOST,R15,stays,redictable timing. Running the runtime container directly on the edge device (rather than in the cloud) keeps latency to the I/O hardware low.
@@ -919,8 +919,8 @@ troubleshooting/plan-limit-reached.md,29,32,orchestrator,O-ENTITY,R05,changes,- 
 troubleshooting/plan-limit-reached.md,29,72,orchestrator,O-ENTITY,R05,changes,**Orchestrators**: delete an orchestrator you don't use. **[Managing orchestrators](../platform/orchestrators/managing-orchestrators)**.
 troubleshooting/plan-limit-reached.md,29,99,orchestrator,O-PATH,R02,changes,an orchestrator you don't use. **[Managing orchestrators](../platform/orchestrators/managing-orchestrators)**.
 troubleshooting/plan-limit-reached.md,29,122,orchestrator,O-PATH,R02,changes,'t use. **[Managing orchestrators](../platform/orchestrators/managing-orchestrators)**.
-troubleshooting/plan-limit-reached.md,30,5,Device,D-HOST,R15,stays,- **Devices**: delete vPLCs you're not running. 3-dot menu on the device card →
-troubleshooting/plan-limit-reached.md,30,67,device,D-HOST,R15,stays,- **Devices**: delete vPLCs you're not running. 3-dot menu on the device card → **Delete**.
+troubleshooting/plan-limit-reached.md,30,5,Device,D-VPLC,H13,changes,- **Devices**: delete vPLCs you're not running. 3-dot menu on the device card →
+troubleshooting/plan-limit-reached.md,30,67,device,D-VPLC,H13,changes,- **Devices**: delete vPLCs you're not running. 3-dot menu on the device card → **Delete**.
 troubleshooting/plan-limit-reached.md,51,3,Orchestrator,O-ENTITY,R05,changes,- Orchestrators used / allowed.
 troubleshooting/plan-limit-reached.md,52,3,Device,D-VPLC,H01,changes,- Devices used / allowed.
 troubleshooting/vplc-stuck-stopped.md,10,21,orchestrator,O-ENTITY,R05,changes,## 1. Is the parent orchestrator Active?
@@ -1093,8 +1093,9 @@ getting-started/quick-start.md,14,57,device,D-PLAIN,R14,stays,"- **Virtual PLCs*
 getting-started/quick-start.md,15,54,device,D-HOST,H05,stays,- **Remote Management**: Deploy programs and monitor devices from anywhere with an internet connection (internet is only required
 getting-started/quick-start.md,22,53,Orchestrator,O-AGENT,R03,changes,"![Autonomy Edge platform architecture: Web Browser, Orchestrator Agent, vPLC Instances, and Physical I/O stacked top to bottom](images"
 getting-started/quick-start.md,24,99,device,D-VPLC,H01,changes,"The cloud-based web application where you manage projects, users, and devices. It includes the browser-based OpenPLC Editor IDE for writing automa"
-getting-started/quick-start.md,26,3,Orchestrator,O-ENTITY,R05,changes,"**Orchestrator**: An agent that runs on an edge device (like a linux-based PLC, PAC,"
+getting-started/quick-start.md,26,3,Orchestrator,O-REWRITE,H14,changes,"**Orchestrator**: An agent that runs on an edge device (like a linux-based PLC, PAC,"
 getting-started/quick-start.md,26,49,device,D-HOST,R15,stays,"**Orchestrator**: An agent that runs on an edge device (like a linux-based PLC, PAC, industrial PC, or on-prem server) and m"
+getting-started/quick-start.md,26,221,orchestration,O-SE,H11,stays,". It maintains a secure connection to the cloud and handles container orchestration, networking, and system monitoring."
 getting-started/quick-start.md,28,175,device,D-REMOTE,R13,stays,"grams. Each vPLC runs independently and can communicate with physical devices through industrial protocols like Modbus, EtherCAT, or EtherNet/IP."
 getting-started/quick-start.md,30,20,Device,D-PLAIN,R14,stays,"**Physical I/O and Devices**: The sensors, actuators, remote I/O modules, HMIs, and other indus"
 getting-started/quick-start.md,50,43,orchestrator,O-AGENT,R03,changes,1. **Set up infrastructure**: Install the orchestrator agent on your device and provision a vPLC instance
@@ -1105,8 +1106,8 @@ getting-started/quick-start.md,59,37,device,D-HOST,R15,stays,"- **Linux device**
 getting-started/quick-start.md,60,18,device,D-REMOTE,R13,stays,- **Modbus slave device**: A remote I/O module or device with at least one digital output tha
 getting-started/quick-start.md,60,51,device,D-REMOTE,R13,stays,- **Modbus slave device**: A remote I/O module or device with at least one digital output that supports Modbus TCP/IP. This wi
 getting-started/quick-start.md,64,22,Orchestrator,O-ENTITY,R05,changes,## Step 1: Set Up an Orchestrator
-getting-started/quick-start.md,66,4,orchestrator,O-ENTITY,R05,changes,An orchestrator is an edge agent that manages your vPLC devices. It runs on your phys
-getting-started/quick-start.md,66,57,device,D-HOST,R15,stays,An orchestrator is an edge agent that manages your vPLC devices. It runs on your physical hardware and maintains a secure connection
+getting-started/quick-start.md,66,4,orchestrator,O-REWRITE,H14,changes,An orchestrator is an edge agent that manages your vPLC devices. It runs on your phys
+getting-started/quick-start.md,66,57,device,D-VPLC,H13,changes,An orchestrator is an edge agent that manages your vPLC devices. It runs on your physical hardware and maintains a secure connection
 getting-started/quick-start.md,68,23,Orchestrator,O-ENTITY,R05,changes,### 1.1 Start the New Orchestrator Wizard
 getting-started/quick-start.md,71,18,Orchestrator,O-ENTITY,R05,changes,2. Navigate to **Orchestrators** in the left sidebar
 getting-started/quick-start.md,72,20,Orchestrator,O-ENTITY,R05,changes,3. Click the **Add Orchestrator** button

@@ -2,20 +2,35 @@
 """
 EDGE-642 / EDGE-633 terminology rename: occurrence census for user-docs.
 
-Emits one row per occurrence of "orchestrator" or "device" across the markdown
-under docs/, with a decision code and the id of the rule that assigned it.
+Emits one row per occurrence of "orchestrator", "orchestration" or "device"
+across the markdown under docs/, with a decision code and the id of the rule
+that assigned it.
 
-The point is FR17 and FR20: every occurrence of both words carries a recorded
+The point is FR17 and FR20: every occurrence of any of them carries a recorded
 decision, including the ones that stay unchanged. The reason for a decision is
 written once per code in RENAME-DECISION-RECORD.md; a row carries the code, so
 the record does not repeat a sentence 1200 times.
 
 Run from docs/:      python3 exploration/rename-census.py
 Outputs:             exploration/rename-census.csv
+
+CAREFUL: exploration/rename-census.csv is the record of what was decided at the
+base commit, 79c4faa, and writing overwrites it with a census of whatever tree
+you are standing in. Generate it from a checkout of the base commit. Against the
+working tree use --verify, which classifies but writes nothing.
+
 Verification (Phase 10):
     python3 exploration/rename-census.py --verify
 which re-runs the census on the current tree and fails if any occurrence still
 carries a code from the CHANGES set.
+
+Two things this script deliberately refuses to do quietly, because both hide a
+decision where nothing reports it:
+  - it never lets the fenced-code fallback turn a "changes" row into a literal,
+    and it never lets an unclassified row acquire a code that way. Either case
+    is printed under a "??" or "!!" heading and left standing.
+  - it never guesses at an inflection of "orchestrate" other than the noun. R06
+    sends those to REVIEW, to be read and pinned by hand.
 """
 
 import csv
@@ -23,7 +38,10 @@ import os
 import re
 import sys
 
-WORD = re.compile(r"orchestrator|device", re.I)
+# "orchestration" is in the pattern on purpose: the ordinary software-engineering
+# sense of the word is reader-facing copy in this repository, and a pattern of
+# "orchestrator|device" alone cannot see it. See O-SE in the legend.
+WORD = re.compile(r"orchestrator|orchestration|device", re.I)
 CTX = 70
 
 # This demand's own artefacts. They are full of both words by construction, and
@@ -39,6 +57,12 @@ LEGEND = {
     # ---- changes -----------------------------------------------------------
     "O-ENTITY":     ("changes", "orchestrator = the parent product entity -> Device (BR01)"),
     "O-AGENT":      ("changes", "the orchestrator agent, the daemon -> Device Agent (BR04)"),
+    "O-REWRITE":    ("changes", "the parent entity in a sentence that defines it in terms of the "
+                                "daemon or of the machine. The word does not survive, but a word "
+                                "substitution would produce a self-contradiction: a Device that is "
+                                "an agent, an agent installed on a Device, or 'the Device host'. The "
+                                "sentence is rewritten, and the intended reading for each of these "
+                                "rows is named in RENAME-DECISION-RECORD.md (BR01, BR04)"),
     "O-EDGEDEV":    ("changes", "the platform entity named inside the Editor docs -> Edge Device / "
                                 "Edge Devices, because the Editor already uses Device for the PLC "
                                 "target (BR05, FR10)"),
@@ -135,18 +159,25 @@ def in_link_target(line, col):
     return close == -1 or close > col
 
 
+# The short industrial abbreviations are anchored on word boundaries. Unanchored,
+# "pdo" matched inside "dropdown" and "esi" inside "beside", which coded seven
+# occurrences as remote equipment on the strength of an ordinary English word,
+# two of them in the platform's own vPLC creation wizard. Same defect class as
+# the agent-window bug: a substring test on a 140-character window.
 REMOTE = re.compile(
-    r"remote device|remote-device|modbus|ethercat|slave|bus master|coe |sdo|pdo|esi"
+    r"remote device|remote-device|modbus|ethercat|slave|bus master"
+    r"|scanned device|configured device"
+    r"|\bcoe\b|\bsdo\b|\bpdo\b|\besi\b"
     r"|io group|remote equipment",
     re.I,
 )
 
-EDITOR_SCREEN = re.compile(
-    r"orchestrators screen|orchestrators editor|orchestrators panel|orchestrators card"
-    r"|orchestrators tab|device orchestrators|click \*\*orchestrators\*\*"
-    r"|expand \*\*device\*\*|orchestrators\*\*",
-    re.I,
-)
+# There was an EDITOR_SCREEN pattern here, defined and never called. It has been
+# deleted rather than wired up: its "device orchestrators" alternative is R09's
+# job and R09 does it positionally, and its "expand **device**" alternative would
+# have coded the Editor's project-tree Device node as the platform entity, which
+# is the one reading that must NOT become Edge Device (BR06, FR09). An unused
+# rule that reads as intentional is worse than no rule.
 
 # Quoted product strings that must stay byte-identical.
 D_LITERAL = re.compile(
@@ -195,7 +226,12 @@ def classify(path, line, col, word, ctx):
     if top == "exploration":
         return "X-HIST", "R00"
 
-    if w == "orchestrator":
+    if w.startswith("orchestrat"):
+        # R06 - any inflection other than the noun "orchestrator". The pattern
+        # sees these only so that they cannot be invisible; what one means is a
+        # judgement, so it is reported and pinned by hand rather than guessed.
+        if w != "orchestrator":
+            return "REVIEW", "R06"
         # R01 - literals the software emits or resolves, judged positionally.
         if is_o_literal(line, col - 1, col - 1 + len(word)) or in_code_span(line, col):
             return "O-LITERAL", "R01"
@@ -212,29 +248,43 @@ def classify(path, line, col, word, ctx):
         return "O-ENTITY", "R05"
 
     # w == "device"
-    # R09 - the "Device" half of the Editor's screen label "Device Orchestrators",
-    # which becomes "Edge Devices" as one label. Both words move together, so the
-    # half that reads "Device" is not one of the senses that stay.
-    if re.match(r"[s]?[ -]orchestrator", line[col - 1 + len(word):col + 20], re.I):
-        return "O-EDGEDEV", "R09"
     # R10 - quoted product strings and the on-disk project directory.
     if D_LITERAL.search(ctx) or in_code_span(line, col):
         return "D-LITERAL", "R10"
     # R11 - link targets and image filenames. A path is only renamed when the
     # "device" in it means the child entity; the remote-device captures and the
     # Editor's device-config page keep their names, so they are excluded first.
+    #
+    # This runs BEFORE R09 on purpose. R09 is a prose rule, and it used to reach
+    # the "device" half of the image filename device-orchestrators-expanded.png
+    # and give a path a prose code, while the "orchestrator" half of the same
+    # filename was correctly a path. A path occurrence gets a path code.
     if in_link_target(line, col):
         target = line[line.rfind("](", 0, col) + 2:]
         target = target[:target.find(")")] if ")" in target else target
         if re.search(r"remote-device|device-from-repository|device-config", target, re.I):
             return ("D-REMOTE", "R11a") if "config" not in target.lower() \
                 else ("D-EDITORNODE", "R11b")
+        # R11d - the "device" half of a filename built on the Editor's label
+        # "Device Orchestrators", e.g. device-orchestrators-expanded.png. Judged
+        # positionally, exactly as R09 judges the prose label: the two words are
+        # one name and the move rewrites them together. Deliberately NOT a search
+        # for "orchestrator" anywhere in the target, because a target of the shape
+        # orchestrator-detail-devices.png is the opposite case, the child entity
+        # in the second half, whose "devices" becomes "vplcs".
+        if re.match(r"[s]?[-_ ]orchestrator", line[col - 1 + len(word):col + 20], re.I):
+            return "O-PATH", "R11d"
         # R11c - the path already names the new parent entity, so it stays. Only the
         # paths still carrying the child sense are outstanding work, and they are
         # enumerated: every other "device" path was written or renamed by the move.
         if not D_PATH_PENDING.search(target):
             return "D-PATH-NEW", "R11c"
         return "D-PATH", "R11"
+    # R09 - the "Device" half of the Editor's screen label "Device Orchestrators",
+    # which becomes "Edge Devices" as one label. Both words move together, so the
+    # half that reads "Device" is not one of the senses that stay.
+    if re.match(r"[s]?[ -]orchestrator", line[col - 1 + len(word):col + 20], re.I):
+        return "O-EDGEDEV", "R09"
     # R12 - VPP licensing.
     if re.search(r"licensed device|serial anchor|vpp licen", ctx, re.I):
         return "D-LICENSE", "R12"
@@ -264,6 +314,9 @@ def classify(path, line, col, word, ctx):
 # Each entry was read in context before being written here.
 OVERRIDES = {}
 
+# Rows the fenced-block fallback refused to touch, collected for reporting.
+FENCED_UNTOUCHED = []
+
 
 def load_overrides():
     p = os.path.join("exploration", "rename-census-overrides.csv")
@@ -275,6 +328,7 @@ def load_overrides():
 
 def census():
     load_overrides()
+    del FENCED_UNTOUCHED[:]
     rows = []
     for root, _dirs, files in os.walk("."):
         for f in sorted(files):
@@ -295,13 +349,24 @@ def census():
                         code, rule = OVERRIDES[key]
                     else:
                         code, rule = classify(p, line, col, m.group(0), ctx)
-                        # A fenced block is normally a literal. It must never be a
-                        # way for an unclassified row to acquire a code by accident,
-                        # so REVIEW is left standing and reported.
-                        if (ln in fenced and code != "REVIEW"
-                                and code not in ("O-LITERAL", "D-LITERAL", "X-HIST")):
-                            code, rule = ("O-LITERAL" if m.group(0).lower() == "orchestrator"
-                                          else "D-LITERAL"), rule + "+fenced"
+                        # A fenced block is normally a literal, and this fallback
+                        # refines a stays code into the literal code. What it must
+                        # never do is CONVERT A DECISION. Both directions are now
+                        # closed:
+                        #   - REVIEW is left standing, so an unclassified row
+                        #     cannot acquire a code by accident;
+                        #   - a row the rules coded "changes" keeps that code and
+                        #     is reported, so somebody pins it or rewrites it. That
+                        #     half was open until now, and it is what hid
+                        #     troubleshooting/vplc-stuck-stopped.md:27 until hand
+                        #     override H10 was written to escape it.
+                        if ln in fenced:
+                            if code == "REVIEW" or LEGEND[code][0] == "changes":
+                                FENCED_UNTOUCHED.append((p, ln, col, code, ctx))
+                            elif code not in ("O-LITERAL", "D-LITERAL", "X-HIST"):
+                                code, rule = ("O-LITERAL"
+                                              if m.group(0).lower().startswith("orchestrat")
+                                              else "D-LITERAL"), rule + "+fenced"
                     rows.append({
                         "file": p, "line": ln, "col": col, "word": m.group(0),
                         "code": code, "rule": rule,
@@ -329,6 +394,14 @@ def main():
     for code, n in sorted(by_code.items(), key=lambda kv: (-kv[1], kv[0])):
         print(f"{code:14} {n:>5}  {LEGEND.get(code, ('REVIEW',))[0]}")
     print(f"{'TOTAL':14} {len(rows):>5}")
+
+    if FENCED_UNTOUCHED:
+        print(f"\n?? {len(FENCED_UNTOUCHED)} occurrences sit inside a fenced code block "
+              f"but carry a 'changes' code or none. The fallback left them alone by "
+              f"design; each one is either a literal that needs a hand override, or "
+              f"prose in a fence that really does get rewritten:")
+        for p_, ln_, col_, code_, ctx_ in FENCED_UNTOUCHED:
+            print(f"   [{code_}] {p_}:{ln_}:{col_}  {ctx_[:100]}")
 
     todo = [r for r in rows if r["code"] == "REVIEW"]
     if todo:
