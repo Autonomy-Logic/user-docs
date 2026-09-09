@@ -10,10 +10,6 @@ Your Autonomy Edge identity, including credentials, profile, and settings. One a
 
 The credit consumed by AI Engineer jobs. Two pools: monthly allowance and extra credits (never expire). See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
 
-## Agent (Orchestrator Agent)
-
-The Python+Docker daemon that runs on your edge device. Pairs with the cloud via mTLS WebSocket, manages vPLC containers locally. Installed via `curl https://getedge.me | bash`.
-
 ## Audit log
 
 A historical record of changes to an organization (membership, settings, billing). Visible on the org's History tab once the feature ships. See **[Org history](../platform/organizations/history)**.
@@ -32,19 +28,31 @@ A versioned snapshot of project files with a message, author, and timestamp. See
 
 ## Community plan
 
-The free tier. Limits: 1 orchestrator, 2 devices, 0 private projects. AI Chat included, AI Engineer not included. See **[Pricing](../plans-and-billing/pricing)**.
+The free tier. Limits: 1 Device, 2 vPLCs, 0 private projects. AI Chat included, AI Engineer not included. See **[Pricing](../plans-and-billing/pricing)**.
 
 ## Cycle time
 
 How often the vPLC runtime executes the main program. Set at project creation. Default `T#20ms`. See **[Creating a project](../platform/projects/creating-a-project)**.
 
-## Device (vPLC device)
+## Device
 
-A virtual PLC container running on an orchestrator. Has a name, runtime version, NICs. See **[vPLC overview](../platform/vplcs/overview)**.
+Your edge machine, registered with the platform: a Linux PLC, PAC, industrial PC, dedicated server or Raspberry Pi. It is the machine, not the software on it: the **Device Agent** runs on a Device and hosts its vPLCs. See **[Devices overview](../platform/devices/overview)**.
+
+## Device (in the Editor)
+
+Inside the OpenPLC Editor, **Device** is the project-tree node for the PLC target you are programming: board selection, pin mapping, communication settings. A different concept from the platform's Device, and it keeps its name. See **[Device configuration](../openplc-editor/hardware-configuration/device-config-overview)**.
+
+## Device Agent
+
+The Python+Docker daemon that runs on your Device. Pairs with the cloud via mTLS WebSocket, manages vPLC containers locally. Installed via `curl https://getedge.me | bash`.
 
 ## DHCP mode
 
 NIC mode where the vPLC gets its IP from your network's DHCP server. Easy, no configuration. Counter-balance: IP can change. See **[Network modes](../platform/vplcs/network-modes)**.
+
+## Edge Device
+
+What the platform's **Device** is called throughout the OpenPLC Editor documentation, where **Device** already means the PLC target being programmed. The same entity under a qualified name, so the two stay distinguishable. See **[Devices overview](../platform/devices/overview)**.
 
 ## Education plan
 
@@ -52,7 +60,7 @@ Paid plan for academic institutions. Per-seat pricing, allows same-domain (.edu)
 
 ## Enterprise plan
 
-Custom-contract plan with unlimited orchestrators/devices and special terms. Contact sales.
+Custom-contract plan with unlimited Devices and vPLCs and special terms. Contact sales.
 
 ## Fork
 
@@ -78,13 +86,9 @@ A platform-generated alert about an event (PR review request, @mention, plan lim
 
 The open-source PLC runtime project that Autonomy Edge is built around. Runs inside each vPLC.
 
-## Orchestrator
-
-The cloud-side entity representing an edge device. Hosts vPLCs. See **[Orchestrator overview](../platform/devices/overview)**.
-
 ## Organization
 
-A shared workspace for teams. Has its own dashboard, projects, orchestrators, and billing, separate from your personal workspace. See **[Organizations overview](../platform/organizations/overview)**.
+A shared workspace for teams. Has its own dashboard, projects, Devices, and billing, separate from your personal workspace. See **[Organizations overview](../platform/organizations/overview)**.
 
 ## Pinned project
 
@@ -98,13 +102,13 @@ An IEC 61131-3 unit of code: a Program, a Function, or a Function Block. Lives i
 
 A project visible only to invited people. Requires a paid plan to create. See **[Visibility and sharing](../platform/projects/visibility-and-sharing)**.
 
+## Pro plan
+
+Paid personal plan. 20 Devices, 100 vPLCs, private projects, full AI Engineer. Recommended for solo professionals. See **[Pricing](../plans-and-billing/pricing)**.
+
 ## Project
 
 A git-versioned IEC 61131-3 codebase. The fundamental unit of work. See **[Projects overview](../platform/projects/overview)**.
-
-## Pro plan
-
-Paid personal plan. 20 orchestrators, 100 devices, private projects, full AI Engineer. Recommended for solo professionals. See **[Pricing](../plans-and-billing/pricing)**.
 
 ## Public project
 
@@ -148,11 +152,11 @@ A holding area for deleted projects. Items can be restored or permanently delete
 
 ## vPLC
 
-Virtual PLC. A Docker container running the OpenPLC runtime on an orchestrator. Behaves on the network like a standalone PLC. See **[vPLC overview](../platform/vplcs/overview)**.
+Virtual PLC. A Docker container running the OpenPLC runtime on a **Device**. Has a name, a runtime version and NICs, and behaves on the network like a standalone PLC. See **[vPLC overview](../platform/vplcs/overview)**.
 
 ## Workspace
 
-The unit of scoping for projects and orchestrators. Each user has a personal workspace; each organization is a workspace. Switch between them from the dashboard's **Organizations** card.
+The unit of scoping for projects and Devices. Each user has a personal workspace; each organization is a workspace. Switch between them from the dashboard's **Organizations** card.
 
 ## Where to next
 

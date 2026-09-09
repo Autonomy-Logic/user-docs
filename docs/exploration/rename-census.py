@@ -294,6 +294,8 @@ D_PROSE_DONE = {
     "getting-started/account-and-signup.md",
     "getting-started/dashboard-tour.md",
     "getting-started/quick-start.md",
+    # Phase 6
+    "reference/glossary.md",
 }
 
 
