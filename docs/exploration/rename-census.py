@@ -226,10 +226,13 @@ PLAIN = re.compile(
 
 
 # Paths whose "device" still means the CHILD entity and must become "vplc".
-# The getting-started captures whose rename is deferred to the phase that rewrites
-# the pages quoting them; after that phase this set is empty. Every other path
-# carrying "device" names the parent entity, which is now the correct name.
-D_PATH_PENDING = re.compile(r"add-device-modal|devices-list-with-vplc", re.I)
+# EMPTY as of Phase 5, which renamed the last two: getting-started/images/
+# add-device-modal.png -> add-vplc-modal.png and devices-list-with-vplc.png ->
+# vplcs-list-with-vplc.png. Every path in the tree carrying "device" now names
+# the parent entity, which is the correct name, so R11c takes them all. The
+# pattern is kept rather than deleted because it is the mechanism by which a
+# future child-sense path would be declared outstanding; it matches nothing.
+D_PATH_PENDING = re.compile(r"(?!)")
 
 
 # R20 is OFF unless asked for, and that is not a convenience. D_PROSE_DONE means
@@ -290,6 +293,7 @@ D_PROSE_DONE = {
     "getting-started/what-is-autonomy-edge.md",
     "getting-started/account-and-signup.md",
     "getting-started/dashboard-tour.md",
+    "getting-started/quick-start.md",
 }
 
 

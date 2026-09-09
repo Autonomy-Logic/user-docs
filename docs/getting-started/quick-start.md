@@ -19,11 +19,11 @@ Traditional PLC development requires expensive hardware, proprietary software li
 
 The Autonomy Edge ecosystem consists of four key components that work together:
 
-![Autonomy Edge platform architecture: Web Browser, Orchestrator Agent, vPLC Instances, and Physical I/O stacked top to bottom](images/platform-architecture.svg)
+![Autonomy Edge platform architecture: Web Browser, Device Agent, vPLC Instances, and Physical I/O stacked top to bottom](images/platform-architecture.svg)
 
-**Autonomy Edge Platform**: The cloud-based web application where you manage projects, users, and devices. It includes the browser-based OpenPLC Editor IDE for writing automation programs.
+**Autonomy Edge Platform**: The cloud-based web application where you manage projects, users, and vPLCs. It includes the browser-based OpenPLC Editor IDE for writing automation programs.
 
-**Orchestrator**: An agent that runs on an edge device (like a linux-based PLC, PAC, industrial PC, or on-prem server) and manages your vPLC instances. It maintains a secure connection to the cloud and handles container orchestration, networking, and system monitoring.
+**Device**: Your edge machine (a linux-based PLC, PAC, industrial PC, or on-prem server), registered with the platform. The **Device Agent** runs on it, manages your vPLC instances, maintains a secure connection to the cloud, and handles container orchestration, networking, and system monitoring.
 
 **vPLC (Virtual PLC)**: A containerized instance of OpenPLC Runtime v4 that executes your automation programs. Each vPLC runs independently and can communicate with physical devices through industrial protocols like Modbus, EtherCAT, or EtherNet/IP.
 
@@ -47,7 +47,7 @@ Additionally, you can extend functionality with **Python** and **C++** function 
 
 In this guide, you'll create a complete automation workflow from scratch:
 
-1. **Set up infrastructure**: Install the orchestrator agent on your device and provision a vPLC instance
+1. **Set up infrastructure**: Install the Device Agent on your device and provision a vPLC instance
 2. **Develop a program**: Write a "Hello World" blinking output program in Structured Text
 3. **Configure communication**: Set up Modbus TCP/IP to expose your outputs to external devices
 4. **Deploy and run**: Compile and upload your program to the vPLC
@@ -61,65 +61,65 @@ In this guide, you'll create a complete automation workflow from scratch:
 
 ---
 
-## Step 1: Set Up an Orchestrator
+## Step 1: Set Up a Device
 
-An orchestrator is an edge agent that manages your vPLC devices. It runs on your physical hardware and maintains a secure connection to the Autonomy Edge cloud.
+A Device is your edge machine. The Device Agent runs on it, manages your vPLCs, and maintains a secure connection to the Autonomy Edge cloud.
 
-### 1.1 Start the New Orchestrator Wizard
+### 1.1 Start the New Device Wizard
 
 1. Log in to the Autonomy Edge platform at [edge.autonomylogic.com](https://edge.autonomylogic.com)
-2. Navigate to **Orchestrators** in the left sidebar
-3. Click the **Add Orchestrator** button
+2. Navigate to **Devices** in the left sidebar
+3. Click the **Add Device** button
 
-![New Orchestrator wizard - Details step](images/add-orchestrator-step1.png)
+![New Device wizard - Details step](images/add-device-step1.png)
 
-### 1.2 Enter Orchestrator Details
+### 1.2 Enter Device Details
 
-1. Enter a name for your orchestrator (e.g., "QuickStartOrchestrator")
+1. Enter a name for your Device (e.g., "QuickStartDevice")
 2. Optionally add a description
 3. Click **Next** to proceed to the Install step
 
 ### 1.3 Install the Agent on Your Device
 
-The wizard provides a curl command to install the orchestrator agent on your Linux device.
+The wizard provides a curl command to install the Device Agent on your Linux device.
 
-![New Orchestrator wizard - Install step](images/add-orchestrator-step2.png)
+![New Device wizard - Install step](images/add-device-step2.png)
 
 1. Click **Copy** to copy the installation command
 2. Open a terminal on your Linux device (via SSH or directly)
 3. Paste and run the command: `curl https://getedge.me | bash`
 4. Follow the on-screen prompts to complete the installation
-5. When the installation completes, the agent will display an **Orchestrator ID**
+5. When the installation completes, the agent will display a **Device ID**
 
-### 1.4 Link the Orchestrator
+### 1.4 Link the Device
 
 After installation, the agent generates an ID that you need to enter in the platform.
 
-![New Orchestrator wizard - Link step](images/add-orchestrator-step3.png)
+![New Device wizard - Link step](images/add-device-step3.png)
 
-1. Copy the **Orchestrator ID** from your terminal
-2. Paste it into the **ID Orchestrator** field
-3. Click **Create Orchestrator**
+1. Copy the **Device ID** from your terminal
+2. Paste it into the **Device ID** field
+3. Click **Create Device**
 
-> **Note:** The orchestrator ID expires after 5 minutes. If it expires, run the installation command again to generate a new ID.
+> **Note:** The Device ID expires after 5 minutes. If it expires, run the installation command again to generate a new ID.
 
-Once linked, your orchestrator will appear in the list with its connection status.
+Once linked, your Device will appear in the list with its connection status.
 
-![Orchestrators list showing connected orchestrator](images/orchestrators-list.png)
+![Devices list showing connected Device](images/devices-list.png)
 
 ---
 
-## Step 2: Create a vPLC Device
+## Step 2: Create a vPLC
 
 A vPLC (virtual PLC) is a containerized runtime that executes your automation programs. One of the key advantages of Autonomy Edge is the ability to run multiple vPLC instances on a single physical device. Each vPLC runs in complete isolation with real-time execution, and appears on the network with its own IP address as if it were an independent physical PLC. This allows you to maximize hardware utilization, especially on modern multicore PLCs, PACs, and industrial PCs that are often underutilized when running traditional single-threaded PLC runtimes.
 
-1. Click on your orchestrator to open its details
-2. Navigate to the **Devices** tab
-3. Click **Add Device**
+1. Click on your Device to open its details
+2. Navigate to the **vPLCs** tab
+3. Click **Add vPLC**
 
-![Add New Device dialog](images/add-device-modal.png)
+![Add New vPLC dialog](images/add-vplc-modal.png)
 
-4. Enter a device name (e.g., "Demo vPLC")
+4. Enter a vPLC name (e.g., "Demo vPLC")
 5. Configure the network settings:
    - A default virtual NIC (veth0) is created automatically with DHCP
    - Click on the NIC to configure static IP if needed
@@ -127,7 +127,7 @@ A vPLC (virtual PLC) is a containerized runtime that executes your automation pr
 
 The vPLC will start automatically and show a "success" status when ready.
 
-![Devices list showing the created vPLC](images/devices-list-with-vplc.png)
+![vPLCs list showing the created vPLC](images/vplcs-list-with-vplc.png)
 
 ---
 
@@ -260,7 +260,7 @@ Now let's connect to the vPLC to deploy your program.
 
 1. In the IDE, expand **Devices** in the left sidebar
 2. Click on **Orchestrators** to open the Device Orchestrators panel
-3. Expand your orchestrator (e.g., "QuickStartOrchestrator") to see your vPLC
+3. Expand your Device (e.g., "QuickStartDevice") to see your vPLC
 4. Click on your vPLC (e.g., "Demo vPLC") to select it (it should show "Running" status)
 5. Click the **Connect** button
 
@@ -327,17 +327,17 @@ Now that you understand the basics, explore these topics to build more sophistic
 - **[Hardware Configuration](../openplc-editor/hardware-configuration)** - Map program variables to physical I/O pins on supported boards
 
 ### Scale Your Deployment
-- **[Orchestrators](../platform/devices/overview)** - Deploy orchestrators to edge devices across multiple sites
-- **[vPLC devices](../platform/vplcs/overview)** - Run multiple vPLCs on a single edge device for workload consolidation
+- **[Devices](../platform/devices/overview)** - Deploy Devices to edge machines across multiple sites
+- **[vPLCs](../platform/vplcs/overview)** - Run multiple vPLCs on a single edge device for workload consolidation
 
 ---
 
 ## Troubleshooting
 
 ### vPLC shows "Stopped" status
-- Check that your orchestrator is connected (green status indicator)
-- Verify network connectivity between the orchestrator and the platform
-- Check the orchestrator logs for error messages
+- Check that your Device is connected (green status indicator)
+- Verify network connectivity between the Device and the platform
+- Check the Device Agent logs for error messages
 
 ### Compilation errors
 - Ensure all variables are declared before use
@@ -349,7 +349,7 @@ Now that you understand the basics, explore these topics to build more sophistic
 - Check that your project is saved before attempting to connect
 - Try refreshing the Orchestrators panel (click the refresh icon)
 
-### Orchestrator ID expired
+### Device ID expired
 - Run the installation command again on your Linux device
 - A new ID will be generated that you can paste into the Link step
 

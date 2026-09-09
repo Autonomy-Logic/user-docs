@@ -180,8 +180,14 @@ and `D-PATH` is 0.
 The base-commit count for this code is 0, which is why it is absent from the tables above: they
 measure `origin/development` at `79c4faa` and sum to 1238. `rename-census.csv` **is** the record of
 what was decided then, so re-running the generator over the base tree reproduces it byte for byte
-**except for exactly those 8 path rows**, which the generator now codes `D-PATH-NEW` because the
+**except for exactly the 10 `D-PATH` rows**, which the generator now codes `D-PATH-NEW` because the
 tree it classifies has moved on. Nothing else differs; the difference was measured, not assumed.
+
+The delta was 8 rows until Phase 5 and is 10 now, for the same reason and not a new one. Phase 5
+renamed the last two child-sense captures, `add-device-modal.png` to `add-vplc-modal.png` and
+`devices-list-with-vplc.png` to `vplcs-list-with-vplc.png`, and emptied `D_PATH_PENDING`. So all
+**10** of the base commit's `D-PATH` rows are now `D-PATH-NEW` under the current rule, and
+`D-PATH` is 0 in the live tree: there is no outstanding path work left anywhere.
 The census and the 115 overrides are re-derived against the final tree in the verification phase,
 where the gate is that no *changes*-coded occurrence survives.
 
@@ -451,7 +457,8 @@ own script.**
 | `21230b3` | 2 | 1237 | **1229** | no, and deliberately: the CSV was not regenerated |
 | `d08ae9c` | 3 | 1237 | **1229** | no, same reason |
 | `073ad86` | census review | **1238** | **1230** | against the BASE tree, yes but for 8 path rows |
-| this commit | 4 and 5 | 1238 | **1205** | as above |
+| Phase 4 end | 4 | 1238 | **1205** | as above |
+| this commit | 5 | 1238 | **1136** | against the BASE tree, yes but for **10** path rows |
 
 Reading the table:
 
@@ -466,8 +473,9 @@ Reading the table:
   rewriting "vPLC devices" to "vPLCs" removes another. **1205** is where it stands now.
 
 The reproducibility claim, stated exactly: the current generator run **against the base tree**
-reproduces the committed CSV byte for byte except for 8 rows, the `D-PATH` / `D-PATH-NEW` rows
-described above. Run against a *later* tree it differs in hundreds of rows, which is not a failure
+reproduces the committed CSV byte for byte except for 10 rows, the `D-PATH` / `D-PATH-NEW` rows
+described above. It was 8 before Phase 5 emptied `D_PATH_PENDING`; the two extra are the last two
+child-sense captures, and the growth is the rule working rather than a regression. Run against a *later* tree it differs in hundreds of rows, which is not a failure
 but the documented consequence of the CSV being a historical record while the classifier tracks the
 tree in front of it.
 
