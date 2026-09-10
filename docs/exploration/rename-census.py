@@ -22,7 +22,16 @@ working tree use --verify, which classifies but writes nothing.
 Verification (Phase 10):
     python3 exploration/rename-census.py --verify
 which re-runs the census on the current tree and fails if any occurrence still
-carries a code from the CHANGES set.
+carries a code from the CHANGES set, or if any carries no code at all.
+
+The hand overrides come in TWO layers, and only --verify sees the second:
+  - rename-census-overrides.csv       pinned to the base commit, 79c4faa.
+                                      Never rewritten; the reproducibility
+                                      check reads it.
+  - rename-census-overrides-final.csv pinned to the final tree, loaded only
+                                      for a live-tree run.
+See load_overrides(). DO NOT GATE ON A TOTAL: the live count falls with every
+phase for correct reasons. The gate is the code check.
 
 Two things this script deliberately refuses to do quietly, because both hide a
 decision where nothing reports it:
@@ -86,6 +95,15 @@ LEGEND = {
                                "required. Added at Phase 3, because before the rename no "
                                "parent-entity path carried the word 'device' and D-PATH could "
                                "assume any that did meant the child entity"),
+    "D-DOCTITLE":   ("stays",  "this documentation's OWN page title, and the cross-reference link "
+                               "text that quotes it, where the parent entity's plural falls after "
+                               "the first word and is therefore lowercase: 'Managing devices'. The "
+                               "nav in _config.json and every H1 in this repository are sentence "
+                               "case, which the base tree already followed ('Managing "
+                               "orchestrators'), so the lowercase d is the titling convention and "
+                               "not a missed rename. It needs its own code rather than D-PROSE-NEW "
+                               "because D-PROSE-NEW is decidable ONLY on the capital, and pinning "
+                               "these there would falsify that legend entry. Added at Phase 10"),
     "O-LITERAL":    ("stays",  "a literal the software still emits or resolves: container name, "
                                "image reference, repository URL, or a log line quoted verbatim. "
                                "Changing it would print an instruction that does not work (BR09, BR13)"),
@@ -473,12 +491,42 @@ def override_still_applies(code, word):
     return True
 
 
-def load_overrides():
-    p = os.path.join("exploration", "rename-census-overrides.csv")
+def _read_overrides(p):
     if not os.path.exists(p):
         return
     for r in csv.DictReader(open(p, encoding="utf-8")):
         OVERRIDES[(r["file"], int(r["line"]), int(r["col"]))] = (r["code"], r["rule"])
+
+
+def load_overrides():
+    """Two layers, and which ones load depends on the tree being classified.
+
+    `rename-census-overrides.csv` is pinned to the BASE commit, 79c4faa, and is
+    the evidence behind the committed rename-census.csv. It is never rewritten:
+    the base-tree reproducibility check reads it, and re-pinning it to a later
+    tree would destroy the record it exists to be.
+
+    `rename-census-overrides-final.csv` is pinned to the FINAL tree and loads
+    only for a live-tree classification, i.e. under --verify, the same gate as
+    R20. It overlays the base layer, because on the final tree it is the later
+    and more accurate reading. Two jobs:
+
+      - it closes the 22 residual REVIEW rows. 11 of them are base decisions
+        that drifted only because Phase 2 renamed their file or a rewrite
+        shifted a line, pinned again at their new position under their ORIGINAL
+        hand-rule id so the provenance stays readable; 11 are new readings that
+        did not exist at the base commit, because the base tree's text there
+        said "orchestrator" and carried a changes code.
+      - it corrects two base pins that outlived the prose they described.
+        `override_still_applies()` guards only the O- codes, so a D- pin whose
+        word was legitimately rewritten keeps asserting its old sense in
+        silence. Both are stays codes either way, so no decision moved and the
+        gate never saw it, which is exactly why it had to be looked for.
+    """
+    _read_overrides(os.path.join("exploration", "rename-census-overrides.csv"))
+    if PROSE_DONE_ACTIVE:
+        _read_overrides(os.path.join("exploration",
+                                     "rename-census-overrides-final.csv"))
 
 
 def census():
@@ -587,11 +635,12 @@ def main():
         if todo:
             print(f"\nHALF PASS: no occurrence carries a CHANGES code, which is the gate that "
                   f"matters. But {len(todo)} carry REVIEW rather than a 'stays' code from the "
-                  f"legend, so the second half of the gate is NOT met yet. Every one is an "
-                  f"occurrence the base-commit overrides no longer reach: {len(OVERRIDES)} "
-                  f"overrides exist and the prose has moved under most of them. Re-deriving the "
-                  f"overrides against the final tree is Phase 10's job by decision, and it is what "
-                  f"closes these. Do not silence them with a rule.")
+                  f"legend, so the second half of the gate is NOT met. {len(OVERRIDES)} overrides "
+                  f"are loaded across both layers and none of them reaches these rows. Phase 10 "
+                  f"closed the 22 that stood then by pinning them in "
+                  f"rename-census-overrides-final.csv, so a row appearing here now is either an "
+                  f"occurrence written after that, or one whose line moved under its pin. Read it "
+                  f"and pin it in the final layer. Do not silence it with a rule.")
         else:
             print("\nPASS: every surviving occurrence carries a 'stays' code.")
     return 1 if todo else 0

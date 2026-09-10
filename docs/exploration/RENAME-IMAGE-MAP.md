@@ -37,11 +37,36 @@ disagree, both numbers are given.
 | | Count |
 |---|---|
 | Images in the repository | **276** (275 PNG + 1 SVG) |
-| Referenced by at least one published page | **191** |
+| Referenced by at least one published page | **191** named, **187** actually displayed |
 | Not referenced by any published page | **85** |
 | ... of which internal capture scratch under `exploration/screenshots/` | **46** |
 | ... of which in published areas, i.e. true orphans | **39** |
 | Referenced by nothing at all, published or internal | **41** |
+
+**The 191/187 split, added at Phase 10.** The reference sweep above matches an image's
+*basename*, so it answers "is this filename named on a published page". Resolving each
+reference's path instead answers "does a published page actually display this file", and that
+gives **187**. Both are correct answers to different questions, and the sweep's own method
+reproduces its 191 exactly, so nothing here is a miscount. But the recapture session cares about
+the second question, and **four images differ**:
+
+| Image | Why it is named but not displayed |
+|---|---|
+| `getting-started/images/profile-overview.png` | `account/user-profile.md:7` displays a **different file of the same name**, `account/images/profile-overview.png`. Different bytes, different screenshot. This copy is an orphan. |
+| `openplc-editor/images/block-properties-ton.png` | `programming-languages/ladder-diagram/function-blocks-ld.md:57` points at `../images/...`, which resolves to `programming-languages/images/`. **That directory does not exist.** Two of the six pre-existing link-check failures are exactly this. |
+| `openplc-editor/images/block-properties-ton-eneno.png` | Same broken reference, line 61. |
+| `openplc-editor/images/server-create-dialog.png` | The page displays `communication/modbus/images/server-create-dialog.png`. Same-basename duplicate; this copy is an orphan. |
+
+All four predate this branch and none was touched by it, so fixing them is not this demand's
+call. They matter to **FR22** in one specific way: two of them sit in **tier A**, so a recapture
+session working the tier A list would recapture the two TON dialogs for a page that cannot
+display them either way. **Fix the path before recapturing those two**, or the new capture is as
+invisible as the old one.
+
+Consequently, under path resolution the tiers are **A+B+C = 145 live of the 148 listed** and
+**tier D = 42**, against 148 and 43 under the basename sweep. The tier lists themselves are
+unchanged: no image moved tier, and the three non-displayed entries are named above rather than
+quietly dropped.
 
 Two inherited figures do not reproduce, and the smaller ones are right:
 
@@ -78,7 +103,7 @@ Three triggers, each mechanical. A live image is certain to need recapture if an
 | **A** | Its own alt text changed in this branch, or its filename was renamed here. The words around the picture now describe something the picture does not show. | **47** |
 | **B** | A full-window **Editor** capture. The tree in it reads `Device > Orchestrators`. | **53** |
 | **C** | A full-window capture outside the Editor docs. May or may not show the old vocabulary depending on the screen. **Needs a look, not a decision.** | **48** |
-| **D** | A crop with no window chrome, and nothing else triggered. Likely fine. | **43** |
+| **D** | A crop with no window chrome, and nothing else triggered. Likely fine. | **43** named, **42** displayed |
 
 **Certain recapture, A + B: 100 live images.** By area:
 - `getting-started`: 9

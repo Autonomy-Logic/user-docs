@@ -81,6 +81,7 @@ the base commit is 0.
 | Code | n | Why it is empty |
 |---|---|---|
 | `D-LICENSE` | 0 | The VPP licensed device, a physical hardware unit with a serial anchor (BR12, sense 6). **user-docs does not document VPP licensing**, so this sense never appears |
+| `D-DOCTITLE` | 0 | Added at Phase 10. This documentation's own sentence-case page title, and the cross-reference link text quoting it, where the parent entity's plural lands after the first word and is therefore lowercase: "Managing devices". At the base commit that title read "Managing orchestrators", so every one of these occurrences was `O-ENTITY` or `O-PATH` and this code is correctly 0 here. **8 occurrences on the final tree.** It is a code of its own rather than `D-PROSE-NEW` because `D-PROSE-NEW` is decidable only on the capital letter, and filing a lowercase "devices" there would falsify that legend entry. The lowercase is the nav's titling convention, which the base tree already followed, not a missed rename |
 
 ### `O-SE`: the ordinary software-engineering sense DOES occur here
 
@@ -567,14 +568,191 @@ Reported, not fixed here, so they can be tracked separately.
    `Device > Configuration`; newer ones show `Devices > Orchestrators`. The documentation is already
    visually inconsistent, independently of this demand. Filed separately.
 
+## Phase 10: the verification, and what did not reproduce
+
+Every figure below was measured on this branch. Where an inherited figure differs, both are given.
+Reads were taken from commits via `git archive` into a scratch directory, never from a live worktree.
+
+### The gate passes, and the count is not the gate
+
+`python3 exploration/rename-census.py --verify` reports **PASS**, rc=0: no occurrence carries a
+*changes* code, and every one of the 1123 survivors carries a *stays* code from the legend. The
+census CSV was verified byte-unchanged (same MD5) before and after every run, because generating
+from the working tree would overwrite the base-commit record.
+
+The live total is **1123**. It is not a gate and must not be quoted as one: 1237 at `c86992f`,
+1238 corrected at the same base, 1205 after Phase 4, 1123 now. It falls for correct reasons.
+
+### The 22 REVIEW rows are closed, and 11 of them were never new decisions
+
+The base overrides are pinned to `(file, line, col)` at commit `79c4faa`, and the rewrite moved the
+prose under them. Measured, and all three inherited figures reproduced exactly: of the **115**
+overrides, **44** still land on a live occurrence, **71** have drifted off any occurrence entirely,
+and **5** of the 44 sit on a different word and are ignored by `override_still_applies()`.
+
+They are closed by a **second override layer**, `rename-census-overrides-final.csv`, pinned to the
+final tree and loaded only by `--verify`. The base layer is never rewritten: the reproducibility
+check reads it, and re-pinning it would destroy the record it exists to be. Verified: with the final
+layer present in a base-commit checkout, the generated CSV is unchanged and none of the new codes
+leaks into it.
+
+**11 of the 22 were not new readings at all.** They are base decisions that drifted only because
+Phase 2 renamed their file or a rewrite shifted a line, and they are re-pinned under their original
+hand-rule id:
+
+| Rows | Code | Rule | Why they drifted |
+|---|---|---|---|
+| 6 | `D-HOST` | H05 | Same line, same column, renamed file: `platform/orchestrators/*` became `platform/devices/*` and `orchestrator-not-connecting.md` became `device-not-connecting.md` |
+| 4 | `D-PLAIN` | H02 | `vplc-stuck-stopped.md` gained 8 lines; all four are at the same column, shifted +8 |
+| 1 | `O-SE` | H11 | Same line 26 of `quick-start.md`, column shifted 221 -> 249 by the rewrite |
+
+The other 11 are genuinely new, because the base tree said "orchestrator" there and carried a
+*changes* code: **8** are `D-DOCTITLE` and **3** are `D-LITERAL`, the Edge button label
+**"Manage devices"**, confirmed at `apps/frontend/src/components/dashboard/orchestrators-card.tsx:79`
+on autonomy-edge `origin/development` rather than taken from the Phase 4 table.
+
+### Two base overrides had outlived their prose, in silence
+
+`override_still_applies()` guards only the `O-` codes, so a `D-` pin whose word was legitimately
+rewritten keeps asserting its old sense and nothing reports it. Found by checking every one of the
+39 effective base overrides against the base tree line by line: **32 sit on a byte-identical line**,
+so the context they were read in still holds, and **7 sit on a changed line**. Five of those seven
+are still correct. Two are not:
+
+- `getting-started/what-is-autonomy-edge.md:18:55`, pinned `D-HOST`, now reads "one **Device**"
+- `getting-started/what-is-autonomy-edge.md:20:25`, pinned `D-HOST`, now reads "identical **Devices**"
+
+Both are the platform entity in the new vocabulary, so both are re-pinned `D-PROSE-NEW` (H19). Both
+readings are *stays* codes either way, so no decision moved and the gate could never have caught it,
+which is exactly why it had to be looked for. Same defect class as the R20 over-reach that mis-filed
+46 rows inside `openplc-editor/`.
+
+### Link check: 6 before, 6 after, and the same 6
+
+`linkcheck.py` **always exits 0**; the verdict is the "TOTAL BROKEN" line. Recalibrated against
+`origin/development` rather than trusted: the baseline is **6**, and HEAD is **6** with a
+byte-identical set. Negative control run on a scratch copy of the base tree: a planted broken link
+took it to 7, a planted broken image to 8, and a planted bad `_config.json` leaf to 9, each named.
+
+### `_config.json` and the SVG, checked by hand because the census cannot see them
+
+`_config.json`: **zero** occurrences of "orchestrat" remain, across the 12 changed lines. Every
+`_config.json` leaf resolves, which `linkcheck.py` validates and the census does not. The nav titles
+are sentence case, which the base tree already was, so "Managing devices" is the convention.
+
+`platform-architecture.svg` is the only SVG in the repository. Exactly the 3 strings changed:
+`<desc>`, an XML comment and the layer's `<text>` title, all "Orchestrator Agent" -> "Device Agent".
+Zero "orchestrat" left in it. Its two surviving "device" strings are deliberate: "Runs on edge
+device" is the machine sense and "Physical I/O and Devices" is plain hardware.
+
+### The security-relevant diff: exactly two deliberate instruction changes
+
+Re-proved on the final tree rather than inherited from Phase 4. For each of the five CRA pages,
+fenced-block content, inline code spans and digit-bearing tokens were compared base to HEAD:
+
+| Page | Fenced | Code spans | Digit tokens |
+|---|---|---|---|
+| `platform/vplcs/network-modes.md` | identical | identical | identical |
+| `platform/vplcs/overview.md` | identical | identical | identical |
+| `platform/devices/installing-the-agent.md` | identical | identical | differ **only in image filenames** (`new-orchestrator-step1.png` -> `new-device-step1.png`); the digits are the step numbers |
+| `troubleshooting/device-not-connecting.md` | 4 commands differ | 1 span differs | identical |
+| `troubleshooting/vplc-stuck-stopped.md` | 1 command replaced by 2 | identical | identical |
+
+Both differences are the two changes on the record, and **both are repairs rather than renames**:
+
+1. `59c7f92`, `orchestrator-agent` -> `orchestrator_agent` in four `docker` commands and one code
+   span. Confirmed independently: `CONTAINER_NAME="orchestrator_agent"` in both
+   `install/install.sh:24` and `install/install-staging.sh:38` on orchestrator-agent
+   `origin/development`. The hyphenated form is the image and repository name, so
+   `docker logs orchestrator-agent` never worked.
+2. `vplc-stuck-stopped.md:27`, where `<device-name>` became the listing form
+   `docker ps -a | grep openplc-runtime` plus the vPLC's id. Confirmed independently:
+   `ghcr.io/autonomy-logic/openplc-runtime:{version_tag}` at
+   `src/use_cases/docker_manager/create_runtime_container.py:207`. Neither approved value,
+   `<device-name>` or `<vplc-name>`, was correct.
+
+The CRA constraint is that renaming must not change what a security-relevant page instructs. It
+holds: the only instruction changes make instructions that were broken work.
+
+### BR03 spelling gate: 0, and it fixed one that predated the branch
+
+`br03-spelling-check.py` masks fenced blocks, inline code spans and link targets, and skips
+`exploration/`. Result on the final tree: **0 violations across 179 reader-facing pages**. Against
+the **base** tree it reports **1**: `platform/vplcs/vplc-detail.md:13` read "{vplc name}" in prose
+and now reads "{vPLC name}". So the branch removed a pre-existing BR03 violation.
+
+**The inherited "13 unmasked" does not reproduce.** Measured on the finished tree: 145 unmasked, 77
+with only code spans masked, 70 with only link targets masked, 2 with both, 0 once `exploration/` is
+skipped. The reasoning behind the 13 is right and then some, since all 145 are lowercase paths,
+image filenames or quoted literals rather than prose. The 2 that survive masking are both inside
+`exploration/` and both are substring false positives: `D-VPLC` is the name of a census code, and
+"Renamed to vplc" in the legend table names a path segment. Anchoring would not have fixed either,
+because a hyphen is a word boundary; scope did. Controls: all four rejected spellings planted as
+prose were named, and the same spellings inside a code span and a link target were correctly not.
+
+### Every tool was proved to read before its verdict was accepted
+
+Three census controls, each on a full copy of the tree so the real worktree was never mutated, and
+the copy was diffed against the worktree afterwards to prove it: a planted `O-ENTITY` sentence gave
+FAIL rc=1; a planted child-sense "Add Device" gave FAIL rc=1 naming `D-VPLC`; removing one final
+override brought the REVIEW row back as HALF PASS rc=1. Restoring gave PASS rc=0 again.
+
+`--verify`'s exit code now tracks its verdict. The earlier defect where it printed `PASS` while
+exiting 1 is gone, and its HALF PASS message was rewritten here, because it still described the
+override re-derivation as future work and counted two layers while calling them "base-commit".
+
+### Phase 9 deleted only images no page displays, proved by set equality
+
+Stronger than the link-check total: the set of images displayed by a published page is **identical**
+before Phase 8's map commit and at HEAD, **187** both times, with nothing dropping out. The image
+total went 276 -> 250, exactly the 26 deletions, and the plan-limit **same-name swap is byte-exact
+in both directions**: HEAD `device-plan-limit.png` is the base's `orchestrator-plan-limit.png`
+(`f915e5`) and HEAD `vplc-plan-limit.png` is the base's `device-plan-limit.png` (`9d680c`). No image
+was lost or duplicated, and each alt text matches the sense of the file now behind it.
+`docs/platform-features/` is fully gone.
+
+### The map's 191 is "named", not "displayed"
+
+A fourth Phase 8 figure needed splitting rather than correcting. The map's reference sweep matches
+basenames, so its **191** answers "is this filename named on a published page"; resolving each
+reference's path gives **187**, "does a page actually display this file". The sweep's own method
+reproduces 191 exactly, so nothing is miscounted, but four images differ and three of them are
+reachable only through a broken or duplicated path. Recorded in `RENAME-IMAGE-MAP.md`, including the
+consequence for FR22: two of the four sit in tier A, so their path has to be fixed before a
+recapture of them is visible at all.
+
+### Reader-facing survivors of "orchestrat", all 11 accounted for
+
+11 occurrences remain in published pages, matching the census exactly at 10 `O-LITERAL` + 1 `O-SE`:
+the GitHub repository URL, the `ghcr.io/autonomy-logic/orchestrator-agent` image reference, six
+`orchestrator_agent` container names in `docker` commands, the verbatim log line
+"Unknown orchestrator", and the one "container orchestration" that BR07 protects. `BR10` holds:
+`platform/orchestrators/` and `troubleshooting/orchestrator-not-connecting.md` are gone and there is
+no redirect key anywhere.
+
+### The two content defects still stand, and both are now substantiated
+
+Neither is vocabulary, so neither was fixed here. Both were re-confirmed against Edge
+`origin/development` rather than restated:
+
+1. `platform/devices/device-detail.md:3` says the page has **two** tabs. Edge ships **three**:
+   `vPLCs` and `Runtime Images` at `$orchestratorId.tsx:247` and `:260`, plus the Device tab.
+   **"Runtime Images" appears nowhere in the published documentation.**
+2. `getting-started/quick-start.md:71` tells the reader to "Navigate to **Devices** in the left
+   sidebar". Edge's global chrome is a top `nav-bar`, whose links are sign-in, sign-up and the
+   dashboard home; it has no Devices entry. The sidebars that exist are scoped to documentation,
+   the profile and the project tree. The route the rest of this repository documents is the
+   dashboard's **Devices** card and its **Manage devices** button.
+
 ## Files
 
 | File | What it is |
 |---|---|
-| `rename-census.csv` | The census: 1238 rows, one per occurrence |
-| `rename-census-overrides.csv` | The 115 hand-pinned rows, which win over the rules |
+| `rename-census.csv` | The census: 1238 rows, one per occurrence, at the base commit `79c4faa`. **Never regenerate from the working tree** |
+| `rename-census-overrides.csv` | The 115 hand-pinned rows at the base commit, which win over the rules. Never rewritten |
+| `rename-census-overrides-final.csv` | The 24 rows pinned to the **final** tree, loaded only by `--verify`. Closes the 22 REVIEW rows and corrects the 2 stale senses |
 | `rename-census.py` | Generates the census, and re-verifies it with `--verify` |
+| `linkcheck.py` | Link, image and `_config.json` leaf resolution. **Always exits 0**; read "TOTAL BROKEN". Baseline 6 |
+| `br03-spelling-check.py` | The BR03 spelling gate. Masks code spans and link targets, skips `exploration/` |
 | `RENAME-DECISION-RECORD.md` | This document |
-
-The image map required by FR21 is produced separately, in its own phase, and lands as
-`RENAME-IMAGE-MAP.md`.
+| `RENAME-IMAGE-MAP.md` | The FR21 deliverable |
