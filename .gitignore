@@ -1,7 +1,3 @@
 # macOS
 .DS_Store
 **/.DS_Store
-
-# Python bytecode from the docs tooling
-__pycache__/
-*.pyc
