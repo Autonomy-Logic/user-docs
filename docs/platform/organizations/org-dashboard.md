@@ -1,8 +1,8 @@
 # Organization dashboard
 
-Each organization has its own dashboard, with the same layout as your personal dashboard but scoped to that organization's projects, orchestrators, and members.
+Each organization has its own dashboard, with the same layout as your personal dashboard but scoped to that organization's projects, Devices, and members.
 
-![Org dashboard for Autonomy-Mine, banner, projects, orchestrators, feed, trending](images/org-dashboard.png)
+![Org dashboard for Autonomy-Mine, banner, projects, Devices, feed, trending](images/org-dashboard.png)
 
 ## How to get there
 
@@ -12,7 +12,7 @@ From your personal dashboard, find the **Organizations** card on the right colum
 
 If the organization doesn't have a paid plan, a blue banner appears at the top:
 
-> **{Org name} doesn't have an active plan yet.** Pick a plan to unlock projects, orchestrators, and AI access for your team.
+> **{Org name} doesn't have an active plan yet.** Pick a plan to unlock projects, Devices, and AI access for your team.
 
 A **View plans** button on the right takes you to the org's billing tab where you can pick **Teams** or **Education**.
 
@@ -23,7 +23,7 @@ The banner disappears once the org has an active plan. See **[Org billing](billi
 Same shape as the personal dashboard:
 
 - **Projects** card with **+ New** button: lists the org's projects (or "No recent projects" if there are none yet) and a **View all** link.
-- **Orchestrators** card with **Manage orchestrator** button: lists the org's orchestrators.
+- **Devices** card with **Manage devices** button: lists the org's Devices.
 
 Note the difference from your personal dashboard: nothing here is yours individually. Everything belongs to the org.
 

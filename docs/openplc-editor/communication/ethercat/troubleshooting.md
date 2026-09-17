@@ -8,9 +8,9 @@ This page is a checklist of common failures grouped by where you see them: in th
 
 **Symptom.** The **Bus** tab shows a yellow banner with this text along with a more detailed message from the runtime. The **Scan** button is disabled.
 
-**Most likely cause.** The vPLC's EtherCAT NIC was not marked as a **Dedicated Interface** when the device was created, so the runtime cannot take exclusive raw-Ethernet access on that port.
+**Most likely cause.** The vPLC's EtherCAT NIC was not marked as a **Dedicated Interface** when the vPLC was created, so the runtime cannot take exclusive raw-Ethernet access on that port.
 
-**Fix.** Recreate the vPLC, this time ticking **Dedicated Interface** on the NIC that will carry the EtherCAT segment. See **[Creating a vPLC](../../../platform/vplcs/creating-a-vplc)** for the wizard step. Once the new device boots, the banner clears and **Scan** becomes active.
+**Fix.** Recreate the vPLC, this time ticking **Dedicated Interface** on the NIC that will carry the EtherCAT segment. See **[Creating a vPLC](../../../platform/vplcs/creating-a-vplc)** for the wizard step. Once the new vPLC boots, the banner clears and **Scan** becomes active.
 
 If the dedicated NIC is set correctly and the banner persists, the runtime version may be too old, EtherCAT requires Runtime v4. Check **[Prerequisites](prerequisites)**.
 

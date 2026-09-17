@@ -1,6 +1,6 @@
 # Organizations
 
-An **organization** is a shared workspace. Members of an organization see and work on the same projects and orchestrators. Organizations are how teams collaborate on Autonomy Edge.
+An **organization** is a shared workspace. Members of an organization see and work on the same projects and Devices. Organizations are how teams collaborate on Autonomy Edge.
 
 ![Organizations list, one organization (Autonomy-Mine) with no projects yet](images/organizations-list.png)
 
@@ -9,7 +9,7 @@ An **organization** is a shared workspace. Members of an organization see and wo
 Use an organization if:
 
 - More than one person needs to read or edit the same projects.
-- You want shared orchestrators and vPLCs.
+- You want shared Devices and vPLCs.
 - You need invite links, role-based permissions, or per-team scoping.
 - You need centralized billing.
 

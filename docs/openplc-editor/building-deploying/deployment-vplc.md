@@ -5,7 +5,7 @@ Deployment is the upload half of **Build & Upload**. Once your project compiles 
 ## Prerequisites
 
 - A project that compiles. See **[Building a project](project-compilation)**.
-- An **online orchestrator** with at least one **running vPLC** on it. See **[Orchestrators](../../platform/orchestrators/overview)** in the platform docs.
+- An **online Edge Device** with at least one **running vPLC** on it. See **[Devices](../../platform/devices/overview)** in the platform docs.
 - A **connected session** with that vPLC. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
 
 ## The deployment flow
@@ -34,7 +34,7 @@ Three quick checks that the new program is what's actually running:
 
 ## Troubleshooting
 
-**Upload fails with a transport error.** The connection dropped between compile and upload. Verify the orchestrator is still online and reconnect.
+**Upload fails with a transport error.** The connection dropped between compile and upload. Verify the Edge Device is still online and reconnect.
 
 **MD5 mismatch in the debugger.** The runtime is still running an older program. Re-run **Build & Upload** to ship the current build.
 

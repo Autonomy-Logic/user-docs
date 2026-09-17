@@ -75,7 +75,7 @@ Each job shows an estimate before it runs so you can decide whether to proceed.
 
 - **This month**: used vs allowance, reset date.
 - **Extra credits**: total available.
-- Plan quotas (orchestrators, devices, private projects).
+- Plan quotas (Devices, vPLCs, private projects).
 
 For organizations: the **[Org Usage tab](../platform/organizations/usage)** shows the shared **Organization ACU pool** and which members have access to it.
 

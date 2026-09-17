@@ -155,7 +155,7 @@ The console reports each group's first failure and recovery. While running, the 
 
 **No Remote Device option in the popover.** The active target doesn't support Modbus master (capability gated on the runtime image). Use Runtime v4 or the Simulator.
 
-**TCP timeouts.** Host or port unreachable. From a shell on the orchestrator host: `telnet <ip> 502` should connect. Check firewalls, NAT, and that you're using the right port.
+**TCP timeouts.** Host or port unreachable. From a shell on the Edge Device: `telnet <ip> 502` should connect. Check firewalls, NAT, and that you're using the right port.
 
 **RTU never responds.** Match the serial parameters exactly, baud, parity, stop bits, data bits. A single mismatched bit silently drops every frame.
 

@@ -81,7 +81,7 @@ If you need larger transfers per round trip:
 
 Enable **Log Errors** (default on) for protocol-level failures and **Log Connections** (default on) for accept/disconnect lines. For deep debugging. Wrong DB numbers, malformed offsets. Turn on **Log Data Access** temporarily; this records every read and write and is far too verbose for normal operation.
 
-Logs are written to the runtime log stream, which surfaces in the orchestrator's runtime view and in the runtime host's system journal.
+Logs are written to the runtime log stream, which surfaces in the Edge Device's runtime view and in the runtime host's system journal.
 
 ## What's Next?
 

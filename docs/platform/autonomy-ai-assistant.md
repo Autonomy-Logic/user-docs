@@ -15,7 +15,7 @@ The assistant is grounded on:
 
 It's designed to:
 
-- **Explain a screen.** "What does the Devices tab on my orchestrator do?"
+- **Explain a screen.** "What does the vPLCs tab on my Device do?"
 - **Walk you through a flow.** "How do I create a private project?" "How do I invite someone to my organization?"
 - **Help with PLC programming.** "How do I write a TON timer in Structured Text?" "What's the difference between %IX and %QX?"
 - **Diagnose problems.** "My vPLC is stuck in Stopped. What should I check?"
@@ -68,7 +68,7 @@ ACU consumption from AI Engineer jobs is tracked in **[Settings → Usage](../ac
 ## Tips for getting good answers
 
 - **Be specific.** "How do I configure a static IP on a vPLC?" beats "network help".
-- **Mention what you've tried.** "I set the IP to 192.168.1.50 with mask 255.255.255.0 but the device shows N/A in Internal IP after restart."
+- **Mention what you've tried.** "I set the IP to 192.168.1.50 with mask 255.255.255.0 but the vPLC shows N/A in Internal IP after restart."
 - **Ask for short answers when you want short.** "In one sentence: …" or "Just the steps, no explanation."
 - **Copy errors verbatim.** Paste the exact error text from the editor or the platform, the assistant matches them against the docs.
 

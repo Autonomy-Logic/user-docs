@@ -1,13 +1,13 @@
 # Connecting from the editor
 
-Once you have a project and a vPLC, you connect them through the **[OpenPLC Editor](../../openplc-editor/overview)**. The editor's left sidebar has a **Devices → Orchestrators** panel; that's the only place the cloud platform and the runtime meet.
+Once you have a project and a vPLC, you connect them through the **[OpenPLC Editor](../../openplc-editor/overview)**. The editor's left sidebar has a **Device → Edge Devices** panel; that's the only place the cloud platform and the runtime meet.
 
 ## Steps
 
 1. **Open the project in the editor.** From the project page click **Open in editor**. The editor loads with your project.
-2. **Open the Devices panel.** In the editor's left sidebar expand **Devices**, then click **Orchestrators**. A panel slides out listing every orchestrator your account has access to.
-3. **Expand the orchestrator that owns your vPLC.** Each orchestrator entry shows its connection status (Active / Inactive). Expand it to reveal its vPLCs.
-4. **Select the target vPLC.** Click on the device row. It should report status **Running** (or you'll need to start it via the device's 3-dot menu from the platform).
+2. **Open the Edge Devices panel.** In the editor's left sidebar expand **Device**, then click **Edge Devices**. A panel slides out listing every Device your account has access to.
+3. **Expand the Device that owns your vPLC.** Each Device entry shows its connection status (Active / Inactive). Expand it to reveal its vPLCs.
+4. **Select the target vPLC.** Click on the vPLC row. It should report status **Running** (or you'll need to start it via the vPLC's 3-dot menu from the platform).
 5. **Click Connect** at the top of the panel.
 
 ## First-time runtime user
@@ -39,18 +39,18 @@ You can now use the editor's **Download** button (folder with a down arrow, top-
 
 Browser refresh disconnects the editor from the runtime. Just click **Connect** again, the editor remembers which vPLC you were on.
 
-## What happens if the orchestrator goes offline
+## What happens if the Device goes offline
 
-If the orchestrator-agent loses its cloud connection while you're connected to a vPLC:
+If the Device Agent loses its cloud connection while you're connected to a vPLC:
 
 - The vPLC keeps running locally with whatever program is loaded.
-- The editor can't issue new commands (Download, Stop, Start) until the orchestrator reconnects.
+- The editor can't issue new commands (Download, Stop, Start) until the Device reconnects.
 - I/O traffic to physical devices is unaffected.
 
-When the orchestrator returns to **Active**, your editor connection resumes automatically.
+When the Device returns to **Active**, your editor connection resumes automatically.
 
 ## Where to next
 
 - **Walkthrough of a full first deploy** → **[Quick Start](../../getting-started/quick-start)**.
 - **Editor reference** → **[OpenPLC Editor overview](../../openplc-editor/overview)**.
-- **Troubleshooting connectivity** → **[Orchestrator not connecting](../../troubleshooting/orchestrator-not-connecting)**.
+- **Troubleshooting connectivity** → **[Device not connecting](../../troubleshooting/device-not-connecting)**.

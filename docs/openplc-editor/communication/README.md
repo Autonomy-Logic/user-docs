@@ -105,16 +105,16 @@ S7Comm has no built-in authentication or encryption. Use it on trusted networks,
 
 ### RS-485 for Modbus RTU
 
-For Modbus RTU over RS-485, you need a serial port available on the machine where the Orchestrator is installed (this could be a Raspberry Pi, an industrial PC, an edge computer, or any Linux device). This can be either:
+For Modbus RTU over RS-485, you need a serial port available on the Edge Device itself (this could be a Raspberry Pi, an industrial PC, an edge computer, or any Linux machine). This can be either:
 
 - A **native serial port** built into your machine (common on industrial PCs and edge computers).
 - A **USB-to-RS-485 adapter** plugged into a USB port. Common adapters based on the FTDI FT232 or CH340 chipset work out of the box on Linux.
 
-When creating a vPLC Device, the platform shows all available serial ports detected on the host. You select which port to assign to the vPLC and give it a **container path**: a virtual path that your PLC program will use (e.g., `/dev/ttyRS485` or any name you choose). This container path then appears in the Modbus RTU configuration dropdown inside the editor.
+When creating a vPLC, the platform shows all available serial ports detected on the host. You select which port to assign to the vPLC and give it a **container path**: a virtual path that your PLC program will use (e.g., `/dev/ttyRS485` or any name you choose). This container path then appears in the Modbus RTU configuration dropdown inside the editor.
 
-> **Important:** A serial port can only be assigned to **one vPLC at a time**. This is a hardware limitation. Unlike network interfaces, a serial line cannot be shared between multiple devices. If a port is already assigned to another vPLC, it will appear grayed out.
+> **Important:** A serial port can only be assigned to **one vPLC at a time**. This is a hardware limitation. Unlike network interfaces, a serial line cannot be shared between multiple vPLCs. If a port is already assigned to another vPLC, it will appear grayed out.
 
-See [Creating vPLC Devices](../../platform/vplcs/creating-a-vplc) for the full Device creation walkthrough, including serial port configuration.
+See [Creating vPLCs](../../platform/vplcs/creating-a-vplc) for the full vPLC creation walkthrough, including serial port configuration.
 
 ## Adding Communication Interfaces
 

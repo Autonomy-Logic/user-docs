@@ -17,7 +17,7 @@ What other people *cannot* do:
 
 - Push commits directly to your project unless you've added them as a collaborator.
 - See or change project settings.
-- Run vPLC deployments using your orchestrators.
+- Run vPLC deployments using your Devices.
 
 Public projects also appear in **community feeds** and may surface in **trending** widgets and **recommendations**.
 

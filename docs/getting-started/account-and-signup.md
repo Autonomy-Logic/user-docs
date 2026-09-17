@@ -35,8 +35,8 @@ If you forget your password, click **Forgot password?** on the sign-in screen. Y
 When you sign up, the platform provisions:
 
 - A **user profile** with a contribution graph, your stars, and your public projects, reachable from the user menu (avatar → **My Profile**).
-- A **personal workspace** that holds projects, orchestrators, and devices you own.
-- A **Community plan** subscription. This is the free tier and is enough to run one orchestrator with two devices. See **[Pricing](../plans-and-billing/pricing)** for what each plan includes.
+- A **personal workspace** that holds projects, Devices, and vPLCs you own.
+- A **Community plan** subscription. This is the free tier and is enough to run one Device with two vPLCs. See **[Pricing](../plans-and-billing/pricing)** for what each plan includes.
 - A **forum identity** that uses the same username. Anything you post in the forum is attributed to this identity.
 
 You can change your name, username, bio, avatar, and time zone from **[Settings → Profile](../account/settings/profile)** later. You can change your email (one change per 7 days for security) from **[Settings → Security → Email](../account/settings/security-email)** and your password from **[Settings → Security → Password](../account/settings/security-password)**.
@@ -47,4 +47,4 @@ You can read the forum, browse public projects, and view public user profiles wi
 
 ## Deleting your account
 
-If you want to remove your account, go to **[Settings → Account](../account/settings/account)**. Deletion is permanent: personal projects, orchestrators, and devices are removed; forum posts and direct messages stay visible, credited to `[deleted]`. If you own organizations, you must transfer them to another admin or delete them before deleting your account.
+If you want to remove your account, go to **[Settings → Account](../account/settings/account)**. Deletion is permanent: personal projects, Devices, and vPLCs are removed; forum posts and direct messages stay visible, credited to `[deleted]`. If you own organizations, you must transfer them to another admin or delete them before deleting your account.

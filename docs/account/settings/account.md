@@ -10,7 +10,7 @@ To open it, click your avatar in the top-right, choose **Settings**, then **Acco
 
 The page contains one section, labeled **Danger zone** in red, with the following copy:
 
-> Deleting your account is permanent. Personal projects, orchestrators and devices will be removed. Forum posts, topics and direct messages remain visible, credited to **[deleted]**. If you own organizations, you must transfer them or delete them first.
+> Deleting your account is permanent. Personal projects, Devices and vPLCs will be removed. Forum posts, topics and direct messages remain visible, credited to **[deleted]**. If you own organizations, you must transfer them or delete them first.
 
 A red **Delete my account** button below the description.
 
@@ -19,7 +19,7 @@ A red **Delete my account** button below the description.
 **Removed permanently:**
 
 - Your personal projects (public and private).
-- Your orchestrators and their vPLC devices.
+- Your Devices and their vPLCs.
 - Your stored payment methods.
 - Your active subscription (canceled immediately; no refunds for unused time).
 - Your profile fields (name, bio, avatar, location, time zone).

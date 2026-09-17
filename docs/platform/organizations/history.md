@@ -21,7 +21,7 @@ When the dedicated history endpoint is live, you can expect:
 - **Billing events**: every plan change, seat addition, invoice paid, payment failed, refund issued.
 - **Membership audit**: who was invited, who joined, who was promoted/demoted, who left or was removed.
 - **Settings audit**: every change to the org profile, name, description, social links.
-- **Resource audit**: orchestrators registered, vPLCs created/deleted, projects moved into or out of the org.
+- **Resource audit**: Devices registered, vPLCs created/deleted, projects moved into or out of the org.
 
 Each entry will have:
 
