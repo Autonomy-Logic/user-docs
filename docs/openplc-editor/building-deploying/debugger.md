@@ -58,9 +58,9 @@ You can change the selection mid-session. Newly ticked variables join the chart 
 
 **Variables flat at zero.** Confirm the variable is actually ticked in the **Debug** column, and that the PLC is **Running** (Play button in the activity bar should be coloured-in / pressable).
 
-**Polling stalls.** The runtime connection dropped. The console shows a transport error. Reconnect from the Orchestrators panel.
+**Polling stalls.** The runtime connection dropped. The console shows a transport error. Reconnect from the Edge Devices panel.
 
-**The bug icon is grey.** You're not connected to a runtime. Open the Orchestrators screen and connect first.
+**The bug icon is grey.** You're not connected to a runtime. Open the Edge Devices screen and connect first.
 
 ## What's next
 

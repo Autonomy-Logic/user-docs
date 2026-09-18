@@ -50,7 +50,7 @@ The combination of `Size = 1` byte, `Start Buffer = 0`, and `Bit Addressing = on
 
 ## Step 4: Save and Transfer
 
-Save the project and transfer it to a vPLC device the same way you would any other project. The runtime starts the S7Comm listener on port 102 as soon as the program runs.
+Save the project and transfer it to a vPLC the same way you would any other project. The runtime starts the S7Comm listener on port 102 as soon as the program runs.
 
 ## Step 5: Connect from an S7 Client
 

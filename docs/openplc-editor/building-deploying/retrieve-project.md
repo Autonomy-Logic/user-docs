@@ -106,9 +106,9 @@ See **[Installing a library](../library-manager/installing-a-library)**.
 
 ## Troubleshooting
 
-**No devices found.** The search reaches devices through your orchestrator. Check the device is powered and reachable, then click **Refresh**. A device on another subnet may not answer.
+**No devices found.** The search reaches devices through your Edge Device. Check the device is powered and reachable, then click **Refresh**. A device on another subnet may not answer.
 
-**Devices are listed but every row says "project unknown".** The devices were found, but the part of the search that asks each one what it holds did not answer. This happens when the orchestrator agent is older than the feature. The list is still usable: select a device and retrieve, and you will find out what it has. Updating the agent restores the project names.
+**Devices are listed but every row says "project unknown".** The devices were found, but the part of the search that asks each one what it holds did not answer. This happens when the Device Agent is older than the feature. The list is still usable: select a device and retrieve, and you will find out what it has. Updating the agent restores the project names.
 
 **"No project stored" on a device you know is programmed.** It was last programmed before uploads began carrying the source, or by a tool that does not attach one. Upload from the editor once and the project will be there afterwards.
 

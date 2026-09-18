@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-labelledby="diagramTitle diagramDesc">
   <title id="diagramTitle">Autonomy Edge Platform Architecture</title>
-  <desc id="diagramDesc">A vertical stack of four layers connected by labeled arrows: Your Web Browser at the top, Orchestrator Agent below it, vPLC Instances next, and Physical I/O and Devices at the bottom.</desc>
+  <desc id="diagramDesc">A vertical stack of four layers connected by labeled arrows: Your Web Browser at the top, Device Agent below it, vPLC Instances next, and Physical I/O and Devices at the bottom.</desc>
 
   <style>
     .box-bg     { fill: #ffffff; stroke: #cbd5e1; stroke-width: 1.5; }
@@ -46,11 +46,11 @@
     <text class="arrow-label" x="12" y="26">Secure Cloud Connection</text>
   </g>
 
-  <!-- Layer 2: Orchestrator Agent -->
+  <!-- Layer 2: Device Agent -->
   <g transform="translate(60,150)">
     <rect class="box-bg" width="600" height="90" rx="8"/>
     <rect class="accent-2" width="6" height="90" rx="2"/>
-    <text class="title"    x="28" y="32">Orchestrator Agent</text>
+    <text class="title"    x="28" y="32">Device Agent</text>
     <text class="subtitle" x="28" y="56">Runs on edge device or on-prem server</text>
     <text class="subtitle" x="28" y="76">Manages containers, networking, and security</text>
   </g>

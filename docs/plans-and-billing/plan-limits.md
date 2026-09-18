@@ -2,14 +2,14 @@
 
 Each plan caps how much of certain resources you can use. When you hit a cap, the platform shows a modal explaining the limit and offers an **Upgrade plan** button.
 
-![Plan limit reached, Orchestrator limit reached (1/1) on plan Community](images/orchestrator-plan-limit.png)
+![Plan limit reached, Device limit reached (1/1) on plan Community](images/device-plan-limit.png)
 
 ## The limits
 
 | Resource | Community | Education | Pro | Teams | Enterprise |
 |---|---|---|---|---|---|
-| **Orchestrators** | 1 | 1 | 20 | 5 / seat | Unlimited |
-| **vPLC devices** (across all orchestrators) | 2 | 10 / seat | 100 | 20 / seat | Unlimited |
+| **Devices** | 1 | 1 | 20 | 5 / seat | Unlimited |
+| **vPLCs** (across all Devices) | 2 | 10 / seat | 100 | 20 / seat | Unlimited |
 | **Private projects** | 0 | ✓ | ✓ | ✓ | ✓ |
 | **Members per org** | 1 (only you) | per Education agreement | n/a (personal) | per seats purchased | per contract |
 | **ACUs (AI Engineer) / month** | 0 | 1,125 | 6,125 | 12,375 / seat | Custom |
@@ -35,11 +35,11 @@ Buttons: **Cancel** (dismisses) and **Upgrade plan** (jumps to the pricing page)
 
 Examples:
 
-- Trying to create a 2nd orchestrator on Community → orchestrator limit modal.
-- Trying to create a 3rd vPLC on Community → device limit modal.
+- Trying to create a 2nd Device on Community → Device limit modal.
+- Trying to create a 3rd vPLC on Community → vPLC limit modal.
 - Trying to make a project private on Community → private-projects limit message during the New Project wizard.
 
-![Device limit reached, 2/2 on Community](images/device-plan-limit.png)
+![vPLC limit reached, 2/2 on Community](images/vplc-plan-limit.png)
 
 ## Grandfathering
 

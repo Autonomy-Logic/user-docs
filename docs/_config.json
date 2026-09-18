@@ -69,33 +69,33 @@
           ]
         },
         {
-          "title": "Orchestrators",
-          "path": "orchestrators",
+          "title": "Devices",
+          "path": "devices",
           "items": [
             {
               "title": "Overview",
               "path": "overview"
             },
             {
-              "title": "Installing the agent",
+              "title": "Installing the Device Agent",
               "path": "installing-the-agent"
             },
             {
-              "title": "Orchestrators list",
-              "path": "orchestrators-list"
+              "title": "Devices list",
+              "path": "devices-list"
             },
             {
-              "title": "Orchestrator detail",
-              "path": "orchestrator-detail"
+              "title": "Device detail",
+              "path": "device-detail"
             },
             {
-              "title": "Managing orchestrators",
-              "path": "managing-orchestrators"
+              "title": "Managing devices",
+              "path": "managing-devices"
             }
           ]
         },
         {
-          "title": "vPLC devices",
+          "title": "vPLCs",
           "path": "vplcs",
           "items": [
             {
@@ -863,8 +863,8 @@
       "path": "troubleshooting",
       "items": [
         {
-          "title": "Orchestrator not connecting",
-          "path": "orchestrator-not-connecting"
+          "title": "Device not connecting",
+          "path": "device-not-connecting"
         },
         {
           "title": "vPLC stuck in Stopped",

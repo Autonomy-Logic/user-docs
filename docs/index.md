@@ -16,8 +16,8 @@ If you're brand new, start with **[What is Autonomy Edge?](getting-started/what-
 ## Platform
 
 - **[Projects](platform/projects/overview)**: Git-backed PLC repositories: create, edit, branch, review, merge.
-- **[Orchestrators](platform/orchestrators/overview)**: The cloud-managed agent that runs on your edge device.
-- **[vPLC devices](platform/vplcs/overview)**: Virtual PLC containers that host your runtime.
+- **[Devices](platform/devices/overview)**: Your edge machine, managed from the cloud through the Device Agent that runs on it.
+- **[vPLCs](platform/vplcs/overview)**: Virtual PLC containers that host your runtime.
 - **[Organizations](platform/organizations/overview)**: Shared workspaces for teams.
 - **[Community feed](platform/community/feed)**: Activity from people you follow.
 - **[Forum](platform/forum/overview)**: Discussion boards and direct messages.
@@ -50,7 +50,7 @@ The browser-based IEC 61131-3 IDE. The full editor reference lives under **[Open
 
 ## Troubleshooting
 
-- **[Orchestrator not connecting](troubleshooting/orchestrator-not-connecting)**
+- **[Device not connecting](troubleshooting/device-not-connecting)**
 - **[vPLC stuck in Stopped](troubleshooting/vplc-stuck-stopped)**
 - **[Plan limit reached](troubleshooting/plan-limit-reached)**
 - **[Verification email not arriving](troubleshooting/email-not-arriving)**

@@ -16,7 +16,7 @@ The options displayed depend on whether you're using the web editor or the deskt
 
 When you open Device Configuration in the Autonomy Edge web IDE, you can browse available runtime targets linked to your account and connect to them.
 
-![Device Orchestrators view in the web editor showing available targets](../images/device-orchestrators-expanded.png)
+![Edge Devices view in the web editor showing available targets](../images/edge-devices-expanded-full.png)
 
 ### Communication Protocols in the Web Editor
 
@@ -30,7 +30,7 @@ These protocols are added through the Project Explorer, not the Device Configura
 
 ### What the Web Editor Does Not Support
 
-The web editor deploys to the built-in Simulator or to runtime instances via Orchestrators. The following features are **not available** in the web editor:
+The web editor deploys to the built-in Simulator or to runtime instances via Edge Devices. The following features are **not available** in the web editor:
 
 - Pin mapping for physical hardware I/O
 - Modbus RTU/TCP settings embedded in firmware
@@ -39,7 +39,7 @@ The web editor deploys to the built-in Simulator or to runtime instances via Orc
 
 For these capabilities, use the desktop editor.
 
-> **Note:** The web editor does include a [built-in Simulator](../building-deploying/simulator) that emulates an AVR microcontroller directly in the browser. This lets you run and debug programs without any hardware or Orchestrator setup.
+> **Note:** The web editor does include a [built-in Simulator](../building-deploying/simulator) that emulates an AVR microcontroller directly in the browser. This lets you run and debug programs without any hardware or Edge Device setup.
 
 ## Desktop Editor: Full Hardware Configuration
 

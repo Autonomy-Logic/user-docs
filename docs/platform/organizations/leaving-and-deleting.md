@@ -16,7 +16,7 @@ If you're a Member or Admin, you can leave at any time.
 
 What happens:
 
-- You lose access to all org projects, orchestrators, and devices immediately.
+- You lose access to all org projects, Devices, and vPLCs immediately.
 - Your past commits and forum posts stay attributed to you.
 - The dashboard's right-column **Organizations** card no longer shows this org.
 - The org's member list shows you as "Removed" in the audit log.
@@ -42,8 +42,8 @@ Deletion is permanent. It removes the organization and all of its content.
 What's removed:
 
 - All org projects (public and private).
-- All org orchestrators (the cloud entries; the agents on the devices keep running with stale credentials until you uninstall them locally).
-- All org vPLC devices.
+- All org Devices (the cloud entries; the agents on the devices keep running with stale credentials until you uninstall them locally).
+- All org vPLCs.
 - All membership records.
 - Past invitations and invite links.
 - The org's profile, billing history, and audit log.

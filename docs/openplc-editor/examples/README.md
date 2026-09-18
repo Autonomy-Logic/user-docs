@@ -1,6 +1,6 @@
 # Worked examples
 
-End-to-end recipes that exercise the editor against a running PLC. Each one starts from a blank project and ends with the program executing on the **Simulator** (in-browser) or a real **vPLC** (orchestrator-managed).
+End-to-end recipes that exercise the editor against a running PLC. Each one starts from a blank project and ends with the program executing on the **Simulator** (in-browser) or a real **vPLC** (hosted by an Edge Device).
 
 - **[Blink](blink)**: the simplest possible LD program. A `BOOL` that toggles once a second. Demonstrates: LD bodies, timers, the Simulator.
 - **[Motor start / stop with seal-in](start-stop-seal-in)**: the classic latching circuit. Demonstrates: parallel branches in LD, normally-closed contacts, the live-execution colouring.

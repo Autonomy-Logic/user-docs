@@ -47,8 +47,8 @@ When you run an AI Engineer job:
 
 Below the ACU card, a **Usage** section shows your consumption against plan-imposed quotas. Three bars:
 
-- **Orchestrators**: N / M used.
 - **Devices**: N / M used.
+- **vPLCs**: N / M used.
 - **Private projects**: N / M used.
 
 A bar turns **red** when you've reached or exceeded the limit. If you exceed (typically because of a recent downgrade), existing items continue working but you can't create new ones until you're back under the limit.
@@ -59,8 +59,8 @@ A small **refresh icon** at the top-right of the Usage card forces a recount.
 
 | Limit | Counts |
 |---|---|
-| **Orchestrators** | The number of orchestrator entries in your workspace (Active + Inactive). |
-| **Devices** | The number of vPLC entries across all your orchestrators. |
+| **Devices** | The number of Device entries in your workspace (Active + Inactive). |
+| **vPLCs** | The number of vPLC entries across all your Devices. |
 | **Private projects** | Projects marked Private. Public projects don't count. |
 
 ## Increasing limits

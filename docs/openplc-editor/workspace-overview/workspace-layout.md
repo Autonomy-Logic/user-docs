@@ -47,7 +47,7 @@ To the right of the activity bar. Shown when **Explorer** is enabled.
 
 ### Project tree (top)
 
-![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Orchestrators, and Servers branches](../images/project-tree.png)
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
 
 The branches:
 
@@ -56,7 +56,7 @@ The branches:
 - **Programs**: `program` POUs. The one bound to a task as an instance is what actually runs.
 - **Data Types**: user-defined arrays, enumerations, and structures.
 - **Resource**: the project's global variables, tasks, and instances. Open it to edit any of the three.
-- **Device**: connected orchestrators and remote devices (Modbus master, EtherCAT).
+- **Device**: connected Edge Devices and remote devices (Modbus master, EtherCAT).
 - **Servers**: communication servers (Modbus TCP slave, OPC-UA, S7Comm).
 
 Click any leaf to open it as a tab in the central editor. The **`+`** button at the top of the tree opens the **Create Element** popover (function, function-block, program, data-type, server, remote-device).

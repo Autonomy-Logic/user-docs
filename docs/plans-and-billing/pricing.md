@@ -8,7 +8,7 @@ Autonomy Edge has five plans: **Community**, **Education**, **Pro**, **Teams**, 
 
 Prices below are the **annual** rates (the lower per-month figure). Monthly billing is roughly 20% higher.
 
-| Plan | Price (annual) | ACUs/mo | Orchestrators | Devices | Private projects | AI Engineer | Trial | Best for |
+| Plan | Price (annual) | ACUs/mo | Devices | vPLCs | Private projects | AI Engineer | Trial | Best for |
 |---|---|---|---|---|---|---|---|---|
 | **Community** | Free | – | 1 | 2 | 0 | – | – | Trying things out, hobby, public sharing |
 | **Education** | $7.50/seat/mo | 1,125 | 1 | 10 / seat | ✓ | ✓ | – | Classrooms, training centers (.edu) |
@@ -27,7 +27,7 @@ Prices below are the **annual** rates (the lower per-month figure). Monthly bill
 - Version control with commits, branches, history.
 - **AI Chat assistant** (the in-page chat panel: different from AI Engineer).
 - **Public projects only.** No private projects.
-- 1 Orchestrator, 2 Devices.
+- 1 Device, 2 vPLCs.
 
 Everyone starts here. Stay here as long as the limits work for you.
 
@@ -37,7 +37,7 @@ For schools and training centers. Same features as Pro for individual seats, plu
 
 - **Same-domain invites (.edu)**: invite members within your educational domain.
 - Designed for classrooms; the per-seat pricing scales with how many students you bring on.
-- 1 Orchestrator, 10 Devices per seat.
+- 1 Device, 10 vPLCs per seat.
 
 Verification of educational use may be required.
 
@@ -47,7 +47,7 @@ A personal plan for solo professionals who need more than the Community limits:
 
 - **Private projects.**
 - **Full AI Engineer access**: the ACU-driven automation features.
-- 20 Orchestrators, 100 Devices.
+- 20 Devices, 100 vPLCs.
 - 6,125 ACUs/month.
 - 14-day trial.
 
@@ -59,7 +59,7 @@ A collaborative plan for organizations. Note that this is what unlocks **organiz
 
 - Everything in Pro.
 - **Organizations + invitations** (members, invite links, teams).
-- 5 Orchestrators per seat, 20 Devices per seat.
+- 5 Devices per seat, 20 vPLCs per seat.
 - 12,375 ACUs/month per seat.
 - 14-day trial.
 
@@ -69,7 +69,7 @@ Seat-priced, like SaaS. Add seats as your team grows.
 
 For large organizations, OEMs with custom agreements, on-prem deployments:
 
-- **Unlimited orchestrators and devices.**
+- **Unlimited Devices and vPLCs.**
 - Custom contract terms.
 - Same organization features as Teams, expanded.
 - Full AI Engineer access.
@@ -81,7 +81,7 @@ Reach out to sales for pricing.
 
 Decision tree:
 
-- **Just exploring or running one device at home** → Community.
+- **Just exploring or running one vPLC at home** → Community.
 - **Need private projects or more than 2 vPLCs as one person** → Pro.
 - **Classroom or training program** → Education.
 - **2+ people who need shared workspaces and member management** → Teams.
