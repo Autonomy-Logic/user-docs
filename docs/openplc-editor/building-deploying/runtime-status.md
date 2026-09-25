@@ -4,7 +4,7 @@
 
 It lives under the **Device** branch of the project tree.
 
-![The Runtime Status screen. A header reading "Runtime Status" with the device name and address beneath it, a "Change runtime version" button at the top right, and a grid of fields: Runtime version v4.2.2, Bootloader bootloader-v1.0.0, Host slm-rp4, Operating system Debian GNU/Linux 12 (bookworm), Kernel 6.12.35-rt10-v8+, Architecture aarch64, CPU cores 4, Memory 1.8 GB. Below the header, tables for Scan Cycle Statistics, EtherCAT Bus Statistics and SLM-RP4 Backplane](../images/runtime-status-mainscreen.png)
+![The Runtime Status screen for vPLC 01 on the SLM-RP4 Device. A header reading "Runtime Status" with the Device and vPLC names beneath it, and a grid of fields: Runtime version v4.2.2, Device Agent v1.7.1, Host SLM-RP4, Operating system Linux 6.8.0-64-generic, Kernel 6.8.0-64-generic, Architecture not reported, CPU cores 4, Memory 3.8 GB. Below the header, the Scan Cycle Statistics table for TASK0 with zero overruns, and the EtherCAT Bus Statistics table](../images/runtime-status-mainscreen.png)
 
 > **If you have used the statistics before, this is where they went.** The scan-cycle, EtherCAT and plugin tables used to sit at the bottom of the **Edge Devices** screen in the web editor, and at the bottom of the **Device Configuration** screen in the desktop editor. They were never configuration, and on the desktop you had to scroll past a pin-mapping table to reach them. They are unchanged; they simply have their own screen now.
 
@@ -19,7 +19,8 @@ The header describes the machine your program is running on.
 | Field | What it is |
 |---|---|
 | **Runtime version** | The OpenPLC runtime currently installed |
-| **Bootloader** | The version of the bootloader on the device |
+| **Bootloader** | The version of the bootloader on the device, when it has one |
+| **Device Agent** | Shown instead of **Bootloader** on a vPLC, which has no bootloader: the version of the Device Agent on the machine the vPLC runs on |
 | **Host** | The device's hostname |
 | **Operating system** | For example `Debian GNU/Linux 12 (bookworm)` |
 | **Kernel** | The kernel release, which is where you can see whether it is a real-time kernel |
@@ -27,7 +28,9 @@ The header describes the machine your program is running on.
 | **CPU cores** | Worth knowing when you are sizing tasks: the core count is the budget your scan tasks share |
 | **Memory** | Total system memory |
 
-**If some of these are empty, the device is a native install, or an installation old enough to predate the bootloader.** It is not a fault, and nothing is wrong with the device. You simply see fewer details about it.
+**On a vPLC, the header describes the Device the vPLC runs on**, as reported by its Device Agent, not the container itself. The agent does not report the architecture, so that field stays empty.
+
+**If some of these are empty on a physical device, it is a native install, or an installation old enough to predate the bootloader.** It is not a fault, and nothing is wrong with the device. You simply see fewer details about it.
 
 ## The statistics
 
@@ -45,13 +48,13 @@ Below the header are the same tables as before, refreshed while the screen is op
 
 **EtherCAT Bus Statistics** appear when the project has an EtherCAT segment, reporting master state, slave and cycle counts, bus timings and error counters.
 
-**Plugin statistics** appear when the board provides them. In the screenshot above, the `SLM-RP4 Backplane` panel reports its fault state, SPI clock, configured slots and bus timings. What you see here depends on the hardware.
+**Plugin statistics** appear when the board provides them. On an SLM-RP4 board, for example, the `SLM-RP4 Backplane` panel reports its fault state, SPI clock, configured slots and bus timings. What you see here depends on the hardware: the vPLC in the screenshot above has no such panel.
 
 ## Changing the runtime version
 
 The **Change runtime version** button installs a different OpenPLC runtime on the device.
 
-> **The button appears only on devices that can do it.** A native install, or an installation old enough to predate the bootloader, has no way to swap the runtime, so the button is not shown rather than being offered and then failing.
+> **The button appears only on devices that can do it**, that is, when a bootloader is present. A native install, a vPLC managed by a Device, or an installation old enough to predate the bootloader, has no way to swap the runtime, so the button is not shown rather than being offered and then failing.
 
 ### Picking a version
 

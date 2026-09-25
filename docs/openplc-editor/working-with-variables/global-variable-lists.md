@@ -27,7 +27,7 @@ The name matters more than a POU name does, because it becomes the prefix on eve
 
 ## The list editor
 
-![The Plant list open in the editor. The header row shows Name: Plant and a Qualifier field reading "None", with add, remove, move-up, move-down buttons and the table / declaration toggle on the right. Below, a table with columns #, Name, Class, Type, Initial Value and Documentation holding two DINT members](images/global-variable-list-editor.png)
+![The Plant list open in the editor. The header row shows Name: Plant and a Qualifier field reading "None", with add, remove, move-up, move-down buttons and the table / declaration toggle on the right. Below, a table with columns #, Name, Class, Type, Initial Value and Documentation holding three members: tank_level REAL with initial value 0.0, pump_running BOOL, and recipe_id DINT with initial value 1](images/global-variable-list-editor.png)
 
 The header carries the list's **Name** and its **Qualifier**. Below it, the members, in either of two views you switch with the pair of icons at the top right.
 
