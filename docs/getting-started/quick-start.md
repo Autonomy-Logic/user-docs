@@ -68,8 +68,8 @@ A Device is your edge machine. The Device Agent runs on it, manages your vPLCs, 
 ### 1.1 Start the New Device Wizard
 
 1. Log in to the Autonomy Edge platform at [edge.autonomylogic.com](https://edge.autonomylogic.com)
-2. Navigate to **Devices** in the left sidebar
-3. Click the **Add Device** button
+2. On the dashboard, click **Manage devices** on the **Devices** card to open the Devices list
+3. Click the **+ New Device** tile
 
 ![New Device wizard - Details step](images/add-device-step1.png)
 
@@ -123,7 +123,7 @@ A vPLC (virtual PLC) is a containerized runtime that executes your automation pr
 5. **Serial Ports** (optional): attach serial ports if your program needs them.
 6. Click **Create vPLC** to provision the vPLC.
 
-The vPLC will start automatically and show a "success" status when ready.
+The vPLC starts automatically. Once it is running, its card shows the uptime counting up.
 
 ![vPLCs list showing the created vPLC](images/vplcs-list-with-vplc.png)
 
@@ -133,11 +133,11 @@ The vPLC will start automatically and show a "success" status when ready.
 
 Now let's create a project for our blinking output program.
 
-1. Navigate to **Projects** in the left sidebar
-2. Click **New Project**
-3. Enter a project name (e.g., "BlinkingOutput")
-4. Select **Structured Text** as the programming language
-5. Click **Create**
+1. On the dashboard, click **New** on the **Projects** card
+2. Choose **PLC Project** and click **Next**
+3. Enter a project name (e.g., "BlinkingOutput") and click **Next**
+4. Select **Structured Text** as the programming language and click **Next**
+5. Pick the visibility and click **Create Project**
 
 The project will open in the OpenPLC Editor IDE.
 
@@ -285,19 +285,20 @@ Once connected, the vPLC status will show both "Running" and "Connected", and th
 
 After connecting to the vPLC:
 
-1. Click the **Download** button in the left sidebar (folder icon with a down arrow) to compile and deploy your program
+1. Click the **Build options** button in the left sidebar (the icon with a down arrow) and choose **Build and upload**
 2. Check the Console panel at the bottom for compilation progress
 3. If compilation succeeds, the program will be uploaded automatically
 4. The PLC Status will change to "RUNNING" when the program is active
+5. Under **Device** in the project tree, click **Runtime Status** to see how the program is running
 
-![Program running with Scan Cycle Statistics](images/runtime-running.png)
+![Runtime Status of the running program, with the Scan Cycle Statistics table for TASK0](images/runtime-running.png)
 
-The Scan Cycle Statistics panel shows real-time performance metrics:
+The **Scan Cycle Statistics** table shows real-time performance metrics for each task. Times are in microseconds, and each cell shows a moving average with the min / max below it:
 - **Scan Count**: Number of program cycles executed
+- **Scan Time**: Execution time of one cycle
+- **Cycle Time**: Time between scan starts
+- **Latency**: Scheduling delay
 - **Overruns**: Cycles that exceeded the target time (should be 0)
-- **Scan Time (avg)**: Average execution time per cycle
-- **Cycle Time (avg)**: Time between scan starts
-- **Cycle Latency (avg)**: Scheduling delay
 
 ---
 
@@ -305,7 +306,7 @@ The Scan Cycle Statistics panel shows real-time performance metrics:
 
 Once deployed, your blinking output program is running on the vPLC. You can verify this by:
 
-- Watching the Scan Count increment in the Scan Cycle Statistics
+- Watching the Scan Count increment in the Scan Cycle Statistics on the **Runtime Status** screen
 - Check the output coils of your Modbus slave device
 - Checking the PLC Logs tab for runtime messages
 

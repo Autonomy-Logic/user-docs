@@ -2,7 +2,7 @@
 
 When you want your vPLC to **read** from or **write** to a remote Modbus slave, a field-level sensor, a meter, a VFD, an external PLC, a Modbus-RTU gateway, configure a **Modbus remote device**. The vPLC becomes the master; the remote is the slave.
 
-This lives under **Device** in the project tree, not under **Servers** (that's the *slave*-side configuration covered on the **[Modbus server](server)** page).
+This lives under **Remote Devices** in the project tree, not under **Servers** (that's the *slave*-side configuration covered on the **[Modbus server](server)** page).
 
 ## Add a remote device
 
@@ -14,7 +14,7 @@ This lives under **Device** in the project tree, not under **Servers** (that's t
 
 4. Name it (e.g. `flow_meter_1`) and click **Create**.
 
-The new entry appears under **Device** in the tree. Click it to open the configuration editor.
+The new entry appears under **Remote Devices** in the tree. Click it to open the configuration editor.
 
 > Modbus remote devices are gated to Runtime v4 and the Simulator. Other targets won't offer Modbus in the protocol picker.
 
@@ -101,7 +101,7 @@ A flow meter exposes its current reading at holding register `0` of slave ID `7`
 
 Click **Create**. The group appears in the IO Tag Mapping table:
 
-![IO Tag Mapping after adding the HoldingRegisters group: row shows Name=HoldingRegisters, Type=Analog Input (Holding Register), Address=%IW0, Offset=0, Function Code=Read Holding Registers (FC 3), Alias=-](images/remote-device-config.png)
+![Remote device flow_meter_1 on Modbus RTU (Serial), Slave ID 7, with the flow group in the IO Tag Mapping table: Type=Analog Input (Holding Register), Address=%IW0, Offset=0, Length=1, Function Code=Read Holding Registers (FC 3), Alias=-](images/remote-device-config.png)
 
 ### Expanding a group to see its points
 

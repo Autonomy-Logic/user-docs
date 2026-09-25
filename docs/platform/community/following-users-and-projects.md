@@ -1,6 +1,6 @@
 # Following users and projects
 
-Autonomy Edge has a light social layer: you can **follow** users, **star** projects, and (eventually) **watch** projects to get notified about new releases. The combination shapes what appears in your **[feed](feed)** and your **[trending recommendations](trending-topics)**.
+Autonomy Edge has a light social layer: you can **follow** users, **star** projects, and (eventually) **watch** projects to get notified about new releases. The combination shapes what appears in your **[feed](feed)**.
 
 ## Following a user
 
@@ -11,7 +11,7 @@ Open any user's profile (click their avatar or name anywhere on the platform: in
 
 What following someone does:
 
-- Their public project creations and updates appear in your *Recents* feed.
+- Their public project creations and updates appear in your feed.
 - Their follower count goes up by one.
 - (When the *Recommended* feed launches, your follows influence what you see.)
 

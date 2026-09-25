@@ -1,6 +1,6 @@
 # Feed
 
-The **feed** is the center column of your dashboard. It's a stream of recent activity from across the platform, projects being created, people joining the community, organization settings being updated.
+The **feed** is the center column of your dashboard. It's a stream of recent activity from across the platform: projects being created and updated, projects getting stars, pull requests being opened, people joining the community.
 
 ![Dashboard with the feed in the center column](images/dashboard-feed.png)
 
@@ -9,8 +9,10 @@ The **feed** is the center column of your dashboard. It's a stream of recent act
 Activity entries the feed surfaces today:
 
 - **{user} created a public project**: with a card linking to the project. You can star the project directly from the entry.
+- **{user} updated the project**: a project card for a public project that changed.
+- **{user} starred a project**: the starred project's card.
+- **{user} opened a pull request**: the project card, for a pull request opened on a public project.
 - **{user} joined the community**: a Welcome card with a wave emoji.
-- **{user} updated organization settings**: when an org admin changes the org profile.
 
 Each entry has the actor's avatar, name, action, relative timestamp ("1 weeks ago"), and the relevant card (project, user, or org).
 
@@ -18,14 +20,16 @@ Private activity (private projects, internal org events) never appears in feeds.
 
 ## The filter
 
-Top right of the feed area is the **Filter** button. It opens a dropdown:
+Top right of the feed area is the **Filter** button, labelled with the current choice. It opens a dropdown:
 
-- **Recommended**: coming soon. Personalized recommendations based on what you star, follow, and view.
-- **Recents** (default): the global activity stream, newest first.
-- **Popular**: coming soon. Activity weighted by stars, comments, and views.
-- **Organization Feeds**: one entry per organization you belong to. Picking one scopes the feed to that org's activity only.
+- **Relevant** (default)
+- **Recommended**
+- **Popular**
+- **Recent**
 
-![Filter dropdown showing Recommended, Recents, Popular, and Organization Feeds options](images/feed-filter-dropdown.png)
+![Filter dropdown open under the Relevant button, listing Relevant, Recommended, Popular and Recent](images/feed-filter-dropdown.png)
+
+An organization's dashboard has its own feed, scoped to that organization, with **Relevant**, **Recommended** and **Popular**. To see it, switch to the organization's workspace.
 
 The choice is saved per-session and reflected in the URL.
 
@@ -49,12 +53,12 @@ You can:
 
 ## How the feed is sourced
 
-- **Recents** pulls activity from the platform globally and trims to public/shareable entries.
-- **Organization Feeds** filters that stream to activity within a specific organization, including private activity that you have permission to see.
+- The personal feed pulls activity from the platform globally and trims to public/shareable entries.
+- The **organization feed**, on an organization's dashboard, is limited to that organization's activity.
 - Refreshing the dashboard refreshes the feed. The feed itself doesn't push live updates today, new entries appear after a page reload.
 
 ## Where to next
 
 - **Find specific projects** → use the search box, or the **[projects list](../projects/projects-list)**.
-- **See forum activity instead** → **[Forum](../forum/overview)** or the **[Trending Topics](trending-topics)** widget on the right column.
-- **Curate what you see** → the *Recommended* and *Popular* filters will help once they ship; until then, **[following users and projects](following-users-and-projects)** shapes what you see in the Recents feed.
+- **See forum activity instead** → **[Forum](../forum/overview)** or the **[Latest Topics](trending-topics)** card on the right column.
+- **Curate what you see** → switch the **Filter** between *Relevant*, *Recommended*, *Popular* and *Recent*, and **[follow users and projects](following-users-and-projects)** you care about.

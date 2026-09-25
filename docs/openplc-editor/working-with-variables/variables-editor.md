@@ -135,7 +135,7 @@ The toggle in the top-right of the toolbar switches between the two views. Both 
 
 **Code mode** shows the raw IEC declarations in a Monaco editor, grouped by class as `VAR_INPUT / VAR / VAR_OUTPUT / VAR_EXTERNAL / VAR_TEMP` blocks.
 
-![Variables editor in code mode, showing the IEC declaration text with the VAR_INPUT block and END_VAR for a sample variable](images/variables-code-mode.png)
+![Variables editor in code mode, showing the IEC declaration text of the main program: a VAR block declaring blink, TON0 and TOF0, closed by END_VAR, above the ladder rung](images/variables-code-mode.png)
 
 Code mode is the fastest path when you want to:
 
