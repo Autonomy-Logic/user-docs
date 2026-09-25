@@ -113,17 +113,15 @@ Once linked, your Device will appear in the list with its connection status.
 
 A vPLC (virtual PLC) is a containerized runtime that executes your automation programs. One of the key advantages of Autonomy Edge is the ability to run multiple vPLC instances on a single physical device. Each vPLC runs in complete isolation with real-time execution, and appears on the network with its own IP address as if it were an independent physical PLC. This allows you to maximize hardware utilization, especially on modern multicore PLCs, PACs, and industrial PCs that are often underutilized when running traditional single-threaded PLC runtimes.
 
-1. Click on your Device to open its details
-2. Navigate to the **vPLCs** tab
-3. Click **Add vPLC**
+1. Click on your Device to open its details. The **vPLCs** tab opens by default.
+2. Click the **New vPLC** tile. The New vPLC wizard opens on its own page, in three steps: **Details**, **Network** and **Serial Ports**.
 
-![Add New vPLC dialog](images/add-vplc-modal.png)
+![New vPLC wizard on the Details step, with the vPLC Name field and the Runtime Version dropdown](images/add-vplc-modal.png)
 
-4. Enter a vPLC name (e.g., "Demo vPLC")
-5. Configure the network settings:
-   - A default virtual NIC (veth0) is created automatically with DHCP
-   - Click on the NIC to configure static IP if needed
-6. Click **Create** to provision the vPLC
+3. **Details**: enter a vPLC name (e.g., "Demo vPLC"), pick a **Runtime Version**, and click **Next**. Only versions already downloaded on the Device can be selected; to use another one, download it from the Device's **Runtime Images** tab first.
+4. **Network**: a default virtual NIC (veth0) is created automatically with DHCP. Click the NIC to configure a static IP if needed, then click **Next**.
+5. **Serial Ports** (optional): attach serial ports if your program needs them.
+6. Click **Create vPLC** to provision the vPLC.
 
 The vPLC will start automatically and show a "success" status when ready.
 
