@@ -40,7 +40,7 @@ The IEC declaration syntax for the type, shown in code mode, looks like this:
 
 ```iec
 TYPE
-    TempReadings : ARRAY[0..9] OF REAL;
+    TempReadings : ARRAY[0..9] OF BOOL;
 END_TYPE
 ```
 

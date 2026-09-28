@@ -72,7 +72,7 @@ Click **Create vPLC** at the bottom right.
 
 The platform sends the creation command to the agent, which:
 
-1. Pulls the runtime image (if not cached).
+1. Uses the runtime image already downloaded on the Device.
 2. Creates the container with the MACVLAN configuration.
 3. Starts the container.
 
