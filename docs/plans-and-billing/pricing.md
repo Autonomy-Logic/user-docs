@@ -13,8 +13,8 @@ Each card shows the per-month price when billed **annually**, with the monthly-b
 
 | Plan | Group | Annual (per month) | Monthly | ACUs/mo | Devices | vPLCs | Private projects | AI Engineer | Trial |
 |---|---|---|---|---|---|---|---|---|---|
-| **Community** | Individuals | Free | Free | 600 | 1 | 2 | – | – | – |
-| **Starter** | Individuals | $15/mo | $20/mo | 2,500 | 4 | 20 | ✓ | – | – |
+| **Community** | Individuals | Free | Free | 600 | 1 | 2 | – | ✓ | – |
+| **Starter** | Individuals | $15/mo | $20/mo | 2,500 | 4 | 20 | ✓ | ✓ | – |
 | **Pro** *(recommended)* | Individuals | $40/mo | $49/mo | 6,000 | 50 | 250 | ✓ | ✓ | 14 days |
 | **Education** | Team & Enterprise | $7/seat/mo | $9/seat/mo | 1,125 | Unlimited / seat | Unlimited / seat | ✓ | ✓ | – |
 | **Teams** | Team & Enterprise | $80/seat/mo | $99/seat/mo | 12,500 | Unlimited / seat | Unlimited / seat | ✓ | ✓ | 14 days |
@@ -29,19 +29,21 @@ Each card shows the per-month price when billed **annually**, with the monthly-b
 - IEC 61131-3 editor with Ladder, FBD, and Structured Text.
 - Built-in PLC simulator for testing without hardware.
 - Version control with commits, branches, history.
-- **AI Chat assistant** (the in-page chat panel: different from AI Engineer).
+- **AI Chat assistant** (the in-page chat panel: different from AI Engineer, and it does not use ACUs).
+- **AI Engineer** in the editor, drawing on the monthly ACUs.
 - **Public projects only.** No private projects.
 - 1 Device, 2 vPLCs.
-- 600 ACUs.
+- 600 ACUs/month.
 
 Everyone starts here. Stay here as long as the limits work for you.
 
 ### Starter
 
-A personal plan for makers who have outgrown Community but do not need the AI Engineer:
+A personal plan for makers who have outgrown Community:
 
 - **Private projects.**
 - AI Chat assistant.
+- **AI Engineer** in the editor, drawing on the monthly ACUs.
 - 4 Devices, 20 vPLCs.
 - 2,500 ACUs/month.
 
@@ -98,7 +100,7 @@ Reach out to sales for pricing.
 Decision tree:
 
 - **Just exploring or running one vPLC at home** → Community.
-- **Need private projects or more than 2 vPLCs as one person** → Starter, or Pro if you also need the AI Engineer or more than 4 Devices.
+- **Need private projects or more than 2 vPLCs as one person** → Starter, or Pro if you need more than 4 Devices or a larger ACU allowance.
 - **Classroom or training program** → Education.
 - **2+ people who need shared workspaces and member management** → Teams.
 - **Large fleet, special contract needs, on-prem** → Enterprise.

@@ -54,7 +54,7 @@ To take a share away, open **Edit** and choose **Remove access**. The member's e
 
 ## Why a shared pool
 
-Without the org pool, every member needs their own paid plan to use AI Engineer. The pool lets an org pay for a large allowance once and route it to whoever needs it that month, with caps to prevent any one user from burning through the whole thing.
+Without the org pool, every member is limited to their own plan's monthly ACUs for AI Engineer. The pool lets an org pay for a large allowance once and route it to whoever needs it that month, with caps to prevent any one user from burning through the whole thing.
 
 ## Where to next
 
