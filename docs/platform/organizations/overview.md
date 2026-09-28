@@ -42,8 +42,8 @@ Organizations themselves are free to *create* on any plan. Most management featu
 
 | Feature | Community | Starter (personal) | Education | Pro (personal) | Teams | Enterprise |
 |---|---|---|---|---|---|---|
-| Create an org | ✓ | – | ✓ | ✓ | ✓ | ✓ |
-| Edit org profile | ✓ | – | ✓ | ✓ | ✓ | ✓ |
+| Create an org | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Edit org profile | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Members beyond you | – | – | ✓ (.edu only) | – | ✓ | ✓ |
 | Invitations | – | – | ✓ | – | ✓ | ✓ |
 | Invite Links | – | – | ✓ | – | ✓ | ✓ |
@@ -51,7 +51,7 @@ Organizations themselves are free to *create* on any plan. Most management featu
 | Org-level billing | – | – | ✓ | – | ✓ | ✓ |
 | Shared org ACU pool | – | – | ✓ | – | ✓ | ✓ |
 
-The Starter and Pro plans are *personal*. Starter has no organization features, and Pro doesn't unlock org member management. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
+The Starter and Pro plans are *personal*. They don't unlock org features. To collaborate as a team, you want **Teams** (or **Education** for academic institutions).
 
 See **[Pricing](../../plans-and-billing/pricing)** for the full breakdown.
 
