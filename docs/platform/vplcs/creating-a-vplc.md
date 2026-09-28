@@ -41,7 +41,7 @@ A default NIC named `veth0` is added for you, configured for DHCP on the host's 
 
 Expanding the row reveals every NIC option:
 
-![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.2.4), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-vplc-step2-nic-expanded.png)
+![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.5.1), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-vplc-step2-nic-expanded.png)
 
 | Field | What it does |
 |---|---|

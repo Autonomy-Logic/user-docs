@@ -107,7 +107,7 @@ Click **Create**. The group appears in the IO Tag Mapping table:
 
 Click the chevron at the start of the group row to expand it. Each point inside the group gets its own row.
 
-![Expanded IO group showing the parent row plus one child row HoldingRegisters_0 with Type=Analog Input (Holding Register), Address=%IW0, Offset=0, an editable Alias field](images/remote-device-io-group-expanded.png)
+![Expanded flow group on flow_meter_1 showing the parent row plus one child row flow_0 with Type=Analog Input (Holding Register), Address=%IW0, Offset=0, an editable Alias field](images/remote-device-io-group-expanded.png)
 
 Per-point columns:
 
@@ -122,7 +122,7 @@ Per-point columns:
 
 Click the Alias field on a point row and type a name. Tab out to save.
 
-![The expanded IO group with an alias filled in: HoldingRegisters_0 now has alias "sensor_pressure_psi"](images/remote-device-io-group-with-alias.png)
+![The expanded flow group with an alias filled in: flow_0 now has alias "flow_rate"](images/remote-device-io-group-with-alias.png)
 
 Once you've set an alias, you can reference the variable in your program by alias, and if you later reorganise the group (insert points, change offsets), the variable's local `Location` follows the alias automatically. Without an alias, your program references the raw IEC address (`%IW0`), and if the address moves you have to track down every reference by hand.
 
