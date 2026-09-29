@@ -13,7 +13,6 @@ What following someone does:
 
 - Their public project creations and updates appear in your feed.
 - Their follower count goes up by one.
-- (When the *Recommended* feed launches, your follows influence what you see.)
 
 The user can see who follows them via their profile's follower list. The numbers (`N followers · M following`) are shown publicly on every profile.
 
@@ -23,7 +22,7 @@ See **[Pinning and stars](../projects/pinning-and-stars)** for the full breakdow
 
 - Stars are public. They count.
 - Starred projects show up on your profile's **Stars** tab.
-- Stars influence recommendations and trending.
+- Stars influence recommendations.
 - You can only star public projects.
 
 ## Watching a project

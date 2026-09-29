@@ -27,7 +27,7 @@ The runtime dropdown lists every version in the catalog, and marks each one **Do
 
 ![Runtime version dropdown: v4.2.4 - Latest, Downloaded, followed by v4.2.3, v4.2.2, v4.2.1, v4.2.0 and v4.1.10, all Not downloaded and greyed out](images/new-vplc-runtime-dropdown.png)
 
-Each version corresponds to a specific build of the runtime container. Versions that are not downloaded stay visible but cannot be picked: to use one, download it first from the Device's **Runtime Images** tab (see **[Device detail](../devices/device-detail)**). Creating the vPLC from an image already on the Device is what keeps creation fast.
+Each version corresponds to a specific build of the runtime container. Versions that are not downloaded stay visible but cannot be picked: to use one, download it first from the Device's **Runtime Images** tab (see **[Device detail](../devices/device-detail)**). Creating the vPLC from an image already on the Device is what keeps creation fast. If no image is downloaded yet, as on a Device that was just linked, the dropdown has nothing to select and the wizard says so: download a version first, then start the wizard again.
 
 Click **Next**.
 
@@ -72,7 +72,7 @@ Click **Create vPLC** at the bottom right.
 
 The platform sends the creation command to the agent, which:
 
-1. Uses the runtime image already downloaded on the Device.
+1. Pulls the selected runtime image from the registry again, and falls back to the copy already downloaded on the Device if the pull fails.
 2. Creates the container with the MACVLAN configuration.
 3. Starts the container.
 

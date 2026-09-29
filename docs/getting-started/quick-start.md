@@ -114,14 +114,15 @@ Once linked, your Device will appear in the list with its connection status.
 A vPLC (virtual PLC) is a containerized runtime that executes your automation programs. One of the key advantages of Autonomy Edge is the ability to run multiple vPLC instances on a single physical device. Each vPLC runs in complete isolation with real-time execution, and appears on the network with its own IP address as if it were an independent physical PLC. This allows you to maximize hardware utilization, especially on modern multicore PLCs, PACs, and industrial PCs that are often underutilized when running traditional single-threaded PLC runtimes.
 
 1. Click on your Device to open its details. The **vPLCs** tab opens by default.
-2. Click the **New vPLC** tile. The New vPLC wizard opens on its own page, in three steps: **Details**, **Network** and **Serial Ports**.
+2. A new Device has no runtime image yet, and the wizard can only use images already downloaded on the Device. Open the **Runtime Images** tab, pick the newest version under **Download a runtime image** and click **Download**. Wait for it to finish, then go back to the **vPLCs** tab.
+3. Click the **New vPLC** tile. The New vPLC wizard opens on its own page, in three steps: **Details**, **Network** and **Serial Ports**.
 
 ![New vPLC wizard on the Details step, with the vPLC Name field and the Runtime Version dropdown](images/add-vplc-modal.png)
 
-3. **Details**: enter a vPLC name (e.g., "Demo vPLC"), pick a **Runtime Version**, and click **Next**. Only versions already downloaded on the Device can be selected; to use another one, download it from the Device's **Runtime Images** tab first.
-4. **Network**: a default virtual NIC (veth0) is created automatically with DHCP. Click the NIC to configure a static IP if needed, then click **Next**.
-5. **Serial Ports** (optional): attach serial ports if your program needs them.
-6. Click **Create vPLC** to provision the vPLC.
+4. **Details**: enter a vPLC name (e.g., "Demo vPLC"), pick a **Runtime Version**, and click **Next**. Only versions already downloaded on the Device can be selected; to use another one, download it from the Device's **Runtime Images** tab first.
+5. **Network**: a default virtual NIC (veth0) is created automatically with DHCP. Click the NIC to configure a static IP if needed, then click **Next**.
+6. **Serial Ports** (optional): attach serial ports if your program needs them.
+7. Click **Create vPLC** to provision the vPLC.
 
 The vPLC starts automatically. Once it is running, its card shows the uptime counting up.
 

@@ -2,7 +2,7 @@
 
 The **Usage** tab is the org-level counterpart to **[Settings → Usage](../../account/settings/usage)**. It shows the org's consumption against the plan quotas. The shared **Organization ACU pool**, which members can draw from when their personal AI credits run out, is managed on its own **ACUs** tab, next to Usage in the side-nav and visible to the owner of a paid organization.
 
-> Visible on **Teams**, **Education**, and **Enterprise** plans. Owners and admins can manage member grants; members can read.
+> Visible on **Teams**, **Education**, and **Enterprise** plans. Only the organization owner sees the ACUs tab and manages member grants.
 
 To open it, click your avatar in the top-right → **Organizations** → select your organization → **Usage** in the side-nav.
 
