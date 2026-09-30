@@ -11,9 +11,9 @@ This page covers the very first step: getting an EtherCAT bus entry into your pr
    ![Add Remote Device dialog: Device name field plus Protocol dropdown defaulting to "Select a protocol", Cancel and Create buttons](images/add-remote-device.png)
 
 4. In the **Device name** field, enter a short, descriptive identifier for the bus. The form requires the name to be at least 3 characters. Common choices are `eth`, `axis_bus`, or `field_io`. The name becomes the label of the bus node in the project tree and the heading shown at the top of the Bus Editor.
-5. From the **Protocol** dropdown, choose **EtherCAT**. The dropdown also lists Modbus, EtherNet/IP, and PROFINET.
+5. From the **Protocol** dropdown, choose **EtherCAT**. The dropdown also lists Modbus, and shows EtherNet/IP and PROFINET greyed out.
 
-   ![Protocol dropdown expanded showing Modbus, EtherNet/IP, EtherCAT, PROFINET](images/add-remote-device-protocol-dropdown.png)
+   ![Protocol dropdown expanded showing Modbus and EtherCAT selectable, with EtherNet/IP and PROFINET greyed out](images/add-remote-device-protocol-dropdown.png)
 
 6. Click **Create**.
 

@@ -1,6 +1,6 @@
 # Device detail
 
-Clicking a Device card from the **[Devices list](devices-list)** opens its detail page. The page has two tabs: **vPLCs** (default) and **Device**.
+Clicking a Device card from the **[Devices list](devices-list)** opens its detail page. The page has three tabs: **vPLCs** (default), **Device** and **Runtime Images**.
 
 ## vPLCs tab
 
@@ -26,7 +26,7 @@ The **+ New vPLC** tile launches the **[New vPLC wizard](../vplcs/creating-a-vpl
 
 ## Device tab
 
-![SLM-RP4 Device tab: OS Linux 6.12.35-rt10-v8+, 4 CPU cores, 1.80 GB memory, 14 disk slots, eth0 on 192.168.2.4, agent version v1.3.3, plus CPU and Memory Usage charts](images/device-info.png)
+![SLM-RP4 Device tab: OS Linux 6.8.0-64-generic, 4 CPU cores, 3.81 GB memory, 58 disk, eth0 on 192.168.5.1, agent version v1.7.1, plus CPU and Memory Usage charts](images/device-info.png)
 
 The Device tab is a read-only view of the edge device's specs and current resource usage.
 
@@ -46,6 +46,14 @@ Live CPU utilization over time. The dropdown at the top right of the chart (`1h`
 Same controls and behavior as the CPU chart, for memory.
 
 These charts come from the periodic heartbeat the agent sends. If the agent is alive but the chart is flat, check that the **VERSION** matches the latest release, older agent versions may not stream as many metrics as newer ones.
+
+## Runtime Images tab
+
+The Runtime Images tab manages the OpenPLC runtime images cached on this Device. A vPLC can only be created from an image that is already here (see **[Creating a vPLC](../vplcs/creating-a-vplc)**).
+
+- **Download a runtime image**: pick a version from the dropdown and click **Download**. This needs the Device to be online.
+- **Or import from a file**: upload a runtime image archive (`.tar`, `.tar.gz` or `.tgz`) produced with `docker save ghcr.io/autonomy-logic/openplc-runtime:vVERSION -o runtime.tar`, replacing `VERSION` with the version you want, for example `v4.2.2`.
+- The list below shows every image cached on the Device, with its version, size and date, and a trash icon to remove it when you have permission to.
 
 ## Switching tabs
 

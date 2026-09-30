@@ -2,7 +2,7 @@
 
 The project tree is the top half of the editor's side panel. It lists every artefact in your project, grouped by kind.
 
-![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Global Variables, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
 
 ## Header
 

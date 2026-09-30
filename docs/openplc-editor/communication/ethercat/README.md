@@ -49,7 +49,7 @@ To add an EtherCAT segment to your project:
 4. In the **Device name** field, enter a short identifier for the bus (e.g. `eth`, `axis_bus`, `field_io`). Names must be at least 3 characters.
 5. Click the **Protocol** dropdown and choose **EtherCAT**.
 
-   ![Protocol dropdown open showing Modbus, EtherNet/IP, EtherCAT, PROFINET options](images/add-remote-device-protocol-dropdown.png)
+   ![Protocol dropdown open showing Modbus and EtherCAT selectable, with EtherNet/IP and PROFINET greyed out](images/add-remote-device-protocol-dropdown.png)
 
 6. Click **Create**.
 7. The new bus appears under **Remote Devices** in the project tree. Click it to open the EtherCAT Bus Editor.

@@ -19,7 +19,7 @@ What other people *cannot* do:
 - See or change project settings.
 - Run vPLC deployments using your Devices.
 
-Public projects also appear in **community feeds** and may surface in **trending** widgets and **recommendations**.
+Public projects also appear in **community feeds** and may surface in **recommendations**.
 
 ## Private projects
 
@@ -30,7 +30,6 @@ What members of a private project can do depends on their role (covered when col
 Private projects do **not** appear in:
 
 - Public feed activity.
-- Forum trending.
 - Search results for users without access.
 - Your own public profile's project list.
 

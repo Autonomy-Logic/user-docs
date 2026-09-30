@@ -2,7 +2,7 @@
 
 Each organization has its own dashboard, with the same layout as your personal dashboard but scoped to that organization's projects, Devices, and members.
 
-![Org dashboard for Autonomy-Mine, banner, projects, Devices, feed, trending](images/org-dashboard.png)
+![Org dashboard for Autonomy-Mine: the org's projects and Devices on the left, the org's activity feed in the center, Latest Topics on the right](images/org-dashboard.png)
 
 ## How to get there
 
@@ -29,18 +29,13 @@ Note the difference from your personal dashboard: nothing here is yours individu
 
 ## Center column: activity feed
 
-Same feed format as personal, but the activity is org-scoped. Examples:
+Same feed format as personal, but scoped to the organization: members creating and updating the org's projects, starring them, and opening pull requests on them.
 
-- Org settings updated.
-- New project created in the org.
-- Member added or removed.
-- vPLC deployed.
-
-The **Filter** dropdown is also present, with **Recents** by default. Switching to an *Organization Feeds* entry shows feeds from other orgs you belong to, useful if you want to compare activity across multiple workspaces.
+The **Filter** dropdown is also present, with **Relevant** by default, and **Recommended** and **Popular** as the other options.
 
 ## Right column
 
-- **Trending Topics** card with the latest forum topics. Forum is global; trending shows the same items regardless of which workspace you're in.
+- **Latest Topics** card with the three most recent forum topics. Forum is global, so it shows the same items regardless of which workspace you're in.
 - **View Forum** button at the bottom.
 
 ## What is NOT here

@@ -12,7 +12,7 @@ There are five regions to know about.
 
 Stretching across the screen at the very top:
 
-- **AUTONOMY Edge BETA logo** (left): clicks back to this dashboard.
+- **AUTONOMY Edge logo** (left): clicks back to this dashboard.
 - **Bell icon**: opens **[Notifications](../platform/notifications)**. The icon shows an unread dot when new notifications arrive.
 - **Avatar circle** (right edge, with your initials): opens the user menu (covered below).
 
@@ -27,19 +27,19 @@ When you switch to an organization workspace, this column shows that organizatio
 
 ## 3. Center column: the feed
 
-The center is an activity stream of things people in the community are doing, creating public projects, joining the community, updating organization settings. It's a low-friction way to discover what others are building.
+The center is an activity stream of things people in the community are doing: creating and updating public projects, starring projects, opening pull requests, joining the community. It's a low-friction way to discover what others are building.
 
 At the top of the feed:
 
 - **Search projects or users**: a free-text search box. Results show project cards and user cards.
-- **Filter** button: opens a dropdown to switch the feed source. Today: **Recents** (default). **Recommended** and **Popular** are listed as coming soon. If you belong to organizations, each one appears under **Organization Feeds** so you can scope the feed to that org.
+- **Filter** button, labelled with the current choice (**Relevant** by default): switches the feed between **Relevant**, **Recommended**, **Popular** and **Recent**. To see an organization's activity, switch to that organization's workspace: its dashboard shows the organization's feed.
 
 See **[Feed](../platform/community/feed)** for the full breakdown.
 
-## 4. Right column: organizations and trending
+## 4. Right column: organizations and latest topics
 
 - **Organizations** card. Lists each organization you belong to with its role badge (**Owner**, **Admin**, **Member**). The **+ Create new** button at the top opens the **[Create organization modal](../platform/organizations/creating-an-org)**. The **View all** link goes to **[the organizations list](../platform/organizations/overview)**.
-- **Trending Topics** card. The hottest threads in the **[forum](../platform/forum/overview)** right now, with comments and view counts. The **View Forum** button at the bottom jumps to the forum home.
+- **Latest Topics** card. The three most recent threads in the **[forum](../platform/forum/overview)**, each with its author, category, comment count and view count. The **View Forum** button at the bottom jumps to the forum home.
 
 ## 5. The Autonomy AI button (bottom-right)
 

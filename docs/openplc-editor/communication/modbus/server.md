@@ -18,15 +18,24 @@ The Modbus server (slave) exposes parts of the PLC's memory image as **Modbus ad
 
 ## Server Configuration
 
-The top section of the editor.
+The editor opens on a **Modbus Server** panel, headed *Modbus Server: {name}*, with a line saying what the server answers on (for example *Serving Modbus TCP*).
 
 | Field | Default | Notes |
 |---|---|---|
-| **Enable Server** | off | Toggle on to make the server start when the PLC runs. The helper text reads "Server is disabled" when off and "Server will start when PLC runs" when on. Leave it off until the rest of the configuration is complete. |
-| **Network Interface** | `All Interfaces (0.0.0.0)` | Picks the IP the server binds to. Other options include `Localhost (127.0.0.1)` for local-only access. |
+| **Enabled** | off | Toggle on to make the server run. The hint reads "Not serving. Settings are kept." when off and "Serving." when on. Leave it off until the rest of the configuration is complete. |
+| **Transport** | `Modbus TCP` on a vPLC | **Modbus RTU**, **Modbus TCP**, or **Modbus RTU and TCP**, which is one server answering on both. A choice the target cannot carry is greyed out, and the hint says why. |
+
+The rest of the panel is split in two groups:
+
+- **Serial line**, used by Modbus RTU: **Serial Port**, **Baud Rate** (9600 to 115200) and **Slave ID** (1 to 247). On TCP the Slave ID is not used, because TCP addresses the server by IP.
+- **Network**, used by Modbus TCP:
+
+| Field | Default | Notes |
+|---|---|---|
+| **Network Interface** | `All Interfaces (0.0.0.0)` | Picks the IP the server binds to. The other option is `Localhost (127.0.0.1)` for local-only access. |
 | **Port** | `502` | Standard Modbus TCP port. Ports below 1024 may need extra privileges on Linux; if the runtime can't bind, try `1502`. |
 
-![Newly created demo_modbus server showing Server Configuration section: Enable Server toggle, Network Interface dropdown set to All Interfaces (0.0.0.0), Port 502, plus Buffer Mapping section header below](images/modbus-server-overview.png)
+![Newly created demo_modbus server: Enabled toggle off, Transport Modbus TCP, the Serial line group (Serial Port, Baud Rate 115200, Slave ID 1) and the Network group (Network Interface set to All Interfaces (0.0.0.0), Port 502), with the Buffer Mapping section header below](images/modbus-server-overview.png)
 
 ## Buffer Mapping
 

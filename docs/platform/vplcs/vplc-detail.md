@@ -2,7 +2,7 @@
 
 The vPLC detail page is the read-only "I want to see what this vPLC looks like right now" view. Open it by clicking a vPLC card on a **[Device's detail page](../devices/device-detail)**.
 
-![vPLC 01 detail page: Running status, 90h 50m uptime, internal IP 172.20.0.2, DHCP network mode, plus a macvlan_eth0 interface with IP 192.168.2.6, MAC 02:42:c0:a8:02:02, gateway 192.168.2.1](images/vplc-detail.png)
+![vPLC 01 detail page on the SLM-RP4 Device: Running status, internal IP 172.19.0.2, DHCP network mode (so Gateway, DNS and Subnet Mask read N/A), plus a macvlan_eth0 interface with IP 192.168.5.3, MAC 2e:b5:c0:04:92:16, gateway 192.168.5.2](images/vplc-detail.png)
 
 ## Header
 
