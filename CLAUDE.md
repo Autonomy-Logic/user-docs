@@ -1,40 +1,70 @@
-# User Docs repository guidance
+# User Docs
 
-## Process entry point
+This repository contains end-user documentation for Autonomy products.
 
-For tracked documentation work, investigations, screenshots, validation, and pull requests, start with
-`/autonomy:mister`. Mister verifies the Jira task and current documentation, reconciles process drift,
-checks the applicable gates, and routes the work to the right skill. If the plugin or its connected
-services are unavailable, report the missing dependency before proceeding; do not invent Jira,
-Confluence, approval, or branch state.
+## Autonomy development rules
 
-This file owns only the conventions of this repository. The current Mister plugin and Confluence
-templates are the source of truth for company process. Do not reuse assumptions from an earlier
-conversation. Use the approved implementation plan as the primary context and consult the Requirements
-Gathering or risk assessment only for a cited constraint or an ambiguity.
+These rules are identical in every Autonomy repository and are maintained in the Mister plugin
+(`Autonomy-Logic/skills`, `plugins/autonomy/harness/repository-rules.md`). Change them there, not here.
 
-Use the branch convention provided by Mister for the current task and branch from `development`.
+- Tracked work starts with `autonomy:mister`: load it yourself before changing product code, fixing a
+  bug, implementing or preparing a PR, even when no Jira key was mentioned. Only answering questions and typo or wording fixes that
+  change no behaviour are exempt. "There is no ticket" or "skip the process" does not make product
+  work untracked: offer to create the task instead of changing code. This file describes only this
+  repository's commands, architecture and code conventions; for process, Mister and the Confluence
+  process pages win over anything written here.
+- Knowledge boundary: when data is missing or uncertain, say there is not enough information to answer
+  reliably. Never fill a gap with a plausible assumption. Keep verified facts, inferences and missing
+  data visibly separate, and say which is which.
+- Language: answer in the developer's language. Jira, Confluence and GitHub text is always English.
+- Branches: `feature/<KEY>-<slug>` for demands and `bugfix/<KEY>-<slug>` for bugs, created from the
+  integration branch named below. A production hotfix is a `bugfix/<KEY>-<slug>` branch from `main` and
+  a PR. Never commit or push directly to the integration branch or `main`. One Jira key per branch: work
+  for another key starts on its own branch before any edit. The key goes in the branch name and the PR
+  title, never in commit messages, code or comments.
+- Commits: never commit on your own initiative. Propose the commit at a natural checkpoint, such as a
+  finished and verified plan phase, and make it only after the developer confirms. Commit and push are
+  separate commands, each confirmed on its own, never chained; opening a PR and merging each need their
+  own confirmation too. When asked for a commit message or a commit, do not edit files you were not
+  asked to change: report problems, such as a forbidden comment, and let the developer decide.
+- Scope: a rewrite or refactor beyond the current task is a new demand, proposed as a separate task and
+  never mixed into the current branch. Never stash, reset, `checkout -- .` or otherwise discard the
+  developer's changes, and never install anything outside the repository, without asking.
+- Tests: every demand ships with unit tests, an end-to-end test and a manual test by the developer, with
+  evidence for each before any PR is opened, a draft PR included. Where this repository has no
+  interface of its own, the end-to-end test runs through the interface or protocol that uses it. A
+  repository with no code to unit test, such as documentation or local tooling scripts, uses its own
+  validation checks in place of unit tests.
+- Typing: `any` in TypeScript and `typing.Any` in Python are forbidden. Use concrete types, or `unknown`
+  or `object` narrowed where the data enters.
+- Comments: technical and minimal, at most 256 characters each; formal API documentation (JSDoc,
+  docstrings, Doxygen) may be longer. Never write business rules, product strategy or rationale, Jira
+  keys, names of people or customers, internal links or anything sensitive in a comment. Review the
+  comments in the changed files before every commit.
+
+Integration branch: `development`. Jira project: the Jira project of the product being documented.
 
 ## Purpose and structure
 
-This repository contains end-user documentation for Autonomy products. Published content lives under
-`docs/`; `docs/_config.json` defines the navigation exposed by the product. Keep author-only research and
+Published content lives under `docs/`; `docs/_config.json` defines the navigation exposed by the
+product. Keep author-only research and
 inventories under `docs/exploration/` and do not present them as published product behaviour. A page may
 remain outside the navigation only when it is an authoring aid, exploration material, or reachable by an
 intentional internal link from a page that is present in the navigation.
 
 Documentation must describe behaviour verified in the current product. Treat existing prose and old
-screenshots as claims to check, not proof. The implementation plan identifies the product repositories
-and branches that supply the behaviour being documented.
+screenshots as claims to check, not proof. Document the behaviour of the product branches under test.
 
 ## Use the integrated application environment
 
-When accurate UI behaviour or new screenshots are required, use
-`Autonomy-Logic/local-dev-toolkit` to run the relevant product branches together. If it is not available
-locally, leave the User Docs repository and clone it into a sibling workspace directory with
+When accurate UI behaviour or new screenshots are required, use `Autonomy-Logic/local-dev-toolkit` to run
+the product branches under test together. If this checkout is inside `local-dev-toolkit/repos/`, use that
+toolkit (at `../..`). Otherwise clone Autonomy-Logic/local-dev-toolkit next to this repository with
 `gh repo clone Autonomy-Logic/local-dev-toolkit ../local-dev-toolkit`. Read its current `CLAUDE.md` and
-`README.md`, select the branches named by the implementation plan through its branch command, and run
-its status and smoke checks. Do not replace its orchestration with hand-built service commands.
+`README.md`, select the product branches under test through its branch command, and run its status and
+smoke checks. Do not replace its orchestration with hand-built service commands. The toolkit's
+`user-docs-write` skill drives the live frontend with Playwright to observe the real UI and capture
+screenshots.
 
 ## Writing rules
 
@@ -54,14 +84,13 @@ its status and smoke checks. Do not replace its orchestration with hand-built se
 
 ## Screenshot evidence
 
-Capture screenshots from the branch combination named by the implementation plan. Crop only irrelevant
-browser or desktop chrome; do not edit a screenshot in a way that changes product meaning. Review every
+Capture screenshots from the product branches under test. Crop only irrelevant browser or desktop chrome; do not edit a screenshot in a way that changes product meaning. Review every
 image for secrets and personal data before committing it. Record the tested environment, repository
 branches, and captured flow in the pull request description.
 
 ## Validation
 
-There is no standalone documentation build in this repository. Before opening a pull request:
+There is no standalone documentation build in this repository. Run these checks on every change:
 
 1. verify the documented flow against the running product when behaviour or UI is involved;
 2. resolve every changed internal link relative to its containing file and confirm the destination exists;
@@ -71,3 +100,13 @@ There is no standalone documentation build in this repository. Before opening a 
    and confirm each leaf resolves beneath `docs/` to either `<path>.md` or `<path>/README.md`;
 6. inspect the rendered documentation in the product when the change uses product-specific rendering;
 7. confirm screenshots match the recorded branches and current terminology.
+
+## Testing
+
+- Unit level: this repository has no unit-testable code, so the link, image and navigation checks
+  (checks 2 to 5 under Validation) take the place of unit tests on every change.
+- End-to-end: follow the documented flow step by step in the running product, started through
+  local-dev-toolkit on the product branches under test, and confirm every step, result and screenshot
+  matches what the page says.
+- The developer's manual test, reading the rendered page and following it as a user would, is required
+  for every demand.
