@@ -28,7 +28,7 @@ A versioned snapshot of project files with a message, author, and timestamp. See
 
 ## Community plan
 
-The free tier. Limits: 1 Device, 2 vPLCs, 0 private projects. AI Chat included, AI Engineer not included. See **[Pricing](../plans-and-billing/pricing)**.
+The free tier. Limits: 1 Device, 2 vPLCs, 0 private projects. AI Chat included. AI Engineer in the editor included, with 600 ACUs/month. See **[Pricing](../plans-and-billing/pricing)**.
 
 ## Cycle time
 
@@ -104,7 +104,7 @@ A project visible only to invited people. Requires a paid plan to create. See **
 
 ## Pro plan
 
-Paid personal plan. 20 Devices, 100 vPLCs, private projects, full AI Engineer. Recommended for solo professionals. See **[Pricing](../plans-and-billing/pricing)**.
+Paid personal plan. 50 Devices, 250 vPLCs, private projects, full AI Engineer. Recommended for solo professionals. See **[Pricing](../plans-and-billing/pricing)**.
 
 ## Project
 
@@ -129,6 +129,10 @@ A user account local to a single vPLC. Separate from your Autonomy Edge account.
 ## Star
 
 A public "like" on a public project. Counted publicly. See **[Pinning and stars](../platform/projects/pinning-and-stars)**.
+
+## Starter plan
+
+Entry-level paid personal plan. 4 Devices, 20 vPLCs, private projects, AI Engineer in the editor with 2,500 ACUs/month. See **[Pricing](../plans-and-billing/pricing)**.
 
 ## Static mode
 

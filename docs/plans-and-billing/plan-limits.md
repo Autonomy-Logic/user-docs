@@ -6,13 +6,13 @@ Each plan caps how much of certain resources you can use. When you hit a cap, th
 
 ## The limits
 
-| Resource | Community | Education | Pro | Teams | Enterprise |
-|---|---|---|---|---|---|
-| **Devices** | 1 | 1 | 20 | 5 / seat | Unlimited |
-| **vPLCs** (across all Devices) | 2 | 10 / seat | 100 | 20 / seat | Unlimited |
-| **Private projects** | 0 | ✓ | ✓ | ✓ | ✓ |
-| **Members per org** | 1 (only you) | per Education agreement | n/a (personal) | per seats purchased | per contract |
-| **ACUs (AI Engineer) / month** | 0 | 1,125 | 6,125 | 12,375 / seat | Custom |
+| Resource | Community | Starter | Pro | Education | Teams | Enterprise |
+|---|---|---|---|---|---|---|
+| **Devices** | 1 | 4 | 50 | Unlimited / seat | Unlimited / seat | Unlimited |
+| **vPLCs** (across all Devices) | 2 | 20 | 250 | Unlimited / seat | Unlimited / seat | Unlimited |
+| **Private projects** | 0 | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Members per org** | 1 (only you) | n/a (personal) | n/a (personal) | per Education agreement | per seats purchased | per contract |
+| **ACUs / month** | 600 | 2,500 | 6,000 | 1,125 | 12,500 | Custom |
 
 "Unlimited" means there's no hard cap; usage is governed by your contract.
 

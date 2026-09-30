@@ -54,7 +54,7 @@ Once the simulator is up, the bottom panel automatically switches from **Console
 - Block input/output pins show their current values inline (e.g. a TON's `ET` shows `0s`, `200ms`, `420ms`, etc. as it counts up).
 - The contact / coil shape itself doesn't change, but the wires around it tell you whether power is flowing.
 
-![Simulator running the blink program: green wires showing power flow through the rung, TON0 displaying its current ET (0s, climbing), TOF0 displaying its ET (420ms), and the bottom panel showing the Debugger with the blink variable being monitored as BOOL TRUE](../images/simulator-running.png)
+![Simulator running the blink program: green wires showing power flow through the rung, TON0 displaying its current ET (0s, climbing), TOF0 displaying its ET (100ms), and the bottom panel showing the Debugger with the blink variable being monitored as BOOL TRUE](../images/simulator-running.png)
 
 The **Debugger panel** at the bottom lists every variable you ticked the **Debug** column for, with their current values updating in real time.
 
@@ -68,7 +68,7 @@ The Debugger has a time-series chart to the right of the variables list:
 - The **Range** dropdown picks the visible window (1 s, 5 s, 10 s, 30 s, 1 min, 5 min, or 10 min).
 - The pause icon at the top right freezes the chart (polling keeps running; resume to catch up).
 
-![Debugger panel showing the variables list on the left with main.blink and main.TON0, and the time-series chart on the right with the range selector set to 10 seconds](../images/simulator-debugger.png)
+![Debugger panel showing the variables list on the left with main.blink and main.TON0, and the time-series chart on the right, still empty because no variable has been clicked yet, with the range selector set to 10 seconds](../images/simulator-debugger.png)
 
 For the `blink` program, plot `main.blink` and you'll see it square-wave between FALSE and TRUE every second.
 

@@ -14,11 +14,12 @@ Refills with your billing cycle. Each plan includes a different amount:
 
 | Plan | ACUs/month |
 |---|---|
-| Community | 0 |
+| Community | 600 |
+| Starter | 2,500 |
+| Pro | 6,000 |
 | Education | 1,125 |
-| Pro | 6,125 |
-| Teams | 12,375 / seat |
-| Enterprise | Custom (e.g. 123,113) |
+| Teams | 12,500 |
+| Enterprise | Custom |
 
 The monthly pool **does not roll over.** Unused ACUs at the end of the cycle are lost.
 
