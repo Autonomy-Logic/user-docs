@@ -47,7 +47,7 @@ To the right of the activity bar. Shown when **Explorer** is enabled.
 
 ### Project tree (top)
 
-![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
+![Project tree showing the EDF Demo project expanded: PLC root with Functions, Function Blocks, Programs/main, Data Types, Global Variables, Resource, Device/Edge Devices, and Servers branches](../images/project-tree.png)
 
 The branches:
 

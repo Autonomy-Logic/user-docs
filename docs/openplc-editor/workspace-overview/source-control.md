@@ -4,7 +4,7 @@ Every project in the OpenPLC Editor lives in a **git repository**. The editor's 
 
 Open it by clicking the **git-branch** icon in the activity bar (second from the top). A small badge on the icon shows how many files have pending edits.
 
-![Source Control panel showing the Changes tab with two modified files (main.ld and project.json), a tree view grouped by folder, and the commit message textarea + Commit / Discard buttons at the bottom](../images/source-control-panel.png)
+![Source Control panel showing the Changes, Stash and History tabs, the Changes tab with two modified files (main.ld and project.json) in a tree view grouped by folder, and the commit message textarea with Commit, Stash and Discard buttons at the bottom](../images/source-control-panel.png)
 
 ## Changes view
 

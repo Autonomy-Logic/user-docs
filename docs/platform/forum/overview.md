@@ -2,7 +2,7 @@
 
 The Autonomy Edge **forum** is a Discourse-style discussion board for everything OpenPLC and Autonomy Edge: news, project sharing, hardware help, bug reports, and general discussion. It's the busiest community surface on the platform.
 
-Open it from the dashboard by clicking **View Forum** on the **Trending Topics** card, or by clicking your avatar in the top-right and choosing **Forum**.
+Open it from the dashboard by clicking **View Forum** on the **Latest Topics** card, or by clicking your avatar in the top-right and choosing **Forum**.
 
 ![Forum home page, hero banner, stats, categories, and topic list](images/forum-home.png)
 

@@ -6,7 +6,7 @@ An array is an ordered collection of elements that all share the same base type.
 
 Creating a type with **Array** as the derivation opens this editor:
 
-![Array editor for the TempReadings type: a Name field set to "TempReadings", a Base Type dropdown showing BOOL, an Initial Value text field, and a Dimensions section with one row showing "0..9"](images/array-editor.png)
+![Array editor for the TempReadings type: a Name field set to "TempReadings", a Base Type dropdown showing REAL, an Initial Value text field, and a Dimensions section with one row showing "0..9"](images/array-editor.png)
 
 Three things to fill in:
 

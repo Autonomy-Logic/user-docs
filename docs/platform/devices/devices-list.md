@@ -18,7 +18,7 @@ Each card shows:
 | **Icon** (left) | A rack icon, always blue. |
 | **Name** | The name you gave when you created it. |
 | **Status badge** | **Inactive** (gray dot), **Active** (green dot, sometimes called **Connected**). |
-| **3-dot menu** | Per-Device actions: rename, regenerate registration ID, delete. See **[Managing devices](managing-devices)**. |
+| **3-dot menu** | Per-Device actions: **Rename**, **Update** (updates the Device Agent and the network monitor to the latest version; the vPLCs keep running) and **Delete**. See **[Managing devices](managing-devices)**. |
 | **CPU** | Live CPU usage on the device, in cores (load average) or percent. |
 | **MEMORY** | Live memory usage. Displayed in MB or GB depending on size. |
 | **UPTIME** | How long the agent has been running. Resets if the agent restarts. |
@@ -30,7 +30,7 @@ Stats are blank or zero on an **Inactive** Device because the agent isn't report
 
 Click the **N vPLCs** row at the bottom of any card to expand it inline:
 
-![SLM-RP4 card expanded inline, showing vPLC 01 with 90h 49m uptime and a success badge](images/devices-vplcs-expanded.png)
+![SLM-RP4 card expanded inline, showing vPLC 01 with 0h 1m uptime and a success badge](images/devices-vplcs-expanded.png)
 
 Each vPLC row shows:
 

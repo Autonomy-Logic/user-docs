@@ -134,7 +134,7 @@ The thread may be **🔒 Locked** by moderators. Locked threads are read-only.
 
 ### Is the AI assistant free?
 
-Yes. The **AI Chat** assistant (the sparkle panel) is free on every plan, including Community. The **AI Engineer** features that consume ACUs require Education+, Pro, Teams, or Enterprise. See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
+Yes. The **AI Chat** assistant (the sparkle panel) is free on every plan, including Community. The **AI Engineer** in the editor is the only feature that consumes ACUs, and every plan includes a monthly ACU allowance for it. See **[AI Credit Units](../plans-and-billing/ai-credit-units)**.
 
 ### What does ⌘J do?
 

@@ -51,7 +51,7 @@ Below the upload zone, the **Loaded Files** table lists every ESI in the reposit
 
 Click the chevron to expand a row. Below the file row, one row per device is shown, indented and highlighted.
 
-![Repository tab with the Beckhoff EK18xx.xml file row expanded, showing the EK1828-0010 IO-Coupler entry with its product code (0x07242C52), revision (Rev: 0x0011000A), and System Couplers group badge](images/repository-tab-expanded.png)
+![Repository tab with the Beckhoff EK18xx.xml file row expanded, listing its EK1814 EtherCAT IO-Coupler entries, each with its product code (0x07162c52), revision (for example Rev: 0x00100000), and System Couplers group badge](images/repository-tab-expanded.png)
 
 Each device row carries:
 

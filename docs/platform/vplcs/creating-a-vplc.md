@@ -21,13 +21,13 @@ The wizard opens on a dedicated page. A 3-step indicator at the top shows the fl
 | Field | Required | Notes |
 |---|---|---|
 | **vPLC Name** | Yes | A label for this vPLC. Must be unique within the Device. Examples: *Palletizer Machine*, *Conveyor Controller*, *vPLC 02*. |
-| **Runtime Version** | Yes | The OpenPLC v4 runtime image that this vPLC will run. Pick the version marked **Latest** unless you have a specific reason to pin an older version. |
+| **Runtime Version** | Yes | The OpenPLC v4 runtime image that this vPLC will run. Pick the version marked **Latest** unless you have a specific reason to pin an older version. Only versions already downloaded on the Device can be selected. |
 
-The runtime dropdown lists every available version. The newest stable build is labeled **Latest**, with older stable builds below it and pre-release (release-candidate) builds at the top:
+The runtime dropdown lists every version in the catalog, and marks each one **Downloaded** or **Not downloaded** on this Device. Pre-release builds carry a **(Pre-release)** tag, and the newest downloaded stable build is labeled **Latest**:
 
-![Runtime version dropdown: rc4/rc3/rc2/rc1 pre-release builds, then v4.0.9 - Latest, v4.0.8, v4.0.7, v4.0.6](images/new-vplc-runtime-dropdown.png)
+![Runtime version dropdown: v4.2.4 - Latest, Downloaded, followed by v4.2.3, v4.2.2, v4.2.1, v4.2.0 and v4.1.10, all Not downloaded and greyed out](images/new-vplc-runtime-dropdown.png)
 
-Each version corresponds to a specific build of the runtime container. The agent pulls and caches the image on first use, so creation of subsequent vPLCs on the same Devicetor using the same version is much faster.
+Each version corresponds to a specific build of the runtime container. Versions that are not downloaded stay visible but cannot be picked: to use one, download it first from the Device's **Runtime Images** tab (see **[Device detail](../devices/device-detail)**). Creating the vPLC from an image already on the Device is what keeps creation fast. If no image is downloaded yet, as on a Device that was just linked, the dropdown has nothing to select and the wizard says so: download a version first, then start the wizard again.
 
 Click **Next**.
 
@@ -41,7 +41,7 @@ A default NIC named `veth0` is added for you, configured for DHCP on the host's 
 
 Expanding the row reveals every NIC option:
 
-![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.2.4), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-vplc-step2-nic-expanded.png)
+![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.5.1), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-vplc-step2-nic-expanded.png)
 
 | Field | What it does |
 |---|---|
@@ -72,7 +72,7 @@ Click **Create vPLC** at the bottom right.
 
 The platform sends the creation command to the agent, which:
 
-1. Pulls the runtime image (if not cached).
+1. Pulls the selected runtime image from the registry again, and falls back to the copy already downloaded on the Device if the pull fails.
 2. Creates the container with the MACVLAN configuration.
 3. Starts the container.
 
