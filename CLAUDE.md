@@ -49,7 +49,8 @@ Integration branch: `development`. Jira project: `EDGE` for platform pages, `DOP
 Published content lives under `docs/`; `docs/_config.json` defines the navigation exposed by the
 product. The docs sync in autonomy-edge (`apps/frontend/scripts/sync-docs.mjs`) copies the whole
 `docs/` folder, so every file under it is publicly reachable by URL, including pages left out of the
-navigation and `docs/exploration/`. Never put internal or unreleased material under `docs/`. A page may
+navigation. Never put internal or unreleased material under `docs/`; author research and inventories
+live in `exploration/` at the repository root, which the sync does not copy. A page may
 stay outside the navigation only when it is reachable by an intentional internal link from a page that
 is in the navigation.
 
