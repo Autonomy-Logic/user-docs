@@ -42,15 +42,16 @@ These rules are identical in every Autonomy repository and are maintained in the
   keys, names of people or customers, internal links or anything sensitive in a comment. Review the
   comments in the changed files before every commit.
 
-Integration branch: `development`. Jira project: the Jira project of the product being documented.
+Integration branch: `development`. Jira project: `EDGE` for platform pages, `DOPE` for editor pages.
 
 ## Purpose and structure
 
 Published content lives under `docs/`; `docs/_config.json` defines the navigation exposed by the
-product. Keep author-only research and
-inventories under `docs/exploration/` and do not present them as published product behaviour. A page may
-remain outside the navigation only when it is an authoring aid, exploration material, or reachable by an
-intentional internal link from a page that is present in the navigation.
+product. The docs sync in autonomy-edge (`apps/frontend/scripts/sync-docs.mjs`) copies the whole
+`docs/` folder, so every file under it is publicly reachable by URL, including pages left out of the
+navigation and `docs/exploration/`. Never put internal or unreleased material under `docs/`. A page may
+stay outside the navigation only when it is reachable by an intentional internal link from a page that
+is in the navigation.
 
 Documentation must describe behaviour verified in the current product. Treat existing prose and old
 screenshots as claims to check, not proof. Document the behaviour of the product branches under test.
@@ -84,9 +85,10 @@ screenshots.
 
 ## Screenshot evidence
 
-Capture screenshots from the product branches under test. Crop only irrelevant browser or desktop chrome; do not edit a screenshot in a way that changes product meaning. Review every
-image for secrets and personal data before committing it. Record the tested environment, repository
-branches, and captured flow in the pull request description.
+Capture screenshots from the product branches under test. Crop only irrelevant browser or desktop
+chrome; do not edit a screenshot in a way that changes product meaning. Review every image for secrets
+and personal data before committing it, and keep a note of the environment, branches and flow each
+screenshot came from, so it can be checked and recaptured.
 
 ## Validation
 
@@ -105,8 +107,5 @@ There is no standalone documentation build in this repository. Run these checks 
 
 - Unit level: this repository has no unit-testable code, so the link, image and navigation checks
   (checks 2 to 5 under Validation) take the place of unit tests on every change.
-- End-to-end: follow the documented flow step by step in the running product, started through
-  local-dev-toolkit on the product branches under test, and confirm every step, result and screenshot
-  matches what the page says.
-- The developer's manual test, reading the rendered page and following it as a user would, is required
-  for every demand.
+- End-to-end: Validation check 1, run through local-dev-toolkit on the product branches under test.
+- Manual: Validation check 6, reading the rendered page as a user would.
