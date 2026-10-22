@@ -22,6 +22,25 @@ The OpenPLC project also publishes a standalone desktop editor for Windows, macO
 
 For most Autonomy Edge users, the web editor is enough, including the in-browser Simulator for quick tests without setting up hardware.
 
+### Updating the desktop editor
+
+The web editor is always up to date. The desktop editor tells you when a newer version is out and lets you decide when to install it.
+
+About a minute after you open the desktop editor, it checks for a newer release. When there is one, a blue bar appears at the top of the window: **A new version of OpenPLC Editor is available**.
+
+1. Click **Update**. The editor downloads the installer for your computer and checks that the file matches the published release.
+    - **Windows** and **macOS**: the file goes to your Downloads folder.
+    - **Linux**: you choose where to save the new AppImage.
+2. The editor opens what it downloaded: the installer on Windows, the disk image on macOS, the folder with the new AppImage on Linux.
+3. Save your project and click **Quit Now**, or **Later** to keep working. While the bar shows **Open Installer**, it opens the same file again without downloading it.
+4. Install the new version as you did the first time. On Linux, run the new AppImage.
+
+On Windows, the installer asks you to close the editor if it is still open. It never closes the editor for you, so unsaved work is never lost.
+
+Click **X** on the bar to hide it until you open the editor again.
+
+To check at any time, use **File > Check for Updates**. To stop the automatic check, untick **File > Check for Updates Automatically**; the change applies from the next start.
+
 ## What's next
 
 Take the **[Workspace Layout](workspace-overview/workspace-layout)** tour.
