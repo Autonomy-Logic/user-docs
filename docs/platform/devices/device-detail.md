@@ -39,11 +39,29 @@ These come from the agent's first heartbeat and are refreshed periodically. On a
 
 ### CPU Usage chart
 
-Live CPU utilization over time. The dropdown at the top right of the chart (`1h` by default) lets you change the window: 15m / 1h / 6h / 24h / 7d. The chart is empty for Devices that haven't been connected long enough to accumulate data.
+The chart shows CPU utilization over a time window you choose. The dropdown at the top right of the chart (`1h` by default) sets the window: **1h**, **6h**, **12h** or **24h**.
+
+The time axis always spans the whole window you selected, up to the latest sample the Device reported. Its labels fall on round times of day in your local time zone, for example 14:15, 14:30, 14:45 on the 1h window, or 18:00, 00:00, 06:00, 12:00 on the 24h window. When the Device has data for only part of the window, the line covers only that part and the rest of the window stays empty.
+
+![Device tab with CPU Usage on the 1h window, fully covered, and Memory Usage on the 24h window, where the line starts at 05:50 and the chart says Data available only since 05:50](images/device-usage-charts.png)
 
 ### Memory Usage chart
 
 Same controls and behavior as the CPU chart, for memory.
+
+Each chart has its own dropdown, so you can show CPU over the last hour and memory over the last day at the same time. Each chart keeps its window when you switch to another tab and come back.
+
+### When a chart has no data or only part of it
+
+A chart tells you when it cannot fill the window you selected, instead of showing a different window:
+
+| Message | What it means |
+|---|---|
+| **No data in the last 6h** (with the window you selected) | The Device reported no sample in that window. This is what you see on an **Inactive** Device. |
+| **Data available only since 05:50** (with the time of the oldest sample) | The Device has data for only part of the window, starting at that time. This is usual shortly after the Device or its agent restarted, because the usage history starts again at the restart. |
+| **Loading the last 24h** (with the window you just selected) | The data of the new window is still on its way. The chart draws it as soon as it arrives, and the other chart keeps showing its own data meanwhile. |
+
+![Device tab of an Inactive Device: CPU Usage on the 6h window says No data in the last 6h, and Memory Usage on the 1h window says No data in the last 1h, both over a labelled time axis](images/device-usage-charts-empty.png)
 
 These charts come from the periodic heartbeat the agent sends. If the agent is alive but the chart is flat, check that the **VERSION** matches the latest release, older agent versions may not stream as many metrics as newer ones.
 
