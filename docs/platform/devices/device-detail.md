@@ -26,7 +26,7 @@ The **+ New vPLC** tile launches the **[New vPLC wizard](../vplcs/creating-a-vpl
 
 ## Device tab
 
-![SLM-RP4 Device tab: OS Linux 6.8.0-64-generic, 4 CPU cores, 3.81 GB memory, 58 disk, eth0 on 192.168.5.1, agent version v1.7.1, plus CPU and Memory Usage charts](images/device-info.png)
+![SLM-RP4 Device tab header and specs: OS Linux 6.8.0-64-generic, 4 CPU cores, 3.81 GB memory, 58 disk, eth0 on 192.168.5.1, agent version v1.7.1](images/device-info.png)
 
 The Device tab is a read-only view of the edge device's specs and current resource usage.
 
