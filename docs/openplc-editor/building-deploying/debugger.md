@@ -7,7 +7,7 @@ There's no breakpoint / step support, this debugger is **live inspection only**.
 ## Prerequisites
 
 - The editor is **connected** to a vPLC. See **[Connecting to a vPLC](../connecting-to-runtimes)**.
-- You've **opted in** the variables you want to watch (Debug column checkbox in the variables table, see **[Variables editor](../working-with-variables/variables-editor)**).
+- You've **opted in** the variables you want to watch (Debug column checkbox in the variables table, see **[Variables editor](../working-with-variables/variables-editor)**). The **Tags** tab described below needs no opt-in: it lists the whole project.
 
 ## Opening the debugger
 
@@ -39,6 +39,35 @@ Controls along the top:
 - **Pause / Play**: freeze the chart (the polling keeps running in the background; resume to see what happened).
 - **Range selector**: pick the visible time window (1 s, 5 s, 10 s, 30 s, 1 min, 5 min, 10 min).
 - **Elapsed clock**: total session time.
+
+## The tag table
+
+The **Tags** tab, next to **Debugger** at the bottom of the editor, lists **every variable of the project** in one table, with no need to tick anything first. Each row shows:
+
+| Column | What it holds |
+|---|---|
+| **Name** | The variable name, with the program or `Global` it belongs to. A structure or function-block instance has a `+` that expands it into its members. |
+| **Value** | The live value read from the running vPLC. |
+| **Area** | The monitor view this tag belongs to, or `-` for none. Pick another view to move the tag to it. |
+| **Address** | The variable's IEC address or alias, when it has one. |
+| **Force** | `1` and `0` for a BOOL, a value box for any other type (press Enter to apply), and **release** on a tag that is currently forced. Forced rows are highlighted. |
+| **Type** | The variable's IEC type. |
+| **Comment** | The variable's documentation. |
+
+The **Filter** box matches any part of a name, scope, view, address, type or comment, ignoring case, and the counter next to it reads `shown of total`.
+
+Only the tags the table currently shows are polled, so a filter or a view also narrows what is read from the vPLC.
+
+### Monitor views
+
+A **view** is a named subset of the tags, the same idea as a Monitor Table in ISPSoft or a Tag table in TIA Portal.
+
+- **New view** creates one and selects it.
+- Choosing a view in **Area** on a tag's row moves that tag into it; choosing `-` takes it out of every view.
+- The selector on the left switches between **All tags** and a single view.
+- **Delete view** removes the selected view. The tags themselves are untouched.
+
+Views are saved inside the project, so they come back the next time the project is opened, and they travel with it to anyone else who opens it.
 
 ## Opting variables in
 
