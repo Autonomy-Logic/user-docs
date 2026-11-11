@@ -20,6 +20,8 @@ You need:
 
 > **Tip:** On a Raspberry Pi, you can set the username and password and enable SSH with password login in the customisation settings of Raspberry Pi Imager when you write the SD card.
 
+> **Warning:** Make the first SSH connection to a device from a network you trust. On that first connection, the editor trusts the key the device presents, so another host on an untrusted network could pose as the device and receive your password.
+
 ---
 
 ## Steps
@@ -59,6 +61,8 @@ When the runtime answers, the dialog closes, a **Runtime ready** notification ap
 
 - After a new install, the runtime has no users yet, so the **Create First User** dialog opens.
 - When the runtime already has users (after a start, for example), the **Login** dialog opens.
+
+> **Warning:** Create the first runtime user right after **Runtime ready**. Until that user exists, anyone who can reach the device on the network can create it.
 
 ![Runtime ready notification above the Create First User dialog, after the runtime was installed](images/runtime-ssh-runtime-ready.png)
 
