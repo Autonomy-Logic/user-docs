@@ -47,6 +47,8 @@ When a library is enabled for the project:
 
 When a library is disabled, none of the above happens: the library stays in the system pool but doesn't affect this project's surface.
 
+If the project enables a library that is not in the system pool, the tab shows it in a **Missing libraries** box above the list. From there you can remove it from the project. See [Removing a missing library from the project](installing-a-library#removing-a-missing-library-from-the-project).
+
 ## Authoring your own library
 
 Beyond installing external libraries, you can **author your own**. Create a project of type **Library**, populate it with functions, function blocks, and data types, then build it into a `.stlib` archive that anyone can install through this Library Manager, or publish to the public catalogue.
