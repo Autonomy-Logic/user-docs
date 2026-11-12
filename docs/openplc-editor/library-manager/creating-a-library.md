@@ -1,6 +1,6 @@
 # Creating a Library
 
-Beyond using the libraries that ship with the editor, you can **author your own** and share it with other projects (and other people). A library is a special kind of project: instead of a runnable PLC program, it is a collection of reusable **functions**, **function blocks**, and **data types** that compiles into a single `.stlib` archive. Any other project can then install that archive and drop your blocks straight into its logic.
+Beyond using the libraries that ship with the editor, you can **author your own** and share it with other projects (and other people). A library is a special kind of project: instead of a runnable PLC program, it is a collection of reusable **functions**, **function blocks**, **data types**, and **global variables** that compiles into a single `.stlib` archive. Any other project can then install that archive and drop your blocks straight into its logic.
 
 This page walks through the full authoring flow end to end: creating the library project, filling in its manifest, adding a function and a function block, and compiling the `.stlib`. The example library, **Demo Utils Library**, contains two reusable blocks: an `AnalogScale` function and a `MovingAverage` function block.
 
@@ -23,7 +23,7 @@ Click **Open in editor** on the project page. The library workspace looks like a
 
 ![Library workspace in the editor. The project tree shows Manifest, Functions, Function Blocks and Data Types nodes. The Manifest tab is open, showing the library.json contents](images/library-editor-manifest.png)
 
-The project tree has four nodes and **no Resource section** (a library has no tasks or instances, because it is never executed directly):
+The project tree has five nodes and **no Resource section** (a library has no tasks or instances, because it is never executed directly):
 
 | Node | What it holds |
 |------|---------------|
@@ -31,6 +31,7 @@ The project tree has four nodes and **no Resource section** (a library has no ta
 | **Functions** | Stateless functions the library exposes. |
 | **Function Blocks** | Stateful function blocks the library exposes. |
 | **Data Types** | Custom structures, enumerations, and arrays the blocks use. |
+| **Global Variables** | Global Variable Lists the library shares with its blocks and with the projects that use it. |
 
 ## 3. Fill in the manifest
 
@@ -60,7 +61,7 @@ Edit the values to suit your library, then save the whole project with **File â†
 
 ## 4. Add functions and function blocks
 
-Click the **+** button at the top of the project tree. The menu offers **Function**, **Function Block**, and **Data Type**. There is no Program option, because a library does not run.
+Click the **+** button at the top of the project tree. The menu offers **Function**, **Function Block**, **Data Type**, and **Global Variable List**. There is no Program option, because a library does not run.
 
 Choosing **Function** or **Function Block** opens a small form: give the POU a name (CamelCase, PascalCase, or snake_case) and pick a language. Functions can be written in Ladder, Structured Text, Instruction List, or Function Block Diagram. Function blocks add **Python** and **C/C++** to that list.
 
@@ -122,6 +123,23 @@ AVG := SUM / INT_TO_REAL(COUNT);
 
 The `SUM` and `COUNT` locals are what make this a function block rather than a function: they survive between calls, so the average builds up over time.
 
+### Sharing global variables
+
+A library can also ship global variables. Create a **Global Variable List** from the **+** menu, give it a name, and add its members. The list appears under **Global Variables** in the project tree. See [Global Variable Lists](../working-with-variables/global-variable-lists) for the list editor itself.
+
+![A library project with the Motors list open under Global Variables. The list has three members: Running and Fault of type BOOL, and SpeedSetpoint of type INT with initial value 1500](images/library-global-variable-list.png)
+
+The library's own blocks reach a member with the qualified name, with nothing to declare:
+
+```iecst
+Run := (Start OR Run) AND NOT Stop AND NOT Motors.Fault;
+Motors.Running := Run;
+```
+
+When you build the library, its global variables are compiled into the `.stlib` archive together with the blocks. A project that enables the library can then read them with the same qualified name (`Motors.SpeedSetpoint`). See [Using the library's global variables](installing-a-library#using-the-librarys-global-variables).
+
+> **Tip:** The library's global variables are not listed in the **Library** section of the side panel. Type the qualified name where you need it.
+
 Save the project (Ctrl/Cmd + Shift + S) whenever you finish editing.
 
 ## 5. Compile the library
@@ -151,6 +169,21 @@ When the build finishes, the editor confirms success and offers to download the 
 ![The editor showing a "Library built successfully" dialog offering to download demo-utils-library.stlib, with the build log visible in the Console below](images/library-build-complete.png)
 
 The compiled archive is also saved inside the project under `build/demo-utils-library.stlib`, so it travels with the project and is the exact file that gets published.
+
+A library whose blocks use its global variables builds the same way. The Console ends with the same success line:
+
+![The DOL_Starter function block open in the motor-control library. Its body reads Motors.Fault and writes Motors.Running, and the Console below ends with "Library built successfully: build/motor-control.stlib"](images/library-build-with-globals.png)
+
+### When the build is refused
+
+Before it saves the archive, the editor checks that everything the archive would offer to other projects is declared in your library project: each function, function block, and global variable. If the archive would offer something the project does not declare, the build stops, no `.stlib` is saved, and the Console shows one line per item:
+
+```text
+Library build refused: the built library would export the function block "EVIL", which the library project does not declare.
+Library build refused: the built library would export the global "PAD", which the library project does not declare.
+```
+
+This happens when text that is not a plain value ends up where the editor expects one, for example program code typed into the **Initial Value** of a global variable. Look through your library's declarations (the initial values in particular) for the name the message gives, remove the text that does not belong there, and build again.
 
 ## What's next
 
