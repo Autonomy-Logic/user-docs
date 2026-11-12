@@ -44,6 +44,22 @@ With the library enabled, its functions and function blocks are:
 - available in the variables editor's type picker, and
 - drag-and-droppable into Ladder and Function Block Diagram bodies.
 
+### Using the library's global variables
+
+If the library ships [global variables](creating-a-library#sharing-global-variables), your project can read them as soon as the library is enabled. Write the list name, a dot, and the member name, exactly as inside the library:
+
+```iecst
+IF Motors.Fault THEN
+    speed := 0;
+ELSE
+    speed := Motors.SpeedSetpoint;
+END_IF;
+```
+
+You do not declare these variables in your project. They are not listed in the side panel, so type the qualified name where you use it.
+
+> **Warning:** Libraries built with earlier versions of the editor did not include their global variables. If you recreated a library's global variables by hand in your project to work around that, delete those copies once the library has been rebuilt and you have installed the new `.stlib`. If you keep them, the program build fails with a redefinition error on the variable's name.
+
 ## The "Missing libraries" prompt
 
 If you open a project that **enables** a library which is **not installed** on your system, for example a project a colleague shared, the editor warns you up front:
