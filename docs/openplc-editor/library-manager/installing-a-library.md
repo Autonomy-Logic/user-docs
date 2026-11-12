@@ -52,6 +52,25 @@ If you open a project that **enables** a library which is **not installed** on y
 
 The project still opens, but compilation will fail until the library is available. Click **Open Library Manager** to install it (from the catalogue or a file), or **Dismiss** to deal with it later.
 
+### Removing a missing library from the project
+
+If the project no longer needs the library (for example you uninstalled it on purpose), you can remove it from the project instead of installing it.
+
+1. Open the Library Manager (click **Open Library Manager** in the dialog, or **+ Manage libraries…** at the bottom of the side panel) and switch to the **Project Libraries** tab.
+2. The **Missing libraries** box lists every library the project enables but your editor does not have, with its version. Click the **−** button next to the library you want to remove.
+
+   ![The Project Libraries tab with the Missing libraries box listing demo-utils-library v0.1.0 and motion-helpers v1.2.0, each with a remove button on the right](images/missing-libraries-callout.png)
+
+3. The library leaves the list right away. When you remove the last one, the box disappears.
+
+   ![The Project Libraries tab after both missing libraries were removed. Only the bundled libraries are listed and the Missing libraries box is gone](images/missing-libraries-removed.png)
+
+4. Save the project.
+
+The project no longer requires the library, so it builds without it, and the **Missing libraries** dialog does not come back the next time you open the project.
+
+> **Warning:** If your program still uses blocks from the removed library, the build reports them as errors. Replace those blocks, or install the library and add it back to the project.
+
 ## What's next
 
 - **[Library Manager](overview)**: how system and project libraries fit together.
