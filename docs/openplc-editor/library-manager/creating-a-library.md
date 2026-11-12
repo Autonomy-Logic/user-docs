@@ -129,7 +129,7 @@ A library can also ship global variables. Create a **Global Variable List** from
 
 ![A library project with the Motors list open under Global Variables. The list has three members: Running and Fault of type BOOL, and SpeedSetpoint of type INT with initial value 1500](images/library-global-variable-list.png)
 
-The library's own blocks reach a member with the qualified name, with nothing to declare:
+The library's own blocks reach a member with the qualified name, with nothing to declare for the list. The block's own variables are still declared in its variable table as usual. In this example, the **DOL_Starter** function block has two BOOL inputs, **Start** and **Stop**, and one BOOL output, **Run**:
 
 ```iecst
 Run := (Start OR Run) AND NOT Stop AND NOT Motors.Fault;
@@ -172,7 +172,7 @@ The compiled archive is also saved inside the project under `build/demo-utils-li
 
 A library whose blocks use its global variables builds the same way. The Console ends with the same success line:
 
-![The DOL_Starter function block open in the motor-control library. Its body reads Motors.Fault and writes Motors.Running, and the Console below ends with "Library built successfully: build/motor-control.stlib"](images/library-build-with-globals.png)
+![The DOL_Starter function block open in the motor-control library. Its variable table declares Start and Stop as BOOL inputs and Run as a BOOL output, its body reads Motors.Fault and writes Motors.Running, and the Console below ends with "Library built successfully: build/motor-control.stlib"](images/library-build-with-globals.png)
 
 ### When the build is refused
 
