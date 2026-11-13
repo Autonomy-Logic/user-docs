@@ -16,8 +16,8 @@ Each compilation runs the same sequence:
 2. **Sync variable aliases**: for each variable bound to a producer (Modbus master point, EtherCAT channel, etc.), resolve the current address via the alias registry.
 3. **STruC++ compile**: translate every POU body to C++ source. (Earlier builds called out to MatIEC's `iec2c`; the current pipeline uses STruC++ as a drop-in replacement.)
 4. **Generate `defines.h`**: pin map, Modbus address map, MD5 of the program, runtime-side hooks.
-5. **Compile to binary**: `simulator` (in-browser `avr8js`) for the Simulator target, `openplc-compiler` for runtime (vPLC) targets, `arduino-cli` for Arduino-class targets (desktop only).
-6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the runtime's webserver, or load into the in-browser emulator for the Simulator.
+5. **Compile to binary**: inside the editor for the Simulator target (nothing is sent to a server), `openplc-compiler` for runtime (vPLC) targets, `arduino-cli` for Arduino-class targets (desktop only).
+6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the runtime's webserver, or start the program in the Simulator.
 
 The console shows each step as it runs, with timestamps. A successful run ends with `Compilation completed successfully`.
 
@@ -35,7 +35,7 @@ Typical compile errors and what they mean:
 
 ## Build without a vPLC connection
 
-The **Simulator** is selected by default, so **Build & Upload** is always available, even without a vPLC on an Edge Device. The "upload" step loads the firmware into the in-browser emulator.
+The **Simulator** is selected by default, so **Build & Upload** is always available, even without a vPLC on an Edge Device. The "upload" step starts the program in the Simulator.
 
 If you've selected a vPLC and then disconnected, `Build & Upload` and `Clean Upload` are disabled until you reconnect. Click **Edge Devices**, log back in, and they come back. (Or switch back to the Simulator and you don't need a connection at all.)
 
