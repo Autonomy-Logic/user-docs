@@ -16,7 +16,7 @@ This lives under **Remote Devices** in the project tree, not under **Servers** (
 
 The new entry appears under **Remote Devices** in the tree. Click it to open the configuration editor.
 
-> Modbus remote devices are gated to Runtime v4 and the Simulator. Other targets won't offer Modbus in the protocol picker.
+> Modbus remote devices are gated to Runtime v4 and the Simulator. Other targets won't offer Modbus in the protocol picker. The Simulator keeps the configuration but does not run it: test a Modbus master on a vPLC.
 
 ## The editor at a glance
 
@@ -153,7 +153,7 @@ The console reports each group's first failure and recovery. While running, the 
 
 ## Troubleshooting
 
-**No Remote Device option in the popover.** The active target doesn't support Modbus master (capability gated on the runtime image). Use Runtime v4 or the Simulator.
+**No Remote Device option in the popover.** The active target doesn't support Modbus master (capability gated on the runtime image). Use Runtime v4 (the Simulator keeps the configuration but does not run it).
 
 **TCP timeouts.** Host or port unreachable. From a shell on the Edge Device: `telnet <ip> 502` should connect. Check firewalls, NAT, and that you're using the right port.
 

@@ -2,7 +2,7 @@
 
 Set up your vPLC as a Modbus TCP slave, drive `%QX0.0` from a small ST program, and read it back from an external Modbus client. This is the lightest-weight way to integrate a vPLC with SCADA, an HMI, or any monitoring system that speaks Modbus.
 
-**Surfaces exercised:** Modbus TCP server configuration, the buffer mapping accordion, the address mapping rule, the Servers branch in the project tree, deploying to either the Simulator or a vPLC.
+**Surfaces exercised:** Modbus TCP server configuration, the buffer mapping accordion, the address mapping rule, the Servers branch in the project tree, deploying to a vPLC.
 
 **Expected time:** about 10 minutes.
 
@@ -67,12 +67,7 @@ Open the **Address Mapping Reference** accordion to confirm: it should show `Mod
 
 ## Step 4: Build and run
 
-If you're running on the **Simulator**:
-
-1. Click **Start Simulator**. Watch the console for `Simulator started`.
-2. The Modbus server binds to `127.0.0.1:502` inside the browser's network bridge.
-
-If you're running on a **vPLC** (hosted by an Edge Device):
+This example needs a **vPLC** (hosted by an Edge Device): the Simulator does not run communication servers (see **[Running with the Simulator](../building-deploying/simulator)**).
 
 1. Open the Edge Devices screen, expand your Edge Device, pick a vPLC, click **Connect**, log in.
 2. Click **Build options** → **Build & Upload**.
@@ -84,8 +79,8 @@ If you're running on a **vPLC** (hosted by an Edge Device):
 Install [`mbpoll`](https://github.com/epsilonrt/mbpoll) (`brew install mbpoll` on macOS, `apt install mbpoll` on Debian/Ubuntu) and run:
 
 ```bash
-# Replace 127.0.0.1 with the vPLC's IP if you're not on the Simulator
-mbpoll -t 0 -r 0 -c 1 127.0.0.1
+# Replace 192.168.1.50 with your vPLC's IP
+mbpoll -t 0 -r 0 -c 1 192.168.1.50
 ```
 
 `-t 0` selects coil function codes (FC 1 read, FC 5 write). `-r 0` is the coil reference (0-based). `-c 1` asks for one coil. You should see:
@@ -106,7 +101,7 @@ The value flips every two seconds, matching `out_bit`.
 You can also push values **into** `%QX0.0` over Modbus:
 
 ```bash
-mbpoll -t 0 -r 0 -1 127.0.0.1 1
+mbpoll -t 0 -r 0 -1 192.168.1.50 1
 ```
 
 `-1` means "single write, then exit". This sends FC 5 (Write Single Coil) with value `1` to address 0. Watch the Debugger in the editor: `out_bit` flips to `TRUE` for the next two seconds, then the ST program flips it back.

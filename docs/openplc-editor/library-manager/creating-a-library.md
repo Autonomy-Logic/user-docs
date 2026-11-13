@@ -148,18 +148,12 @@ When the blocks are ready, compile the library into its `.stlib` archive. Click 
 
 | Action | What it does |
 |--------|--------------|
-| **Build Library** | Verifies the library and compiles it into a `.stlib` archive. |
-| **Clean Build** | The same, but discards the verification cache and re-verifies from scratch. |
+| **Build Library** | Compiles the library into a `.stlib` archive. |
+| **Clean Build** | The same, but discards earlier build output first. |
 
-Choose **Build Library**. The editor first **verifies** the library by compiling it against the simulator, then packages the archive. The Console reports each step:
+Choose **Build Library**. The editor compiles the library and packages the archive. The Console reports each step:
 
 ```text
-[verify] Installing Arduino core...
-[verify] Installing Arduino libraries...
-[verify] Composing firmware bundle...
-[verify] Compiling Arduino firmware...
-[verify] Simulator firmware ready
-Verification passed.
 Compiling library archive...
 Library built successfully: build/demo-utils-library.stlib
 ```

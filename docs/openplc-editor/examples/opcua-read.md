@@ -56,7 +56,7 @@ The endpoint URL clients will use is:
 opc.tcp://<vPLC IP>:4840/openplc/opcua
 ```
 
-For the Simulator, that's `127.0.0.1:4840`. (The Simulator's network bridge accepts incoming OPC-UA connections from your host machine on this port.)
+This example needs a vPLC: the Simulator does not run the OPC-UA server (see **[Running with the Simulator](../building-deploying/simulator)**).
 
 ## Step 4: Security Profiles
 
@@ -86,11 +86,11 @@ Save.
 
 ## Step 6: Run and connect
 
-Click **Start Simulator** (or Build & Upload + Play on a vPLC). The OPC-UA server boots inside the runtime and starts listening.
+Click **Build options** → **Build & Upload**, then **Play**. The OPC-UA server boots inside the runtime and starts listening.
 
 Open **UaExpert** (download from Unified Automation):
 
-1. **Server → Add → Custom Discovery**. Paste the endpoint URL: `opc.tcp://127.0.0.1:4840/openplc/opcua`.
+1. **Server → Add → Custom Discovery**. Paste the endpoint URL: `opc.tcp://<vPLC IP>:4840/openplc/opcua`.
 2. Pick the endpoint that appears (it'll match the policy you configured: `None`/`None`/`Anonymous`).
 3. Click **OK**, then double-click the new server entry to connect.
 

@@ -157,7 +157,7 @@ Builds the project for the OpenPLC Simulator and runs it, Python function blocks
 openplc-cli simulate ./my-project
 ```
 
-The run's Console is printed until you press **Ctrl+C**, which stops the PLC and every Python block and exits with `0`:
+The run's Console is printed until you press **Ctrl+C**, which stops the PLC and every Python block and exits with `0`. An abbreviated example:
 
 ```
 [PyStats] PyStats started, numpy 2.3.2
@@ -170,7 +170,8 @@ Simulation of "python-blocks" stopped after 19.1 s.
 - At a terminal, a block's normal output goes to stdout and its errors to stderr. In JSON mode, both go to stderr, and stdout carries the result when the run ends.
 - A block that raises keeps its last outputs and the run goes on, as in the editor.
 - The compiler and Python load the first time a command needs them, so other commands start as fast as before, and a project without Python blocks never loads Python. If one of them cannot load, the command prints the reason and exits with `4` (the compiler) or `7` (Python).
-- **Ctrl+C** before the run has started (while it builds) exits with `130`.
+- **Ctrl+C** before the run has started (while it builds or prepares the Python blocks) exits with `130`.
+- A run that stops on its own, because the program crashed, exits with `7` and the reason.
 
 There is no debugger on a `simulate` run. To watch and force variables, use **Start Simulator** in the editor.
 

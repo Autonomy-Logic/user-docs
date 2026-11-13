@@ -85,7 +85,7 @@ The simulator hot-swaps cleanly:
 
 1. Make a change to your POU.
 2. Click **Stop Simulator**.
-3. Click **Start Simulator** again. The editor re-compiles and re-loads the new firmware.
+3. Click **Start Simulator** again. The editor re-compiles what changed and starts the new program.
 
 You don't need to close anything in between. The Debugger panel keeps its chart settings.
 
@@ -121,7 +121,7 @@ Python function blocks run in the Simulator the way they run on a Runtime v4 vPL
 
 When you press **Start Simulator**, the editor prepares one interpreter per Python block while the program starts. The PLC starts once they are ready, so every block runs from the first scan.
 
-![Simulator running a program with two Python blocks: live values in the ST body, and the Console showing the PyStats block's output every two seconds next to the PyFail block's traceback](../images/simulator-python-console.png)
+![Simulator running a program with two Python blocks: live values in the ST body, and the Console showing the PyStats block's output every few seconds next to the PyFail block's traceback](../images/simulator-python-console.png)
 
 **When a block fails.** If a block raises an exception, or fails to import a module, its traceback goes to the Console. The PLC keeps scanning, the block's outputs keep their last values, and the other blocks carry on. The Console then reports `Python block exited with code 1; its outputs keep their last values.`
 
@@ -150,7 +150,7 @@ C/C++ function blocks compile against the Arduino API without hardware: `String`
 
 ## Time in the Simulator
 
-Simulated time advances by the task interval on every scan. On a `T#20ms` task, a `TON` with `PT := T#1s` fires after exactly 50 scans.
+Simulated time advances by the PLC's scan period on every scan (with a single task, its interval). On a `T#20ms` task, a `TON` with `PT := T#1s` fires after exactly 50 scans.
 
 The Simulator follows the clock on the wall whenever it can and never runs faster than it. It can fall behind, for example while the browser tab is hidden. It does not catch up by running scans faster afterwards. Real-time guarantees are not part of the Simulator: for timing-sensitive tests, use a vPLC.
 
@@ -169,7 +169,7 @@ When you press **Start Simulator**, the editor:
 
 Stopping halts the program and every Python block. Starting again re-runs the build, reusing what did not change.
 
-The compiler and Python are part of the editor. They load while the editor's loading screen is up, so the Simulator is ready the moment the editor is. On the web, the first visit downloads them once; later visits load them from the browser's cache until the next editor version.
+The compiler and Python are part of the editor. They load while the editor's loading screen is up, so the Simulator is ready the moment the editor is. On the web, the first visit downloads them once; later visits load them from the browser's cache.
 
 ---
 
