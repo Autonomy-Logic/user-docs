@@ -12,7 +12,7 @@ The RTC block is a settable clock. It starts from the system date and time, and 
 
 | Name | Type | Description |
 |------|------|-------------|
-| `SET` | `BOOL` | Set. While TRUE, the clock is held at `PDT` |
+| `SET` | `BOOL` | Set. While TRUE, the clock is held at `PDT`. Pulse it for one scan to set the clock |
 | `PDT` | `DT` | Preset Date and Time. The value the clock is set to |
 
 ### Outputs
@@ -24,27 +24,29 @@ The RTC block is a settable clock. It starts from the system date and time, and 
 
 ### Behavior
 
-- On the first scan, `CDT` starts from the system date and time.
+- On the first scan with `SET` FALSE, `CDT` starts from the system date and time.
 - While `SET` is TRUE, `CDT` equals `PDT` and `Q` is TRUE.
 - When `SET` goes FALSE, `Q` goes FALSE and `CDT` keeps counting from the last value set.
 
 > **Tip:** On a device without a system date, the clock starts from 1970-01-01 plus the time since the PLC started. Pulse `SET` with the right date and time in `PDT` to correct it.
 
-> **Warning:** In editor versions 4.3.4 and earlier, the first input was named `IN` and the clock only ran while it was TRUE. A project that still wires `IN` on an RTC block no longer compiles. Rename the input to `SET`.
+> **Warning:** In editor versions 4.3.4 and earlier, the first input was named `IN`. While `IN` was FALSE, `CDT` showed the time since the PLC started (counted from 1970-01-01). On the rising edge of `IN`, the clock loaded `PDT` and counted on from it, and `Q` was TRUE while `IN` was TRUE. A project that still wires `IN` on an RTC block no longer compiles. Renaming the input to `SET` is not enough: holding `SET` TRUE keeps `CDT` at `PDT`. Drive `SET` with a one-scan pulse instead (for example the output of an `R_TRIG` block), as in the example below. `Q` is now TRUE only while `SET` is TRUE.
 
 ### Structured Text Example
 
 ```iecst
 PROGRAM TimeStamper
   VAR
-    SetClock    : BOOL := FALSE;
+    SetRequest  : BOOL := FALSE;
     StartTime   : DT := DT#2025-01-01-00:00:00;
     ClockSet    : BOOL;
     CurrentTime : DT;
+    SetPulse    : R_TRIG;
     Clock       : RTC;
   END_VAR
 
-  Clock(SET := SetClock, PDT := StartTime);
+  SetPulse(CLK := SetRequest);
+  Clock(SET := SetPulse.Q, PDT := StartTime);
   ClockSet := Clock.Q;
   CurrentTime := Clock.CDT;
 END_PROGRAM
