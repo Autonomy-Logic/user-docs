@@ -121,6 +121,8 @@ Python function blocks run in the Simulator the way they run on a Runtime v4 vPL
 
 When you press **Start Simulator**, the editor prepares one interpreter per Python block while the program starts. The PLC starts once they are ready, so every block runs from the first scan.
 
+**How many blocks run.** Each Python block instance takes about 100 MB of memory, so the Simulator runs at most as many as fit in half of your computer's memory (about 60 on a 16 GB computer, about 30 in a browser). Blocks beyond that limit do not start and keep their initial outputs; the Console says so once, and the PLC and the other blocks run normally.
+
 ![Simulator running a program with two Python blocks: live values in the ST body, and the Console showing the PyStats block's output every few seconds next to the PyFail block's traceback](../images/simulator-python-console.png)
 
 **When a block fails.** If a block raises an exception, or fails to import a module, its traceback goes to the Console. The PLC keeps scanning, the block's outputs keep their last values, and the other blocks carry on. The Console then reports `Python block exited with code 1; its outputs keep their last values.`
@@ -131,7 +133,7 @@ When you press **Start Simulator**, the editor prepares one interpreter per Pyth
 
 > **Warning:** Import numpy at the top of the block's code, not for the first time inside a thread. A block whose first `import numpy` runs inside a thread it started stops responding: it never updates its outputs again. Importing numpy at the top of the block first, as any ordinary Python module does, avoids this.
 
-> **Warning:** On Safari, numpy cannot be loaded. A block that imports numpy stops with an error on the Console, while the PLC and the blocks that don't use numpy run normally. To test a numpy block, use Chrome, Edge or Firefox, or the desktop editor.
+> **Warning:** On Safari, numpy cannot be loaded. A block that imports numpy stops with an error on the Console, while the PLC and the blocks that don't use numpy run normally. To test a numpy block, use Chrome or the desktop editor.
 
 ---
 
