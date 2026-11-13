@@ -12,7 +12,7 @@ In the project tree, expand **Device** and click **Edge Devices**. The Edge Devi
 
 ![Edge Devices screen with OpenPLC Simulator selected by default at the top, followed by the user's registered Edge Devices as expandable cards](images/edge-devices-screen.png)
 
-**OpenPLC Simulator** sits at the top with a **Selected** badge. It's a browser-side AVR emulator. Anything you build with it as the target runs in the browser sandbox, no hardware required. See **[Running with the Simulator](building-deploying/simulator)**.
+**OpenPLC Simulator** sits at the top with a **Selected** badge. It runs your program inside the editor. Anything you build with it as the target runs there, no hardware required. See **[Running with the Simulator](building-deploying/simulator)**.
 
 Below the Simulator, each card represents one Edge Device: its name, its online status, and a chevron to expand the list of vPLCs hosted on it.
 

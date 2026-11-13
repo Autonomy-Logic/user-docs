@@ -8,6 +8,7 @@ Every command triggers the same operation the corresponding editor control trigg
 |---|---|
 | **Build** | `openplc-cli compile <project>` |
 | **Build & Upload** | `openplc-cli upload <project>` |
+| **Start Simulator** | `openplc-cli simulate <project>` |
 | Device search, serial-port list | `openplc-cli devices` |
 | **Debug** | `openplc-cli debug open …` |
 | **Start** / **Stop** | `openplc-cli debug start` / `stop` |
@@ -148,6 +149,32 @@ openplc-cli upload ./my-project --port /dev/ttyACM0
 
 Targets that compile on the device itself refuse to build while the PLC is **RUNNING**, exactly as the editor warns: building on a running device can stall the build or make the program miss its scan deadlines. `--yes` (or `-y`) approves stopping it first, the way `apt install -y` does. Nothing stops a running PLC without being asked.
 
+### `simulate`
+
+Builds the project for the OpenPLC Simulator and runs it, Python function blocks included, the way **Start Simulator** does in the editor. The project is built for the Simulator whatever board it was last set to.
+
+```sh
+openplc-cli simulate ./my-project
+```
+
+The run's Console is printed until you press **Ctrl+C**, which stops the PLC and every Python block and exits with `0`. An abbreviated example:
+
+```
+[PyStats] PyStats started, numpy 2.3.2
+[PyStats] count=20 beats=39 mean=52.1
+[PyFail] RuntimeError: planned failure after 30 loops
+[PyFail] Python block exited with code 1; its outputs keep their last values.
+Simulation of "python-blocks" stopped after 19.1 s.
+```
+
+- At a terminal, a block's normal output goes to stdout and its errors to stderr. In JSON mode, both go to stderr, and stdout carries the result when the run ends.
+- A block that raises keeps its last outputs and the run goes on, as in the editor.
+- The compiler and Python load the first time a command needs them, so other commands start as fast as before, and a project without Python blocks never loads Python. If one of them cannot load, the command prints the reason and exits with `4` (the compiler) or `7` (Python).
+- **Ctrl+C** before the run has started (while it builds or prepares the Python blocks) exits with `130`.
+- A run that stops on its own, because the program crashed, exits with `7` and the reason.
+
+There is no debugger on a `simulate` run. To watch and force variables, use **Start Simulator** in the editor.
+
 ## Output, and how to read it
 
 The CLI decides its format by where output is going. Human-readable text at a terminal; JSON when it is piped or redirected. `--json` and `--no-json` override the choice.
@@ -179,6 +206,7 @@ Gate your pipeline on these rather than on log text.
 | `6` | Authentication: credentials refused |
 | `7` | Target error: the device reported a failure |
 | `8` | Timeout |
+| `130` | Interrupted: Ctrl+C before the command finished |
 | `70` | Internal error |
 
 ## Credentials

@@ -39,7 +39,7 @@ The web editor deploys to the built-in Simulator or to runtime instances via Edg
 
 For these capabilities, use the desktop editor.
 
-> **Note:** The web editor does include a [built-in Simulator](../building-deploying/simulator) that emulates an AVR microcontroller directly in the browser. This lets you run and debug programs without any hardware or Edge Device setup.
+> **Note:** The web editor does include a [built-in Simulator](../building-deploying/simulator) that runs your program directly in the browser. This lets you run and debug programs without any hardware or Edge Device setup.
 
 ## Desktop Editor: Full Hardware Configuration
 
