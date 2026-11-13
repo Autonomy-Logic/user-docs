@@ -6,42 +6,46 @@ Beyond timers, counters, bistables, and edge detectors, the IEC 61131-3 standard
 
 ## RTC: Real-Time Clock
 
-The RTC block gives you access to the current date and time. When enabled, it outputs the current date-time value, offset by a user-supplied starting reference. This is useful for timestamping events, scheduling operations, or implementing time-of-day logic.
+The RTC block is a settable clock. It starts from the system date and time, and you can set it to any date and time you choose. This is useful for timestamping events, scheduling operations, or implementing time-of-day logic.
 
 ### Inputs
 
 | Name | Type | Description |
 |------|------|-------------|
-| `IN` | `BOOL` | Enable. Starts the clock when TRUE |
-| `PDT` | `DT` | Preset Date and Time. Reference starting point |
+| `SET` | `BOOL` | Set. While TRUE, the clock is held at `PDT` |
+| `PDT` | `DT` | Preset Date and Time. The value the clock is set to |
 
 ### Outputs
 
 | Name | Type | Description |
 |------|------|-------------|
-| `Q` | `BOOL` | TRUE while the clock is running |
+| `Q` | `BOOL` | TRUE while `SET` is TRUE |
 | `CDT` | `DT` | Current Date and Time |
 
 ### Behavior
 
-- On the rising edge of `IN`, the block captures the difference between the system time and `PDT` as an offset.
-- While `IN` is TRUE, `CDT` outputs the system time adjusted by this offset, and `Q` is TRUE.
-- When `IN` goes FALSE, `Q` goes FALSE and `CDT` holds its last value.
+- On the first scan, `CDT` starts from the system date and time.
+- While `SET` is TRUE, `CDT` equals `PDT` and `Q` is TRUE.
+- When `SET` goes FALSE, `Q` goes FALSE and `CDT` keeps counting from the last value set.
+
+> **Tip:** On a device without a system date, the clock starts from 1970-01-01 plus the time since the PLC started. Pulse `SET` with the right date and time in `PDT` to correct it.
+
+> **Warning:** In editor versions 4.3.4 and earlier, the first input was named `IN` and the clock only ran while it was TRUE. A project that still wires `IN` on an RTC block no longer compiles. Rename the input to `SET`.
 
 ### Structured Text Example
 
 ```iecst
 PROGRAM TimeStamper
   VAR
-    EnableClock : BOOL := TRUE;
+    SetClock    : BOOL := FALSE;
     StartTime   : DT := DT#2025-01-01-00:00:00;
-    ClockActive : BOOL;
+    ClockSet    : BOOL;
     CurrentTime : DT;
     Clock       : RTC;
   END_VAR
 
-  Clock(IN := EnableClock, PDT := StartTime);
-  ClockActive := Clock.Q;
+  Clock(SET := SetClock, PDT := StartTime);
+  ClockSet := Clock.Q;
   CurrentTime := Clock.CDT;
 END_PROGRAM
 ```
