@@ -144,14 +144,9 @@ Save the project (Ctrl/Cmd + Shift + S) whenever you finish editing.
 
 ## 5. Compile the library
 
-When the blocks are ready, compile the library into its `.stlib` archive. Click the **Build** icon in the activity bar on the left. For a library the Build menu offers exactly two actions (there is no upload, because a library is not deployed to a runtime):
+When the blocks are ready, compile the library into its `.stlib` archive. Click the **Build Library** button in the activity bar on the left. It is a single button with no menu, and there is no upload, because a library is not deployed to a runtime.
 
-| Action | What it does |
-|--------|--------------|
-| **Build Library** | Compiles the library into a `.stlib` archive. |
-| **Clean Build** | The same, but discards earlier build output first. |
-
-Choose **Build Library**. The editor compiles the library and packages the archive. The Console reports each step:
+The editor saves the project first, then compiles the library and packages the archive. The Console reports each step:
 
 ```text
 Compiling library archive...

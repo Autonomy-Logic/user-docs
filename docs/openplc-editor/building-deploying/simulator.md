@@ -179,7 +179,7 @@ The compiler and Python are part of the editor. They load while the editor's loa
 
 **The build fails with a syntax error.** Click the error in the console to jump to the source line. The Simulator never tries to load a broken build.
 
-**The editor says it could not start.** The editor loads its compiler and Python while the loading screen is up, and it does not open if one of them fails to load. On the desktop, reinstall the editor. On the web, reload the page.
+**The editor says it could not start.** The editor loads its compiler while the loading screen is up, and it does not open if the compiler fails to load. On the desktop, reinstall the editor. On the web, reload the page. Python never stops the editor from opening: if Python cannot load, the editor opens and the Simulator still runs the program, but the Python blocks do not run and the Console shows why.
 
 **A Python block prints nothing.** Open the **Console** tab: the bottom panel switches to the **Debugger** when the Simulator starts. If the Console shows a traceback for that block, the block stopped; fix the code and start again.
 

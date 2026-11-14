@@ -8,6 +8,8 @@ The **Build options** icon in the activity bar (the download icon, between Zoom 
 | **Build & Upload** | Compile, then HTTP-upload the result to the connected vPLC. Doesn't start the PLC; you press **Play** for that. Disabled if you're not connected. |
 | **Clean Upload** | Force a full rebuild (discards build cache) and then upload. Use when something seems off and you suspect the cache. Disabled if you're not connected. |
 
+These actions apply to a vPLC. When the **Simulator** is selected, the **Build options** button is disabled and its tooltip reads **Use Start to build and run**: click **Start Simulator** instead, which builds the project and runs it on the Simulator.
+
 ## The build pipeline
 
 Each compilation runs the same sequence:
@@ -17,7 +19,7 @@ Each compilation runs the same sequence:
 3. **STruC++ compile**: translate every POU body to C++ source. (Earlier builds called out to MatIEC's `iec2c`; the current pipeline uses STruC++ as a drop-in replacement.)
 4. **Generate `defines.h`**: pin map, Modbus address map, MD5 of the program, runtime-side hooks.
 5. **Compile to binary**: inside the editor for the Simulator target (nothing is sent to a server), `openplc-compiler` for runtime (vPLC) targets, `arduino-cli` for Arduino-class targets (desktop only).
-6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the runtime's webserver, or start the program in the Simulator.
+6. **Upload** (if you picked **Build & Upload** or **Clean Upload**). HTTP POST to the connected vPLC's webserver. With the Simulator, **Start Simulator** runs the program instead of uploading it.
 
 The console shows each step as it runs, with timestamps. A successful run ends with `Compilation completed successfully`.
 
@@ -35,11 +37,11 @@ Typical compile errors and what they mean:
 
 ## Build without a vPLC connection
 
-The **Simulator** is selected by default, so **Build & Upload** is always available, even without a vPLC on an Edge Device. The "upload" step starts the program in the Simulator.
+The **Simulator** is selected by default, so you don't need a vPLC on an Edge Device to build. Click **Start Simulator**: it builds the project and runs it on the Simulator. The **Build options** button stays disabled while the Simulator is selected.
 
-If you've selected a vPLC and then disconnected, `Build & Upload` and `Clean Upload` are disabled until you reconnect. Click **Edge Devices**, log back in, and they come back. (Or switch back to the Simulator and you don't need a connection at all.)
+**Build & Upload** and **Clean Upload** apply to a connected vPLC. If you've selected a vPLC and then disconnected, they are disabled until you reconnect. Click **Edge Devices**, log back in, and they come back. (Or switch back to the Simulator and you don't need a connection at all.)
 
-You can also **Build only** any time. This validates your code and produces the artifacts without loading them anywhere.
+With a vPLC selected, you can also **Build only** any time. This validates your code and produces the artifacts without loading them anywhere.
 
 ## Build artifacts
 

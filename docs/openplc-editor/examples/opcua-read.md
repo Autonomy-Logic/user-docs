@@ -86,7 +86,9 @@ Save.
 
 ## Step 6: Run and connect
 
-Click **Build options** → **Build & Upload**, then **Play**. The OPC-UA server boots inside the runtime and starts listening.
+1. Open the Edge Devices screen, expand your Edge Device, pick a vPLC, click **Connect**, log in.
+2. Click **Build options** → **Build & Upload**.
+3. Click **Play** to start the program. The OPC-UA server boots inside the runtime and starts listening.
 
 Open **UaExpert** (download from Unified Automation):
 
