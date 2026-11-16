@@ -27,7 +27,6 @@ Modbus RTU enables serial communication between your microcontroller and industr
 | **Interface** | Serial, Serial1, Serial2, Serial3 | The hardware UART port to use for Modbus communication |
 | **Baud Rate** | 9600, 14400, 19200, 38400, 57600, 115200 | Communication speed; must match all devices on the bus |
 | **Slave ID** | 0–255 | The Modbus address of this device on the serial bus |
-| **RS-485 Enable Pin** | GPIO pin number (or empty) | The pin connected to the DE/RE pins of an RS-485 transceiver |
 
 ### Enabling Modbus RTU
 
@@ -39,11 +38,14 @@ Modbus RTU enables serial communication between your microcontroller and industr
 
 ### RS-485 Direction Control
 
-RS-485 is a half-duplex bus, meaning the transceiver must switch between transmit and receive modes. The RS-485 Enable Pin controls this switching:
+RS-485 is a half-duplex bus, meaning the transceiver must switch between transmit and receive modes. A pin wired to the transceiver controls this switching. You set it per UART, on the board's **Serial** page (**Device** > **Serial** in the project tree), in the **RS-485 EN Pin** field of the UART the transceiver is on:
 
-- Set this to the GPIO pin wired to the DE (Driver Enable) and RE (Receiver Enable) pins of your RS-485 transceiver module.
-- The firmware drives this pin HIGH during transmission and LOW during reception.
-- Leave this field empty if you're using RS-232 (full duplex) or if your RS-485 transceiver has automatic direction control.
+- Enter the GPIO pin wired to the DE (Driver Enable) and RE (Receiver Enable) pins of your RS-485 transceiver module, such as `2`, `A0` or `PA14`.
+- The firmware drives this pin HIGH during transmission and LOW during reception, for the Modbus server and for remote devices on that UART.
+- Leave the field empty if you're using RS-232 (full duplex) or if your RS-485 transceiver has automatic direction control.
+- On a controller with built-in RS-485, the board package fixes the pin and the Serial page shows no field for that UART.
+
+A project from an older editor has a single RS-485 pin. It moves to the UART of your Modbus RTU server. See [RS-485 on a microcontroller board](../communication/modbus/client#rs-485-on-a-microcontroller-board) for the details, wiring and the entry check.
 
 ### Interface Selection Guide
 
