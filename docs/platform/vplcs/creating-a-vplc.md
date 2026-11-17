@@ -39,6 +39,8 @@ The wizard requires **at least one virtual NIC**. A NIC is what gives the vPLC i
 
 A default NIC named `veth0` is added for you, configured for DHCP on the host's first interface with an auto-generated MAC. Click the NIC row to expand and edit it, click **+ Add Virtual NIC** to add more, or click the trash icon to remove one.
 
+> **Tip:** The host's first interface can be a port with no cable connected. DHCP does not work on such a port, so pick another port or switch the NIC to **Static IP** (see [Ports with no cable](#ports-with-no-cable)).
+
 Expanding the row reveals every NIC option:
 
 ![NIC row expanded: Interface Name veth0, Physical Port eth0 (192.168.5.1), Dedicated Interface checkbox, DHCP / Static IP radio, MAC Address Automatic / Manual radio](images/new-vplc-step2-nic-expanded.png)
@@ -46,12 +48,18 @@ Expanding the row reveals every NIC option:
 | Field | What it does |
 |---|---|
 | **Interface Name** | Logical name for the NIC inside the runtime. `veth0` is the default. |
-| **Physical Port** | Which host network interface to attach to (e.g. `eth0`, `enp3s0`, `wlan0`). The dropdown shows each interface with its current IP for easier identification. |
+| **Physical Port** | Which host network port to attach to (e.g. `eth0`, `enp3s0`, `wlan0`). The dropdown lists every physical network port of the host, including ports with no cable connected. A port with an IP shows it next to its name for easier identification; a port with no cable or no IP shows only its name. |
 | **Dedicated Interface** | Reserves the physical NIC for protocols that need raw Ethernet access (EtherCAT). The vPLC takes over the interface entirely. |
 | **Network Mode** | **DHCP (Automatic)** (default, auto-assigned from your router) or **Static IP**. Static reveals IP / subnet / gateway / DNS fields. |
 | **MAC Address** | **Automatic** (Docker generates one) or **Manual** (you type one in). Manual is useful when your DHCP server or asset tracker expects a fixed MAC. |
 
 See **[Network modes](network-modes)** for the deeper picture on DHCP vs Static, multiple NICs, and the MACVLAN model.
+
+### Ports with no cable
+
+A port with no cable connected (or with no IP of its own) can only carry a NIC in **Static IP** mode, with the IP address, subnet mask and gateway filled in. The vPLC is created and starts even though the port has no link. When you connect the cable later, the NIC comes up with the same IP and gateway, and you do not need to edit the vPLC.
+
+> **Warning:** A NIC in **DHCP (Automatic)** mode on a port with no cable is refused when you click **Create vPLC**.
 
 Click **Next**.
 
@@ -72,9 +80,10 @@ Click **Create vPLC** at the bottom right.
 
 The platform sends the creation command to the agent, which:
 
-1. Pulls the selected runtime image from the registry again, and falls back to the copy already downloaded on the Device if the pull fails.
-2. Creates the container with the MACVLAN configuration.
-3. Starts the container.
+1. Checks that every NIC can use its physical port (and that the dedicated port, if any, can be dedicated). When one cannot, nothing is created and an error message names the NIC and the port. See the refusal messages in **[Network modes: Troubleshooting](network-modes#troubleshooting)**.
+2. Pulls the selected runtime image from the registry again, and falls back to the copy already downloaded on the Device if the pull fails.
+3. Creates the container with the MACVLAN configuration.
+4. Starts the container.
 
 You should see the new vPLC card appear in the vPLCs tab within a few seconds, with status **Running** once the runtime is alive.
 
