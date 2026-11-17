@@ -30,10 +30,15 @@ You need:
 2. Check that the **IP Address** field holds your device's address, then click **Connect**.
 3. When the runtime does not answer but the device's SSH server does, the **Install OpenPLC Runtime** dialog opens. It names the device, and its **SSH port** field shows the port that answered.
 4. Click **What will be done on the device** to read the list of changes before you agree:
-   - If an OpenPLC Runtime is already installed but stopped, it is started.
-   - Otherwise the runtime is installed: a script is downloaded from runtime.getedge.me and run as administrator, Docker is installed when missing, the runtime images are downloaded, any older OpenPLC service is stopped and disabled, and the device then listens on TCP 8443, TCP 8445 and UDP 33333.
+   - If an OpenPLC Runtime is already installed but stopped, what is stopped is started. If the bootloader is running but the runtime container is missing, the bootloader is restarted, which recreates the container.
+   - Otherwise the OpenPLC Runtime is installed:
+     - A script is downloaded from runtime.getedge.me and run as administrator.
+     - Docker is installed when missing and enabled at boot.
+     - The OpenPLC Runtime images are downloaded.
+     - Any older OpenPLC service is stopped and disabled.
+     - The device then listens on TCP 8443, TCP 8445 and UDP 33333.
 5. Fill in **Device username** and **Device password** with an account of the device. Change **SSH port** only if the device's SSH server listens on another port.
-6. Click **Install**. If the runtime is already installed but stopped, the same button starts it instead. To leave without changing anything, click **Decline**.
+6. Click **Install**. If the runtime is already installed but stopped, the same button starts it instead. If the bootloader is running but the runtime container is missing, the same button restarts the bootloader as administrator, and the bootloader recreates the container. To leave without changing anything, click **Decline**.
 
 The editor logs in, inspects the device and then installs or starts the runtime. While it works, the dialog shows the current step, the latest line written by the installer and the elapsed time. Every installer line also goes to the editor **Console**.
 
@@ -130,7 +135,7 @@ The device could not download the runtime. Check that the device can reach runti
 The dialog shows the last lines written on the device, and the editor **Console** holds them too.
 
 **Runtime not started.**
-The runtime was installed or started but did not answer within 120 seconds. The dialog shows the last lines written on the device.
+The runtime was installed or started but did not answer within 120 seconds. The dialog shows the last lines written on the device. This can also happen after the bootloader was restarted to recreate a missing runtime container: when the runtime image is not on the device, the bootloader downloads it first, and that download can take longer than 120 seconds. Wait a few minutes, then click **Connect** again.
 
 **Result unknown.**
 The connection to the device was lost, or the installer ran past its time limit, so the editor cannot tell how the operation ended. Click **Connect** again to check the device.
