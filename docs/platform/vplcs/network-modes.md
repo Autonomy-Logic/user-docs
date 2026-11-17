@@ -55,6 +55,7 @@ The **Physical Port** dropdown lists every physical network port of the host, in
 - **Static IP** works when you fill in the IP address, subnet mask and gateway. The vPLC is created and starts right away.
 - **DHCP (Automatic)** is refused, since there is no network to get an address from yet.
 - When you connect the cable, the NIC comes up with the same IP and gateway. You do not need to edit or restart the vPLC.
+- Do not use the address the host itself takes on that port when the cable is connected (for example, on a Weidmüller UC20, port X5 takes `192.168.1.101`). Pick another free address of the same subnet. Two devices answering for one IP make the connection flap.
 
 > **Tip:** This is how you prepare a vPLC for a field port before the field network is wired, for example on a controller whose spare Ethernet port has a documented address.
 
