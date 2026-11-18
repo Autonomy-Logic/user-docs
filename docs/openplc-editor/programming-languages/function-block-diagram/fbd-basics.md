@@ -28,6 +28,8 @@ Blocks come from two sources:
 - **System library**: Standard IEC functions and function blocks (arithmetic, comparison, timers, counters, bistable, edge detectors, etc.)
 - **User library**: Custom function blocks and functions you've defined in your project
 
+When you delete a function block from the diagram, its local instance variable (for example `TON0`) is removed from the Variables Table too, as long as nothing else in the program uses it. The variable stays when another block shares the same instance, or when a variable node reads one of its outputs (for example `TON0.Q`). One **Ctrl+Z** brings back both the block and its variable.
+
 ### Connections
 
 Connections are lines (wires) drawn from an output pin of one block to an input pin of another. They carry data. A Boolean, integer, real number, time value, or any IEC data type.
