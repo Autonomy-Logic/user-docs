@@ -111,7 +111,15 @@ Deleting the whole file makes the editor trust every device again on its next lo
 The runtime is installed on the device but failed to start, and its bootloader is in recovery. The editor changes nothing on the device in this case.
 
 **Bootloader busy.**
-The runtime's bootloader on the device reports that it is busy. Try again later.
+The bootloader on the device reports a state in which it cannot take the request yet, for example while it is starting. The dialog shows that state and ends with "Try again later." Wait a moment, then click **Connect** again.
+
+If the message does not clear by itself (for example after the runtime container was removed from the device and the bootloader stays in the "starting" state), restart the bootloader container on the device. Open a terminal on the device and run:
+
+```bash
+sudo docker restart openplc-bootloader
+```
+
+Then click **Connect** again.
 
 **Login rejected.**
 The username or password is wrong. The dialog asks again within the same operation.
