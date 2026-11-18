@@ -121,6 +121,22 @@ sudo docker restart openplc-bootloader
 
 Then click **Connect** again.
 
+**Value refused.**
+A value you typed is outside the accepted limits, so the editor does not contact the device. The message names the value and its limits:
+
+- Device address (the **IP Address** field): an IP address, or a host name of at most 253 characters.
+- **SSH port**: a whole number from 1 to 65535.
+- **Device username**: 1 to 32 characters, with no control characters.
+- **Device password**: 1 to 1024 characters, with no control characters.
+
+The message appears in the **Install OpenPLC Runtime** dialog, or under **Try another SSH port** in the **No recognized device** dialog. Correct the value and try again. For the device address, correct the **IP Address** field in **Device** > **Configuration**, then click **Connect** again.
+
+**SSH not reachable.**
+The device's SSH server did not answer when the editor tried to log in, or the connection failed before the login finished. Nothing was changed on the device. Check that the device is on and reachable, and that its SSH server listens on the port in **SSH port**, then click **Connect** again.
+
+**Host key not saved.**
+On the first login to a device, the editor could not save the device's SSH host key in its file of saved host keys (see [Host keys](#host-keys)). The operation stopped before logging in, and nothing was done on the device. Check that the editor's user data folder can be written to (for example, that the disk is not full), then click **Connect** again.
+
 **Login rejected.**
 The username or password is wrong. The dialog asks again within the same operation.
 
