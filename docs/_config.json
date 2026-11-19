@@ -257,6 +257,10 @@
           "path": "connecting-to-runtimes"
         },
         {
+          "title": "Installing the Runtime over SSH",
+          "path": "installing-runtime-over-ssh"
+        },
+        {
           "title": "Workspace",
           "path": "workspace-overview",
           "items": [
