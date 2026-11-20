@@ -32,9 +32,9 @@ In Static mode you provide the IP, subnet mask, gateway, and DNS. The vPLC uses 
 
 | Field | Notes |
 |---|---|
-| **IP address** | The static IP. Must be in the subnet of the physical port the NIC is attached to, and must not collide with other devices. Reserve the IP on your DHCP server to be safe. |
-| **Subnet mask** | Usually `255.255.255.0` (`/24`). |
-| **Gateway** | Your network's default gateway. |
+| **IP address** | The static IP. Must be in the subnet of the network the physical port is connected to, and must not collide with other devices. Reserve the IP on your DHCP server to be safe. On a port with no cable, use an address of the network you will connect the port to (for example, the subnet your equipment manual documents for that port). |
+| **Subnet mask** | Usually `255.255.255.0` (`/24`). Required on a port with no cable. |
+| **Gateway** | Your network's default gateway. Required on a port with no cable. |
 | **DNS** | A DNS server reachable from the LAN. `8.8.8.8` works if you don't have a local one. |
 
 **Pros**
@@ -47,6 +47,17 @@ In Static mode you provide the IP, subnet mask, gateway, and DNS. The vPLC uses 
 - One more thing to keep in sync. If you change the LAN subnet, you'll need to update every static vPLC.
 
 **When to use**: production, anything that other devices need to reach by IP.
+
+## Ports with no cable
+
+The **Physical Port** dropdown lists every physical network port of the host, including ports with no cable connected and ports with no IP. On such a port:
+
+- **Static IP** works when you fill in the IP address, subnet mask and gateway. The vPLC is created and starts right away.
+- **DHCP (Automatic)** is refused, since there is no network to get an address from yet.
+- When you connect the cable, the NIC comes up with the same IP and gateway. You do not need to edit or restart the vPLC.
+- Do not use the address the host itself takes on that port when the cable is connected (for example, on a Weidmüller UC20, port X5 takes `192.168.1.101`). Pick another free address of the same subnet. Two devices answering for one IP make the connection flap.
+
+> **Tip:** This is how you prepare a vPLC for a field port before the field network is wired, for example on a controller whose spare Ethernet port has a documented address.
 
 ## MAC mode: Auto vs Manual
 
@@ -87,6 +98,21 @@ The 3-dot menu on a vPLC card has **Edit**, which reopens the New vPLC wizard pr
 - **vPLC starts but Internal IP shows `N/A`**: DHCP server not reachable from the chosen physical port, or no DHCP server on that subnet.
 - **Static IP collisions**: two devices answering for the same IP cause connectivity to flap. Use `ping -c 3 <ip>` from another host while the vPLC is **Stopped** to verify the IP is free.
 - **MAC duplicates**: if you set a manual MAC that collides with another device, the switch will get confused. Stick to locally administered MAC prefixes.
+
+### Creation refused
+
+When a NIC cannot use the port you picked, **Create vPLC** shows an error message and nothing is created. The message names the NIC and the port. What each message means:
+
+| Message contains | What it means | What to do |
+|---|---|---|
+| **accepts only a static vNIC with both a subnet and a gateway** | The port has no cable connected or no IP of its own. | Switch the NIC to **Static IP** and fill in the IP address, subnet mask and gateway, or pick a port that is connected. |
+| **is not a listed physical port** | The port is not a physical network port of the host anymore (for example, it was removed or renamed), or it is a virtual interface. | Reopen the wizard so the dropdown is refreshed, and pick a port from it. |
+| **is dedicated to a vPLC** | Another vPLC already has this port as its dedicated interface. | Pick another port. |
+| **cannot be a vNIC parent** | The port is part of a bridge or a bond, it connects the host to a built-in switch, or it is a WiFi interface with no IP. | Pick another port. For WiFi, connect the host to the WiFi network first. |
+| **subnet ... is already used by network ... on port ...** | Another vPLC already uses the same subnet on a different port. | Use a different subnet, or put the NIC on the port named in the message. |
+| **has an invalid subnet** or **has an invalid gateway** | The subnet mask or gateway of a static NIC is not a valid address. | Correct the value, for example `255.255.255.0` or `192.168.1.1`. |
+
+When you tick **Dedicated Interface**, the port can also be refused because it is part of a bridge or a bond, or because it connects the host to a built-in switch. The message says the port **cannot be dedicated to a vPLC**. Pick another port.
 
 ## Where to next
 
