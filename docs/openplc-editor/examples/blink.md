@@ -64,7 +64,7 @@ If `main.blink` doesn't appear in the list, you didn't tick the Debug column in 
 
 ## What you've shown
 
-- IEC bodies are wired top-to-bottom in source files and compile through STruC++ to AVR-targeted C++.
+- IEC bodies are wired top-to-bottom in source files and compile through STruC++ to C++.
 - A single variable can be both written (by the coil) and read (by the contact) within the same rung. The execution order is left-to-right per rung, top-to-bottom across rungs.
 - The Simulator's polling latency is well under a second: the live colouring keeps up with a 1 Hz blink with no noticeable lag.
 

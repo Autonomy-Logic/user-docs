@@ -28,7 +28,7 @@ A handful of features in the desktop OpenPLC Editor are **not part of the web ed
 
 If you need any of these, install the standalone OpenPLC Editor and use it alongside Autonomy Edge.
 
-**The browser-based Simulator is fully supported in the web editor.** It's the same `avr8js` AVR emulator the desktop editor uses, running in your browser tab. See **[Running with the Simulator](building-deploying/simulator)**.
+**The browser-based Simulator is fully supported in the web editor.** It's the same Simulator the desktop editor uses, running in your browser tab, Python and C/C++ function blocks included. See **[Running with the Simulator](building-deploying/simulator)**.
 
 ## How to read this section
 

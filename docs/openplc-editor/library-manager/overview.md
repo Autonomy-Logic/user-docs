@@ -53,7 +53,7 @@ If the project enables a library that is not in the system pool, the tab shows i
 
 Beyond installing external libraries, you can **author your own**. Create a project of type **Library**, populate it with functions, function blocks, and data types, then build it into a `.stlib` archive that anyone can install through this Library Manager, or publish to the public catalogue.
 
-Library projects have no Resource section (no tasks, no instances), and the Build menu offers only **Build Library** and **Clean Build**, never an upload.
+Library projects have no Resource section (no tasks, no instances), and the activity bar shows a single **Build Library** button, never an upload.
 
 See **[Creating a Library](creating-a-library)** for the authoring walkthrough and **[Publishing a Library](publishing-a-library)** to share it.
 

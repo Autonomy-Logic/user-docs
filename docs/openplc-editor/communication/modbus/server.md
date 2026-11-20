@@ -100,7 +100,7 @@ Worked example end-to-end: **[Modbus slave: expose digital outputs](../../exampl
 
 ## Troubleshooting
 
-**Modbus is not in the protocol dropdown.** Your target doesn't support a Modbus TCP server. The capability is exposed on Runtime v4 and the Simulator.
+**Modbus is not in the protocol dropdown.** Your target doesn't support a Modbus TCP server. The capability is exposed on Runtime v4 and the Simulator. The Simulator keeps the configuration but does not run the server: test it on a vPLC.
 
 **Connection refused from a client.** Verify the runtime is running (the **Play** button in the activity bar is the toggle). On Linux, ports below 1024 need elevated privileges, switch to `1502` if you're not running the runtime as root.
 

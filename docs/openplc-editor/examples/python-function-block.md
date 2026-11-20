@@ -1,8 +1,8 @@
 # Worked example: Python function block, data transform
 
-Write a Python function block that converts a raw ADC integer (0–1023) into a temperature reading in degrees Celsius, then call it from an ST program. This is the pattern for any non-trivial maths or string processing that's easier to write in Python than in IEC.
+Write a Python function block that converts a raw ADC integer (0 to 1023) into a temperature reading in degrees Celsius, then call it from an ST program. This is the pattern for maths or string processing that is easier to write in Python than in IEC.
 
-**Surfaces exercised:** Python POU authoring, the Python LSP, the variables marshalling boundary, calling a function block instance from ST, the Simulator.
+**Surfaces exercised:** Python POU authoring, the Python template, the exchange of inputs and outputs between the PLC and Python, calling a function block instance from ST, the Simulator.
 
 **Expected time:** about 10 minutes.
 
@@ -13,9 +13,9 @@ The IEC scalar function library is comprehensive but not deep. For things like:
 - Multi-step unit conversions with calibration constants,
 - Lookup tables with interpolation,
 - String parsing of an upstream sensor packet,
-- Anything you'd reach for `numpy`-style math for,
+- Anything you'd reach for numpy for,
 
-Python wins on readability. The editor compiles Python FBs to a small C extension that the runtime invokes once per scan.
+Python wins on readability. Each instance of a Python block runs in its own Python interpreter, next to the PLC. About every 100 ms, the PLC sends the block its inputs, the block runs once, and it sends its outputs back. This exchange does not follow the PLC scan cycle, so use Python for work that is not time-critical.
 
 ## The transform
 
@@ -25,13 +25,43 @@ A simple linear scaling, plus a calibration offset:
 celsius = raw_adc * scale + offset
 ```
 
-With `scale = 0.1` and `offset = -20.0`, a raw value of `0` reads as `−20°C` and a raw value of `1023` reads as `+82.3°C`. The sensor's data sheet would normally give you these constants.
+With `scale = 0.1` and `offset = -20.0`, a raw value of `0` reads as `-20°C` and a raw value of `1023` reads as `+82.3°C`. The sensor's data sheet would normally give you these constants.
 
 ## Step 1: Create the Python function block
 
 1. In the project tree, click **`+`** at the top.
-2. Pick **function-block**, name it `AdcToCelsius`, language **Python**.
-3. Click **Create**. The new FB opens in the Python editor.
+2. Pick **Function Block**, name it `AdcToCelsius`, language **Python**.
+3. Click **Create**. The new block opens in the Python editor, filled with this template:
+
+```python
+# ================================================================
+# DISCLAIMER: Python Function Block Execution
+#
+# This block runs asynchronously from the main PLC runtime.
+# ---------------------------------------------------------------
+# - All variables are shared with the runtime through shared memory.
+# - The block_init() function is called once when the block starts.
+# - The block_loop() function is called periodically (~100ms).
+# - IMPORTANT: This periodic call DOES NOT follow the PLC scan cycle.
+#   It is NOT guaranteed that block_loop() will execute once per scan.
+#
+# Use this block for non-time-critical tasks. For logic that must
+# match the PLC scan cycle, use standard IEC 61131-3 function blocks.
+# ================================================================
+
+from multiprocessing import shared_memory
+import struct
+import time
+import os
+
+def block_init():
+    print('Block was initialized')
+
+def block_loop():
+    print('Block has run the loop function')
+```
+
+Keep the four `import` lines and both functions: the block needs them to run. `block_init()` runs once when the block starts. `block_loop()` runs about every 100 ms.
 
 ## Step 2: Declare the variables
 
@@ -40,25 +70,32 @@ Switch to the variables editor at the top. Add three rows:
 | Name | Class | Type |
 |---|---|---|
 | `raw` | Input | INT |
-| `out_c` | Output | REAL |
 | `scale` | Input | REAL |
+| `out_c` | Output | REAL |
 
-(Python function blocks only support `Input` and `Output` classes, no internal `Local` or `InOut`.)
-
-Set the **Initial Value** of `scale` to `0.1`. The caller can override it, but the default makes the FB usable as-is.
+Each row becomes a Python variable with the same name. Before each `block_loop()` call, `raw` and `scale` hold the latest values from the PLC. After each call, the value of `out_c` goes back to the PLC.
 
 ## Step 3: Write the Python body
 
-In the body editor:
+Change only `block_loop()`, at the bottom of the template. Leave the comment header, the imports and `block_init()` as they are. The end of the block now reads:
 
 ```python
-def execute(self):
-    self.out_c = self.raw * self.scale + (-20.0)
+def block_init():
+    print('Block was initialized')
+
+def block_loop():
+    global out_c
+    out_c = raw * scale + (-20.0)
 ```
 
-That's it. Save.
+Save.
 
-The `self` object has one attribute per variable you declared. Reads come from inputs, writes go to outputs. The runtime calls `execute(self)` once per scan, marshalling values across the C↔Python boundary.
+Two things to notice:
+
+- `global out_c` is required. In Python, assigning to a module-level variable from inside a function needs `global`. Without it, `out_c` is a new local variable, and the PLC never sees the value.
+- Inputs need no `global`, because the code only reads them.
+
+The template's `print` in `block_loop()` is gone on purpose: it would print a line every 100 ms. The `print` in `block_init()` shows one line on the Console when the block starts.
 
 ## Step 4: Use it from a program
 
@@ -70,7 +107,7 @@ Open `main` (or create a new ST program). Add variables:
 | `raw_value` | Local | INT |
 | `temperature_c` | Local | REAL |
 
-`xform` is an **instance** of the function block you just authored, `AdcToCelsius` appears in the type picker under **User types** after you've created it.
+`xform` is an **instance** of the function block you just wrote. `AdcToCelsius` appears in the type picker under **User types** after you've created it.
 
 In the ST body:
 
@@ -83,50 +120,54 @@ xform(raw := raw_value, scale := 0.1);
 temperature_c := xform.out_c;
 ```
 
-The first call sets the inputs and runs `execute`. `xform.out_c` is then the latest output value.
+The call hands the inputs to the block. `xform.out_c` holds the latest output the block sent back. Because the exchange runs about every 100 ms and not once per scan, the first scans read `0.0` until the block has run once.
 
 Save.
 
 ## Step 5: Run it
 
-Click **Start Simulator**. After a few seconds the Debugger panel appears.
+Click **Start Simulator**. The editor builds the project, prepares a Python interpreter for `xform`, and starts the program. After a few seconds the Debugger panel appears.
+
+Open the **Console** tab: it shows `[AdcToCelsius] Block was initialized`. The name in brackets tells you which block printed the line.
 
 Tick the **Debug** column on `raw_value` and `temperature_c`. They appear in the Debugger:
 
 - `raw_value` = `512`
-- `temperature_c` = `31.2` (i.e. `512 * 0.1 - 20 = 31.2`)
+- `temperature_c` = `31.2` (that is, `512 * 0.1 - 20 = 31.2`)
 
 ## Step 6: Iterate
 
-Open the Python FB body again. Change the formula:
+Click **Stop Simulator**. Open the Python block again and change the offset:
 
 ```python
-def execute(self):
-    self.out_c = self.raw * self.scale + (-25.0)  # was -20.0
+def block_loop():
+    global out_c
+    out_c = raw * scale + (-25.0)  # was -20.0
 ```
 
-Save. Stop the Simulator, start it again. `temperature_c` is now `26.2`.
+Save, then click **Start Simulator** again. `temperature_c` is now `26.2`.
 
-This is the inner loop: edit Python, hot-swap, observe.
+This is the inner loop: edit the Python code, restart the Simulator, observe.
 
 ## How values cross the boundary
 
-The runtime translates `INT` and `REAL` to native Python `int` and `float`. `BOOL` becomes `bool`. Strings get more careful handling, they're packed via `struct.pack` per the FB's declared variable interface. See **[Python Variable Restrictions](../custom-languages/python-blocks/python-restrictions)** for the full list of supported types and the marshalling rules.
+`INT` and the other integer types arrive in Python as `int`, `REAL` and `LREAL` as `float`, and `BOOL` as `bool`. Strings have a maximum length. See **[Python Variable Restrictions](../custom-languages/python-blocks/python-restrictions)** for the full list of supported types.
 
-## Performance
+## Timing
 
-Python FBs have a small per-call overhead, typically tens of microseconds for the marshal step. For most control loops (10–100 ms cycle), this is fine. For sub-millisecond loops, use C++ blocks instead, or inline the maths in ST.
+The block and the PLC exchange values about every 100 ms, whatever the PLC's cycle time. A value the PLC writes can take up to one exchange to reach Python, and the result takes up to one more exchange to come back. For logic that must follow the scan cycle, use an IEC function block instead.
 
 ## Troubleshooting
 
-**The FB compiles but `out_c` is always 0.** Double-check `self.out_c` is being assigned. Python doesn't error on a typo, it just creates a new attribute that the runtime never sees. The output variable name in the table must match exactly.
+**The block runs but `out_c` is always 0.** Check that `block_loop()` starts with `global out_c`. Without it, the assignment creates a local variable and the PLC never sees it. Also check that the name in the code matches the name in the variables table exactly.
 
-**`AttributeError: 'AdcToCelsius' object has no attribute 'raw'` at runtime.** The variable's class is wrong. Inputs and outputs both need to be declared with the right class in the variables table.
+**The Console shows a `NameError` for the block.** The code reads a name that is not in the variables table, often a typo. The block stops, its outputs keep their last values, and the PLC keeps running. Fix the name and start the Simulator again.
 
 **The Python block is unavailable in the new-element popover.** The Simulator and Runtime v4 support Python. If you're on Runtime v3 (or an Arduino-class target on the desktop), Python is disabled. Switch targets via the Edge Devices screen.
 
 ## Where to next
 
-- **[Python Block Structure](../custom-languages/python-blocks/python-structure)**: the conceptual model of `execute(self)` and the `self` namespace.
-- **[Python Programming Basics](../custom-languages/python-blocks/python-basics)**: full language reference, what's allowed inside an `execute`.
-- **[C++ Function Blocks](../custom-languages/cpp-blocks/cpp-basics)**: the lower-latency cousin, with pointer-based variable access.
+- **[Python Block Structure](../custom-languages/python-blocks/python-structure)**: `block_init()`, `block_loop()`, and how the variables table maps to Python variables.
+- **[Python Programming Basics](../custom-languages/python-blocks/python-basics)**: the template and a first example.
+- **[C++ Function Blocks](../custom-languages/cpp-blocks/cpp-basics)**: the other way to write a block in a general-purpose language.
+- **[Running with the Simulator](../building-deploying/simulator)**: how Python blocks run on the Simulator.

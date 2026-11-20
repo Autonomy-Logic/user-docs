@@ -60,9 +60,13 @@ import requests      # Same. Depends on the target device's Python environment
 
 If an `import` fails because a package isn't installed, the Python process for that block will exit with an error visible in the runtime logs.
 
+### In the Simulator
+
+The **OpenPLC Simulator** has its own Python 3.13, bundled with the editor: the standard library and **numpy**, nothing else. Packages cannot be added to it. It has no network access, so network requests fail with a traceback on the Console, and a failed `import` shows its traceback on the Console instead of in the runtime logs. Import numpy at the top of the block, not for the first time inside a thread, and note that numpy cannot be loaded on Safari. See **[Running with the Simulator](../../building-deploying/simulator)** for the details.
+
 > **Keep the four imports at the top of the template** (`shared_memory`, `struct`, `time`, `os`). They're required even if you don't reference them in your own code.
 
-The generated wrapper that surrounds your script uses all four and does not import them itself. Dropping one is easy to do — they look unused — and the symptom is misleading: the block starts, exits about a second later, and the log says
+The generated wrapper that surrounds your script uses all four and does not import them itself. Dropping one is easy to do (they look unused), and the symptom is misleading: the block starts, exits about a second later, and the log says
 
 ```
 [Python] PLC runtime has stopped.
@@ -148,7 +152,7 @@ Your block never touches the global directly. Each cycle:
 2. Your `block_loop()` runs, in a different process, and may change its copy.
 3. The PLC takes your copy back and stores it into the global.
 
-Steps 1 and 3 each take the global's lock, so you never see or write a half-updated value. What isn't protected is the gap between them — and your block's whole cycle sits in that gap.
+Steps 1 and 3 each take the global's lock, so you never see or write a half-updated value. What isn't protected is the gap between them, and your block's whole cycle sits in that gap.
 
 ### The consequence: lost updates
 
@@ -183,7 +187,7 @@ This is a deliberate trade. Holding the global's lock from step 1 to step 3 woul
 
 ## Function Block Instances: The PLC Calls Them For You
 
-You can declare a function block instance in a Python block's Variables Table — a `TON`, a counter, one of your own function blocks — and use its pins exactly as you would in ST.
+You can declare a function block instance in a Python block's Variables Table (a `TON`, a counter, one of your own function blocks) and use its pins exactly as you would in ST.
 
 What you cannot do is *call* it. `ton0()` has no meaning in Python: your block runs in a separate process, and the instance lives in the PLC's. You don't need to. **The PLC calls every instance your block declares, once per scan cycle**, and your Python code just reads and writes the pins.
 
@@ -207,7 +211,7 @@ END_VAR
 
 ### Pin names are upper-cased
 
-The compiler upper-cases members, so the pins are `ton0.IN`, `ton0.PT`, `ton0.Q`, `ton0.ET` — even if your own function block declares them in lower case. `ton0.in` would be a Python keyword anyway.
+The compiler upper-cases members, so the pins are `ton0.IN`, `ton0.PT`, `ton0.Q`, `ton0.ET`, even if your own function block declares them in lower case. `ton0.in` would be a Python keyword anyway.
 
 ### What you can write, and what you can only read
 
@@ -218,7 +222,7 @@ The compiler upper-cases members, so the pins are `ton0.IN`, `ton0.PT`, `ton0.Q`
 | The block's outputs (`Q`, `ET`, …) | **read only** |
 | The block's internal state | not available |
 
-Assigning to an output has no effect, for the same reason assigning to one of your own inputs has none: the next cycle overwrites it. Internal state is deliberately not exposed — it belongs to the instance, and writing it from outside would corrupt the block.
+Assigning to an output has no effect, for the same reason assigning to one of your own inputs has none: the next cycle overwrites it. Internal state is deliberately not exposed. It belongs to the instance, and writing it from outside would corrupt the block.
 
 ### Outputs are one cycle behind
 
@@ -233,11 +237,11 @@ def block_loop():
     result = ton0.Q     # still the PREVIOUS cycle's value, not this one's
 ```
 
-This is the same one-cycle lag every Python input already has (see [The ~100 ms Loop](#the-100-ms-loop) above) — it is just easier to overlook here, because setting a pin and reading a pin on adjacent lines *looks* synchronous. For logic where that matters, put the function block in an ST block instead.
+This is the same one-cycle lag every Python input already has (see [The ~100 ms Loop](#the-100-ms-loop) above). It is just easier to overlook here, because setting a pin and reading a pin on adjacent lines *looks* synchronous. For logic where that matters, put the function block in an ST block instead.
 
 ### The instance runs every scan, not every Python cycle
 
-The PLC calls the instance on its own scan cycle, which is typically much faster than your block's ~100 ms loop. A `TON` therefore keeps accurate time regardless of how often your Python code looks at it — the timer is not being driven by Python's cadence, only observed by it.
+The PLC calls the instance on its own scan cycle, which is typically much faster than your block's ~100 ms loop. A `TON` therefore keeps accurate time regardless of how often your Python code looks at it: the timer is not being driven by Python's cadence, only observed by it.
 
 If your block declares several instances, they are called in the order they appear in the Variables Table.
 
@@ -250,7 +254,7 @@ myPyBlock(EN := systemReady);
 running := myPyBlock.ENO;
 ```
 
-When `EN` is false the block does not execute — and neither do the instances it declares.
+When `EN` is false the block does not execute, and neither do the instances it declares.
 
 ### What is still not supported
 
