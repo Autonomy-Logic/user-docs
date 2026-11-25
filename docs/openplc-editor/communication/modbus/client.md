@@ -100,8 +100,16 @@ How the master runs on a microcontroller:
 
 - It polls each I/O group on its cycle time, for function codes 1, 2, 3, 4, 5, 6, 15 and 16, and splits a group too large for one frame into several requests.
 - Devices on the same IP address and port share one connection, and devices on the same UART share one bus.
+- The master waits until the board reports its network connection up before it connects to a TCP device. A connection that fails while the board is off its network does not count against the device, even with Reconnect unchecked.
 - When you **Stop** the PLC, the master closes its connections and stays idle. **Start** runs it again from scratch, so a device it gave up on is tried again.
 - An RTU slave that does not answer keeps being polled on its cycle, which delays the other slaves on the same bus.
+
+### Known limits on ESP32 and ESP8266 Wi-Fi boards
+
+- **The board does not rejoin Wi-Fi on its own.** The firmware relies on the board's Wi-Fi driver to rejoin the network after an outage. If the board stays off the network after your access point is back, the Modbus master keeps waiting for the network and polls nothing. Press the board's reset button or power cycle the board.
+- **After a USB upload, an ESP32 on Wi-Fi may not connect to its TCP devices.** The board joins the network and answers ping, but the master never opens its connections. Press the board's **EN** (reset) button or power cycle the board, and the master connects.
+
+> **Tip:** After you upload a program to an ESP32 on Wi-Fi, press **EN** once before you check the Modbus values in the debugger.
 
 ### RS-485 on a microcontroller board
 
@@ -254,6 +262,8 @@ If the slave already has a value that changes while it is healthy, such as a hea
 **No Modbus in the Remote Device protocol list.** The active target cannot run a Modbus master: it has no network declared and no UART besides the debugger's. Use Runtime v4, or a board with a network or a second UART.
 
 **A TCP device stopped and never came back.** Its Reconnect box is unchecked, and the connection failed or dropped once. **Stop** then **Start** the PLC to try it again, and check **Reconnect** for that device.
+
+**An ESP32 or ESP8266 on Wi-Fi polls nothing after an upload or a Wi-Fi outage.** Reset or power cycle the board. See [Known limits on ESP32 and ESP8266 Wi-Fi boards](#known-limits-on-esp32-and-esp8266-wi-fi-boards).
 
 **TCP timeouts.** Host or port unreachable. From a shell on the Edge Device: `telnet <ip> 502` should connect. Check firewalls, NAT, and that you're using the right port.
 
