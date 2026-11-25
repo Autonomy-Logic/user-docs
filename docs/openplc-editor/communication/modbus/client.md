@@ -74,7 +74,9 @@ The help text under the checkbox says the same thing on every target.
 Good to know:
 
 - A new TCP device starts with Reconnect unchecked. A TCP device from a project saved before the option existed opens with Reconnect checked, so it keeps retrying as before.
-- A failed poll never gives a device up. An exception answer, an answer that does not match the request, or no answer within the timeout counts as one failed poll, and the next poll goes out on the group's cycle.
+- A failed poll never gives a device up, on a microcontroller board or on Runtime v4. The next poll goes out on the group's cycle.
+- On a microcontroller board, each of these counts as one failed poll: an exception answer, no answer within the timeout, or an answer that does not match the request (the wrong slave ID, transaction ID or function code, more data than requested, or a bad checksum).
+- On Runtime v4, an exception answer counts as one failed poll. A request that gets no answer is sent again up to three times before the poll counts as failed, so a silent slave shows up after about four timeouts. Runtime v4 does not check every answer against its request: an answer with the wrong function code or with more data than requested can be taken as a valid answer, and its values reach your program.
 - Devices that share one IP address and port share one connection, so they must have the same Reconnect setting. Otherwise the build is refused.
 - While a device is failing or given up, its read groups follow their **Error Handling** (keep the last value or set to zero) and its write groups send nothing.
 - On Runtime v4 with Reconnect checked, the runtime also closes and reopens the connection after a failed poll. On a microcontroller board the connection stays open after a failed poll, whatever the Reconnect setting.
