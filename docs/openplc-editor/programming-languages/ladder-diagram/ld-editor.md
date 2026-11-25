@@ -118,6 +118,8 @@ You can reposition elements within a rung by dragging them. The IDE maintains pr
 
 Select an element and press **Delete**, or right-click for context menu options. Deleting an element removes it from the rung and reconnects the surrounding wires automatically.
 
+Deleting a function block also removes its local instance variable (for example `TON0`) from the Variables Table, as long as nothing else in the program uses it. The variable stays when another block shares the same instance, or when another element reads one of its outputs (for example a contact on `TON0.Q`). The **Delete selected elements** button in the toolbox works the same way, and one **Ctrl+Z** brings back both the block and its variable.
+
 ## Variable Autocomplete
 
 The LD editor provides context-aware autocomplete when editing variable names on contacts, coils, and function block pins:
