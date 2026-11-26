@@ -125,20 +125,45 @@ For the tank station, on the **Style** tab:
 - Tank: **Caption** `Level`, **Unit** `m`, **MaxValue** `10.0`. The tank now fills to 6.4 of 10.
 - Gauge: **Caption** `Pressure`, **Unit** `bar`, **MaxValue** `10.0`.
 - Lamp: **Caption** `Pump running`.
-- Numeric entry: **Unit** `m`, **MinValue** `0.0`, **MaxValue** `10.0`. Operators cannot enter a setpoint outside these limits.
-- Title: **Size** `24`.
+- Numeric entry: **Caption** `Setpoint`, **Unit** `m`, **MinValue** `0.0`, **MaxValue** `10.0`. Operators cannot enter a setpoint outside these limits.
+- Title: **Size** `24`, **Font** `Bold`.
+- Stop button: **AccentColor** `Danger`, so it stands out in red.
 
-![The Layers tab listing the screen's elements, and the tank selected with its Style tab showing MinValue 0.0, MaxValue 10.0, Decimals 1, Unit m and Caption Level. The tank now reads 6.4 m and the gauge 3.2 bar](images/steps-07-properties.png)
+![The Stop button selected, with its Style tab showing the Text Stop and the AccentColor Danger. The button is now red, the title is bold, the tank reads 6.4 m and the gauge 3.2 bar](images/steps-07-properties.png)
 
 Colors offer the theme's colors (like Accent, Danger or Surface), which follow the screen's theme, or a fixed color of your choice. **Show in code** at the bottom of the card opens the code view at that element's declaration.
 
 ---
 
-## Step 7. Try it
+## Step 7. Share out the room
+
+Each widget landed at its natural size, so the rows are only half full. Give each element the share of its stack you want, with **Span** on the **Layout** tab. A Span is a percentage of the stack, so these values fill the screen on any display:
+
+| Stack | Element | Span |
+|---|---|---|
+| The screen | Title | `10` |
+| | Process row | `65` |
+| | Commands row | `25` |
+| Process row | Tank | `35` |
+| | Gauge | `40` |
+| | Lamp | `25` |
+| Commands row | Start | `25` |
+| | Stop | `25` |
+| | Setpoint | `50` |
+
+You can also drag an element's handle along its stack instead of typing a Span. To leave some room around and between the widgets, set the screen container's **Padding** to `16` and each stack's **Gap** to `12`.
+
+![The finished screen filling the canvas: the bold title, a row with the tank, a large gauge and the pump lamp, and a row with the Start and Stop buttons and a wide Setpoint entry. The gauge is selected, and its Layout tab shows AutoSize on and a Span of 40](images/steps-08-fill-rows.png)
+
+See [Screen layout that fits any display](layout) for how spans are shared out.
+
+---
+
+## Step 8. Try it
 
 The canvas always runs the screen. To operate it the way an operator would, click the hand button under the zoom controls. Presses now reach the widgets instead of selecting them: press **Start** and **Stop**, or tap the setpoint to type a value. Press **Esc** to return to designing.
 
-![The finished screen in preview mode, outlined in blue, with the notice Preview mode, press Esc to exit](images/steps-08-preview-mode.png)
+![The finished screen in preview mode, outlined in blue, with the notice Preview mode, press Esc to exit](images/steps-09-preview-mode.png)
 
 Most edits show at once. Some changes, like editing code, need a new build of the preview: the editor builds it in the background on its own, and the last result stays on screen meanwhile.
 
@@ -146,11 +171,11 @@ Most edits show at once. Some changes, like editing code, need a new build of th
 
 ---
 
-## Step 8. Look at the code
+## Step 9. Look at the code
 
 Every screen is Structured Text. Click the **Code** button at the top right to see what the designer wrote for you:
 
-![The code view of the Overview screen: the element declarations with their properties and spans, the three variable bindings, the Start and Stop button handling and the setpoint binding](images/steps-09-code-view.png)
+![The code view of the Overview screen: the element declarations with their properties and spans, the three variable bindings, the Start and Stop button handling and the setpoint binding](images/steps-10-code-view.png)
 
 Each element is a declaration with its properties, and the variables you dropped are assignments in the body. Changes in one view appear in the other. You rarely need to write screen code, but it is there when you want it: to compute a value, to run logic on a button press, or to navigate between screens. See [Screen code](screen-code).
 

@@ -22,7 +22,7 @@ Every widget sits in a container. There are three kinds:
 
 Stacks nest. The Overview screen above is a horizontal stack (the screen, top to bottom) holding a title, a row for the process widgets and a row for the commands. Each row is a vertical stack.
 
-![The Layers tab showing the screen's tree: HorizontalStack1 holding Label1, VerticalStack1 with Tank1, Gauge1 and Lamp1, and VerticalStack2 with Button1, Button2 and NumericInput1. VerticalStack1 is selected, and its Layout tab shows AutoSize on and a Span of 91](images/designer-layout-properties.png)
+![The Layers tab showing the screen's tree: HorizontalStack1 holding Label1, VerticalStack1 with Tank1, Gauge1 and Lamp1, and VerticalStack2 with Button1, Button2 and NumericInput1. VerticalStack1 is selected, and its Layout tab shows AutoSize on and a Span of 65](images/designer-layout-properties.png)
 
 Only containers sit directly on the screen, so a screen always starts with one: a new screen comes with a horizontal stack that fills it.
 

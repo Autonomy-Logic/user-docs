@@ -13,16 +13,16 @@ This is the Overview screen from [Designing screens](designing-screens), as the 
 ```st
 FUNCTION_BLOCK Overview EXTENDS HmiScreen
   VAR
-    HorizontalStack1 : HmiHorizontalStack := (AutoSize := TRUE, Span := 100);
-    Label1 : HmiLabel := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 9, Text := 'Tank station', Size := 24);
-    VerticalStack1 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 91);
-    Tank1 : HmiTank := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 13, Caption := 'Level', Unit := 'm', MaxValue := 10.0);
-    Gauge1 : HmiGauge := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 24, Caption := 'Pressure', Unit := 'bar', MaxValue := 10.0);
-    Lamp1 : HmiLamp := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 15, Caption := 'Pump running');
-    VerticalStack2 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 33);
-    Button1 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 15, Text := 'Start');
-    Button2 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 15, Text := 'Stop');
-    NumericInput1 : HmiNumericInput := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 27, Unit := 'm', MinValue := 0.0, MaxValue := 10.0);
+    HorizontalStack1 : HmiHorizontalStack := (AutoSize := TRUE, Span := 100, Padding := 16, Gap := 12);
+    Label1 : HmiLabel := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 10, Text := 'Tank station', Size := 24, Font := HMI_FONT#Bold);
+    VerticalStack1 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 65, Gap := 12);
+    Tank1 : HmiTank := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 35, Caption := 'Level', Unit := 'm', MaxValue := 10.0);
+    Gauge1 : HmiGauge := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 40, Caption := 'Pressure', Unit := 'bar', MaxValue := 10.0);
+    Lamp1 : HmiLamp := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 25, Caption := 'Pump running');
+    VerticalStack2 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 25, Gap := 12);
+    Button1 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 25, Text := 'Start');
+    Button2 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 25, Text := 'Stop', AccentColor := COLOR.Danger);
+    NumericInput1 : HmiNumericInput := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 50, Caption := 'Setpoint', Unit := 'm', MinValue := 0.0, MaxValue := 10.0);
   END_VAR
   Tank1.Value := instance0.Main.Level;
   Gauge1.Value := instance0.Main.Pressure;
