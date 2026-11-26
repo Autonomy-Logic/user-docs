@@ -8,32 +8,32 @@ You can build complete HMIs without writing code. This page is for when you want
 
 ## What a screen looks like
 
-This is the Overview screen from [Designing screens](designing-screens), as the designer wrote it:
+This is the Overview screen from [Designing screens](designing-screens), as the designer wrote it. The designer names each element after its widget and a number (Label1, Tank1, Button1), and you can keep those names:
 
 ```st
 FUNCTION_BLOCK Overview EXTENDS HmiScreen
   VAR
-    Body : HmiHorizontalStack := (AutoSize := TRUE, Span := 100, Gap := 12, Padding := 16);
-    Title : HmiLabel := (Parent := 'Body', Text := 'Tank station', Size := 24, Font := HMI_FONT#Bold, AutoSize := TRUE, Span := 10);
-    Process : HmiVerticalStack := (Parent := 'Body', AutoSize := TRUE, Span := 65, Gap := 12);
-    Level : HmiTank := (Parent := 'Process', Caption := 'Level', Unit := 'm', MaxValue := 10.0, AutoSize := TRUE, Span := 35);
-    Pressure : HmiGauge := (Parent := 'Process', Caption := 'Pressure', Unit := 'bar', MaxValue := 10.0, AutoSize := TRUE, Span := 40);
-    Pump : HmiLamp := (Parent := 'Process', Caption := 'Pump running', AutoSize := TRUE, Span := 25);
-    Commands : HmiVerticalStack := (Parent := 'Body', AutoSize := TRUE, Span := 25, Gap := 12);
-    Start : HmiButton := (Parent := 'Commands', Text := 'Start', AutoSize := TRUE, Span := 25);
-    Stop : HmiButton := (Parent := 'Commands', Text := 'Stop', AccentColor := COLOR.Danger, AutoSize := TRUE, Span := 25);
-    Setpoint : HmiNumericInput := (Parent := 'Commands', Caption := 'Setpoint', Unit := 'm', MinValue := 0.0, MaxValue := 10.0, AutoSize := TRUE, Span := 50);
+    HorizontalStack1 : HmiHorizontalStack := (AutoSize := TRUE, Span := 100);
+    Label1 : HmiLabel := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 9, Text := 'Tank station', Size := 24);
+    VerticalStack1 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 91);
+    Tank1 : HmiTank := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 13, Caption := 'Level', Unit := 'm', MaxValue := 10.0);
+    Gauge1 : HmiGauge := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 24, Caption := 'Pressure', Unit := 'bar', MaxValue := 10.0);
+    Lamp1 : HmiLamp := (Parent := 'VerticalStack1', AutoSize := TRUE, Span := 15, Caption := 'Pump running');
+    VerticalStack2 : HmiVerticalStack := (Parent := 'HorizontalStack1', AutoSize := TRUE, Span := 33);
+    Button1 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 15, Text := 'Start');
+    Button2 : HmiButton := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 15, Text := 'Stop');
+    NumericInput1 : HmiNumericInput := (Parent := 'VerticalStack2', AutoSize := TRUE, Span := 27, Unit := 'm', MinValue := 0.0, MaxValue := 10.0);
   END_VAR
-  Level.Value := instance0.Main.Level;
-  Pressure.Value := instance0.Main.Pressure;
-  Pump.Value := instance0.Main.PumpRunning;
-  Setpoint.Value := instance0.Main.Setpoint;
-  IF Start.Changed THEN
-    instance0.Main.StartPump := Start.Pressed;
+  Tank1.Value := instance0.Main.Level;
+  Gauge1.Value := instance0.Main.Pressure;
+  Lamp1.Value := instance0.Main.PumpRunning;
+  IF Button1.Changed THEN
+    instance0.Main.StartPump := Button1.Pressed;
   END_IF;
-  IF Stop.Changed THEN
-    instance0.Main.StopPump := Stop.Pressed;
+  IF Button2.Changed THEN
+    instance0.Main.StopPump := Button2.Pressed;
   END_IF;
+  NumericInput1.Value := instance0.Main.Setpoint;
 END_FUNCTION_BLOCK
 ```
 
@@ -50,7 +50,7 @@ Three parts:
 Assign a variable to a widget's value in the body:
 
 ```st
-Level.Value := instance0.Main.Level;
+Tank1.Value := instance0.Main.Level;
 ```
 
 Program variables are named through their instance, as in the **Variables** tab: `instance0.Main.Level` is the `Level` variable of the `Main` program running as `instance0`. Global variables are named directly, like `MaxLevel`.
@@ -67,13 +67,13 @@ On OpenPLC Runtime v4, the device sends each display only the variables of the s
 
 ## Writing PLC variables
 
-A control assigned to a variable, like the `Setpoint` numeric entry above, also writes the variable back when the operator changes it. You do not write that part yourself.
+A control assigned to a variable, like the `NumericInput1` numeric entry above, also writes the variable back when the operator changes it. You do not write that part yourself.
 
 Buttons write on press and release. This is what the designer writes when you drop a BOOL on a button:
 
 ```st
-IF Start.Changed THEN
-  instance0.Main.StartPump := Start.Pressed;
+IF Button1.Changed THEN
+  instance0.Main.StartPump := Button1.Pressed;
 END_IF;
 ```
 
@@ -113,8 +113,8 @@ The **Actions** tab of a widget's properties writes these for you: **Show a scre
 Any property can be assigned in the body, not only the main value. For example, a lamp that turns red on a fault and a button that is only enabled when the pump is stopped:
 
 ```st
-Pump.OnColor := SEL(instance0.Main.PumpFault, COLOR.Success, COLOR.Danger);
-Start.Enabled := NOT instance0.Main.PumpRunning;
+Lamp1.OnColor := SEL(instance0.Main.PumpFault, COLOR.Success, COLOR.Danger);
+Button1.Enabled := NOT instance0.Main.PumpRunning;
 Alarm.Visible := instance0.Main.AlarmActive;
 ```
 
