@@ -35,6 +35,17 @@ Configure how and when your PLC programs execute.
 - [**Project Compilation**](building-deploying/project-compilation): How to compile your project and read the Console output.
 - [**Deployment**](building-deploying/deployment-vplc): Deploy your compiled program to a device.
 - [**XML Export**](building-deploying/xml-export): Export your project as a standard XML file for backup or sharing.
+- [**User Management**](building-deploying/user-management): The device's accounts and their four roles.
+
+### Operator Screens (HMI)
+
+Build operator screens in the same project as the program, and run them in a browser or on a panel.
+
+- [**HMI Overview**](hmi/overview): What the HMI is and where it runs.
+- [**Designing Screens**](hmi/designing-screens): The designer, widgets, binding variables and the preview.
+- [**Screen Layout**](hmi/layout): Screens that fit any display, with stacks, AutoSize and Span.
+- [**Running the HMI**](hmi/running-the-hmi): Opening the HMI on Runtime v4 and on local panels.
+- [**Creating Widgets**](hmi/creating-widgets): Writing your own widgets in Structured Text.
 
 ### Connecting to Runtimes
 
