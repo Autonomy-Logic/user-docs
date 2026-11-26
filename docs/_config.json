@@ -601,6 +601,48 @@
           ]
         },
         {
+          "title": "HMI",
+          "path": "hmi",
+          "items": [
+            {
+              "title": "Overview",
+              "path": "overview"
+            },
+            {
+              "title": "Designing screens",
+              "path": "designing-screens"
+            },
+            {
+              "title": "Screen layout that fits any display",
+              "path": "layout"
+            },
+            {
+              "title": "Widget library",
+              "path": "widgets"
+            },
+            {
+              "title": "Screen code",
+              "path": "screen-code"
+            },
+            {
+              "title": "HMI Settings",
+              "path": "hmi-settings"
+            },
+            {
+              "title": "Running the HMI",
+              "path": "running-the-hmi"
+            },
+            {
+              "title": "Creating widgets",
+              "path": "creating-widgets"
+            },
+            {
+              "title": "Widget reference",
+              "path": "widget-reference"
+            }
+          ]
+        },
+        {
           "title": "Communication Protocols",
           "path": "communication",
           "items": [
